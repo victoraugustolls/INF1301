@@ -28,6 +28,9 @@
 == Criar a lista 0
 =criarlista      lista0 
 
+== Excluir elemento da lista 0
+=excluirelem     lista0   ListaVazia
+
 == Verificar ObterValor relativo a lista vazia
 =obtervalorelem  lista0   "???"     pNULL
 
