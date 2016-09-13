@@ -1,5 +1,6 @@
 *.obj
 *.exe
 *.log
+*.estat
 vsvars32.bat
 ArcaboucoTeste.lib

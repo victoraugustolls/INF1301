@@ -25,6 +25,8 @@
 
 == Inicializar valores
 =declararparm   lista0  int 0
+=declararparm   lista1  int 1
+=declararparm   lista2  int 2
 
 // ---------------------------------------------
 
@@ -409,5 +411,115 @@
 
 =esvaziarlista lista0
 =destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste com Duas Listas
+=criarlista      lista0
+=criarlista      lista1
+
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=obtervalorelem  lista1   "PLACEHOLDER"   pNULL
+
+=inselemantes   lista0    "VALOR_LISTA0_3"    OK
+=inselemantes   lista1    "VALOR_LISTA1_3"    OK
+
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=inselemantes   lista0    "VALOR_LISTA0_2"    OK
+=inselemantes   lista1    "VALOR_LISTA1_2"    OK
+=inselemantes   lista0    "VALOR_LISTA0_1"    OK
+=inselemantes   lista1    "VALOR_LISTA1_1"    OK
+
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=excluirelem lista1 OK
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=excluirelem lista0 OK
+=obtervalorelem  lista0   "VALOR_LISTA0_2"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=esvaziarlista lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=esvaziarlista lista1
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=obtervalorelem  lista1   "PLACEHOLDER"   pNULL
+
+=inselemantes   lista0    "VALOR_LISTA0_3"    OK
+=inselemantes   lista1    "VALOR_LISTA1_3"    OK
+=inselemantes   lista0    "VALOR_LISTA0_2"    OK
+=inselemantes   lista1    "VALOR_LISTA1_2"    OK
+=inselemantes   lista0    "VALOR_LISTA0_1"    OK
+=inselemantes   lista1    "VALOR_LISTA1_1"    OK
+
+=irfinal lista1
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=irfinal lista0
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=irinicio lista0
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=irinicio lista1
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_LISTA0_2"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=avancarelem   lista1    1    OK
+=obtervalorelem  lista0   "VALOR_LISTA0_2"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=avancarelem   lista0    5    FimLista
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=avancarelem   lista1    -5    FimLista
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=esvaziarlista lista0
+=esvaziarlista lista1
+
+=inselemapos   lista0    "VALOR_LISTA0_1"    OK
+=inselemapos   lista0    "VALOR_LISTA0_2"    OK
+=inselemapos   lista0    "VALOR_LISTA0_3"    OK
+
+=inselemapos   lista1    "VALOR_LISTA1_3"    OK
+=inselemantes  lista1    "VALOR_LISTA1_1"    OK
+=inselemapos   lista1    "VALOR_LISTA1_2"    OK
+
+=irinicio lista0
+=irinicio lista1
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=avancarelem   lista0    1    OK
+=avancarelem   lista1    1    OK
+=obtervalorelem  lista0   "VALOR_LISTA0_2"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=avancarelem   lista0    1    OK
+=avancarelem   lista1    1    OK
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=esvaziarlista lista0
+=esvaziarlista lista1
+
+=destruirlista   lista0
+=destruirlista   lista1
 
 // ---------------------------------------------
