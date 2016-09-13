@@ -16,6 +16,16 @@
 
 03/09/2016; 2 horas ; estudar; Estudou o enunciado do trabalho, a estrutura do arcabouço, assim como sua documentação.
 
-12/09/2016; 0.5 horas; projetar; Organizar repositório do GitHub
+10/09/2016; 1 hora ; estudar; Estudou como preparar o ambiente da máquina para compilar a biblioteca do Arcabouço.
 
-12/09/2016; 0.5 horas; redigir script de teste; Redigir teste da lista.
+11/09/2016; 3 horas ; diagnosticar e corrigir os problemas encontrados; Preparou ambiente da máquina para a compilação do Arcabouço e compilou-o. Também compilou-se o módulo lista.
+
+11/09/2016; 0.3 horas ; realizar os testes; Testou o arcabouço, assim como o módulo lista junto aos scripts de testes já providos junto com o enunciado do trabalho.
+
+12/09/2016; 0.5 horas; projetar; Organizou repositório do GitHub e breve organização do grupo para realização de tarefas. (Junto com Victor Augusto e Lucas Ferraço)
+
+12/09/2016; 1 hora; revisar especificações; Discutir organização dos scripts de testes e resultados esperado do trabalho, chegando-se a um consenso sobre o que deve ser feito. (Junto com Victor Augusto e Lucas Ferraço)
+
+12/09/2016; 1.5 horas; redigir script de teste; Redigir casos de testes para o módulo LISTA (TesteLista.script). (Junto com Victor Augusto e Lucas Ferraço)
+
+13/09/2016; 2.5 horas; redigir script de teste; Redigir casos de testes para o módulo LISTA (TesteLista.script). (Junto com Victor Augusto)
