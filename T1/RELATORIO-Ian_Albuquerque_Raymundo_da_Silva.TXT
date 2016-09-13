@@ -1,0 +1,17 @@
+% Data (DD/MM/AAAA); Horas Trabalhadas; Tipo Tarefa; Descrição da Tarefa Realizada
+%
+% Tipo de Tarefas:
+% - estudar
+% - especificar os módulos
+% - especificar as funções
+% - revisar especificações
+% - projetar
+% - revisar projetos
+% - codificar módulo
+% - revisar código do módulo
+% - redigir script de teste
+% - revisar script de teste
+% - realizar os testes
+% - diagnosticar e corrigir os problemas encontrados
+
+03/09/2016; 2 horas ; estudar; Estudou o enunciado do trabalho, a estrutura do arcabouço, assim como sua documentação.
