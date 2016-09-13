@@ -1,39 +1,70 @@
 
 !!! Inicio dos testes
-!!!      Construto sob teste: TesteLista.exe
+!!!      Construto sob teste: testeLista
 !!!      Script de teste:     TesteLista.script
 
-!!!    0  Linha:     1  // Script:    TesteLista.script 
-!!!    0  Linha:     2  // Autor:     Arndt von Staa 
-!!!    0  Linha:     3  // Data:      02/abr/2008 
-!!!    0  Linha:     4  // Propósito: Testar superficialmente o módulo lista genérica duplamente encadeada 
-!!!    0  Linha:     5  // 
-    7  == Inicializar valores
-   26  == Criar a lista 0
-   29  == Excluir elemento da lista 0
-   32  == Verificar ObterValor relativo a lista vazia
-   35  == Inserir elemento em lista vazia
-   39  == Inserir elemento após primeiro
-   43  == Inserir elemento antes do último
-   47  == Excluir elemento do meio
-   51  == Excluir elemento do início
-   55  == Excluir elemento final, único
-   59  == Ver se a lista ficou vazia
-   62  == Destruir a lista
-   65  == Criar uma lista com dois elementos
-   70  == Esvaziar a lista e ver se ficou vazia
-   74  == Destruir a lista
-   77  == Criar uma lista com quatro elementos
-   84  == Verificar a lista de trás para diante
-   94  == Verificar a lista de frente para trás
-  104  == Verificar a lista andando demais de trás para diante
-  108  == Verificar a lista andando demais de frente para trás
-  112  == Destruir a lista
-!!!    0  Linha:   115  // fim 
+!!!    0  Linha:     1  // Script: TesteLista.script 
+!!!    0  Linha:     2  // Autores: Ian Albuquerque e Victor Augusto 
+!!!    0  Linha:     3  // Autor Original: Arndt von Staa 
+!!!    0  Linha:     4  // Data: 09/set/2016 
+!!!    0  Linha:     5  // Propósito: Testar por completo as funções de acesso do módulo LISTA, com exceção 
+!!!    0  Linha:     6  // do caso em que ocorre falta de memória. 
+!!!    0  Linha:     7  // 
+!!!    0  Linha:     8  // Observação: Não testa-se se o valor do ponteiro para a string da inserção pode ser 
+!!!    0  Linha:     9  // nulo 
+!!!    0  Linha:    10  // 
+!!!    0  Linha:    12  // --------------------------------------------- 
+   14  == Inicializar Constantes
+!!!    0  Linha:    24  // --------------------------------------------- 
+   26  == Inicializar valores
+!!!    0  Linha:    29  // --------------------------------------------- 
+   31  == Teste Criação de Listas
+   34  == Teste do Teste de Criação de Listas
+>>>    1  Linha:    35  Erro nos parâmetros do comando:  =criarlista      lista0
+<<<    0  Linha:    36  Falha esperada foi recuperada. 
+!!!    0  Linha:    38  // --------------------------------------------- 
+   40  == Teste Destruição de Listas
+   43  == Teste do Teste de Destruição de Listas
+>>>    1  Linha:    44  Erro nos parâmetros do comando:  =destruirlista      lista0
+<<<    0  Linha:    45  Falha esperada foi recuperada. 
+!!!    0  Linha:    47  // --------------------------------------------- 
+   49  == Teste Obter Lista Vazia
+!!!    0  Linha:    54  // --------------------------------------------- 
+   56  == Teste Esvaziar Lista Vazia
+!!!    0  Linha:    63  // --------------------------------------------- 
+   65  == Teste Simples de Inserção Elemento e Esvaziar Lista
+!!!    0  Linha:    80  // --------------------------------------------- 
+   82  == Teste Inserção e Obter Valor
+!!!    0  Linha:    95  // --------------------------------------------- 
+   97  == Teste Avançar Lista Vazia
+!!!    0  Linha:   103  // --------------------------------------------- 
+  105  == Teste Avançar Unitário
+!!!    0  Linha:   138  // --------------------------------------------- 
+  140  == Teste Avançar Fim de Lista
+!!!    0  Linha:   181  // --------------------------------------------- 
+  183  == Teste Avançar Fim de Lista Elemento Único
+!!!    0  Linha:   198  // --------------------------------------------- 
+  200  == Teste Ordenamento da Inserção
+!!!    0  Linha:   226  // --------------------------------------------- 
+  228  == Teste Avançar Zero
+!!!    0  Linha:   239  // --------------------------------------------- 
+  241  == Teste Avançar Múltiplo
+!!!    0  Linha:   261  // --------------------------------------------- 
+  263  == Teste Início e Fim de Lista Vazia
+!!!    0  Linha:   286  // --------------------------------------------- 
+  288  == Teste Início e Fim de Lista Preenchida
+!!!    0  Linha:   308  // --------------------------------------------- 
+  310  == Teste Excluir Lista Vazia
+!!!    0  Linha:   329  // --------------------------------------------- 
+  331  == Teste Excluir Elementos da Lista
+!!!    0  Linha:   363  // --------------------------------------------- 
+  365  == Teste Posicionamento do Corrente ao Excluir
+!!!    0  Linha:   393  // --------------------------------------------- 
+  395  == Teste Exclusão Multipla Lista Vazia
 
-!!! Número de linhas lidas:         115
-!!! Número de casos de teste:        21
-!!! Número comandos corretos:        63
+!!! Número de linhas lidas:         411
+!!! Número de casos de teste:        23
+!!! Número comandos corretos:       276
 !!! Número de falhas encontradas:     0
 
 !!! Não foram encontrados problemas
