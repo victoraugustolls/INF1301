@@ -61,7 +61,7 @@
 >>>    1  Linha:    83  Espaços não são iguais. 
 
    00000 Nao é:  2B 20 20 61 20 7E 20 63 5E 64 20 2D 20 20 20      +  a ~ c^d -   
-         É    :  2B 20 20 61 20 7E 20 63 5E 64 20 2D 00 E1 36      +  a ~ c^d -.á6
+         É    :  2B 20 20 61 20 7E 20 63 5E 64 20 2D 00 E1 F6      +  a ~ c^d -.áö
 
 <<<    0  Linha:    84  Falha esperada foi recuperada. 
    86  == Teste espacos de 17 bytes nao iguais
@@ -93,7 +93,7 @@
 >>>    1  Linha:   101  Espaços não são iguais. 
 
    00000 Nao é:  30 31 32 33 34 35 36 37 38 39 30 61 62 63 64 65   01234567890abcde
-         É    :  02 00 00 00 00 09 37 62 0F D6 FF 39 CC 97 17 3F   ......7b.Ö.9Ì—.?
+         É    :  02 00 00 00 00 09 F7 62 0F D6 FF 39 CC 97 17 3F   ......÷b.Ö.9Ì—.?
 
    00016 Nao é:  66                                                f
          É    :  00                                                .

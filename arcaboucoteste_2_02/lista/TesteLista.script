@@ -1,7 +1,9 @@
-// Script:    TesteLista.script
-// Autor:     Arndt von Staa
-// Data:      02/abr/2008
-// Propósito: Testar superficialmente o módulo lista genérica duplamente encadeada
+// Script: TesteLista.script
+// Autores: Ian Albuquerque e Victor Augusto
+// Autor Original: Arndt von Staa
+// Data: 09/set/2016
+// Propósito: Testar por completo as funções de acesso do módulo LISTA, com exceção
+// do caso em que ocorre falta de memória.
 //
 
 == Inicializar valores

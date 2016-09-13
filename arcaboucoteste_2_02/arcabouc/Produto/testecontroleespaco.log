@@ -13,7 +13,7 @@
    10  == Alocar espaço de 16 bytes
    13  == Exibir espaço alocado
 
-!!!  Espaco de dados, id:     0  pValor: 02E528F2  hexa: F2 28 E5 02  E' origem lista  E' final lista
+!!!  Espaco de dados, id:     0  pValor: 02691F22  hexa: 22 1F 69 02  E' origem lista  E' final lista
      Tipo indefinido  Tamanho: 16  Ativo  Linha onde alocou: 5  Arquivo: arq-111-inx-0
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -21,7 +21,7 @@
 
    16  == Alocar espaço de 1 byte
 
-!!!  Espaco de dados, id:     1  pValor: 02E529B2  hexa: B2 29 E5 02  E' origem lista  Id suc:     0
+!!!  Espaco de dados, id:     1  pValor: 02692022  hexa: 22 20 69 02  E' origem lista  Id suc:     0
      Tipo indefinido  Tamanho: 1  Ativo  Linha onde alocou: 6  Arquivo: arq-222-inx-1
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -29,7 +29,7 @@
 
    20  == Alocar espaço de 17 bytes
 
-!!!  Espaco de dados, id:     2  pValor: 02E52A72  hexa: 72 2A E5 02  E' origem lista  Id suc:     1
+!!!  Espaco de dados, id:     2  pValor: 02692122  hexa: 22 21 69 02  E' origem lista  Id suc:     1
      Tipo indefinido  Tamanho: 17  Ativo  Linha onde alocou: 5  Arquivo: arq-333-inx-2
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -38,7 +38,7 @@
 
    24  == exibir todos os espaços da origem para o fim (obs a espacos são adicionados à frente)
 
-!!!  Espaco de dados, id:     2  pValor: 02E52A72  hexa: 72 2A E5 02  E' origem lista  Id suc:     1
+!!!  Espaco de dados, id:     2  pValor: 02692122  hexa: 22 21 69 02  E' origem lista  Id suc:     1
      Tipo indefinido  Tamanho: 17  Ativo  Linha onde alocou: 5  Arquivo: arq-333-inx-2
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -46,14 +46,14 @@
     010  7C                                                |
 
 
-!!!  Espaco de dados, id:     1  pValor: 02E529B2  hexa: B2 29 E5 02  Id ant:     2  Id suc:     0
+!!!  Espaco de dados, id:     1  pValor: 02692022  hexa: 22 20 69 02  Id ant:     2  Id suc:     0
      Tipo indefinido  Tamanho: 1  Ativo  Linha onde alocou: 6  Arquivo: arq-222-inx-1
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
     000  7C                                                |
 
 
-!!!  Espaco de dados, id:     0  pValor: 02E528F2  hexa: F2 28 E5 02  Id ant:     1  E' final lista
+!!!  Espaco de dados, id:     0  pValor: 02691F22  hexa: 22 1F 69 02  Id ant:     1  E' final lista
      Tipo indefinido  Tamanho: 16  Ativo  Linha onde alocou: 5  Arquivo: arq-111-inx-0
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -69,7 +69,7 @@
    49  == Verificar se os espaços estão ativos
    54  == Exibir todos os espacos
 
-!!!  Espaco de dados, id:     2  pValor: 02E52A72  hexa: 72 2A E5 02  E' origem lista  Id suc:     1
+!!!  Espaco de dados, id:     2  pValor: 02692122  hexa: 22 21 69 02  E' origem lista  Id suc:     1
      Tipo indefinido  Tamanho: 17  Ativo  Linha onde alocou: 5  Arquivo: arq-333-inx-2
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -77,14 +77,14 @@
     010  7C                                                |
 
 
-!!!  Espaco de dados, id:     1  pValor: 02E529B2  hexa: B2 29 E5 02  Id ant:     2  Id suc:     0
+!!!  Espaco de dados, id:     1  pValor: 02692022  hexa: 22 20 69 02  Id ant:     2  Id suc:     0
      Tipo indefinido  Tamanho: 1  Nao ativo  Linha onde alocou: 6  Arquivo: arq-222-inx-1
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
     000  7C                                                |
 
 
-!!!  Espaco de dados, id:     0  pValor: 02E528F2  hexa: F2 28 E5 02  Id ant:     1  E' final lista
+!!!  Espaco de dados, id:     0  pValor: 02691F22  hexa: 22 1F 69 02  Id ant:     1  E' final lista
      Tipo indefinido  Tamanho: 16  Ativo  Linha onde alocou: 5  Arquivo: arq-111-inx-0
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -92,7 +92,7 @@
 
    58  == Exibir todos os espacos ativos
 
-!!!  Espaco de dados, id:     2  pValor: 02E52A72  hexa: 72 2A E5 02  E' origem lista  Id suc:     1
+!!!  Espaco de dados, id:     2  pValor: 02692122  hexa: 22 21 69 02  E' origem lista  Id suc:     1
      Tipo indefinido  Tamanho: 17  Ativo  Linha onde alocou: 5  Arquivo: arq-333-inx-2
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -100,7 +100,7 @@
     010  7C                                                |
 
 
-!!!  Espaco de dados, id:     0  pValor: 02E528F2  hexa: F2 28 E5 02  Id ant:     1  E' final lista
+!!!  Espaco de dados, id:     0  pValor: 02691F22  hexa: 22 1F 69 02  Id ant:     1  E' final lista
      Tipo indefinido  Tamanho: 16  Ativo  Linha onde alocou: 5  Arquivo: arq-111-inx-0
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -108,7 +108,7 @@
 
    62  == Exibir todos os espacos não ativos
 
-!!!  Espaco de dados, id:     1  pValor: 02E529B2  hexa: B2 29 E5 02  Id ant:     2  Id suc:     0
+!!!  Espaco de dados, id:     1  pValor: 02692022  hexa: 22 20 69 02  Id ant:     2  Id suc:     0
      Tipo indefinido  Tamanho: 1  Nao ativo  Linha onde alocou: 6  Arquivo: arq-222-inx-1
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -128,7 +128,7 @@
   117  == Marcar todos os espaços não ativos
   123  == excluir espaço do meio
 
-!!!  Espaco de dados, id:     2  pValor: 02E52A72  hexa: 72 2A E5 02  E' origem lista  Id suc:     0
+!!!  Espaco de dados, id:     2  pValor: 02692122  hexa: 22 21 69 02  E' origem lista  Id suc:     0
      Tipo indefinido  Tamanho: 17  Nao ativo  Linha onde alocou: 5  Arquivo: arq-333-inx-2
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -137,7 +137,7 @@
 
 !!!    0  Linha:   126  Exibir espaco recebeu ponteiro nulo. 
 
-!!!  Espaco de dados, id:     0  pValor: 02E528F2  hexa: F2 28 E5 02  Id ant:     2  E' final lista
+!!!  Espaco de dados, id:     0  pValor: 02691F22  hexa: 22 1F 69 02  Id ant:     2  E' final lista
      Tipo indefinido  Tamanho: 16  Nao ativo  Linha onde alocou: 5  Arquivo: arq-111-inx-0
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -145,7 +145,7 @@
 
   129  == excluir espaço final
 
-!!!  Espaco de dados, id:     2  pValor: 02E52A72  hexa: 72 2A E5 02  E' origem lista  E' final lista
+!!!  Espaco de dados, id:     2  pValor: 02692122  hexa: 22 21 69 02  E' origem lista  E' final lista
      Tipo indefinido  Tamanho: 17  Nao ativo  Linha onde alocou: 5  Arquivo: arq-333-inx-2
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -166,21 +166,21 @@
   161  == Verificar redefinição de tipo para indefinido
   166  == exibir todos os espaços da origem para o fim (obs a espacos são adicionados à frente)
 
-!!!  Espaco de dados, id:     5  pValor: 02E57362  hexa: 62 73 E5 02  E' origem lista  Id suc:     4
+!!!  Espaco de dados, id:     5  pValor: 02692422  hexa: 22 24 69 02  E' origem lista  Id suc:     4
      Id tipo valor: 54  Tamanho: 15  Ativo  Linha onde alocou: 15  Arquivo: ccccccccccccccc
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
     000  7C 7C 7C 7C 7C 7C 7C 7C 7C 7C 7C 7C 7C 7C 7C      |||||||||||||||
 
 
-!!!  Espaco de dados, id:     4  pValor: 02E52AD2  hexa: D2 2A E5 02  Id ant:     5  Id suc:     3
+!!!  Espaco de dados, id:     4  pValor: 0269231A  hexa: 1A 23 69 02  Id ant:     5  Id suc:     3
      Tipo indefinido  Tamanho: 5  Ativo  Linha onde alocou: 5  Arquivo: bbbbb
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
     000  7C 7C 7C 7C 7C                                    |||||
 
 
-!!!  Espaco de dados, id:     3  pValor: 02E528F2  hexa: F2 28 E5 02  Id ant:     4  E' final lista
+!!!  Espaco de dados, id:     3  pValor: 02692222  hexa: 22 22 69 02  Id ant:     4  E' final lista
      Tipo indefinido  Tamanho: 2  Ativo  Linha onde alocou: 2  Arquivo: aa
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -188,7 +188,7 @@
 
   171  == inserir exato no espaço
 
-!!!  Espaco de dados, id:     5  pValor: 02E57362  hexa: 62 73 E5 02  E' origem lista  Id suc:     4
+!!!  Espaco de dados, id:     5  pValor: 02692422  hexa: 22 24 69 02  E' origem lista  Id suc:     4
      Id tipo valor: 54  Tamanho: 15  Ativo  Linha onde alocou: 15  Arquivo: ccccccccccccccc
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -196,7 +196,7 @@
 
   176  == inserir 1 menor no espaço
 
-!!!  Espaco de dados, id:     4  pValor: 02E52AD2  hexa: D2 2A E5 02  Id ant:     5  Id suc:     3
+!!!  Espaco de dados, id:     4  pValor: 0269231A  hexa: 1A 23 69 02  Id ant:     5  Id suc:     3
      Tipo indefinido  Tamanho: 5  Ativo  Linha onde alocou: 5  Arquivo: bbbbb
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -208,14 +208,14 @@
   192  == Adicionar mais um espaço
   197  == Excluir segundo espaço
 
-!!!  Espaco de dados, id:     6  pValor: 02E5742A  hexa: 2A 74 E5 02  E' origem lista  Id suc:     5
+!!!  Espaco de dados, id:     6  pValor: 0269252A  hexa: 2A 25 69 02  E' origem lista  Id suc:     5
      Tipo indefinido  Tamanho: 5  Ativo  Linha onde alocou: 5  Arquivo: xxxxx
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
     000  7C 7C 7C 7C 7C                                    |||||
 
 
-!!!  Espaco de dados, id:     6  pValor: 02E5742A  hexa: 2A 74 E5 02  E' origem lista  Id suc:     4
+!!!  Espaco de dados, id:     6  pValor: 0269252A  hexa: 2A 25 69 02  E' origem lista  Id suc:     4
      Tipo indefinido  Tamanho: 5  Ativo  Linha onde alocou: 5  Arquivo: xxxxx
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -223,14 +223,14 @@
 
   202  == Excluir ultimo espaço
 
-!!!  Espaco de dados, id:     3  pValor: 02E528F2  hexa: F2 28 E5 02  Id ant:     4  E' final lista
+!!!  Espaco de dados, id:     3  pValor: 02692222  hexa: 22 22 69 02  Id ant:     4  E' final lista
      Tipo indefinido  Tamanho: 2  Ativo  Linha onde alocou: 2  Arquivo: aa
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
     000  61 00                                             a.
 
 
-!!!  Espaco de dados, id:     4  pValor: 02E52AD2  hexa: D2 2A E5 02  Id ant:     6  E' final lista
+!!!  Espaco de dados, id:     4  pValor: 0269231A  hexa: 1A 23 69 02  Id ant:     6  E' final lista
      Tipo indefinido  Tamanho: 5  Ativo  Linha onde alocou: 5  Arquivo: bbbbb
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -238,14 +238,14 @@
 
   207  == Excluir primeiro espaço
 
-!!!  Espaco de dados, id:     6  pValor: 02E5742A  hexa: 2A 74 E5 02  E' origem lista  Id suc:     4
+!!!  Espaco de dados, id:     6  pValor: 0269252A  hexa: 2A 25 69 02  E' origem lista  Id suc:     4
      Tipo indefinido  Tamanho: 5  Ativo  Linha onde alocou: 5  Arquivo: xxxxx
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
     000  7C 7C 7C 7C 7C                                    |||||
 
 
-!!!  Espaco de dados, id:     4  pValor: 02E52AD2  hexa: D2 2A E5 02  E' origem lista  E' final lista
+!!!  Espaco de dados, id:     4  pValor: 0269231A  hexa: 1A 23 69 02  E' origem lista  E' final lista
      Tipo indefinido  Tamanho: 5  Ativo  Linha onde alocou: 5  Arquivo: bbbbb
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
@@ -255,21 +255,21 @@
   215  == Verificar total de espacos ativos
   219  == Alocar lista de 3 espaços
 
-!!!  Espaco de dados, id:     7  pValor: 02E528F2  hexa: F2 28 E5 02  E' origem lista  E' final lista
+!!!  Espaco de dados, id:     7  pValor: 02692622  hexa: 22 26 69 02  E' origem lista  E' final lista
      Tipo indefinido  Tamanho: 2  Ativo  Linha onde alocou: 2  Arquivo: arq1
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
     000  61 00                                             a.
 
 
-!!!  Espaco de dados, id:     8  pValor: 02E5742A  hexa: 2A 74 E5 02  E' origem lista  Id suc:     7
+!!!  Espaco de dados, id:     8  pValor: 02697CE2  hexa: E2 7C 69 02  E' origem lista  Id suc:     7
      Tipo indefinido  Tamanho: 5  Ativo  Linha onde alocou: 5  Arquivo: arq1
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF
     000  62 62 62 62 00                                    bbbb.
 
 
-!!!  Espaco de dados, id:     9  pValor: 02E574E2  hexa: E2 74 E5 02  E' origem lista  Id suc:     8
+!!!  Espaco de dados, id:     9  pValor: 02697DDA  hexa: DA 7D 69 02  E' origem lista  Id suc:     8
      Tipo indefinido  Tamanho: 4  Ativo  Linha onde alocou: 15  Arquivo: arq1
      Controle antes OK  Controle apos OK
           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F   0123456789ABCDEF

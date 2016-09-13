@@ -15,3 +15,7 @@
 % - diagnosticar e corrigir os problemas encontrados
 
 03/09/2016; 2 horas ; estudar; Estudou o enunciado do trabalho, a estrutura do arcabouço, assim como sua documentação.
+
+12/09/2016; 0.5 horas; projetar; Organizar repositório do GitHub
+
+12/09/2016; 0.5 horas; redigir script de teste; Redigir teste da lista.

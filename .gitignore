@@ -1,1 +1,5 @@
 vsvars32.bat
+ArcaboucoTeste.lib
+*.obj
+*.exe
+*.log
