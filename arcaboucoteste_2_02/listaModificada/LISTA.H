@@ -190,6 +190,63 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
 /***********************************************************************
 *
+*  $FC Função: LIS  &Inserir elemento ordenado
+*
+*  $ED Descrição da função
+*     Insere novo elemento de forma ordenada na lista.
+*     A chave da ordenação é o membro 'iniciais' da etiqueta nominal,
+*       sendo esta ordenada em ordem alfanumérica.
+*     O novo elemento será inserido na primeira ocorrência em que o elemento
+*       anterior, caso exista, possua uma ordenação alfanumérica menor que o valor
+*       do elemento sendo inserido e em que o elemento posterior, caso exista,
+*       possua uma ordenação alfanuméricam maior.
+*     Caso a lista esteja ordenada alfanuméricamente pelas 'iniciais', essa
+*       inserção preservará sua propriedade de ordenada.
+*     Caso a lista NÃO esteja previamente ordenada alfanuméricamente pelas 'iniciais',
+*       essa inserção NÃO garante a propriedade de ordenação.
+*     O elemento corrente passará a ser o novo elemento inserido.
+*     Caso a lista esteja vazia, insere o primeiro elemento da lista.
+*
+*  $EP Parâmetros
+*     Parâmetros
+*        pLista - ponteiro para a lista onde deve ser inserido o elemento
+*        pValor - ponteiro para o valor da nova etiqueta nominal
+*                 Pode ser NULL
+*           
+*
+*  $FV Valor retornado
+*     Valor retornado
+*        LIS_CondRetOK
+*        LIS_CondRetFaltouMemoria
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_InserirElementoOrdenado( LIS_tppLista pLista ,
+                                              ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Apresenta Conteúdo em Ordem
+*
+*  $ED Descrição da função
+*     Apresenta o conteúdo da lista na ordem em que ela
+*       aparece na lista.
+*     A apresentação é feita de acordo com a implementação da Etiqueta Nominal.
+*
+*  $EP Parâmetros
+*     Parâmetros
+*        pLista - ponteiro para a lista onde deve ser inserido o elemento
+*        pValor - ponteiro para o valor da nova etiqueta nominal
+*                 Pode ser NULL
+*
+***********************************************************************/
+
+   void LIS_ApresentaConteudoEmOrdem() ;
+
+
+/***********************************************************************
+*
 *  $FC Função: LIS  &Excluir elemento
 *
 *  $ED Descrição da função
