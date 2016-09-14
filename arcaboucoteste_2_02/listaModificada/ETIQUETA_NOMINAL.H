@@ -34,34 +34,6 @@
 
 typedef struct ETI_tagEtiquetaNominal * ETI_tppEtiquetaNominal ;
 
-/***********************************************************************
-*
-*  $TC Tipo de dados: LIS Condições de retorno
-*
-*
-*  $ED Descrição do tipo
-*     Condições de retorno das funções da lista
-*
-***********************************************************************/
-
-typedef enum {
-
-      ETI_CondRetOK ,
-            /* Concluiu corretamente */
-
-      ETI_CondRetListaVazia ,
-            /* A lista n�o cont�m elementos */
-
-      ETI_CondRetFimLista ,
-            /* Foi atingido o fim de lista */
-
-      ETI_CondRetNaoAchou ,
-            /* N�o encontrou o valor procurado */
-
-      ETI_CondRetFaltouMemoria
-            /* Faltou mem�ria ao tentar criar um elemento de lista */
-
-} ETI_tpCondRet ;
 
 /***********************************************************************
 *
@@ -101,8 +73,6 @@ ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal(char* pIniciais, char* pNomeComp
 *  $EP Parâmetros
 *      pEtiquetaNominal - ponteiro para etiqueta nominal que será desctuída
 *
-*  $FV Valor retornado
-*     LIS_CondRetOK     - destruiu sem problemas
 *
 ***********************************************************************/
 
