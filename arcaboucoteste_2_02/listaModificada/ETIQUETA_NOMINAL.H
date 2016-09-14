@@ -71,8 +71,8 @@ typedef enum {
 *     Cria uma etiqueta nominal contendo as iniciais e o nome.
 *
 *  $EP Parâmetros
-*     iniciais      - inicial da pessoa em questão
-*     nomeCompleto  - nome completo da pessoa em questão
+*     pIniciais      - inicial da pessoa em questão
+*     pNomeCompleto  - nome completo da pessoa em questão
 *
 *  $FV Valor retornado
 *     Se executou corretamente retorna o ponteiro para a etiqueta nominal.
@@ -84,7 +84,7 @@ typedef enum {
 *
 ***********************************************************************/
 
-ETI_tppEtiquetaNominal ETI_criaEtiquetaNominal(char* iniciais, char* nomeCompleto);
+ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal(char* pIniciais, char* pNomeCompleto);
 
 
 /***********************************************************************
@@ -99,11 +99,18 @@ ETI_tppEtiquetaNominal ETI_criaEtiquetaNominal(char* iniciais, char* nomeComplet
 *     OBS. não existe previsão para possíveis falhas de execução.
 *
 *  $EP Parâmetros
-*      pEtiqueta     - ponteiro para lista que será desctuída
+*      pEtiquetaNominal - ponteiro para etiqueta nominal que será desctuída
 *
 *  $FV Valor retornado
-*     LIS_CondRetOK    - destruiu sem problemas
+*     LIS_CondRetOK     - destruiu sem problemas
 *
 ***********************************************************************/
 
-void EIT_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiqueta ) ;
+void EIT_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
+
+#undef ETIQUETA_NOMINAL_EXT
+
+/********** Fim do módulo de definição: ETI Etiqueta nominal **********/
+
+#else
+#endif

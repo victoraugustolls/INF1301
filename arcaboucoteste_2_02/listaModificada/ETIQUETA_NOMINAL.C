@@ -21,6 +21,17 @@
 *
 ***************************************************************************/
 
+#include   <stdio.h>
+#include   <string.h>
+#include   <memory.h>
+#include   <malloc.h>
+#include   <assert.h>
+
+#define ETIQUETA_NOMINAL_OWN
+#include "ETIQUETA_NOMINAL.h"
+#undef ETIQUETA_NOMINAL_OWN
+
+
 /***********************************************************************
 *
 *  $TC Tipo de dados: ETI Descritor da cabeça de etiqueta nominal
@@ -38,16 +49,6 @@
 
    } ETI_tpEtiquetaNominal ;
 
-#include   <stdio.h>
-#include   <string.h>
-#include   <memory.h>
-#include   <malloc.h>
-#include   <assert.h>
-
-#define ETIQUETA_NOMINAL_OWN
-#include "ETIQUETA_NOMINAL.h"
-#undef ETIQUETA_NOMINAL_OWN
-
 /*****  Código das funções exportadas pelo módulo  *****/
 
 /***************************************************************************
@@ -55,7 +56,7 @@
 *  Função: ETI  &Criar etiqueta nominal
 *  ****/
 
-ETI_tppEtiqueta ETI_criaEtiquetaNominal( char * iniciais, char * nomeCompleto )
+ETI_tppEtiqueta ETI_CriarEtiquetaNominal( char * iniciais, char * nomeCompleto )
 {
 
     ETI_tpEtiquetaNominal * pEtiquetaNominal = NULL;
@@ -67,4 +68,24 @@ ETI_tppEtiqueta ETI_criaEtiquetaNominal( char * iniciais, char * nomeCompleto )
     } /* if */
 
     return pEtiquetaNominal;
-}
+
+} /* Fim função: ETI  &Criar etiqueta nominal */
+
+/***************************************************************************
+*
+*  Função: ETI  &Destruir etiqueta nominal
+*  ****/
+
+void EIT_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal )
+{
+    #ifdef _DEBUG
+      assert( pEtiquetaNominal != NULL ) ;
+    #endif
+
+    pEtiquetaNominal->iniciais = NULL;
+    pEtiquetaNominal->nomeCompleto = NULL;
+    free(pEtiquetaNominal);
+
+} /* Fim função: ETI  &Destruir etiqueta nominal */
+
+/********** Fim do módulo de implementação: ETI Etiqueta nominal **********/

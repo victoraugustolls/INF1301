@@ -4,6 +4,9 @@ Data	   Horas Trabalhadas	 Tipo Tarefa	 		Descrição da Tarefa Realizada
 12/09/16   2                     Estudar                        Entender o funcionamento dos scripts de teste
 12/09/16   2			 Projetar	 		Verificar os testes que faltam para cobrir todos os casos
 13/09/16   2                     Redirigir Script de teste      Completar os testes do modulo de lista
+13/09/16   15min                 Especificar os módulos         Decidir se deve-se criar uma nova interface para a estrutura apontada pela lista
+13/09/16   15min                 Especificar as funções         Decidir as funçoes para essa nova estrutura
+13/09/16   2                     Codificar módulo               Codificar tanto a interface quanto a implementação da estrutura, juntamente com sua documentação
 
 
 Notas pessoais:
