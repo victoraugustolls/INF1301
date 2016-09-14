@@ -9,10 +9,11 @@
 *
 *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
 *  Gestor:  LES/DI/PUC-Rio
-*  Autores: avs
+*  Autores: avs, vas
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     5       vas   14/set/2016 adaptação dos testes para funcionar com a lista modificada
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
 *     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
@@ -30,6 +31,7 @@
 #include    "LerParm.h"
 
 #include    "Lista.h"
+#include    "Etiqueta_nominal.h"
 
 
 static const char RESET_LISTA_CMD         [ ] = "=resetteste"     ;
@@ -51,14 +53,12 @@ static const char AVANCAR_ELEM_CMD        [ ] = "=avancarelem"    ;
 #define VAZIO     0
 #define NAO_VAZIO 1
 
-#define DIM_VT_LISTA   10
-#define DIM_VALOR     100
+#define DIM_VT_LISTA 10
+#define DIM_VALOR    100
 
-LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
+LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
-
-   static void DestruirValor( void * pValor ) ;
 
    static int ValidarInxLista( int inxLista , int Modo ) ;
 
@@ -79,9 +79,9 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 *     =criarlista                   inxLista
 *     =destruirlista                inxLista
 *     =esvaziarlista                inxLista
-*     =inselemantes                 inxLista  string  CondRetEsp
-*     =inselemapos                  inxLista  string  CondRetEsp
-*     =obtervalorelem               inxLista  string  CondretPonteiro
+*     =inselemantes                 inxLista  inicial  nomeCompleto  CondRetEsp
+*     =inselemapos                  inxLista  inicial  nomeCompleto  CondRetEsp
+*     =obtervalorelem               inxLista  inicial  nomeCompleto  CondretPonteiro
 *     =excluirelem                  inxLista  CondRetEsp
 *     =irinicio                     inxLista
 *     =irfinal                      inxLista
@@ -98,8 +98,9 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
       TST_tpCondRet CondRet ;
 
-      char   StringDado[  DIM_VALOR ] ;
-      char * pDado ;
+      char   StringIniciais[  DIM_VALOR ] ;
+      char   StringNome[ DIM_VALOR ] ;
+      ETI_tppEtiquetaNominal * pEtiquetaNominal ;
 
       int ValEsp = -1 ;
 
@@ -138,7 +139,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
             } /* if */
 
             vtListas[ inxLista ] =
-                 LIS_CriarLista( DestruirValor ) ;
+                 LIS_CriarLista( ) ;
 
             return TST_CompararPonteiroNulo( 1 , vtListas[ inxLista ] ,
                "Erro em ponteiro de nova lista."  ) ;
@@ -191,29 +192,27 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , INS_ELEM_ANTES_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "isi" ,
-                       &inxLista , StringDado , &CondRetEsp ) ;
+            numLidos = LER_LerParametros( "issi" ,
+                       &inxLista , StringIniciais , StringNome , &CondRetEsp ) ;
 
-            if ( ( numLidos != 3 )
+            if ( ( numLidos != 4 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            pDado = ( char * ) malloc( strlen( StringDado ) + 1 ) ;
-            if ( pDado == NULL )
+            pEtiquetaNominal = ETI_CriarEtiquetaNominal(StringIniciais, StringNome) ;
+            if ( pEtiquetaNominal == NULL )
             {
                return TST_CondRetMemoria ;
             } /* if */
 
-            strcpy( pDado , StringDado ) ;
 
-
-            CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , pDado ) ;
+            CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , pEtiquetaNominal ) ;
 
             if ( CondRet != LIS_CondRetOK )
             {
-               free( pDado ) ;
+               EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             } /* if */
 
             return TST_CompararInt( CondRetEsp , CondRet ,
@@ -226,29 +225,27 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , INS_ELEM_APOS_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "isi" ,
-                       &inxLista , StringDado , &CondRetEsp ) ;
+            numLidos = LER_LerParametros( "issi" ,
+                       &inxLista , StringIniciais , StringNome , &CondRetEsp ) ;
 
-            if ( ( numLidos != 3 )
+            if ( ( numLidos != 4 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            pDado = ( char * ) malloc( strlen( StringDado ) + 1 ) ;
-            if ( pDado == NULL )
+            pEtiquetaNominal = ETI_CriarEtiquetaNominal(StringIniciais, StringNome) ;
+            if ( pEtiquetaNominal == NULL )
             {
                return TST_CondRetMemoria ;
             } /* if */
 
-            strcpy( pDado , StringDado ) ;
 
-
-            CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , pDado ) ;
+            CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , pEtiquetaNominal ) ;
 
             if ( CondRet != LIS_CondRetOK )
             {
-               free( pDado ) ;
+               EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             } /* if */
 
             return TST_CompararInt( CondRetEsp , CondRet ,
@@ -281,31 +278,33 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , OBTER_VALOR_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "isi" ,
-                       &inxLista , StringDado , &ValEsp ) ;
+            numLidos = LER_LerParametros( "issi" ,
+                       &inxLista , StringNome , StringIniciais , &ValEsp ) ;
 
-            if ( ( numLidos != 3 )
+            if ( ( numLidos != 4 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
             {
                return TST_CondRetParm ;
             } /* if */
 
-            pDado = ( char * ) LIS_ObterValor( vtListas[ inxLista ] ) ;
+            pEtiquetaNominal = LIS_ObterValor( vtListas[inxLista] ) ;
 
             if ( ValEsp == 0 )
             {
-               return TST_CompararPonteiroNulo( 0 , pDado ,
+               return TST_CompararPonteiroNulo( 0 , pEtiquetaNominal ,
                          "Valor não deveria existir." ) ;
             } /* if */
 
-            if ( pDado == NULL )
+            if ( pEtiquetaNominal == NULL )
             {
-               return TST_CompararPonteiroNulo( 1 , pDado ,
+               return TST_CompararPonteiroNulo( 1 , pEtiquetaNominal ,
                          "Dado tipo um deveria existir." ) ;
             } /* if */
 
-            return TST_CompararString( StringDado , pDado ,
-                         "Valor do elemento errado." ) ;
+            return TST_CompararString( StringNome , pEtiquetaNominal->nomeCompleto ,
+                         "Valor do nome errado." ) &&
+                   TST_CompararString( StringIniciais , pEtiquetaNominal->iniciais ,
+                         "Valor da inicial errado." ) ;
 
          } /* fim ativa: Testar obter valor do elemento corrente */
 
@@ -403,7 +402,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       {
          return FALSE ;
       } /* if */
-         
+
       if ( Modo == VAZIO )
       {
          if ( vtListas[ inxLista ] != 0 )
@@ -417,10 +416,9 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
             return FALSE ;
          } /* if */
       } /* if */
-         
+
       return TRUE ;
 
    } /* Fim função: TLIS -Validar indice de lista */
 
 /********** Fim do módulo de implementação: TLIS Teste lista de símbolos **********/
-
