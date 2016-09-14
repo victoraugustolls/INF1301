@@ -5,17 +5,13 @@
 // Propósito: Testar por completo as funções de acesso do módulo LISTA, com exceção
 // do caso em que ocorre falta de memória.
 //
+// Observação: Não testa-se se o valor do ponteiro para a string da inserção pode ser
+// nulo
+//
 
-== Inicializar valores
-=declararparm   lista0  int 0
-=declararparm   lista1  int 1
-=declararparm   lista2  int 2
+// ---------------------------------------------
 
-=declararparm   str0    string  "abcdefg"
-=declararparm   str1    string  "qwerty"
-=declararparm   str2    string  "xxx"
-=declararparm   str3    string  "xpto"
-
+== Inicializar Constantes
 =declararparm   OK             int  0
 =declararparm   ListaVazia     int  1
 =declararparm   FimLista       int  2
@@ -25,93 +21,505 @@
 =declararparm   pNULL          int  0
 =declararparm   pNaoNULL       int  1
 
-== Criar a lista 0
-=criarlista      lista0 
+// ---------------------------------------------
 
-== Excluir elemento da lista 0
-=excluirelem     lista0   ListaVazia
+== Inicializar valores
+=declararparm   lista0  int 0
+=declararparm   lista1  int 1
+=declararparm   lista2  int 2
 
-== Verificar ObterValor relativo a lista vazia
-=obtervalorelem  lista0   "???"     pNULL
+// ---------------------------------------------
 
-== Inserir elemento em lista vazia
-=inselemantes    lista0   str0   OK
-=obtervalorelem  lista0   str0   pNaoNULL
+== Teste Criação de Listas
+=criarlista      lista0
 
-== Inserir elemento após primeiro
-=inselemapos     lista0   str1   OK
-=obtervalorelem  lista0   str1   pNaoNULL
+== Teste do Teste de Criação de Listas
+=criarlista      lista0
+=recuperar
 
-== Inserir elemento antes do último
-=inselemantes    lista0   str2   OK
-=obtervalorelem  lista0   str2   pNaoNULL
+// ---------------------------------------------
 
-== Excluir elemento do meio
-=obtervalorelem  lista0   str2   pNaoNULL
-=excluirelem     lista0             OK
+== Teste Destruição de Listas
+=destruirlista      lista0
 
-== Excluir elemento do início
-=obtervalorelem  lista0   str0   pNaoNULL
-=excluirelem     lista0             OK
+== Teste do Teste de Destruição de Listas
+=destruirlista      lista0
+=recuperar
 
-== Excluir elemento final, único 
-=obtervalorelem  lista0   str1   pNaoNULL
-=excluirelem     lista0             OK
+// ---------------------------------------------
 
-== Ver se a lista ficou vazia
-=obtervalorelem  lista0   "???"     pNULL
-
-== Destruir a lista
+== Teste Obter Lista Vazia
+=criarlista      lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
 =destruirlista   lista0
 
-== Criar uma lista com dois elementos
-=criarlista      lista1 
-=inselemapos     lista1   str0   OK
-=inselemapos     lista1   str1   OK
+// ---------------------------------------------
 
-== Esvaziar a lista e ver se ficou vazia
-=esvaziarlista   lista1
-=obtervalorelem  lista1   "???"     pNULL
+== Teste Esvaziar Lista Vazia
+=criarlista      lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=esvaziarlista lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=destruirlista   lista0
 
-== Destruir a lista
+// ---------------------------------------------
+
+== Teste Simples de Inserção Elemento e Esvaziar Lista
+=criarlista      lista0
+=inselemantes   lista0    "TEST"    OK
+=inselemantes   lista0    "TEST"    OK
+=esvaziarlista lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=destruirlista   lista0
+
+=criarlista      lista0
+=inselemapos   lista0    "TEST"    OK
+=inselemapos   lista0    "TEST"    OK
+=esvaziarlista lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Inserção e Obter Valor
+=criarlista      lista0
+=inselemantes   lista0    "VALOR"    OK
+=obtervalorelem  lista0   "VALOR"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+=criarlista      lista0
+=inselemapos   lista0    "VALOR"    OK
+=obtervalorelem  lista0   "VALOR"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Avançar Lista Vazia
+=criarlista      lista0
+=avancarelem   lista0    123    ListaVazia
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Avançar Unitário
+=criarlista      lista0
+=inselemapos   lista0    "VALOR_1"    OK
+=inselemapos   lista0    "VALOR_2"    OK
+=inselemapos   lista0    "VALOR_3"    OK
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=avancarelem   lista0    -1    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=avancarelem   lista0    -1    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+=criarlista      lista0
+=inselemantes   lista0    "VALOR_3"    OK
+=inselemantes   lista0    "VALOR_2"    OK
+=inselemantes   lista0    "VALOR_1"    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=avancarelem   lista0    -1    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=avancarelem   lista0    -1    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Avançar Fim de Lista
+=criarlista      lista0
+=inselemantes   lista0    "VALOR_3"    OK
+=inselemantes   lista0    "VALOR_2"    OK
+=inselemantes   lista0    "VALOR_1"    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=avancarelem   lista0    1    FimLista
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=avancarelem   lista0    -1    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=avancarelem   lista0    -1    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=avancarelem   lista0    -1    FimLista
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+=criarlista      lista0
+=inselemapos   lista0    "VALOR_1"    OK
+=inselemapos   lista0    "VALOR_2"    OK
+=inselemapos   lista0    "VALOR_3"    OK
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=avancarelem   lista0    -1    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=avancarelem   lista0    -1    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=avancarelem   lista0    -1    FimLista
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=avancarelem   lista0    1    FimLista
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Avançar Fim de Lista Elemento Único
+=criarlista      lista0
+=inselemantes   lista0    "VALOR"    OK
+=avancarelem   lista0    1    FimLista
+=avancarelem   lista0    -1    FimLista
+=esvaziarlista lista0
+=destruirlista   lista0
+
+=criarlista      lista0
+=inselemantes   lista0    "VALOR"    OK
+=avancarelem   lista0    1    FimLista
+=avancarelem   lista0    -1    FimLista
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Ordenamento da Inserção
+=criarlista      lista0
+=inselemantes   lista0    "VALOR_1"    OK
+=inselemapos   lista0    "VALOR_6"    OK
+=inselemantes   lista0    "VALOR_2"    OK
+=inselemapos   lista0    "VALOR_5"    OK
+=inselemantes   lista0    "VALOR_3"    OK
+=inselemapos   lista0    "VALOR_4"    OK
+=avancarelem   lista0    -1    OK
+=avancarelem   lista0    -1    OK
+=avancarelem   lista0    -1    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_4"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_5"   pNaoNULL
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_6"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+
+// ---------------------------------------------
+
+== Teste Avançar Zero
+=criarlista      lista0
+=inselemantes   lista0    "VALOR_2"    OK
+=avancarelem   lista0    0    OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+=inselemantes   lista0    "VALOR_1"    OK
+=avancarelem   lista0    0    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Avançar Múltiplo
+=criarlista      lista0
+=inselemantes   lista0    "VALOR_6"    OK
+=inselemantes   lista0    "VALOR_5"    OK
+=inselemantes   lista0    "VALOR_4"    OK
+=inselemantes   lista0    "VALOR_3"    OK
+=inselemantes   lista0    "VALOR_2"    OK
+=inselemantes   lista0    "VALOR_1"    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=avancarelem   lista0    2    OK
+=obtervalorelem  lista0   "VALOR_3"   pNaoNULL
+=avancarelem   lista0    3    OK
+=obtervalorelem  lista0   "VALOR_6"   pNaoNULL
+=avancarelem   lista0    -2    OK
+=obtervalorelem  lista0   "VALOR_4"   pNaoNULL
+=avancarelem   lista0    -3    OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Início e Fim de Lista Vazia
+=criarlista      lista0
+
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=irinicio lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=irfinal lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+
+=inselemapos   lista0    "VALOR_1"    OK
+=inselemapos   lista0    "VALOR_2"    OK
+=inselemapos   lista0    "VALOR_3"    OK
+=esvaziarlista lista0
+
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=irinicio lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=irfinal lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Início e Fim de Lista Preenchida
+=criarlista      lista0
+=inselemapos   lista0    "VALOR_1"    OK
+=inselemapos   lista0    "VALOR_2"    OK
+=inselemapos   lista0    "VALOR_3"    OK
+=inselemapos   lista0    "VALOR_4"    OK
+=inselemapos   lista0    "VALOR_5"    OK
+=inselemapos   lista0    "VALOR_6"    OK
+=obtervalorelem  lista0   "VALOR_6"   pNaoNULL
+=irinicio lista0
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=irinicio lista0
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+=irfinal lista0
+=obtervalorelem  lista0   "VALOR_6"   pNaoNULL
+=irfinal lista0
+=obtervalorelem  lista0   "VALOR_6"   pNaoNULL
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Excluir Lista Vazia
+=criarlista      lista0
+
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=excluirelem lista0 ListaVazia
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+
+=inselemapos   lista0    "VALOR_1"    OK
+=inselemapos   lista0    "VALOR_2"    OK
+=inselemapos   lista0    "VALOR_3"    OK
+=esvaziarlista lista0
+
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=excluirelem lista0 ListaVazia
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Excluir Elementos da Lista
+=criarlista      lista0
+
+=inselemantes   lista0    "VALOR_6"    OK
+=inselemantes   lista0    "VALOR_5"    OK
+=inselemantes   lista0    "VALOR_4"    OK
+=inselemantes   lista0    "VALOR_3"    OK
+=inselemantes   lista0    "VALOR_2"    OK
+=inselemantes   lista0    "VALOR_1"    OK
+
+=excluirelem lista0 OK
+=excluirelem lista0 OK
+=excluirelem lista0 OK
+=excluirelem lista0 OK
+=excluirelem lista0 OK
+=excluirelem lista0 OK
+
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+
+=inselemantes   lista0    "VALOR_3"    OK
+=inselemantes   lista0    "VALOR_2"    OK
+=inselemantes   lista0    "VALOR_1"    OK
+
+=excluirelem lista0 OK
+=excluirelem lista0 OK
+=excluirelem lista0 OK
+
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Posicionamento do Corrente ao Excluir
+
+=criarlista      lista0
+
+=inselemantes   lista0    "VALOR_2"    OK
+=inselemantes   lista0    "VALOR_1"    OK
+=excluirelem lista0 OK
+=obtervalorelem  lista0   "VALOR_2"   pNaoNULL
+
+=esvaziarlista lista0
+
+=inselemapos   lista0    "VALOR_1"    OK
+=inselemapos   lista0    "VALOR_2"    OK
+=excluirelem lista0 OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+
+=esvaziarlista lista0
+
+=inselemantes   lista0    "VALOR_3"    OK
+=inselemantes   lista0    "VALOR_2"    OK
+=inselemantes   lista0    "VALOR_1"    OK
+=avancarelem   lista0    1    OK
+=excluirelem lista0 OK
+=obtervalorelem  lista0   "VALOR_1"   pNaoNULL
+
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Exclusão Multipla Lista Vazia
+=criarlista      lista0
+
+=inselemapos   lista0    "VALOR_1"    OK
+=inselemapos   lista0    "VALOR_2"    OK
+=inselemapos   lista0    "VALOR_3"    OK
+
+=excluirelem lista0 OK
+=excluirelem lista0 OK
+=excluirelem lista0 OK
+
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=excluirelem lista0 ListaVazia
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+
+=esvaziarlista lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste com Duas Listas
+=criarlista      lista0
+=criarlista      lista1
+
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=obtervalorelem  lista1   "PLACEHOLDER"   pNULL
+
+=inselemantes   lista0    "VALOR_LISTA0_3"    OK
+=inselemantes   lista1    "VALOR_LISTA1_3"    OK
+
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=inselemantes   lista0    "VALOR_LISTA0_2"    OK
+=inselemantes   lista1    "VALOR_LISTA1_2"    OK
+=inselemantes   lista0    "VALOR_LISTA0_1"    OK
+=inselemantes   lista1    "VALOR_LISTA1_1"    OK
+
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=excluirelem lista1 OK
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=excluirelem lista0 OK
+=obtervalorelem  lista0   "VALOR_LISTA0_2"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=esvaziarlista lista0
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=esvaziarlista lista1
+=obtervalorelem  lista0   "PLACEHOLDER"   pNULL
+=obtervalorelem  lista1   "PLACEHOLDER"   pNULL
+
+=inselemantes   lista0    "VALOR_LISTA0_3"    OK
+=inselemantes   lista1    "VALOR_LISTA1_3"    OK
+=inselemantes   lista0    "VALOR_LISTA0_2"    OK
+=inselemantes   lista1    "VALOR_LISTA1_2"    OK
+=inselemantes   lista0    "VALOR_LISTA0_1"    OK
+=inselemantes   lista1    "VALOR_LISTA1_1"    OK
+
+=irfinal lista1
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=irfinal lista0
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=irinicio lista0
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=irinicio lista1
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=avancarelem   lista0    1    OK
+=obtervalorelem  lista0   "VALOR_LISTA0_2"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=avancarelem   lista1    1    OK
+=obtervalorelem  lista0   "VALOR_LISTA0_2"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=avancarelem   lista0    5    FimLista
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=avancarelem   lista1    -5    FimLista
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=esvaziarlista lista0
+=esvaziarlista lista1
+
+=inselemapos   lista0    "VALOR_LISTA0_1"    OK
+=inselemapos   lista0    "VALOR_LISTA0_2"    OK
+=inselemapos   lista0    "VALOR_LISTA0_3"    OK
+
+=inselemapos   lista1    "VALOR_LISTA1_3"    OK
+=inselemantes  lista1    "VALOR_LISTA1_1"    OK
+=inselemapos   lista1    "VALOR_LISTA1_2"    OK
+
+=irinicio lista0
+=irinicio lista1
+=obtervalorelem  lista0   "VALOR_LISTA0_1"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_1"   pNaoNULL
+
+=avancarelem   lista0    1    OK
+=avancarelem   lista1    1    OK
+=obtervalorelem  lista0   "VALOR_LISTA0_2"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_2"   pNaoNULL
+
+=avancarelem   lista0    1    OK
+=avancarelem   lista1    1    OK
+=obtervalorelem  lista0   "VALOR_LISTA0_3"   pNaoNULL
+=obtervalorelem  lista1   "VALOR_LISTA1_3"   pNaoNULL
+
+=esvaziarlista lista0
+=esvaziarlista lista1
+
+=destruirlista   lista0
 =destruirlista   lista1
 
-== Criar uma lista com quatro elementos
-=criarlista      lista2 
-=inselemapos     lista2   str0   OK
-=inselemapos     lista2   str1   OK
-=inselemapos     lista2   str2   OK
-=inselemapos     lista2   str3   OK
-
-== Verificar a lista de trás para diante
-=obtervalorelem  lista2   str3   pNaoNULL
-=avancarelem     lista2   -1     OK
-=obtervalorelem  lista2   str2   pNaoNULL
-=avancarelem     lista2   -1     OK
-=obtervalorelem  lista2   str1   pNaoNULL
-=avancarelem     lista2   -1     OK
-=obtervalorelem  lista2   str0   pNaoNULL
-=avancarelem     lista2   -1     FimLista
-
-== Verificar a lista de frente para trás
-=obtervalorelem  lista2   str0   pNaoNULL
-=avancarelem     lista2   1      OK
-=obtervalorelem  lista2   str1   pNaoNULL
-=avancarelem     lista2   1      OK
-=obtervalorelem  lista2   str2   pNaoNULL
-=avancarelem     lista2   1      OK
-=obtervalorelem  lista2   str3   pNaoNULL
-=avancarelem     lista2   1      FimLista
-
-== Verificar a lista andando demais de trás para diante
-=avancarelem     lista2   -10     FimLista
-=obtervalorelem  lista2   str0   pNaoNULL
-
-== Verificar a lista andando demais de frente para trás
-=avancarelem     lista2   10     FimLista
-=obtervalorelem  lista2   str3   pNaoNULL
-
-== Destruir a lista
-=destruirlista   lista2
-
-// fim
+// ---------------------------------------------
