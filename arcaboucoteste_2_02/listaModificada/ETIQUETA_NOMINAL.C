@@ -29,7 +29,7 @@
 #include   <assert.h>
 
 #define ETIQUETA_NOMINAL_OWN
-#include "ETIQUETA_NOMINAL.h"
+#include "ETIQUETA_NOMINAL.H"
 #undef ETIQUETA_NOMINAL_OWN
 
 
@@ -57,15 +57,33 @@
 *  Função: ETI  &Criar etiqueta nominal
 *  ****/
 
-ETI_tppEtiqueta ETI_CriarEtiquetaNominal( char * iniciais, char * nomeCompleto )
+ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal( char* pIniciais, char* pNomeCompleto )
 {
 
     ETI_tpEtiquetaNominal * pEtiquetaNominal = NULL;
 
     pEtiquetaNominal = ( ETI_tpEtiquetaNominal * ) malloc( sizeof( ETI_tpEtiquetaNominal ));
-    if (pEtiquetaNominal == NULL)
+    if ( pEtiquetaNominal == NULL )
     {
       return NULL;
+    } /* if */
+
+    if ( pIniciais != NULL )
+    {
+      pEtiquetaNominal->iniciais = ( char* ) malloc( strlen(pIniciais) + 1 ) ;
+      strcpy( pEtiquetaNominal->iniciais, pIniciais ) ;
+    } else
+    {
+      pEtiquetaNominal->iniciais = NULL; 
+    } /* if */
+
+    if ( pNomeCompleto != NULL )
+    {
+      pEtiquetaNominal->nomeCompleto = ( char* ) malloc( strlen(pNomeCompleto) + 1 ) ;
+      strcpy( pEtiquetaNominal->nomeCompleto, pNomeCompleto ) ;
+    } else
+    {
+      pEtiquetaNominal->nomeCompleto = NULL; 
     } /* if */
 
     return pEtiquetaNominal;
@@ -77,12 +95,21 @@ ETI_tppEtiqueta ETI_CriarEtiquetaNominal( char * iniciais, char * nomeCompleto )
 *  Função: ETI  &Destruir etiqueta nominal
 *  ****/
 
-void EIT_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal )
+void ETI_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal )
 {
     #ifdef _DEBUG
       assert( pEtiquetaNominal != NULL ) ;
     #endif
 
+    if ( pEtiquetaNominal->iniciais != NULL )
+    {
+      free( pEtiquetaNominal->iniciais ) ;
+    } /* if */
+
+    if ( pEtiquetaNominal->nomeCompleto != NULL )
+    {
+      free( pEtiquetaNominal->nomeCompleto ) ;
+    } /* if */
     pEtiquetaNominal->iniciais = NULL;
     pEtiquetaNominal->nomeCompleto = NULL;
     free(pEtiquetaNominal);

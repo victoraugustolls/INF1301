@@ -40,7 +40,7 @@
 
 13/09/2016; 0.25 horas; especificar as funções; Especificar as funções do módulo ETIQUETA_NOMINAL. (Junto com Victor Augusto)
 
-13/09/2016; 1 hora; codificar módulo; Codificar o módulo LISTA, especificamente o arquivo LISTA.H.
+13/09/2016; 1.5 horas; codificar módulo; Codificar o módulo LISTA, especificamente o arquivo LISTA.H.
 
 14/09/2016; 0.25 hora; especificar as funções; Especificar novas funções necessárias no módulo ETIQUETA_NOMINAL
 
@@ -50,4 +50,6 @@
 
 14/09/2016; 0.5 horas; revisar código do módulo; Resolver erros de compilação dos módulos LISTA e TESLIS.
 
-14/09/2016; 0.5 horas; revisar código do módulo; Resolver erros de link-edição do módulo ETIQUETA_NOMINAL recém criado.
+14/09/2016; 0.5 horas; diagnosticar e corrigir os problemas encontrados; Resolver erros de link-edição do módulo ETIQUETA_NOMINAL recém criado.
+
+14/09/2016; 0.5 horas; revisar código do módulo; Resolver erros de compilação dos módulo ETIQUETA_NOMIAL

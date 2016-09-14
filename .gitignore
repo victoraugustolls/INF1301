@@ -11,4 +11,6 @@ vsvars32.bat
 ArcaboucoTeste.lib
 !arcaboucoteste_2_02/ferramnt
 !GMake.exe
+!exbestat.exe
+!compilebanner.exe
 !*/
