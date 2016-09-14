@@ -1,5 +1,5 @@
 /***************************************************************************
-*  $MCI Módulo de implementação: LIS  Lista duplamente encadeada
+*  $MCI Módulo de implementação: LIS  Lista de etiquetas nominais duplamente encadeada
 *
 *  Arquivo gerado:              LISTA.c
 *  Letras identificadoras:      LIS
@@ -9,10 +9,11 @@
 *
 *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
 *  Gestor:  LES/DI/PUC-Rio
-*  Autores: avs
+*  Autores: avs, iars
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     5       iars  14/set/2016 alteração para uso de etiquetas nominais como valores
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
 *     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
@@ -39,7 +40,7 @@
 
    typedef struct tagElemLista {
 
-         void * pValor ;
+         ETI_tppEtiquetaNominal pValor ;
                /* Ponteiro para o valor contido no elemento */
 
          struct tagElemLista * pAnt ;
@@ -71,9 +72,6 @@
          int numElem ;
                /* Número de elementos da lista */
 
-         void ( * ExcluirValor ) ( void * pValor ) ;
-               /* Ponteiro para a função de destruição do valor contido em um elemento */
-
    } LIS_tpLista ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
@@ -82,7 +80,7 @@
                                 tpElemLista  * pElem   ) ;
 
    static tpElemLista * CriarElemento( LIS_tppLista pLista ,
-                                       void *       pValor  ) ;
+                                       ETI_tppEtiquetaNominal pEtiquetaNominal  ) ;
 
    static void LimparCabeca( LIS_tppLista pLista ) ;
 
@@ -93,8 +91,7 @@
 *  Função: LIS  &Criar lista
 *  ****/
 
-   LIS_tppLista LIS_CriarLista(
-             void   ( * ExcluirValor ) ( void * pDado ) )
+   LIS_tppLista LIS_CriarLista()
    {
 
       LIS_tpLista * pLista = NULL ;
@@ -106,8 +103,6 @@
       } /* if */
 
       LimparCabeca( pLista ) ;
-
-      pLista->ExcluirValor = ExcluirValor ;
 
       return pLista ;
 
@@ -164,7 +159,7 @@
 *  ****/
 
    LIS_tpCondRet LIS_InserirElementoAntes( LIS_tppLista pLista ,
-                                           void * pValor        )
+                                           ETI_tppEtiquetaNominal pEtiquetaNominal  )
    {
 
       tpElemLista * pElem ;
@@ -173,9 +168,9 @@
          assert( pLista != NULL ) ;
       #endif
 
-      /* Criar elemento a inerir antes */
+      /* Criar elemento a inserir antes */
 
-         pElem = CriarElemento( pLista , pValor ) ;
+         pElem = CriarElemento( pLista , pEtiquetaNominal ) ;
          if ( pElem == NULL )
          {
             return LIS_CondRetFaltouMemoria ;
@@ -214,7 +209,7 @@
 *  ****/
 
    LIS_tpCondRet LIS_InserirElementoApos( LIS_tppLista pLista ,
-                                          void * pValor        )
+                                          ETI_tppEtiquetaNominal pEtiquetaNominal  )
       
    {
 
@@ -224,9 +219,9 @@
          assert( pLista != NULL ) ;
       #endif
 
-      /* Criar elemento a inerir após */
+      /* Criar elemento a inserir após */
 
-         pElem = CriarElemento( pLista , pValor ) ;
+         pElem = CriarElemento( pLista , pEtiquetaNominal ) ;
          if ( pElem == NULL )
          {
             return LIS_CondRetFaltouMemoria ;
@@ -262,6 +257,86 @@
 
 /***************************************************************************
 *
+*  Função: LIS  &Inserir elemento ordenado
+*  ****/
+
+   LIS_tpCondRet LIS_InserirElementoOrdenado( LIS_tppLista pLista ,
+                                              ETI_tppEtiquetaNominal pEtiquetaNominal  )
+      
+   {
+      tpElemLista * pElemIterador ;
+      tpElemLista * pCorrenteSalvo ;
+      LIS_tpCondRet RetornoInsercao ;
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+         pCorrenteSalvo = pLista->pElemCorr;
+
+         if ( pLista->pElemCorr != NULL )
+         {
+            for ( pElemIterador  = pLista->pOrigemLista ;
+                  pElemIterador != pLista->pFimLista ;
+                  pElemIterador  = pElemIterador->pProx )
+            {
+               if ( ETI_CompararIniciaisEtiquetaNominal( pElemIterador->pValor, pEtiquetaNominal ) == 1 )
+               {
+                  pLista->pElemCorr = pElemIterador ;
+               } /* if */
+            } /* for */
+
+            if ( ETI_CompararIniciaisEtiquetaNominal( pElemIterador->pValor, pEtiquetaNominal ) == 1 )
+            {
+               pLista->pElemCorr = pElemIterador ;
+            } /* if */
+
+         } /* if */
+                  
+         RetornoInsercao = LIS_InserirElementoAntes ( pLista, pEtiquetaNominal ) ;
+
+         if( RetornoInsercao == LIS_CondRetOK )
+         {
+            return LIS_CondRetOK ;
+         } else 
+         {
+            pLista->pElemCorr = pCorrenteSalvo ;
+            return LIS_CondRetFaltouMemoria ;
+         } /* if */
+
+   } /* Fim função: LIS  &Inserir elemento ordenado */
+
+/***************************************************************************
+*
+*  Função: LIS  &Apresenta Conteúdo em Ordem
+*  ****/
+
+   void LIS_ApresentaConteudoEmOrdem( LIS_tppLista pLista )
+
+   {
+      tpElemLista * pElemIterador ;
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+         if ( pLista->pElemCorr != NULL )
+         {
+            for ( pElemIterador  = pLista->pOrigemLista ;
+                  pElemIterador != pLista->pFimLista ;
+                  pElemIterador  = pElemIterador->pProx )
+            {
+               ETI_ImprimirConteudoEtiquetaNominal( pElemIterador->pValor );
+            } /* for */
+
+            ETI_ImprimirConteudoEtiquetaNominal( pElemIterador->pValor );
+
+         } /* if */       
+
+   } /* Fim função: LIS&Apresenta Conteúdo em Ordem */
+
+/***************************************************************************
+*
 *  Função: LIS  &Excluir elemento
 *  ****/
 
@@ -287,7 +362,8 @@
          {
             pElem->pAnt->pProx   = pElem->pProx ;
             pLista->pElemCorr    = pElem->pAnt ;
-         } else {
+         } else 
+         {
             pLista->pElemCorr    = pElem->pProx ;
             pLista->pOrigemLista = pLista->pElemCorr ;
          } /* if */
@@ -313,7 +389,7 @@
 *  Função: LIS  &Obter referência para o valor contido no elemento
 *  ****/
 
-   void * LIS_ObterValor( LIS_tppLista pLista )
+   ETI_tppEtiquetaNominal LIS_ObterValor( LIS_tppLista pLista )
    {
 
       #ifdef _DEBUG
@@ -451,7 +527,7 @@
 *  ****/
 
    LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
-                                    void * pValor        )
+                                    ETI_tppEtiquetaNominal pEtiquetaNominal )
    {
 
       tpElemLista * pElem ;
@@ -469,7 +545,7 @@
             pElem != NULL ;
             pElem  = pElem->pProx )
       {
-         if ( pElem->pValor == pValor )
+         if ( ETI_CompararConteudoEtiquetaNominal( pElem->pValor, pEtiquetaNominal ) == 1 )
          {
             pLista->pElemCorr = pElem ;
             return LIS_CondRetOK ;
@@ -498,10 +574,9 @@
                          tpElemLista  * pElem   )
    {
 
-      if ( ( pLista->ExcluirValor != NULL )
-        && ( pElem->pValor != NULL        ))
+      if ( pElem->pValor != NULL )
       {
-         pLista->ExcluirValor( pElem->pValor ) ;
+         ETI_DestruirEtiquetaNominal( pElem->pValor ) ;
       } /* if */
 
       free( pElem ) ;
@@ -518,7 +593,7 @@
 ***********************************************************************/
 
    tpElemLista * CriarElemento( LIS_tppLista pLista ,
-                                void *       pValor  )
+                                ETI_tppEtiquetaNominal pEtiquetaNominal  )
    {
 
       tpElemLista * pElem ;
@@ -529,7 +604,7 @@
          return NULL ;
       } /* if */
 
-      pElem->pValor = pValor ;
+      pElem->pValor = pEtiquetaNominal ;
       pElem->pAnt   = NULL  ;
       pElem->pProx  = NULL  ;
 

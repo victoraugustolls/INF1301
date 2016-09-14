@@ -39,7 +39,7 @@
 *        módulo referente à etiquetas nominais.
 *
 ***************************************************************************/
- 
+
 #if defined( LISTA_OWN )
    #define LISTA_EXT
 #else
@@ -47,6 +47,8 @@
 #endif
 
 /***** Declarações exportadas pelo módulo *****/
+
+#include "ETIQUETA_NOMINAL.H"
 
 /* Tipo referência para uma lista */
 
@@ -234,9 +236,13 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *       aparece na lista.
 *     A apresentação é feita de acordo com a implementação da Etiqueta Nominal.
 *
+*  $EP Parâmetros
+*     Parâmetros
+*        pLista - ponteiro para a lista onde deve ser inserido o elemento
+*
 ***********************************************************************/
 
-   void LIS_ApresentaConteudoEmOrdem() ;
+   void LIS_ApresentaConteudoEmOrdem( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************

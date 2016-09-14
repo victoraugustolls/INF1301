@@ -9,6 +9,7 @@ Data	   Horas Trabalhadas	 Tipo Tarefa	 		Descrição da Tarefa Realizada
 13/09/16   2                     Codificar módulo               Codificar tanto a interface quanto a implementação da estrutura, juntamente com sua documentação
 14/09/16   30min                 Revisar código do módulo       Verificar no TESTLIS.C o que precisaria ser alterado para a nova lista
 14/09/16   2                     Codificar módulo               Mudar os testes do TESTLIS.C para nova lista
+14/09/16   2                     Redirigir Script de teste      Alterar os testes do modulo de lista
 
 
 Notas pessoais:
