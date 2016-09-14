@@ -46,4 +46,6 @@
 
 14/09/2016; 0.5 hora; diagnosticar e corrigir os problemas encontrados; Resolver problemas do repositório online do projeto (Gitub) de arquivos faltando. (Junto com Victor Augusto e Lucas Ferraço)
 
-14/09/2016; 1 hora; codificar módulo; Codificar o módulo LISTA, especificamente o arquivo LISTA.C.
+14/09/2016; 3 horas; codificar módulo; Codificar o módulo LISTA, especificamente o arquivo LISTA.C.
+
+14/09/2016; 0.5 horas; revisar código do módulo; Resolver erros de compilação dos módulos LISTA e TESLIS.

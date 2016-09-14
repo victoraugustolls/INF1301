@@ -39,7 +39,7 @@
 *        módulo referente à etiquetas nominais.
 *
 ***************************************************************************/
- 
+
 #if defined( LISTA_OWN )
    #define LISTA_EXT
 #else
@@ -47,6 +47,8 @@
 #endif
 
 /***** Declarações exportadas pelo módulo *****/
+
+#include "ETIQUETA_NOMINAL.H"
 
 /* Tipo referência para uma lista */
 

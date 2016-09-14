@@ -104,7 +104,8 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
 
       char   StringIniciais[  DIM_VALOR ] ;
       char   StringNome[ DIM_VALOR ] ;
-      ETI_tppEtiquetaNominal * pEtiquetaNominal ;
+      ETI_tppEtiquetaNominal pEtiquetaNominal ;
+      ETI_tppEtiquetaNominal pEtiquetaNominalCmp ;
 
       int ValEsp = -1 ;
 
@@ -113,8 +114,6 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
       int i ;
 
       int numElem = -1 ;
-
-      StringDado[ 0 ] = 0 ;
 
       /* Efetuar reset de teste de lista */
 
@@ -220,13 +219,13 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
             else
             {
               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , NULL ) ;
-              EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+              ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             }
             
 
             if ( CondRet != LIS_CondRetOK )
             {
-               EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+               ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             } /* if */
 
             return TST_CompararInt( CondRetEsp , CondRet ,
@@ -261,12 +260,12 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
             else
             {
               CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , NULL ) ;
-              EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+              ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             }
 
             if ( CondRet != LIS_CondRetOK )
             {
-               EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+               ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             } /* if */
 
             return TST_CompararInt( CondRetEsp , CondRet ,
@@ -301,12 +300,12 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
             else
             {
               CondRet = LIS_InserirElementoOrdenado( vtListas[ inxLista ] , NULL ) ;
-              EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+              ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             }
 
             if ( CondRet != LIS_CondRetOK )
             {
-               EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+               ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             } /* if */
 
             return TST_CompararInt( CondRetEsp , CondRet ,
@@ -362,10 +361,17 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
                          "Dado tipo um deveria existir." ) ;
             } /* if */
 
-            return TST_CompararString( StringNome , pEtiquetaNominal->nomeCompleto ,
-                         "Valor do nome errado." ) &&
-                   TST_CompararString( StringIniciais , pEtiquetaNominal->iniciais ,
-                         "Valor da inicial errado." ) ;
+            pEtiquetaNominalCmp = ETI_CriarEtiquetaNominal( StringIniciais,StringNome );
+
+            if ( ETI_CompararConteudoEtiquetaNominal( pEtiquetaNominal, pEtiquetaNominalCmp ) == 1)
+            {
+              ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+              return TST_CondRetOK ;
+            } else
+            {
+              ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+              TST_NotificarFalha( "Estiqueta nomial recebida errada." ) ;
+            } /* if */
 
          } /* fim ativa: Testar obter valor do elemento corrente */
 
@@ -456,7 +462,7 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
               CondRet = LIS_ProcurarValor( vtListas[ inxLista ] , NULL ) ;
             }
 
-            EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+            ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
 
             return TST_CompararInt( CondRetEsp ,
                       CondRet ,

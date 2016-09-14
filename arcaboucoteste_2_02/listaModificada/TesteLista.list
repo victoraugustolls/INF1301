@@ -48,18 +48,18 @@ Estatísticas do construto
       testlis.c
 
    Estatísticas do arquivo: lista.c
-      Total linhas:             608
-      Linhas de código:         322
-      Linhas de comentário:     141
-      Linhas em branco:         164
+      Total linhas:             637
+      Linhas de código:         339
+      Linhas de comentário:     146
+      Linhas em branco:         172
    Arquivos de inclusão de que necessita
       etiqueta_nominal.h
       lista.h
 
    Estatísticas do arquivo: lista.h
-      Total linhas:             377
+      Total linhas:             381
       Linhas de código:          36
-      Linhas de comentário:     286
+      Linhas de comentário:     290
       Linhas em branco:          55
    Arquivos em que é incluído
       lista.c
@@ -103,24 +103,24 @@ Totais por tipo de arquivo
          Arquivos deste tipo:          0
 
   Tipo: DEFAULT  Path: .
-         Total linhas do tipo:      1760
+         Total linhas do tipo:      1764
          Linhas de código:           170
-         Linhas de comentário:      1346
+         Linhas de comentário:      1350
          Linhas em branco:           244
          Arquivos deste tipo:          5
 
   Tipo: c        Path: .
-         Total linhas do tipo:      1130
-         Linhas de código:           630
-         Linhas de comentário:       231
-         Linhas em branco:           304
+         Total linhas do tipo:      1159
+         Linhas de código:           647
+         Linhas de comentário:       236
+         Linhas em branco:           312
          Arquivos deste tipo:          2
 
 Totais para todo o construto TesteLista
 
-   Total linhas:              2890
-   Linhas de código:           800
-   Linhas de comentário:      1577
-   Linhas em branco:           548
+   Total linhas:              2923
+   Linhas de código:           817
+   Linhas de comentário:      1586
+   Linhas em branco:           556
    Arquivos processados:         7
 

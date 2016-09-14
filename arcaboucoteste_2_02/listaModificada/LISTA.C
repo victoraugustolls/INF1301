@@ -27,8 +27,6 @@
 #include   <malloc.h>
 #include   <assert.h>
 
-#include   "ETIQUETA_NOMINAL.h"
-
 #define LISTA_OWN
 #include "LISTA.h"
 #undef LISTA_OWN
@@ -274,12 +272,12 @@
          assert( pLista != NULL ) ;
       #endif
 
-         pCorrenteSalvo = pElemCorr;
+         pCorrenteSalvo = pLista->pElemCorr;
 
          if ( pLista->pElemCorr != NULL )
          {
             for ( pElemIterador  = pLista->pOrigemLista ;
-                  pElemIterador != pFimLista ;
+                  pElemIterador != pLista->pFimLista ;
                   pElemIterador  = pElemIterador->pProx )
             {
                if ( ETI_CompararIniciaisEtiquetaNominal( pElemIterador->pValor, pEtiquetaNominal ) == 1 )
@@ -325,7 +323,7 @@
          if ( pLista->pElemCorr != NULL )
          {
             for ( pElemIterador  = pLista->pOrigemLista ;
-                  pElemIterador != pFimLista ;
+                  pElemIterador != pLista->pFimLista ;
                   pElemIterador  = pElemIterador->pProx )
             {
                ETI_ImprimirConteudoEtiquetaNominal( pElemIterador->pValor );

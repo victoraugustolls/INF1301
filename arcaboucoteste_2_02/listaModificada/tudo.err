@@ -1,42 +1,19 @@
 testlis.c
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(161) : error C2146: syntax error : missing ')' before identifier 'pEtiquetaNominal'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(161) : error C2081: 'ETI_tppEtiquetaNominal' : name in formal parameter list illegal
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(161) : error C2061: syntax error : identifier 'pEtiquetaNominal'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(161) : error C2059: syntax error : ';'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(161) : error C2059: syntax error : ')'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(188) : error C2146: syntax error : missing ')' before identifier 'pEtiquetaNominal'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(188) : error C2081: 'ETI_tppEtiquetaNominal' : name in formal parameter list illegal
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(188) : error C2061: syntax error : identifier 'pEtiquetaNominal'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(188) : error C2059: syntax error : ';'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(188) : error C2059: syntax error : ')'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(225) : error C2146: syntax error : missing ')' before identifier 'pEtiquetaNominal'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(225) : error C2081: 'ETI_tppEtiquetaNominal' : name in formal parameter list illegal
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(225) : error C2061: syntax error : identifier 'pEtiquetaNominal'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(225) : error C2059: syntax error : ';'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(225) : error C2059: syntax error : ')'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(281) : error C2061: syntax error : identifier 'LIS_ObterValor'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(281) : error C2059: syntax error : ';'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(281) : error C2059: syntax error : 'type'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(370) : error C2146: syntax error : missing ')' before identifier 'pEtiquetaNominal'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(370) : error C2081: 'ETI_tppEtiquetaNominal' : name in formal parameter list illegal
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(370) : error C2061: syntax error : identifier 'pEtiquetaNominal'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(370) : error C2059: syntax error : ';'
-c:\users\ian albuquerque\desktop\modular\arcaboucoteste_2_02\listamodificada\Lista.h(370) : error C2059: syntax error : ')'
-.\testlis.c(117) : error C2065: 'StringDado' : undeclared identifier
-.\testlis.c(117) : error C2109: subscript requires array or pointer type
-.\testlis.c(210) : warning C4047: '=' : 'ETI_tppEtiquetaNominal *' differs in levels of indirection from 'ETI_tppEtiquetaNominal'
-.\testlis.c(218) : warning C4013: 'LIS_InserirElementoAntes' undefined; assuming extern returning int
-.\testlis.c(223) : warning C4013: 'EIT_DestruirEtiquetaNominal' undefined; assuming extern returning int
-.\testlis.c(251) : warning C4047: '=' : 'ETI_tppEtiquetaNominal *' differs in levels of indirection from 'ETI_tppEtiquetaNominal'
-.\testlis.c(259) : warning C4013: 'LIS_InserirElementoApos' undefined; assuming extern returning int
-.\testlis.c(291) : warning C4047: '=' : 'ETI_tppEtiquetaNominal *' differs in levels of indirection from 'ETI_tppEtiquetaNominal'
-.\testlis.c(299) : warning C4013: 'LIS_InserirElementoOrdenado' undefined; assuming extern returning int
-.\testlis.c(351) : warning C4013: 'LIS_ObterValor' undefined; assuming extern returning int
-.\testlis.c(351) : warning C4047: '=' : 'ETI_tppEtiquetaNominal *' differs in levels of indirection from 'int'
-.\testlis.c(365) : error C2037: left of 'nomeCompleto' specifies undefined struct/union 'ETI_tagEtiquetaNominal'
-.\testlis.c(366) : error C2198: 'TST_CompararString' : too few arguments for call
-.\testlis.c(367) : error C2037: left of 'iniciais' specifies undefined struct/union 'ETI_tagEtiquetaNominal'
-.\testlis.c(368) : error C2198: 'TST_CompararString' : too few arguments for call
-.\testlis.c(444) : warning C4047: '=' : 'ETI_tppEtiquetaNominal *' differs in levels of indirection from 'ETI_tppEtiquetaNominal'
-.\testlis.c(452) : warning C4013: 'LIS_ProcurarValor' undefined; assuming extern returning int
+lista.c
+Microsoft (R) Incremental Linker Version 10.00.30319.01
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/OUT:TesteLista.exe 
+/INCREMENTAL:NO 
+/MACHINE:IX86 
+testlis.obj lista.obj 
+ArcaboucoTeste.lib 
+testlis.obj : error LNK2019: unresolved external symbol _ETI_CompararConteudoEtiquetaNominal referenced in function _TST_EfetuarComando
+lista.obj : error LNK2001: unresolved external symbol _ETI_CompararConteudoEtiquetaNominal
+testlis.obj : error LNK2019: unresolved external symbol _ETI_DestruirEtiquetaNominal referenced in function _TST_EfetuarComando
+lista.obj : error LNK2001: unresolved external symbol _ETI_DestruirEtiquetaNominal
+testlis.obj : error LNK2019: unresolved external symbol _ETI_CriarEtiquetaNominal referenced in function _TST_EfetuarComando
+lista.obj : error LNK2019: unresolved external symbol _ETI_CompararIniciaisEtiquetaNominal referenced in function _LIS_InserirElementoOrdenado
+lista.obj : error LNK2019: unresolved external symbol _ETI_ImprimirConteudoEtiquetaNominal referenced in function _LIS_ApresentaConteudoEmOrdem
+TesteLista.exe : fatal error LNK1120: 5 unresolved externals
 
