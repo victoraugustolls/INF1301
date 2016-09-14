@@ -45,7 +45,7 @@ INCLUDE = $(INCLUDE);$(PDEFAULT)
 ### Regras de geração
 
 all : limpa \
-   $(Fobj)\testlis.obj   $(Fobj)\lista.obj \
+   $(Fobj)\testlis.obj   $(Fobj)\lista.obj   $(Fobj)\etiqueta_nominal.obj \
    Construto
 
 ### Limpar arquivos
@@ -65,11 +65,15 @@ $(Fobj)\lista.obj :  {$(Pc)}\lista.c \
     {$(PDEFAULT)}etiqueta_nominal.h   {$(PDEFAULT)}lista.h             
    cl $(O) $(OPT) /Fo$(Fobj)\ $(Fc)\$(@B).c >> $(Ferr)\$(NOME).err
 
+$(Fobj)\etiqueta_nominal.obj :  {$(Pc)}\etiqueta_nominal.c \
+    {$(PDEFAULT)}etiqueta_nominal.h  
+   cl $(O) $(OPT) /Fo$(Fobj)\ $(Fc)\$(@B).c >> $(Ferr)\$(NOME).err
+
 
 ### Terminação
 
 Construto : \
-   $(Fobj)\testlis.obj   $(Fobj)\lista.obj
+   $(Fobj)\testlis.obj   $(Fobj)\lista.obj   $(Fobj)\etiqueta_nominal.obj
     cd $(Fobj)
     LINK $(L) @$(NOME).build >> $(Ferr)\$(NOME).err
 

@@ -17,8 +17,17 @@ Módulos do construto: TesteLista.comp
 
    testlis.c
    lista.c
+   etiqueta_nominal.c
 
 Estatísticas do construto
+
+   Estatísticas do arquivo: etiqueta_nominal.c
+      Total linhas:              91
+      Linhas de código:          31
+      Linhas de comentário:      42
+      Linhas em branco:          20
+   Arquivos de inclusão de que necessita
+      etiqueta_nominal.h
 
    Estatísticas do arquivo: etiqueta_nominal.h
       Total linhas:             151
@@ -26,7 +35,9 @@ Estatísticas do construto
       Linhas de comentário:     115
       Linhas em branco:          20
    Arquivos em que é incluído
+      etiqueta_nominal.c
       lista.c
+      lista.h
       testlis.c
 
    Estatísticas do arquivo: generico.h
@@ -48,26 +59,28 @@ Estatísticas do construto
       testlis.c
 
    Estatísticas do arquivo: lista.c
-      Total linhas:             637
-      Linhas de código:         339
+      Total linhas:             635
+      Linhas de código:         338
       Linhas de comentário:     146
-      Linhas em branco:         172
+      Linhas em branco:         171
    Arquivos de inclusão de que necessita
       etiqueta_nominal.h
       lista.h
 
    Estatísticas do arquivo: lista.h
-      Total linhas:             381
-      Linhas de código:          36
+      Total linhas:             383
+      Linhas de código:          37
       Linhas de comentário:     290
-      Linhas em branco:          55
+      Linhas em branco:          56
+   Arquivos de inclusão de que necessita
+      etiqueta_nominal.h
    Arquivos em que é incluído
       lista.c
       testlis.c
 
    Estatísticas do arquivo: testlis.c
-      Total linhas:             522
-      Linhas de código:         308
+      Total linhas:             528
+      Linhas de código:         314
       Linhas de comentário:      90
       Linhas em branco:         140
    Arquivos de inclusão de que necessita
@@ -103,24 +116,24 @@ Totais por tipo de arquivo
          Arquivos deste tipo:          0
 
   Tipo: DEFAULT  Path: .
-         Total linhas do tipo:      1764
-         Linhas de código:           170
+         Total linhas do tipo:      1766
+         Linhas de código:           171
          Linhas de comentário:      1350
-         Linhas em branco:           244
+         Linhas em branco:           245
          Arquivos deste tipo:          5
 
   Tipo: c        Path: .
-         Total linhas do tipo:      1159
-         Linhas de código:           647
-         Linhas de comentário:       236
-         Linhas em branco:           312
-         Arquivos deste tipo:          2
+         Total linhas do tipo:      1254
+         Linhas de código:           683
+         Linhas de comentário:       278
+         Linhas em branco:           331
+         Arquivos deste tipo:          3
 
 Totais para todo o construto TesteLista
 
-   Total linhas:              2923
-   Linhas de código:           817
-   Linhas de comentário:      1586
-   Linhas em branco:           556
-   Arquivos processados:         7
+   Total linhas:              3020
+   Linhas de código:           854
+   Linhas de comentário:      1628
+   Linhas em branco:           576
+   Arquivos processados:         8
 

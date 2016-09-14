@@ -1,5 +1,5 @@
-# Composicao do programa de teste de uma lista genérica duplamente encadeada
-# Este exemplo utiliza o arcabouço completo 
+# Composicao do programa de teste de uma lista de etiquetas nominais duplamente encadeada
+# Utiliza-se o arcabouço completo 
 
 [Diretorios]
 
@@ -10,6 +10,7 @@ err         =  .
 [Modulos]
 TestLis
 Lista
+Etiqueta_Nominal
 
 [BuildInicio]
 /OUT:TesteLista.exe
