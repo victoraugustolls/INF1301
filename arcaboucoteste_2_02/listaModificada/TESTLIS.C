@@ -40,11 +40,13 @@ static const char DESTRUIR_LISTA_CMD      [ ] = "=destruirlista"  ;
 static const char ESVAZIAR_LISTA_CMD      [ ] = "=esvaziarlista"  ;
 static const char INS_ELEM_ANTES_CMD      [ ] = "=inselemantes"   ;
 static const char INS_ELEM_APOS_CMD       [ ] = "=inselemapos"    ;
+static const char INS_ELEM_ORD_CMD        [ ] = "inselemanord"    ;
 static const char OBTER_VALOR_CMD         [ ] = "=obtervalorelem" ;
 static const char EXC_ELEM_CMD            [ ] = "=excluirelem"    ;
 static const char IR_INICIO_CMD           [ ] = "=irinicio"       ;
 static const char IR_FIM_CMD              [ ] = "=irfinal"        ;
 static const char AVANCAR_ELEM_CMD        [ ] = "=avancarelem"    ;
+static const char PROCURA_VALOR_CMD       [ ] = "=procurarvalor"  ;
 
 
 #define TRUE  1
@@ -79,13 +81,15 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
 *     =criarlista                   inxLista
 *     =destruirlista                inxLista
 *     =esvaziarlista                inxLista
-*     =inselemantes                 inxLista  inicial  nomeCompleto paramNULL  CondRetEsp
-*     =inselemapos                  inxLista  inicial  nomeCompleto paramNULL  CondRetEsp
-*     =obtervalorelem               inxLista  inicial  nomeCompleto  CondretPonteiro
+*     =inselemantes                 inxLista  iniciais  nomeCompleto  paramNULL  CondRetEsp
+*     =inselemapos                  inxLista  iniciais  nomeCompleto  paramNULL  CondRetEsp
+*     =inselemanord                 inxLista  iniciais  nomeCompleto  paramNull  CondRetEsp
+*     =obtervalorelem               inxLista  iniciais  nomeCompleto  CondretPonteiro
 *     =excluirelem                  inxLista  CondRetEsp
 *     =irinicio                     inxLista
 *     =irfinal                      inxLista
 *     =avancarelem                  inxLista  numElem CondRetEsp
+*     =procurarvalor                inxLista  iniciais  nomeCompleto  paramNULL  CondRetEsp
 *
 ***********************************************************************/
 
@@ -216,6 +220,7 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
             else
             {
               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , NULL ) ;
+              EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             }
             
 
@@ -256,6 +261,7 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
             else
             {
               CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , NULL ) ;
+              EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
             }
 
             if ( CondRet != LIS_CondRetOK )
@@ -267,6 +273,46 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
                      "Condicao de retorno errada ao inserir apos."                   ) ;
 
          } /* fim ativa: Testar inserir elemento apos */
+
+       /* Testar inserir elemento ordenado */
+
+         else if ( strcmp( ComandoTeste , INS_ELEM_ORD_CMD ) == 0 )
+         {
+
+            numLidos = LER_LerParametros( "issii" ,
+                       &inxLista , StringIniciais , StringNome , &paramNULL , &CondRetEsp ) ;
+
+            if ( ( numLidos != 5 )
+              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            pEtiquetaNominal = ETI_CriarEtiquetaNominal(StringIniciais, StringNome) ;
+            if ( pEtiquetaNominal == NULL )
+            {
+               return TST_CondRetMemoria ;
+            } /* if */
+
+            if (paramNULL)
+            {
+              CondRet = LIS_InserirElementoOrdenado( vtListas[ inxLista ] , pEtiquetaNominal ) ;
+            }
+            else
+            {
+              CondRet = LIS_InserirElementoOrdenado( vtListas[ inxLista ] , NULL ) ;
+              EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+            }
+
+            if ( CondRet != LIS_CondRetOK )
+            {
+               EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+            } /* if */
+
+            return TST_CompararInt( CondRetEsp , CondRet ,
+                     "Condicao de retorno errada ao inserir apos."                   ) ;
+
+         } /* fim ativa: Testar inserir elemento ordenado */
 
       /* Testar excluir simbolo */
 
@@ -380,6 +426,43 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
                       "Condicao de retorno errada ao avancar" ) ;
 
          } /* fim ativa: LIS  &Avançar elemento */
+
+      /* LIS  &Procurar valor */
+
+         else if ( strcmp( ComandoTeste , PROCURA_VALOR_CMD ) == 0 )
+         {
+
+            numLidos = LER_LerParametros( "issii" , &inxLista , StringNome ,
+                                StringIniciais , &paramNULL , &CondRetEsp ) ;
+
+            if ( ( numLidos != 5 )
+              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            pEtiquetaNominal = ETI_CriarEtiquetaNominal(StringIniciais, StringNome) ;
+            if ( pEtiquetaNominal == NULL )
+            {
+               return TST_CondRetMemoria ;
+            } /* if */
+
+            if (paramNULL)
+            {
+              CondRet = LIS_ProcurarValor( vtListas[ inxLista ] , pEtiquetaNominal ) ;
+            }
+            else
+            {
+              CondRet = LIS_ProcurarValor( vtListas[ inxLista ] , NULL ) ;
+            }
+
+            EIT_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+
+            return TST_CompararInt( CondRetEsp ,
+                      CondRet ,
+                      "Condicao de retorno errada ao procurar valor" ) ;
+
+         } /* fim ativa: LIS  &Procurar valor */
 
       return TST_CondRetNaoConhec ;
 
