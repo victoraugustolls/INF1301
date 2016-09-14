@@ -1,0 +1,23 @@
+% Data (DD/MM/AAAA); Horas Trabalhadas; Tipo Tarefa; Descrição da Tarefa Realizada
+%
+% Tipo de Tarefas:
+% - estudar
+% - especificar os módulos
+% - especificar as funções
+% - revisar especificações
+% - projetar
+% - revisar projetos
+% - codificar módulo
+% - revisar código do módulo
+% - redigir script de teste
+% - revisar script de teste
+% - realizar os testes
+% - diagnosticar e corrigir os problemas encontrados
+
+31/08/2016; 0.5 hora ; estudar; Estudei a estrutura do arcabouço e tentei sem sucesso realizar a instalação do mesmo.
+
+07/09/2016; 1 hora ; estudar; Estudei a estrutura do arcabouço e instalei com sucesso o mesmo.
+
+12/09/2016; 1.5 horas; estudar; Estudei os módulos LISTA e TESTLIS e o script de teste da lista.
+
+14/09/2016; 1 hora; codificar módulo; Codificar funções de impressão e comparação do módulo ETIQUETA_NOMINAL.
