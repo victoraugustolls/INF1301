@@ -1,6 +1,8 @@
-*.obj
+arcaboucoteste_2_02/listaModificada/*.obj
+arcaboucoteste_2_02/listaModificada/*.estat
+arcaboucoteste_2_02/lista/*.obj
+arcaboucoteste_2_02/lista/*.estat
 *.exe
 *.log
-*.estat
 vsvars32.bat
 ArcaboucoTeste.lib

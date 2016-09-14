@@ -29,3 +29,13 @@
 12/09/2016; 1.5 horas; redigir script de teste; Redigir casos de testes para o módulo LISTA (TesteLista.script). (Junto com Victor Augusto e Lucas Ferraço)
 
 13/09/2016; 2.5 horas; redigir script de teste; Redigir casos de testes para o módulo LISTA (TesteLista.script). (Junto com Victor Augusto)
+
+13/09/2016; 0.25 horas; especificar os módulos; Especificar quais módulos farão parte da lista modificada. Notou-se a necessidade de criar-se o módulo ETIQUETA_NOMINAL. (Junto com Victor Augusto)
+
+13/09/2016; 0.25 horas; especificar as funções; Especificar as funções do módulo ETIQUETA_NOMINAL. (Junto com Victor Augusto)
+
+13/09/2016; 1 hora; codificar módulo; Codificar o módulo LISTA, especificamente o arquivo LISTA.H.
+
+13/09/2016; 0.25 hora; especificar as funções; Especificar novas funções necessárias no módulo ETIQUETA_NOMINAL
+
+
