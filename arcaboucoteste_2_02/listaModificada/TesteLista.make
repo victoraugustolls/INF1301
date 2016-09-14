@@ -45,7 +45,7 @@ INCLUDE = $(INCLUDE);$(PDEFAULT)
 ### Regras de geração
 
 all : limpa \
-   $(Fobj)\TestLis.obj   $(Fobj)\Lista.obj \
+   $(Fobj)\testlis.obj   $(Fobj)\lista.obj \
    Construto
 
 ### Limpar arquivos
@@ -56,20 +56,20 @@ limpa :
 
 ### Dependências de módulos objeto a compilar
 
-$(Fobj)\TestLis.obj :  {$(Pc)}\TestLis.c \
-    {$(PDEFAULT)}Generico.h           {$(PDEFAULT)}LerParm.h            {$(PDEFAULT)}Lista.h              \
-    {$(PDEFAULT)}TST_Espc.h          
+$(Fobj)\testlis.obj :  {$(Pc)}\testlis.c \
+    {$(PDEFAULT)}etiqueta_nominal.h   {$(PDEFAULT)}generico.h           {$(PDEFAULT)}lerparm.h            \
+    {$(PDEFAULT)}lista.h              {$(PDEFAULT)}tst_espc.h          
    cl $(O) $(OPT) /Fo$(Fobj)\ $(Fc)\$(@B).c >> $(Ferr)\$(NOME).err
 
-$(Fobj)\Lista.obj :  {$(Pc)}\Lista.c \
-    {$(PDEFAULT)}LISTA.h             
+$(Fobj)\lista.obj :  {$(Pc)}\lista.c \
+    {$(PDEFAULT)}etiqueta_nominal.h   {$(PDEFAULT)}lista.h             
    cl $(O) $(OPT) /Fo$(Fobj)\ $(Fc)\$(@B).c >> $(Ferr)\$(NOME).err
 
 
 ### Terminação
 
 Construto : \
-   $(Fobj)\TestLis.obj   $(Fobj)\Lista.obj
+   $(Fobj)\testlis.obj   $(Fobj)\lista.obj
     cd $(Fobj)
     LINK $(L) @$(NOME).build >> $(Ferr)\$(NOME).err
 
