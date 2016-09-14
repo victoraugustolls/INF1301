@@ -13,10 +13,11 @@
 *
 *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
 *  Gestor:  LES/DI/PUC-Rio
-*  Autores: vas
+*  Autores: vas, lff
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     2       lff   13/set/2016 implementação das funções de impressão e comparação
 *     1       vas   13/set/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
@@ -68,15 +69,79 @@ ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal(char* pIniciais, char* pNomeComp
 *     O parâmetro ponteiro para a etiqueta nominal não é modificado.
 *     Se ocorrer algum erro durante a destruição, a etiqueta nominal resultará
 *     estruturalmente incorreta.
-*     OBS. não existe previsão para possíveis falhas de execução.
+*     Obs.: não existe previsão para possíveis falhas de execução.
 *
 *  $EP Parâmetros
-*      pEtiquetaNominal - ponteiro para etiqueta nominal que será desctuída
+*      pEtiquetaNominal - ponteiro para etiqueta nominal que será destruída.
 *
 *
 ***********************************************************************/
 
-void EIT_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
+void ETI_DestruirEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal);
+
+/***********************************************************************
+ *
+ *  $FC Função: ETI  &Imprimir conteúdo etiqueta nominal
+ *
+ *  $ED Descrição da função
+ *     Imprime o conteúdo da etiqueta nominal fornecida.
+ *     O parâmetro ponteiro para a etiqueta nominal não é modificado.
+ *     Se ocorrer algum erro durante a impressão, a etiqueta nominal resultará
+ *     estruturalmente incorreta.
+ *     Obs.: não existe previsão para possíveis falhas de execução.
+ *
+ *  $EP Parâmetros
+ *      pEtiquetaNominal - ponteiro para etiqueta nominal que será imprimida.
+ *
+ *
+ ***********************************************************************/
+
+void ETI_ImprimirConteudoEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal);
+
+/***********************************************************************
+ *
+ *  $FC Função: ETI  &Comparar as iniciais de duas etiquetas nominais
+ *
+ *  $ED Descrição da função
+ *     Compara o membro 'iniciais' da primeira etiqueta nominal fornecida com o da segunda.
+ *     Os parâmetros ponteiros e seus membros  para a etiquetas nominais não são modificados.
+ *
+ *  $EP Parâmetros
+ *      pEtiquetaNominal1 - ponteiro para a primeira etiqueta nominal que será comparada.
+ *      pEtiquetaNominal2 - ponteiro para a segunda etiqueta nominal que será comparada.
+ *
+ *  $FV Valor retornado
+ *        -1 - pEtiquetaNominal1 vem antes de pEtiquetaNominal2 em uma ordenação alfanumérica
+ *             de acordo com o membro 'iniciais' da etiqueta nominal.
+ *        0 - pEtiquetaNominal1 vem na mesma posição de pEtiquetaNominal2 em uma ordenação alfanumérica
+ *             de acordo com o membro 'iniciais' da etiqueta nominal.
+ *        1 - pEtiquetaNominal1 vem depois de pEtiquetaNominal2 em uma ordenação alfanumérica
+ *             de acordo com o membro 'iniciais' da etiqueta nominal.
+ *
+ ***********************************************************************/
+
+int ETI_CompararIniciaisEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2);
+
+/***********************************************************************
+ *
+ *  $FC Função: ETI  &Comparar conteúdo de duas etiquetas nominais
+ *
+ *  $ED Descrição da função
+ *     Compara o conteúdo das duas etiquetas nominais recebidas como parâmetros.
+ *     Os parâmetros ponteiros e seus membros  para a etiquetas nominais não são modificados.
+ *
+ *  $EP Parâmetros
+ *      pEtiquetaNominal1 - ponteiro para a primeira etiqueta nominal que será comparada.
+ *      pEtiquetaNominal2 - ponteiro para a segunda etiqueta nominal que será comparada.
+ *
+ *  $FV Valor retornado
+ *        0 - pEtiquetaNominal1 não possui o mesmo conteúdo de pEtiquetaNominal2.
+ *        1 - pEtiquetaNominal1 possui o mesmo conteúdo depois de pEtiquetaNominal2.
+ *
+ ***********************************************************************/
+
+int ETI_CompararConteudoEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2);
+
 
 #undef ETIQUETA_NOMINAL_EXT
 
