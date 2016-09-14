@@ -79,8 +79,8 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
 *     =criarlista                   inxLista
 *     =destruirlista                inxLista
 *     =esvaziarlista                inxLista
-*     =inselemantes                 inxLista  inicial  nomeCompleto  CondRetEsp
-*     =inselemapos                  inxLista  inicial  nomeCompleto  CondRetEsp
+*     =inselemantes                 inxLista  inicial  nomeCompleto paramNULL  CondRetEsp
+*     =inselemapos                  inxLista  inicial  nomeCompleto paramNULL  CondRetEsp
 *     =obtervalorelem               inxLista  inicial  nomeCompleto  CondretPonteiro
 *     =excluirelem                  inxLista  CondRetEsp
 *     =irinicio                     inxLista
@@ -103,6 +103,8 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
       ETI_tppEtiquetaNominal * pEtiquetaNominal ;
 
       int ValEsp = -1 ;
+
+      int paramNULL = -1 ;
 
       int i ;
 
@@ -192,10 +194,10 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , INS_ELEM_ANTES_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "issi" ,
-                       &inxLista , StringIniciais , StringNome , &CondRetEsp ) ;
+            numLidos = LER_LerParametros( "issii" ,
+                       &inxLista , StringIniciais , StringNome , &paramNULL , &CondRetEsp ) ;
 
-            if ( ( numLidos != 4 )
+            if ( ( numLidos != 5 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
             {
                return TST_CondRetParm ;
@@ -207,8 +209,15 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetMemoria ;
             } /* if */
 
-
-            CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , pEtiquetaNominal ) ;
+            if (paramNULL)
+            {
+              CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , pEtiquetaNominal ) ;
+            }
+            else
+            {
+              CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , NULL ) ;
+            }
+            
 
             if ( CondRet != LIS_CondRetOK )
             {
@@ -225,10 +234,10 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , INS_ELEM_APOS_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "issi" ,
-                       &inxLista , StringIniciais , StringNome , &CondRetEsp ) ;
+            numLidos = LER_LerParametros( "issii" ,
+                       &inxLista , StringIniciais , StringNome , &paramNULL , &CondRetEsp ) ;
 
-            if ( ( numLidos != 4 )
+            if ( ( numLidos != 5 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
             {
                return TST_CondRetParm ;
@@ -240,8 +249,14 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetMemoria ;
             } /* if */
 
-
-            CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , pEtiquetaNominal ) ;
+            if (paramNULL)
+            {
+              CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , pEtiquetaNominal ) ;
+            }
+            else
+            {
+              CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , NULL ) ;
+            }
 
             if ( CondRet != LIS_CondRetOK )
             {

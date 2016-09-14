@@ -1,8 +1,13 @@
-arcaboucoteste_2_02/listaModificada/*.obj
-arcaboucoteste_2_02/listaModificada/*.estat
-arcaboucoteste_2_02/lista/*.obj
-arcaboucoteste_2_02/lista/*.estat
+*.obj
+*.estat
 *.exe
 *.log
+*.build
+*.make
+*.list
+*.err
+*.bak
 vsvars32.bat
 ArcaboucoTeste.lib
+!arcaboucoteste_2_02/ferramnt/*
+!GMake.exe
