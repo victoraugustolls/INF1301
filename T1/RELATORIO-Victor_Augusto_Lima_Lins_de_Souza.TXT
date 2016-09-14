@@ -1,0 +1,12 @@
+Data	   Horas Trabalhadas	 Tipo Tarefa	 		Descrição da Tarefa Realizada
+02/09/16   2			 Estudar 	 		Aprender a instalar o arcabouco e rodar os exemplos
+09/09/16   1			 Estudar	 		Entender o funcionamento dos modulos
+12/09/16   2                     Estudar                        Entender o funcionamento dos scripts de teste
+12/09/16   2			 Projetar	 		Verificar os testes que faltam para cobrir todos os casos
+13/09/16   2                     Redirigir Script de teste      Completar os testes do modulo de lista
+
+
+Notas pessoais:
+-Com a pratica redigir o script de teste e realizar os testes se tornou muito mais rapido
+-A produtividade do dia 26 não foi muito boa por conta de algum erro propagado no inicio que nao foi encontrado
+-Relativamente dificil de categorizar estudar pois conforme ia utilizando ia entendendo cada vez melhor
