@@ -6,6 +6,7 @@
 *.make
 *.list
 *.err
+*.bak
 vsvars32.bat
 ArcaboucoTeste.lib
 !arcaboucoteste_2_02/ferramnt/*
