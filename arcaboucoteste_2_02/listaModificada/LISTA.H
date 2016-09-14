@@ -234,12 +234,6 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *       aparece na lista.
 *     A apresentação é feita de acordo com a implementação da Etiqueta Nominal.
 *
-*  $EP Parâmetros
-*     Parâmetros
-*        pLista - ponteiro para a lista onde deve ser inserido o elemento
-*        pValor - ponteiro para o valor da nova etiqueta nominal
-*                 Pode ser NULL
-*
 ***********************************************************************/
 
    void LIS_ApresentaConteudoEmOrdem() ;
