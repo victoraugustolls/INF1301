@@ -14,6 +14,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     2       lff   14/set/2016 codificação das funções de impressão e comparação
 *     1       vas   13/set/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
@@ -87,5 +88,199 @@ void EIT_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal )
     free(pEtiquetaNominal);
 
 } /* Fim função: ETI  &Destruir etiqueta nominal */
+
+/***************************************************************************
+ *
+ *  Função: ETI  &Imprimir conteúdo etiqueta nominal
+ *  ****/
+
+void ETI_ImprimirConteudoEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal )
+{
+    printf("Conteudo da etiqueta nominal:\n");
+    
+    if (pEtiquetaNominal == NULL)
+    {
+        printf("O ponteiro e nulo.\n");
+    }
+    else
+    {
+        if (pEtiquetaNominal->iniciais == NULL)
+        {
+            printf("Iniciais:  NULL\n");
+        }
+        else
+        {
+            printf("Iniciais:  %s\n", pEtiquetaNominal->iniciais);
+        }/* if */
+        
+        if (pEtiquetaNominal->iniciais == NULL)
+        {
+            printf("Nome completo:  NULL\n");
+        }
+        else
+        {
+            printf("Nome completo:  %s\n", pEtiquetaNominal->nomeCompleto);
+        }/* if */
+    }/* if */
+    
+} /* Fim função: ETI  &Imprimir conteúdo etiqueta nominal */
+
+/***************************************************************************
+ *
+ *  Função: ETI  &Comparar as iniciais de duas etiquetas nominais
+ *  ****/
+
+int ETI_CompararIniciaisEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2 )
+{
+    int i=0, dif;
+    
+    /* Tratar etiqueta nominal nula */
+    if (pEtiquetaNominal1 == NULL)
+    {
+        return -1;
+    }/* if */
+    
+    if (pEtiquetaNominal2 == NULL)
+    {
+        return 1;
+    }/* if */
+    
+    /* fim ativa: Tratar etiqueta nominal nula */
+    
+    while (pEtiquetaNominal1->iniciais[i] != '\0')
+    {
+        dif = pEtiquetaNominal1->iniciais[i] - pEtiquetaNominal2->iniciais[i];
+        if (dif<0)
+        {
+            return -1;
+        }/* if */
+        
+        if (dif>0)
+        {
+            return 1;
+        }/* if */
+        
+        if (dif == pEtiquetaNominal1->iniciais[i])
+        {
+            return 1;
+        }/* if */
+        
+    }/* while */
+    
+    if (pEtiquetaNominal2->iniciais[i] != '\0')
+    {
+        return -1;
+    }/* if */
+    
+    return 0;
+
+} /* Fim função: ETI  &Comparar as iniciais de duas etiquetas nominais */
+
+/***********************************************************************
+ *
+ *  $FC Função: ETI  &Comparar conteúdo de duas etiquetas nominais
+ *  ****/
+
+int ETI_CompararConteudoEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2)
+{
+    /* Tratar etiqueta nominal nula */
+    if ((pEtiquetaNominal1 == NULL) && (pEtiquetaNominal2 == NULL))
+    {
+        return 1;
+    }
+    else
+    {
+        if ((pEtiquetaNominal1 == NULL) || (pEtiquetaNominal2 == NULL))
+        {
+            return 0;
+        }/* if */
+    }/* if */
+    
+    /* fim ativa: Tratar etiqueta nominal nula */
+    
+    /* Tratar membro 'iniciais' nulo */
+    if ((pEtiquetaNominal1->iniciais == NULL) && (pEtiquetaNominal2->iniciais == NULL))
+    {
+        if ((pEtiquetaNominal1->nomeCompleto == NULL) && (pEtiquetaNominal2->nomeCompleto == NULL))
+        {
+            return 1;
+        }
+        else
+        {
+            if ((pEtiquetaNominal1->nomeCompleto == NULL) || (pEtiquetaNominal2->nomeCompleto == NULL))
+            {
+                return 0;
+            }
+            else
+            {
+                if (strcmp(pEtiquetaNominal1->nomeCompleto, pEtiquetaNominal2->nomeCompleto) != 0)
+                {
+                    return 0;
+                }/* if */
+                
+                return 1;
+            }/* if */
+            
+        }/* if */
+        
+    }
+    else {
+        if ((pEtiquetaNominal1->iniciais == NULL) || (pEtiquetaNominal2->iniciais == NULL))
+        {
+            return 0;
+        }/* if */
+        
+    }/* if */
+    
+    /* fim ativa: Tratar membro 'iniciais' nulo */
+    
+    /* Tratar membro 'nomeCompleto' nulo */
+    if ((pEtiquetaNominal1->nomeCompleto == NULL) && (pEtiquetaNominal2->nomeCompleto == NULL))
+    {
+        if ((pEtiquetaNominal1->iniciais == NULL) && (pEtiquetaNominal2->iniciais == NULL))
+        {
+            return 1;
+        }
+        else
+        {
+            if ((pEtiquetaNominal1->iniciais == NULL) || (pEtiquetaNominal2->iniciais == NULL))
+            {
+                return 0;
+            }
+            else
+            {
+                if (strcmp(pEtiquetaNominal1->iniciais, pEtiquetaNominal2->iniciais) != 0)
+                {
+                    return 0;
+                }/* if */
+                
+                return 1;
+            }/* if */
+            
+        }/* if */
+        
+    }
+    else {
+        if ((pEtiquetaNominal1->nomeCompleto == NULL) || (pEtiquetaNominal2->nomeCompleto == NULL))
+        {
+            return 0;
+        }/* if */
+        
+    }/* if */
+    
+    /* fim ativa: Tratar membro 'nomeCompleto' nulo */
+    
+    if (strcmp(pEtiquetaNominal1->iniciais, pEtiquetaNominal2->iniciais) == 0)
+    {
+        if (strcmp(pEtiquetaNominal1->nomeCompleto, pEtiquetaNominal2->nomeCompleto) == 0)
+        {
+            return 1;
+        }/* if */
+        
+    }/* if */
+    
+    return 0;
+    
+} /* Fim função: ETI  &Comparar conteúdo de duas etiquetas nominais */
 
 /********** Fim do módulo de implementação: ETI Etiqueta nominal **********/

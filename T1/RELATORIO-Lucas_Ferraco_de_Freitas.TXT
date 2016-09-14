@@ -20,4 +20,4 @@
 
 12/09/2016; 1.5 horas; estudar; Estudei os módulos LISTA e TESTLIS e o script de teste da lista.
 
-14/09/2016; 1 hora; codificar módulo; Codificar funções de impressão e comparação do módulo ETIQUETA_NOMINAL.
+14/09/2016; 4 horas; codificar módulo; Codificar funções de impressão e comparação do módulo ETIQUETA_NOMINAL.

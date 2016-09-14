@@ -17,7 +17,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     2       lff   13/set/2016 implementação das funções de impressão e comparação
+*     2       lff   14/set/2016 implementação das funções de impressão e comparação
 *     1       vas   13/set/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
@@ -57,7 +57,7 @@ typedef struct ETI_tagEtiquetaNominal * ETI_tppEtiquetaNominal ;
 *
 ***********************************************************************/
 
-ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal(char* pIniciais, char* pNomeCompleto);
+ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal( char* pIniciais, char* pNomeCompleto ) ;
 
 
 /***********************************************************************
@@ -77,7 +77,7 @@ ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal(char* pIniciais, char* pNomeComp
 *
 ***********************************************************************/
 
-void ETI_DestruirEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal);
+void ETI_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
 
 /***********************************************************************
  *
@@ -96,7 +96,7 @@ void ETI_DestruirEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal);
  *
  ***********************************************************************/
 
-void ETI_ImprimirConteudoEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal);
+void ETI_ImprimirConteudoEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
 
 /***********************************************************************
  *
@@ -117,10 +117,13 @@ void ETI_ImprimirConteudoEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal
  *             de acordo com o membro 'iniciais' da etiqueta nominal.
  *        1 - pEtiquetaNominal1 vem depois de pEtiquetaNominal2 em uma ordenação alfanumérica
  *             de acordo com o membro 'iniciais' da etiqueta nominal.
+ *        Se algum dos parâmetros for NULL, ele virá antes do não NULL. Logo, caso pEtiquetaNominal1
+ *        seja NULL, a função retornará -1, e caso pEtiquetaNominal2 seja NULL, a função retornará 1.
+ *        Caso os dois sejam NULL, a função retornará -1.
  *
  ***********************************************************************/
 
-int ETI_CompararIniciaisEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2);
+int ETI_CompararIniciaisEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2 ) ;
 
 /***********************************************************************
  *
@@ -140,7 +143,7 @@ int ETI_CompararIniciaisEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal1
  *
  ***********************************************************************/
 
-int ETI_CompararConteudoEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2);
+int ETI_CompararConteudoEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2) ;
 
 
 #undef ETIQUETA_NOMINAL_EXT
