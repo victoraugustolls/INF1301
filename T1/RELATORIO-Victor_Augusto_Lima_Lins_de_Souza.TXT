@@ -7,6 +7,8 @@ Data	   Horas Trabalhadas	 Tipo Tarefa	 		Descrição da Tarefa Realizada
 13/09/16   15min                 Especificar os módulos         Decidir se deve-se criar uma nova interface para a estrutura apontada pela lista
 13/09/16   15min                 Especificar as funções         Decidir as funçoes para essa nova estrutura
 13/09/16   2                     Codificar módulo               Codificar tanto a interface quanto a implementação da estrutura, juntamente com sua documentação
+14/09/16   30min                 Revisar código do módulo       Verificar no TESTLIS.C o que precisaria ser alterado para a nova lista
+14/09/16   2                     Codificar módulo               Mudar os testes do TESTLIS.C para nova lista
 
 
 Notas pessoais:

@@ -4,7 +4,7 @@ GERADOR DE SCRIPT DE DIRETIVAS PARA MAKE
 Composição do construto: TesteFuncoes.comp
 
    Nome do Construto:           TesteFuncoes
-   Diretório base:              C:\Users\Ian Albuquerque\Desktop\modular\arcaboucoteste_2_02\arcabouc\composicao
+   Diretório base:              C:\Users\Victor Souza\Desktop\Modular\arcaboucoteste_2_02\arcabouc\composicao
 
    Arquivo composição:          TesteFuncoes.comp
    Arquivo plataforma:          gmake.parm
