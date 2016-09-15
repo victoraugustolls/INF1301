@@ -211,12 +211,12 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
             if (paramNULL)
             {
-               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ], NULL ) ;
+               strcpy( pDado , StringDado ) ;
+               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ], pDado ) ;
             } /* if */
             else
             {
-               strcpy( pDado , StringDado ) ;
-               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , pDado ) ;
+               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , NULL ) ;
             }
 
             if ( CondRet != LIS_CondRetOK )
@@ -251,12 +251,12 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
             if (paramNULL)
             {
-               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ], NULL ) ;
+               strcpy( pDado , StringDado ) ;
+               CondRet = LIS_InserirElementoApos( vtListas[ inxLista ], pDado ) ;
             } /* if */
             else
             {
-               strcpy( pDado , StringDado ) ;
-               CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , pDado ) ;
+               CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , NULL ) ;
             }
 
             if ( CondRet != LIS_CondRetOK )
