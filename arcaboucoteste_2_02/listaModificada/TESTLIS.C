@@ -364,13 +364,13 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
 
             pEtiquetaNominalCmp = ETI_CriarEtiquetaNominal( StringIniciais,StringNome );
 
-            if ( ETI_IgualEtiquetaNominal( pEtiquetaNominal, pEtiquetaNominalCmp ) == 1)
+            if ( ETI_IgualEtiquetaNominal( pEtiquetaNominal, pEtiquetaNominalCmp ) )
             {
-              ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+              ETI_DestruirEtiquetaNominal( pEtiquetaNominalCmp ) ;
               return TST_CondRetOK ;
             } else
             {
-              ETI_DestruirEtiquetaNominal( pEtiquetaNominal ) ;
+              ETI_DestruirEtiquetaNominal( pEtiquetaNominalCmp ) ;
               TST_NotificarFalha( "Estiqueta nomial recebida errada." ) ;
             } /* if */
 

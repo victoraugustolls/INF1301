@@ -53,3 +53,5 @@
 14/09/2016; 0.5 horas; diagnosticar e corrigir os problemas encontrados; Resolver erros de link-edição do módulo ETIQUETA_NOMINAL recém criado.
 
 14/09/2016; 0.5 horas; revisar código do módulo; Resolver erros de compilação dos módulo ETIQUETA_NOMIAL
+
+14/09/2016; 21:30 - horas; codificar módulo; Atualizar código do módulo LISTA para usar estrutura genérica
