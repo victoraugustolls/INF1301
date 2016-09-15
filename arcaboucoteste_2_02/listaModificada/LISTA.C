@@ -301,15 +301,31 @@
                   pElemIterador != pLista->pFimLista ;
                   pElemIterador  = pElemIterador->pProx )
             {
-               if ( pLista->CompararValores( pElemIterador->pValor, pValor ) == 1 )
+               if ( pLista->CompararValores( pElemIterador->pValor, pValor ) > 0)
                {
                   pLista->pElemCorr = pElemIterador ;
+                  break ;
                } /* if */
             } /* for */
 
-            if ( pLista->CompararValores( pElemIterador->pValor, pValor ) == 1 )
+            if ( pElemIterador == pLista->pFimLista )
             {
-               pLista->pElemCorr = pElemIterador ;
+               if ( pLista->CompararValores( pElemIterador->pValor, pValor ) >= 0)
+               {
+                  pLista->pElemCorr = pElemIterador ;
+               } 
+               else
+               {
+                  RetornoInsercao = LIS_InserirElementoApos ( pLista, pValor ) ;
+                  if( RetornoInsercao == LIS_CondRetOK )
+                  {
+                     return LIS_CondRetOK ;
+                  } else 
+                  {
+                     pLista->pElemCorr = pCorrenteSalvo ;
+                     return LIS_CondRetFaltouMemoria ;
+                  } /* if */
+               }
             } /* if */
 
          } /* if */
