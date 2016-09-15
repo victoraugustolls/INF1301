@@ -34,19 +34,20 @@
 #include    "Etiqueta_nominal.h"
 
 
-static const char RESET_LISTA_CMD         [ ] = "=resetteste"     ;
-static const char CRIAR_LISTA_CMD         [ ] = "=criarlista"     ;
-static const char DESTRUIR_LISTA_CMD      [ ] = "=destruirlista"  ;
-static const char ESVAZIAR_LISTA_CMD      [ ] = "=esvaziarlista"  ;
-static const char INS_ELEM_ANTES_CMD      [ ] = "=inselemantes"   ;
-static const char INS_ELEM_APOS_CMD       [ ] = "=inselemapos"    ;
-static const char INS_ELEM_ORD_CMD        [ ] = "inselemanord"    ;
-static const char OBTER_VALOR_CMD         [ ] = "=obtervalorelem" ;
-static const char EXC_ELEM_CMD            [ ] = "=excluirelem"    ;
-static const char IR_INICIO_CMD           [ ] = "=irinicio"       ;
-static const char IR_FIM_CMD              [ ] = "=irfinal"        ;
-static const char AVANCAR_ELEM_CMD        [ ] = "=avancarelem"    ;
-static const char PROCURA_VALOR_CMD       [ ] = "=procurarvalor"  ;
+static const char RESET_LISTA_CMD         [ ] = "=resetteste"           ;
+static const char CRIAR_LISTA_CMD         [ ] = "=criarlista"           ;
+static const char DESTRUIR_LISTA_CMD      [ ] = "=destruirlista"        ;
+static const char ESVAZIAR_LISTA_CMD      [ ] = "=esvaziarlista"        ;
+static const char INS_ELEM_ANTES_CMD      [ ] = "=inselemantes"         ;
+static const char INS_ELEM_APOS_CMD       [ ] = "=inselemapos"          ;
+static const char INS_ELEM_ORD_CMD        [ ] = "=inselemord"           ;
+static const char OBTER_VALOR_CMD         [ ] = "=obtervalorelem"       ;
+static const char EXC_ELEM_CMD            [ ] = "=excluirelem"          ;
+static const char IR_INICIO_CMD           [ ] = "=irinicio"             ;
+static const char IR_FIM_CMD              [ ] = "=irfinal"              ;
+static const char AVANCAR_ELEM_CMD        [ ] = "=avancarelem"          ;
+static const char PROCURA_VALOR_CMD       [ ] = "=procurarvalor"        ;
+static const char APRESENTAR_VALORES_CMD  [ ] = "=apresentarvalores"    ;
 
 
 #define TRUE  1
@@ -310,7 +311,7 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
             } /* if */
 
             return TST_CompararInt( CondRetEsp , CondRet ,
-                     "Condicao de retorno errada ao inserir apos."                   ) ;
+                     "Condicao de retorno errada ao inserir ordenado." ) ;
 
          } /* fim ativa: Testar inserir elemento ordenado */
 
@@ -470,6 +471,24 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
                       "Condicao de retorno errada ao procurar valor" ) ;
 
          } /* fim ativa: LIS  &Procurar valor */
+        
+         else if ( strcmp( ComandoTeste , APRESENTAR_VALORES_CMD ) == 0 )
+         {
+
+            numLidos = LER_LerParametros( "i" ,
+                       &inxLista ) ;
+
+            if ( ( numLidos != 1 )
+              || ( ! ValidarInxLista( inxLista , VAZIO )))
+            {
+               return TST_CondRetParm ;
+            } /* if */
+
+            LIS_ApresentaConteudoEmOrdem ( vtListas[ inxLista ] );
+
+            return TST_CondRetOK ;
+
+         } /* fim ativa: Testar CriarLista */
 
       return TST_CondRetNaoConhec ;
 

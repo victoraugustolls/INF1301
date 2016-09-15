@@ -66,15 +66,15 @@
 
 == Teste Simples de Inserção Elemento e Esvaziar Lista
 =criarlista      lista0
-=inselemantes    lista0    "TEST"          OK
-=inselemantes    lista0    "TEST"          OK
+=inselemantes    lista0    "TEST"          pNaoNULL     OK
+=inselemantes    lista0    "TEST"          pNaoNULL     OK
 =esvaziarlista   lista0
 =obtervalorelem  lista0    "PLACEHOLDER"   pNULL
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemapos     lista0    "TEST"          OK
-=inselemapos     lista0    "TEST"          OK
+=inselemapos     lista0    "TEST"          pNaoNULL     OK
+=inselemapos     lista0    "TEST"          pNaoNULL     OK
 =esvaziarlista   lista0
 =obtervalorelem  lista0    "PLACEHOLDER"   pNULL
 =destruirlista   lista0
@@ -83,14 +83,29 @@
 
 == Teste Inserção e Obter Valor
 =criarlista      lista0
-=inselemantes    lista0    "VALOR"    OK
+=inselemantes    lista0    "VALOR"    pNaoNULL      OK
 =obtervalorelem  lista0    "VALOR"    pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemapos     lista0    "VALOR"    OK
+=inselemapos     lista0    "VALOR"    pNaoNULL      OK
 =obtervalorelem  lista0    "VALOR"    pNaoNULL
+=esvaziarlista   lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Inserção Nula e Obter Valor Nulo
+=criarlista      lista0
+=inselemantes    lista0    "VALOR"    pNULL         OK
+=obtervalorelem  lista0    "VALOR"    pNULL
+=esvaziarlista   lista0
+=destruirlista   lista0
+
+=criarlista      lista0
+=inselemapos     lista0    "VALOR"    pNULL         OK
+=obtervalorelem  lista0    "VALOR"    pNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
@@ -106,9 +121,9 @@
 
 == Teste Avançar Unitário
 =criarlista      lista0
-=inselemapos     lista0    "VALOR_1"    OK
-=inselemapos     lista0    "VALOR_2"    OK
-=inselemapos     lista0    "VALOR_3"    OK
+=inselemapos     lista0    "VALOR_1"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_2"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_3"    pNaoNULL    OK
 =obtervalorelem  lista0    "VALOR_3"    pNaoNULL
 =avancarelem     lista0    -1           OK
 =obtervalorelem  lista0    "VALOR_2"    pNaoNULL
@@ -122,9 +137,9 @@
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemantes    lista0    "VALOR_3"    OK
-=inselemantes    lista0    "VALOR_2"    OK
-=inselemantes    lista0    "VALOR_1"    OK
+=inselemantes    lista0    "VALOR_3"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_2"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_1"    pNaoNULL    OK
 =obtervalorelem  lista0    "VALOR_1"    pNaoNULL
 =avancarelem     lista0    1            OK
 =obtervalorelem  lista0    "VALOR_2"    pNaoNULL
@@ -141,9 +156,9 @@
 
 == Teste Avançar Fim de Lista
 =criarlista      lista0
-=inselemantes    lista0    "VALOR_3"    OK
-=inselemantes    lista0    "VALOR_2"    OK
-=inselemantes    lista0    "VALOR_1"    OK
+=inselemantes    lista0    "VALOR_3"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_2"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_1"    pNaoNULL    OK
 =obtervalorelem  lista0    "VALOR_1"    pNaoNULL
 =avancarelem     lista0    1            OK
 =obtervalorelem  lista0    "VALOR_2"    pNaoNULL
@@ -161,9 +176,9 @@
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemapos     lista0    "VALOR_1"    OK
-=inselemapos     lista0    "VALOR_2"    OK
-=inselemapos     lista0    "VALOR_3"    OK
+=inselemapos     lista0    "VALOR_1"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_2"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_3"    pNaoNULL    OK
 =obtervalorelem  lista0    "VALOR_3"    pNaoNULL
 =avancarelem     lista0    -1           OK
 =obtervalorelem  lista0    "VALOR_2"    pNaoNULL
@@ -184,14 +199,14 @@
 
 == Teste Avançar Fim de Lista Elemento Único
 =criarlista      lista0
-=inselemantes    lista0    "VALOR"    OK
+=inselemantes    lista0    "VALOR"    pNaoNULL    OK
 =avancarelem     lista0    1          FimLista
 =avancarelem     lista0    -1         FimLista
 =esvaziarlista   lista0
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemantes    lista0    "VALOR"    OK
+=inselemantes    lista0    "VALOR"    pNaoNULL    OK
 =avancarelem     lista0    1          FimLista
 =avancarelem     lista0    -1         FimLista
 =esvaziarlista   lista0
@@ -201,12 +216,12 @@
 
 == Teste Ordenamento da Inserção
 =criarlista      lista0
-=inselemantes    lista0    "VALOR_1"    OK
-=inselemapos     lista0    "VALOR_6"    OK
-=inselemantes    lista0    "VALOR_2"    OK
-=inselemapos     lista0    "VALOR_5"    OK
-=inselemantes    lista0    "VALOR_3"    OK
-=inselemapos     lista0    "VALOR_4"    OK
+=inselemantes    lista0    "VALOR_1"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_6"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_2"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_5"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_3"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_4"    pNaoNULL    OK
 =avancarelem     lista0    -1           OK
 =avancarelem     lista0    -1           OK
 =avancarelem     lista0    -1           OK
@@ -229,10 +244,10 @@
 
 == Teste Avançar Zero
 =criarlista      lista0
-=inselemantes    lista0    "VALOR_2"    OK
+=inselemantes    lista0    "VALOR_2"    pNaoNULL    OK
 =avancarelem     lista0    0            OK
 =obtervalorelem  lista0    "VALOR_2"    pNaoNULL
-=inselemantes    lista0    "VALOR_1"    OK
+=inselemantes    lista0    "VALOR_1"    pNaoNULL    OK
 =avancarelem     lista0    0            OK
 =obtervalorelem  lista0    "VALOR_1"    pNaoNULL
 =esvaziarlista   lista0
@@ -242,12 +257,12 @@
 
 == Teste Avançar Múltiplo
 =criarlista      lista0
-=inselemantes    lista0    "VALOR_6"    OK
-=inselemantes    lista0    "VALOR_5"    OK
-=inselemantes    lista0    "VALOR_4"    OK
-=inselemantes    lista0    "VALOR_3"    OK
-=inselemantes    lista0    "VALOR_2"    OK
-=inselemantes    lista0    "VALOR_1"    OK
+=inselemantes    lista0    "VALOR_6"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_5"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_4"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_3"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_2"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_1"    pNaoNULL    OK
 =obtervalorelem  lista0    "VALOR_1"    pNaoNULL
 =avancarelem     lista0    2            OK
 =obtervalorelem  lista0    "VALOR_3"    pNaoNULL
@@ -271,9 +286,9 @@
 =irfinal         lista0
 =obtervalorelem  lista0    "PLACEHOLDER"   pNULL
 
-=inselemapos     lista0    "VALOR_1"       OK
-=inselemapos     lista0    "VALOR_2"       OK
-=inselemapos     lista0    "VALOR_3"       OK
+=inselemapos     lista0    "VALOR_1"       pNaoNULL    OK
+=inselemapos     lista0    "VALOR_2"       pNaoNULL    OK
+=inselemapos     lista0    "VALOR_3"       pNaoNULL    OK
 =esvaziarlista   lista0
 
 =obtervalorelem  lista0    "PLACEHOLDER"   pNULL
@@ -289,12 +304,12 @@
 
 == Teste Início e Fim de Lista Preenchida
 =criarlista      lista0
-=inselemapos     lista0    "VALOR_1"    OK
-=inselemapos     lista0    "VALOR_2"    OK
-=inselemapos     lista0    "VALOR_3"    OK
-=inselemapos     lista0    "VALOR_4"    OK
-=inselemapos     lista0    "VALOR_5"    OK
-=inselemapos     lista0    "VALOR_6"    OK
+=inselemapos     lista0    "VALOR_1"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_2"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_3"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_4"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_5"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_6"    pNaoNULL    OK
 =obtervalorelem  lista0    "VALOR_6"    pNaoNULL
 =irinicio        lista0
 =obtervalorelem  lista0    "VALOR_1"    pNaoNULL
@@ -316,9 +331,9 @@
 =excluirelem     lista0    ListaVazia
 =obtervalorelem  lista0    "PLACEHOLDER"   pNULL
 
-=inselemapos     lista0    "VALOR_1"       OK
-=inselemapos     lista0    "VALOR_2"       OK
-=inselemapos     lista0    "VALOR_3"       OK
+=inselemapos     lista0    "VALOR_1"       pNaoNULL    OK
+=inselemapos     lista0    "VALOR_2"       pNaoNULL    OK
+=inselemapos     lista0    "VALOR_3"       pNaoNULL    OK
 =esvaziarlista   lista0
 
 =obtervalorelem  lista0   "PLACEHOLDER"    pNULL
@@ -333,12 +348,12 @@
 == Teste Excluir Elementos da Lista
 =criarlista      lista0
 
-=inselemantes    lista0    "VALOR_6"       OK
-=inselemantes    lista0    "VALOR_5"       OK
-=inselemantes    lista0    "VALOR_4"       OK
-=inselemantes    lista0    "VALOR_3"       OK
-=inselemantes    lista0    "VALOR_2"       OK
-=inselemantes    lista0    "VALOR_1"       OK
+=inselemantes    lista0    "VALOR_6"       pNaoNULL    OK
+=inselemantes    lista0    "VALOR_5"       pNaoNULL    OK
+=inselemantes    lista0    "VALOR_4"       pNaoNULL    OK
+=inselemantes    lista0    "VALOR_3"       pNaoNULL    OK
+=inselemantes    lista0    "VALOR_2"       pNaoNULL    OK
+=inselemantes    lista0    "VALOR_1"       pNaoNULL    OK
 
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
@@ -349,9 +364,9 @@
 
 =obtervalorelem  lista0    "PLACEHOLDER"   pNULL
 
-=inselemantes    lista0    "VALOR_3"       OK
-=inselemantes    lista0    "VALOR_2"       OK
-=inselemantes    lista0    "VALOR_1"       OK
+=inselemantes    lista0    "VALOR_3"       pNaoNULL    OK
+=inselemantes    lista0    "VALOR_2"       pNaoNULL    OK
+=inselemantes    lista0    "VALOR_1"       pNaoNULL    OK
 
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
@@ -368,23 +383,23 @@
 
 =criarlista      lista0
 
-=inselemantes    lista0    "VALOR_2"    OK
-=inselemantes    lista0    "VALOR_1"    OK
+=inselemantes    lista0    "VALOR_2"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_1"    pNaoNULL    OK
 =excluirelem     lista0    OK
 =obtervalorelem  lista0    "VALOR_2"    pNaoNULL
 
 =esvaziarlista   lista0
 
-=inselemapos     lista0    "VALOR_1"    OK
-=inselemapos     lista0    "VALOR_2"    OK
+=inselemapos     lista0    "VALOR_1"    pNaoNULL    OK
+=inselemapos     lista0    "VALOR_2"    pNaoNULL    OK
 =excluirelem     lista0    OK
 =obtervalorelem  lista0    "VALOR_1"    pNaoNULL
 
 =esvaziarlista   lista0
 
-=inselemantes    lista0    "VALOR_3"    OK
-=inselemantes    lista0    "VALOR_2"    OK
-=inselemantes    lista0    "VALOR_1"    OK
+=inselemantes    lista0    "VALOR_3"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_2"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_1"    pNaoNULL    OK
 =avancarelem     lista0    1            OK
 =excluirelem     lista0    OK
 =obtervalorelem  lista0    "VALOR_1"    pNaoNULL
@@ -397,9 +412,9 @@
 == Teste Exclusão Multipla Lista Vazia
 =criarlista      lista0
 
-=inselemapos     lista0    "VALOR_1"       OK
-=inselemapos     lista0    "VALOR_2"       OK
-=inselemapos     lista0    "VALOR_3"       OK
+=inselemapos     lista0    "VALOR_1"       pNaoNULL    OK
+=inselemapos     lista0    "VALOR_2"       pNaoNULL    OK
+=inselemapos     lista0    "VALOR_3"       pNaoNULL    OK
 
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
@@ -421,16 +436,16 @@
 =obtervalorelem  lista0    "PLACEHOLDER"       pNULL
 =obtervalorelem  lista1    "PLACEHOLDER"       pNULL
 
-=inselemantes    lista0    "VALOR_LISTA0_3"    OK
-=inselemantes    lista1    "VALOR_LISTA1_3"    OK
+=inselemantes    lista0    "VALOR_LISTA0_3"    pNaoNULL    OK
+=inselemantes    lista1    "VALOR_LISTA1_3"    pNaoNULL    OK
 
 =obtervalorelem  lista0    "VALOR_LISTA0_3"    pNaoNULL
 =obtervalorelem  lista1    "VALOR_LISTA1_3"    pNaoNULL
 
-=inselemantes    lista0    "VALOR_LISTA0_2"    OK
-=inselemantes    lista1    "VALOR_LISTA1_2"    OK
-=inselemantes    lista0    "VALOR_LISTA0_1"    OK
-=inselemantes    lista1    "VALOR_LISTA1_1"    OK
+=inselemantes    lista0    "VALOR_LISTA0_2"    pNaoNULL    OK
+=inselemantes    lista1    "VALOR_LISTA1_2"    pNaoNULL    OK
+=inselemantes    lista0    "VALOR_LISTA0_1"    pNaoNULL    OK
+=inselemantes    lista1    "VALOR_LISTA1_1"    pNaoNULL    OK
 
 =obtervalorelem  lista0    "VALOR_LISTA0_1"    pNaoNULL
 =obtervalorelem  lista1    "VALOR_LISTA1_1"    pNaoNULL
@@ -451,12 +466,12 @@
 =obtervalorelem  lista0   "PLACEHOLDER"        pNULL
 =obtervalorelem  lista1   "PLACEHOLDER"        pNULL
 
-=inselemantes    lista0   "VALOR_LISTA0_3"     OK
-=inselemantes    lista1   "VALOR_LISTA1_3"     OK
-=inselemantes    lista0   "VALOR_LISTA0_2"     OK
-=inselemantes    lista1   "VALOR_LISTA1_2"     OK
-=inselemantes    lista0   "VALOR_LISTA0_1"     OK
-=inselemantes    lista1   "VALOR_LISTA1_1"     OK
+=inselemantes    lista0   "VALOR_LISTA0_3"     pNaoNULL    OK
+=inselemantes    lista1   "VALOR_LISTA1_3"     pNaoNULL    OK
+=inselemantes    lista0   "VALOR_LISTA0_2"     pNaoNULL    OK
+=inselemantes    lista1   "VALOR_LISTA1_2"     pNaoNULL    OK
+=inselemantes    lista0   "VALOR_LISTA0_1"     pNaoNULL    OK
+=inselemantes    lista1   "VALOR_LISTA1_1"     pNaoNULL    OK
 
 =irfinal         lista1
 =obtervalorelem  lista0   "VALOR_LISTA0_1"     pNaoNULL
@@ -493,13 +508,13 @@
 =esvaziarlista   lista0
 =esvaziarlista   lista1
 
-=inselemapos     lista0   "VALOR_LISTA0_1"     OK
-=inselemapos     lista0   "VALOR_LISTA0_2"     OK
-=inselemapos     lista0   "VALOR_LISTA0_3"     OK
+=inselemapos     lista0   "VALOR_LISTA0_1"     pNaoNULL    OK
+=inselemapos     lista0   "VALOR_LISTA0_2"     pNaoNULL    OK
+=inselemapos     lista0   "VALOR_LISTA0_3"     pNaoNULL    OK
 
-=inselemapos     lista1   "VALOR_LISTA1_3"     OK
-=inselemantes    lista1   "VALOR_LISTA1_1"     OK
-=inselemapos     lista1   "VALOR_LISTA1_2"     OK
+=inselemapos     lista1   "VALOR_LISTA1_3"     pNaoNULL    OK
+=inselemantes    lista1   "VALOR_LISTA1_1"     pNaoNULL    OK
+=inselemapos     lista1   "VALOR_LISTA1_2"     pNaoNULL    OK
 
 =irinicio        lista0
 =irinicio        lista1
