@@ -1,7 +1,7 @@
 ————— Trabalho 1 - Programação Modular —————
 
  - Parte 1 do Trabalho
- 
+
  - Pontifícia Universidade Católica do Rio de Janeiro
  - Data: 15 de Setembro de 2016
 
@@ -52,6 +52,6 @@ Testa as funções do módulo lista de acordo com o script de teste fornecido.
 
 ————— Modo de Execução do Script de Testes ————— 
 
-1. 	Execute o arquivo EXECUTAR_TESTE_LISTA.bat.
+1. 	Execute (dê dois cliques) no arquivo EXECUTAR_TESTE_LISTA.bat.
 	Este arquivo executará o executável TRAB1-1.EXE que coordena os testes descritos em TESTE_LISTA.SCRIPT e gera um relatório contendo os resultados dos testes no arquivo TESTE_LISTA.log.
 2.	Os resultados dos testes estarão contidos em "TESTE_LISTA.log"
