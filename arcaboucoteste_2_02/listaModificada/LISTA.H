@@ -16,7 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     5       iars  14/set/2016 inserção busca ordenada
+*     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
 *     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
@@ -62,7 +62,7 @@
 *        ou um inteiro diferente de zero caso sejam iguais.
 *
 ***************************************************************************/
- 
+
 #if defined( LISTA_OWN )
    #define LISTA_EXT
 #else
@@ -214,7 +214,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $FC Função: LIS  &Inserir elemento após
 *
 *  $ED Descrição da função
-*     Insere novo elemento apás o elemento corrente.
+*     Insere novo elemento após o elemento corrente.
 *     O elemento corrente passará a ser o novo elemento inserido.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
