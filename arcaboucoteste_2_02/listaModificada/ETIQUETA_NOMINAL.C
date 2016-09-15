@@ -60,12 +60,12 @@
 ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal( char* pIniciais, char* pNomeCompleto )
 {
 
-    ETI_tpEtiquetaNominal * pEtiquetaNominal = NULL;
+    ETI_tpEtiquetaNominal * pEtiquetaNominal = NULL ;
 
-    pEtiquetaNominal = ( ETI_tpEtiquetaNominal * ) malloc( sizeof( ETI_tpEtiquetaNominal ));
+    pEtiquetaNominal = ( ETI_tpEtiquetaNominal * ) malloc( sizeof( ETI_tpEtiquetaNominal )) ;
     if ( pEtiquetaNominal == NULL )
     {
-      return NULL;
+      return NULL ;
     } /* if */
 
     if ( pIniciais != NULL )
@@ -74,7 +74,7 @@ ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal( char* pIniciais, char* pNomeCom
       strcpy( pEtiquetaNominal->iniciais, pIniciais ) ;
     } else
     {
-      pEtiquetaNominal->iniciais = NULL; 
+      pEtiquetaNominal->iniciais = NULL ; 
     } /* if */
 
     if ( pNomeCompleto != NULL )
@@ -83,10 +83,10 @@ ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal( char* pIniciais, char* pNomeCom
       strcpy( pEtiquetaNominal->nomeCompleto, pNomeCompleto ) ;
     } else
     {
-      pEtiquetaNominal->nomeCompleto = NULL; 
+      pEtiquetaNominal->nomeCompleto = NULL ; 
     } /* if */
 
-    return pEtiquetaNominal;
+    return pEtiquetaNominal ;
 
 } /* Fim função: ETI  &Criar etiqueta nominal */
 
@@ -112,9 +112,9 @@ void ETI_DestruirEtiquetaNominal( void* _pEtiquetaNominal )
     {
       free( pEtiquetaNominal->nomeCompleto ) ;
     } /* if */
-    pEtiquetaNominal->iniciais = NULL;
-    pEtiquetaNominal->nomeCompleto = NULL;
-    free(pEtiquetaNominal);
+    pEtiquetaNominal->iniciais = NULL ;
+    pEtiquetaNominal->nomeCompleto = NULL ;
+    free(pEtiquetaNominal) ;
 
 } /* Fim função: ETI  &Destruir etiqueta nominal */
 
@@ -125,19 +125,19 @@ void ETI_DestruirEtiquetaNominal( void* _pEtiquetaNominal )
 
 void ETI_ImprimirConteudoEtiquetaNominal( void* _pEtiquetaNominal )
 {
-    ETI_tppEtiquetaNominal pEtiquetaNominal = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal;
+    ETI_tppEtiquetaNominal pEtiquetaNominal = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal ;
     
-    printf("Conteudo da etiqueta nominal:\n");
+    printf("Conteudo da etiqueta nominal:\n") ;
     
     if (pEtiquetaNominal == NULL)
     {
-        printf("O ponteiro e nulo.\n");
+        printf("O ponteiro e nulo.\n") ;
     }
     else
     {
         if (pEtiquetaNominal->iniciais == NULL)
         {
-            printf("Iniciais:  NULL\n");
+            printf("Iniciais:  NULL\n") ;
         }
         else
         {
@@ -146,11 +146,11 @@ void ETI_ImprimirConteudoEtiquetaNominal( void* _pEtiquetaNominal )
         
         if (pEtiquetaNominal->iniciais == NULL)
         {
-            printf("Nome completo:  NULL\n");
+            printf("Nome completo:  NULL\n") ;
         }
         else
         {
-            printf("Nome completo:  %s\n", pEtiquetaNominal->nomeCompleto);
+            printf("Nome completo:  %s\n", pEtiquetaNominal->nomeCompleto) ;
         }/* if */
     }/* if */
     
@@ -164,18 +164,18 @@ void ETI_ImprimirConteudoEtiquetaNominal( void* _pEtiquetaNominal )
 int ETI_CompararIniciaisEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2 )
 {
     int i=0, dif;
-    ETI_tppEtiquetaNominal pEtiquetaNominal1 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal1;
-    ETI_tppEtiquetaNominal pEtiquetaNominal2 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal2;
+    ETI_tppEtiquetaNominal pEtiquetaNominal1 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal1 ;
+    ETI_tppEtiquetaNominal pEtiquetaNominal2 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal2 ;
     
     /* Tratar etiqueta nominal nula */
     if (pEtiquetaNominal1 == NULL)
     {
-        return -1;
+        return -1 ;
     }/* if */
     
     if (pEtiquetaNominal2 == NULL)
     {
-        return 1;
+        return 1 ;
     }/* if */
     
     /* fim ativa: Tratar etiqueta nominal nula */
@@ -185,27 +185,27 @@ int ETI_CompararIniciaisEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiqu
         dif = pEtiquetaNominal1->iniciais[i] - pEtiquetaNominal2->iniciais[i];
         if (dif<0)
         {
-            return -1;
+            return -1 ;
         }/* if */
         
         if (dif>0)
         {
-            return 1;
+            return 1 ;
         }/* if */
         
         if (dif == pEtiquetaNominal1->iniciais[i])
         {
-            return 1;
+            return 1 ;
         }/* if */
         
     }/* while */
     
     if (pEtiquetaNominal2->iniciais[i] != '\0')
     {
-        return -1;
+        return -1 ;
     }/* if */
     
-    return 0;
+    return 0 ;
 
 } /* Fim função: ETI  &Comparar as iniciais de duas etiquetas nominais */
 
@@ -216,19 +216,19 @@ int ETI_CompararIniciaisEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiqu
 
 int ETI_IgualEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2)
 {
-    ETI_tppEtiquetaNominal pEtiquetaNominal1 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal1;
-    ETI_tppEtiquetaNominal pEtiquetaNominal2 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal2;
+    ETI_tppEtiquetaNominal pEtiquetaNominal1 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal1 ;
+    ETI_tppEtiquetaNominal pEtiquetaNominal2 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal2 ;
     
     /* Tratar etiqueta nominal nula */
     if ((pEtiquetaNominal1 == NULL) && (pEtiquetaNominal2 == NULL))
     {
-        return 1;
+        return 1 ;
     }
     else
     {
         if ((pEtiquetaNominal1 == NULL) || (pEtiquetaNominal2 == NULL))
         {
-            return 0;
+            return 0 ;
         }/* if */
     }/* if */
     
@@ -239,22 +239,22 @@ int ETI_IgualEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2
     {
         if ((pEtiquetaNominal1->nomeCompleto == NULL) && (pEtiquetaNominal2->nomeCompleto == NULL))
         {
-            return 1;
+            return 1 ;
         }
         else
         {
             if ((pEtiquetaNominal1->nomeCompleto == NULL) || (pEtiquetaNominal2->nomeCompleto == NULL))
             {
-                return 0;
+                return 0 ;
             }
             else
             {
                 if (strcmp(pEtiquetaNominal1->nomeCompleto, pEtiquetaNominal2->nomeCompleto) != 0)
                 {
-                    return 0;
+                    return 0 ;
                 }/* if */
                 
-                return 1;
+                return 1 ;
             }/* if */
             
         }/* if */
@@ -263,7 +263,7 @@ int ETI_IgualEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2
     else {
         if ((pEtiquetaNominal1->iniciais == NULL) || (pEtiquetaNominal2->iniciais == NULL))
         {
-            return 0;
+            return 0 ;
         }/* if */
         
     }/* if */
@@ -275,22 +275,22 @@ int ETI_IgualEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2
     {
         if ((pEtiquetaNominal1->iniciais == NULL) && (pEtiquetaNominal2->iniciais == NULL))
         {
-            return 1;
+            return 1 ;
         }
         else
         {
             if ((pEtiquetaNominal1->iniciais == NULL) || (pEtiquetaNominal2->iniciais == NULL))
             {
-                return 0;
+                return 0 ;
             }
             else
             {
                 if (strcmp(pEtiquetaNominal1->iniciais, pEtiquetaNominal2->iniciais) != 0)
                 {
-                    return 0;
+                    return 0 ;
                 }/* if */
                 
-                return 1;
+                return 1 ;
             }/* if */
             
         }/* if */
@@ -299,7 +299,7 @@ int ETI_IgualEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2
     else {
         if ((pEtiquetaNominal1->nomeCompleto == NULL) || (pEtiquetaNominal2->nomeCompleto == NULL))
         {
-            return 0;
+            return 0 ;
         }/* if */
         
     }/* if */
@@ -310,12 +310,12 @@ int ETI_IgualEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2
     {
         if (strcmp(pEtiquetaNominal1->nomeCompleto, pEtiquetaNominal2->nomeCompleto) == 0)
         {
-            return 1;
+            return 1 ;
         }/* if */
         
     }/* if */
     
-    return 0;
+    return 0 ;
     
 } /* Fim função: ETI  &Comparar conteúdo de duas etiquetas nominais */
 
