@@ -26,3 +26,5 @@
 14/09/2016; 2 horas; codificar módulo; Alterar do módulo ETIQUETA_NOMINAL para ficar modularizado corretamente.
 
 15/09/2016; 1 hora; revisar script de teste; Adicionei inserção de valor nulo no script TesteLista.
+
+15/09/2016; 1 hora; projetar; Escrevi o LEIAME para o TRAB1-1 e para o TRAB1-2.

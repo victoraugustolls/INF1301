@@ -1,0 +1,41 @@
+————— Autores —————
+
+ - Ian Albuquerque
+ - Lucas Ferraço
+ - Victor Augusto
+
+————— Descrição do Programa —————
+
+Testa as funções do módulo lista de acordo com o script de teste fornecido.
+
+————— Arquivos Fonte ————— 
+
+- Módulos de Implementação: LISTA.C
+                            TESTLIS.C
+
+- Módulos de Definição:     LISTA.H
+                            TST_ESPC.H
+
+- Arcabouço de tTeste:      ArcaboucoTeste.lib
+
+- Arquivo de Script:        TESTE_LISTA.SCRIPT
+
+- Arquivo de Log:           LOG_TESTE_LISTA.LOG
+
+- Arquivo Executável:       TRAB1-1.EXE
+
+- Arquivo Bat:              EXECUTAR_TESTE_LISTA.bat
+
+- Arquivos de Relatório:    RELATORIO-Ian_Albuquerque_Raymundo_da_Silva.TXT
+                            RELATORIO-Lucas_Ferraco_de_Freitas.TXT
+                            RELATORIO-Victor_Augusto_Lima_Kins_de_Souza.TXT
+
+- Arquivo Leiame:           LEIAME.TXT
+
+
+————— Modo de uso ————— 
+
+1. Extraia o conteúdo do arquivo “TRAB1.zip”.
+2. Dê dois cliques na pasta “TRAB1-1”.
+3. Dê dois cliques no arquivo “ExecutarTesteLista.bat”.
+4. Para visualizar os resultados do teste, ê dois cliques no arquivo “LogTesteLista.LOG”.
