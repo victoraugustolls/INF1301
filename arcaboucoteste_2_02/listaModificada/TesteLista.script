@@ -265,22 +265,22 @@
 == Teste Início e Fim de Lista Vazia
 =criarlista      lista0
 
-=obtervalorelem  lista0    "PLACEHOLDER"   pNULL
+=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
 =irinicio        lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   pNULL
+=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
 =irfinal         lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   pNULL
+=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
 
 =inselemapos     lista0    "vas"           "victor augusto"     pNaoNULL      OK
 =inselemapos     lista0    "ian"           "ian albuquerque"    pNaoNULL      OK
 =inselemapos     lista0    "lcf"           "lucas ferraco"      pNaoNULL      OK
 =esvaziarlista   lista0
 
-=obtervalorelem  lista0    "PLACEHOLDER"   pNULL
+=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
 =irinicio        lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   pNULL
+=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
 =irfinal         lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   pNULL
+=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
 
 =esvaziarlista   lista0
 =destruirlista   lista0
@@ -351,7 +351,7 @@
 
 =inselemantes    lista0    "vas"           "victor augusto"      pNaoNULL       OK
 =inselemantes    lista0    "ian"           "ian albuquerque"     pNaoNULL       OK
-=inselemantes    lista0    "lcf"           "lucas ferraco"       OK
+=inselemantes    lista0    "lcf"           "lucas ferraco"       pNaoNULL       OK
    
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
@@ -451,7 +451,7 @@
 =obtervalorelem  lista0    "PLACEHOLDER"       "PLACEHOLDER"        pNULL
 =obtervalorelem  lista1    "PLACEHOLDER"       "PLACEHOLDER"        pNULL
 
-=inselemantes    lista0    "lcf"               "lucas ferraco"      pNaoNull    OK
+=inselemantes    lista0    "lcf"               "lucas ferraco"      pNaoNULL    OK
 =inselemantes    lista1    "lcf2"              "lucas ferraco2"     pNaoNULL    OK
 =inselemantes    lista0    "ian"               "ian albuquerque"    pNaoNULL    OK
 =inselemantes    lista1    "ian2"              "ian albuquerque2"   pNaoNULL    OK
