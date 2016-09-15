@@ -252,7 +252,7 @@
 =avancarelem     lista0    2             OK
 =obtervalorelem  lista0    "ian"         "ian albuquerque"       pNaoNULL
 =avancarelem     lista0    3             OK
-=obtervalorelem  lista0    "lcf"         "lucas ferraco"         pNaoNULL
+=obtervalorelem  lista0    "lcf2"        "lucas ferraco2"        pNaoNULL
 =avancarelem     lista0    -2            OK
 =obtervalorelem  lista0    "ian2"        "ian albuquerque2"      pNaoNULL
 =avancarelem     lista0    -3            OK
@@ -303,7 +303,7 @@
 =irfinal         lista0
 =obtervalorelem  lista0    "lcf2"           "lucas ferraco2"      pNaoNULL
 =irfinal         lista0
-=obtervalorelem  lista0    "lc2f"           "lucas ferraco2"      pNaoNULL
+=obtervalorelem  lista0    "lcf2"           "lucas ferraco2"      pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
