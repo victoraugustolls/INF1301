@@ -72,12 +72,12 @@ ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal( char* pIniciais, char* pNomeCom
 *     Obs.: não existe previsão para possíveis falhas de execução.
 *
 *  $EP Parâmetros
-*      pEtiquetaNominal - ponteiro para etiqueta nominal que será destruída.
+*      _pEtiquetaNominal - ponteiro para etiqueta nominal que será destruída.
 *
 *
 ***********************************************************************/
 
-void ETI_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
+void ETI_DestruirEtiquetaNominal( void* _pEtiquetaNominal ) ;
 
 /***********************************************************************
  *
@@ -91,12 +91,12 @@ void ETI_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
  *     Obs.: não existe previsão para possíveis falhas de execução.
  *
  *  $EP Parâmetros
- *      pEtiquetaNominal - ponteiro para etiqueta nominal que será imprimida.
+ *      _pEtiquetaNominal - ponteiro para etiqueta nominal que será imprimida.
  *
  *
  ***********************************************************************/
 
-void ETI_ImprimirConteudoEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
+void ETI_ImprimirConteudoEtiquetaNominal( void* _pEtiquetaNominal ) ;
 
 /***********************************************************************
  *
@@ -107,8 +107,8 @@ void ETI_ImprimirConteudoEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNomina
  *     Os parâmetros ponteiros e seus membros  para a etiquetas nominais não são modificados.
  *
  *  $EP Parâmetros
- *      pEtiquetaNominal1 - ponteiro para a primeira etiqueta nominal que será comparada.
- *      pEtiquetaNominal2 - ponteiro para a segunda etiqueta nominal que será comparada.
+ *      _pEtiquetaNominal1 - ponteiro para a primeira etiqueta nominal que será comparada.
+ *      _pEtiquetaNominal2 - ponteiro para a segunda etiqueta nominal que será comparada.
  *
  *  $FV Valor retornado
  *        -1 - pEtiquetaNominal1 vem antes de pEtiquetaNominal2 em uma ordenação alfanumérica
@@ -123,7 +123,7 @@ void ETI_ImprimirConteudoEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNomina
  *
  ***********************************************************************/
 
-int ETI_CompararIniciaisEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2 ) ;
+int ETI_CompararIniciaisEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2 ) ;
 
 /***********************************************************************
  *
@@ -134,8 +134,8 @@ int ETI_CompararIniciaisEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal
  *     Os parâmetros ponteiros e seus membros  para a etiquetas nominais não são modificados.
  *
  *  $EP Parâmetros
- *      pEtiquetaNominal1 - ponteiro para a primeira etiqueta nominal que será comparada.
- *      pEtiquetaNominal2 - ponteiro para a segunda etiqueta nominal que será comparada.
+ *      _pEtiquetaNominal1 - ponteiro para a primeira etiqueta nominal que será comparada.
+ *      _pEtiquetaNominal2 - ponteiro para a segunda etiqueta nominal que será comparada.
  *
  *  $FV Valor retornado
  *        0 - pEtiquetaNominal1 não possui o mesmo conteúdo de pEtiquetaNominal2.
@@ -143,7 +143,7 @@ int ETI_CompararIniciaisEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal
  *
  ***********************************************************************/
 
-int ETI_CompararConteudoEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2) ;
+int ETI_IgualEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2 ) ;
 
 
 #undef ETIQUETA_NOMINAL_EXT
