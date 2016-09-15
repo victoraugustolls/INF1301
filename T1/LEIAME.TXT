@@ -28,9 +28,9 @@
    		- source
 
    	Arquivos
-   		- TRAB1-1.EXE
+   		- TRAB1-1.EXE.TXT
    		- TESTE_LISTA.SCRIPT
-   		- EXECUTAR_TESTE_LISTA.bat
+   		- EXECUTAR_TESTE_LISTA.bat.TXT
    		- LEIAME.TXT
 
  - TRAB1-2
@@ -47,8 +47,26 @@
    		- source
 
    	Arquivos
-   		- TRAB1-2.EXE
+   		- TRAB1-2.EXE.TXT
    		- TESTE_LISTA.SCRIPT
-   		- EXECUTAR_TESTE_LISTA.bat
+   		- EXECUTAR_TESTE_LISTA.bat.TXT
    		- LEIAME.TXT
 
+————— Instruções Importantes —————
+
+ Devido ao sistema de segurança da maioria dos provedores de e-mail, os arquivos
+ de extensão .EXE e .bat foram renomeados para a extensão .EXE.TXT e .bat.TXT, respectivamente.
+
+ Para o correto funcionamento dos programas, renomeie os arquivos com extensão .EXE.TXT e .bat.TXT
+ para apenas a extensão .EXE e .bat, respectivamente.
+
+ Para renomear, siga os seguintes passos:
+ 	- Clique com o botão direito. Um menu irá aparecer.
+ 	- Clique na opção Renomear.
+ 	- Altere o final do arquivo de .EXE.TXT para .EXE (ou de .bat.TXT para .bat)
+ 	- Caso o Windows pergunte se você realmente deseja fazer isso, diga que sim.
+
+————— Observação Importante Para Interessados em Compilar o Programas —————
+
+ 	Os arquivos .lib também foram renomeados para .lib.TXT pelo mesmo motivo
+ 	que o descrito a cima.

@@ -25,7 +25,7 @@
 	 = lib
 	 	Contém as bibliotecas estáticas do projeto.
 
-	 	- ArcaboucoTeste.lib
+	 	- ArcaboucoTeste.lib.TXT
 
 	 = source
 	 	Contém os módulos de implementação do projeto.
@@ -34,13 +34,13 @@
 	 	- TESTLIS.C
 
 == Arquivos
-	 - TRAB1-1.EXE
+	 - TRAB1-1.EXE.TXT
 	 	O executável do trabalho.
 
 	 - TESTE_LISTA.SCRIPT
 	 	O script de teste.
 
-	 - EXECUTAR_TESTE_LISTA.bat
+	 - EXECUTAR_TESTE_LISTA.bat.TXT
 	 	A rotina que coordena a execução dos testes.
 
 	 - LEIAME.TXT
@@ -50,8 +50,33 @@
 
 Testa as funções do módulo lista de acordo com o script de teste fornecido.
 
+————— Instruções Importantes —————
+
+ Devido ao sistema de segurança da maioria dos provedores de e-mail, os arquivos
+ de extensão .EXE e .bat foram renomeados para a extensão .EXE.TXT e .bat.TXT, respectivamente.
+
+ Para o correto funcionamento dos programas, renomeie os arquivos com extensão .EXE.TXT e .bat.TXT
+ para apenas a extensão .EXE e .bat, respectivamente.
+
+ Para renomear, siga os seguintes passos:
+ 	- Clique com o botão direito. Um menu irá aparecer.
+ 	- Clique na opção Renomear.
+ 	- Altere o final do arquivo de .EXE.TXT para .EXE (ou de .bat.TXT para .bat)
+ 	- Caso o Windows pergunte se você realmente deseja fazer isso, diga que sim.
+
+————— Observação Importante Para Interessados em Compilar o Programas —————
+
+ 	Os arquivos .lib também foram renomeados para .lib.TXT pelo mesmo motivo
+ 	que o descrito a cima.
+
 ————— Modo de Execução do Script de Testes ————— 
 
+	IMPORTANTE: Antes de seguir os passos abaixo, renomeie 
+	o arquivo TRAB1-1.EXE.TXT para TRAB1-1.EXE e EXECUTAR_TESTE_LISTA.bat.TXT
+	para EXECUTAR_TESTE_LISTA.bat como descrito a cima.
+
 1. 	Execute (dê dois cliques) no arquivo EXECUTAR_TESTE_LISTA.bat.
-	Este arquivo executará o executável TRAB1-1.EXE que coordena os testes descritos em TESTE_LISTA.SCRIPT e gera um relatório contendo os resultados dos testes no arquivo TESTE_LISTA.log.
+	Este arquivo executará o executável TRAB1-1.EXE que coordena os testes descritos em TESTE_LISTA.SCRIPT 
+	e gera um relatório contendo os resultados dos testes no arquivo TESTE_LISTA.log.
+
 2.	Os resultados dos testes estarão contidos em "TESTE_LISTA.log"
