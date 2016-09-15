@@ -144,7 +144,8 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
             } /* if */
 
             vtListas[ inxLista ] =
-                 LIS_CriarLista( ) ;
+                 LIS_CriarLista( ETI_DestruirEtiquetaNominal , ETI_ImprimirConteudoEtiquetaNominal ,
+                    ETI_CompararIniciaisEtiquetaNominal ,  ETI_IgualEtiquetaNominal ) ;
 
             return TST_CompararPonteiroNulo( 1 , vtListas[ inxLista ] ,
                "Erro em ponteiro de nova lista."  ) ;
@@ -347,7 +348,7 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            pEtiquetaNominal = LIS_ObterValor( vtListas[inxLista] ) ;
+            pEtiquetaNominal = (ETI_tppEtiquetaNominal) LIS_ObterValor( vtListas[inxLista] ) ;
 
             if ( ValEsp == 0 )
             {
@@ -388,7 +389,7 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            IrInicioLista( vtListas[ inxLista ] ) ;
+            LIS_IrInicioLista( vtListas[ inxLista ] ) ;
 
             return TST_CondRetOK ;
 
@@ -407,7 +408,7 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            IrFinalLista( vtListas[ inxLista ] ) ;
+            LIS_IrFinalLista( vtListas[ inxLista ] ) ;
 
             return TST_CondRetOK ;
 
