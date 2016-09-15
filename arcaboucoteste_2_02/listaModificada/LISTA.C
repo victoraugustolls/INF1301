@@ -282,7 +282,7 @@
 *  ****/
 
    LIS_tpCondRet LIS_InserirElementoOrdenado( LIS_tppLista pLista ,
-                                              void * pEtiquetaNominal  )
+                                              void * pValor  )
       
    {
       tpElemLista * pElemIterador ;
@@ -301,20 +301,20 @@
                   pElemIterador != pLista->pFimLista ;
                   pElemIterador  = pElemIterador->pProx )
             {
-               if ( pLista->CompararValores( pElemIterador->pValor, pEtiquetaNominal ) == 1 )
+               if ( pLista->CompararValores( pElemIterador->pValor, pValor ) == 1 )
                {
                   pLista->pElemCorr = pElemIterador ;
                } /* if */
             } /* for */
 
-            if ( pLista->CompararValores( pElemIterador->pValor, pEtiquetaNominal ) == 1 )
+            if ( pLista->CompararValores( pElemIterador->pValor, pValor ) == 1 )
             {
                pLista->pElemCorr = pElemIterador ;
             } /* if */
 
          } /* if */
                   
-         RetornoInsercao = LIS_InserirElementoAntes ( pLista, pEtiquetaNominal ) ;
+         RetornoInsercao = LIS_InserirElementoAntes ( pLista, pValor ) ;
 
          if( RetornoInsercao == LIS_CondRetOK )
          {
@@ -565,7 +565,7 @@
             pElem != NULL ;
             pElem  = pElem->pProx )
       {
-         if ( pLista->Igual( pElem->pValor, pEtiquetaNominal ) )
+         if ( pLista->Igual( pElem->pValor, pValor ) )
          {
             pLista->pElemCorr = pElem ;
             return LIS_CondRetOK ;
