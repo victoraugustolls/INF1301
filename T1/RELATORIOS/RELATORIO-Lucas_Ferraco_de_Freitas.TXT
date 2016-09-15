@@ -1,0 +1,30 @@
+<<<<<<< HEAD:T1/RELATORIO-Lucas_Ferraco_de_Freitas.TXT
+% Data (DD/MM/AAAA); Horas Trabalhadas; Tipo Tarefa; Descrição da Tarefa Realizada
+%
+% Tipo de Tarefas:
+% - estudar
+% - especificar os módulos
+% - especificar as funções
+% - revisar especificações
+% - projetar
+% - revisar projetos
+% - codificar módulo
+% - revisar código do módulo
+% - redigir script de teste
+% - revisar script de teste
+% - realizar os testes
+% - diagnosticar e corrigir os problemas encontrados
+
+31/08/2016; 0.5 hora ; estudar; Estudei a estrutura do arcabouço e tentei sem sucesso realizar a instalação do mesmo.
+
+07/09/2016; 1 hora ; estudar; Estudei a estrutura do arcabouço e instalei com sucesso o mesmo.
+
+12/09/2016; 1.5 horas; estudar; Estudei os módulos LISTA e TESTLIS e o script de teste da lista.
+
+14/09/2016; 4 horas; codificar módulo; Codificar funções de impressão e comparação do módulo ETIQUETA_NOMINAL.
+
+14/09/2016; 2 horas; codificar módulo; Alterar do módulo ETIQUETA_NOMINAL para ficar modularizado corretamente.
+
+15/09/2016; 1 hora; revisar script de teste; Adicionei inserção de valor nulo no script TesteLista.
+
+15/09/2016; 1 hora; projetar; Escrevi o LEIAME para o TRAB1-1 e para o TRAB1-2.

@@ -59,3 +59,5 @@
 15/09/2016; 2 horas; redigir script de teste; Redigir novos testes para a lista modificada.
 
 15/09/2016; 1 hora; revisar código do módulo; Encontrar erros no módulo específico de testes.
+
+15/09/2016; 2 horas; revisar especificações; Revisar requisitos e especificações do trabalho e estrutura de arquivos.
