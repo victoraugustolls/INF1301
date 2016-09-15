@@ -21,7 +21,15 @@
 *     1       vas   13/set/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
+*     Implementa uma estrutura que armazena as iniciais e o nome completo de uma pessoa.
+*     Podem existir n estruturas em operação simultaneamente.
 *
+*     Cada atributo da estrutura referencia o valor que contém.
+*     Os ponteiros para os dados são copiados para atributos da estrutura.
+*        Não é copiado o valor apontado por estes ponteiros.
+*
+*     O intuito desse módulo é integrar-se com o módulo Lista para servi-lo com o
+*     valor de cada elemento.
 *
 ***************************************************************************/
 
