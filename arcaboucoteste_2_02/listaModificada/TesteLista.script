@@ -523,3 +523,107 @@
 =destruirlista   lista1
 
 // ---------------------------------------------
+
+== Teste Inserção Ordenada Unitária
+=criarlista      lista0
+=inselemord      lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+=esvaziarlista   lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Inserção Ordenada Múltipla
+=criarlista      lista0
+=inselemord      lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+=inselemord      lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+=inselemord      lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=obtervalorelem  lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+=esvaziarlista   lista0
+=destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Inserção Ordenada Ordenamento Correto
+=criarlista      lista0
+
+=inselemord      lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemord      lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemord      lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+
+=irinicio        lista0
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+
+=esvaziarlista   lista0
+
+=inselemord      lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemord      lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemord      lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+
+=irinicio        lista0
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+
+=esvaziarlista   lista0
+
+=inselemapos     lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemapos     lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemord      lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+
+=irinicio        lista0
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+
+=esvaziarlista   lista0
+
+=inselemapos     lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemapos     lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemord      lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+
+=irinicio        lista0
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+
+=esvaziarlista   lista0
+
+=inselemapos     lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemapos     lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemord      lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+
+=irinicio        lista0
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+
+=esvaziarlista   lista0
+
+=inselemapos     lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemapos     lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemord      lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+
+=irinicio        lista0
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+
+=esvaziarlista   lista0
+=destruirlista   lista0

@@ -163,11 +163,15 @@ void ETI_ImprimirConteudoEtiquetaNominal( void* _pEtiquetaNominal )
 
 int ETI_CompararIniciaisEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2 )
 {
-    int i=0, dif;
     ETI_tppEtiquetaNominal pEtiquetaNominal1 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal1 ;
     ETI_tppEtiquetaNominal pEtiquetaNominal2 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal2 ;
     
     /* Tratar etiqueta nominal nula */
+    if (pEtiquetaNominal1 == NULL && pEtiquetaNominal2 == NULL)
+    {
+        return 0 ;
+    }/* if */
+
     if (pEtiquetaNominal1 == NULL)
     {
         return -1 ;
@@ -180,32 +184,7 @@ int ETI_CompararIniciaisEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiqu
     
     /* fim ativa: Tratar etiqueta nominal nula */
     
-    while (pEtiquetaNominal1->iniciais[i] != '\0')
-    {
-        dif = pEtiquetaNominal1->iniciais[i] - pEtiquetaNominal2->iniciais[i];
-        if (dif<0)
-        {
-            return -1 ;
-        }/* if */
-        
-        if (dif>0)
-        {
-            return 1 ;
-        }/* if */
-        
-        if (dif == pEtiquetaNominal1->iniciais[i])
-        {
-            return 1 ;
-        }/* if */
-        
-    }/* while */
-    
-    if (pEtiquetaNominal2->iniciais[i] != '\0')
-    {
-        return -1 ;
-    }/* if */
-    
-    return 0 ;
+    return strcmp ( pEtiquetaNominal1->iniciais, pEtiquetaNominal2->iniciais ) ;
 
 } /* Fim função: ETI  &Comparar as iniciais de duas etiquetas nominais */
 
