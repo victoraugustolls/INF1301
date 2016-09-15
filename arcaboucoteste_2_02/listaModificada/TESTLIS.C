@@ -371,7 +371,7 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
             } else
             {
               ETI_DestruirEtiquetaNominal( pEtiquetaNominalCmp ) ;
-              TST_NotificarFalha( "Estiqueta nomial recebida errada." ) ;
+              TST_NotificarFalha( "Estiqueta nominal recebida errada." ) ;
             } /* if */
 
          } /* fim ativa: Testar obter valor do elemento corrente */
