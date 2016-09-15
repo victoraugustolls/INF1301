@@ -1,15 +1,18 @@
 Data	   Horas Trabalhadas	 Tipo Tarefa	 		Descrição da Tarefa Realizada
 02/09/16   2			 Estudar 	 		Aprender a instalar o arcabouco e rodar os exemplos
 09/09/16   1			 Estudar	 		Entender o funcionamento dos modulos
-12/09/16   2                     Estudar                        Entender o funcionamento dos scripts de teste
-12/09/16   2			 Projetar	 		Verificar os testes que faltam para cobrir todos os casos
+12/09/16   1                     Estudar                        Entender o funcionamento dos scripts de teste
+12/09/16   1			 Projetar	 		Verificar os testes que faltam para cobrir todos os casos
 13/09/16   2                     Redirigir Script de teste      Completar os testes do modulo de lista
 13/09/16   15min                 Especificar os módulos         Decidir se deve-se criar uma nova interface para a estrutura apontada pela lista
 13/09/16   15min                 Especificar as funções         Decidir as funçoes para essa nova estrutura
 13/09/16   2                     Codificar módulo               Codificar tanto a interface quanto a implementação da estrutura, juntamente com sua documentação
 14/09/16   30min                 Revisar código do módulo       Verificar no TESTLIS.C o que precisaria ser alterado para a nova lista
 14/09/16   2                     Codificar módulo               Mudar os testes do TESTLIS.C para nova lista
-14/09/16   2                     Redirigir Script de teste      Alterar os testes do modulo de lista
+14/09/16   2                     Redigir Script de teste        Alterar os testes do modulo de lista
+14/09/16   2                     Redigir Script de teste        Correção de diversos erros no script de teste da lista modificada
+15/09/16   30min                 Revisar código de módulo       Identificar no módulo TESTLIS.C o erro que causava vazamento de memória
+15/09/16   1                     Codificar módulo               Alteração no TESTLIS.C da lista original para poder inserir parâmetro nulo
 
 
 Notas pessoais:

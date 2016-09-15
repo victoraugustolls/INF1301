@@ -81,15 +81,15 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
 *     =criarlista                   inxLista
 *     =destruirlista                inxLista
 *     =esvaziarlista                inxLista
-*     =inselemantes                 inxLista  iniciais  nomeCompleto  paramNULL  CondRetEsp
-*     =inselemapos                  inxLista  iniciais  nomeCompleto  paramNULL  CondRetEsp
-*     =inselemanord                 inxLista  iniciais  nomeCompleto  paramNull  CondRetEsp
-*     =obtervalorelem               inxLista  iniciais  nomeCompleto  CondretPonteiro
+*     =inselemantes                 inxLista  iniciais   nomeCompleto  paramNULL       CondRetEsp
+*     =inselemapos                  inxLista  iniciais   nomeCompleto  paramNULL       CondRetEsp
+*     =inselemanord                 inxLista  iniciais   nomeCompleto  paramNull       CondRetEsp
+*     =obtervalorelem               inxLista  iniciais   nomeCompleto  CondretPonteiro
 *     =excluirelem                  inxLista  CondRetEsp
 *     =irinicio                     inxLista
 *     =irfinal                      inxLista
-*     =avancarelem                  inxLista  numElem CondRetEsp
-*     =procurarvalor                inxLista  iniciais  nomeCompleto  paramNULL  CondRetEsp
+*     =avancarelem                  inxLista  numElem    CondRetEsp
+*     =procurarvalor                inxLista  iniciais   nomeCompleto  paramNULL       CondRetEsp
 *
 ***********************************************************************/
 

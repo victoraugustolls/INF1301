@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     5       vas   15/set/2016 incluir nos testes a possibilidade de inserir parametro nulo
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
 *     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
@@ -79,13 +80,13 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 *     =criarlista                   inxLista
 *     =destruirlista                inxLista
 *     =esvaziarlista                inxLista
-*     =inselemantes                 inxLista  string  CondRetEsp
-*     =inselemapos                  inxLista  string  CondRetEsp
-*     =obtervalorelem               inxLista  string  CondretPonteiro
+*     =inselemantes                 inxLista  string      paramNULL        CondRetEsp
+*     =inselemapos                  inxLista  string      paramNULL        CondRetEsp
+*     =obtervalorelem               inxLista  string      CondretPonteiro
 *     =excluirelem                  inxLista  CondRetEsp
 *     =irinicio                     inxLista
 *     =irfinal                      inxLista
-*     =avancarelem                  inxLista  numElem CondRetEsp
+*     =avancarelem                  inxLista  numElem     CondRetEsp
 *
 ***********************************************************************/
 
@@ -102,6 +103,8 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       char * pDado ;
 
       int ValEsp = -1 ;
+
+      int paramNULL = -1;
 
       int i ;
 
@@ -191,10 +194,10 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , INS_ELEM_ANTES_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "isi" ,
-                       &inxLista , StringDado , &CondRetEsp ) ;
+            numLidos = LER_LerParametros( "isii" ,
+                       &inxLista , StringDado , &paramNULL , &CondRetEsp ) ;
 
-            if ( ( numLidos != 3 )
+            if ( ( numLidos != 4 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
             {
                return TST_CondRetParm ;
@@ -206,10 +209,15 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetMemoria ;
             } /* if */
 
-            strcpy( pDado , StringDado ) ;
-
-
-            CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , pDado ) ;
+            if (paramNULL)
+            {
+               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ], NULL ) ;
+            } /* if */
+            else
+            {
+               strcpy( pDado , StringDado ) ;
+               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ] , pDado ) ;
+            }
 
             if ( CondRet != LIS_CondRetOK )
             {
@@ -226,10 +234,10 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , INS_ELEM_APOS_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "isi" ,
-                       &inxLista , StringDado , &CondRetEsp ) ;
+            numLidos = LER_LerParametros( "isii" ,
+                       &inxLista , StringDado , &paramNULL , &CondRetEsp ) ;
 
-            if ( ( numLidos != 3 )
+            if ( ( numLidos != 4 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
             {
                return TST_CondRetParm ;
@@ -241,10 +249,15 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetMemoria ;
             } /* if */
 
-            strcpy( pDado , StringDado ) ;
-
-
-            CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , pDado ) ;
+            if (paramNULL)
+            {
+               CondRet = LIS_InserirElementoAntes( vtListas[ inxLista ], NULL ) ;
+            } /* if */
+            else
+            {
+               strcpy( pDado , StringDado ) ;
+               CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , pDado ) ;
+            }
 
             if ( CondRet != LIS_CondRetOK )
             {
