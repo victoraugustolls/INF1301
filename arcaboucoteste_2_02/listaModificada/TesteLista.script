@@ -1,12 +1,10 @@
 // Script: TesteLista.script
-// Autores: Ian Albuquerque e Victor Augusto
+// Autores: Ian Albuquerque, Lucas Ferraço e Victor Augusto
 // Autor Original: Arndt von Staa
-// Data: 14/set/2016
-// Propósito: Testar por completo as funções de acesso do módulo LISTA, com exceção
+// Data: 15/set/2016
+// Propósito: Testar por completo as funções de acesso do módulo LISTA, utilizando 
+// o módulo ETIQUETA_NOMINAL como valores da lista, com exceção
 // do caso em que ocorre falta de memória.
-//
-// Observação: Não testa-se se o valor do ponteiro para a string da inserção pode ser
-// nulo
 //
 
 // ---------------------------------------------
@@ -50,47 +48,47 @@
 
 == Teste Obter Lista Vazia
 =criarlista      lista0
-=obtervalorelem  lista0   "PLACEHOLDER"   "PLACEHOLDER"   pNULL
+=obtervalorelem  lista0   "xxx"        "xxxxx xxxxx xxxxx"   pNULL
 =destruirlista   lista0
 
 // ---------------------------------------------
 
 == Teste Esvaziar Lista Vazia
 =criarlista      lista0
-=obtervalorelem  lista0   "PLACEHOLDER"   "PLACEHOLDER"   pNULL
+=obtervalorelem  lista0   "xxx"        "xxxxx xxxxx xxxxx"   pNULL
 =esvaziarlista   lista0
-=obtervalorelem  lista0   "PLACEHOLDER"   "PLACEHOLDER"   pNULL
+=obtervalorelem  lista0   "xxx"        "xxxxx xxxxx xxxxx"   pNULL
 =destruirlista   lista0
 
 // ---------------------------------------------
 
 == Teste Simples de Inserção Elemento e Esvaziar Lista
 =criarlista      lista0
-=inselemantes    lista0    "vas"           "victor augusto"    pNaoNULL    OK
-=inselemantes    lista0    "iab"           "ian albuquerque"   pNaoNULL    OK
+=inselemantes    lista0    "aaa"           "aaaaa aaaaa aaaaa"   pNaoNULL    OK
+=inselemantes    lista0    "bbb"           "bbbbb bbbbb bbbbb"   pNaoNULL    OK
 =esvaziarlista   lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"       pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"   pNULL
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemapos     lista0    "vas"           "victor augusto"    pNaoNULL    OK
-=inselemapos     lista0    "ian"           "ian albuquerque"   pNaoNULL    OK
+=inselemapos     lista0    "aaa"           "aaaaa aaaaa aaaaa"   pNaoNULL    OK
+=inselemapos     lista0    "bbb"           "bbbbb bbbbb bbbbb"   pNaoNULL    OK
 =esvaziarlista   lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"       pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"   pNULL
 =destruirlista   lista0
 
 // ---------------------------------------------
 
 == Teste Inserção e Obter Valor
 =criarlista      lista0
-=inselemantes    lista0    "vas"    "victor augusto"    pNaoNULL    OK
-=obtervalorelem  lista0    "vas"    "victor augusto"    pNaoNULL
+=inselemantes    lista0    "aaa"    "aaaaa aaaaa aaaaa"    pNaoNULL    OK
+=obtervalorelem  lista0    "aaa"    "aaaaa aaaaa aaaaa"    pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemapos     lista0    "vas"    "victor augusto"    pNaoNULL    OK
-=obtervalorelem  lista0    "vas"    "victor augusto"    pNaoNULL
+=inselemapos     lista0    "aaa"    "aaaaa aaaaa aaaaa"    pNaoNULL    OK
+=obtervalorelem  lista0    "aaa"    "aaaaa aaaaa aaaaa"    pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
@@ -106,34 +104,34 @@
 
 == Teste Avançar Unitário
 =criarlista      lista0
-=inselemapos     lista0    "vas"     "victor augusto"    pNaoNULL     OK
-=inselemapos     lista0    "ian"     "ian albuquerque"   pNaoNULL     OK
-=inselemapos     lista0    "lcf"     "lucas ferraco"     pNaoNULL     OK
-=obtervalorelem  lista0    "lcf"     "lucas ferraco"     pNaoNULL
+=inselemapos     lista0    "aaa"     "aaaaa aaaaa aaaaa"   pNaoNULL     OK
+=inselemapos     lista0    "bbb"     "bbbbb bbbbb bbbbb"   pNaoNULL     OK
+=inselemapos     lista0    "ccc"     "ccccc ccccc ccccc"   pNaoNULL     OK
+=obtervalorelem  lista0    "ccc"     "ccccc ccccc ccccc"   pNaoNULL
 =avancarelem     lista0    -1        OK
-=obtervalorelem  lista0    "ian"     "ian albuquerque"   pNaoNULL
+=obtervalorelem  lista0    "bbb"     "bbbbb bbbbb bbbbb"   pNaoNULL
 =avancarelem     lista0    -1        OK
-=obtervalorelem  lista0    "vas"     "victor augusto"    pNaoNULL
+=obtervalorelem  lista0    "aaa"     "aaaaa aaaaa aaaaa"   pNaoNULL
 =avancarelem     lista0    1         OK
-=obtervalorelem  lista0    "ian"     "ian albuquerque"   pNaoNULL
+=obtervalorelem  lista0    "bbb"     "bbbbb bbbbb bbbbb"   pNaoNULL
 =avancarelem     lista0    1         OK
-=obtervalorelem  lista0    "lcf"     "lucas ferraco"     pNaoNULL
+=obtervalorelem  lista0    "ccc"     "ccccc ccccc ccccc"   pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemantes    lista0   "lcf"    "lucas ferraco"      pNaoNULL      OK
-=inselemantes    lista0   "ian"    "ian albuquerque"    pNaoNULL      OK
-=inselemantes    lista0   "vas"    "victor augusto"     pNaoNULL      OK
-=obtervalorelem  lista0   "vas"    "victor augusto"     pNaoNULL
+=inselemantes    lista0   "ccc"    "ccccc ccccc ccccc"     pNaoNULL      OK
+=inselemantes    lista0   "bbb"    "bbbbb bbbbb bbbbb"     pNaoNULL      OK
+=inselemantes    lista0   "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL      OK
+=obtervalorelem  lista0   "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL
 =avancarelem     lista0   1        OK
-=obtervalorelem  lista0   "ian"    "ian albuquerque"    pNaoNULL
+=obtervalorelem  lista0   "bbb"    "bbbbb bbbbb bbbbb"     pNaoNULL
 =avancarelem     lista0   1        OK
-=obtervalorelem  lista0   "lcf"    "lucas ferraco"      pNaoNULL
+=obtervalorelem  lista0   "ccc"    "ccccc ccccc ccccc"     pNaoNULL
 =avancarelem     lista0   -1       OK
-=obtervalorelem  lista0   "ian"    "ian albuquerque"    pNaoNULL
+=obtervalorelem  lista0   "bbb"    "bbbbb bbbbb bbbbb"     pNaoNULL
 =avancarelem     lista0   -1       OK
-=obtervalorelem  lista0   "vas"    "victor augusto"     pNaoNULL
+=obtervalorelem  lista0   "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
@@ -141,42 +139,42 @@
 
 == Teste Avançar Fim de Lista
 =criarlista      lista0
-=inselemantes    lista0    "lcf"    "lucas ferraco"      pNaoNULL      OK
-=inselemantes    lista0    "ian"    "ian albuquerque"    pNaoNULL      OK
-=inselemantes    lista0    "vas"    "victor augusto"     pNaoNULL      OK
-=obtervalorelem  lista0    "vas"    "victor augusto"     pNaoNULL
+=inselemantes    lista0    "ccc"    "ccccc ccccc ccccc"     pNaoNULL      OK
+=inselemantes    lista0    "bbb"    "bbbbb bbbbb bbbbb"     pNaoNULL      OK
+=inselemantes    lista0    "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL      OK
+=obtervalorelem  lista0    "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL
 =avancarelem     lista0    1        OK
-=obtervalorelem  lista0    "ian"    "ian albuquerque"    pNaoNULL
+=obtervalorelem  lista0    "bbb"    "bbbbb bbbbb bbbbb"     pNaoNULL
 =avancarelem     lista0    1        OK
-=obtervalorelem  lista0    "lcf"    "lucas ferraco"      pNaoNULL
+=obtervalorelem  lista0    "ccc"    "ccccc ccccc ccccc"     pNaoNULL
 =avancarelem     lista0    1        FimLista
-=obtervalorelem  lista0    "lcf"    "lucas ferraco"      pNaoNULL
+=obtervalorelem  lista0    "ccc"    "ccccc ccccc ccccc"     pNaoNULL
 =avancarelem     lista0    -1       OK
-=obtervalorelem  lista0    "ian"    "ian albuquerque"    pNaoNULL
+=obtervalorelem  lista0    "bbb"    "bbbbb bbbbb bbbbb"     pNaoNULL
 =avancarelem     lista0    -1       OK
-=obtervalorelem  lista0    "vas"    "victor augusto"     pNaoNULL
+=obtervalorelem  lista0    "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL
 =avancarelem     lista0    -1       FimLista
-=obtervalorelem  lista0    "vas"    "victor augusto"     pNaoNULL
+=obtervalorelem  lista0    "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemapos     lista0    "vas"    "victor augusto"     pNaoNULL      OK
-=inselemapos     lista0    "ian"    "ian albuquerque"    pNaoNULL      OK
-=inselemapos     lista0    "lcf"    "lucas ferraco"      pNaoNULL      OK
-=obtervalorelem  lista0    "lcf"    "lucas ferraco"      pNaoNULL
+=inselemapos     lista0    "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL      OK
+=inselemapos     lista0    "bbb"    "bbbbb bbbbb bbbbb"     pNaoNULL      OK
+=inselemapos     lista0    "ccc"    "ccccc ccccc ccccc"     pNaoNULL      OK
+=obtervalorelem  lista0    "ccc"    "ccccc ccccc ccccc"     pNaoNULL
 =avancarelem     lista0    -1       OK
-=obtervalorelem  lista0    "ian"    "ian albuquerque"    pNaoNULL
+=obtervalorelem  lista0    "bbb"    "bbbbb bbbbb bbbbb"     pNaoNULL
 =avancarelem     lista0    -1       OK
-=obtervalorelem  lista0    "vas"    "victor augusto"     pNaoNULL
+=obtervalorelem  lista0    "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL
 =avancarelem     lista0    -1       FimLista
-=obtervalorelem  lista0    "vas"    "victor augusto"     pNaoNULL
+=obtervalorelem  lista0    "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL
 =avancarelem     lista0    1        OK
-=obtervalorelem  lista0    "ian"    "ian albuquerque"    pNaoNULL
+=obtervalorelem  lista0    "bbb"    "bbbbb bbbbb bbbbb"     pNaoNULL
 =avancarelem     lista0    1        OK
-=obtervalorelem  lista0    "lcf"    "lucas ferraco"      pNaoNULL
+=obtervalorelem  lista0    "ccc"    "ccccc ccccc ccccc"     pNaoNULL
 =avancarelem     lista0    1        FimLista
-=obtervalorelem  lista0    "lcf"    "lucas ferraco"      pNaoNULL
+=obtervalorelem  lista0    "ccc"    "ccccc ccccc ccccc"     pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
@@ -184,14 +182,14 @@
 
 == Teste Avançar Fim de Lista Elemento Único
 =criarlista      lista0
-=inselemantes    lista0    "vas"    "victor augusto"    pNaoNULL    OK
+=inselemantes    lista0    "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL    OK
 =avancarelem     lista0    1        FimLista
 =avancarelem     lista0    -1       FimLista
 =esvaziarlista   lista0
 =destruirlista   lista0
 
 =criarlista      lista0
-=inselemantes    lista0    "vas"    "victor augusto"    pNaoNULL    OK
+=inselemantes    lista0    "aaa"    "aaaaa aaaaa aaaaa"     pNaoNULL    OK
 =avancarelem     lista0    1        FimLista
 =avancarelem     lista0    -1       FimLista
 =esvaziarlista   lista0
@@ -201,26 +199,26 @@
 
 == Teste Ordenamento da Inserção
 =criarlista      lista0
-=inselemantes    lista0    "vas"       "victor augusto"       pNaoNULL     OK
-=inselemapos     lista0    "vas2"      "victor augusto2"      pNaoNULL     OK
-=inselemantes    lista0    "ian"       "ian albuquerque"      pNaoNULL     OK
-=inselemapos     lista0    "ian2"      "ian albuquerque2"     pNaoNULL     OK
-=inselemantes    lista0    "lcf"       "lucas ferraco"        pNaoNULL     OK
-=inselemapos     lista0    "lcf2"      "lucas ferraco2"       pNaoNULL     OK
-=avancarelem     lista0    -1           OK
-=avancarelem     lista0    -1           OK
-=avancarelem     lista0    -1           OK
-=obtervalorelem  lista0    "vas"        "victor augusto"      pNaoNULL
-=avancarelem     lista0    1            OK
-=obtervalorelem  lista0    "ian"        "ian albuquerque"     pNaoNULL
-=avancarelem     lista0    1            OK
-=obtervalorelem  lista0    "lcf"        "lucas ferraco"       pNaoNULL
-=avancarelem     lista0    1            OK
-=obtervalorelem  lista0    "lcf2"      "lucas ferraco2"       pNaoNULL
-=avancarelem     lista0    1            OK
-=obtervalorelem  lista0    "ian2"      "ian albuquerque2"     pNaoNULL
-=avancarelem     lista0    1            OK
-=obtervalorelem  lista0    "vas2"      "victor augusto2"      pNaoNULL
+=inselemantes    lista0    "aaa"      "aaaaa aaaaa aaaaa"      pNaoNULL     OK
+=inselemapos     lista0    "fff"      "fffff fffff fffff"      pNaoNULL     OK
+=inselemantes    lista0    "bbb"      "bbbbb bbbbb bbbbb"      pNaoNULL     OK
+=inselemapos     lista0    "eee"      "eeeee eeeee eeeee"      pNaoNULL     OK
+=inselemantes    lista0    "ccc"      "ccccc ccccc ccccc"      pNaoNULL     OK
+=inselemapos     lista0    "ddd"      "ddddd ddddd ddddd"      pNaoNULL     OK
+=avancarelem     lista0    -1         OK
+=avancarelem     lista0    -1         OK
+=avancarelem     lista0    -1         OK
+=obtervalorelem  lista0    "aaa"      "aaaaa aaaaa aaaaa"      pNaoNULL
+=avancarelem     lista0    1          OK
+=obtervalorelem  lista0    "bbb"      "bbbbb bbbbb bbbbb"      pNaoNULL
+=avancarelem     lista0    1          OK
+=obtervalorelem  lista0    "ccc"      "ccccc ccccc ccccc"      pNaoNULL
+=avancarelem     lista0    1          OK
+=obtervalorelem  lista0    "ddd"      "ddddd ddddd ddddd"      pNaoNULL
+=avancarelem     lista0    1          OK
+=obtervalorelem  lista0    "eee"      "eeeee eeeee eeeee"      pNaoNULL
+=avancarelem     lista0    1          OK
+=obtervalorelem  lista0    "fff"      "fffff fffff fffff"      pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
@@ -229,12 +227,12 @@
 
 == Teste Avançar Zero
 =criarlista      lista0
-=inselemantes    lista0    "ian"        "ian albuquerque"    pNaoNULL    OK
+=inselemantes    lista0    "bbb"        "bbbbb bbbbb bbbbb"    pNaoNULL    OK
 =avancarelem     lista0    0            OK
-=obtervalorelem  lista0    "ian"        "ian albuquerque"    pNaoNULL
-=inselemantes    lista0    "vas"        "victor augusto"     pNaoNULL    OK
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"    pNaoNULL
+=inselemantes    lista0    "aaa"        "aaaaa aaaaa aaaaa"    pNaoNULL    OK
 =avancarelem     lista0    0            OK
-=obtervalorelem  lista0    "vas"        "victor augusto"     pNaoNULL
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"    pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
@@ -242,21 +240,21 @@
 
 == Teste Avançar Múltiplo
 =criarlista      lista0
-=inselemantes    lista0    "lcf2"        "lucas ferraco2"        pNaoNULL    OK
-=inselemantes    lista0    "lcf"         "lucas ferraco"         pNaoNULL    OK
-=inselemantes    lista0    "ian2"        "ian albuquerque2"      pNaoNULL    OK
-=inselemantes    lista0    "ian"         "ian albuquerque"       pNaoNULL    OK
-=inselemantes    lista0    "vas2"        "victor augusto2"       pNaoNULL    OK
-=inselemantes    lista0    "vas"         "victor augusto"        pNaoNULL    OK
-=obtervalorelem  lista0    "vas"         "victor augusto"        pNaoNULL
-=avancarelem     lista0    2             OK
-=obtervalorelem  lista0    "ian"         "ian albuquerque"       pNaoNULL
-=avancarelem     lista0    3             OK
-=obtervalorelem  lista0    "lcf2"        "lucas ferraco2"        pNaoNULL
-=avancarelem     lista0    -2            OK
-=obtervalorelem  lista0    "ian2"        "ian albuquerque2"      pNaoNULL
-=avancarelem     lista0    -3            OK
-=obtervalorelem  lista0    "vas"         "victor augusto"        pNaoNULL
+=inselemantes    lista0    "fff"        "fffff fffff fffff"      pNaoNULL    OK
+=inselemantes    lista0    "eee"        "eeeee eeeee eeeee"      pNaoNULL    OK
+=inselemantes    lista0    "ddd"        "ddddd ddddd ddddd"      pNaoNULL    OK
+=inselemantes    lista0    "ccc"        "ccccc ccccc ccccc"      pNaoNULL    OK
+=inselemantes    lista0    "bbb"        "bbbbb bbbbb bbbbb"      pNaoNULL    OK
+=inselemantes    lista0    "aaa"        "aaaaa aaaaa aaaaa"      pNaoNULL    OK
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"      pNaoNULL
+=avancarelem     lista0    2            OK
+=obtervalorelem  lista0    "ccc"        "ccccc ccccc ccccc"      pNaoNULL
+=avancarelem     lista0    3            OK
+=obtervalorelem  lista0    "fff"        "fffff fffff fffff"      pNaoNULL
+=avancarelem     lista0    -2           OK
+=obtervalorelem  lista0    "ddd"        "ddddd ddddd ddddd"      pNaoNULL
+=avancarelem     lista0    -3           OK
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"      pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
@@ -265,22 +263,22 @@
 == Teste Início e Fim de Lista Vazia
 =criarlista      lista0
 
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"        pNULL
 =irinicio        lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"        pNULL
 =irfinal         lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"        pNULL
 
-=inselemapos     lista0    "vas"           "victor augusto"     pNaoNULL      OK
-=inselemapos     lista0    "ian"           "ian albuquerque"    pNaoNULL      OK
-=inselemapos     lista0    "lcf"           "lucas ferraco"      pNaoNULL      OK
+=inselemapos     lista0    "aaa"           "aaaaa aaaaa aaaaa"        pNaoNULL      OK
+=inselemapos     lista0    "bbb"           "bbbbb bbbbb bbbbb"        pNaoNULL      OK
+=inselemapos     lista0    "ccc"           "ccccc ccccc ccccc"        pNaoNULL      OK
 =esvaziarlista   lista0
 
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"        pNULL
 =irinicio        lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"        pNULL
 =irfinal         lista0
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"        pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"        pNULL
 
 =esvaziarlista   lista0
 =destruirlista   lista0
@@ -289,21 +287,21 @@
 
 == Teste Início e Fim de Lista Preenchida
 =criarlista      lista0
-=inselemapos     lista0    "vas"            "victor augusto"      pNaoNULL    OK
-=inselemapos     lista0    "vas2"           "victor augusto2"     pNaoNULL    OK
-=inselemapos     lista0    "ian"            "ian albuquerque"     pNaoNULL    OK
-=inselemapos     lista0    "ian2"           "ian albuquerque2"    pNaoNULL    OK
-=inselemapos     lista0    "lcf"            "lucas ferraco"       pNaoNULL    OK
-=inselemapos     lista0    "lcf2"           "lucas ferraco2"      pNaoNULL    OK
-=obtervalorelem  lista0    "lcf2"           "lucas ferraco2"      pNaoNULL
+=inselemapos     lista0    "aaa"           "aaaaa aaaaa aaaaa"      pNaoNULL    OK
+=inselemapos     lista0    "bbb"           "bbbbb bbbbb bbbbb"      pNaoNULL    OK
+=inselemapos     lista0    "ccc"           "ccccc ccccc ccccc"      pNaoNULL    OK
+=inselemapos     lista0    "ddd"           "ddddd ddddd ddddd"      pNaoNULL    OK
+=inselemapos     lista0    "eee"           "eeeee eeeee eeeee"      pNaoNULL    OK
+=inselemapos     lista0    "fff"           "fffff fffff fffff"      pNaoNULL    OK
+=obtervalorelem  lista0    "fff"           "fffff fffff fffff"      pNaoNULL
 =irinicio        lista0
-=obtervalorelem  lista0    "vas"            "victor augusto"      pNaoNULL
+=obtervalorelem  lista0    "aaa"           "aaaaa aaaaa aaaaa"      pNaoNULL
 =irinicio        lista0
-=obtervalorelem  lista0    "vas"            "victor augusto"      pNaoNULL
+=obtervalorelem  lista0    "aaa"           "aaaaa aaaaa aaaaa"      pNaoNULL
 =irfinal         lista0
-=obtervalorelem  lista0    "lcf2"           "lucas ferraco2"      pNaoNULL
+=obtervalorelem  lista0    "fff"           "fffff fffff fffff"      pNaoNULL
 =irfinal         lista0
-=obtervalorelem  lista0    "lcf2"           "lucas ferraco2"      pNaoNULL
+=obtervalorelem  lista0    "fff"           "fffff fffff fffff"      pNaoNULL
 =esvaziarlista   lista0
 =destruirlista   lista0
 
@@ -312,18 +310,18 @@
 == Teste Excluir Lista Vazia
 =criarlista      lista0
 
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"         pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"         pNULL
 =excluirelem     lista0    ListaVazia
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"         pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"         pNULL
 
-=inselemapos     lista0    "vas"           "victor augusto"      pNaoNULL       OK
-=inselemapos     lista0    "ian"           "ian albuquerque"     pNaoNULL       OK
-=inselemapos     lista0    "lcf"           "lucas ferraco"       pNaoNULL       OK
+=inselemapos     lista0    "aaa"           "aaaaa aaaaa aaaaa"         pNaoNULL       OK
+=inselemapos     lista0    "bbb"           "bbbbb bbbbb bbbbb"         pNaoNULL       OK
+=inselemapos     lista0    "ccc"           "ccccc ccccc ccccc"         pNaoNULL       OK
 =esvaziarlista   lista0
 
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"         pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"         pNULL
 =excluirelem     lista0    ListaVazia
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"         pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"         pNULL
 
 =esvaziarlista   lista0
 =destruirlista   lista0
@@ -333,12 +331,12 @@
 == Teste Excluir Elementos da Lista
 =criarlista      lista0
 
-=inselemantes    lista0    "vas"           "victor augusto"      pNaoNULL       OK
-=inselemantes    lista0    "vas2"          "victor augusto2"     pNaoNULL       OK
-=inselemantes    lista0    "ian"           "ian albuquerque"     pNaoNULL       OK
-=inselemantes    lista0    "ian2"          "ian albuquerque2"    pNaoNULL       OK
-=inselemantes    lista0    "lcf"           "lucas ferraco"       pNaoNULL       OK
-=inselemantes    lista0    "lcf"           "lucas ferraco2"      pNaoNULL       OK
+=inselemantes    lista0    "fff"          "fffff fffff fffff"    pNaoNULL       OK
+=inselemantes    lista0    "eee"          "eeeee eeeee eeeee"    pNaoNULL       OK
+=inselemantes    lista0    "ddd"          "ddddd ddddd ddddd"    pNaoNULL       OK
+=inselemantes    lista0    "ccc"          "ccccc ccccc ccccc"    pNaoNULL       OK
+=inselemantes    lista0    "bbb"          "bbbbb bbbbb bbbbb"    pNaoNULL       OK
+=inselemantes    lista0    "aaa"          "aaaaa aaaaa aaaaa"    pNaoNULL       OK
 
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
@@ -347,17 +345,17 @@
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
 
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"         pNULL
+=obtervalorelem  lista0    "xxx"          "xxxxx xxxxx xxxxx"    pNULL
 
-=inselemantes    lista0    "vas"           "victor augusto"      pNaoNULL       OK
-=inselemantes    lista0    "ian"           "ian albuquerque"     pNaoNULL       OK
-=inselemantes    lista0    "lcf"           "lucas ferraco"       pNaoNULL       OK
+=inselemantes    lista0    "ccc"          "ccccc ccccc ccccc"    pNaoNULL       OK
+=inselemantes    lista0    "bbb"          "bbbbb bbbbb bbbbb"    pNaoNULL       OK
+=inselemantes    lista0    "aaa"          "aaaaa aaaaa aaaaa"    pNaoNULL       OK
    
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
 
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"         pNULL
+=obtervalorelem  lista0    "xxx"          "xxxxx xxxxx xxxxx"    pNULL
 
 =esvaziarlista   lista0
 =destruirlista   lista0
@@ -368,26 +366,26 @@
 
 =criarlista      lista0
 
-=inselemantes    lista0    "ian"        "ian albuquerque"     pNaoNULL    OK
-=inselemantes    lista0    "vas"        "victor augusto"      pNaoNULL    OK
+=inselemantes    lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemantes    lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
 =excluirelem     lista0    OK
-=obtervalorelem  lista0    "ian"        "ian albuquerque"     pNaoNULL
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
 
 =esvaziarlista   lista0
 
-=inselemapos     lista0    "vas"        "victor augusto"      pNaoNULL    OK
-=inselemapos     lista0    "ian"        "ian albuquerque"     pNaoNULL    OK
+=inselemapos     lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemapos     lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
 =excluirelem     lista0    OK
-=obtervalorelem  lista0    "vas"        "victor augusto"      pNaoNULL
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
 
 =esvaziarlista   lista0
 
-=inselemantes    lista0    "lcf"        "lucas ferraco"       pNaoNULL    OK
-=inselemantes    lista0    "ian"        "ian albuquerque"     pNaoNULL    OK
-=inselemantes    lista0    "vas"        "victor augusto"      pNaoNULL    OK
+=inselemantes    lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemantes    lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemantes    lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
 =avancarelem     lista0    1            OK
 =excluirelem     lista0    OK
-=obtervalorelem  lista0    "vas"        "victor augusto"      pNaoNULL
+=obtervalorelem  lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
 
 =esvaziarlista   lista0
 =destruirlista   lista0
@@ -397,17 +395,17 @@
 == Teste Exclusão Multipla Lista Vazia
 =criarlista      lista0
 
-=inselemapos     lista0    "vas"           "victor augusto"      pNaoNULL       OK
-=inselemapos     lista0    "ian"           "ian albuquerque"     pNaoNULL       OK
-=inselemapos     lista0    "lcf"           "lucas ferraco"       pNaoNULL       OK
+=inselemapos     lista0    "aaa"           "aaaaa aaaaa aaaaa"     pNaoNULL       OK
+=inselemapos     lista0    "bbb"           "bbbbb bbbbb bbbbb"     pNaoNULL       OK
+=inselemapos     lista0    "ccc"           "ccccc ccccc ccccc"     pNaoNULL       OK
 
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
 =excluirelem     lista0    OK
 
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"         pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"     pNULL
 =excluirelem     lista0    ListaVazia
-=obtervalorelem  lista0    "PLACEHOLDER"   "PLACEHOLDER"         pNULL
+=obtervalorelem  lista0    "xxx"           "xxxxx xxxxx xxxxx"     pNULL
 
 =esvaziarlista   lista0
 =destruirlista   lista0
@@ -418,103 +416,103 @@
 =criarlista      lista0
 =criarlista      lista1
 
-=obtervalorelem  lista0    "PLACEHOLDER"       "PLACEHOLDER"        pNULL
-=obtervalorelem  lista1    "PLACEHOLDER"       "PLACEHOLDER"        pNULL
+=obtervalorelem  lista0    "xxx"                "xxxxx xxxxx xxxxx"     pNULL
+=obtervalorelem  lista1    "xxx"                "xxxxx xxxxx xxxxx"     pNULL
 
-=inselemantes    lista0    "vas"               "victor augusto"     pNaoNULL    OK
-=inselemantes    lista1    "vas2"              "victor augusto2"    pNaoNULL    OK
+=inselemantes    lista0    "0_ccc"              "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemantes    lista1    "1_ccc"              "ccccc ccccc ccccc"     pNaoNULL    OK
 
-=obtervalorelem  lista0    "vas"               "victor augusto"     pNaoNULL
-=obtervalorelem  lista1    "vas2"              "victor augusto2"    pNaoNULL
+=obtervalorelem  lista0    "0_ccc"              "ccccc ccccc ccccc"     pNaoNULL
+=obtervalorelem  lista1    "1_ccc"              "ccccc ccccc ccccc"     pNaoNULL
 
-=inselemantes    lista0    "ian"               "ian albuquerque"    pNaoNULL    OK
-=inselemantes    lista1    "ian2"              "ian albuquerque2"   pNaoNULL    OK
-=inselemantes    lista0    "lcf"               "lucas ferraco"      pNaoNULL    OK
-=inselemantes    lista1    "lcf2"              "lucas ferraco2"     pNaoNULL    OK
+=inselemantes    lista0    "0_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemantes    lista1    "1_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemantes    lista0    "0_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemantes    lista1    "1_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL    OK
 
-=obtervalorelem  lista0    "lcf"               "lucas ferraco"      pNaoNULL
-=obtervalorelem  lista1    "lcf2"              "lucas ferraco2"     pNaoNULL
+=obtervalorelem  lista0    "0_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
+=obtervalorelem  lista1    "1_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
 
 =excluirelem     lista1    OK
-=obtervalorelem  lista0    "lcf"               "lucas ferraco"      pNaoNULL
-=obtervalorelem  lista1    "ian2"              "ian albuquerque2"   pNaoNULL
+=obtervalorelem  lista0    "0_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
+=obtervalorelem  lista1    "1_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
 
 =excluirelem     lista0    OK
-=obtervalorelem  lista0    "ian"               "ian albuquerque"    pNaoNULL
-=obtervalorelem  lista1    "ian2"              "ian albuquerque2"   pNaoNULL
+=obtervalorelem  lista0    "0_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
+=obtervalorelem  lista1    "1_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
 
 =esvaziarlista   lista0
-=obtervalorelem  lista0    "PLACEHOLDER"       "PLACEHOLDER"        pNULL
-=obtervalorelem  lista1    "ian2"              "ian albuquerque2"   pNaoNULL
+=obtervalorelem  lista0    "0_xxx"              "xxxxx xxxxx xxxxx"     pNULL
+=obtervalorelem  lista1    "1_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
 
 =esvaziarlista   lista1
-=obtervalorelem  lista0    "PLACEHOLDER"       "PLACEHOLDER"        pNULL
-=obtervalorelem  lista1    "PLACEHOLDER"       "PLACEHOLDER"        pNULL
+=obtervalorelem  lista0    "0_xxx"              "xxxxx xxxxx xxxxx"     pNULL
+=obtervalorelem  lista1    "1_xxx"              "xxxxx xxxxx xxxxx"     pNULL
 
-=inselemantes    lista0    "lcf"               "lucas ferraco"      pNaoNULL    OK
-=inselemantes    lista1    "lcf2"              "lucas ferraco2"     pNaoNULL    OK
-=inselemantes    lista0    "ian"               "ian albuquerque"    pNaoNULL    OK
-=inselemantes    lista1    "ian2"              "ian albuquerque2"   pNaoNULL    OK
-=inselemantes    lista0    "vas"               "victor augusto"     pNaoNULL    OK
-=inselemantes    lista1    "vas2"              "victor augusto2"    pNaoNULL    OK
+=inselemantes    lista0    "0_ccc"              "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemantes    lista1    "1_ccc"              "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemantes    lista0    "0_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemantes    lista1    "1_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemantes    lista0    "0_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemantes    lista1    "1_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL    OK
 
 =irfinal         lista1
-=obtervalorelem  lista0    "vas"               "victor augusto"     pNaoNULL
-=obtervalorelem  lista1    "lcf2"              "lucas ferraco2"     pNaoNULL
+=obtervalorelem  lista0    "0_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
+=obtervalorelem  lista1    "1_ccc"              "ccccc ccccc ccccc"     pNaoNULL
 
 =irfinal         lista0
-=obtervalorelem  lista0    "lcf"               "lucas ferraco"      pNaoNULL
-=obtervalorelem  lista1    "lcf2"              "lucas ferraco2"     pNaoNULL
+=obtervalorelem  lista0    "0_ccc"              "ccccc ccccc ccccc"     pNaoNULL
+=obtervalorelem  lista1    "1_ccc"              "ccccc ccccc ccccc"     pNaoNULL
 
 =irinicio        lista0
-=obtervalorelem  lista0    "vas"               "victor augusto"     pNaoNULL
-=obtervalorelem  lista1    "lcf2"              "lucas ferraco2"     pNaoNULL
+=obtervalorelem  lista0    "0_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
+=obtervalorelem  lista1    "1_ccc"              "ccccc ccccc ccccc"     pNaoNULL
 
 =irinicio        lista1
-=obtervalorelem  lista0    "vas"               "victor augusto"     pNaoNULL
-=obtervalorelem  lista1    "vas2"              "victor augusto2"    pNaoNULL
+=obtervalorelem  lista0    "0_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
+=obtervalorelem  lista1    "1_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
 
-=avancarelem     lista0    1                   OK
-=obtervalorelem  lista0    "ian"               "ian albuquerque"    pNaoNULL
-=obtervalorelem  lista1    "vas2"              "victor augusto2"    pNaoNULL
+=avancarelem     lista0    1                    OK
+=obtervalorelem  lista0    "0_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
+=obtervalorelem  lista1    "1_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
 
-=avancarelem     lista1    1                   OK
-=obtervalorelem  lista0    "ian"               "ian albuquerque"    pNaoNULL
-=obtervalorelem  lista1    "ian2"              "ian albuquerque2"   pNaoNULL
+=avancarelem     lista1    1                    OK
+=obtervalorelem  lista0    "0_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
+=obtervalorelem  lista1    "1_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
 
-=avancarelem     lista0    5                   FimLista
-=obtervalorelem  lista0    "lcf"               "lucas ferraco"      pNaoNULL
-=obtervalorelem  lista1    "ian2"              "ian albuquerque2"   pNaoNULL
+=avancarelem     lista0    5                    FimLista
+=obtervalorelem  lista0    "0_ccc"              "ccccc ccccc ccccc"     pNaoNULL
+=obtervalorelem  lista1    "1_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
 
-=avancarelem     lista1    -5                  FimLista
-=obtervalorelem  lista0    "lcf"               "lucas ferraco"      pNaoNULL
-=obtervalorelem  lista1    "vas2"              "victor augusto2"    pNaoNULL
+=avancarelem     lista1    -5                   FimLista
+=obtervalorelem  lista0    "0_ccc"              "ccccc ccccc ccccc"     pNaoNULL
+=obtervalorelem  lista1    "1_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
 
 =esvaziarlista   lista0
 =esvaziarlista   lista1
 
-=inselemapos     lista0    "vas"               "victor augusto"     pNaoNULL    OK
-=inselemapos     lista0    "ian"               "ian albuquerque"    pNaoNULL    OK
-=inselemapos     lista0    "lcf"               "lucas ferraco"      pNaoNULL    OK
+=inselemapos     lista0    "0_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemapos     lista0    "0_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemapos     lista0    "0_ccc"              "ccccc ccccc ccccc"     pNaoNULL    OK
 
-=inselemapos     lista1    "lcf2"              "lucas ferraco2"     pNaoNULL    OK
-=inselemantes    lista1    "vas2"              "victor augusto2"    pNaoNULL    OK
-=inselemapos     lista1    "ian2"              "ian albuquerque2"   pNaoNULL    OK
+=inselemapos     lista1    "1_ccc"              "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemantes    lista1    "1_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemapos     lista1    "1_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL    OK
 
 =irinicio        lista0
 =irinicio        lista1
-=obtervalorelem  lista0    "vas"               "victor augusto"     pNaoNULL
-=obtervalorelem  lista1    "vas2"              "victor augusto2"    pNaoNULL
+=obtervalorelem  lista0    "0_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
+=obtervalorelem  lista1    "1_aaa"              "aaaaa aaaaa aaaaa"     pNaoNULL
 
-=avancarelem     lista0    1                   OK
-=avancarelem     lista1    1                   OK
-=obtervalorelem  lista0    "ian"               "ian albuquerque"    pNaoNULL
-=obtervalorelem  lista1    "ian2"              "ian albuquerque2"   pNaoNULL
+=avancarelem     lista0    1                    OK
+=avancarelem     lista1    1                    OK
+=obtervalorelem  lista0    "0_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
+=obtervalorelem  lista1    "1_bbb"              "bbbbb bbbbb bbbbb"     pNaoNULL
 
-=avancarelem     lista0    1                   OK
-=avancarelem     lista1    1                   OK
-=obtervalorelem  lista0    "lcf"               "lucas ferraco"      pNaoNULL
-=obtervalorelem  lista1    "lcf2"              "lucas ferraco2"     pNaoNULL
+=avancarelem     lista0    1                    OK
+=avancarelem     lista1    1                    OK
+=obtervalorelem  lista0    "0_ccc"              "ccccc ccccc ccccc"     pNaoNULL
+=obtervalorelem  lista1    "1_ccc"              "ccccc ccccc ccccc"     pNaoNULL
 
 =esvaziarlista   lista0
 =esvaziarlista   lista1
@@ -626,4 +624,240 @@
 =obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
 
 =esvaziarlista   lista0
+
+=inselemord      lista0    "ccc"        "xxxxx xxxxx xxxxx"     pNaoNULL    OK
+=inselemord      lista0    "bbb"        "xxxxx xxxxx xxxxx"     pNaoNULL    OK
+=inselemord      lista0    "aaa"        "xxxxx xxxxx xxxxx"     pNaoNULL    OK
+
+=irinicio        lista0
+=obtervalorelem  lista0    "aaa"        "xxxxx xxxxx xxxxx"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "bbb"        "xxxxx xxxxx xxxxx"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "ccc"        "xxxxx xxxxx xxxxx"     pNaoNULL
+
+=esvaziarlista   lista0
 =destruirlista   lista0
+
+// ---------------------------------------------
+
+== Teste Inserção Ordenada com Multiplas Listas
+=criarlista      lista0
+=criarlista      lista1
+
+=inselemord      lista0    "fff"        "fffff fffff fffff"     pNaoNULL    OK
+=inselemord      lista0    "eee"        "eeeee eeeee eeeee"     pNaoNULL    OK
+=inselemord      lista0    "ddd"        "ddddd ddddd ddddd"     pNaoNULL    OK
+=inselemord      lista1    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemord      lista1    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemord      lista1    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+
+=irinicio        lista0
+=obtervalorelem  lista0    "ddd"        "ddddd ddddd ddddd"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "eee"        "eeeee eeeee eeeee"     pNaoNULL
+=avancarelem     lista0    1            OK
+=obtervalorelem  lista0    "fff"        "fffff fffff fffff"     pNaoNULL
+=avancarelem     lista0    1            FimLista
+
+=irinicio        lista1
+=obtervalorelem  lista1    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+=avancarelem     lista1    1            OK
+=obtervalorelem  lista1    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+=avancarelem     lista1    1            OK
+=obtervalorelem  lista1    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+=avancarelem     lista1    1            FimLista
+
+=excluirelem     lista0    OK
+=excluirelem     lista0    OK
+=excluirelem     lista0    OK
+=excluirelem     lista0    ListaVazia
+
+=excluirelem     lista1    OK
+=excluirelem     lista1    OK
+=excluirelem     lista1    OK
+=excluirelem     lista1    ListaVazia
+
+=esvaziarlista   lista0
+=esvaziarlista   lista1
+=destruirlista   lista0
+=destruirlista   lista1
+
+// ---------------------------------------------
+
+== Teste Apresentar Valores
+=criarlista         lista0
+
+=apresentarvalores  lista0
+
+=inselemord         lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemord         lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemord         lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+
+=apresentarvalores  lista0
+
+=esvaziarlista      lista0
+=destruirlista      lista0
+
+// ---------------------------------------------
+
+== Teste Procurar Valores Lista Vazia
+=criarlista         lista0
+
+=procurarvalor      lista0    "xxx"        "xxxxx xxxxx xxxxx"     pNaoNULL    ListaVazia
+
+=inselemord         lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemord         lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemord         lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+
+=esvaziarlista      lista0
+
+=procurarvalor      lista0    "xxx"        "xxxxx xxxxx xxxxx"     pNaoNULL    ListaVazia
+
+=esvaziarlista      lista0
+=destruirlista      lista0
+
+// ---------------------------------------------
+
+== Teste Procurar Valores Lista Um Elemento
+=criarlista         lista0
+
+=inselemord         lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+
+=procurarvalor      lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=obtervalorelem     lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+
+=procurarvalor      lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    NaoAchou
+=obtervalorelem     lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+
+=esvaziarlista      lista0
+
+=procurarvalor      lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    ListaVazia
+=obtervalorelem     lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNULL
+
+=esvaziarlista      lista0
+=destruirlista      lista0
+
+// ---------------------------------------------
+
+== Teste Procurar Valores Lista Vários Elementos Inicio Lista
+=criarlista         lista0
+
+=inselemord         lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemord         lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemord         lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemord         lista0    "ddd"        "ddddd ddddd ddddd"     pNaoNULL    OK
+
+=irinicio           lista0
+=procurarvalor      lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=obtervalorelem     lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+
+=irinicio           lista0
+=procurarvalor      lista0    "eee"        "eeeee eeeee eeeee"     pNaoNULL    NaoAchou
+=obtervalorelem     lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL
+
+=esvaziarlista      lista0
+
+=irinicio           lista0
+=procurarvalor      lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    ListaVazia
+=obtervalorelem     lista0    "xxx"        "xxxxx xxxxx xxxxx"     pNULL
+
+=esvaziarlista      lista0
+=destruirlista      lista0
+
+
+// ---------------------------------------------
+
+== Teste Procurar Valores Lista Vários Elementos A Partir Corrente
+=criarlista         lista0
+
+=inselemord         lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    OK
+=inselemord         lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=inselemord         lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=inselemord         lista0    "ddd"        "ddddd ddddd ddddd"     pNaoNULL    OK
+
+=irinicio           lista0
+=avancarelem        lista0    1            OK
+=procurarvalor      lista0    "aaa"        "aaaaa aaaaa aaaaa"     pNaoNULL    NaoAchou
+=obtervalorelem     lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+
+=procurarvalor      lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=obtervalorelem     lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+
+=procurarvalor      lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL    OK
+=obtervalorelem     lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+
+=procurarvalor      lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    NaoAchou
+=obtervalorelem     lista0    "ccc"        "ccccc ccccc ccccc"     pNaoNULL
+
+=irinicio           lista0
+=procurarvalor      lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL    OK
+=obtervalorelem     lista0    "bbb"        "bbbbb bbbbb bbbbb"     pNaoNULL
+
+=esvaziarlista      lista0
+=destruirlista      lista0
+
+// ---------------------------------------------
+
+== Teste Inserção Nula e Obter Valor Nulo
+=criarlista      lista0
+=inselemantes    lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL           OK
+=obtervalorelem  lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL
+=esvaziarlista   lista0
+=destruirlista   lista0
+
+=criarlista      lista0
+=inselemapos     lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL           OK
+=obtervalorelem  lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL
+=esvaziarlista   lista0
+=destruirlista   lista0
+
+=criarlista      lista0
+=inselemord      lista0    "aaa"        "aaaaa aaaaa aaaaa"    pNaoNULL        OK
+=inselemord      lista0    "bbb"        "bbbbb bbbbb bbbbb"    pNaoNULL        OK
+=inselemord      lista0    "ccc"        "ccccc ccccc ccccc"    pNaoNULL        OK
+=inselemord      lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL           OK
+
+=irinicio        lista0
+=obtervalorelem  lista0    "vvv"        "vvvvv vvvvv vvvvv"    pNULL
+
+=esvaziarlista   lista0
+=destruirlista   lista0
+
+
+// ---------------------------------------------
+
+== Teste Procura com Nulo
+=criarlista      lista0
+=inselemord      lista0    "aaa"        "aaaaa aaaaa aaaaa"    pNaoNULL        OK
+=inselemord      lista0    "bbb"        "bbbbb bbbbb bbbbb"    pNaoNULL        OK
+=inselemapos     lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL           OK
+=inselemord      lista0    "ccc"        "ccccc ccccc ccccc"    pNaoNULL        OK
+=inselemord      lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL           OK
+
+=irinicio        lista0
+=procurarvalor   lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL    OK
+=obtervalorelem  lista0    "vvv"        "vvvvv vvvvv vvvvv"    pNULL
+=avancarelem     lista0    1            OK
+=procurarvalor   lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL    OK
+=obtervalorelem  lista0    "vvv"        "vvvvv vvvvv vvvvv"    pNULL
+=avancarelem     lista0    -1            OK
+=obtervalorelem  lista0    "bbb"        "bbbbb bbbbb bbbbb"    pNaoNULL
+
+=esvaziarlista   lista0
+=destruirlista   lista0
+
+
+// ---------------------------------------------
+
+== Teste Apresenta com Nulo
+
+=criarlista         lista0
+=inselemord         lista0    "aaa"        "aaaaa aaaaa aaaaa"    pNaoNULL        OK
+=inselemord         lista0    "bbb"        "bbbbb bbbbb bbbbb"    pNaoNULL        OK
+=inselemapos        lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL           OK
+=inselemord         lista0    "ccc"        "ccccc ccccc ccccc"    pNaoNULL        OK
+=inselemord         lista0    "xxx"        "xxxxx xxxxx xxxxx"    pNULL           OK
+=apresentarvalores  lista0
+=esvaziarlista      lista0
+=destruirlista      lista0
