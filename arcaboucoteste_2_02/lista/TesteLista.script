@@ -1,12 +1,10 @@
 // Script: TesteLista.script
-// Autores: Ian Albuquerque e Victor Augusto
+// Autores: Ian Albuquerque, Lucas Ferraço e Victor Augusto
 // Autor Original: Arndt von Staa
 // Data: 09/set/2016
 // Propósito: Testar por completo as funções de acesso do módulo LISTA, com exceção
 // do caso em que ocorre falta de memória.
 //
-// Observação: Não testa-se se o valor do ponteiro para a string da inserção pode ser
-// nulo
 //
 
 // ---------------------------------------------
