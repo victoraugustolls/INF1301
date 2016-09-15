@@ -17,9 +17,6 @@
 *     2       lff   14/set/2016 codificação das funções de impressão e comparação
 *     1       vas   13/set/2016 início desenvolvimento
 *
-*  $ED Descrição do módulo
-*
-*
 ***************************************************************************/
 
 #include   <stdio.h>
