@@ -12,17 +12,19 @@ Testa as funções do módulo lista de acordo com o script de teste fornecido.
 
 - Módulos de Implementação: LISTA.C
                             TESTLIS.C
+                            ETIQUETA_NOMINAL.C
 
 - Módulos de Definição:     LISTA.H
                             TST_ESPC.H
+                            ETIQUETA_NOMINAL.H
 
 - Arcabouço de Teste:       ArcaboucoTeste.lib
 
 - Arquivo de Script:        TESTE_LISTA.SCRIPT
 
-- Arquivo de Log:           LOG_TESTE_LISTA.LOG
+- Arquivo de Log:           TESTE_LISTA.LOG
 
-- Arquivo Executável:       TRAB1-1.EXE
+- Arquivo Executável:       TRAB1-2.EXE
 
 - Arquivo Bat:              EXECUTAR_TESTE_LISTA.bat
 
@@ -36,6 +38,6 @@ Testa as funções do módulo lista de acordo com o script de teste fornecido.
 ————— Modo de uso ————— 
 
 1. Extraia o conteúdo do arquivo “TRAB1.zip”.
-2. Dê dois cliques na pasta “TRAB1-1”.
+2. Dê dois cliques na pasta “TRAB1-2”.
 3. Dê dois cliques no arquivo “ExecutarTesteLista.bat”.
 4. Para visualizar os resultados do teste, dê dois cliques no arquivo “LogTesteLista.LOG”.
