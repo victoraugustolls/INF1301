@@ -1,43 +1,59 @@
+————— Trabalho 1 - Programação Modular —————
+
+ - Parte 2 do Trabalho
+ 
+ - Pontifícia Universidade Católica do Rio de Janeiro
+ - Data: 15 de Setembro de 2016
+
 ————— Autores —————
 
  - Ian Albuquerque
  - Lucas Ferraço
  - Victor Augusto
 
+————— Estrutura de Arquivos e Diretórios —————
+
+== Diretórios
+	 = include
+	 	Contém os módulos de definição do projeto.
+
+	 	- LISTA.H
+	 	- GENERICO.H
+	 	- LERPARM.H
+	 	- TST_ESPC.H
+	 	- ETIQUETA_NOMINAL.H
+
+	 = lib
+	 	Contém as bibliotecas estáticas do projeto.
+
+	 	- ArcaboucoTeste.lib
+
+	 = source
+	 	Contém os módulos de implementação do projeto.
+
+	 	- LISTA.C
+	 	- TESTLIS.C
+	 	- ETIQUETA_NOMINAL.C
+
+== Arquivos
+	 - TRAB1-2.EXE
+	 	O executável do trabalho.
+
+	 - TESTE_LISTA.SCRIPT
+	 	O script de teste.
+
+	 - EXECUTAR_TESTE_LISTA.bat
+	 	A rotina que coordena a execução dos testes.
+
+	 - LEIAME.TXT
+	 	Arquivo descritivo com informações sobre o projeto e sua manipulação.
+
 ————— Descrição do Programa —————
 
 Testa as funções do módulo lista de acordo com o script de teste fornecido.
 
-————— Arquivos Fonte ————— 
+————— Modo de Execução do Script de Testes ————— 
 
-- Módulos de Implementação: LISTA.C
-                            TESTLIS.C
-                            ETIQUETA_NOMINAL.C
-
-- Módulos de Definição:     LISTA.H
-                            TST_ESPC.H
-                            ETIQUETA_NOMINAL.H
-
-- Arcabouço de Teste:       ArcaboucoTeste.lib
-
-- Arquivo de Script:        TESTE_LISTA.SCRIPT
-
-- Arquivo de Log:           TESTE_LISTA.LOG
-
-- Arquivo Executável:       TRAB1-2.EXE
-
-- Arquivo Bat:              EXECUTAR_TESTE_LISTA.bat
-
-- Arquivos de Relatório:    RELATORIO-Ian_Albuquerque_Raymundo_da_Silva.TXT
-                            RELATORIO-Lucas_Ferraco_de_Freitas.TXT
-                            RELATORIO-Victor_Augusto_Lima_Lins_de_Souza.TXT
-
-- Arquivo Leiame:           LEIAME.TXT
-
-
-————— Modo de uso ————— 
-
-1. Extraia o conteúdo do arquivo “TRAB1.zip”.
-2. Dê dois cliques na pasta “TRAB1-2”.
-3. Dê dois cliques no arquivo “ExecutarTesteLista.bat”.
-4. Para visualizar os resultados do teste, dê dois cliques no arquivo “LogTesteLista.LOG”.
+1. 	Execute o arquivo EXECUTAR_TESTE_LISTA.bat.
+	Este arquivo executará o executável TRAB1-2.EXE que coordena os testes descritos em TESTE_LISTA.SCRIPT e gera um relatório contendo os resultados dos testes no arquivo TESTE_LISTA.log.
+2.	Os resultados dos testes estarão contidos em "TESTE_LISTA.log"

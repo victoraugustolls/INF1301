@@ -1,0 +1,54 @@
+————— Trabalho 1 - Programação Modular —————
+
+ - Pontifícia Universidade Católica do Rio de Janeiro
+ - Data: 15 de Setembro de 2016
+
+————— Autores —————
+
+ - Ian Albuquerque
+ - Lucas Ferraço
+ - Victor Augusto
+
+————— Estrutura de Diretórios —————
+
+ - RELATORIOS
+   Contém os arquivos correspondentes aos relatórios individuais de cada
+   membro do grupo
+
+ - TRAB1-1
+   Contém os arquivos correspondentes à primeira parte do trabalho 1.
+   Corresponde ao teste do módulo LISTA assim como encontrado no Arcabouço.
+
+   Este diretório contém um arquivo LEIAME.TXT que contém informações de
+   como executar esta parte do trabalho.
+
+   Subdiretórios
+   		- include
+   		- lib
+   		- source
+
+   	Arquivos
+   		- TRAB1-1.EXE
+   		- TESTE_LISTA.SCRIPT
+   		- EXECUTAR_TESTE_LISTA.bat
+   		- LEIAME.TXT
+
+ - TRAB1-2
+   Contém os arquivos correspondentes à segunda parte do trabalho 1.
+   Corresponde ao teste do módulo LISTA com a modificação do tipo de valor
+   armazenado para um estrutura com duas strings.
+
+   Este diretório contém um arquivo LEIAME.TXT que contém informações de
+   como executar esta parte do trabalho.
+
+   Subdiretórios
+   		- include
+   		- lib
+   		- source
+
+   	Arquivos
+   		- TRAB1-2.EXE
+   		- TESTE_LISTA.SCRIPT
+   		- EXECUTAR_TESTE_LISTA.bat
+   		- LEIAME.TXT
+
