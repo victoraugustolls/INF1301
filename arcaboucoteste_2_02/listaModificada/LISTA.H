@@ -2,7 +2,7 @@
 #define LISTA_
 /***************************************************************************
 *
-*  $MCD Módulo de definição: LIS  Lista de etiquetas nominais duplamente encadeada
+*  $MCD Módulo de definição: LIS  Lista duplamente encadeada
 *
 *  Arquivo gerado:              LISTA.h
 *  Letras identificadoras:      LIS
@@ -16,30 +16,53 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     5       iars  13/set/2016 alteração para uso de etiquetas nominais como valores
+*     5       iars  14/set/2016 inserção busca ordenada
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
 *     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
 *     1       avs   16/abr/2003 início desenvolvimento
 *
 *  $ED Descrição do módulo
-*     Implementa listas de ponteiros de etiquetas nominais 
-*        duplamente encadeadas.
+*     Implementa listas genéricas duplamente encadeadas.
 *     Podem existir n listas em operação simultaneamente.
 *     As listas possuem uma cabeça encapsulando o seu estado.
 *
-*     Cada lista armazena ponteiros para etiquetas nominais.
+*     Cada lista é homogênea quanto ao tipo dos dados que armazena.
+*     Cada elemento da lista referencia o valor que contém.
 *
-*     Os ponteiros para as etiquetas nominais são copiados para elementos 
-*        da lista.
-*        Não é copiado a etiqueta em si apontada por estes ponteiros.
+*     Os ponteiros para os dados são copiados para elementos da lista.
+*        Não é copiado o valor apontado por estes ponteiros.
 *
-*     O controle da destruição do valor de uma etiqueta uma a ser excluída
-*        é feita pela função que destrói etiquetas nominais, fornecida pelo
-*        módulo referente à etiquetas nominais.
+*     O controle da destruição do valor de um elemento a ser excluído
+*        é realizado por uma função fornecida pelo usuário.
+*
+*     Cada lista referencia uma função que determina como devem ser
+*        desalocados os dados nela contidos.
+*
+*     A função de liberação dos valores contidos nos elementos deve
+*        assegurar a liberação de todos os espaços referênciados pelo
+*        valor contido em um elemento.
+*        Esta função é chamada antes de se desalocar um elemento
+*        de uma lista.
+*        Caso não seja necessário desalocar o valor referenciado pelo
+*        elemento, o ponteiro para a função de liberação poderá ser NULL .
+*        Caso o elemento da lista seja a única âncora do valor referenciado,
+*        esta função deve promover a destruição (free) desse valor e
+*        de todos os dados nele ancorados.
+*
+*     Também devem ser fornecidas uma função de comparação de elementos, uma
+*        função que diz quando dois elementos são iguais e uma função que
+*        imprime o conteúdo de um elemento.
+*
+*     A função de comparação deve receber dois elementos e retornar -1, 0 ou 1
+*        caso o primeiro elemento deva ser ordenado antes, igualmente ou após
+*        o segundo elemento, respectivamente.
+*
+*     A função de igualdade deve receber dois valores e retornar 0 caso sejam diferentes
+*        ou um inteiro diferente de zero caso sejam iguais.
 *
 ***************************************************************************/
-
+ 
 #if defined( LISTA_OWN )
    #define LISTA_EXT
 #else
@@ -47,8 +70,6 @@
 #endif
 
 /***** Declarações exportadas pelo módulo *****/
-
-#include "ETIQUETA_NOMINAL.H"
 
 /* Tipo referência para uma lista */
 
@@ -90,7 +111,25 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $FC Função: LIS  &Criar lista
 *
 *  $ED Descrição da função
-*     Cria uma lista de etiquetas nominais duplamente encadeada.
+*     Cria uma lista genérica duplamente encadeada.
+*     Os possíveis tipos são desconhecidos a priori.
+*     A tipagem é implicita.
+*     Não existe identificador de tipo associado à lista.
+*
+*  $EP Parâmetros
+*     ExcluirValor  - ponteiro para a função que processa a
+*                     exclusão do valor referenciado pelo elemento
+*                     a ser excluído.
+*                     Ver descrição do módulo.
+*     ImprimirValor  - ponteiro para a função que imprime o valor
+*                     referenciado pelo módulo.
+*                     Ver descrição do módulo.
+*     CompararValores - ponteiro para a função que compara o valor
+*                     de dois elementos. Deve retornar -1, 0 ou 1.
+*                     Ver descrição do módulo.
+*     Igual           -  ponteiro para a função que compara se o valor
+*                     de dois elementos é igual.
+*                     Ver descrição do módulo.
 *
 *  $FV Valor retornado
 *     Se executou corretamente retorna o ponteiro para a lista.
@@ -102,7 +141,14 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   LIS_tppLista LIS_CriarLista() ;
+   LIS_tppLista LIS_CriarLista(
+             void   ( * ExcluirValor ) ( void * pDado ),
+
+             void   ( * ImprimirValor ) ( void * pDado ),
+
+             int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
+
+             int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) ) ;
 
 
 /***********************************************************************
@@ -150,8 +196,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $EP Parâmetros
 *     pLista - ponteiro para a lista onde deve ser inserido o elemento
-*     pEtiquetaNominal - ponteiro para o valor do novo elemento
-*                        Pode ser NULL
+*     pValor - ponteiro para o valor do novo elemento
+*              Pode ser NULL
 *
 *  $FV Valor retornado
 *     LIS_CondRetOK
@@ -160,7 +206,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_InserirElementoAntes( LIS_tppLista pLista ,
-                                           ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
+                                           void * pValor        ) ;
 
 
 /***********************************************************************
@@ -168,15 +214,15 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $FC Função: LIS  &Inserir elemento após
 *
 *  $ED Descrição da função
-*     Insere novo elemento após o elemento corrente.
+*     Insere novo elemento apás o elemento corrente.
 *     O elemento corrente passará a ser o novo elemento inserido.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
 *  $EP Parâmetros
 *     Parâmetros
 *        pLista - ponteiro para a lista onde deve ser inserido o elemento
-*        pEtiquetaNominal - ponteiro para o valor do novo elemento
-*                           Pode ser NULL
+*        pValor - ponteiro para o valor do novo elemento
+*                 Pode ser NULL
 *           
 *
 *  $FV Valor retornado
@@ -187,7 +233,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_InserirElementoApos( LIS_tppLista pLista ,
-                                          ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
+                                          void * pValor        ) ;
 
 
 /***********************************************************************
@@ -196,23 +242,23 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Insere novo elemento de forma ordenada na lista.
-*     A chave da ordenação é o membro 'iniciais' da etiqueta nominal,
-*       sendo esta ordenada em ordem alfanumérica.
 *     O novo elemento será inserido na primeira ocorrência em que o elemento
-*       anterior, caso exista, possua uma ordenação alfanumérica menor que o valor
+*       anterior, caso exista, possua uma ordenação menor que o valor
 *       do elemento sendo inserido e em que o elemento posterior, caso exista,
-*       possua uma ordenação alfanuméricam maior.
-*     Caso a lista esteja ordenada alfanuméricamente pelas 'iniciais', essa
-*       inserção preservará sua propriedade de ordenada.
-*     Caso a lista NÃO esteja previamente ordenada alfanuméricamente pelas 'iniciais',
+*       possua uma ordenação maior.
+*     Caso a lista esteja ordenada, essa inserção preservará sua 
+*       propriedade de ordenada.
+*     Caso a lista NÃO esteja previamente ordenada,
 *       essa inserção NÃO garante a propriedade de ordenação.
 *     O elemento corrente passará a ser o novo elemento inserido.
+*     A ordenação se dá através da função de comparação passada na criação
+*       da lista.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
 *  $EP Parâmetros
 *     Parâmetros
 *        pLista - ponteiro para a lista onde deve ser inserido o elemento
-*        pEtiquetaNominal - ponteiro para o valor da nova etiqueta nominal
+*        pValor - ponteiro para o valor do novo elemento
 *                           Pode ser NULL
 *           
 *
@@ -224,7 +270,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_InserirElementoOrdenado( LIS_tppLista pLista ,
-                                              ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
+                                              void * pValor        ) ;
 
 
 /***********************************************************************
@@ -234,7 +280,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $ED Descrição da função
 *     Apresenta o conteúdo da lista na ordem em que ela
 *       aparece na lista.
-*     A apresentação é feita de acordo com a implementação da Etiqueta Nominal.
+*     A apresentação é feita de acordo com a função passada na criação
+*       da lista.
 *
 *  $EP Parâmetros
 *     Parâmetros
@@ -284,7 +331,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   ETI_tppEtiquetaNominal LIS_ObterValor( LIS_tppLista pLista ) ;
+   void * LIS_ObterValor( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -300,7 +347,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void IrInicioLista( LIS_tppLista pLista ) ;
+   void LIS_IrInicioLista( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -316,7 +363,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void IrFinalLista( LIS_tppLista pLista ) ;
+   void LIS_IrFinalLista( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -353,27 +400,28 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Procura o elemento que referencia o valor dado.
-*     A função compara o conteúdo apontado.
+*     A função compara o conteúdo apontado de acordo com função
+*       de igualdade passada na criação da lista.
 *
 *  $EP Parâmetros
 *     pLista  - ponteiro para a lista onde procura
-*     pEtiquetaNominal  - ponteiro para o valor procurado
-*                         Pode ser NULL
+*     pValor  - ponteiro para o valor procurado
+*               Pode ser NULL
 *
 *  $FV Valor retornado
 *     LIS_CondRetOK  - se encontrou.
 *                      O elemento corrente é o primeiro elemento do
 *                      elemento corrente inclusive para o fim da lista
-*                      e que contém o valor procurado
+*                      e que contém o ponteiro procurado
 *
-*     LIS_CondRetNaoEncontrou - se o valor não foi encontrado
+*     LIS_CondRetNaoEncontrou - se o ponteiro não foi encontrado
 *                      O elemento corrente continua o mesmo
 *     LIS_CondRetListaVazia   - se a lista estiver vazia
 *
 ***********************************************************************/
 
    LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
-                                    ETI_tppEtiquetaNominal pEtiquetaNominal ) ;
+                                    void * pValor        ) ;
 
 #undef LISTA_EXT
 
