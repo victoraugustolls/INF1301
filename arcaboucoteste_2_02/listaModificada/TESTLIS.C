@@ -340,7 +340,7 @@ LIS_tppLista vtListas[ DIM_VT_LISTA ] ;
          {
 
             numLidos = LER_LerParametros( "issi" ,
-                       &inxLista , StringNome , StringIniciais , &ValEsp ) ;
+                       &inxLista , StringIniciais , StringNome , &ValEsp ) ;
 
             if ( ( numLidos != 4 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )) )
