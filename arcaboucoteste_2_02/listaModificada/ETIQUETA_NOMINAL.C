@@ -95,12 +95,14 @@ ETI_tppEtiquetaNominal ETI_CriarEtiquetaNominal( char* pIniciais, char* pNomeCom
 *  Função: ETI  &Destruir etiqueta nominal
 *  ****/
 
-void ETI_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal )
+void ETI_DestruirEtiquetaNominal( void* _pEtiquetaNominal )
 {
+    ETI_tppEtiquetaNominal pEtiquetaNominal = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal;
+    
     #ifdef _DEBUG
       assert( pEtiquetaNominal != NULL ) ;
     #endif
-
+    
     if ( pEtiquetaNominal->iniciais != NULL )
     {
       free( pEtiquetaNominal->iniciais ) ;
@@ -121,8 +123,10 @@ void ETI_DestruirEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal )
  *  Função: ETI  &Imprimir conteúdo etiqueta nominal
  *  ****/
 
-void ETI_ImprimirConteudoEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal )
+void ETI_ImprimirConteudoEtiquetaNominal( void* _pEtiquetaNominal )
 {
+    ETI_tppEtiquetaNominal pEtiquetaNominal = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal;
+    
     printf("Conteudo da etiqueta nominal:\n");
     
     if (pEtiquetaNominal == NULL)
@@ -157,9 +161,11 @@ void ETI_ImprimirConteudoEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNomina
  *  Função: ETI  &Comparar as iniciais de duas etiquetas nominais
  *  ****/
 
-int ETI_CompararIniciaisEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2 )
+int ETI_CompararIniciaisEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2 )
 {
     int i=0, dif;
+    ETI_tppEtiquetaNominal pEtiquetaNominal1 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal1;
+    ETI_tppEtiquetaNominal pEtiquetaNominal2 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal2;
     
     /* Tratar etiqueta nominal nula */
     if (pEtiquetaNominal1 == NULL)
@@ -208,8 +214,11 @@ int ETI_CompararIniciaisEtiquetaNominal( ETI_tppEtiquetaNominal pEtiquetaNominal
  *  $FC Função: ETI  &Comparar conteúdo de duas etiquetas nominais
  *  ****/
 
-int ETI_CompararConteudoEtiquetaNominal(ETI_tppEtiquetaNominal pEtiquetaNominal1, ETI_tppEtiquetaNominal pEtiquetaNominal2)
+int ETI_IgualEtiquetaNominal( void* _pEtiquetaNominal1, void* _pEtiquetaNominal2)
 {
+    ETI_tppEtiquetaNominal pEtiquetaNominal1 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal1;
+    ETI_tppEtiquetaNominal pEtiquetaNominal2 = ( ETI_tppEtiquetaNominal ) _pEtiquetaNominal2;
+    
     /* Tratar etiqueta nominal nula */
     if ((pEtiquetaNominal1 == NULL) && (pEtiquetaNominal2 == NULL))
     {
