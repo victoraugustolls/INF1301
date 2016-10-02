@@ -7,6 +7,8 @@
 *.list
 *.err
 *.bak
+*.zip
+*.ini
 vsvars32.bat
 ArcaboucoTeste.lib
 !arcaboucoteste_2_02/ferramnt
