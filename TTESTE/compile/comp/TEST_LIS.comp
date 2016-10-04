@@ -11,6 +11,7 @@ tab         =  ..\tabs
 inc         =  ..\tabs
 
 [Modulos]
+ETIQUETA_NOMINAL
 TESTLIS
 LISTA
 

@@ -1,0 +1,97 @@
+
+!!! Inicio dos testes
+!!!      Construto sob teste: ..\bin\TEST_LIS
+!!!      Script de teste:     ..\script\TESTE_LISTA.script
+
+!!!    0  Linha:     1  // Script: TesteLista.script 
+!!!    0  Linha:     2  // Autores: Ian Albuquerque, Lucas Ferraço e Victor Augusto 
+!!!    0  Linha:     3  // Autor Original: Arndt von Staa 
+!!!    0  Linha:     4  // Data: 15/set/2016 
+!!!    0  Linha:     5  // Propósito: Testar por completo as funções de acesso do módulo LISTA, utilizando 
+!!!    0  Linha:     6  // o módulo ETIQUETA_NOMINAL como valores da lista, com exceção 
+!!!    0  Linha:     7  // do caso em que ocorre falta de memória. 
+!!!    0  Linha:     8  // 
+!!!    0  Linha:    10  // --------------------------------------------- 
+   12  == Inicializar Constantes
+!!!    0  Linha:    22  // --------------------------------------------- 
+   24  == Inicializar valores
+!!!    0  Linha:    29  // --------------------------------------------- 
+   31  == Teste Criação de Listas
+   34  == Teste do Teste de Criação de Listas
+>>>    1  Linha:    35  Erro nos parâmetros do comando:  =criarlista      lista0
+<<<    0  Linha:    36  Falha esperada foi recuperada. 
+!!!    0  Linha:    38  // --------------------------------------------- 
+   40  == Teste Destruição de Listas
+   43  == Teste do Teste de Destruição de Listas
+>>>    1  Linha:    44  Erro nos parâmetros do comando:  =destruirlista      lista0
+<<<    0  Linha:    45  Falha esperada foi recuperada. 
+!!!    0  Linha:    47  // --------------------------------------------- 
+   49  == Teste Obter Lista Vazia
+!!!    0  Linha:    54  // --------------------------------------------- 
+   56  == Teste Esvaziar Lista Vazia
+!!!    0  Linha:    63  // --------------------------------------------- 
+   65  == Teste Simples de Inserção Elemento e Esvaziar Lista
+!!!    0  Linha:    80  // --------------------------------------------- 
+   82  == Teste Inserção e Obter Valor
+!!!    0  Linha:    95  // --------------------------------------------- 
+   97  == Teste Avançar Lista Vazia
+!!!    0  Linha:   103  // --------------------------------------------- 
+  105  == Teste Avançar Unitário
+!!!    0  Linha:   138  // --------------------------------------------- 
+  140  == Teste Avançar Fim de Lista
+!!!    0  Linha:   181  // --------------------------------------------- 
+  183  == Teste Avançar Fim de Lista Elemento Único
+!!!    0  Linha:   198  // --------------------------------------------- 
+  200  == Teste Ordenamento da Inserção
+!!!    0  Linha:   226  // --------------------------------------------- 
+  228  == Teste Avançar Zero
+!!!    0  Linha:   239  // --------------------------------------------- 
+  241  == Teste Avançar Múltiplo
+!!!    0  Linha:   261  // --------------------------------------------- 
+  263  == Teste Início e Fim de Lista Vazia
+!!!    0  Linha:   286  // --------------------------------------------- 
+  288  == Teste Início e Fim de Lista Preenchida
+!!!    0  Linha:   308  // --------------------------------------------- 
+  310  == Teste Excluir Lista Vazia
+!!!    0  Linha:   329  // --------------------------------------------- 
+  331  == Teste Excluir Elementos da Lista
+!!!    0  Linha:   363  // --------------------------------------------- 
+  365  == Teste Posicionamento do Corrente ao Excluir
+!!!    0  Linha:   393  // --------------------------------------------- 
+  395  == Teste Exclusão Multipla Lista Vazia
+!!!    0  Linha:   413  // --------------------------------------------- 
+  415  == Teste com Duas Listas
+!!!    0  Linha:   523  // --------------------------------------------- 
+  525  == Teste Inserção Ordenada Unitária
+!!!    0  Linha:   532  // --------------------------------------------- 
+  534  == Teste Inserção Ordenada Múltipla
+!!!    0  Linha:   545  // --------------------------------------------- 
+  547  == Teste Inserção Ordenada Ordenamento Correto
+!!!    0  Linha:   642  // --------------------------------------------- 
+  644  == Teste Inserção Ordenada com Multiplas Listas
+!!!    0  Linha:   686  // --------------------------------------------- 
+  688  == Teste Apresentar Valores
+!!!    0  Linha:   702  // --------------------------------------------- 
+  704  == Teste Procurar Valores Lista Vazia
+!!!    0  Linha:   720  // --------------------------------------------- 
+  722  == Teste Procurar Valores Lista Um Elemento
+!!!    0  Linha:   741  // --------------------------------------------- 
+  743  == Teste Procurar Valores Lista Vários Elementos Inicio Lista
+!!!    0  Linha:   769  // --------------------------------------------- 
+  771  == Teste Procurar Valores Lista Vários Elementos A Partir Corrente
+!!!    0  Linha:   800  // --------------------------------------------- 
+  802  == Teste Inserção Nula e Obter Valor Nulo
+!!!    0  Linha:   828  // --------------------------------------------- 
+  830  == Teste Procura com Nulo
+!!!    0  Linha:   851  // --------------------------------------------- 
+  853  == Teste Apresenta com Nulo
+
+!!! Número de linhas lidas:         863
+!!! Número de casos de teste:        36
+!!! Número comandos corretos:       587
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0
