@@ -18,79 +18,90 @@
 !!!    0  Linha:    26  // --------------------------------------------- 
    28  == Teste Criação de Listas
    31  == Teste do Teste de Criação de Listas
->>>    1  Linha:    33  Comando não conhecido:  =recuperar
-!!!    1  Linha:    35  // --------------------------------------------- 
+>>>    1  Linha:    32  Erro nos parâmetros do comando:  =criarlista      lista0   "abc"   OK
+<<<    0  Linha:    33  Falha esperada foi recuperada. 
+!!!    0  Linha:    35  // --------------------------------------------- 
    37  == Teste Destruição de Listas
->>>    2  Linha:    38  Erro nos parâmetros do comando:  =destroiLista      lista0   OK
    40  == Teste Destruição de Lista Inexistente
->>>    3  Linha:    41  Erro nos parâmetros do comando:  =destroiLista      lista0   ListaInexistente
-!!!    3  Linha:    43  // --------------------------------------------- 
+>>>    1  Linha:    41  Condicao de retorno errada ao destruir a lista. Deveria ser: 3  É: 0
+!!!    1  Linha:    43  // --------------------------------------------- 
    45  == Teste Obter Id Lista
->>>    4  Linha:    47  Erro nos parâmetros do comando:  =obterIdLista    lista0   "abc"
+>>>    2  Linha:    46  Erro nos parâmetros do comando:  =criarlista      lista0   "abc"   OK
+>>>    3  Linha:    48  Comando de teste ignorado:  =destroiLista    lista0   OK
    50  == Teste do Teste Obter Id Lista
->>>    5  Linha:    52  Erro nos parâmetros do comando:  =obterIdLista    lista0   "cba"
+>>>    4  Linha:    51  Erro nos parâmetros do comando:  =criarlista      lista0   "abc"   OK
+>>>    5  Linha:    53  Comando de teste ignorado:  =recuperar
 >>>    6  Linha:    54  Comando de teste ignorado:  =destroiLista    lista0   OK
 !!!    6  Linha:    56  // --------------------------------------------- 
    58  == Teste Simples de Inserção e Obtenção de Elemento
->>>    7  Linha:    60  Erro nos parâmetros do comando:  =inserirNo       lista0    "test1"   OK
->>>    8  Linha:    62  Comando de teste ignorado:  =obterNo         lista0    "test2"   OK
->>>    9  Linha:    63  Comando de teste ignorado:  =destroiLista    lista0    OK
+>>>    7  Linha:    59  Erro nos parâmetros do comando:  =criarlista      lista0    "abc"     OK
+>>>    8  Linha:    61  Comando de teste ignorado:  =inserirNo       lista0    "test2"   OK
+>>>    9  Linha:    62  Comando de teste ignorado:  =obterNo         lista0    "test2"   OK
+>>>   10  Linha:    63  Comando de teste ignorado:  =destroiLista    lista0    OK
    65  == Teste Simples de Obtenção de Elemento de ListaVazia
->>>   10  Linha:    67  Erro nos parâmetros do comando:  =obterNo         lista0    "test2"   ListaVazia
-!!!   10  Linha:    70  // --------------------------------------------- 
+>>>   11  Linha:    66  Erro nos parâmetros do comando:  =criarlista      lista0    "abc"     OK
+>>>   12  Linha:    68  Comando de teste ignorado:  =destroiLista    lista0    OK
+!!!   12  Linha:    70  // --------------------------------------------- 
    72  == Teste Simples de Exclusão de Elemento
->>>   11  Linha:    74  Erro nos parâmetros do comando:  =inserirNo           lista0    "test1"   OK
->>>   12  Linha:    76  Comando de teste ignorado:  =excluirNoCorrente   lista0
->>>   13  Linha:    77  Comando de teste ignorado:  =obterNo		     lista0	   "test1"   OK
->>>   14  Linha:    78  Comando de teste ignorado:  =destroiLista        lista0    OK
-!!!   14  Linha:    80  // --------------------------------------------- 
+>>>   13  Linha:    73  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"     OK
+>>>   14  Linha:    75  Comando de teste ignorado:  =inserirNo           lista0    "test2"   OK
+>>>   15  Linha:    76  Comando de teste ignorado:  =excluirNoCorrente   lista0
+>>>   16  Linha:    77  Comando de teste ignorado:  =obterNo		     lista0	   "test1"   OK
+>>>   17  Linha:    78  Comando de teste ignorado:  =destroiLista        lista0    OK
+!!!   17  Linha:    80  // --------------------------------------------- 
    82  == Teste Simples de Avançar em Lista Vazia
->>>   15  Linha:    84  Erro nos parâmetros do comando:  =irProx              lista0    ListaVazia
+>>>   18  Linha:    83  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"            OK
+>>>   19  Linha:    85  Comando de teste ignorado:  =destroiLista        lista0    OK
    87  == Teste Simples de Recuar em Lista Vazia
->>>   16  Linha:    89  Erro nos parâmetros do comando:  =irAnt               lista0    ListaVazia
+>>>   20  Linha:    88  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"            OK
+>>>   21  Linha:    90  Comando de teste ignorado:  =destroiLista        lista0    OK
    92  == Teste Simples de Avançar e Recuar Elemento
->>>   17  Linha:    94  Erro nos parâmetros do comando:  =inserirNo           lista0    "test1"          OK
->>>   18  Linha:    96  Comando de teste ignorado:  =irAnt               lista0    OK
->>>   19  Linha:    97  Comando de teste ignorado:  =obterNo		     lista0	   "test1"          OK
->>>   20  Linha:    98  Comando de teste ignorado:  =irAnt               lista0    NoCorrentePrim
->>>   21  Linha:    99  Comando de teste ignorado:  =obterNo		     lista0	   "test1"          OK
->>>   22  Linha:   100  Comando de teste ignorado:  =irProx              lista0    OK
->>>   23  Linha:   101  Comando de teste ignorado:  =obterNo		     lista0	   "test2"          OK
->>>   24  Linha:   102  Comando de teste ignorado:  =irProx              lista0    NoCorrentePrim
->>>   25  Linha:   103  Comando de teste ignorado:  =obterNo		     lista0	   "test2"          OK
->>>   26  Linha:   104  Comando de teste ignorado:  =destroiLista        lista0    OK
-!!!   26  Linha:   106  // --------------------------------------------- 
+>>>   22  Linha:    93  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"            OK
+>>>   23  Linha:    95  Comando de teste ignorado:  =inserirNo           lista0    "test2"          OK
+>>>   24  Linha:    96  Comando de teste ignorado:  =irAnt               lista0    OK
+>>>   25  Linha:    97  Comando de teste ignorado:  =obterNo		     lista0	   "test1"          OK
+>>>   26  Linha:    98  Comando de teste ignorado:  =irAnt               lista0    NoCorrentePrim
+>>>   27  Linha:    99  Comando de teste ignorado:  =obterNo		     lista0	   "test1"          OK
+>>>   28  Linha:   100  Comando de teste ignorado:  =irProx              lista0    OK
+>>>   29  Linha:   101  Comando de teste ignorado:  =obterNo		     lista0	   "test2"          OK
+>>>   30  Linha:   102  Comando de teste ignorado:  =irProx              lista0    NoCorrentePrim
+>>>   31  Linha:   103  Comando de teste ignorado:  =obterNo		     lista0	   "test2"          OK
+>>>   32  Linha:   104  Comando de teste ignorado:  =destroiLista        lista0    OK
+!!!   32  Linha:   106  // --------------------------------------------- 
   108  == Teste Simples de Alterar Lista Vazia
->>>   27  Linha:   110  Comando não conhecido:  =alterarNoCorrente   lista0    "test2"    ListaVazia
->>>   28  Linha:   111  Comando de teste ignorado:  =destroiLista        lista0    OK
+>>>   33  Linha:   109  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"      OK
+>>>   34  Linha:   111  Comando de teste ignorado:  =destroiLista        lista0    OK
   113  ==Teste Simples de Alterar nó corrente
->>>   29  Linha:   115  Erro nos parâmetros do comando:  =inserirNo           lista0    "test1"    OK
->>>   30  Linha:   117  Comando de teste ignorado:  =obterNo		     lista0	   "test2"    OK
->>>   31  Linha:   118  Comando de teste ignorado:  =alterarNoCorrente   lista0    "test1"    OK
->>>   32  Linha:   119  Comando de teste ignorado:  =obterNo		     lista0	   "test1"    OK
->>>   33  Linha:   120  Comando de teste ignorado:  =destroiLista        lista0    OK
+>>>   35  Linha:   114  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"      OK
+>>>   36  Linha:   116  Comando de teste ignorado:  =alterarNoCorrente   lista0    "test2"    OK
+>>>   37  Linha:   117  Comando de teste ignorado:  =obterNo		     lista0	   "test2"    OK
+>>>   38  Linha:   118  Comando de teste ignorado:  =alterarNoCorrente   lista0    "test1"    OK
+>>>   39  Linha:   119  Comando de teste ignorado:  =obterNo		     lista0	   "test1"    OK
+>>>   40  Linha:   120  Comando de teste ignorado:  =destroiLista        lista0    OK
   122  ==Teste Simples de Alterar nó corrente de lista inexistente
->>>   34  Linha:   123  Comando não conhecido:  =alterarNoCorrente   lista0    "test2"   ListaInexistente
-!!!   34  Linha:   125  // --------------------------------------------- 
+>>>   41  Linha:   123  Condicao de retorno errada ao alterar o elemento. Deveria ser: 3  É: 2
+!!!   41  Linha:   125  // --------------------------------------------- 
   127  ==Teste com múltiplas listas
->>>   35  Linha:   130  Erro nos parâmetros do comando:  =inserirNo           lista0    "test1"          OK
->>>   36  Linha:   132  Comando de teste ignorado:  =inserirNo           lista0    "test3"          OK
->>>   37  Linha:   133  Comando de teste ignorado:  =inserirNo           lista1    "test4"          OK
->>>   38  Linha:   134  Comando de teste ignorado:  =irAnt               lista0    OK
->>>   39  Linha:   135  Comando de teste ignorado:  =obterNo		     lista0	   "test1"          OK
->>>   40  Linha:   136  Comando de teste ignorado:  =irProx              lista1    NoCorrenteUlt
->>>   41  Linha:   137  Comando de teste ignorado:  =obterNo		     lista1	   "test4"          OK
->>>   42  Linha:   138  Comando de teste ignorado:  =alterarNoCorrente   lista0    "test5"          OK
->>>   43  Linha:   139  Comando de teste ignorado:  =obterNo		     lista0	   "test5"          OK
->>>   44  Linha:   140  Comando de teste ignorado:  =irAnt               lista0    NoCorrentePrim
->>>   45  Linha:   141  Comando de teste ignorado:  =obterNo		     lista1	   "test4"          OK
->>>   46  Linha:   142  Comando de teste ignorado:  =destroiLista        lista0    OK
->>>   47  Linha:   143  Comando de teste ignorado:  =destroiLista        lista1    OK
+>>>   42  Linha:   128  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"            OK
+>>>   43  Linha:   130  Comando de teste ignorado:  =inserirNo           lista0    "test1"          OK
+>>>   44  Linha:   131  Comando de teste ignorado:  =inserirNo           lista1    "test2"          OK
+>>>   45  Linha:   132  Comando de teste ignorado:  =inserirNo           lista0    "test3"          OK
+>>>   46  Linha:   133  Comando de teste ignorado:  =inserirNo           lista1    "test4"          OK
+>>>   47  Linha:   134  Comando de teste ignorado:  =irAnt               lista0    OK
+>>>   48  Linha:   135  Comando de teste ignorado:  =obterNo		     lista0	   "test1"          OK
+>>>   49  Linha:   136  Comando de teste ignorado:  =irProx              lista1    NoCorrenteUlt
+>>>   50  Linha:   137  Comando de teste ignorado:  =obterNo		     lista1	   "test4"          OK
+>>>   51  Linha:   138  Comando de teste ignorado:  =alterarNoCorrente   lista0    "test5"          OK
+>>>   52  Linha:   139  Comando de teste ignorado:  =obterNo		     lista0	   "test5"          OK
+>>>   53  Linha:   140  Comando de teste ignorado:  =irAnt               lista0    NoCorrentePrim
+>>>   54  Linha:   141  Comando de teste ignorado:  =obterNo		     lista1	   "test4"          OK
+>>>   55  Linha:   142  Comando de teste ignorado:  =destroiLista        lista0    OK
+>>>   56  Linha:   143  Comando de teste ignorado:  =destroiLista        lista1    OK
 
 !!! Número de linhas lidas:         143
 !!! Número de casos de teste:        18
-!!! Número comandos corretos:        22
-!!! Número de falhas encontradas:    47
+!!! Número comandos corretos:        10
+!!! Número de falhas encontradas:    56
 
 !!! Foram encontrados problemas
 

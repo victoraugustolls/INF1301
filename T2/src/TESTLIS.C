@@ -137,7 +137,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRet = LIS_CriarLista( vtListas[ inxLista ] , idLista ,
+            CondRet = LIS_CriarLista( &vtListas[ inxLista ] , idLista ,
                                       DestruirValor , CompararValor ,  IgualValor ) ;
 
             return TST_CompararInt( CondRetEsp , CondRet ,

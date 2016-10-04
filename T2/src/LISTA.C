@@ -107,27 +107,29 @@
 *  Função: LIS  &Criar lista
 *  ****/
 
-   LIS_tpCondRet LIS_CriarLista( LIS_tppLista pLista ,
+   LIS_tpCondRet LIS_CriarLista( LIS_tppLista* pLista ,
              char * idLista ,
              void   ( * ExcluirValor ) ( void * pDado ),
              int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
              int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) )
    {
 
-      pLista = NULL ;
+      LIS_tppLista pNewLista = NULL ;
 
-      pLista = ( LIS_tpLista * ) malloc( sizeof( LIS_tpLista )) ;
-      if ( pLista == NULL )
+      pNewLista = ( LIS_tpLista * ) malloc( sizeof( LIS_tpLista )) ;
+      if ( pNewLista == NULL )
       {
          return LIS_CondRetFaltouMemoria ;
       } /* if */
 
-      LimparCabeca( pLista ) ;
+      LimparCabeca( pNewLista ) ;
 
-      pLista->idLista = idLista ;
-      pLista->ExcluirValor = ExcluirValor ;
-      pLista->CompararValores = CompararValores ;
-      pLista->Igual = Igual ;
+      pNewLista->idLista = idLista ;
+      pNewLista->ExcluirValor = ExcluirValor ;
+      pNewLista->CompararValores = CompararValores ;
+      pNewLista->Igual = Igual ;
+
+      *pLista = pNewLista;
 
       return LIS_CondRetOK ;
 
