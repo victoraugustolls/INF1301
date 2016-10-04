@@ -158,91 +158,11 @@
 
 /***************************************************************************
 *
-*  Função: LIS  &Esvaziar lista
-*  ****/
-
-   LIS_tpCondRet LIS_EsvaziarLista( LIS_tppLista pLista )
-   {
-
-      tpElemLista * pElem ;
-      tpElemLista * pProx ;
-
-      #ifdef _DEBUG
-         assert( pLista != NULL ) ;
-      #endif
-
-      pElem = pLista->pOrigemLista ;
-      while ( pElem != NULL )
-      {
-         pProx = pElem->pProx ;
-         LiberarElemento( pLista , pElem ) ;
-         pElem = pProx ;
-      } /* while */
-
-      LimparCabeca( pLista ) ;
-
-      return LIS_CondRetOK ;
-
-   } /* Fim função: LIS  &Esvaziar lista */
-
-/***************************************************************************
-*
-*  Função: LIS  &Inserir elemento antes
-*  ****/
-
-   LIS_tpCondRet LIS_InserirElementoAntes( LIS_tppLista pLista ,
-                                           void * pValor        )
-   {
-
-      tpElemLista * pElem ;
-
-      #ifdef _DEBUG
-         assert( pLista != NULL ) ;
-      #endif
-
-      /* Criar elemento a inerir antes */
-
-         pElem = CriarElemento( pLista , pValor ) ;
-         if ( pElem == NULL )
-         {
-            return LIS_CondRetFaltouMemoria ;
-         } /* if */
-
-      /* Encadear o elemento antes do elemento corrente */
-
-         if ( pLista->pElemCorr == NULL )
-         {
-            pLista->pOrigemLista = pElem ;
-            pLista->pFimLista = pElem ;
-         } else
-         {
-            if ( pLista->pElemCorr->pAnt != NULL )
-            {
-               pElem->pAnt  = pLista->pElemCorr->pAnt ;
-               pLista->pElemCorr->pAnt->pProx = pElem ;
-            } else
-            {
-               pLista->pOrigemLista = pElem ;
-            } /* if */
-
-            pElem->pProx = pLista->pElemCorr ;
-            pLista->pElemCorr->pAnt = pElem ;
-         } /* if */
-
-         pLista->pElemCorr = pElem ;
-
-         return LIS_CondRetOK ;
-
-   } /* Fim função: LIS  &Inserir elemento antes */
-
-/***************************************************************************
-*
 *  Função: LIS  &Inserir elemento após
 *  ****/
 
    LIS_tpCondRet LIS_InserirElementoApos( LIS_tppLista pLista ,
                                           void * pValor        )
-      
    {
 
       tpElemLista * pElem ;
@@ -286,104 +206,6 @@
          return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Inserir elemento após */
-
-/***************************************************************************
-*
-*  Função: LIS  &Inserir elemento ordenado
-*  ****/
-
-   LIS_tpCondRet LIS_InserirElementoOrdenado( LIS_tppLista pLista ,
-                                              void * pValor  )
-      
-   {
-      tpElemLista * pElemIterador ;
-      tpElemLista * pCorrenteSalvo ;
-      LIS_tpCondRet RetornoInsercao ;
-
-      #ifdef _DEBUG
-         assert( pLista != NULL ) ;
-      #endif
-
-         pCorrenteSalvo = pLista->pElemCorr;
-
-         if ( pLista->pElemCorr != NULL )
-         {
-            for ( pElemIterador  = pLista->pOrigemLista ;
-                  pElemIterador != pLista->pFimLista ;
-                  pElemIterador  = pElemIterador->pProx )
-            {
-               if ( pLista->CompararValores( pElemIterador->pValor, pValor ) > 0)
-               {
-                  pLista->pElemCorr = pElemIterador ;
-                  break ;
-               } /* if */
-            } /* for */
-
-            if ( pElemIterador == pLista->pFimLista )
-            {
-               if ( pLista->CompararValores( pElemIterador->pValor, pValor ) >= 0)
-               {
-                  pLista->pElemCorr = pElemIterador ;
-               } 
-               else
-               {
-                  RetornoInsercao = LIS_InserirElementoApos ( pLista, pValor ) ;
-                  if( RetornoInsercao == LIS_CondRetOK )
-                  {
-                     return LIS_CondRetOK ;
-                  } else 
-                  {
-                     pLista->pElemCorr = pCorrenteSalvo ;
-                     return LIS_CondRetFaltouMemoria ;
-                  } /* if */
-               }
-            } /* if */
-
-         } /* if */
-                  
-         RetornoInsercao = LIS_InserirElementoAntes ( pLista, pValor ) ;
-
-         if( RetornoInsercao == LIS_CondRetOK )
-         {
-            return LIS_CondRetOK ;
-         } else 
-         {
-            pLista->pElemCorr = pCorrenteSalvo ;
-            return LIS_CondRetFaltouMemoria ;
-         } /* if */
-
-   } /* Fim função: LIS  &Inserir elemento ordenado */
-
-/***************************************************************************
-*
-*  Função: LIS  &Apresenta Conteúdo em Ordem
-*  ****/
-
-   LIS_tpCondRet LIS_ApresentaConteudoEmOrdem( LIS_tppLista pLista )
-
-   {
-      tpElemLista * pElemIterador ;
-
-      #ifdef _DEBUG
-         assert( pLista != NULL ) ;
-      #endif
-
-         if ( pLista->pElemCorr != NULL )
-         {
-            for ( pElemIterador  = pLista->pOrigemLista ;
-                  pElemIterador != pLista->pFimLista ;
-                  pElemIterador  = pElemIterador->pProx )
-            {
-               pLista->ImprimirValor( pElemIterador->pValor );
-            } /* for */
-
-            pLista->ImprimirValor( pElemIterador->pValor );
-
-         } /* if */
-
-      return LIS_CondRetOK ;
-
-   } /* Fim função: LIS&Apresenta Conteúdo em Ordem */
 
 /***************************************************************************
 *
@@ -476,42 +298,6 @@
 
 /***************************************************************************
 *
-*  Função: LIS  &Ir para o elemento inicial
-*  ****/
-
-   LIS_tpCondRet LIS_IrInicioLista( LIS_tppLista pLista )
-   {
-
-      #ifdef _DEBUG
-         assert( pLista != NULL ) ;
-      #endif
-
-      pLista->pElemCorr = pLista->pOrigemLista ;
-
-      return LIS_CondRetOK ;
-
-   } /* Fim função: LIS  &Ir para o elemento inicial */
-
-/***************************************************************************
-*
-*  Função: LIS  &Ir para o elemento final
-*  ****/
-
-   LIS_tpCondRet LIS_IrFinalLista( LIS_tppLista pLista )
-   {
-
-      #ifdef _DEBUG
-         assert( pLista != NULL ) ;
-      #endif
-
-      pLista->pElemCorr = pLista->pFimLista ;
-
-      return LIS_CondRetOK ;
-
-   } /* Fim função: LIS  &Ir para o elemento final */
-
-/***************************************************************************
-*
 *  Função: LIS  &Avançar elemento
 *  ****/
 
@@ -591,41 +377,6 @@
          return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Avançar elemento */
-
-/***************************************************************************
-*
-*  Função: LIS  &Procurar elemento contendo valor
-*  ****/
-
-   LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
-                                    void * pValor        )
-   {
-
-      tpElemLista * pElem ;
-
-      #ifdef _DEBUG
-         assert( pLista  != NULL ) ;
-      #endif
-
-      if ( pLista->pElemCorr == NULL )
-      {
-         return LIS_CondRetListaVazia ;
-      } /* if */
-
-      for ( pElem  = pLista->pElemCorr ;
-            pElem != NULL ;
-            pElem  = pElem->pProx )
-      {
-         if ( pLista->Igual( pElem->pValor, pValor ) )
-         {
-            pLista->pElemCorr = pElem ;
-            return LIS_CondRetOK ;
-         } /* if */
-      } /* for */
-
-      return LIS_CondRetNaoAchou ;
-
-   } /* Fim função: LIS  &Procurar elemento contendo valor */
 
 /***************************************************************************
 *
@@ -720,7 +471,7 @@
 
    void LimparCabeca( LIS_tppLista pLista )
    {
-
+      
       pLista->pOrigemLista = NULL ;
       pLista->pFimLista = NULL ;
       pLista->pElemCorr = NULL ;
