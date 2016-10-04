@@ -30,7 +30,7 @@
 
 == Teste do Teste de Criação de Listas
 =criarlista      lista0   "abc"   OK
-=recuperar
+=recupera
 
 // ---------------------------------------------
 
