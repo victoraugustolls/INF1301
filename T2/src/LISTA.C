@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
 *     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
@@ -103,19 +104,19 @@
 *  Função: LIS  &Criar lista
 *  ****/
 
-   LIS_tppLista LIS_CriarLista(
+   LIS_tpCondRet LIS_CriarLista( LIS_tppLista pLista ,
              void   ( * ExcluirValor ) ( void * pDado ),
              void   ( * ImprimirValor ) ( void * pDado ),
              int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
              int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) )
    {
 
-      LIS_tpLista * pLista = NULL ;
+      pLista = NULL ;
 
       pLista = ( LIS_tpLista * ) malloc( sizeof( LIS_tpLista )) ;
       if ( pLista == NULL )
       {
-         return NULL ;
+         return LIS_CondRetFaltouMemoria ;
       } /* if */
 
       LimparCabeca( pLista ) ;
@@ -125,7 +126,7 @@
       pLista->CompararValores = CompararValores ;
       pLista->Igual = Igual ;
 
-      return pLista ;
+      return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Criar lista */
 
@@ -134,16 +135,19 @@
 *  Função: LIS  &Destruir lista
 *  ****/
 
-   void LIS_DestruirLista( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_DestruirLista( LIS_tppLista pLista )
    {
 
-      #ifdef _DEBUG
-         assert( pLista != NULL ) ;
-      #endif
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
 
       LIS_EsvaziarLista( pLista ) ;
 
       free( pLista ) ;
+
+      return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Destruir lista */
 
@@ -152,7 +156,7 @@
 *  Função: LIS  &Esvaziar lista
 *  ****/
 
-   void LIS_EsvaziarLista( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_EsvaziarLista( LIS_tppLista pLista )
    {
 
       tpElemLista * pElem ;
@@ -171,6 +175,8 @@
       } /* while */
 
       LimparCabeca( pLista ) ;
+
+      return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Esvaziar lista */
 
@@ -348,7 +354,7 @@
 *  Função: LIS  &Apresenta Conteúdo em Ordem
 *  ****/
 
-   void LIS_ApresentaConteudoEmOrdem( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_ApresentaConteudoEmOrdem( LIS_tppLista pLista )
 
    {
       tpElemLista * pElemIterador ;
@@ -368,7 +374,9 @@
 
             pLista->ImprimirValor( pElemIterador->pValor );
 
-         } /* if */       
+         } /* if */
+
+      return LIS_CondRetOK ;
 
    } /* Fim função: LIS&Apresenta Conteúdo em Ordem */
 
@@ -425,19 +433,21 @@
 *  Função: LIS  &Obter referência para o valor contido no elemento
 *  ****/
 
-   void * LIS_ObterValor( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista , void * elementoCorrente )
    {
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
       #endif
 
-      if ( pLista->pElemCorr == NULL )
+      elementoCorrente = pLista->pElemCorr->pValor ;
+
+      if ( elementoCorrente == NULL)
       {
-        return NULL ;
+         return LIS_CondRetListaVazia ;
       } /* if */
 
-      return pLista->pElemCorr->pValor ;
+      return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Obter referência para o valor contido no elemento */
 
@@ -446,7 +456,7 @@
 *  Função: LIS  &Ir para o elemento inicial
 *  ****/
 
-   void LIS_IrInicioLista( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_IrInicioLista( LIS_tppLista pLista )
    {
 
       #ifdef _DEBUG
@@ -455,6 +465,8 @@
 
       pLista->pElemCorr = pLista->pOrigemLista ;
 
+      return LIS_CondRetOK ;
+
    } /* Fim função: LIS  &Ir para o elemento inicial */
 
 /***************************************************************************
@@ -462,7 +474,7 @@
 *  Função: LIS  &Ir para o elemento final
 *  ****/
 
-   void LIS_IrFinalLista( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_IrFinalLista( LIS_tppLista pLista )
    {
 
       #ifdef _DEBUG
@@ -470,6 +482,8 @@
       #endif
 
       pLista->pElemCorr = pLista->pFimLista ;
+
+      return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Ir para o elemento final */
 
@@ -494,9 +508,7 @@
 
          if ( pLista->pElemCorr == NULL )
          {
-
             return LIS_CondRetListaVazia ;
-
          } /* fim ativa: Tratar lista vazia */
 
       /* Tratar avançar para frente */
@@ -511,7 +523,7 @@
                {
                   break ;
                } /* if */
-               pElem    = pElem->pProx ;
+               pElem = pElem->pProx ;
             } /* for */
 
             if ( pElem != NULL )
@@ -521,7 +533,7 @@
             } /* if */
 
             pLista->pElemCorr = pLista->pFimLista ;
-            return LIS_CondRetFimLista ;
+            return LIS_CondRetNoCorrenteUlt ;
 
          } /* fim ativa: Tratar avançar para frente */
 
@@ -537,7 +549,7 @@
                {
                   break ;
                } /* if */
-               pElem    = pElem->pAnt ;
+               pElem = pElem->pAnt ;
             } /* for */
 
             if ( pElem != NULL )
@@ -547,7 +559,7 @@
             } /* if */
 
             pLista->pElemCorr = pLista->pOrigemLista ;
-            return LIS_CondRetFimLista ;
+            return LIS_CondRetNoCorrentePrim ;
 
          } /* fim ativa: Tratar avançar para trás */
 
@@ -591,6 +603,31 @@
       return LIS_CondRetNaoAchou ;
 
    } /* Fim função: LIS  &Procurar elemento contendo valor */
+
+/***************************************************************************
+*
+*  Função: LIS  &Altera conteudo do nó corrente
+*  ****/
+
+   LIS_tpCondRet LIS_AlteraValor( LIS_tppLista pLista ,
+                                    void * pValor )
+   {
+
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      }/* if */
+
+      if ( pLista->pElemCorr == NULL )
+      {
+         return LIS_CondRetListaVazia ;
+      } /* if */
+
+      pLista->pElemCorr->pValor = pValor;
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Altera conteudo do nó corrente
 
 
 /*****  Código das funções encapsuladas no módulo  *****/
