@@ -150,8 +150,6 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
              void   ( * ExcluirValor ) ( void * pDado ) ,
 
-             void   ( * ImprimirValor ) ( void * pDado ) ,
-
              int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ) ,
 
              int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) ) ;
