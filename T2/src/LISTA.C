@@ -9,10 +9,11 @@
 *
 *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
 *  Gestor:  LES/DI/PUC-Rio
-*  Autores: avs
+*  Autores: avs, iars
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
 *     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
@@ -73,6 +74,15 @@
 
          void ( * ExcluirValor ) ( void * pValor ) ;
                /* Ponteiro para a função de destruição do valor contido em um elemento */
+         
+         void ( * ImprimirValor ) ( void * pValor ) ;
+               /* Ponteiro para a função de impressão do valor do elemento */
+         
+         int ( * CompararValores ) ( void * pValor_1, void * pValor_2 ) ;
+               /* Ponteiro para a função de comparação de valores */
+         
+         int ( * Igual ) ( void * pValor_1, void * pValor_2 ) ;
+               /* Ponteiro para a função de checagem de igualdade de valores */
 
    } LIS_tpLista ;
 
@@ -94,7 +104,10 @@
 *  ****/
 
    LIS_tppLista LIS_CriarLista(
-             void   ( * ExcluirValor ) ( void * pDado ) )
+             void   ( * ExcluirValor ) ( void * pDado ),
+             void   ( * ImprimirValor ) ( void * pDado ),
+             int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
+             int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) )
    {
 
       LIS_tpLista * pLista = NULL ;
@@ -108,6 +121,9 @@
       LimparCabeca( pLista ) ;
 
       pLista->ExcluirValor = ExcluirValor ;
+      pLista->ImprimirValor = ImprimirValor ;
+      pLista->CompararValores = CompararValores ;
+      pLista->Igual = Igual ;
 
       return pLista ;
 
@@ -262,6 +278,102 @@
 
 /***************************************************************************
 *
+*  Função: LIS  &Inserir elemento ordenado
+*  ****/
+
+   LIS_tpCondRet LIS_InserirElementoOrdenado( LIS_tppLista pLista ,
+                                              void * pValor  )
+      
+   {
+      tpElemLista * pElemIterador ;
+      tpElemLista * pCorrenteSalvo ;
+      LIS_tpCondRet RetornoInsercao ;
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+         pCorrenteSalvo = pLista->pElemCorr;
+
+         if ( pLista->pElemCorr != NULL )
+         {
+            for ( pElemIterador  = pLista->pOrigemLista ;
+                  pElemIterador != pLista->pFimLista ;
+                  pElemIterador  = pElemIterador->pProx )
+            {
+               if ( pLista->CompararValores( pElemIterador->pValor, pValor ) > 0)
+               {
+                  pLista->pElemCorr = pElemIterador ;
+                  break ;
+               } /* if */
+            } /* for */
+
+            if ( pElemIterador == pLista->pFimLista )
+            {
+               if ( pLista->CompararValores( pElemIterador->pValor, pValor ) >= 0)
+               {
+                  pLista->pElemCorr = pElemIterador ;
+               } 
+               else
+               {
+                  RetornoInsercao = LIS_InserirElementoApos ( pLista, pValor ) ;
+                  if( RetornoInsercao == LIS_CondRetOK )
+                  {
+                     return LIS_CondRetOK ;
+                  } else 
+                  {
+                     pLista->pElemCorr = pCorrenteSalvo ;
+                     return LIS_CondRetFaltouMemoria ;
+                  } /* if */
+               }
+            } /* if */
+
+         } /* if */
+                  
+         RetornoInsercao = LIS_InserirElementoAntes ( pLista, pValor ) ;
+
+         if( RetornoInsercao == LIS_CondRetOK )
+         {
+            return LIS_CondRetOK ;
+         } else 
+         {
+            pLista->pElemCorr = pCorrenteSalvo ;
+            return LIS_CondRetFaltouMemoria ;
+         } /* if */
+
+   } /* Fim função: LIS  &Inserir elemento ordenado */
+
+/***************************************************************************
+*
+*  Função: LIS  &Apresenta Conteúdo em Ordem
+*  ****/
+
+   void LIS_ApresentaConteudoEmOrdem( LIS_tppLista pLista )
+
+   {
+      tpElemLista * pElemIterador ;
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+         if ( pLista->pElemCorr != NULL )
+         {
+            for ( pElemIterador  = pLista->pOrigemLista ;
+                  pElemIterador != pLista->pFimLista ;
+                  pElemIterador  = pElemIterador->pProx )
+            {
+               pLista->ImprimirValor( pElemIterador->pValor );
+            } /* for */
+
+            pLista->ImprimirValor( pElemIterador->pValor );
+
+         } /* if */       
+
+   } /* Fim função: LIS&Apresenta Conteúdo em Ordem */
+
+/***************************************************************************
+*
 *  Função: LIS  &Excluir elemento
 *  ****/
 
@@ -334,7 +446,7 @@
 *  Função: LIS  &Ir para o elemento inicial
 *  ****/
 
-   void IrInicioLista( LIS_tppLista pLista )
+   void LIS_IrInicioLista( LIS_tppLista pLista )
    {
 
       #ifdef _DEBUG
@@ -350,7 +462,7 @@
 *  Função: LIS  &Ir para o elemento final
 *  ****/
 
-   void IrFinalLista( LIS_tppLista pLista )
+   void LIS_IrFinalLista( LIS_tppLista pLista )
    {
 
       #ifdef _DEBUG
@@ -469,7 +581,7 @@
             pElem != NULL ;
             pElem  = pElem->pProx )
       {
-         if ( pElem->pValor == pValor )
+         if ( pLista->Igual( pElem->pValor, pValor ) )
          {
             pLista->pElemCorr = pElem ;
             return LIS_CondRetOK ;

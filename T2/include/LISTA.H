@@ -12,10 +12,11 @@
 *
 *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
 *  Gestor:  LES/DI/PUC-Rio
-*  Autores: avs
+*  Autores: avs, iars
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
 *     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
@@ -49,8 +50,19 @@
 *        esta função deve promover a destruição (free) desse valor e
 *        de todos os dados nele ancorados.
 *
+*     Também devem ser fornecidas uma função de comparação de elementos, uma
+*        função que diz quando dois elementos são iguais e uma função que
+*        imprime o conteúdo de um elemento.
+*
+*     A função de comparação deve receber dois elementos e retornar -1, 0 ou 1
+*        caso o primeiro elemento deva ser ordenado antes, igualmente ou após
+*        o segundo elemento, respectivamente.
+*
+*     A função de igualdade deve receber dois valores e retornar 0 caso sejam diferentes
+*        ou um inteiro diferente de zero caso sejam iguais.
+*
 ***************************************************************************/
- 
+
 #if defined( LISTA_OWN )
    #define LISTA_EXT
 #else
@@ -109,6 +121,15 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *                     exclusão do valor referenciado pelo elemento
 *                     a ser excluído.
 *                     Ver descrição do módulo.
+*     ImprimirValor  - ponteiro para a função que imprime o valor
+*                     referenciado pelo módulo.
+*                     Ver descrição do módulo.
+*     CompararValores - ponteiro para a função que compara o valor
+*                     de dois elementos. Deve retornar -1, 0 ou 1.
+*                     Ver descrição do módulo.
+*     Igual           -  ponteiro para a função que compara se o valor
+*                     de dois elementos é igual.
+*                     Ver descrição do módulo.
 *
 *  $FV Valor retornado
 *     Se executou corretamente retorna o ponteiro para a lista.
@@ -121,7 +142,13 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tppLista LIS_CriarLista(
-             void   ( * ExcluirValor ) ( void * pDado ) ) ;
+             void   ( * ExcluirValor ) ( void * pDado ),
+
+             void   ( * ImprimirValor ) ( void * pDado ),
+
+             int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
+
+             int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) ) ;
 
 
 /***********************************************************************
@@ -164,6 +191,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Insere novo elemento antes do elemento corrente.
+*     O elemento corrente passará a ser o novo elemento inserido.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
 *  $EP Parâmetros
@@ -186,7 +214,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $FC Função: LIS  &Inserir elemento após
 *
 *  $ED Descrição da função
-*     Insere novo elemento apás o elemento corrente.
+*     Insere novo elemento após o elemento corrente.
+*     O elemento corrente passará a ser o novo elemento inserido.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
 *  $EP Parâmetros
@@ -204,8 +233,63 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_InserirElementoApos( LIS_tppLista pLista ,
-                                          void * pValor        )
-       ;
+                                          void * pValor        ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Inserir elemento ordenado
+*
+*  $ED Descrição da função
+*     Insere novo elemento de forma ordenada na lista.
+*     O novo elemento será inserido na primeira ocorrência em que o elemento
+*       anterior, caso exista, possua uma ordenação menor que o valor
+*       do elemento sendo inserido e em que o elemento posterior, caso exista,
+*       possua uma ordenação maior.
+*     Caso a lista esteja ordenada, essa inserção preservará sua 
+*       propriedade de ordenada.
+*     Caso a lista NÃO esteja previamente ordenada,
+*       essa inserção NÃO garante a propriedade de ordenação.
+*     O elemento corrente passará a ser o novo elemento inserido.
+*     A ordenação se dá através da função de comparação passada na criação
+*       da lista.
+*     Caso a lista esteja vazia, insere o primeiro elemento da lista.
+*
+*  $EP Parâmetros
+*     Parâmetros
+*        pLista - ponteiro para a lista onde deve ser inserido o elemento
+*        pValor - ponteiro para o valor do novo elemento
+*                           Pode ser NULL
+*           
+*
+*  $FV Valor retornado
+*     Valor retornado
+*        LIS_CondRetOK
+*        LIS_CondRetFaltouMemoria
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_InserirElementoOrdenado( LIS_tppLista pLista ,
+                                              void * pValor        ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Apresenta Conteúdo em Ordem
+*
+*  $ED Descrição da função
+*     Apresenta o conteúdo da lista na ordem em que ela
+*       aparece na lista.
+*     A apresentação é feita de acordo com a função passada na criação
+*       da lista.
+*
+*  $EP Parâmetros
+*     Parâmetros
+*        pLista - ponteiro para a lista onde deve ser inserido o elemento
+*
+***********************************************************************/
+
+   void LIS_ApresentaConteudoEmOrdem( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -263,7 +347,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void IrInicioLista( LIS_tppLista pLista ) ;
+   void LIS_IrInicioLista( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -279,7 +363,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   void IrFinalLista( LIS_tppLista pLista ) ;
+   void LIS_IrFinalLista( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -316,7 +400,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Procura o elemento que referencia o valor dado.
-*     A função compara ponteiro e não conteúdo apontado.
+*     A função compara o conteúdo apontado de acordo com função
+*       de igualdade passada na criação da lista.
 *
 *  $EP Parâmetros
 *     pLista  - ponteiro para a lista onde procura
