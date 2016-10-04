@@ -12,10 +12,12 @@
 *
 *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
 *  Gestor:  LES/DI/PUC-Rio
-*  Autores: avs
+*  Autores: avs, iars
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
+*     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
 *     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
@@ -49,8 +51,19 @@
 *        esta função deve promover a destruição (free) desse valor e
 *        de todos os dados nele ancorados.
 *
+*     Também devem ser fornecidas uma função de comparação de elementos, uma
+*        função que diz quando dois elementos são iguais e uma função que
+*        imprime o conteúdo de um elemento.
+*
+*     A função de comparação deve receber dois elementos e retornar -1, 0 ou 1
+*        caso o primeiro elemento deva ser ordenado antes, igualmente ou após
+*        o segundo elemento, respectivamente.
+*
+*     A função de igualdade deve receber dois valores e retornar 0 caso sejam diferentes
+*        ou um inteiro diferente de zero caso sejam iguais.
+*
 ***************************************************************************/
- 
+
 #if defined( LISTA_OWN )
    #define LISTA_EXT
 #else
@@ -76,20 +89,29 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    typedef enum {
 
-         LIS_CondRetOK ,
+         LIS_CondRetOK = 0 ,
                /* Concluiu corretamente */
 
-         LIS_CondRetListaVazia ,
+         LIS_CondRetListaVazia = 2 ,
                /* A lista não contém elementos */
 
-         LIS_CondRetFimLista ,
-               /* Foi atingido o fim de lista */
+         LIS_CondRetListaNaoExiste = 3 ,
+               /* A lista não existe */
 
-         LIS_CondRetNaoAchou ,
-               /* Não encontrou o valor procurado */
+         LIS_CondRetNoCorrenteUlt = 4 ,
+               /* Nó corrente é o último */
 
-         LIS_CondRetFaltouMemoria
+         LIS_CondRetNoCorrentePrim = 5 ,
+               /* Nó corrente é o primeiro */
+
+         LIS_CondRetFaltouMemoria = 6 ,
                /* Faltou memória ao tentar criar um elemento de lista */
+
+         LIS_CondRetFimLista ,
+               /* Lista chegou ao fim */
+
+         LIS_CondRetNaoEncontrou
+               /* Não encontrou o valor desejado na lista */
 
    } LIS_tpCondRet ;
 
@@ -105,23 +127,36 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *     Não existe identificador de tipo associado à lista.
 *
 *  $EP Parâmetros
-*     ExcluirValor  - ponteiro para a função que processa a
+*
+*     pLista          - ponteiro para a lista sendo criada
+*     ExcluirValor    - ponteiro para a função que processa a
 *                     exclusão do valor referenciado pelo elemento
 *                     a ser excluído.
 *                     Ver descrição do módulo.
+*     ImprimirValor   - ponteiro para a função que imprime o valor
+*                     referenciado pelo módulo.
+*                     Ver descrição do módulo.
+*     CompararValores - ponteiro para a função que compara o valor
+*                     de dois elementos. Deve retornar -1, 0 ou 1.
+*                     Ver descrição do módulo.
+*     Igual           -  ponteiro para a função que compara se o valor
+*                     de dois elementos é igual.
+*                     Ver descrição do módulo.
 *
 *  $FV Valor retornado
-*     Se executou corretamente retorna o ponteiro para a lista.
-*     Este ponteiro será utilizado pelas funções que manipulem esta lista.
-*
-*     Se ocorreu algum erro, por exemplo falta de memória ou dados errados,
-*     a função retornará NULL.
-*     Não será dada mais informação quanto ao problema ocorrido.
+*     LIS_CondRetOK            - lista foi criada corretamente
+*     LIS_CondRetFaltouMemoria - ocorreu um erro na criação da lista
 *
 ***********************************************************************/
 
-   LIS_tppLista LIS_CriarLista(
-             void   ( * ExcluirValor ) ( void * pDado ) ) ;
+   LIS_tpCondRet LIS_CriarLista( LIS_tppLista pLista ,
+             void   ( * ExcluirValor ) ( void * pDado ) ,
+
+             void   ( * ImprimirValor ) ( void * pDado ) ,
+
+             int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ) ,
+
+             int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) ) ;
 
 
 /***********************************************************************
@@ -136,11 +171,12 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *     OBS. não existe previsão para possíveis falhas de execução.
 *
 *  $FV Valor retornado
-*     LIS_CondRetOK    - destruiu sem problemas
+*     LIS_CondRetOK             - destruiu sem problemas
+*     LIS_CondRetListaNaoExiste - lista não existe
 *
 ***********************************************************************/
 
-   void LIS_DestruirLista( LIS_tppLista pLista ) ;
+   LIS_tpCondRet LIS_DestruirLista( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -153,9 +189,12 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $EP Parâmetros
 *     pLista - ponteiro para a lista a ser esvaziada
 *
+*  $FV Valor retornado
+*     LIS_CondRetOK - esvaziou sem problemas
+*
 ***********************************************************************/
 
-   void LIS_EsvaziarLista( LIS_tppLista pLista ) ;
+   LIS_tpCondRet LIS_EsvaziarLista( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -164,6 +203,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Insere novo elemento antes do elemento corrente.
+*     O elemento corrente passará a ser o novo elemento inserido.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
 *  $EP Parâmetros
@@ -186,7 +226,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $FC Função: LIS  &Inserir elemento após
 *
 *  $ED Descrição da função
-*     Insere novo elemento apás o elemento corrente.
+*     Insere novo elemento após o elemento corrente.
+*     O elemento corrente passará a ser o novo elemento inserido.
 *     Caso a lista esteja vazia, insere o primeiro elemento da lista.
 *
 *  $EP Parâmetros
@@ -204,8 +245,65 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_InserirElementoApos( LIS_tppLista pLista ,
-                                          void * pValor        )
-       ;
+                                          void * pValor        ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Inserir elemento ordenado
+*
+*  $ED Descrição da função
+*     Insere novo elemento de forma ordenada na lista.
+*     O novo elemento será inserido na primeira ocorrência em que o elemento
+*       anterior, caso exista, possua uma ordenação menor que o valor
+*       do elemento sendo inserido e em que o elemento posterior, caso exista,
+*       possua uma ordenação maior.
+*     Caso a lista esteja ordenada, essa inserção preservará sua 
+*       propriedade de ordenada.
+*     Caso a lista NÃO esteja previamente ordenada,
+*       essa inserção NÃO garante a propriedade de ordenação.
+*     O elemento corrente passará a ser o novo elemento inserido.
+*     A ordenação se dá através da função de comparação passada na criação
+*       da lista.
+*     Caso a lista esteja vazia, insere o primeiro elemento da lista.
+*
+*  $EP Parâmetros
+*     Parâmetros
+*        pLista - ponteiro para a lista onde deve ser inserido o elemento
+*        pValor - ponteiro para o valor do novo elemento
+*                           Pode ser NULL
+*           
+*  $FV Valor retornado
+*     Valor retornado
+*        LIS_CondRetOK
+*        LIS_CondRetFaltouMemoria
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_InserirElementoOrdenado( LIS_tppLista pLista ,
+                                              void * pValor        ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Apresenta Conteúdo em Ordem
+*
+*  $ED Descrição da função
+*     Apresenta o conteúdo da lista na ordem em que ela
+*       aparece na lista.
+*     A apresentação é feita de acordo com a função passada na criação
+*       da lista.
+*
+*  $EP Parâmetros
+*     Parâmetros
+*        pLista - ponteiro para a lista onde deve ser inserido o elemento
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ApresentaConteudoEmOrdem( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -238,16 +336,17 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *     Obtem a referência para o valor contido no elemento corrente da lista
 *
 *  $EP Parâmetros
-*     pLista - ponteiro para a lista de onde se quer o valor
+*     pLista           - ponteiro para a lista de onde se quer o valor
+*     elementoCorrente - ponteiro para o valor do nó corrente. Pode ser NULL.
 *
 *  $FV Valor retornado
-*     não NULL - se o elemento corrente existe
-*     NULL     - se a lista estiver vazia
-*                Pode retornar NULL se o valor inserido no elemento for NULL.
+*     LIS_CondRetOK
+*     LIS_CondRetListaVazia
 *
 ***********************************************************************/
 
-   void * LIS_ObterValor( LIS_tppLista pLista ) ;
+   LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista ,
+                                 void * elementoCorrente ) ;
 
 
 /***********************************************************************
@@ -261,9 +360,12 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $EP Parâmetros
 *     pLista - ponteiro para a lista a manipular
 *
+*  $FV Valor retornado
+*     LIS_CondRetOK
+*
 ***********************************************************************/
 
-   void IrInicioLista( LIS_tppLista pLista ) ;
+   LIS_tpCondRet LIS_IrInicioLista( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -277,9 +379,12 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $EP Parâmetros
 *     pLista - ponteiro para a lista a manipular
 *
+*  $FV Valor retornado
+*     LIS_CondRetOK
+*
 ***********************************************************************/
 
-   void IrFinalLista( LIS_tppLista pLista ) ;
+   LIS_tpCondRet LIS_IrFinalLista( LIS_tppLista pLista ) ;
 
 
 /***********************************************************************
@@ -299,10 +404,12 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *     numElem - o número de elementos a andar
 *
 *  $FV Valor retornado
-*     CondRetOK         - se numElem elementos tiverem sido andados
-*     CondRetFimLista   - se encontrou o fim da lista antes de andar numElem
-*                         elementos
-*     CondRetListaVazia - se a lista está vazia
+*     LIS_CondRetOK             - se numElem elementos tiverem sido andados
+*     LIS_CondRetNoCorrenteUlt  - chegou ao final da lista antes de avançar
+*                               para o próximo elemento
+*     LIS_CondRetNoCorrentePrim - chegou no começo da lista antes de retornar
+*                               para o elemento anterior
+*     LIS_CondRetListaVazia     - se a lista está vazia
 *
 ***********************************************************************/
 
@@ -316,7 +423,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Procura o elemento que referencia o valor dado.
-*     A função compara ponteiro e não conteúdo apontado.
+*     A função compara o conteúdo apontado de acordo com função
+*       de igualdade passada na criação da lista.
 *
 *  $EP Parâmetros
 *     pLista  - ponteiro para a lista onde procura
@@ -330,13 +438,36 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *                      e que contém o ponteiro procurado
 *
 *     LIS_CondRetNaoEncontrou - se o ponteiro não foi encontrado
-*                      O elemento corrente continua o mesmo
+*                               O elemento corrente continua o mesmo
 *     LIS_CondRetListaVazia   - se a lista estiver vazia
 *
 ***********************************************************************/
 
    LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
                                     void * pValor        ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Altera conteudo do nó corrente
+*
+*  $ED Descrição da função
+*     Altera o valor do nó corrente da lista para novo valor.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser manipulada
+*     pValor  - ponteiro para o novo valor do nó corrente
+*               Pode ser NULL
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaVazia     - se a lista estiver vazia
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_AlteraValor( LIS_tppLista pLista ,
+                                  void * pValor ) ;
 
 #undef LISTA_EXT
 
