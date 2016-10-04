@@ -285,7 +285,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
       /* Testar Alterar elemento do nó corrente da lista */
 
-         else if ( strcmp( ComandoTeste , IR_ANT_CMD ) == 0 )
+         else if ( strcmp( ComandoTeste , ALTERAR_NO_CMD ) == 0 )
          {
 
             numLidos = LER_LerParametros( "isi" ,
