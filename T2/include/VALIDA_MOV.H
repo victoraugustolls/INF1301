@@ -29,11 +29,11 @@
    #define VALIDA_MOV_EXT extern
 #endif
 
-/***********************************************************************
-* Nome do arquivo utilizado pelo módulo
-***********************************************************************/
+/***** Declarações exportadas pelo módulo *****/
 
-static const char CONFIG_FILE_NAME [ ] = "config.conf";
+/* Tipo referência para uma configuracao de diretorio de movimento */
+
+typedef struct VMV_configDir * VMV_tppConfigDir;
 
 /***********************************************************************
 *
@@ -50,10 +50,13 @@ static const char CONFIG_FILE_NAME [ ] = "config.conf";
          VMV_CondRetOK = 0 ,
                /* Concluiu corretamente */
 
-         VMV_CondRetErrArquivoNaoEncontrado = 1 ,
+         VMV_CondRetErrAberturaArquivo = 1 ,
                /* Ocorreu um erro na leitura do arquivo */
 
          VMV_CondRetErrFormatoArquivoErrado = 2 ,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetErrFaltouMemoria = 3
                /* Ocorreu um erro na leitura do arquivo */
 
    } VMV_tpCondRet ;
@@ -78,6 +81,27 @@ static const char CONFIG_FILE_NAME [ ] = "config.conf";
 
    } VMV_tpMovimentoValido ;
 
+/***********************************************************************
+*
+*  $FC Função: VMV  &TODO
+*
+*  $ED Descrição da função
+*     TODO
+*
+*  $EP Parâmetros
+*
+*     TODO          - TODO
+*     TODO          - TODO
+*
+*  $FV Valor retornado
+*     VMV_CondRetOK            - TODO
+*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
+*     VMV_CondRetErrFormatoArquivoErrado            - TODO
+*
+***********************************************************************/
+
+   VMV_tpCondRet VMV_CriarConfigDir (  VMV_tppConfigDir* pConfigDir, const char* pathConfigArq );
+
 
 /***********************************************************************
 *
@@ -98,7 +122,31 @@ static const char CONFIG_FILE_NAME [ ] = "config.conf";
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_LerTabuleiroInicial ( double* pecas, double* cores, double* num_casas );
+   VMV_tpCondRet VMV_DestruirConfigDir (  VMV_tppConfigDir pConfigDir );
+
+
+/***********************************************************************
+*
+*  $FC Função: VMV  &TODO
+*
+*  $ED Descrição da função
+*     TODO
+*
+*  $EP Parâmetros
+*
+*     TODO          - TODO
+*     TODO          - TODO
+*
+*  $FV Valor retornado
+*     VMV_CondRetOK            - TODO
+*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
+*     VMV_CondRetErrFormatoArquivoErrado            - TODO
+*
+***********************************************************************/
+
+   VMV_tpCondRet VMV_LerTabuleiroInicial (   double* pecas, 
+                                             double* cores, 
+                                             double* num_casas );
 
 /***********************************************************************
 *
