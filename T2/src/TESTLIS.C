@@ -141,12 +141,11 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            vtListas[ inxLista ] =
-                 LIS_CriarLista( vtListas[ inxLista ] , idLista ,
-                    DestruirValor , CompararValor ,  IgualValor ) ;
+            CondRet = LIS_CriarLista( vtListas[ inxLista ] , idLista ,
+                                      DestruirValor , CompararValor ,  IgualValor ) ;
 
-            return TST_CompararPonteiroNulo( 1 , vtListas[ inxLista ] ,
-               "Erro em ponteiro de nova lista."  ) ;
+            return TST_CompararInt( CondRetEsp , CondRet ,
+                     "Condicao de retorno errada ao criar lista." ) ;
 
          } /* fim ativa: Testar CriarLista */
 
