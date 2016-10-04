@@ -73,6 +73,9 @@
          int numElem ;
                /* Número de elementos da lista */
 
+         char * idLista ;
+               /* Identificação da lista */
+
          void ( * ExcluirValor ) ( void * pValor ) ;
                /* Ponteiro para a função de destruição do valor contido em um elemento */
          
@@ -105,6 +108,7 @@
 *  ****/
 
    LIS_tpCondRet LIS_CriarLista( LIS_tppLista pLista ,
+             char * idLista ,
              void   ( * ExcluirValor ) ( void * pDado ),
              void   ( * ImprimirValor ) ( void * pDado ),
              int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
@@ -121,6 +125,7 @@
 
       LimparCabeca( pLista ) ;
 
+      pLista->idLista = idLista ;
       pLista->ExcluirValor = ExcluirValor ;
       pLista->ImprimirValor = ImprimirValor ;
       pLista->CompararValores = CompararValores ;
@@ -450,6 +455,24 @@
       return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Obter referência para o valor contido no elemento */
+
+/***************************************************************************
+*
+*  Função: LIS  &Obter referência para a identificação contida na cabeça da lista
+*  ****/
+
+   LIS_tpCondRet LIS_ObterId( LIS_tppLista pLista , char * idLista )
+   {
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+      idLista = pLista->pOrigemLista->idLista ;
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Obter referência para a identificação contida na cabeça da lista */
 
 /***************************************************************************
 *
