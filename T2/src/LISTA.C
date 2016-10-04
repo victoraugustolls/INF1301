@@ -96,6 +96,8 @@
    static tpElemLista * CriarElemento( LIS_tppLista pLista ,
                                        void *       pValor  ) ;
 
+   static void LIS_EsvaziarLista( LIS_tppLista pLista ) ;
+
    static void LimparCabeca( LIS_tppLista pLista ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
@@ -286,7 +288,7 @@
          assert( pLista != NULL ) ;
       #endif
 
-      idLista = pLista->pOrigemLista->idLista ;
+      idLista = pLista->idLista ;
 
       return LIS_CondRetOK ;
 
@@ -461,6 +463,35 @@
 
 /***********************************************************************
 *
+*  $FC Função: LIS  -Esvaziar a lista
+*
+***********************************************************************/
+
+   void LIS_EsvaziarLista( LIS_tppLista pLista )
+   {
+
+      tpElemLista * pElem ;
+      tpElemLista * pProx ;
+
+      #ifdef _DEBUG
+         assert( pLista != NULL ) ;
+      #endif
+
+      pElem = pLista->pOrigemLista ;
+      while ( pElem != NULL )
+      {
+         pProx = pElem->pProx ;
+         LiberarElemento( pLista , pElem ) ;
+         pElem = pProx ;
+      } /* while */
+
+      LimparCabeca( pLista ) ;
+
+   } /* Fim função: LIS  -Esvaziar a lista */
+
+
+/***********************************************************************
+*
 *  $FC Função: LIS  -Limpar a cabeça da lista
 *
 ***********************************************************************/
@@ -468,6 +499,7 @@
    void LimparCabeca( LIS_tppLista pLista )
    {
 
+      pLista->idLista = NULL;
       pLista->pOrigemLista = NULL ;
       pLista->pFimLista = NULL ;
       pLista->pElemCorr = NULL ;

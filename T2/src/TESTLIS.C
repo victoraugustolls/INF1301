@@ -101,17 +101,13 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
       TST_tpCondRet CondRet ;
 
-      int ValEsp = -1 ;
-
       char idLista[4] ;
       char idListaEsp[4] ;
 
-      char * pValor ;
-      char * pValorEsp ;
+      char pValor[10] ;
+      char pValorEsp[10] ;
 
       int i ;
-
-      int numElem = -1 ;
 
       /* Efetuar reset de teste de lista */
 
