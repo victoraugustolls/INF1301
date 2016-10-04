@@ -129,6 +129,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $EP Parâmetros
 *
 *     pLista          - ponteiro para a lista sendo criada
+*     idLista         - id da lista sendo criada
 *     ExcluirValor    - ponteiro para a função que processa a
 *                     exclusão do valor referenciado pelo elemento
 *                     a ser excluído.
@@ -139,7 +140,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *     CompararValores - ponteiro para a função que compara o valor
 *                     de dois elementos. Deve retornar -1, 0 ou 1.
 *                     Ver descrição do módulo.
-*     Igual           -  ponteiro para a função que compara se o valor
+*     Igual           - ponteiro para a função que compara se o valor
 *                     de dois elementos é igual.
 *                     Ver descrição do módulo.
 *
@@ -150,6 +151,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_CriarLista( LIS_tppLista pLista ,
+             char * idLista ,
+
              void   ( * ExcluirValor ) ( void * pDado ) ,
 
              void   ( * ImprimirValor ) ( void * pDado ) ,
@@ -347,6 +350,26 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista ,
                                  void * elementoCorrente ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter identificador na cabeça da lista
+*
+*  $ED Descrição da função
+*     Obtem a identificação na cabeça da lista
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista de onde se quer o valor
+*     idLista - ponteiro para o valor do id da lista
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterId( LIS_tppLista pLista ,
+                              char * idLista ) ;
 
 
 /***********************************************************************
