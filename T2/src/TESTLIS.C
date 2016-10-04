@@ -13,7 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     5       vas   15/set/2016 incluir nos testes a possibilidade de inserir parametro nulo
+*     5       vas   04/out/2016 modificar as funções de teste para as expecificadas no enunciado
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
 *     2       avs   07/jul/2003 unificação de todos os módulos em um só projeto
