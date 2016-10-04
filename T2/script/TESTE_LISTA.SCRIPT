@@ -17,9 +17,6 @@
 =declararparm	NoCorrentePrim    int  5
 =declararparm   FaltouMemoria     int  6
 
-=declararparm   pNULL             int  0
-=declararparm   pNaoNULL          int  1
-
 // ---------------------------------------------
 
 == Inicializar valores
