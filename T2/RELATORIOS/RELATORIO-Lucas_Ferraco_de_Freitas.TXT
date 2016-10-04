@@ -19,4 +19,4 @@
 
 03/10/2016; 0.5 hora ; revisar projetos; Revisei em parte o módulo lista para ver se atendia ao enunciado do T2.
 
-03/10/2016; 0.5 hora ; projetar; Comecei a projetar o módulo TABULEIRO.
+03/10/2016; 1.5 horas ; projetar; Comecei a projetar o módulo TABULEIRO.
