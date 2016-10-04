@@ -14,6 +14,7 @@
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
+*                               e retirada de funções não utilizadas
 *     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos
@@ -79,9 +80,6 @@
          void ( * ExcluirValor ) ( void * pValor ) ;
                /* Ponteiro para a função de destruição do valor contido em um elemento */
          
-         void ( * ImprimirValor ) ( void * pValor ) ;
-               /* Ponteiro para a função de impressão do valor do elemento */
-         
          int ( * CompararValores ) ( void * pValor_1, void * pValor_2 ) ;
                /* Ponteiro para a função de comparação de valores */
          
@@ -110,7 +108,6 @@
    LIS_tpCondRet LIS_CriarLista( LIS_tppLista pLista ,
              char * idLista ,
              void   ( * ExcluirValor ) ( void * pDado ),
-             void   ( * ImprimirValor ) ( void * pDado ),
              int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
              int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) )
    {
@@ -127,7 +124,6 @@
 
       pLista->idLista = idLista ;
       pLista->ExcluirValor = ExcluirValor ;
-      pLista->ImprimirValor = ImprimirValor ;
       pLista->CompararValores = CompararValores ;
       pLista->Igual = Igual ;
 
@@ -471,7 +467,7 @@
 
    void LimparCabeca( LIS_tppLista pLista )
    {
-      
+
       pLista->pOrigemLista = NULL ;
       pLista->pFimLista = NULL ;
       pLista->pElemCorr = NULL ;

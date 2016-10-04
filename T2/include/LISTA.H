@@ -12,11 +12,12 @@
 *
 *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
 *  Gestor:  LES/DI/PUC-Rio
-*  Autores: avs, iars
+*  Autores: avs, iars, vas
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
+*                               e retirada de funções não utilizadas
 *     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
 *     4       avs   01/fev/2006 criar linguagem script simbólica
 *     3       avs   08/dez/2004 uniformização dos exemplos

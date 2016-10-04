@@ -60,8 +60,6 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
    static void DestruirValor( void * pDado ) ;
 
-   static void ImprimirValor( void * pDado ) ;
-
    static int CompararValor( void * pDado_1 , void * pDado_2 ) ;
 
    static int IgualValor( void * pDado_1 , void * pDado_2 ) ;
@@ -111,8 +109,6 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       char * pValor ;
       char * pValorEsp ;
 
-      int paramNULL = -1 ;
-
       int i ;
 
       int numElem = -1 ;
@@ -147,8 +143,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
             vtListas[ inxLista ] =
                  LIS_CriarLista( vtListas[ inxLista ] , idLista ,
-                    DestruirValor , ImprimirValor ,
-                    CompararValor ,  IgualValor ) ;
+                    DestruirValor , CompararValor ,  IgualValor ) ;
 
             return TST_CompararPonteiroNulo( 1 , vtListas[ inxLista ] ,
                "Erro em ponteiro de nova lista."  ) ;
@@ -356,20 +351,6 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       valor = NULL ;
 
    } /* Fim função: TLIS -Destruir valor */
-
-
-/***********************************************************************
-*
-*  $FC Função: TLIS -Imprimir valor
-*
-***********************************************************************/
-
-   void ImprimirValor( void * pDado )
-   {
-      char * valor = ( char * ) pDado ;
-      printf("%s\n", valor);
-
-   } /* Fim função: TLIS -Imprimir valor */
 
 
 /***********************************************************************
