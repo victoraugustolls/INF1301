@@ -30,7 +30,7 @@
 
 == Teste do Teste de Criação de Listas
 =criarlista      lista0   "abc"   OK
-=recupera
+=recuperar
 
 // ---------------------------------------------
 
@@ -50,7 +50,7 @@
 == Teste do Teste Obter Id Lista
 =criarlista      lista0   "abc"   OK
 =obterIdLista    lista0   "cba"
-=recupera
+=recuperar
 =destroiLista    lista0   OK
 
 // ---------------------------------------------
