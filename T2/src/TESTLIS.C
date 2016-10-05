@@ -104,8 +104,8 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       char idLista[4] ;
       char idListaEsp[4] ;
 
-      char pValor[10] ;
-      char pValorEsp[10] ;
+      char * pValor = ( char * ) malloc ( sizeof ( char ) ) ;
+      char * pValorEsp = ( char * ) malloc ( sizeof ( char ) ) ; ;
 
       int i ;
 
