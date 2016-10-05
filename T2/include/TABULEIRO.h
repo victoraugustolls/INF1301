@@ -16,6 +16,7 @@
  *
  *  $HA HistÛrico de evoluÁ„o:
  *     Vers„o  Autor    Data     ObservaÁıes
+ *     2       lff   05/out/2016 desenvolvimento
  *     1       lff   04/out/2016 inÌcio desenvolvimento
  *
  *  $ED DescriÁ„o do mÛdulo
@@ -63,16 +64,19 @@ typedef enum {
     /* Concluiu corretamente */
     
     TAB_CondRetNaoExiste ,
-    /* O tabuleiro não existe */
-    
-    TAB_CondRetCoordJaPreenchida ,
-    /* A coordenada do tabuleiro já está preenchida */
+    /* O tabuleiro ou algum dos seus componentes não existe */
     
     TAB_CondRetCoordNaoExiste ,
     /* A coordenada não existe em tal tabuleiro */
     
+    TAB_CondRetFalhaAberturaArquivo ,
+    /* Falha ao abrir arquivo de peças de tal tabuleiro */
+    
+    TAB_CondRetFormatoArquivoErrado ,
+    /* Formato de arquivo para leitura de peças errado */
+    
     TAB_CondRetMovInvalido ,
-    /* A coordenada não existe em tal tabuleiro */
+    /* O movimento não é válido em tal tabuleiro */
     
     TAB_CondRetFaltouMemoria
     /* Faltou memória ao tentar criar um elemento do tabuleiro */
@@ -123,6 +127,8 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro ) ;
  *
  *  $ED Descrição da função
  *     Insere a peça especificada no tabuleiro na posição também especificada.
+ *     Caso exista uma peça na casa passada pelo ponteiro,
+ *       ela será substituída pela passada pelos parâmetros.
  *
  *  $EP Parâmetros
  *     coluna     - coordenada da coluna onde a peça será inserida
@@ -133,14 +139,13 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro ) ;
  *
  *  $FV Valor retornado
  *     TAB_CondRetOK                - inseriu sem problemas
- *     TAB_CondRetCoordJaPreenchida - coordenada já possui uma peça
  *     TAB_CondRetCoordNaoExiste    - coordenada não existe
  *     TAB_CondRetFaltouMemoria     - faltou memória para alocação do tabuleiro
  *
  ***********************************************************************/
 
 TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
-                                        int linha,
+                                        char linha,
                                         char idPeca,
                                         char corPeca,
                                         TAB_tppTabuleiro pTabuleiro ) ;
@@ -169,9 +174,9 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
  ***********************************************************************/
 
 TAB_tpCondRet TAB_MoverPecaTabuleiro(  char colInicial,
-                                       int linInicial,
+                                       char linInicial,
                                        char colFinal,
-                                       int linFinal,
+                                       char linFinal,
                                        TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -193,7 +198,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro(  char colInicial,
  ***********************************************************************/
 
 TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
-                                        int linha,
+                                        char linha,
                                         TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -204,11 +209,11 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
  *     Obtém a peça presente na posição especificada do tabuleiro.
  *
  *  $EP Parâmetros
- *     coluna     - coordenada da coluna onde a peça será obtida
- *     linha      - coordenada da linha onde a peça será obtida
- *     idPeca     - identificador da peça a ser obtida do tabuleiro
- *     corPeca    - cor da peça a ser obtida do tabuleiro
- *     pTabuleiro - ponteiro para o tabuleiro onde a peça vai ser obtida
+ *     coluna      - coordenada da coluna onde a peça será obtida
+ *     linha       - coordenada da linha onde a peça será obtida
+ *     pIdPeca     - identificador da peça a ser obtida do tabuleiro
+ *     pCorPeca    - cor da peça a ser obtida do tabuleiro
+ *     pTabuleiro  - ponteiro para o tabuleiro onde a peça vai ser obtida
  *
  *  $FV Valor retornado
  *     TAB_CondRetOK                - obteve sem problemas
@@ -217,10 +222,10 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
  ***********************************************************************/
 
 TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna,
-                                        int linha,
-                                        char idPeca,
-                                        char corPeca,
-                                        TAB_tppTabuleiro pTabuleiro ) ;
+                                      char linha,
+                                      char* pIdPeca,
+                                      char* pCorPeca,
+                                      TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
  *
@@ -242,7 +247,7 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna,
  ***********************************************************************/
 
 TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna,
-                                                 int linha,
+                                                 char linha,
                                                  LIS_tppLista pListaAmeacantes,
                                                  TAB_tppTabuleiro pTabuleiro ) ;
 
@@ -266,7 +271,7 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna,
  ***********************************************************************/
 
 TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna,
-                                                int linha,
+                                                char linha,
                                                 LIS_tppLista pListaAmeacados,
                                                 TAB_tppTabuleiro pTabuleiro ) ;
 

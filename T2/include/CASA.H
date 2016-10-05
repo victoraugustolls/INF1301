@@ -157,9 +157,9 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *     Obtém a peça presente na casa passada pelo ponteiro.
  *
  *  $EP Parâmetros
- *     idPeca     - variável onde o identificador da peça será retornado
- *     corPeca    - variável onde a cor da peça será retornada
- *     pCasa      - ponteiro para a casa onde a peça vai ser obtida
+ *     pIdPeca     - variável onde o identificador da peça será retornado
+ *     pCorPeca    - variável onde a cor da peça será retornada
+ *     pCasa       - ponteiro para a casa onde a peça vai ser obtida
  *
  *  $FV Valor retornado
  *     CSA_CondRetOK           - obteve sem problemas
@@ -167,8 +167,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char idPeca,
-                                 char corPeca,
+CSA_tpCondRet CSA_ObterPecaCasa( char* pIdPeca,
+                                 char* pCorPeca,
                                  CSA_tppCasa pCasa ) ;
 
 /***********************************************************************
