@@ -144,9 +144,10 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_LerTabuleiroInicial (   double* pecas, 
-                                             double* cores, 
-                                             double* num_casas );
+   VMV_tpCondRet VMV_LerTabuleiroInicial (   VMV_tppConfigDir pConfig,
+                                             char* pecas, 
+                                             char* cores, 
+                                             int* num_casas );
 
 /***********************************************************************
 *
@@ -167,7 +168,8 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tpMovimentoValido* movimento_valido,
+   VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig,
+                                             VMV_tpMovimentoValido* movimento_valido,
                                              char peca,
                                              char cor, 
                                              void* casa_atual,
@@ -177,8 +179,8 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
                                              int num_dimensoes,
                                              int (*array_dimensao)(void* casa),
                                              int* array_sinal,
-                                             int (*vazio)(void* array_de_casas, int num_casas),
-                                             int (*inimigo)(void* array_de_casas, int num_casas),
+                                             int (*vazio)(void* casa),
+                                             int (*inimigo)(void* casa),
                                              int* cond_especiais,
                                              int num_cond_especiais);
 
