@@ -309,8 +309,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
             numLidos = LER_LerParametros( "ici" ,
                                &inxLista , &StringDado , &CondRetEsp ) ;
 
-            if ( ( numLidos != 3 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
+            if ( numLidos != 3 )
             {
                return TST_CondRetParm ;
             } /* if */
@@ -336,8 +335,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
             numLidos = LER_LerParametros( "ii" ,
                                &inxLista , &CondRetEsp ) ;
 
-            if ( ( numLidos != 2 )
-              || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
+            if ( numLidos != 2 )
             {
                return TST_CondRetParm ;
             } /* if */

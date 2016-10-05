@@ -37,6 +37,9 @@
 == Teste Destruição de Listas
 =destroiLista      lista0   OK
 
+== Teste Destruição de Listas Inexistentes
+=destroiLista      lista0   ListaInexistente
+
 // ---------------------------------------------
 
 == Teste Obter Id Lista
@@ -115,6 +118,9 @@
 =alterarNoCorrente   lista0    'c'    OK
 =obterNo		     lista0	   'c'    OK
 =destroiLista        lista0    OK
+
+==Teste Simples de Alterar nó corrente de lista inexistente
+=alterarNoCorrente   lista0    'b'   ListaInexistente
 
 // ---------------------------------------------
 
