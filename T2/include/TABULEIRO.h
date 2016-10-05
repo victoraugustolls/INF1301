@@ -44,7 +44,7 @@
 
 /* Tipo referÍncia para um tabuleiro */
 
-typedef struct TAB_tagLista * TAB_tppTabuleiro ;
+typedef struct TAB_tagTabuleiro * TAB_tppTabuleiro ;
 
 
 /***********************************************************************
@@ -75,7 +75,7 @@ typedef enum {
     /* A coordenada não existe em tal tabuleiro */
     
     TAB_CondRetFaltouMemoria
-    /* Faltou memória ao tentar criar um elemento de lista */
+    /* Faltou memória ao tentar criar um elemento do tabuleiro */
     
 } TAB_tpCondRet ;
 
@@ -128,6 +128,7 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro ) ;
  *     coluna     - coordenada da coluna onde a peça será inserida
  *     linha      - coordenada da linha onde a peça será inserida
  *     idPeca     - identificador da peça que será inserida
+ *     corPeca    - cor da peça que será inserida
  *     pTabuleiro - ponteiro para o tabuleiro onde a peça vai ser inserida
  *
  *  $FV Valor retornado
@@ -141,6 +142,7 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro ) ;
 TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
                                         int linha,
                                         char idPeca,
+                                        char corPeca,
                                         TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -162,7 +164,7 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
  *     TAB_CondRetOK                - inseriu sem problemas
  *     TAB_CondRetCoordNaoExiste    - coordenada não existe
  *     TAB_CondRetMovInvalido       - o movimento indicado não é válido
- *     TAB_CondRetFaltouMemoria     - faltou memória para alocação do tabuleiro
+ *     TAB_CondRetFaltouMemoria     - faltou memória para alocação da peça
  *
  ***********************************************************************/
 
@@ -263,7 +265,7 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna,
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna,
+TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna,
                                                 int linha,
                                                 LIS_tppLista pListaAmeacados,
                                                 TAB_tppTabuleiro pTabuleiro ) ;
