@@ -169,7 +169,7 @@
    {
 
       tpElemLista * pElem ;
-      printf("Elemento para Inserir: %s\n", (char*)pValor);
+      printf("Elemento para Inserir: %s\n", (char *)pValor);
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;

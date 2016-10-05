@@ -192,7 +192,11 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , &StringDado ) ;
+            printf("Elemento Recebido do script %c\n", StringDado);
+            pValor = ( char * ) malloc ( sizeof ( char ) ) ;
+            *pValor = StringDado ;
+            printf("Elemento para inserir 2 %c\n", *pValor);
+            CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , pValor ) ;
 
             return TST_CompararInt( CondRetEsp , CondRet ,
                      "Condicao de retorno errada ao inserir apos." ) ;
