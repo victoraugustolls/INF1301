@@ -24,3 +24,5 @@
 04/10/2016; 0.5 hora ; revisar especificações; Revisei o módulo LISTA.C junto com o Victor Augusto.
 
 04/10/2016; 1 hora ; projetar e revisar código do módulo; Projetei o módulo CASA (fiz o CASA.H) e revisei o TABULEIRO.H.
+
+05/10/2016; 2.5 hora ; projetar e revisar código do módulo; Terminei o TABULEIRO.C e revisei os códigos de CASA.H e TABULEIRO.H.
