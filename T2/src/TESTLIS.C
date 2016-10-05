@@ -287,8 +287,8 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , ALTERAR_NO_CMD ) == 0 )
          {
 
-            numLidos = LER_LerParametros( "isi" ,
-                               &inxLista , pValorEsp , &CondRetEsp ) ;
+            numLidos = LER_LerParametros( "ici" ,
+                               &inxLista , &StringDado , &CondRetEsp ) ;
 
             if ( ( numLidos != 3 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
@@ -296,7 +296,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRet = LIS_AlteraValor( vtListas[ inxLista ] , ( void * )pValorEsp ) ;
+            CondRet = LIS_AlteraValor( vtListas[ inxLista ] , &StringDado ) ;
 
             return TST_CompararInt( CondRetEsp , CondRet ,
                      "Condicao de retorno errada ao alterar o elemento." ) ;
