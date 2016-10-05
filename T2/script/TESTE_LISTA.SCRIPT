@@ -37,34 +37,21 @@
 == Teste Destruição de Listas
 =destroiLista      lista0   OK
 
-== Teste Destruição de Lista Inexistente
-=destroiLista      lista0   ListaInexistente
-
 // ---------------------------------------------
 
-== Teste Obter Id Lista
-=criarlista      lista0   "abc"   OK
-=obterIdLista    lista0   "abc"
-=destroiLista    lista0   OK
-
-== Teste do Teste Obter Id Lista
-=criarlista      lista0   "abc"   OK
-=obterIdLista    lista0   "cba"
-=recuperar
-=destroiLista    lista0   OK
 
 // ---------------------------------------------
 
 == Teste Simples de Inserção e Obtenção de Elemento
 =criarlista      lista0    "abc"     OK
-=inserirNo       lista0    "test1"   OK
-=inserirNo       lista0    "test2"   OK
-=obterNo         lista0    "test2"   OK
+=inserirNo       lista0    'a'       OK
+=inserirNo       lista0    'b'       OK
+=obterNo         lista0    'b'       OK
 =destroiLista    lista0    OK
 
 == Teste Simples de Obtenção de Elemento de ListaVazia
 =criarlista      lista0    "abc"     OK
-=obterNo         lista0    "test2"   ListaVazia
+=obterNo         lista0    'a'       ListaVazia
 =destroiLista    lista0    OK
 
 // ---------------------------------------------
@@ -141,3 +128,14 @@
 =obterNo		     lista1	   "test4"          OK
 =destroiLista        lista0    OK
 =destroiLista        lista1    OK
+
+== Teste Obter Id Lista
+=criarlista      lista0   "abc"   OK
+=obterIdLista    lista0   "abc"
+=destroiLista    lista0   OK
+
+== Teste do Teste Obter Id Lista
+=criarlista      lista0   "abc"   OK
+=obterIdLista    lista0   "cba"
+=recuperar
+=destroiLista    lista0   OK

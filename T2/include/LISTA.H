@@ -242,7 +242,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista ,
-                                 void * elementoCorrente ) ;
+                                 void ** elementoCorrente ) ;
 
 
 /***********************************************************************
