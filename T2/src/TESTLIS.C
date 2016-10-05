@@ -106,7 +106,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
       char StringDado ;
 
-      char pValor ;
+      char * pValor ;
       char pValorEsp[ 10 ] ;
 
       int i ;
@@ -185,7 +185,6 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            pValor = StringDado;
             CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , &StringDado ) ;
 
             return TST_CompararInt( CondRetEsp , CondRet ,
@@ -207,8 +206,8 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRet = LIS_ObterValor( vtListas[ inxLista ] , ( void * ) &pValor ) ;
-            printf("pValor: %c\n", pValor);
+            CondRet = LIS_ObterValor( vtListas[ inxLista ] , ( void * ) pValor ) ;
+            printf("pValor: %c\n", &pValor);
 
             if ( CondRetEsp )
             {
@@ -216,7 +215,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                      "Lista deveria estar vazia." ) ;
             }/* if */
 
-            return TST_CompararString( &StringDado , &pValor ,
+            return TST_CompararString( &StringDado , pValor ,
                          "Valor do elemento errado." ) ;
 
          } /* fim ativa: Testar Obter no corrente da lista */
