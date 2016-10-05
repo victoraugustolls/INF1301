@@ -29,75 +29,25 @@
 <<<    0  Linha:    50  Falha esperada foi recuperada. 
 !!!    0  Linha:    53  // --------------------------------------------- 
    55  == Teste Simples de Inserção e Obtenção de Elemento
->>>    1  Linha:    59  Valor do elemento errado. Deveria ser: >b<  É: >bls<
->>>    2  Linha:    60  Não é comando recuperar:  =destroiLista    lista0    OK
    62  == Teste Simples de Obtenção de Elemento de ListaVazia
->>>    3  Linha:    63  Erro nos parâmetros do comando:  =criarlista      lista0    "abc"     OK
->>>    4  Linha:    65  Comando de teste ignorado:  =destroiLista    lista0    OK
-!!!    4  Linha:    67  // --------------------------------------------- 
+!!!    0  Linha:    67  // --------------------------------------------- 
    69  == Teste Simples de Exclusão de Elemento
->>>    5  Linha:    70  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"     OK
->>>    6  Linha:    72  Comando de teste ignorado:  =inserirNo           lista0    "test2"   OK
->>>    7  Linha:    73  Comando de teste ignorado:  =excluirNoCorrente   lista0
->>>    8  Linha:    74  Comando de teste ignorado:  =obterNo		     lista0	   "test1"   OK
->>>    9  Linha:    75  Comando de teste ignorado:  =destroiLista        lista0    OK
-!!!    9  Linha:    77  // --------------------------------------------- 
+!!!    0  Linha:    77  // --------------------------------------------- 
    79  == Teste Simples de Avançar em Lista Vazia
->>>   10  Linha:    80  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"            OK
->>>   11  Linha:    82  Comando de teste ignorado:  =destroiLista        lista0    OK
    84  == Teste Simples de Recuar em Lista Vazia
->>>   12  Linha:    85  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"            OK
->>>   13  Linha:    87  Comando de teste ignorado:  =destroiLista        lista0    OK
    89  == Teste Simples de Avançar e Recuar Elemento
->>>   14  Linha:    90  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"            OK
->>>   15  Linha:    92  Comando de teste ignorado:  =inserirNo           lista0    "test2"          OK
->>>   16  Linha:    93  Comando de teste ignorado:  =irAnt               lista0    OK
->>>   17  Linha:    94  Comando de teste ignorado:  =obterNo		     lista0	   "test1"          OK
->>>   18  Linha:    95  Comando de teste ignorado:  =irAnt               lista0    NoCorrentePrim
->>>   19  Linha:    96  Comando de teste ignorado:  =obterNo		     lista0	   "test1"          OK
->>>   20  Linha:    97  Comando de teste ignorado:  =irProx              lista0    OK
->>>   21  Linha:    98  Comando de teste ignorado:  =obterNo		     lista0	   "test2"          OK
->>>   22  Linha:    99  Comando de teste ignorado:  =irProx              lista0    NoCorrentePrim
->>>   23  Linha:   100  Comando de teste ignorado:  =obterNo		     lista0	   "test2"          OK
->>>   24  Linha:   101  Comando de teste ignorado:  =destroiLista        lista0    OK
-!!!   24  Linha:   103  // --------------------------------------------- 
+!!!    0  Linha:   103  // --------------------------------------------- 
   105  == Teste Simples de Alterar Lista Vazia
->>>   25  Linha:   106  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"      OK
->>>   26  Linha:   108  Comando de teste ignorado:  =destroiLista        lista0    OK
   110  ==Teste Simples de Alterar nó corrente
->>>   27  Linha:   111  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"      OK
->>>   28  Linha:   113  Comando de teste ignorado:  =alterarNoCorrente   lista0    "test2"    OK
->>>   29  Linha:   114  Comando de teste ignorado:  =obterNo		     lista0	   "test2"    OK
->>>   30  Linha:   115  Comando de teste ignorado:  =alterarNoCorrente   lista0    "test1"    OK
->>>   31  Linha:   116  Comando de teste ignorado:  =obterNo		     lista0	   "test1"    OK
->>>   32  Linha:   117  Comando de teste ignorado:  =destroiLista        lista0    OK
-  119  ==Teste Simples de Alterar nó corrente de lista inexistente
-ll>   33  Linha:   120  Faltou aspas antes de literal char. 
->>>   34  Linha:   120  Erro nos parâmetros do comando:  =alterarNoCorrente   lista0    "test2"   ListaInexistente
-!!!   34  Linha:   122  // --------------------------------------------- 
-  124  ==Teste com múltiplas listas
->>>   35  Linha:   125  Erro nos parâmetros do comando:  =criarlista          lista0    "abc"            OK
->>>   36  Linha:   127  Comando de teste ignorado:  =inserirNo           lista0    "test1"          OK
->>>   37  Linha:   128  Comando de teste ignorado:  =inserirNo           lista1    "test2"          OK
->>>   38  Linha:   129  Comando de teste ignorado:  =inserirNo           lista0    "test3"          OK
->>>   39  Linha:   130  Comando de teste ignorado:  =inserirNo           lista1    "test4"          OK
->>>   40  Linha:   131  Comando de teste ignorado:  =irAnt               lista0    OK
->>>   41  Linha:   132  Comando de teste ignorado:  =obterNo		     lista0	   "test1"          OK
->>>   42  Linha:   133  Comando de teste ignorado:  =irProx              lista1    NoCorrenteUlt
->>>   43  Linha:   134  Comando de teste ignorado:  =obterNo		     lista1	   "test4"          OK
->>>   44  Linha:   135  Comando de teste ignorado:  =alterarNoCorrente   lista0    "test5"          OK
->>>   45  Linha:   136  Comando de teste ignorado:  =obterNo		     lista0	   "test5"          OK
->>>   46  Linha:   137  Comando de teste ignorado:  =irAnt               lista0    NoCorrentePrim
->>>   47  Linha:   138  Comando de teste ignorado:  =obterNo		     lista1	   "test4"          OK
->>>   48  Linha:   139  Comando de teste ignorado:  =destroiLista        lista0    OK
->>>   49  Linha:   140  Comando de teste ignorado:  =destroiLista        lista1    OK
+!!!    0  Linha:   119  // --------------------------------------------- 
+  121  ==Teste com múltiplas listas
 
-!!! Número de linhas lidas:         140
-!!! Número de casos de teste:        17
-!!! Número comandos corretos:        18
-!!! Número de falhas encontradas:    49
+!!! Número de linhas lidas:         137
+!!! Número de casos de teste:        16
+!!! Número comandos corretos:        73
+!!! Número de falhas encontradas:     0
 
-!!! Foram encontrados problemas
+!!! Não foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0

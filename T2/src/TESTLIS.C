@@ -208,8 +208,12 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          else if ( strcmp( ComandoTeste , OBTER_NO_CMD ) == 0 )
          {
 
+            printf("Entrou no obter no do teste\n");
+
             numLidos = LER_LerParametros( "ici" ,
                                &inxLista , &StringDado , &CondRetEsp ) ;
+
+            printf("Leu parametros do obter no do teste\n");
 
             if ( ( numLidos != 3 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
@@ -217,18 +221,20 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
+            printf("Validou parametros do obter no do teste\n");
+
             pValor = ( char * ) malloc ( sizeof ( char ) ) ;
             CondRet = LIS_ObterValor( vtListas[ inxLista ] , &pValor ) ;
-            printf("pValor: %s\n", pValor);
-
+            printf("pValor: %c\n", *pValor);
+            printf("Verificando condicoes de retorno\n");
             if ( CondRetEsp )
             {
               printf("Lista deveria ser vazia\n");
               return TST_CompararInt( CondRetEsp , CondRet ,
                      "Lista deveria estar vazia." ) ;
             }/* if */
-            printf("Comparando %s e %s\n", &StringDado, pValor);
-            return TST_CompararString( &StringDado , pValor ,
+            printf("Comparando %c e %c\n", StringDado, *pValor);
+            return TST_CompararChar( StringDado , *pValor ,
                          "Valor do elemento errado." ) ;
 
          } /* fim ativa: Testar Obter no corrente da lista */
@@ -309,7 +315,11 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRet = LIS_AlteraValor( vtListas[ inxLista ] , &StringDado ) ;
+            pValor = ( char * ) malloc ( sizeof ( char ) ) ;
+
+            *pValor = StringDado ;
+
+            CondRet = LIS_AlteraValor( vtListas[ inxLista ] , pValor ) ;
 
             return TST_CompararInt( CondRetEsp , CondRet ,
                      "Condicao de retorno errada ao alterar o elemento." ) ;
