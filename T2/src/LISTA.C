@@ -166,6 +166,7 @@
    {
 
       tpElemLista * pElem ;
+      printf("Elemento: %s\n", (char*)pValor);
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
@@ -260,16 +261,17 @@
 *  Função: LIS  &Obter referência para o valor contido no elemento
 *  ****/
 
-   LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista , void * elementoCorrente )
+   LIS_tpCondRet LIS_ObterValor( LIS_tppLista pLista , void ** elementoCorrente )
    {
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
       #endif
 
-      elementoCorrente = pLista->pElemCorr->pValor ;
+      *elementoCorrente = pLista->pElemCorr->pValor ;
+      printf("Elemento Corrente: %s\n", (char*)*elementoCorrente);
 
-      if ( elementoCorrente == NULL)
+      if ( *elementoCorrente == NULL )
       {
          return LIS_CondRetListaVazia ;
       } /* if */

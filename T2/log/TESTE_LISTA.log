@@ -25,7 +25,7 @@
 !!!    0  Linha:    40  // --------------------------------------------- 
 !!!    0  Linha:    43  // --------------------------------------------- 
    45  == Teste Simples de Inserção e Obtenção de Elemento
->>>    1  Linha:    49  Valor do elemento errado. Deveria ser: >test2<  É: >0ˆ<
+>>>    1  Linha:    49  Valor do elemento errado. Deveria ser: >b<  É: >;øo<
 >>>    2  Linha:    50  Não é comando recuperar:  =destroiLista    lista0    OK
    52  == Teste Simples de Obtenção de Elemento de ListaVazia
 >>>    3  Linha:    53  Erro nos parâmetros do comando:  =criarlista      lista0    "abc"     OK
