@@ -124,7 +124,10 @@
 
       LimparCabeca( pNewLista ) ;
 
-      pNewLista->idLista = idLista ;
+      printf("Id Lista Cria: %s\n", idLista ) ;
+
+      pNewLista->idLista = ( char * ) malloc ( strlen ( idLista ) + 1 ) ;
+      strcpy( pNewLista->idLista , idLista ) ;
       pNewLista->ExcluirValor = ExcluirValor ;
       pNewLista->CompararValores = CompararValores ;
       pNewLista->Igual = Igual ;
@@ -166,7 +169,7 @@
    {
 
       tpElemLista * pElem ;
-      printf("Elemento: %s\n", (char*)pValor);
+      printf("Elemento para Inserir: %s\n", (char*)pValor);
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
@@ -285,14 +288,15 @@
 *  Função: LIS  &Obter referência para a identificação contida na cabeça da lista
 *  ****/
 
-   LIS_tpCondRet LIS_ObterId( LIS_tppLista pLista , char * idLista )
+   LIS_tpCondRet LIS_ObterId( LIS_tppLista pLista , char ** idLista )
    {
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
       #endif
       
-      idLista = pLista->idLista ;
+      *idLista = pLista->idLista ;
+      printf("Id Lista Obtem: %s\n", *idLista ) ;
 
       return LIS_CondRetOK ;
 
@@ -422,15 +426,15 @@
    void LiberarElemento( LIS_tppLista   pLista ,
                          tpElemLista  * pElem   )
    {
-
+      printf("Entrou na liberar elemento\n");
       if ( ( pLista->ExcluirValor != NULL )
         && ( pElem->pValor != NULL        ))
       {
          pLista->ExcluirValor( pElem->pValor ) ;
       } /* if */
-
+      printf("Vai dar free no pElem\n");
       free( pElem ) ;
-
+      printf("Deu free no pElem\n");
       pLista->numElem-- ;
 
    } /* Fim função: LIS  -Liberar elemento da lista */
@@ -477,6 +481,8 @@
       tpElemLista * pElem ;
       tpElemLista * pProx ;
 
+      printf("Esvaiza lista\n");
+
       pElem = pLista->pOrigemLista ;
       while ( pElem != NULL )
       {
@@ -484,7 +490,7 @@
          LiberarElemento( pLista , pElem ) ;
          pElem = pProx ;
       } /* while */
-
+      printf("Vai entrar na Limpa cabeca\n");
       LimparCabeca( pLista ) ;
 
    } /* Fim função: LIS  -Esvaziar a lista */
@@ -498,7 +504,7 @@
 
    void LimparCabeca( LIS_tppLista pLista )
    {
-
+      printf("Entrou na Limpa cabeca\n");
       pLista->idLista = NULL;
       pLista->pOrigemLista = NULL ;
       pLista->pFimLista = NULL ;
