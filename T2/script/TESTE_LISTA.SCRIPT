@@ -37,21 +37,8 @@
 == Teste Destruição de Listas
 =destroiLista      lista0   OK
 
-== Teste Destruição de Lista Inexistente
-=destroiLista      lista0   ListaInexistente
-
 // ---------------------------------------------
 
-== Teste Obter Id Lista
-=criarlista      lista0   "abc"   OK
-=obterIdLista    lista0   "abc"
-=destroiLista    lista0   OK
-
-== Teste do Teste Obter Id Lista
-=criarlista      lista0   "abc"   OK
-=obterIdLista    lista0   "cba"
-=recuperar
-=destroiLista    lista0   OK
 
 // ---------------------------------------------
 
@@ -141,3 +128,14 @@
 =obterNo		     lista1	   "test4"          OK
 =destroiLista        lista0    OK
 =destroiLista        lista1    OK
+
+== Teste Obter Id Lista
+=criarlista      lista0   "abc"   OK
+=obterIdLista    lista0   "abc"
+=destroiLista    lista0   OK
+
+== Teste do Teste Obter Id Lista
+=criarlista      lista0   "abc"   OK
+=obterIdLista    lista0   "cba"
+=recuperar
+=destroiLista    lista0   OK

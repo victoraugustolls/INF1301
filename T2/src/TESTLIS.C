@@ -104,10 +104,14 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       char idLista[4] ;
       char idListaEsp[4] ;
 
-      char * pValor = ( char * ) malloc ( sizeof ( char ) ) ;
-      char * pValorEsp = ( char * ) malloc ( sizeof ( char ) ) ; ;
+      char StringDado[ 10 ] ;
+
+      char * pValor ;
+      char pValorEsp[ 10 ] ;
 
       int i ;
+
+      StringDado[ 0 ] = 0 ;
 
       /* Efetuar reset de teste de lista */
 
@@ -159,13 +163,13 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            LIS_ObterId( vtListas[ inxLista ] , idLista ) ;
+            CondRet = LIS_ObterId( vtListas[ inxLista ] , idLista ) ;
             if ( strcmp( idLista , idListaEsp ) == 0 )
             {
               return TST_CondRetOK ;
             }/* if */
 
-            return TST_CondRetErro ;
+            return TST_NotificarFalha( "Valor do id da lista recebido errado." ) ;
 
          } /* fim ativa: Testar Obter id lista */
 
@@ -175,7 +179,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          {
 
             numLidos = LER_LerParametros( "isi" ,
-                               &inxLista , pValorEsp , &CondRetEsp ) ;
+                               &inxLista , StringDado , &CondRetEsp ) ;
 
             if ( ( numLidos != 3 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
@@ -183,7 +187,16 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , ( void * )pValorEsp ) ;
+            pValor = ( char * ) malloc( strlen( StringDado ) + 1 ) ;
+            if ( pValor == NULL )
+            {
+               return TST_CondRetMemoria ;
+            } /* if */
+
+            strcpy( pValor , StringDado ) ;
+            CondRet = LIS_InserirElementoApos( vtListas[ inxLista ] , pValor ) ;
+
+            free( pValor );
 
             return TST_CompararInt( CondRetEsp , CondRet ,
                      "Condicao de retorno errada ao inserir apos." ) ;
@@ -196,7 +209,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
          {
 
             numLidos = LER_LerParametros( "isi" ,
-                               &inxLista , pValorEsp , &CondRetEsp ) ;
+                               &inxLista , StringDado , &CondRetEsp ) ;
 
             if ( ( numLidos != 3 )
               || ( ! ValidarInxLista( inxLista , NAO_VAZIO )))
@@ -204,7 +217,14 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                return TST_CondRetParm ;
             } /* if */
 
-            CondRet = LIS_ObterValor( vtListas[ inxLista ] , ( void * )pValor ) ;
+            pValor = ( char * ) malloc( strlen( StringDado ) + 1 ) ;
+            if ( pValor == NULL )
+            {
+               return TST_CondRetMemoria ;
+            } /* if */
+
+            CondRet = LIS_ObterValor( vtListas[ inxLista ] , ( char * ) pValor ) ;
+            printf("pValor: %s\n", pValor);
 
             if ( CondRetEsp )
             {
@@ -212,12 +232,8 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
                      "Lista deveria estar vazia." ) ;
             }/* if */
 
-            if ( strcmp( pValor , pValorEsp ) == 0 )
-            {
-              return TST_CondRetOK ;
-            }/* if */
-
-            TST_NotificarFalha( "Valor da lista recebido errado." ) ;
+            return TST_CompararString( StringDado , pValor ,
+                         "Valor do elemento errado." ) ;
 
          } /* fim ativa: Testar Obter no corrente da lista */
 
@@ -319,6 +335,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
             } /* if */
 
             CondRet = LIS_DestruirLista( vtListas[ inxLista ] ) ;
+            vtListas[ inxLista ] = NULL ;
 
             return TST_CompararInt( CondRetEsp , CondRet ,
                      "Condicao de retorno errada ao destruir a lista." ) ;
@@ -341,9 +358,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 
    void DestruirValor( void * pDado )
    {
-      char * valor = ( char * ) pDado ;
-      free( valor ) ;
-      valor = NULL ;
+      free ( pDado ) ;
 
    } /* Fim função: TLIS -Destruir valor */
 

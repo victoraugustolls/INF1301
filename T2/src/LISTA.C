@@ -289,7 +289,7 @@
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
       #endif
-
+      
       idLista = pLista->idLista ;
 
       return LIS_CondRetOK ;
@@ -474,10 +474,6 @@
 
       tpElemLista * pElem ;
       tpElemLista * pProx ;
-
-      #ifdef _DEBUG
-         assert( pLista != NULL ) ;
-      #endif
 
       pElem = pLista->pOrigemLista ;
       while ( pElem != NULL )
