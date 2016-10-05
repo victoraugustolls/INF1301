@@ -62,6 +62,12 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
          VMV_CondRetVariavelNaoExistente = 4,
                /* Ocorreu um erro na leitura do arquivo */
 
+         VMV_CondRetErrManuseioArquivo = 5,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetErrComandoNaoExistente = 6
+               /* Ocorreu um erro na leitura do arquivo */
+
    } VMV_tpCondRet ;
 
 /***********************************************************************
@@ -177,10 +183,10 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
                                              char cor, 
                                              void* casa_atual,
                                              void* casa_destino,
-                                             void* casas,
+                                             void** casas,
                                              int num_casas,
                                              int num_dimensoes,
-                                             int (*array_dimensao)(void* casa),
+                                             int (**array_dimensao)(void* casa),
                                              int* array_sinal,
                                              int (*vazio)(void* casa),
                                              int (*inimigo)(void* casa),

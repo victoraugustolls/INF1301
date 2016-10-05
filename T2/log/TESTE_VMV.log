@@ -1,0 +1,50 @@
+
+!!! Inicio dos testes
+!!!      Construto sob teste: ..\bin\TEST_VMV
+!!!      Script de teste:     ..\script\TESTE_VMV.script
+
+!!!    0  Linha:     1  // Script: TesteLista.script 
+!!!    0  Linha:     2  // Autores: Ian Albuquerque, Lucas Ferraço e Victor Augusto 
+!!!    0  Linha:     3  // Autor Original: Arndt von Staa 
+!!!    0  Linha:     4  // Data: 04/out/2016 
+!!!    0  Linha:     5  // Propósito: Testar por completo as funções de acesso do módulo LISTA, com exceção 
+!!!    0  Linha:     6  // do caso em que ocorre falta de memória. 
+!!!    0  Linha:     7  // 
+!!!    0  Linha:     8  // 
+!!!    0  Linha:    10  // --------------------------------------------- 
+   12  == Inicializar Constantes
+!!!    0  Linha:    20  // --------------------------------------------- 
+   22  == Inicializar valores
+!!!    0  Linha:    26  // --------------------------------------------- 
+   28  == Teste Criação de Listas
+   31  == Teste do Teste de Criação de Listas
+!!!    0  Linha:    35  // --------------------------------------------- 
+   37  == Teste Destruição de Listas
+!!!    0  Linha:    40  // --------------------------------------------- 
+   42  == Teste Obter Id Lista
+   47  == Teste do Teste Obter Id Lista
+!!!    0  Linha:    53  // --------------------------------------------- 
+   55  == Teste Simples de Inserção e Obtenção de Elemento
+   62  == Teste Simples de Obtenção de Elemento de ListaVazia
+!!!    0  Linha:    67  // --------------------------------------------- 
+   69  == Teste Simples de Exclusão de Elemento
+!!!    0  Linha:    77  // --------------------------------------------- 
+   79  == Teste Simples de Avançar em Lista Vazia
+   84  == Teste Simples de Recuar em Lista Vazia
+   89  == Teste Simples de Avançar e Recuar Elemento
+!!!    0  Linha:   103  // --------------------------------------------- 
+  105  == Teste Simples de Alterar Lista Vazia
+  110  ==Teste Simples de Alterar nó corrente
+  119  ==Teste Simples de Alterar nó corrente de lista inexistente
+!!!    0  Linha:   122  // --------------------------------------------- 
+  124  ==Teste com múltiplas listas
+
+!!! Número de linhas lidas:         140
+!!! Número de casos de teste:        17
+!!! Número comandos corretos:        78
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0
