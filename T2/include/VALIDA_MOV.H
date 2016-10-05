@@ -56,7 +56,10 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
          VMV_CondRetErrFormatoArquivoErrado = 2 ,
                /* Ocorreu um erro na leitura do arquivo */
 
-         VMV_CondRetErrFaltouMemoria = 3
+         VMV_CondRetErrFaltouMemoria = 3,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetVariavelNaoExistente = 4,
                /* Ocorreu um erro na leitura do arquivo */
 
    } VMV_tpCondRet ;
