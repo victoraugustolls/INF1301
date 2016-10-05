@@ -31,6 +31,7 @@
  *     O controle da destruiÁ„o do valor de um elemento a ser excluÌdo
  *        È realizado por uma funÁ„o interna do módulo.
  *
+ *
  ***************************************************************************/
 
 #if defined( TABULEIRO_OWN )

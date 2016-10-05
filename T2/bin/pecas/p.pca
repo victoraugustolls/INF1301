@@ -1,0 +1,111 @@
+# ---------------------------------------------------
+#
+# UTILIZE JOGO DA VELHA (#) PARA COMENTARIOS
+#
+# ---------------------------------------------------
+#
+# VARIAVEL ESPECIAL
+#
+# C 		:= CASA
+#
+# CONSTANTES
+#
+# A 		:= CASA ATUAL
+# D			:= CASA DE DESTINO
+#
+# L_ Expressão Lógica (verdadeiro ou falso)
+# ARGUMENTOS DEVEM SER L_ ou P_
+#
+# L_OR X Y 		:= OU LÓGICO DE X E Y
+# L_AND X Y		:= E LÓGICO DE X E Y
+# L_IFTHEN X Y	:= CONDICIONAL LOGICO DE X E Y
+# L_NOT X 		:= NEGACAO LOGICA DE X
+# L_FORALL X 	:= TODAS CASAS C SATISFAZEM X (PODE USAR C EM X)
+# L_EXIST X 	:= ALGUMA CASA C SATISFAZ X (PODE USAR C EM X)
+#
+# P_ Preposição Lógica (verdadeiro ou falso)
+#
+# P_IGUAL X Y	:= VALOR DE X IGUAL AO VALOR DE Y (ARGUMENTOS DEVEM SER F_ ou V_)
+# P_MAIOR X Y	:= VALOR DE X MAIOR QUE O VALOR DE Y (ARGUMENTOS DEVEM SER F_ ou V_)
+# P_MENOR X Y	:= VALOR DE X MENOR QUE O VALOR DE Y (ARGUMENTOS DEVEM SER F_ ou V_)
+# P_VAZ X 		:= X É UM CONJUNTO DE CASAS VAZIAS (ARGUMENTO DEVE SER C, A OU D)
+# P_INI X 		:= X É UM CONJUNTO DE CASAS QUE CONTÉM PEÇA INIMIGA (ARGUMENTO DEVE SER C, A OU D)
+# P_COND[i] 	:= A CONDICAO ESPECIAL i É VÁLIDA
+#
+# F_ Função (retorna um valor V_)
+# ARGUMENTOS DEVEM SER F_ ou V_
+# 
+# F_ADD X Y		:= X+Y
+# F_SUB X Y		:= X-Y
+# F_MUL X Y		:= X*Y
+# F_ABS	X 		:= VALOR ABSOLUTO DE X
+#
+# V_ Valores Numéricos
+#
+# V_DIM[i](X) 	:= VALOR DA i-ESIMA DIMENSAO DA CASA X (X PODE SER C, A OU D)
+# V_SIG[i] 		:= VALOR DO SINAL i-ESIMA DIMENSAO DA CASA ATUAL (A)
+# V_NUM(X) 		:= VALOR NUMÉRICO DE X (QUE SERÁ IGUAL A X)
+#
+# ---------------------------------------------------
+
+
+L_OR
+	L_OR
+		L_AND
+			P_COND[0]
+			L_AND
+				P_IGUAL
+					V_DIM[0](D)
+					F_ADD
+						V_DIM[0](A) 
+						F_MUL
+							V_SIG[0]
+							V_NUM(2)
+				L_AND
+					P_IGUAL
+						V_DIM[1](D)
+						V_DIM[1](A)
+					P_VAZ(D)
+			L_AND
+				P_IGUAL
+					V_DIM[0](D)
+					F_ADD
+						V_DIM[0](A) 
+						V_SIG[0]
+				L_AND
+					P_IGUAL
+						F_ABS
+							F_SUB
+								V_DIM[1](D)
+								V_DIM[1](A)
+						V_NUM(1)
+					P_INI(D)
+	L_OR
+		L_AND
+			L_NOT
+				P_COND[0]
+			L_AND
+				P_IGUAL
+					V_DIM[0](D)
+					F_ADD
+						V_DIM[0](A) 
+						V_SIG[0]
+				L_AND
+					P_IGUAL
+						V_DIM[1](D)
+						V_DIM[1](A)
+					P_VAZ(D)
+			L_AND
+				P_IGUAL
+					V_DIM[0](D)
+					F_ADD
+						V_DIM[0](A) 
+						V_SIG[0]
+				L_AND
+					P_IGUAL
+						F_ABS
+							F_SUB
+								V_DIM[1](D)
+								V_DIM[1](A)
+						V_NUM(1)
+					P_INI(D)

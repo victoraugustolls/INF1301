@@ -29,6 +29,12 @@
    #define VALIDA_MOV_EXT extern
 #endif
 
+/***** Declarações exportadas pelo módulo *****/
+
+/* Tipo referência para uma configuracao de diretorio de movimento */
+
+typedef struct VMV_configDir * VMV_tppConfigDir;
+
 /***********************************************************************
 *
 *  $TC Tipo de dados: VMV Condições de retorno
@@ -44,217 +50,137 @@
          VMV_CondRetOK = 0 ,
                /* Concluiu corretamente */
 
-         VMV_CondRetErrLeituraArquivo = 1 ,
+         VMV_CondRetErrAberturaArquivo = 1 ,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetErrFormatoArquivoErrado = 2 ,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetErrFaltouMemoria = 3
                /* Ocorreu um erro na leitura do arquivo */
 
    } VMV_tpCondRet ;
 
+/***********************************************************************
+*
+*  $TC Tipo de dados: VMV Validez do Movimento
+*
+*
+*  $ED Descrição do tipo
+*     Determinação se um movimento é válido ou não
+*
+***********************************************************************/
+
+   typedef enum {
+
+         VMV_MovimentoValidoNao = 0 ,
+               /* O Movimento não é válido */
+
+         VMV_MovimentoValidoSim = 1
+               /* O Movimento não é válido */
+
+   } VMV_tpMovimentoValido ;
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &Criar lista
+*  $FC Função: VMV  &TODO
 *
 *  $ED Descrição da função
-*     Cria uma lista genérica duplamente encadeada.
-*     Os possíveis tipos são desconhecidos a priori.
-*     A tipagem é implicita.
-*     Não existe identificador de tipo associado à lista.
+*     TODO
 *
 *  $EP Parâmetros
 *
-*     pLista          - ponteiro para a lista sendo criada
-*     idLista         - id da lista sendo criada
-*     ExcluirValor    - ponteiro para a função que processa a
-*                     exclusão do valor referenciado pelo elemento
-*                     a ser excluído.
-*                     Ver descrição do módulo.
-*     ImprimirValor   - ponteiro para a função que imprime o valor
-*                     referenciado pelo módulo.
-*                     Ver descrição do módulo.
-*     CompararValores - ponteiro para a função que compara o valor
-*                     de dois elementos. Deve retornar -1, 0 ou 1.
-*                     Ver descrição do módulo.
-*     Igual           - ponteiro para a função que compara se o valor
-*                     de dois elementos é igual.
-*                     Ver descrição do módulo.
+*     TODO          - TODO
+*     TODO          - TODO
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK            - lista foi criada corretamente
-*     VMV_CondRetFaltouMemoria - ocorreu um erro na criação da lista
+*     VMV_CondRetOK            - TODO
+*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
+*     VMV_CondRetErrFormatoArquivoErrado            - TODO
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_CriarLista( VMV_tppLista pLista ,
-             char * idLista ,
-
-             void   ( * ExcluirValor ) ( void * pDado ) ,
-
-             int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ) ,
-
-             int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) ) ;
+   VMV_tpCondRet VMV_CriarConfigDir (  VMV_tppConfigDir* pConfigDir, const char* pathConfigArq );
 
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &Destruir lista
+*  $FC Função: VMV  &TODO
 *
 *  $ED Descrição da função
-*     Destrói a lista fornecida.
-*     O parâmetro ponteiro para a lista não é modificado.
-*     Se ocorrer algum erro durante a destruição, a lista resultará
-*     estruturalmente incorreta.
-*     OBS. não existe previsão para possíveis falhas de execução.
-*
-*  $FV Valor retornado
-*     VMV_CondRetOK             - destruiu sem problemas
-*     VMV_CondRetListaNaoExiste - lista não existe
-*
-***********************************************************************/
-
-   VMV_tpCondRet VMV_DestruirLista( VMV_tppLista pLista ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: VMV  &Inserir elemento após
-*
-*  $ED Descrição da função
-*     Insere novo elemento após o elemento corrente.
-*     O elemento corrente passará a ser o novo elemento inserido.
-*     Caso a lista esteja vazia, insere o primeiro elemento da lista.
+*     TODO
 *
 *  $EP Parâmetros
-*     Parâmetros
-*        pLista - ponteiro para a lista onde deve ser inserido o elemento
-*        pValor - ponteiro para o valor do novo elemento
-*                 Pode ser NULL
-*           
+*
+*     TODO          - TODO
+*     TODO          - TODO
 *
 *  $FV Valor retornado
-*     Valor retornado
-*        VMV_CondRetOK
-*        VMV_CondRetFaltouMemoria
+*     VMV_CondRetOK            - TODO
+*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
+*     VMV_CondRetErrFormatoArquivoErrado            - TODO
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_InserirElementoApos( VMV_tppLista pLista ,
-                                          void * pValor        ) ;
+   VMV_tpCondRet VMV_DestruirConfigDir (  VMV_tppConfigDir pConfigDir );
 
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &Excluir elemento
+*  $FC Função: VMV  &TODO
 *
 *  $ED Descrição da função
-*     Exclui o elemento corrente da lista dada.
-*     Se existir o elemento aa esquerda do corrente será o novo corrente.
-*     Se não existir e existir o elemento à direita, este se tornará corrente.
-*     Se este também não existir a lista tornou-se vazia.
+*     TODO
 *
 *  $EP Parâmetros
-*     pLista    - ponteiro para a lista na qual deve excluir.
+*
+*     TODO          - TODO
+*     TODO          - TODO
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK
-*     VMV_CondRetListaVazia
+*     VMV_CondRetOK            - TODO
+*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
+*     VMV_CondRetErrFormatoArquivoErrado            - TODO
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_ExcluirElemento( VMV_tppLista pLista ) ;
-
+   VMV_tpCondRet VMV_LerTabuleiroInicial (   double* pecas, 
+                                             double* cores, 
+                                             double* num_casas );
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &Obter referência para o valor contido no elemento
+*  $FC Função: VMV  &TODO
 *
 *  $ED Descrição da função
-*     Obtem a referência para o valor contido no elemento corrente da lista
+*     TODO
 *
 *  $EP Parâmetros
-*     pLista           - ponteiro para a lista de onde se quer o valor
-*     elementoCorrente - ponteiro para o valor do nó corrente. Pode ser NULL.
+*
+*     TODO          - TODO
+*     TODO          - TODO
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK
-*     VMV_CondRetListaVazia
+*     VMV_CondRetOK            - TODO
+*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
+*     VMV_CondRetErrFormatoArquivoErrado            - TODO
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_ObterValor( VMV_tppLista pLista ,
-                                 void * elementoCorrente ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: VMV  &Obter identificador na cabeça da lista
-*
-*  $ED Descrição da função
-*     Obtem a identificação na cabeça da lista
-*
-*  $EP Parâmetros
-*     pLista  - ponteiro para a lista de onde se quer o valor
-*     idLista - ponteiro para o valor do id da lista
-*
-*  $FV Valor retornado
-*     VMV_CondRetOK
-*
-***********************************************************************/
-
-   VMV_tpCondRet VMV_ObterId( VMV_tppLista pLista ,
-                              char * idLista ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: VMV  &Avançar elemento
-*
-*  $ED Descrição da função
-*     Avança o elemento corrente numElem elementos na lista
-*     Se numElem for positivo avança em direção ao final
-*     Se numElem for negativo avança em direção ao início
-*     numElem pode ser maior do que o númro de elementos existentes na
-*               direção desejada
-*     Se numElem for zero somente verifica se a lista está vazia
-*
-*  $EP Parâmetros
-*     pLista  - ponteiro para a lista a ser manipulada
-*     numElem - o número de elementos a andar
-*
-*  $FV Valor retornado
-*     VMV_CondRetOK             - se numElem elementos tiverem sido andados
-*     VMV_CondRetNoCorrenteUlt  - chegou ao final da lista antes de avançar
-*                               para o próximo elemento
-*     VMV_CondRetNoCorrentePrim - chegou no começo da lista antes de retornar
-*                               para o elemento anterior
-*     VMV_CondRetListaVazia     - se a lista está vazia
-*
-***********************************************************************/
-
-   VMV_tpCondRet VMV_AvancarElementoCorrente( VMV_tppLista pLista ,
-                                              int numElem ) ;
-
-
-/***********************************************************************
-*
-*  $FC Função: VMV  &Altera conteudo do nó corrente
-*
-*  $ED Descrição da função
-*     Altera o valor do nó corrente da lista para novo valor.
-*
-*  $EP Parâmetros
-*     pLista  - ponteiro para a lista a ser manipulada
-*     pValor  - ponteiro para o novo valor do nó corrente
-*               Pode ser NULL
-*
-*  $FV Valor retornado
-*     VMV_CondRetOK             - alteração bem sucedida
-*     VMV_CondRetListaVazia     - se a lista estiver vazia
-*     VMV_CondRetListaNaoExiste - se a lista não existir
-*
-***********************************************************************/
-
-   VMV_tpCondRet VMV_AlteraValor( VMV_tppLista pLista ,
-                                  void * pValor ) ;
+   VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tpMovimentoValido* movimento_valido,
+                                             char peca,
+                                             char cor, 
+                                             void* casa_atual,
+                                             void* casa_destino,
+                                             void* casas,
+                                             int num_casas,
+                                             int num_dimensoes,
+                                             int (*array_dimensao)(void* casa),
+                                             int* array_sinal,
+                                             int (*vazio)(void* array_de_casas, int num_casas),
+                                             int (*inimigo)(void* array_de_casas, int num_casas),
+                                             int* cond_especiais,
+                                             int num_cond_especiais);
 
 #undef VALIDA_MOV_EXT
 
