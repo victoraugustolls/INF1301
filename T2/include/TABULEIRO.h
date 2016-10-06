@@ -60,25 +60,19 @@ typedef struct TAB_tagTabuleiro * TAB_tppTabuleiro ;
 
 typedef enum {
     
-    TAB_CondRetOK ,
+    TAB_CondRetOK = 0 ,
     /* Concluiu corretamente */
     
-    TAB_CondRetNaoExiste ,
+    TAB_CondRetNaoExiste = 1 ,
     /* O tabuleiro ou algum dos seus componentes não existe */
     
-    TAB_CondRetCoordNaoExiste ,
+    TAB_CondRetCoordNaoExiste = 2 ,
     /* A coordenada não existe em tal tabuleiro */
     
-    TAB_CondRetFalhaAberturaArquivo ,
-    /* Falha ao abrir arquivo de peças de tal tabuleiro */
-    
-    TAB_CondRetFormatoArquivoErrado ,
-    /* Formato de arquivo para leitura de peças errado */
-    
-    TAB_CondRetMovInvalido ,
+    TAB_CondRetMovInvalido = 3 ,
     /* O movimento não é válido em tal tabuleiro */
     
-    TAB_CondRetFaltouMemoria
+    TAB_CondRetFaltouMemoria = 4,
     /* Faltou memória ao tentar criar um elemento do tabuleiro */
     
 } TAB_tpCondRet ;
@@ -166,7 +160,7 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
  *     pTabuleiro  - ponteiro para o tabuleiro onde a peça vai ser movida
  *
  *  $FV Valor retornado
- *     TAB_CondRetOK                - inseriu sem problemas
+ *     TAB_CondRetOK                - moveu sem problemas
  *     TAB_CondRetCoordNaoExiste    - coordenada não existe
  *     TAB_CondRetMovInvalido       - o movimento indicado não é válido
  *     TAB_CondRetFaltouMemoria     - faltou memória para alocação da peça
@@ -193,6 +187,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro(  char colInicial,
  *
  *  $FV Valor retornado
  *     TAB_CondRetOK                - retirou sem problemas
+ *     TAB_CondRetNaoExiste         - não existe peça na posição
  *     TAB_CondRetCoordNaoExiste    - coordenada não existe
  *
  ***********************************************************************/

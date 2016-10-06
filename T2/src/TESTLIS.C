@@ -9,7 +9,7 @@
 *
 *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
 *  Gestor:  LES/DI/PUC-Rio
-*  Autores: avs
+*  Autores: avs, vas
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
@@ -107,7 +107,6 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       char StringDado ;
 
       char * pValor ;
-      char pValorEsp[ 10 ] ;
 
       int i ;
 
@@ -237,7 +236,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
             return TST_CompararChar( StringDado , *pValor ,
                          "Valor do elemento errado." ) ;
 
-         } /* fim ativa: Testar Obter no corrente da lista */
+        } /* fim ativa: Testar Obter no corrente da lista */
 
       /* Testar Excluir no corrente da lista */
 
