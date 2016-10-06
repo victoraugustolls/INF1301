@@ -1,0 +1,58 @@
+<<<<<<< HEAD
+=======
+
+!!! Inicio dos testes
+!!!      Construto sob teste: ..\bin\TEST_LIS
+!!!      Script de teste:     ..\script\TESTE_LISTA.script
+
+!!!    0  Linha:     1  // Script: TesteLista.script 
+!!!    0  Linha:     2  // Autores: Ian Albuquerque, Lucas Ferraço e Victor Augusto 
+!!!    0  Linha:     3  // Autor Original: Arndt von Staa 
+!!!    0  Linha:     4  // Data: 04/out/2016 
+!!!    0  Linha:     5  // Propósito: Testar por completo as funções de acesso do módulo LISTA, com exceção 
+!!!    0  Linha:     6  // do caso em que ocorre falta de memória. 
+!!!    0  Linha:     7  // 
+!!!    0  Linha:     8  // 
+!!!    0  Linha:    10  // --------------------------------------------- 
+   12  == Inicializar Constantes
+!!!    0  Linha:    20  // --------------------------------------------- 
+   22  == Inicializar valores
+!!!    0  Linha:    26  // --------------------------------------------- 
+   28  == Teste Criação de Listas
+   31  == Teste do Teste de Criação de Listas
+>>>    1  Linha:    32  Erro nos parâmetros do comando:  =criarlista      lista0   "abc"   OK
+<<<    0  Linha:    33  Falha esperada foi recuperada. 
+!!!    0  Linha:    35  // --------------------------------------------- 
+   37  == Teste Destruição de Listas
+   40  == Teste Destruição de Listas Inexistentes
+!!!    0  Linha:    43  // --------------------------------------------- 
+   45  == Teste Obter Id Lista
+   50  == Teste do Teste Obter Id Lista
+>>>    1  Linha:    52  Valor do id errado. Deveria ser: >abc<  É: >cba<
+<<<    0  Linha:    53  Falha esperada foi recuperada. 
+!!!    0  Linha:    56  // --------------------------------------------- 
+   58  == Teste Simples de Inserção e Obtenção de Elemento
+   65  == Teste Simples de Obtenção de Elemento de ListaVazia
+!!!    0  Linha:    70  // --------------------------------------------- 
+   72  == Teste Simples de Exclusão de Elemento
+!!!    0  Linha:    80  // --------------------------------------------- 
+   82  == Teste Simples de Avançar em Lista Vazia
+   87  == Teste Simples de Recuar em Lista Vazia
+   92  == Teste Simples de Avançar e Recuar Elemento
+!!!    0  Linha:   106  // --------------------------------------------- 
+  108  == Teste Simples de Alterar Lista Vazia
+  113  ==Teste Simples de Alterar nó corrente
+  122  ==Teste Simples de Alterar nó corrente de lista inexistente
+!!!    0  Linha:   125  // --------------------------------------------- 
+  127  ==Teste com múltiplas listas
+
+!!! Número de linhas lidas:         143
+!!! Número de casos de teste:        18
+!!! Número comandos corretos:        75
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0
+>>>>>>> 82c3ae2cad492e3bd1f920c9ea1dd694048f4310

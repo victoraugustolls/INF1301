@@ -134,6 +134,8 @@
 
       *pLista = pNewLista;
 
+      printf("Lista Criada\n");
+
       return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Criar lista */
@@ -169,7 +171,7 @@
    {
 
       tpElemLista * pElem ;
-      printf("Elemento para Inserir: %s\n", (char *)pValor);
+      printf("Elemento para Inserir: %c\n", *(char *)pValor);
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
@@ -271,13 +273,16 @@
          assert( pLista != NULL ) ;
       #endif
 
-      *elementoCorrente = pLista->pElemCorr->pValor ;
-      printf("Elemento Corrente: %s\n", (char*)*elementoCorrente);
+      printf("Entrou no obter valor da lista\n");
 
-      if ( *elementoCorrente == NULL )
+      if ( pLista->pElemCorr == NULL )
       {
+         printf("Lista vazia\n");
          return LIS_CondRetListaVazia ;
       } /* if */
+      printf("Lista cheia\n");
+      *elementoCorrente = pLista->pElemCorr->pValor ;
+      printf("Elemento Corrente: %c\n", *(char*)*elementoCorrente);
 
       return LIS_CondRetOK ;
 

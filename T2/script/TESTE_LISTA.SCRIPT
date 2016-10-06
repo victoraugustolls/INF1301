@@ -37,6 +37,9 @@
 == Teste Destruição de Listas
 =destroiLista      lista0   OK
 
+== Teste Destruição de Listas Inexistentes
+=destroiLista      lista0   ListaInexistente
+
 // ---------------------------------------------
 
 == Teste Obter Id Lista
@@ -68,10 +71,10 @@
 
 == Teste Simples de Exclusão de Elemento
 =criarlista          lista0    "abc"     OK
-=inserirNo           lista0    "test1"   OK
-=inserirNo           lista0    "test2"   OK
+=inserirNo           lista0    'a'       OK
+=inserirNo           lista0    'b'       OK
 =excluirNoCorrente   lista0
-=obterNo		     lista0	   "test1"   OK
+=obterNo		     lista0	   'a'       OK
 =destroiLista        lista0    OK
 
 // ---------------------------------------------
@@ -88,53 +91,53 @@
 
 == Teste Simples de Avançar e Recuar Elemento
 =criarlista          lista0    "abc"            OK
-=inserirNo           lista0    "test1"          OK
-=inserirNo           lista0    "test2"          OK
+=inserirNo           lista0    'a'              OK
+=inserirNo           lista0    'b'              OK
 =irAnt               lista0    OK
-=obterNo		     lista0	   "test1"          OK
+=obterNo		     lista0	   'a'              OK
 =irAnt               lista0    NoCorrentePrim
-=obterNo		     lista0	   "test1"          OK
+=obterNo		     lista0	   'a'              OK
 =irProx              lista0    OK
-=obterNo		     lista0	   "test2"          OK
-=irProx              lista0    NoCorrentePrim
-=obterNo		     lista0	   "test2"          OK
+=obterNo		     lista0	   'b'              OK
+=irProx              lista0    NoCorrenteUlt
+=obterNo		     lista0	   'b'              OK
 =destroiLista        lista0    OK
 
 // ---------------------------------------------
 
 == Teste Simples de Alterar Lista Vazia
 =criarlista          lista0    "abc"      OK
-=alterarNoCorrente   lista0    "test2"    ListaVazia
+=alterarNoCorrente   lista0    'b'        ListaVazia
 =destroiLista        lista0    OK
 
 ==Teste Simples de Alterar nó corrente
-=criarlista          lista0    "abc"      OK
-=inserirNo           lista0    "test1"    OK
-=alterarNoCorrente   lista0    "test2"    OK
-=obterNo		     lista0	   "test2"    OK
-=alterarNoCorrente   lista0    "test1"    OK
-=obterNo		     lista0	   "test1"    OK
+=criarlista          lista0    "123"  OK
+=inserirNo           lista0    'a'    OK
+=alterarNoCorrente   lista0    'b'    OK
+=obterNo		     lista0	   'b'    OK
+=alterarNoCorrente   lista0    'c'    OK
+=obterNo		     lista0	   'c'    OK
 =destroiLista        lista0    OK
 
 ==Teste Simples de Alterar nó corrente de lista inexistente
-=alterarNoCorrente   lista0    "test2"   ListaInexistente
+=alterarNoCorrente   lista0    'b'   ListaInexistente
 
 // ---------------------------------------------
 
 ==Teste com múltiplas listas
 =criarlista          lista0    "abc"            OK
 =criarlista          lista1    "cba"            OK
-=inserirNo           lista0    "test1"          OK
-=inserirNo           lista1    "test2"          OK
-=inserirNo           lista0    "test3"          OK
-=inserirNo           lista1    "test4"          OK
+=inserirNo           lista0    'a'              OK
+=inserirNo           lista1    'b'              OK
+=inserirNo           lista0    'c'              OK
+=inserirNo           lista1    'd'              OK
 =irAnt               lista0    OK
-=obterNo		     lista0	   "test1"          OK
+=obterNo		     lista0	   'a'              OK
 =irProx              lista1    NoCorrenteUlt
-=obterNo		     lista1	   "test4"          OK
-=alterarNoCorrente   lista0    "test5"          OK
-=obterNo		     lista0	   "test5"          OK
+=obterNo		     lista1	   'd'              OK
+=alterarNoCorrente   lista0    'e'              OK
+=obterNo		     lista0	   'e'              OK
 =irAnt               lista0    NoCorrentePrim
-=obterNo		     lista1	   "test4"          OK
+=obterNo		     lista1	   'd'              OK
 =destroiLista        lista0    OK
 =destroiLista        lista1    OK
