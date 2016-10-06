@@ -19,7 +19,7 @@
 
 // #include   <stdio.h>
 // #include   <string.h>
-#include	<memory.h>
+#include	  <memory.h>
 #include  	<malloc.h>
 #include  	<assert.h>
 
@@ -73,11 +73,11 @@
 
      	PCA_LimparPeca( pNewPeca ) ;
 
-     	pNewPeca->nomePeca = ( char * ) malloc ( strlen ( nomePeca ) + 1 ) ;
-     	pNewPeca->corPeca = ( char * ) malloc ( strlen ( corPeca ) + 1 ) ;
+     	pNewPeca->nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
+     	pNewPeca->corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-     	strcpy( pNewPeca->nomePeca , nomePeca ) ;
-     	strcpy( pNewPeca->corPeca , corPeca ) ;
+     	*pNewPeca->nomePeca = *nomePeca ;
+     	*pNewPeca->corPeca = *corPeca ;
 
      	*pPeca = pNewPeca ;
 
@@ -103,8 +103,8 @@
          	return PCA_CondRetPecaVazia ;
       	} /* if */
 
-       	strcpy( *nomePeca , pPeca->nomePeca ) ;
-       	strcpy( *corPeca , pPeca->corPeca ) ;
+       	**nomePeca = *pPeca->nomePeca ;
+       	**corPeca = *pPeca->corPeca ;
 
       	return PCA_CondRetOK ;
 

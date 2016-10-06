@@ -78,8 +78,8 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 
 		TST_tpCondRet CondRet ;
 
-		char nomePecaEsp[ 10 ] ;
-		char corPecaEsp[ 10 ] ;
+		char nomePecaEsp ;
+		char corPecaEsp ;
 
 		char * nomePeca ;
 		char * corPeca ;
@@ -105,8 +105,8 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		else if ( strcmp( ComandoTeste , CRIAR_PECA_CMD ) == 0 )
 		{
 
-		numLidos = LER_LerParametros( "issi" , &inxPeca ,
-									nomePecaEsp , corPecaEsp ,
+		numLidos = LER_LerParametros( "icci" , &inxPeca ,
+									&nomePecaEsp , &corPecaEsp ,
 									&CondRetEsp) ;
 
 		if ( ( numLidos != 4 )
@@ -115,10 +115,10 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		   return TST_CondRetParm ;
 		} /* if */
 
-		nomePeca = ( char * ) malloc ( strlen ( nomePecaEsp ) + 1 ) ;
-		corPeca = ( char * ) malloc ( strlen ( corPecaEsp ) + 1 ) ;
-		strcpy( nomePeca , nomePecaEsp ) ;
-		strcpy( corPeca , corPecaEsp ) ;
+		nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
+		corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
+		*nomePeca = nomePecaEsp ;
+		*corPeca = corPecaEsp ;
 
 		CondRet = PCA_CriarPeca( &vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
 
@@ -135,8 +135,8 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		else if ( strcmp( ComandoTeste , OBTER_NO_CMD ) == 0 )
 		{
 
-			numLidos = LER_LerParametros( "issi" , &inxPeca ,
-										nomePecaEsp , corPecaEsp ,
+			numLidos = LER_LerParametros( "icci" , &inxPeca ,
+										&nomePecaEsp , &corPecaEsp ,
 										&CondRetEsp ) ;
 
 		if ( ( numLidos != 4 )
@@ -145,10 +145,10 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		   return TST_CondRetParm ;
 		} /* if */
 
-		nomePeca = ( char * ) malloc ( strlen ( nomePecaEsp ) + 1 ) ;
-		corPeca = ( char * ) malloc ( strlen ( corPecaEsp ) + 1 ) ;
+		nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
+		corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-		CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , &nomePeca , &corPeca ) ;
+		CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , *nomePeca , *corPeca ) ;
 
 		if ( CondRetEsp )
 		{
@@ -156,15 +156,22 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		        					"Peca deveria estar vazia." ) ;
 		}/* if */
 
-		if ( strcmp( nomePecaEsp , nomePeca ) )
+		if ( nomePecaEsp == *nomePeca )
 		{
+			free( nomePeca ) ;
+			free( corPeca ) ;
 			TST_NotificarFalha( "Nome da peca recebido errado." ) ;
 		}/* if */
 
-		if ( strcmp( corPecaEsp , corPeca ) )
+		if ( corPecaEsp == *corPeca )
 		{
+			free( nomePeca ) ;
+			free( corPeca ) ;
 			TST_NotificarFalha( "Cor da peca recebida errada." ) ;
 		}/* if */
+
+		free( nomePeca ) ;
+		free( corPeca ) ;
 
 		return TST_CompararInt( CondRetEsp , CondRet ,
 		        				"Condicao de retorno errada ao criar peca." ) ;

@@ -24,10 +24,10 @@
 // ---------------------------------------------
 
 == Teste Criação de Peças
-=criarPeca      peca0   "peao"   "preto"   OK
+=criarPeca      peca0   'P'   'P'   OK
 
 == Teste do Teste de Criação de Peças
-=criarPeca      peca0   "peao"   OK
+=criarPeca      peca0   'P'   OK
 =recuperar
 
 // ---------------------------------------------
@@ -41,28 +41,28 @@
 // ---------------------------------------------
 
 == Teste Obter Valor Peça
-=criarPeca       peca0   "peao"   "preto"   OK
-=obterNo         peca0   "peao"   "preto"   OK
+=criarPeca       peca0   'P'   'P'   OK
+=obterNo         peca0   'P'   'P'   OK
 =destroiPeca     peca0   OK
 
 == Teste Obter Valor Peça Falha Nome
-=criarPeca       peca0   "peao"    "preto"   OK
-=obterIdLista    peca0   "torre"   "preto"
+=criarPeca       peca0   'P'    'P'   OK
+=obterNo	     peca0   'T'    'P'
 =recuperar
 =destroiPeca     peca0   OK
 
 == Teste Obter Valor Peça Falha Cor
-=criarPeca       peca0   "peao"    "preto"   OK
-=obterIdLista    peca0   "peao"    "branco"
+=criarPeca       peca0   'P'    'P'   OK
+=obterNo	     peca0   'P'    'B'
 =recuperar
 =destroiPeca     peca0   OK
 
 // ---------------------------------------------
 
-==Teste com múltiplas peças
-=criarPeca       peca0   "peao"    "preto"    OK
-=criarPeca       peca1   "torre"   "branco"   OK
-=obterNo		 peca0   "peao"    "preto"
-=obterNo		 peca1   "torre"   "branco"
+== Teste com múltiplas peças
+=criarPeca       peca0   'P'    'P'    OK
+=criarPeca       peca1   'T'    'B'   OK
+=obterNo		 peca0   'P'    'P'
+=obterNo		 peca1   'T'    'B'
 =destroiPeca     peca0   OK
 =destroiPeca     peca1   OK
