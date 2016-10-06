@@ -60,25 +60,25 @@ typedef struct TAB_tagTabuleiro * TAB_tppTabuleiro ;
 
 typedef enum {
     
-    TAB_CondRetOK ,
+    TAB_CondRetOK = 0 ,
     /* Concluiu corretamente */
     
-    TAB_CondRetNaoExiste ,
+    TAB_CondRetNaoExiste = 1 ,
     /* O tabuleiro ou algum dos seus componentes não existe */
     
-    TAB_CondRetCoordNaoExiste ,
+    TAB_CondRetCoordNaoExiste = 2 ,
     /* A coordenada não existe em tal tabuleiro */
     
-    TAB_CondRetFalhaAberturaArquivo ,
+    TAB_CondRetFalhaAberturaArquivo = 3 ,
     /* Falha ao abrir arquivo de peças de tal tabuleiro */
     
-    TAB_CondRetFormatoArquivoErrado ,
+    TAB_CondRetFormatoArquivoErrado = 4 ,
     /* Formato de arquivo para leitura de peças errado */
     
-    TAB_CondRetMovInvalido ,
+    TAB_CondRetMovInvalido = 5 ,
     /* O movimento não é válido em tal tabuleiro */
     
-    TAB_CondRetFaltouMemoria
+    TAB_CondRetFaltouMemoria = 6,
     /* Faltou memória ao tentar criar um elemento do tabuleiro */
     
 } TAB_tpCondRet ;
