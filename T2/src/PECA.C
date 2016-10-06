@@ -137,7 +137,7 @@
 *
 ***********************************************************************/
 
-   	void PCA_EsvaziarPeca( PECA_tppPeca pPeca )
+   	void PCA_EsvaziarPeca( PCA_tppPeca pPeca )
    	{
 
       	free( pPeca->nomePeca ) ;

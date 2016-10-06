@@ -43,7 +43,7 @@ static const char DESTROI_PECA_CMD           [ ] = "=destroiPeca"       ;
 #define DIM_VT_PECA   10
 #define DIM_VALOR     100
 
-PCA_tppPeca   vtPeca[ DIM_VT_PECA ] ;
+PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
