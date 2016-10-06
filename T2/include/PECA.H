@@ -75,7 +75,7 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *  $EP Parâmetros
 *     pPeca            - ponteiro para peça sendo criada
 *     nomePeca         - nome da peça sendo criada
-*	  corPeca 		   - cor da peça sendo criada
+*	    corPeca 		     - cor da peça sendo criada
 *
 *  $FV Valor retornado
 *     PCA_CondRetOK            - peça foi criada corretamente

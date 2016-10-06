@@ -92,41 +92,39 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &TODO
+*  $FC Função: VMV  &Cria um identificador para o arquivo de configuração
 *
 *  $ED Descrição da função
-*     TODO
+*     Dado um diretório, retorna por referência um identificador de um arquivo
+*     de configuração.
 *
 *  $EP Parâmetros
-*
-*     TODO          - TODO
-*     TODO          - TODO
+*     pConfigDir          - ponteiro para o identificador de configuração
+*     pathConfigArq       - diretório do arquivo
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK            - TODO
-*     VMV_CondRetErrFaltouMemoria
-*     VMV_CondRetErrAberturaArquivo
-*     VMV_CondRetErrFormatoArquivoErrado
+*     VMV_CondRetOK                       - Identificador de configuração criado corretamente
+*     VMV_CondRetErrFaltouMemoria         - Ocorreu um erro na criação do identificador de configuração
+*     VMV_CondRetErrAberturaArquivo       - Erro ao abrir o arquivo de configuração
+*     VMV_CondRetErrFormatoArquivoErrado  - Arquivo de configuração foi criado no formato errado
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_CriarConfigDir (  VMV_tppConfigDir * pConfigDir , const char * pathConfigArq ) ;
+   VMV_tpCondRet VMV_CriarConfigDir ( VMV_tppConfigDir * pConfigDir , const char * pathConfigArq ) ;
 
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &TODO
+*  $FC Função: VMV  &Destroi o identificador do arquivo de configuração
 *
 *  $ED Descrição da função
-*     TODO
+*     Destrói o identificador de configuração.
 *
 *  $EP Parâmetros
-*
-*     TODO          - TODO
-*     TODO          - TODO
+*     pConfigDir          - ponteiro para o identificador de configuração
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK
+*     VMV_CondRetOK       - Identificador de configuração criado corretamente
 *
 ***********************************************************************/
 
@@ -135,21 +133,24 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &TODO
+*  $FC Função: VMV  &Obter estado inicial do tabuleiro
 *
 *  $ED Descrição da função
-*     TODO
+*     Dado o identificador de configuração, retorna por referência um vetor de
+*     peças e cores do tabuleiro no início. Ambos os vetores tem tamanho também
+*     passado como parâmetro
 *
 *  $EP Parâmetros
-*
-*     TODO          - TODO
-*     TODO          - TODO
+*     pConfig       - identificador de configuração
+*     pecas         - ponteiro para o vetor de peças
+*     cores         - ponteiro para o vetor de cores
+*     num_casas     - tamanho do vetor de peças e cores
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK            - TODO
-*     VMV_CondRetErrFaltouMemoria
-*     VMV_CondRetErrAberturaArquivo
-*     VMV_CondRetErrFormatoArquivoErrado
+*     VMV_CondRetOK                       - Retornou corretamente o estado inicial do tabuleiro
+*     VMV_CondRetErrFaltouMemoria         - Ocorreu um erro ao pegar o estado inicial do tabuleiro
+*     VMV_CondRetErrAberturaArquivo       - Erro ao abrir o arquivo de configuração
+*     VMV_CondRetErrFormatoArquivoErrado  - Arquivo de configuração foi criado no formato errado
 *
 ***********************************************************************/
 
@@ -166,7 +167,6 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 *     TODO
 *
 *  $EP Parâmetros
-*
 *     TODO          - TODO
 *     TODO          - TODO
 *
@@ -191,7 +191,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
                                              int ( ** array_dimensao ) ( void * casa ) ,
                                              int * array_sinal ,
                                              int ( * vazio) ( void * casa ) ,
-                                             int ( * inimigo )( void * casa ) ,
+                                             int ( * inimigo ) ( void * casa ) ,
                                              int * cond_especiais ,
                                              int num_cond_especiais ) ;
 
