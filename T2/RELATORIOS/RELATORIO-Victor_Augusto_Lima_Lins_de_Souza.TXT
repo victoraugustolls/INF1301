@@ -13,4 +13,5 @@ Data	   Horas Trabalhadas	 Tipo Tarefa	 		                        		Descrição da
 05/10/16   2                     Codificar módulo                                 		Implementar o módulo peça
 06/10/16   2                     Codificar módulo                                 		Implementar os testes do módulo peça
 06/10/16   30min                 Redigir Script de teste                                Redigir os scripts de teste para o módulo peça
+06/10/16   30min                 Diagnosticar e corrigir os problemas encontrados       Corrigir módulo peça, para armazenar char no lugar de string
 06/10/16   30min                 Revisar especificações                                 Revisar o enunciado do trabalho para montar a entrega final
