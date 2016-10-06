@@ -55,11 +55,22 @@
 
 // ---------------------------------------------
 
-== Inicio Testes Movimento Peca
+== Testes Movimento Peca Erro
 =criarconfig        OK                      "..\\pecas\\teste\\config_teste_checa_mov_erro.conf"
 =checarmovpeca      ErrAberturaArquivo          ANY_VALUE      '0'     0 0     0 0
 =checarmovpeca      ErrFormatoArquivoErrado     ANY_VALUE      'a'     0 0     0 0
 =checarmovpeca      VariavelNaoExistente        ANY_VALUE      'b'     0 0     0 0
-=checarmovpeca      VariavelNaoExistente        ANY_VALUE      'c'     0 0     0 0
+=checarmovpeca      ErrComandoNaoExistente      ANY_VALUE      'c'     0 0     0 0
+=destruirconfig     OK
+
+// ---------------------------------------------
+
+== Testes Movimento Peca Proposicoes (P)
+=criarconfig        OK                      "..\\pecas\\teste\\config_teste_checa_mov_P.conf"
+=checarmovpeca      ErrAberturaArquivo          ANY_VALUE      '0'     0 0     0 0
+=checarmovpeca      ErrFormatoArquivoErrado     ANY_VALUE      'a'     0 0     0 0
+=checarmovpeca      VariavelNaoExistente        ANY_VALUE      'b'     0 0     0 0
+=checarmovpeca      ErrComandoNaoExistente      ANY_VALUE      'c'     0 0     0 0
 =destruirconfig     OK 
+
 
