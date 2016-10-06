@@ -27,8 +27,11 @@
 == Teste de Inserção de Peça no Tabuleiro
 =inserirPeca         'A'   '1'   'V'   'V'   OK
 
-== Teste de Inserção de Peça em Coordenada Inválida no Tabuleiro
-=inserirPeca         'I'   '0'   'V'   'V'   CoordNaoExiste
+== Teste de Inserção de Peça em Coluna Inválida no Tabuleiro
+=inserirPeca         'I'   '1'   'V'   'V'   CoordNaoExiste
+
+== Teste de Inserção de Peça em Linha Inválida no Tabuleiro
+=inserirPeca         'A'   '9'   'V'   'V'   CoordNaoExiste
 
 // ---------------------------------------------
 
