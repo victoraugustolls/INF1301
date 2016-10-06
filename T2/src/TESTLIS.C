@@ -107,7 +107,6 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
       char StringDado ;
 
       char * pValor ;
-      char pValorEsp[ 10 ] ;
 
       int i ;
 

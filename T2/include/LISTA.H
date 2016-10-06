@@ -129,9 +129,6 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *                     exclusão do valor referenciado pelo elemento
 *                     a ser excluído.
 *                     Ver descrição do módulo.
-*     ImprimirValor   - ponteiro para a função que imprime o valor
-*                     referenciado pelo módulo.
-*                     Ver descrição do módulo.
 *     CompararValores - ponteiro para a função que compara o valor
 *                     de dois elementos. Deve retornar -1, 0 ou 1.
 *                     Ver descrição do módulo.
@@ -188,7 +185,6 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *     Parâmetros
 *        pLista - ponteiro para a lista onde deve ser inserido o elemento
 *        pValor - ponteiro para o valor do novo elemento
-*                 Pode ser NULL
 *           
 *
 *  $FV Valor retornado
@@ -233,7 +229,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $EP Parâmetros
 *     pLista           - ponteiro para a lista de onde se quer o valor
-*     elementoCorrente - ponteiro para o valor do nó corrente. Pode ser NULL.
+*     elementoCorrente - ponteiro para o valor do nó corrente
 *
 *  $FV Valor retornado
 *     LIS_CondRetOK
