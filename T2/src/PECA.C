@@ -127,7 +127,7 @@
 
      	free( pPeca ) ;
 
-     	return LIS_CondRetOK ;
+     	return PCA_CondRetOK ;
 
   	} /* Fim função: PCA  &Destruir peça */
 

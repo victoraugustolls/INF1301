@@ -102,7 +102,7 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *
 *  $FV Valor retornado
 *     PCA_CondRetOK
-*     PCA_CondRetListaVazia
+*     PCA_CondRetPecaVazia
 *
 ***********************************************************************/
 

@@ -47,7 +47,7 @@
 =obterIdLista    lista0   "abc"
 =destroiLista    lista0   OK
 
-== Teste do Teste Obter Id Lista
+== Teste Obter Id Lista Falha
 =criarlista      lista0   "abc"   OK
 =obterIdLista    lista0   "cba"
 =recuperar
