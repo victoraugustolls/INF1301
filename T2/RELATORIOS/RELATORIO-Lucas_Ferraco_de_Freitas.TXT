@@ -32,3 +32,5 @@
 05/10/2016; 3 horas ; projetar; Continuei a projetar o TESTTAB.C.
 
 05/10/2016; 1 hora ; redigir script de teste; Projetei o script de testes do módulo Tabuleiro (TESTE_TABULEIRO.SCRIPT).
+
+05/10/2016; 1.5 horas ; realizar os testes; Compilei e rodei os testes dos módulos PECA e TABULEIRO.

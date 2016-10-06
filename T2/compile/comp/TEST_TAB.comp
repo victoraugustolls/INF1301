@@ -1,0 +1,25 @@
+[Diretorios]
+
+Nome        =  TEST_TAB
+PathDefault =  ..\..\include
+err         =  ..\err
+obj         =  ..\obj
+c           =  ..\..\src
+h           =  ..\..\include
+def         =  ..\tabs
+tab         =  ..\tabs
+inc         =  ..\tabs
+
+[Modulos]
+TESTTAB
+TABULEIRO
+
+[BuildInicio]
+/OUT:TEST_TAB.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+..\..\lib\ArcaboucoTeste.lib
+
+[Fim]

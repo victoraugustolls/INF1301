@@ -1,0 +1,25 @@
+[Diretorios]
+
+Nome        =  TEST_PCA
+PathDefault =  ..\..\include
+err         =  ..\err
+obj         =  ..\obj
+c           =  ..\..\src
+h           =  ..\..\include
+def         =  ..\tabs
+tab         =  ..\tabs
+inc         =  ..\tabs
+
+[Modulos]
+TESTPCA
+PECA
+
+[BuildInicio]
+/OUT:TEST_PCA.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+..\..\lib\ArcaboucoTeste.lib
+
+[Fim]
