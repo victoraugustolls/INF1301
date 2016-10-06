@@ -4,47 +4,34 @@
 !!!      Script de teste:     ..\script\TESTE_VMV.script
 
 !!!    0  Linha:     1  // Script: TesteLista.script 
-!!!    0  Linha:     2  // Autores: Ian Albuquerque, Lucas Ferraço e Victor Augusto 
-!!!    0  Linha:     3  // Autor Original: Arndt von Staa 
-!!!    0  Linha:     4  // Data: 04/out/2016 
-!!!    0  Linha:     5  // Propósito: Testar por completo as funções de acesso do módulo LISTA, com exceção 
-!!!    0  Linha:     6  // do caso em que ocorre falta de memória. 
-!!!    0  Linha:     7  // 
-!!!    0  Linha:     8  // 
-!!!    0  Linha:    10  // --------------------------------------------- 
-   12  == Inicializar Constantes
-!!!    0  Linha:    20  // --------------------------------------------- 
-   22  == Inicializar valores
-!!!    0  Linha:    26  // --------------------------------------------- 
-   28  == Teste Criação de Listas
-   31  == Teste do Teste de Criação de Listas
-!!!    0  Linha:    35  // --------------------------------------------- 
-   37  == Teste Destruição de Listas
-!!!    0  Linha:    40  // --------------------------------------------- 
-   42  == Teste Obter Id Lista
-   47  == Teste do Teste Obter Id Lista
-!!!    0  Linha:    53  // --------------------------------------------- 
-   55  == Teste Simples de Inserção e Obtenção de Elemento
-   62  == Teste Simples de Obtenção de Elemento de ListaVazia
-!!!    0  Linha:    67  // --------------------------------------------- 
-   69  == Teste Simples de Exclusão de Elemento
-!!!    0  Linha:    77  // --------------------------------------------- 
-   79  == Teste Simples de Avançar em Lista Vazia
-   84  == Teste Simples de Recuar em Lista Vazia
-   89  == Teste Simples de Avançar e Recuar Elemento
-!!!    0  Linha:   103  // --------------------------------------------- 
-  105  == Teste Simples de Alterar Lista Vazia
-  110  ==Teste Simples de Alterar nó corrente
-  119  ==Teste Simples de Alterar nó corrente de lista inexistente
-!!!    0  Linha:   122  // --------------------------------------------- 
-  124  ==Teste com múltiplas listas
+!!!    0  Linha:     2  // Autores: Ian Albuquerque 
+!!!    0  Linha:     3  // Autor Original: Ian Albuquerque 
+!!!    0  Linha:     4  // Data: 05/out/2016 
+!!!    0  Linha:     5  // Propósito: Testar módulo VMV por completo 
+!!!    0  Linha:     6  // --------------------------------------------- 
+!!!    0  Linha:     8  // --------------------------------------------- 
+   10  == Inicializar Constantes
+!!!    0  Linha:    12  // Essas constantes devem ser iguais aos valroes de VMV_tpCondRet definidos em VALIDA_MOV.H 
+!!!    0  Linha:    25  // --------------------------------------------- 
+   27  == Teste Criação e Destruição Arquivo Existente
+   31  == Teste Criação Falhas
+>>>    1  Linha:    34  Condicao de retorno recebida diferente da esperada. 
+<<<    0  Linha:    35  Falha esperada foi recuperada. 
+!!!    0  Linha:    37  // --------------------------------------------- 
+   39  == Ler Tabuleiro Inicial Correto
+   44  == Ler Tabuleiro Inicial Inexistente
+   49  == Ler Tabuleiro Inicial Formato Errado
+!!!    0  Linha:    54  // --------------------------------------------- 
+   56  == Inicio Testes Movimento Peca
+>>>    1  Linha:    58  Comando de teste ainda não implementado:  =checarmovpeca      OK     MovimentoValidoSim       'a'
+>>>    2  Linha:    59  Comando de teste ignorado:  =destruirconfig     OK
 
-!!! Número de linhas lidas:         140
-!!! Número de casos de teste:        17
-!!! Número comandos corretos:        78
-!!! Número de falhas encontradas:     0
+!!! Número de linhas lidas:          60
+!!! Número de casos de teste:         7
+!!! Número comandos corretos:        23
+!!! Número de falhas encontradas:     2
 
-!!! Não foram encontrados problemas
+!!! Foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0

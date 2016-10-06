@@ -104,8 +104,9 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 *
 *  $FV Valor retornado
 *     VMV_CondRetOK            - TODO
-*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
-*     VMV_CondRetErrFormatoArquivoErrado            - TODO
+*     VMV_CondRetErrFaltouMemoria
+*     VMV_CondRetErrAberturaArquivo
+*     VMV_CondRetErrFormatoArquivoErrado
 *
 ***********************************************************************/
 
@@ -125,9 +126,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 *     TODO          - TODO
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK            - TODO
-*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
-*     VMV_CondRetErrFormatoArquivoErrado            - TODO
+*     VMV_CondRetOK
 *
 ***********************************************************************/
 
@@ -148,14 +147,15 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 *
 *  $FV Valor retornado
 *     VMV_CondRetOK            - TODO
-*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
-*     VMV_CondRetErrFormatoArquivoErrado            - TODO
+*     VMV_CondRetErrFaltouMemoria
+*     VMV_CondRetErrAberturaArquivo
+*     VMV_CondRetErrFormatoArquivoErrado
 *
 ***********************************************************************/
 
    VMV_tpCondRet VMV_LerTabuleiroInicial (   VMV_tppConfigDir pConfig,
-                                             char* pecas, 
-                                             char* cores, 
+                                             char** pecas, 
+                                             char** cores, 
                                              int* num_casas );
 
 /***********************************************************************
@@ -171,16 +171,18 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 *     TODO          - TODO
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK            - TODO
-*     VMV_CondRetErrArquivoNaoEncontrado            - TODO
-*     VMV_CondRetErrFormatoArquivoErrado            - TODO
-*
+      VMV_CondRetOK = 0
+      VMV_CondRetErrAberturaArquivo = 1
+      VMV_CondRetErrFormatoArquivoErrado = 2
+      VMV_CondRetVariavelNaoExistente = 4
+      VMV_CondRetErrManuseioArquivo = 5
+      VMV_CondRetErrComandoNaoExistente = 6
+
 ***********************************************************************/
 
    VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig,
                                              VMV_tpMovimentoValido* movimento_valido,
                                              char peca,
-                                             char cor, 
                                              void* casa_atual,
                                              void* casa_destino,
                                              void** casas,

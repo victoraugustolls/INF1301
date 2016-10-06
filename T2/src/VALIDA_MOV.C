@@ -51,7 +51,6 @@
    typedef struct VMV_exprEvalTools {
 
       char peca;
-      char cor;
       void* casa_atual;
       void* casa_destino;
       void** casas;
@@ -189,6 +188,10 @@ static const char CMD_PCA_C_C [ ]                = "C";
                return VMV_CondRetErrFaltouMemoria;
             }
             strcpy(*pathDirPecas,(const unsigned char*)buffer);
+         }
+         else
+         {
+            return VMV_CondRetErrFormatoArquivoErrado;
          }
       }
       return VMV_CondRetOK;
@@ -954,7 +957,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
 * Função: VMV  &Ler Tabuleiro Inicial
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_LerTabuleiroInicial ( VMV_tppConfigDir pConfig, char* pecas, char* cores, int* num_casas )
+   VMV_tpCondRet VMV_LerTabuleiroInicial ( VMV_tppConfigDir pConfig, char** pecas, char** cores, int* num_casas )
    {
       int i;
 
@@ -972,24 +975,24 @@ static const char CMD_PCA_C_C [ ]                = "C";
          return VMV_CondRetErrFormatoArquivoErrado;
       }
 
-      pecas = (char*) malloc(sizeof(char)*(*num_casas));
-      if(pecas == NULL)
+      *pecas = (char*) malloc(sizeof(char)*(*num_casas));
+      if(*pecas == NULL)
       {
          return VMV_CondRetErrFaltouMemoria;
       }
-      cores = (char*) malloc(sizeof(char)*(*num_casas));
-      if(pecas == NULL)
+      *cores = (char*) malloc(sizeof(char)*(*num_casas));
+      if(*cores == NULL)
       {
-         free(pecas);
+         free(*cores);
          return VMV_CondRetErrFaltouMemoria;
       }
 
       for(i=0; i<*num_casas; i++)
       {
-         if(fscanf(arquivoEntrada, " %c%c", &pecas[i], &cores[i]) != 2)
+         if(fscanf(arquivoEntrada, " %c", &(*pecas)[i]) != 1 || fscanf(arquivoEntrada, " %c", &(*cores)[i]) != 1)
          {
-            free(pecas);
-            free(cores);
+            free(*pecas);
+            free(*cores);
             return VMV_CondRetErrFormatoArquivoErrado;
          }
       }
@@ -1007,7 +1010,6 @@ static const char CMD_PCA_C_C [ ]                = "C";
    VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig,
                                              VMV_tpMovimentoValido* movimento_valido,
                                              char peca,
-                                             char cor, 
                                              void* casa_atual,
                                              void* casa_destino,
                                              void** casas,
@@ -1049,7 +1051,6 @@ static const char CMD_PCA_C_C [ ]                = "C";
       // ----------------------------------
 
       tools.peca = peca;
-      tools.cor = cor;
       tools.casa_atual = casa_atual;
       tools.casa_destino = casa_destino;
       tools.casas = casas;
