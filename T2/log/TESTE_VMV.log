@@ -22,14 +22,39 @@
    46  == Ler Tabuleiro Inicial Inexistente
    51  == Ler Tabuleiro Inicial Formato Errado
 !!!    0  Linha:    56  // --------------------------------------------- 
-   58  == Inicio Testes Movimento Peca
+   58  == Testes Movimento Peca Erro
+!!!    0  Linha:    66  // --------------------------------------------- 
+   68  == Testes Constantes Atual e Destino e Teste P_VAZ
+!!!    0  Linha:   119  // --------------------------------------------- 
+  121  == Inicializa Testes de Proposicao (P)
+!!!    0  Linha:   124  // P_VAZ JA TESTADO 
+  126  == P_INI
+  132  == P_COND
+  138  == P_IGUAL E V_NUM
+  159  == P_MAIOR
+  165  == P_MENOR
+  171  == Finaliza Testes de Proposicao (P)
+!!!    0  Linha:   174  // --------------------------------------------- 
+  176  == Inicializa Testes de Logica (L)
+!!!    0  Linha:   179  // P_VAZ JA TESTADO 
+  181  == L_NOT
+  192  == L_OR
+  203  == L_AND
+  214  == L_IFTHEN
+  226  == L_FORALL COMPLEXO
+>>>    1  Linha:   231  Condicao de retorno recebida diferente da esperada. 
+>>>    2  Linha:   232  Não é comando recuperar:  =checarmovpeca      OK                      T      'f'     5 1     2 3
+>>>    3  Linha:   233  Comando de teste ignorado:  =checarmovpeca      OK                      T      'f'     1 1     2 3
+>>>    4  Linha:   234  Comando de teste ignorado:  =checarmovpeca      OK                      T      'f'     5 6     2 3
+  236  == Finaliza Testes de Proposicao (P)
+!!!    4  Linha:   239  // --------------------------------------------- 
 
-!!! Número de linhas lidas:          65
-!!! Número de casos de teste:         7
-!!! Número comandos corretos:        29
-!!! Número de falhas encontradas:     0
+!!! Número de linhas lidas:         243
+!!! Número de casos de teste:        22
+!!! Número comandos corretos:       140
+!!! Número de falhas encontradas:     4
 
-!!! Não foram encontrados problemas
+!!! Foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0

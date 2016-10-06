@@ -126,7 +126,7 @@ TVMV_tppCasa pCasas[49] =   { &casas[0],  &casas[1],  &casas[2],  &casas[3],  &c
 
 TVMV_tppCasa getCasa(int x, int y)
 {
-   return pCasas[7*x+y];
+   return pCasas[7*y+x];
 }
 
 int dim0(void* _pCasa)
