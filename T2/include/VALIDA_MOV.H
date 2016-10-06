@@ -33,7 +33,7 @@
 
 /* Tipo referência para uma configuracao de diretorio de movimento */
 
-typedef struct VMV_configDir * VMV_tppConfigDir;
+typedef struct VMV_configDir * VMV_tppConfigDir ;
 
 /***********************************************************************
 *
@@ -56,13 +56,13 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
          VMV_CondRetErrFormatoArquivoErrado = 2 ,
                /* Ocorreu um erro na leitura do arquivo */
 
-         VMV_CondRetErrFaltouMemoria = 3,
+         VMV_CondRetErrFaltouMemoria = 3 ,
                /* Ocorreu um erro na leitura do arquivo */
 
-         VMV_CondRetVariavelNaoExistente = 4,
+         VMV_CondRetVariavelNaoExistente = 4 ,
                /* Ocorreu um erro na leitura do arquivo */
 
-         VMV_CondRetErrManuseioArquivo = 5,
+         VMV_CondRetErrManuseioArquivo = 5 ,
                /* Ocorreu um erro na leitura do arquivo */
 
          VMV_CondRetErrComandoNaoExistente = 6
@@ -110,7 +110,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_CriarConfigDir (  VMV_tppConfigDir* pConfigDir, const char* pathConfigArq );
+   VMV_tpCondRet VMV_CriarConfigDir (  VMV_tppConfigDir * pConfigDir, const char * pathConfigArq ) ;
 
 
 /***********************************************************************
@@ -130,7 +130,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_DestruirConfigDir (  VMV_tppConfigDir pConfigDir );
+   VMV_tpCondRet VMV_DestruirConfigDir ( VMV_tppConfigDir pConfigDir ) ;
 
 
 /***********************************************************************
@@ -154,9 +154,9 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 ***********************************************************************/
 
    VMV_tpCondRet VMV_LerTabuleiroInicial (   VMV_tppConfigDir pConfig,
-                                             char** pecas, 
-                                             char** cores, 
-                                             int* num_casas );
+                                             char ** pecas, 
+                                             char ** cores, 
+                                             int * num_casas ) ;
 
 /***********************************************************************
 *
@@ -180,20 +180,20 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig,
-                                             VMV_tpMovimentoValido* movimento_valido,
-                                             char peca,
-                                             void* casa_atual,
-                                             void* casa_destino,
-                                             void** casas,
-                                             int num_casas,
-                                             int num_dimensoes,
-                                             int (**array_dimensao)(void* casa),
-                                             int* array_sinal,
-                                             int (*vazio)(void* casa),
-                                             int (*inimigo)(void* casa),
-                                             int* cond_especiais,
-                                             int num_cond_especiais);
+   VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig ,
+                                             VMV_tpMovimentoValido * movimento_valido ,
+                                             char peca ,
+                                             void * casa_atual ,
+                                             void * casa_destino ,
+                                             void ** casas ,
+                                             int num_casas ,
+                                             int num_dimensoes ,
+                                             int ( ** array_dimensao ) ( void * casa ) ,
+                                             int * array_sinal ,
+                                             int ( * vazio) ( void * casa ) ,
+                                             int ( * inimigo )( void * casa ) ,
+                                             int * cond_especiais ,
+                                             int num_cond_especiais ) ;
 
 #undef VALIDA_MOV_EXT
 
