@@ -206,11 +206,16 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
+    if ( i > 8 || j > 8 )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
+    
     retModCasa = CSA_RetirarPecaCasa( pTabuleiro[i][j] ) ;
     
     if ( retModCasa == CSA_CondRetNaoExiste )
     {
-        return TAB_CondRetCoordNaoExiste ;
+        return TAB_CondRetNaoExiste ;
     } /* if */
     
     return TAB_CondRetOK ;

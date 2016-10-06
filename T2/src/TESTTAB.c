@@ -222,8 +222,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         numLidos = LER_LerParametros( "cccci" ,
                                       charParm1 ,
                                       charParm2 ,
-                                      &charParm3 ,
-                                      &charParm4 ,
+                                      charParm3 ,
+                                      charParm4 ,
                                       &CondRetEsp) ;
         
         if ( ( numLidos != 5 ) )

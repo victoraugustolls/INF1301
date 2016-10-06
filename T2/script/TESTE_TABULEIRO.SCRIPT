@@ -1,0 +1,82 @@
+// Script: TESTE_TABULEIRO.SCRIPT
+// Autores: Lucas Ferraço
+// Data: 06/out/2016
+// Propósito: Testar por completo as funções de acesso do módulo TABULEIRO, com exceção
+// do caso em que ocorre falta de memória.
+//
+// ---------------------------------------------
+
+== Inicializar Constantes
+=declararparm   OK                int  0
+=declararparm   NaoExiste         int  1
+=declararparm	CoordNaoExiste	  int  2
+=declararparm	MovInvalido       int  3
+=declararparm   FaltouMemoria     int  4
+
+// ---------------------------------------------
+
+== Teste de Criação de Tabuleiro
+=criarTabuleiro   OK
+
+== Teste do Teste de Criação de Tabuleiro
+=criarTabuleiro  OK
+=recuperar
+
+// ---------------------------------------------
+
+== Teste de Inserção de Peça no Tabuleiro
+=inserirPeca         'A'   '1'   'V'   'V'   OK
+
+== Teste de Inserção de Peça em Coordenada Inválida no Tabuleiro
+=inserirPeca         'I'   '0'   'V'   'V'   CoordNaoExiste
+
+// ---------------------------------------------
+
+== Teste de Remoção de Peça do Tabuleiro
+=retirarPeca         'A'   '1'   OK
+
+== Teste de Remoção de Peça Inexistente do Tabuleiro
+=retirarPeca         'A'   '1'   NaoExiste
+
+// ---------------------------------------------
+
+== Teste de Destruição de Tabuleiro
+=destruirTabuleiro   OK
+
+// ---------------------------------------------
+
+== Teste de Movimentação de Peça no Tabuleiro
+=criarTabuleiro      OK
+=inserirPeca         'A'   '1'   'T'   'P'   OK
+=moverPeca           'A'   '1'   'A'   '2'   OK
+=destruirTabuleiro   OK
+
+== Teste de Movimentação Inválida de Peça no Tabuleiro
+=criarTabuleiro      OK
+=inserirPeca         'A'   '1'   'T'   'P'   OK
+=moverPeca           'A'   '1'   'B'   '2'   MovInvalido
+=destruirTabuleiro   OK
+
+// ---------------------------------------------
+
+== Teste de Obtenção de Peça do Tabuleiro
+=criarTabuleiro      OK
+=inserirPeca         'A'   '1'   'T'   'P'   OK
+=obterPeca           'A'   '1'   'T'   'P'   OK
+=destruirTabuleiro   OK
+
+// ---------------------------------------------
+
+== Teste de Obtenção de Lista de Ameaçantes de uma Peça do Tabuleiro
+=criarTabuleiro         OK
+=inserirPeca            'A'   '1'   'T'   'P'   OK
+=obterListaAmeacantes   'A'   '1'   OK
+=destruirTabuleiro      OK
+
+// ---------------------------------------------
+
+== Teste de Obtenção de Lista de Ameaçados de uma Peça do Tabuleiro
+=criarTabuleiro         OK
+=inserirPeca            'A'   '1'   'T'   'P'   OK
+=obterListaAmeacantes   'A'   '1'   OK
+=destruirTabuleiro      OK
