@@ -33,7 +33,7 @@
 
 /* Tipo referência para uma configuracao de diretorio de movimento */
 
-typedef struct VMV_configDir * VMV_tppConfigDir;
+typedef struct VMV_configDir * VMV_tppConfigDir ;
 
 /***********************************************************************
 *
@@ -56,13 +56,13 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
          VMV_CondRetErrFormatoArquivoErrado = 2 ,
                /* Ocorreu um erro na leitura do arquivo */
 
-         VMV_CondRetErrFaltouMemoria = 3,
+         VMV_CondRetErrFaltouMemoria = 3 ,
                /* Ocorreu um erro na leitura do arquivo */
 
-         VMV_CondRetVariavelNaoExistente = 4,
+         VMV_CondRetVariavelNaoExistente = 4 ,
                /* Ocorreu um erro na leitura do arquivo */
 
-         VMV_CondRetErrManuseioArquivo = 5,
+         VMV_CondRetErrManuseioArquivo = 5 ,
                /* Ocorreu um erro na leitura do arquivo */
 
          VMV_CondRetErrComandoNaoExistente = 6
@@ -92,71 +92,72 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &TODO
+*  $FC Função: VMV  &Cria um identificador para o arquivo de configuração
 *
 *  $ED Descrição da função
-*     TODO
+*     Dado um diretório, retorna por referência um identificador de um arquivo
+*     de configuração.
 *
 *  $EP Parâmetros
-*
-*     TODO          - TODO
-*     TODO          - TODO
+*     pConfigDir          - ponteiro para o identificador de configuração
+*     pathConfigArq       - diretório do arquivo
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK            - TODO
-*     VMV_CondRetErrFaltouMemoria
-*     VMV_CondRetErrAberturaArquivo
-*     VMV_CondRetErrFormatoArquivoErrado
+*     VMV_CondRetOK                       - Identificador de configuração criado corretamente
+*     VMV_CondRetErrFaltouMemoria         - Ocorreu um erro na criação do identificador de configuração
+*     VMV_CondRetErrAberturaArquivo       - Erro ao abrir o arquivo de configuração
+*     VMV_CondRetErrFormatoArquivoErrado  - Arquivo de configuração foi criado no formato errado
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_CriarConfigDir (  VMV_tppConfigDir* pConfigDir, const char* pathConfigArq );
+   VMV_tpCondRet VMV_CriarConfigDir ( VMV_tppConfigDir * pConfigDir , const char * pathConfigArq ) ;
 
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &TODO
+*  $FC Função: VMV  &Destroi o identificador do arquivo de configuração
 *
 *  $ED Descrição da função
-*     TODO
+*     Destrói o identificador de configuração.
 *
 *  $EP Parâmetros
-*
-*     TODO          - TODO
-*     TODO          - TODO
+*     pConfigDir          - ponteiro para o identificador de configuração
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK
+*     VMV_CondRetOK       - Identificador de configuração criado corretamente
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_DestruirConfigDir (  VMV_tppConfigDir pConfigDir );
+   VMV_tpCondRet VMV_DestruirConfigDir ( VMV_tppConfigDir pConfigDir ) ;
 
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &TODO
+*  $FC Função: VMV  &Obter estado inicial do tabuleiro
 *
 *  $ED Descrição da função
-*     TODO
+*     Dado o identificador de configuração, retorna por referência um vetor de
+*     peças e cores do tabuleiro no início. Ambos os vetores tem tamanho também
+*     passado como parâmetro
 *
 *  $EP Parâmetros
-*
-*     TODO          - TODO
-*     TODO          - TODO
+*     pConfig       - identificador de configuração
+*     pecas         - ponteiro para o vetor de peças
+*     cores         - ponteiro para o vetor de cores
+*     num_casas     - tamanho do vetor de peças e cores
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK            - TODO
-*     VMV_CondRetErrFaltouMemoria
-*     VMV_CondRetErrAberturaArquivo
-*     VMV_CondRetErrFormatoArquivoErrado
+*     VMV_CondRetOK                       - Retornou corretamente o estado inicial do tabuleiro
+*     VMV_CondRetErrFaltouMemoria         - Ocorreu um erro ao pegar o estado inicial do tabuleiro
+*     VMV_CondRetErrAberturaArquivo       - Erro ao abrir o arquivo de configuração
+*     VMV_CondRetErrFormatoArquivoErrado  - Arquivo de configuração foi criado no formato errado
 *
 ***********************************************************************/
 
    VMV_tpCondRet VMV_LerTabuleiroInicial (   VMV_tppConfigDir pConfig,
-                                             char** pecas, 
-                                             char** cores, 
-                                             int* num_casas );
+                                             char ** pecas, 
+                                             char ** cores, 
+                                             int * num_casas ) ;
 
 /***********************************************************************
 *
@@ -166,34 +167,33 @@ typedef struct VMV_configDir * VMV_tppConfigDir;
 *     TODO
 *
 *  $EP Parâmetros
-*
 *     TODO          - TODO
 *     TODO          - TODO
 *
 *  $FV Valor retornado
-      VMV_CondRetOK = 0
-      VMV_CondRetErrAberturaArquivo = 1
-      VMV_CondRetErrFormatoArquivoErrado = 2
-      VMV_CondRetVariavelNaoExistente = 4
-      VMV_CondRetErrManuseioArquivo = 5
-      VMV_CondRetErrComandoNaoExistente = 6
-
+*      VMV_CondRetOK = 0
+*      VMV_CondRetErrAberturaArquivo = 1
+*      VMV_CondRetErrFormatoArquivoErrado = 2
+*      VMV_CondRetVariavelNaoExistente = 4
+*      VMV_CondRetErrManuseioArquivo = 5
+*      VMV_CondRetErrComandoNaoExistente = 6
+*
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig,
-                                             VMV_tpMovimentoValido* movimento_valido,
-                                             char peca,
-                                             void* casa_atual,
-                                             void* casa_destino,
-                                             void** casas,
-                                             int num_casas,
-                                             int num_dimensoes,
-                                             int (**array_dimensao)(void* casa),
-                                             int* array_sinal,
-                                             int (*vazio)(void* casa),
-                                             int (*inimigo)(void* casa),
-                                             int* cond_especiais,
-                                             int num_cond_especiais);
+   VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig ,
+                                             VMV_tpMovimentoValido * movimento_valido ,
+                                             char peca ,
+                                             void * casa_atual ,
+                                             void * casa_destino ,
+                                             void ** casas ,
+                                             int num_casas ,
+                                             int num_dimensoes ,
+                                             int ( ** array_dimensao ) ( void * casa ) ,
+                                             int * array_sinal ,
+                                             int ( * vazio) ( void * casa ) ,
+                                             int ( * inimigo ) ( void * casa ) ,
+                                             int * cond_especiais ,
+                                             int num_cond_especiais ) ;
 
 #undef VALIDA_MOV_EXT
 
