@@ -1,16 +1,16 @@
-Data	   Horas Trabalhadas	 Tipo Tarefa	 		                        Descrição da Tarefa Realizada
-02/09/16   2			 Estudar 	 		                        Aprender a instalar o arcabouco e rodar os exemplos
-09/09/16   1			 Estudar	 		                        Entender o funcionamento dos modulos
-12/09/16   1                     Estudar                                                Entender o funcionamento dos scripts de teste
-12/09/16   1			 Projetar	 		                        Verificar os testes que faltam para cobrir todos os casos
-13/09/16   2                     Redirigir Script de teste                              Completar os testes do modulo de lista
-13/09/16   15min                 Especificar os módulos                                 Decidir se deve-se criar uma nova interface para a estrutura apontada pela lista
-13/09/16   15min                 Especificar as funções                                 Decidir as funçoes para essa nova estrutura
-13/09/16   2                     Codificar módulo                                       Codificar tanto a interface quanto a implementação da estrutura, juntamente com sua documentação
-14/09/16   30min                 Revisar código do módulo                               Verificar no TESTLIS.C o que precisaria ser alterado para a nova lista
-14/09/16   2                     Codificar módulo                                       Mudar os testes do TESTLIS.C para nova lista
-14/09/16   2                     Redigir Script de teste                                Alterar os testes do modulo de lista
-14/09/16   2                     Redigir Script de teste                                Correção de diversos erros no script de teste da lista modificada
-15/09/16   30min                 Diagnosticar e corrigir os problemas encontrados       Identificar no módulo TESTLIS.C o erro que causava vazamento de memória
-15/09/16   1h e 30min            Codificar módulo                                       Alteração no TESTLIS.C da lista original para poder inserir parâmetro nulo
-15/09/16   30min                 Revisar especificações                                 Revisar o enunciado do trabalho para montar a entrega final
+Data	   Horas Trabalhadas	 Tipo Tarefa	 		                        		Descrição da Tarefa Realizada
+03/10/16   1			         Projetar	 		                                    Verificar os testes que faltam para cobrir todos os casos no 																							módulo lista
+04/10/16   15min                 Especificar as funções                                 Decidir as funções para o módulo lista
+04/10/16   1                     Revisar código                                         Verificar a implementação do módulo lista para os requisitos do 																						trabalho 2
+04/10/16   2                     Codificar módulo                                 		Implementar no módulo lista as funções que faltavam, remover as 																						desnecessárias e modificar as existentes
+04/10/16   30min                 Revisar código do módulo                               Verificar no TESTLIS.C o que precisaria ser alterado para a nova 																						 lista
+04/10/16   30min                 Planejar testes                                 		Planejar os novos testes para a lista
+04/10/16   2                     Codificar módulo                                       Mudar os testes do TESTLIS.C para nova lista
+05/10/16   1                     Diagnosticar e corrigir os problemas encontrados       Corrigir diversos erros no TESTLIS.C vinculados ao retorno de 																							parâmetros por referência
+05/10/16   1                     Redigir Script de teste                                Alterar os testes do módulo de lista
+05/10/16   1                     Projetar				                                Projetar o módulo peça
+05/10/16   30min                 Especificar as funções				                    Especificar as funcões do módulo peça
+05/10/16   2                     Codificar módulo                                 		Implementar o módulo peça
+06/10/16   2                     Codificar módulo                                 		Implementar os testes do módulo peça
+06/10/16   30min                 Redigir Script de teste                                Redigir os scripts de teste para o módulo peça
+06/10/16   30min                 Revisar especificações                                 Revisar o enunciado do trabalho para montar a entrega final
