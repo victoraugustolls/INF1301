@@ -22,7 +22,7 @@
 =declararparm   MovimentoValidoNao           int     0
 =declararparm   MovimentoValidoSim           int     1
 
-=declararparm   VALUE_DOES_NOT_MATTER        int     0
+=declararparm   ANY_VALUE        int     0
 
 // ---------------------------------------------
 
@@ -56,7 +56,10 @@
 // ---------------------------------------------
 
 == Inicio Testes Movimento Peca
-=criarconfig        OK                      "..\\pecas\\teste\\config_teste_checa_mov.conf"
-=checarmovpeca      ErrAberturaArquivo     VALUE_DOES_NOT_MATTER                          '0'     0 0     0 0
+=criarconfig        OK                      "..\\pecas\\teste\\config_teste_checa_mov_erro.conf"
+=checarmovpeca      ErrAberturaArquivo          ANY_VALUE      '0'     0 0     0 0
+=checarmovpeca      ErrFormatoArquivoErrado     ANY_VALUE      'a'     0 0     0 0
+=checarmovpeca      VariavelNaoExistente        ANY_VALUE      'b'     0 0     0 0
+=checarmovpeca      VariavelNaoExistente        ANY_VALUE      'c'     0 0     0 0
 =destruirconfig     OK 
 

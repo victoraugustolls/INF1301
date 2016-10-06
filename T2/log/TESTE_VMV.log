@@ -12,26 +12,24 @@
 !!!    0  Linha:     8  // --------------------------------------------- 
    10  == Inicializar Constantes
 !!!    0  Linha:    12  // Essas constantes devem ser iguais aos valroes de VMV_tpCondRet definidos em VALIDA_MOV.H 
-!!!    0  Linha:    25  // --------------------------------------------- 
-   27  == Teste Criação e Destruição Arquivo Existente
-   31  == Teste Criação Falhas
->>>    1  Linha:    34  Condicao de retorno recebida diferente da esperada. 
-<<<    0  Linha:    35  Falha esperada foi recuperada. 
-!!!    0  Linha:    37  // --------------------------------------------- 
-   39  == Ler Tabuleiro Inicial Correto
-   44  == Ler Tabuleiro Inicial Inexistente
-   49  == Ler Tabuleiro Inicial Formato Errado
-!!!    0  Linha:    54  // --------------------------------------------- 
-   56  == Inicio Testes Movimento Peca
->>>    1  Linha:    58  Comando de teste ainda não implementado:  =checarmovpeca      OK     MovimentoValidoSim       'a'
->>>    2  Linha:    59  Comando de teste ignorado:  =destruirconfig     OK
+!!!    0  Linha:    27  // --------------------------------------------- 
+   29  == Teste Criação e Destruição Arquivo Existente
+   33  == Teste Criação Falhas
+>>>    1  Linha:    36  Condicao de retorno recebida diferente da esperada. 
+<<<    0  Linha:    37  Falha esperada foi recuperada. 
+!!!    0  Linha:    39  // --------------------------------------------- 
+   41  == Ler Tabuleiro Inicial Correto
+   46  == Ler Tabuleiro Inicial Inexistente
+   51  == Ler Tabuleiro Inicial Formato Errado
+!!!    0  Linha:    56  // --------------------------------------------- 
+   58  == Inicio Testes Movimento Peca
 
-!!! Número de linhas lidas:          60
+!!! Número de linhas lidas:          62
 !!! Número de casos de teste:         7
-!!! Número comandos corretos:        23
-!!! Número de falhas encontradas:     2
+!!! Número comandos corretos:        26
+!!! Número de falhas encontradas:     0
 
-!!! Foram encontrados problemas
+!!! Não foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0
