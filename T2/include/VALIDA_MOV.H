@@ -110,7 +110,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 *
 ***********************************************************************/
 
-   VMV_tpCondRet VMV_CriarConfigDir (  VMV_tppConfigDir * pConfigDir, const char * pathConfigArq ) ;
+   VMV_tpCondRet VMV_CriarConfigDir (  VMV_tppConfigDir * pConfigDir , const char * pathConfigArq ) ;
 
 
 /***********************************************************************
@@ -171,13 +171,13 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 *     TODO          - TODO
 *
 *  $FV Valor retornado
-      VMV_CondRetOK = 0
-      VMV_CondRetErrAberturaArquivo = 1
-      VMV_CondRetErrFormatoArquivoErrado = 2
-      VMV_CondRetVariavelNaoExistente = 4
-      VMV_CondRetErrManuseioArquivo = 5
-      VMV_CondRetErrComandoNaoExistente = 6
-
+*      VMV_CondRetOK = 0
+*      VMV_CondRetErrAberturaArquivo = 1
+*      VMV_CondRetErrFormatoArquivoErrado = 2
+*      VMV_CondRetVariavelNaoExistente = 4
+*      VMV_CondRetErrManuseioArquivo = 5
+*      VMV_CondRetErrComandoNaoExistente = 6
+*
 ***********************************************************************/
 
    VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig ,
