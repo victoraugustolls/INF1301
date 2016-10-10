@@ -86,13 +86,13 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     TST_tpCondRet CondRet ;
     
-    char * charParm1 ;
-    char * charParm2 ;
-    char * charParm3 ;
-    char * charParm4 ;
-    
+    char charParm1 ;
+    char charParm2 ;
+    char charParm3 ;
+    char charParm4 ;
+
     char * idObtido ;
-    char * corObtido ;
+    char * corObtida ;
     
     LIS_tppLista listaRet ;
     
@@ -140,10 +140,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     {
         
         numLidos = LER_LerParametros( "cccci" ,
-                                      charParm1 ,
-                                      charParm2 ,
-                                      charParm3 ,
-                                      charParm4 ,
+                                      &charParm1 ,
+                                      &charParm2 ,
+                                      &charParm3 ,
+                                      &charParm4 ,
                                       &CondRetEsp ) ;
         
         if ( ( numLidos != 5 ) )
@@ -168,10 +168,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     {
         
         numLidos = LER_LerParametros( "cccci" ,
-                                      charParm1 ,
-                                      charParm2 ,
-                                      charParm3 ,
-                                      charParm4 ,
+                                      &charParm1 ,
+                                      &charParm2 ,
+                                      &charParm3 ,
+                                      &charParm4 ,
                                       &CondRetEsp) ;
         
         if ( ( numLidos != 5 ) )
@@ -196,8 +196,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     {
         
         numLidos = LER_LerParametros( "cci" ,
-                                      charParm1 ,
-                                      charParm2 ,
+                                      &charParm1 ,
+                                      &charParm2 ,
                                       &CondRetEsp) ;
         
         if ( ( numLidos != 3 ) )
@@ -220,10 +220,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     {
         
         numLidos = LER_LerParametros( "cccci" ,
-                                      charParm1 ,
-                                      charParm2 ,
-                                      charParm3 ,
-                                      charParm4 ,
+                                      &charParm1 ,
+                                      &charParm2 ,
+                                      &charParm3 ,
+                                      &charParm4 ,
                                       &CondRetEsp) ;
         
         if ( ( numLidos != 5 ) )
@@ -231,24 +231,24 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CondRetParm ;
         } /* if */
         
-        idObtido = ( char * ) malloc ( sizeof ( char ) );
-        corObtida = ( char * ) malloc ( sizeof ( char ) );
+        idObtido = ( char * ) malloc ( sizeof ( char ) ) ;
+        corObtida = ( char * ) malloc ( sizeof ( char ) ) ;
         
         CondRet = TAB_ObterPecaTabuleiro ( charParm1 ,
                                            charParm2 ,
                                            idObtido ,
-                                           corObtido ,
+                                           corObtida ,
                                            pTabuleiro ) ;
         
-        if ( strcmp( charParm3 , idObtido ) != 0 )
+        if ( charParm3 != ( *idObtido ) )
         {
             return TST_CompararString( charParm3 , idObtido ,
                                       "Id da peca retornada nao corresponde ao id esperado." ) ;
         } /* if */
         
-        else if ( strcmp( charParm4 , corObtido ) != 0 )
+        else if ( charParm4 != ( *corObtida ) )
         {
-            return TST_CompararString( charParm4 , corObtido ,
+            return TST_CompararString( charParm4 , corObtida ,
                                       "Cor da peca retornada nao corresponde a cor esperada." ) ;
         } /* if */
         
@@ -272,16 +272,16 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CondRetParm ;
         } /* if */
         
-        CondRet = LIS_CriarLista( listaRet ,
+        CondRet = LIS_CriarLista( &listaRet ,
                                   "listaAmeacantes" ,
                                   DestruirValor ,
                                   CompararValor ,
                                   IgualValor ) ;
         
-        CondRet = TAB_ObterPecaTabuleiro ( charParm1 ,
-                                           charParm2 ,
-                                           listaRet ,
-                                           pTabuleiro ) ;
+        CondRet = TAB_ObterListaAmeacantesTabuleiro ( charParm1 ,
+                                                      charParm2 ,
+                                                      listaRet ,
+                                                      pTabuleiro ) ;
         
         LIS_DestruirLista( listaRet ) ;
         
@@ -305,16 +305,16 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CondRetParm ;
         } /* if */
         
-        CondRet = LIS_CriarLista( listaRet ,
+        CondRet = LIS_CriarLista( &listaRet ,
                                  "listaAmeacantes" ,
                                  DestruirValor ,
                                  CompararValor ,
                                  IgualValor ) ;
         
-        CondRet = TAB_ObterPecaTabuleiro ( charParm1 ,
-                                          charParm2 ,
-                                          listaRet ,
-                                          pTabuleiro ) ;
+        CondRet = TAB_ObterListaAmeacadosTabuleiro ( charParm1 ,
+                                                     charParm2 ,
+                                                     listaRet ,
+                                                     pTabuleiro ) ;
         
         LIS_DestruirLista( listaRet ) ;
         
