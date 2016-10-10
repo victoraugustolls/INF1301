@@ -17,9 +17,8 @@
 *
 ***************************************************************************/
 
-// #include   <stdio.h>
-// #include   <string.h>
-#include	  <memory.h>
+#include	<stdio.h>
+#include	<memory.h>
 #include  	<malloc.h>
 #include  	<assert.h>
 
@@ -36,7 +35,7 @@
 
   	typedef struct PCA_tagPeca {
 
-   		char * nomePeca ;
+   	    char * nomePeca ;
          		/* Nome da peça */
 
        	char * corPeca ;
@@ -103,8 +102,8 @@
          	return PCA_CondRetPecaVazia ;
       	} /* if */
 
-       	**nomePeca = *pPeca->nomePeca ;
-       	**corPeca = *pPeca->corPeca ;
+       	*nomePeca = pPeca->nomePeca ;
+       	*corPeca = pPeca->corPeca ;
 
       	return PCA_CondRetOK ;
 

@@ -11,9 +11,9 @@
 
 == Inicializar Constantes
 =declararparm   OK                int  0
-=declararparm   PecaVazia         int  2
-=declararparm	PecaInexistente   int  3
-=declararparm   FaltouMemoria     int  4
+=declararparm   PecaVazia         int  1
+=declararparm	PecaInexistente   int  2
+=declararparm   FaltouMemoria     int  3
 
 // ---------------------------------------------
 
@@ -27,7 +27,7 @@
 =criarPeca      peca0   'P'   'P'   OK
 
 == Teste do Teste de Criação de Peças
-=criarPeca      peca0   'P'   OK
+=criarPeca      peca0   'P'   'P'   OK
 =recuperar
 
 // ---------------------------------------------
@@ -47,13 +47,13 @@
 
 == Teste Obter Valor Peça Falha Nome
 =criarPeca       peca0   'P'    'P'   OK
-=obterNo	     peca0   'T'    'P'
+=obterNo	     peca0   'T'    'P'   OK
 =recuperar
 =destroiPeca     peca0   OK
 
 == Teste Obter Valor Peça Falha Cor
 =criarPeca       peca0   'P'    'P'   OK
-=obterNo	     peca0   'P'    'B'
+=obterNo	     peca0   'P'    'B'   OK
 =recuperar
 =destroiPeca     peca0   OK
 
@@ -61,8 +61,8 @@
 
 == Teste com múltiplas peças
 =criarPeca       peca0   'P'    'P'    OK
-=criarPeca       peca1   'T'    'B'   OK
-=obterNo		 peca0   'P'    'P'
-=obterNo		 peca1   'T'    'B'
+=criarPeca       peca1   'T'    'B'    OK
+=obterNo		 peca0   'P'    'P'    OK
+=obterNo		 peca1   'T'    'B'    OK
 =destroiPeca     peca0   OK
 =destroiPeca     peca1   OK

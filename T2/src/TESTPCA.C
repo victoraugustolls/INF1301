@@ -148,7 +148,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
 		corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-		CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , *nomePeca , *corPeca ) ;
+		CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , &nomePeca , &corPeca ) ;
 
 		if ( CondRetEsp )
 		{
@@ -156,18 +156,20 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		        					"Peca deveria estar vazia." ) ;
 		}/* if */
 
-		if ( nomePecaEsp == *nomePeca )
+		if ( nomePecaEsp != *nomePeca )
 		{
 			free( nomePeca ) ;
 			free( corPeca ) ;
-			TST_NotificarFalha( "Nome da peca recebido errado." ) ;
+			return TST_CompararChar( nomePecaEsp , *nomePeca ,
+									"Nome da peca recebido errado." ) ;
 		}/* if */
 
-		if ( corPecaEsp == *corPeca )
+		if ( corPecaEsp != *corPeca )
 		{
 			free( nomePeca ) ;
 			free( corPeca ) ;
-			TST_NotificarFalha( "Cor da peca recebida errada." ) ;
+			return TST_CompararChar( corPecaEsp , *corPeca ,
+									"Cor da peca recebida errada." ) ;
 		}/* if */
 
 		free( nomePeca ) ;
