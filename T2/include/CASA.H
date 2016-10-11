@@ -114,22 +114,21 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa ) ;
  *  $FC Função: CSA  &Inserir peça na casa
  *
  *  $ED Descrição da função
- *     Insere a peça especificada na casa recebida pelo ponteiro.
+ *     Insere a peça especificada na casa passada pelo ponteiro.
  *
  *  $EP Parâmetros
- *     idPeca     - identificador da peça que será inserida
+ *     nomePeca   - identificador da peça que será inserida
  *     corPeca    - cor da peça que será inserida
  *     pCasa      - ponteiro para a casa onde a peça vai ser inserida
  *
  *  $FV Valor retornado
  *     CSA_CondRetOK                - inseriu sem problemas
  *     CSA_CondRetNaoExiste         - a casa não existe
- *     CSA_CondRetFaltouMemoria     - faltou memória para alocação da peça
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_InserirPecaCasa( char idPeca,
-                                   char corPeca,
+CSA_tpCondRet CSA_InserirPecaCasa( char nomePeca ,
+                                   char corPeca ,
                                    CSA_tppCasa pCasa ) ;
 
 /***********************************************************************
@@ -137,7 +136,7 @@ CSA_tpCondRet CSA_InserirPecaCasa( char idPeca,
  *  $FC Função: CSA  &Retirar peça da casa
  *
  *  $ED Descrição da função
- *     Retira a peça presente na posição especificada do tabuleiro.
+ *     Retira a peça presente na casa passada pelo ponteiro.
  *
  *  $EP Parâmetros
  *     pCasa   - ponteiro para a casa da qual a peça vai ser retirada
@@ -158,7 +157,7 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *     Obtém a peça presente na casa passada pelo ponteiro.
  *
  *  $EP Parâmetros
- *     pIdPeca     - variável onde o identificador da peça será retornado
+ *     pNomePeca   - variável onde o identificador da peça será retornado
  *     pCorPeca    - variável onde a cor da peça será retornada
  *     pCasa       - ponteiro para a casa onde a peça vai ser obtida
  *
@@ -168,7 +167,7 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char* pIdPeca,
+CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
                                  char* pCorPeca,
                                  CSA_tppCasa pCasa ) ;
 

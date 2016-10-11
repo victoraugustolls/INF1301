@@ -14,6 +14,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     2       lff   11/out/2016 desenvolvimento em andamento
  *     1       lff   10/out/2016 início desenvolvimento
  *
  ***************************************************************************/
@@ -92,17 +93,153 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa )
                     IgualValor ) ;
     
     LIS_CriarLista( listaAmeacados ,
-                   "listaAmeacantes" ,
-                   DestruirValor ,
-                   CompararValor ,
-                   IgualValor ) ;
+                    "listaAmeacantes" ,
+                    DestruirValor ,
+                    CompararValor ,
+                    IgualValor ) ;
     
     return CSA_CondRetOK ;
     
 } /* Fim função: PCA  &Criar peça */
 
-/*****  Código das funções encapsuladas no módulo  *****/
+/***************************************************************************
+ *
+ *  Função: CSA  &Destruir casa
+ *  ****/
 
+CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa )
+{
+    
+    if ( pCasa = NULL )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    PCA_DestruirPeca( pCasa->peca ) ;
+    LIS_DestruirLista( pCasa->listaAmeacantes ) ;
+    LIS_DestruirLista( pCasa->listaAmeacados ) ;
+    
+    DestruirValor ( pCasa ) ;
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Destruir casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Inserir peça na casa
+ *  ****/
+
+CSA_tpCondRet CSA_InserirPecaCasa( char nomePeca ,
+                                   char corPeca ,
+                                   CSA_tppCasa pCasa )
+{
+    
+    if ( pCasa = NULL )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    PCA_CriarPeca(  &( pCasa->peca ) ,
+                    &nomePeca ,
+                    &corPeca ) ;
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Inserir peça na casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Retirar peça da casa
+ *  ****/
+
+CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa )
+{
+    
+    if ( pCasa = NULL )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    PCA_DestruirPeca( &( pCasa->peca ) ) ;
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Retirar peça da casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Obter peça da casa
+ *  ****/
+
+CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
+                                 char* pCorPeca,
+                                 CSA_tppCasa pCasa )
+{
+    
+    if ( pCasa = NULL )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    PCA_ObterValor( &( pCasa->peca ) ,
+                    &pNomePeca ,
+                    &pCorPeca ) ;
+
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Obter peça da casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Obter lista de ameaçantes de uma casa
+ *  ****/
+
+CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista pListaAmeacantes,
+                                            CSA_tppCasa pCasa )
+{
+    
+    if ( pCasa = NULL )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    /* verificar possíveis movimentos da peça presente na casa */
+    
+    /* para cada um dos movimentos checar se tem alguma peça na casa destino 
+        e inserir essa peça na lista
+     */
+    
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Obter lista de ameaçantes de uma casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Obter lista de ameaçados de uma casa
+ *  ****/
+
+CSA_tpCondRet CSA_ObterListaAmeacadosCasa( LIS_tppLista pListaAmeacantes,
+                                           CSA_tppCasa pCasa )
+{
+    
+    if ( pCasa = NULL )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    /* verificar possíveis movimentos das peças de cor diferente que a presente na casa */
+    
+    /* para cada um dos movimentos checar se tem como destino a casa em questão */
+    
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Obter lista de ameaçados de uma casa */
+
+/*****  Código das funções encapsuladas no módulo  *****/
 
 /***********************************************************************
  *
@@ -110,7 +247,7 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa )
  *
  ***********************************************************************/
 
-void DestruirValor( CSA * pDado )
+void DestruirValor( void * pDado )
 {
     
     free ( pDado ) ;

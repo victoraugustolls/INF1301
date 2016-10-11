@@ -34,3 +34,9 @@
 05/10/2016; 1 hora ; redigir script de teste; Projetei o script de testes do módulo Tabuleiro (TESTE_TABULEIRO.SCRIPT).
 
 05/10/2016; 1.5 horas ; realizar os testes; Compilei e rodei os testes dos módulos PECA e TABULEIRO.
+
+10/10/2016; 1 hora ; revisar código do módulo; Corrigi alguns erros no TESTTAB.C.
+
+10/10/2016; 2 horas ; codificar e revisar código do módulo; Corrigi erros no TABULEIRO.C e CASA.H e comecei a implementar o CASA.C.
+
+10/10/2016; 1 hora ; codificar e revisar código do módulo; Conformei o módulo TABULEIRO com ‘nomePeca’ ao invés de ‘idPeca’ e continuei a implementar o CASA.C.
