@@ -158,16 +158,12 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 
 		if ( nomePecaEsp != *nomePeca )
 		{
-			free( nomePeca ) ;
-			free( corPeca ) ;
 			return TST_CompararChar( nomePecaEsp , *nomePeca ,
 									"Nome da peca recebido errado." ) ;
 		}/* if */
 
 		if ( corPecaEsp != *corPeca )
 		{
-			free( nomePeca ) ;
-			free( corPeca ) ;
 			return TST_CompararChar( corPecaEsp , *corPeca ,
 									"Cor da peca recebida errada." ) ;
 		}/* if */
