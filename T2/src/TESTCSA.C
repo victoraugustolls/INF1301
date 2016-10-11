@@ -13,7 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     1       vas   06/out/2016 início desenvolvimento
+*     1       vas   10/out/2016 início desenvolvimento
 *
 ***************************************************************************/
 
