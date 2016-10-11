@@ -16,6 +16,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     2       lff   10/out/2016 conserto de alguns erros
  *     1       lff   04/out/2016 início desenvolvimento
  *
  *  $ED Descrição do módulo
@@ -35,9 +36,9 @@
  ***************************************************************************/
 
 #if defined( CASA_OWN )
-#define CASA_EXT
+    #define CASA_EXT
 #else
-#define CASA_EXT extern
+    #define CASA_EXT extern
 #endif
 
 /***** Declarações exportadas pelo módulo *****/
@@ -59,13 +60,13 @@ typedef struct CSA_tagCasa * CSA_tppCasa ;
 
 typedef enum {
     
-    CSA_CondRetOK ,
+    CSA_CondRetOK = 0 ,
     /* Concluiu corretamente */
     
-    CSA_CondRetNaoExiste ,
+    CSA_CondRetNaoExiste = 1 ,
     /* A casa não existe */
     
-    CSA_CondRetFaltouMemoria
+    CSA_CondRetFaltouMemoria = 2 ,
     /* Faltou memória ao tentar criar um elemento casa */
     
 } CSA_tpCondRet ;
@@ -87,7 +88,7 @@ typedef enum {
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_CriarCasa( CSA_tppTabuleiro pCasa ) ;
+CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa ) ;
 
 
 /***********************************************************************
@@ -129,7 +130,7 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa ) ;
 
 CSA_tpCondRet CSA_InserirPecaCasa( char idPeca,
                                    char corPeca,
-                                   CSA_tppTabuleiro pCasa ) ;
+                                   CSA_tppCasa pCasa ) ;
 
 /***********************************************************************
  *
