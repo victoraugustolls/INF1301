@@ -127,7 +127,7 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro ) ;
  *  $EP Parâmetros
  *     coluna     - coordenada da coluna onde a peça será inserida
  *     linha      - coordenada da linha onde a peça será inserida
- *     idPeca     - identificador da peça que será inserida
+ *     nomePeca   - identificador da peça que será inserida
  *     corPeca    - cor da peça que será inserida
  *     pTabuleiro - ponteiro para o tabuleiro onde a peça vai ser inserida
  *
@@ -138,10 +138,10 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro ) ;
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
-                                        char linha,
-                                        char idPeca,
-                                        char corPeca,
+TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
+                                        char linha ,
+                                        char nomePeca ,
+                                        char corPeca ,
                                         TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -167,10 +167,10 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_MoverPecaTabuleiro(  char colInicial,
-                                       char linInicial,
-                                       char colFinal,
-                                       char linFinal,
+TAB_tpCondRet TAB_MoverPecaTabuleiro(  char colInicial ,
+                                       char linInicial ,
+                                       char colFinal ,
+                                       char linFinal ,
                                        TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -192,8 +192,8 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro(  char colInicial,
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
-                                        char linha,
+TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
+                                        char linha ,
                                         TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -206,7 +206,7 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
  *  $EP Parâmetros
  *     coluna      - coordenada da coluna onde a peça será obtida
  *     linha       - coordenada da linha onde a peça será obtida
- *     pIdPeca     - identificador da peça a ser obtida do tabuleiro
+ *     pNomePeca   - identificador da peça a ser obtida do tabuleiro
  *     pCorPeca    - cor da peça a ser obtida do tabuleiro
  *     pTabuleiro  - ponteiro para o tabuleiro onde a peça vai ser obtida
  *
@@ -216,10 +216,10 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna,
-                                      char linha,
-                                      char* pIdPeca,
-                                      char* pCorPeca,
+TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
+                                      char linha ,
+                                      char* pNomePeca ,
+                                      char* pCorPeca ,
                                       TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -241,9 +241,9 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna,
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna,
-                                                 char linha,
-                                                 LIS_tppLista pListaAmeacantes,
+TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
+                                                 char linha ,
+                                                 LIS_tppLista pListaAmeacantes ,
                                                  TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -265,9 +265,9 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna,
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna,
-                                                char linha,
-                                                LIS_tppLista pListaAmeacados,
+TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
+                                                char linha ,
+                                                LIS_tppLista pListaAmeacados ,
                                                 TAB_tppTabuleiro pTabuleiro ) ;
 
 #undef TABULEIRO_EXT

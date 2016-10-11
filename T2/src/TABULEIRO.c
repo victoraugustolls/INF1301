@@ -101,10 +101,10 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
  *  Função: TAB  &Inserir peça no tabuleiro
  *  ****/
 
-TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
-                                        char linha,
-                                        char idPeca,
-                                        char corPeca,
+TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
+                                        char linha ,
+                                        char nomePeca ,
+                                        char corPeca ,
                                         TAB_tppTabuleiro pTabuleiro )
 {
     
@@ -115,7 +115,7 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_InserirPecaCasa( idPeca, corPeca, pTabuleiro->tabuleiro[i][j] ) ;
+    retModCasa = CSA_InserirPecaCasa( nomePeca, corPeca, pTabuleiro->tabuleiro[i][j] ) ;
     
     if ( retModCasa == CSA_CondRetFaltouMemoria )
     {
@@ -143,10 +143,10 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
 *     TAB_CondRetFaltouMemoria     - faltou memória para alocação da peça
 */
 
-TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial,
-                                      char linInicial,
-                                      char colFinal,
-                                      char linFinal,
+TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
+                                      char linInicial ,
+                                      char colFinal ,
+                                      char linFinal ,
                                       TAB_tppTabuleiro pTabuleiro )
 {
     
@@ -167,21 +167,21 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial,
     /* Obter peça da casa atual */
     
     /* Verificar validade do movimento */
-    retModMov = VMV_ChecarMovimentoPeca ( pConfig,
-                                           VMV_tpMovimentoValido* movimento_valido,
-                                           char peca,
-                                           char cor,
-                                           void* casa_atual,
-                                           void* casa_destino,
-                                           void* casas,
-                                           int num_casas,
-                                           int num_dimensoes,
-                                           int (*array_dimensao)(void* casa),
-                                           int* array_sinal,
-                                           int (*vazio)(void* casa),
-                                           int (*inimigo)(void* casa),
-                                           int* cond_especiais,
-                                           int num_cond_especiais);
+    retModMov = VMV_ChecarMovimentoPeca ( pConfig ,
+                                           VMV_tpMovimentoValido* movimento_valido ,
+                                           char peca ,
+                                           char cor ,
+                                           void* casa_atual ,
+                                           void* casa_destino ,
+                                           void* casas ,
+                                           int num_casas ,
+                                           int num_dimensoes ,
+                                           int (*array_dimensao)(void* casa) ,
+                                           int* array_sinal ,
+                                           int (*vazio)(void* casa) ,
+                                           int (*inimigo)(void* casa) ,
+                                           int* cond_especiais ,
+                                           int num_cond_especiais ) ;
     
     retModDirMov = VMV_DestruirConfigDir ( pConfigDir ) ;
 
@@ -194,9 +194,9 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial,
  *  Função: TAB  &Retirar peça do tabuleiro
  *  ****/
 
-TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
-                                       char linha,
-                                       TAB_tppTabuleiro pTabuleiro )
+TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
+                                        char linha ,
+                                        TAB_tppTabuleiro pTabuleiro )
 {
     
     int i , j ;
@@ -227,10 +227,10 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
  *  Função: TAB  &Obter peça do tabuleiro
  *  ****/
 
-TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna,
-                                      char linha,
-                                      char* pIdPeca,
-                                      char* pCorPeca,
+TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
+                                      char linha ,
+                                      char* pNomePeca ,
+                                      char* pCorPeca ,
                                       TAB_tppTabuleiro pTabuleiro )
 {
     
@@ -241,7 +241,7 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna,
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_ObterPecaCasa( pIdPeca , pCorPeca , pTabuleiro->tabuleiro[i][j] ) ;
+    retModCasa = CSA_ObterPecaCasa( pNomePeca , pCorPeca , pTabuleiro->tabuleiro[i][j] ) ;
     
     if ( retModCasa == CSA_CondRetNaoExiste )
     {
@@ -257,9 +257,9 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna,
  *  Função: TAB  &Obter lista de ameaçantes de uma peça do tabuleiro
  *  ****/
 
-TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna,
-                                                 char linha,
-                                                 LIS_tppLista pListaAmeacantes,
+TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
+                                                 char linha ,
+                                                 LIS_tppLista pListaAmeacantes ,
                                                  TAB_tppTabuleiro pTabuleiro )
 {
     
@@ -281,9 +281,9 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna,
     
 } /* Fim função: TAB  &Obter lista de ameaçados de uma peça do tabuleiro */
 
-TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna,
-                                                char linha,
-                                                LIS_tppLista pListaAmeacados,
+TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
+                                                char linha ,
+                                                LIS_tppLista pListaAmeacados ,
                                                 TAB_tppTabuleiro pTabuleiro )
 {
     
