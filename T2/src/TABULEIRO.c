@@ -86,7 +86,7 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
     {
         for ( j = 0; j < 8 ; j++ )
         {
-            CSA_DestruirCasa( pTabuleiro[i][j] ) ;
+            CSA_DestruirCasa( pTabuleiro->tabuleiro[i][j] ) ;
         } /* for */
     } /* for */
     
@@ -115,7 +115,7 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna,
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_InserirPecaCasa( idPeca, corPeca, pTabuleiro[i][j] ) ;
+    retModCasa = CSA_InserirPecaCasa( idPeca, corPeca, pTabuleiro->tabuleiro[i][j] ) ;
     
     if ( retModCasa == CSA_CondRetFaltouMemoria )
     {
@@ -211,7 +211,7 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna,
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
     
-    retModCasa = CSA_RetirarPecaCasa( pTabuleiro[i][j] ) ;
+    retModCasa = CSA_RetirarPecaCasa( pTabuleiro->tabuleiro[i][j] ) ;
     
     if ( retModCasa == CSA_CondRetNaoExiste )
     {
@@ -241,7 +241,7 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna,
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_ObterPecaCasa( pIdPeca , pCorPeca , pTabuleiro[i][j] ) ;
+    retModCasa = CSA_ObterPecaCasa( pIdPeca , pCorPeca , pTabuleiro->tabuleiro[i][j] ) ;
     
     if ( retModCasa == CSA_CondRetNaoExiste )
     {
@@ -270,7 +270,7 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna,
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_ObterListaAmeacantesCasa( pListaAmeacantes , pTabuleiro[i][j] ) ;
+    retModCasa = CSA_ObterListaAmeacantesCasa( pListaAmeacantes , pTabuleiro->tabuleiro[i][j] ) ;
     
     if ( retModCasa == CSA_CondRetNaoExiste )
     {
@@ -294,7 +294,7 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna,
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_ObterListaAmeacadosCasa( pListaAmeacados , pTabuleiro[i][j] ) ;
+    retModCasa = CSA_ObterListaAmeacadosCasa( pListaAmeacados , pTabuleiro->tabuleiro[i][j] ) ;
     
     if ( retModCasa == CSA_CondRetNaoExiste )
     {
