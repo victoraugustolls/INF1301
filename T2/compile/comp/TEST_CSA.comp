@@ -1,0 +1,27 @@
+[Diretorios]
+
+Nome        =  TEST_CSA
+PathDefault =  ..\..\include
+err         =  ..\err
+obj         =  ..\obj
+c           =  ..\..\src
+h           =  ..\..\include
+def         =  ..\tabs
+tab         =  ..\tabs
+inc         =  ..\tabs
+
+[Modulos]
+TESTCSA
+CASA
+LISTA
+PECA
+
+[BuildInicio]
+/OUT:TEST_CSA.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+..\..\lib\ArcaboucoTeste.lib
+
+[Fim]
