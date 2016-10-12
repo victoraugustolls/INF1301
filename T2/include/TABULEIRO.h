@@ -96,7 +96,7 @@ typedef enum {
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro pTabuleiro ) ;
+TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro ) ;
 
 
 /***********************************************************************
@@ -165,6 +165,7 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
  *     TAB_CondRetOK                - moveu sem problemas
  *     TAB_CondRetCoordNaoExiste    - coordenada não existe
  *     TAB_CondRetMovInvalido       - o movimento indicado não é válido
+ *     TAB_CondRetNaoExiste         - não existe peça na posição
  *     TAB_CondRetFaltouMemoria     - faltou memória para alocação da peça
  *
  ***********************************************************************/
@@ -214,14 +215,15 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
  *
  *  $FV Valor retornado
  *     TAB_CondRetOK                - obteve sem problemas
+ *     TAB_CondRetNaoExiste         - não existe peça na posição
  *     TAB_CondRetCoordNaoExiste    - coordenada não existe
  *
  ***********************************************************************/
 
 TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
                                       char linha ,
-                                      char* pNomePeca ,
-                                      char* pCorPeca ,
+                                      char** pNomePeca ,
+                                      char** pCorPeca ,
                                       TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -239,13 +241,14 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
  *
  *  $FV Valor retornado
  *     TAB_CondRetOK                - obteve lista sem problemas
+ *     TAB_CondRetNaoExiste         - não existe peça na posição
  *     TAB_CondRetCoordNaoExiste    - coordenada não existe
  *
  ***********************************************************************/
 
 TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
                                                  char linha ,
-                                                 LIS_tppLista pListaAmeacantes ,
+                                                 LIS_tppLista * pListaAmeacantes ,
                                                  TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -269,7 +272,7 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
                                                 char linha ,
-                                                LIS_tppLista pListaAmeacados ,
+                                                LIS_tppLista * pListaAmeacados ,
                                                 TAB_tppTabuleiro pTabuleiro ) ;
 
 #undef TABULEIRO_EXT

@@ -13,7 +13,8 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
- *     2       lff   05/out/2016 desenvolvimento
+ *     3       lff   11/out/2016 em desenvolvimento
+ *     2       lff   05/out/2016 em desenvolvimento
  *     1       lff   04/out/2016 início desenvolvimento
  *
  *
@@ -33,7 +34,7 @@
 
 /***********************************************************************
  *
- *  $TC Tipo de dados: TAB Tabuleiro
+ *  $TC Tipo de dados: TAB Descritor do tabuleiro
  *
  *
  ***********************************************************************/
@@ -45,6 +46,12 @@ typedef struct TAB_tagTabuleiro {
     
 } TAB_tpTabuleiro ;
 
+/***** Protótipos das funções encapuladas no módulo *****/
+
+int TAB_VerificaCoordValida( char coluna , char linha ) ;
+int TAB_CasaVazia( void * casa ) ;
+int TAB_CasaInimigo( void * casa ) ;
+
 /*****  Código das funções exportadas pelo módulo  *****/
 
 /***************************************************************************
@@ -52,16 +59,33 @@ typedef struct TAB_tagTabuleiro {
  *  Função: TAB  &Criar tabuleiro
  *  ****/
 
-TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro pTabuleiro )
+TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro )
 {
 
-    pTabuleiro = NULL ;
+    int i , j ;
+    TAB_tppTabuleiro pNovoTabuleiro = NULL ;
+    CSA_tpCondRet retCasa ;
     
-    pTabuleiro = ( TAB_tpTabuleiro * ) malloc( sizeof( TAB_tpTabuleiro )) ;
-    if ( pTabuleiro == NULL )
+    pNovoTabuleiro = ( TAB_tpTabuleiro * ) malloc( sizeof( TAB_tpTabuleiro )) ;
+    
+    if ( pNovoTabuleiro == NULL )
     {
         return TAB_CondRetFaltouMemoria ;
     } /* if */
+    
+    for ( i = 0 ; i < 8 ; i++ )
+    {
+        for ( j = 0 ; j < 8 ; j++ )
+        {
+            retCasa = CSA_CriarCasa( &( pNovoTabuleiro->tabuleiro[i][j] ) ) ;
+            if ( retCasa == CSA_CondRetFaltouMemoria )
+            {
+                return TAB_CondRetFaltouMemoria ;
+            } /* if */
+        } /* for */
+    } /* for */
+    
+    *pTabuleiro = pNovoTabuleiro ;
     
     return TAB_CondRetOK ;
     
@@ -76,7 +100,7 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
 {
     
     int i , j ;
-    CSA_tpCondRet retModCasa ;
+    CSA_tpCondRet retCasa ;
     
     if ( pTabuleiro == NULL )
     {
@@ -114,20 +138,18 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
 {
     
     int i , j ;
-    CSA_tpCondRet retModCasa ;
+    CSA_tpCondRet retCasa ;
     
-    /* Converte a linha e a coluna para inteiros */
+    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
+    
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_InserirPecaCasa( nomePeca, corPeca, pTabuleiro->tabuleiro[i][j] ) ;
-    
-    if ( retModCasa == CSA_CondRetFaltouMemoria )
-    {
-        return TAB_tpCondRetFaltouMemoria ;
-    } /* if */
-    
-    if ( retModCasa == CSA_CondRetNaoExiste )
+    retCasa = CSA_InserirPecaCasa( nomePeca, corPeca, pTabuleiro->tabuleiro[i][j] ) ;
+    if ( retCasa == CSA_CondRetNaoExiste )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
@@ -155,40 +177,63 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
                                       TAB_tppTabuleiro pTabuleiro )
 {
     
-    int i , j ;
-    CSA_tpCondRet           retModCasa ;
-    VMV_tpCondRet           retModDirMov ;
-    VMV_tpMovimentoValido   retModMov ;
+    CSA_tpCondRet           retCasa ;
+    CSA_tppCasa *           vetTodasCasas ;
+    VMV_tpCondRet           retDirMov ;
+    VMV_tpMovimentoValido   retMov ;
     VMV_tppConfigDir        pConfigDir ;
     
-    /* Converte a linha e a coluna para inteiros */
-    i = linha - '0' ;
-    j = coluna - 'A' + 1 ;
+    int colAtual , linAtual , colDestino , linDestino ;
+    int sinal[] = { 1 , 0 } , condEsp[] = { 0 } ;
+    char * peca , * cor ;
     
-    retModDirMov = VMV_CriarConfigDir ( &pConfigDir, NULL ) ;
+    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
+    
+    /* Converte a linha e a coluna para inteiros */
+    linAtual   = linInicial - '0' ;
+    linDestino = linFinal   - '0' ;
+    colAtual   = colInicial - 'A' + 1 ;
+    colDestino = colFinal   - 'A' + 1 ;
     
     /* Pré-processamento para validação do movimento */
+    retDirMov = VMV_CriarConfigDir ( &pConfigDir, NULL ) ;
     
-    /* Obter peça da casa atual */
+    retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
+    if ( retCasa == CSA_CondRetNaoExiste )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
+    
+    if ( *cor == 'B' )
+    {
+        sinal[0] = 1 ;
+    }
+    else
+    {
+        sinal[0] = -1 ;
+    } /* if */
     
     /* Verificar validade do movimento */
-    retModMov = VMV_ChecarMovimentoPeca ( pConfig ,
-                                           VMV_tpMovimentoValido* movimento_valido ,
-                                           char peca ,
-                                           char cor ,
-                                           void* casa_atual ,
-                                           void* casa_destino ,
-                                           void* casas ,
-                                           int num_casas ,
-                                           int num_dimensoes ,
-                                           int (*array_dimensao)(void* casa) ,
-                                           int* array_sinal ,
-                                           int (*vazio)(void* casa) ,
-                                           int (*inimigo)(void* casa) ,
-                                           int* cond_especiais ,
-                                           int num_cond_especiais ) ;
+    retDirMov = VMV_ChecarMovimentoPeca ( pConfig ,
+                                          &retMov ,
+                                          *peca ,
+                                          *cor ,
+                                          pTabuleiro->tabuleiro[linAtual][colAtual] ,
+                                          pTabuleiro->tabuleiro[linDestino][colDestino] ,
+                                          void* casas ,
+                                          64 ,
+                                          2 ,
+                                          int (*array_dimensao)(void* casa) ,
+                                          sinal ,
+                                          TAB_CasaVazia ,
+                                          TAB_CasaInimigo ,
+                                          condEsp ,
+                                          0 ) ;
     
-    retModDirMov = VMV_DestruirConfigDir ( pConfigDir ) ;
+    retDirMov = VMV_DestruirConfigDir ( pConfigDir ) ;
 
     return TAB_CondRetOK ;
     
@@ -205,20 +250,19 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
 {
     
     int i , j ;
-    CSA_tpCondRet retModCasa ;
+    CSA_tpCondRet retCasa ;
+    
+    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
 
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    if ( i > 8 || j > 8 )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
-    
-    retModCasa = CSA_RetirarPecaCasa( pTabuleiro->tabuleiro[i][j] ) ;
-    
-    if ( retModCasa == CSA_CondRetNaoExiste )
+    retCasa = CSA_RetirarPecaCasa( pTabuleiro->tabuleiro[i][j] ) ;
+    if ( retCasa == CSA_CondRetNaoExiste )
     {
         return TAB_CondRetNaoExiste ;
     } /* if */
@@ -234,23 +278,27 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
                                       char linha ,
-                                      char* pNomePeca ,
-                                      char* pCorPeca ,
+                                      char** pNomePeca ,
+                                      char** pCorPeca ,
                                       TAB_tppTabuleiro pTabuleiro )
 {
     
     int i , j ;
-    CSA_tpCondRet retModCasa ;
+    CSA_tpCondRet retCasa ;
+    
+    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_ObterPecaCasa( pNomePeca , pCorPeca , pTabuleiro->tabuleiro[i][j] ) ;
-    
-    if ( retModCasa == CSA_CondRetNaoExiste )
+    retCasa = CSA_ObterPecaCasa( pNomePeca , pCorPeca , pTabuleiro->tabuleiro[i][j] ) ;
+    if ( retCasa == CSA_CondRetNaoExiste )
     {
-        return TAB_CondRetCoordNaoExiste ;
+        return TAB_CondRetNaoExiste ;
     } /* if */
     
     return TAB_CondRetOK ;
@@ -264,22 +312,27 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
                                                  char linha ,
-                                                 LIS_tppLista pListaAmeacantes ,
+                                                 LIS_tppLista * pListaAmeacantes ,
                                                  TAB_tppTabuleiro pTabuleiro )
 {
     
     int i , j ;
-    CSA_tpCondRet retModCasa ;
+    CSA_tpCondRet retCasa ;
+    
+    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_ObterListaAmeacantesCasa( pListaAmeacantes , pTabuleiro->tabuleiro[i][j] ) ;
+    retCasa = CSA_ObterListaAmeacantesCasa( pListaAmeacantes , pTabuleiro->tabuleiro[i][j] ) ;
     
-    if ( retModCasa == CSA_CondRetNaoExiste )
+    if ( retCasa == CSA_CondRetNaoExiste )
     {
-        return TAB_CondRetCoordNaoExiste ;
+        return TAB_CondRetNaoExiste ;
     } /* if */
     
     return TAB_CondRetOK ;
@@ -288,27 +341,82 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
                                                 char linha ,
-                                                LIS_tppLista pListaAmeacados ,
+                                                LIS_tppLista * pListaAmeacados ,
                                                 TAB_tppTabuleiro pTabuleiro )
 {
     
     int i , j ;
-    CSA_tpCondRet retModCasa ;
+    CSA_tpCondRet retCasa ;
+    
+    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
     
-    retModCasa = CSA_ObterListaAmeacadosCasa( pListaAmeacados , pTabuleiro->tabuleiro[i][j] ) ;
+    retCasa = CSA_ObterListaAmeacadosCasa( pListaAmeacados , pTabuleiro->tabuleiro[i][j] ) ;
     
-    if ( retModCasa == CSA_CondRetNaoExiste )
+    if ( retCasa == CSA_CondRetNaoExiste )
     {
-        return TAB_CondRetCoordNaoExiste ;
+        return TAB_CondRetNaoExiste ;
     } /* if */
     
     return TAB_CondRetOK ;
     
 } /* Fim função: TAB  &Obter lista de ameaçados de uma peça do tabuleiro */
+
+/***** Código das funções encapuladas no módulo *****/
+
+int TAB_VerificaCoordValida( char coluna , char linha )
+{
+    
+    int i , j ;
+    
+    i = linha - '0' ;
+    j = coluna - 'A' + 1 ;
+    
+    if ( ( i > 8 ) || ( i < 0 ) || ( j > 8 ) || ( j < 0 ) )
+    {
+        return 0 ;
+    } /* if */
+    return 1 ;
+    
+}
+
+int TAB_CasaVazia( void * casa )
+{
+    
+    CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
+    char * nomePeca, * corPeca ;
+    
+    CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
+    
+    if ( ( *nomePeca == 'V' ) && ( *corPeca == 'V' ) )
+    {
+        return 1 ;
+    }
+    return 0 ;
+    
+}
+
+int TAB_CasaInimigo( void * casa )
+{
+    
+    CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
+    char * nomePeca, * corPeca ;
+    
+    CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
+    
+    if ( ( *nomePeca == 'V' ) && ( *corPeca == 'V' ) )
+    {
+        return 0 ;
+    }
+    return 1 ;
+    
+}
 
 /********** Fim do módulo de implementação: TAB  Tabuleiro para jogo de xadrez **********/
 
