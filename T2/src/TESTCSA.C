@@ -30,14 +30,16 @@
 #include    "Peca.h"
 #include	"Lista.h"
 
-static const char RESET_PECA_CMD             [ ] = "=resetTeste"        ;
-static const char CRIAR_CASA_CMD             [ ] = "=criarCasa"         ;
-static const char INSERE_PECA_CASA_CMD       [ ] = "=inserePeca"        ;
-static const char REMOVE_PECA_CASA_CMD       [ ] = "=removePeca"        ;
-static const char OBTER_PECA_CASA_CMD		 [ ] = "=obterPeca"			;
-static const char OBTER_LISTA_AMEACANTE_CMD  [ ] = "=obterAmeacante"	;
-static const char OBTER_LISTA_AMEACADOS_CMD  [ ] = "=obterAmeacante"	;
-static const char DESTROI_CASA_CMD           [ ] = "=destroiCasa"       ;
+static const char RESET_PECA_CMD             	 [ ] = "=resetTeste"        	;
+static const char CRIAR_CASA_CMD             	 [ ] = "=criarCasa"         	;
+static const char INSERE_PECA_CASA_CMD       	 [ ] = "=inserePeca"    	    ;
+static const char REMOVE_PECA_CASA_CMD       	 [ ] = "=removePeca"	        ;
+static const char OBTER_PECA_CASA_CMD		 	 [ ] = "=obterPeca"				;
+static const char MODIFICAR_LISTA_AMEACANTE_CMD  [ ] = "=modificarAmeacante"	;
+static const char MODIFICAR_LISTA_AMEACANTE_CMD  [ ] = "=modificarAmeacante"	;
+static const char OBTER_LISTA_AMEACANTE_CMD  	 [ ] = "=obterAmeacante"		;
+static const char OBTER_LISTA_AMEACADOS_CMD  	 [ ] = "=obterAmeacante"		;
+static const char DESTROI_CASA_CMD           	 [ ] = "=destroiCasa"       	;
 
 
 #define TRUE  1
@@ -49,11 +51,19 @@ static const char DESTROI_CASA_CMD           [ ] = "=destroiCasa"       ;
 #define DIM_VT_CASA   10
 #define DIM_VALOR     100
 
-CSA_tppCasa   vtCasas[ DIM_VT_CASA ] ;
+CSA_tppCasa vtCasas[ DIM_VT_CASA ] ;
+CSA_tppCasa casasTeste[ DIM_VT_CASA ] ;
+LIS_tppLista listaRecebida ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
-   static int ValidarInxCasa( int inxCasa , int Modo ) ;
+  	static void CriarCasasTeste( ) ;
+
+  	static int ComparaListaCasas( ) ;
+
+  	static int ComparaCasas( void *pDado_1 ,  CSA_tppCasa pDado_2 ) ;
+
+	static int ValidarInxCasa( int inxCasa , int Modo ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -70,6 +80,7 @@ CSA_tppCasa   vtCasas[ DIM_VT_CASA ] ;
 *     =resetTeste
 *           - anula o vetor de peças. Provoca vazamento de memória
 *     =criarPeca                    inx    condRetorno
+*	  =inserePeca 					inx    nomePeca     corPeca 	  condRetorno
 *     =obterNo                      inx    nomePeca     corPeca       condRetorno
 *     =destroiPeca                  inx    condRetorno
 *
@@ -85,6 +96,8 @@ CSA_tppCasa   vtCasas[ DIM_VT_CASA ] ;
 		TST_tpCondRet CondRet ;
 
 		int i ;
+
+		CriarCasasTeste( ) ;
 
 		/* Efetuar reset de teste de casa */
 
@@ -130,8 +143,7 @@ CSA_tppCasa   vtCasas[ DIM_VT_CASA ] ;
 										&nomePecaEsp , &corPecaEsp ,
 										&CondRetEsp ) ;
 
-		if ( ( numLidos != 4 )
-		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+		if ( ( numLidos != 4 ) )
 		{
 		   return TST_CondRetParm ;
 		} /* if */
@@ -173,8 +185,7 @@ CSA_tppCasa   vtCasas[ DIM_VT_CASA ] ;
 										&nomePecaEsp , &corPecaEsp ,
 										&CondRetEsp ) ;
 
-		if ( ( numLidos != 4 )
-		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+		if ( ( numLidos != 4 ) )
 		{
 		   return TST_CondRetParm ;
 		} /* if */
@@ -210,6 +221,98 @@ CSA_tppCasa   vtCasas[ DIM_VT_CASA ] ;
 
 		} /* fim ativa: Testar Obter peça da casa */
 
+		/* Testar Modificar lista ameacantes */
+
+		else if ( strcmp( ComandoTeste , MODIFICAR_LISTA_AMEACANTE_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "ii" , &inxCasa ,
+										&CondRetEsp ) ;
+
+		if ( ( numLidos != 2 )
+		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+		{
+		   return TST_CondRetParm ;
+		} /* if */
+
+		CondRet = CSA_ModificarListaAmeacantesCasa( casas_teste , DIM_VT_CASA , vtCasas[ inxCasa ] ) ;
+
+		return TST_CompararInt( CondRetEsp , CondRet ,
+		        				"Condicao de retorno errada ao remover peca." ) ;
+
+		} /* fim ativa: Testar Modificar lista ameacados */
+
+		else if ( strcmp( ComandoTeste , MODIFICAR_LISTA_AMEACADOS_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "ii" , &inxCasa ,
+										&CondRetEsp ) ;
+
+		if ( ( numLidos != 2 )
+		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+		{
+		   return TST_CondRetParm ;
+		} /* if */
+
+		CondRet = CSA_ModificarListaAmeacadosCasa( casas_teste , DIM_VT_CASA , vtCasas[ inxCasa ] ) ;
+
+		return TST_CompararInt( CondRetEsp , CondRet ,
+		        				"Condicao de retorno errada ao remover peca." ) ;
+
+		} /* fim ativa: Testar Modificar lista ameacados */
+
+		/* Testar Obter lista ameacantes */
+
+		else if ( strcmp( ComandoTeste , OBTER_LISTA_AMEACANTE_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "ii" , &inxCasa ,
+										&CondRetEsp ) ;
+
+		if ( ( numLidos != 2 )
+		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+		{
+		   return TST_CondRetParm ;
+		} /* if */
+
+		CondRet = CSA_ObterListaAmeacantesCasa( *listaRecebida , vtCasas[ inxCasa ] ) ;
+
+		if ( ComparaListaCasas( ) )
+		{
+			return TST_CompararInt( CondRetEsp , CondRet ,
+		        				"Condicao de retorno errada ao obter lista ameacantes." ) ;
+		} /* if */
+
+		return TST_NotificarFalha( "Lista de ameacantes recebida errada." )
+
+		} /* fim ativa: Testar Obter lista ameacantes */
+
+		/* Testar Obter lista ameacados */
+
+		else if ( strcmp( ComandoTeste , OBTER_LISTA_AMEACADOS_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "ii" , &inxCasa ,
+										&CondRetEsp ) ;
+
+		if ( ( numLidos != 2 )
+		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+		{
+		   return TST_CondRetParm ;
+		} /* if */
+
+		CondRet = CSA_ObterListaAmeacadosCasa( *listaRecebida , vtCasas[ inxCasa ] ) ;
+
+		if ( ComparaListaCasas( ) )
+		{
+			return TST_CompararInt( CondRetEsp , CondRet ,
+		        				"Condicao de retorno errada ao obter lista ameacados." ) ;
+		} /* if */
+
+		return TST_NotificarFalha( "Lista de ameacados recebida errada." )
+
+		} /* fim ativa: Testar Obter lista ameacados */
+
 		/* Testar Destruir casa */
 
 		else if ( strcmp( ComandoTeste , DESTROI_CASA_CMD ) == 0 )
@@ -242,6 +345,114 @@ CSA_tppCasa   vtCasas[ DIM_VT_CASA ] ;
 
 /***********************************************************************
 *
+*  $FC Função: TCSA -Destruir valor
+*
+***********************************************************************/
+
+   void DestruirValor( void * pDado )
+   {
+
+    	free ( pDado ) ;
+
+   } /* Fim função: TCSA -Destruir valor */
+
+
+/***********************************************************************
+*
+*  $FC Função: TCSA -Comparar valor
+*
+***********************************************************************/
+
+   int CompararValor( void * pDado_1 , void * pDado_2 )
+   {
+
+     	char * valor_1 = ( char * ) pDado_1 ;
+     	char * valor_2 = ( char * ) pDado_2 ;
+     	return strcmp( valor_1 , valor_2 ) ;
+
+   } /* Fim função: TCSA -Comparar valor */
+
+
+/***********************************************************************
+*
+*  $FC Função: TCSA -Igual valor
+*
+***********************************************************************/
+
+   int IgualValor( void * pDado_1 , void * pDado_2 )
+   {
+
+    	char * valor_1 = ( char * ) pDado_1 ;
+    	char * valor_2 = ( char * ) pDado_2 ;
+    	return strcmp( valor_1 , valor_2 ) ;
+
+   } /* Fim função: TCSA -Igual valor */
+
+
+/***********************************************************************
+*
+*  $FC Função: TCSA -Criar casas de teste
+*
+***********************************************************************/
+
+   	void CriarCasasTeste( )
+   	{
+
+     	for ( i = 0 ; i < DIM_VT_CASA ; i++ )
+     	{
+     		CSA_CriarCasa( casasTeste[ i ] ) ;
+     	} /* for */
+
+   	} /* Fim função: TCSA -Criar casas de teste */
+
+
+/***********************************************************************
+*
+*  $FC Função: TCSA -Comparar Lista com Casas de teste
+*
+***********************************************************************/
+
+   	int ComparaListaCasas( )
+   	{
+
+     	for ( i = 0 ; i < DIM_VT_CASA ; i++ )
+     	{
+     		if ( ComparaCasas( lista->pElemCorr , casasTeste[ i ] ) == FALSE )
+     		{
+     			return FALSE ;
+     		} /* if */	
+     	} /* for */
+
+    	return TRUE ;
+
+   	} /* Fim função: TCSA -Comparar Lista com Casas de teste */
+
+
+/***********************************************************************
+*
+*  $FC Função: TCSA -Comparar casas
+*
+***********************************************************************/
+
+   	int ComparaCasas( void *pDado_1 ,  CSA_tppCasa pDado_2 )
+   	{
+   		CSA_tppCasa casa = ( CSA_tppCasa ) pDado_1 ;
+
+   		if ( *casa->peca->nomePeca == *pDado_2->peca->nomePeca 
+   			&& *casa->peca->corPeca == *pDado_2->peca->corPeca )
+   		{
+   			return TRUE ;
+   		}
+   		else
+   		{
+   			return FALSE ;
+   		} /* if */
+
+   	} /* Fim função: TCSA -Comparar casas */
+
+
+/***********************************************************************
+*
 *  $FC Função: TCSA -Validar indice da casa
 *
 ***********************************************************************/
@@ -264,7 +475,7 @@ CSA_tppCasa   vtCasas[ DIM_VT_CASA ] ;
       	{
          	if ( vtCasas[ inxCasa ] == 0 )
         	{
-            return FALSE ;
+            	return FALSE ;
          	} /* if */
       	} /* if */
 

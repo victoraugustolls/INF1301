@@ -13,3 +13,7 @@ if exist ..\err\TEST_PCA.err notepad ..\err\TEST_PCA.err
 nmake /F..\comp\TEST_TAB.make 
 copy ..\obj\TEST_TAB.exe ..\..\bin\TEST_TAB.EXE
 if exist ..\err\TEST_TAB.err notepad ..\err\TEST_TAB.err
+
+nmake /F..\comp\TEST_CSA.make 
+copy ..\obj\TEST_CSA.exe ..\..\bin\TEST_CSA.EXE
+if exist ..\err\TEST_CSA.err notepad ..\err\TEST_CSA.err
