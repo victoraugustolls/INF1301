@@ -27,18 +27,18 @@
 #include    "LerParm.h"
 
 #include	"Casa.h"
-#include    "Peca.c"
-#include	"Lista.c"
+#include	"Lista.h"
 
 static const char RESET_PECA_CMD             	 [ ] = "=resetTeste"        	;
 static const char CRIAR_CASA_CMD             	 [ ] = "=criarCasa"         	;
 static const char INSERE_PECA_CASA_CMD       	 [ ] = "=inserePeca"    	    ;
 static const char REMOVE_PECA_CASA_CMD       	 [ ] = "=removePeca"	        ;
 static const char OBTER_PECA_CASA_CMD		 	 [ ] = "=obterPeca"				;
+static const char COMPARA_CASAS_CMD		 	     [ ] = "=comparaCasas"			;
 static const char MODIFICAR_LISTA_AMEACANTE_CMD  [ ] = "=modificarAmeacante"	;
 static const char MODIFICAR_LISTA_AMEACADOS_CMD  [ ] = "=modificarAmeacados"	;
 static const char OBTER_LISTA_AMEACANTE_CMD  	 [ ] = "=obterAmeacante"		;
-static const char OBTER_LISTA_AMEACADOS_CMD  	 [ ] = "=obterAmeacante"		;
+static const char OBTER_LISTA_AMEACADOS_CMD  	 [ ] = "=obterAmeacados"		;
 static const char DESTROI_CASA_CMD           	 [ ] = "=destroiCasa"       	;
 
 
@@ -53,11 +53,14 @@ static const char DESTROI_CASA_CMD           	 [ ] = "=destroiCasa"       	;
 
 CSA_tppCasa vtCasas[ DIM_VT_CASA ] ;
 CSA_tppCasa casasTeste[ DIM_VT_CASA ] ;
+CSA_tppCasa casasTeste2[ DIM_VT_CASA ] ;
 LIS_tppLista listaRecebida ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
   	static void CriarCasasTeste( ) ;
+
+  	static void CriarCasasTeste2( ) ;
 
   	static int ComparaListaCasas( ) ;
 
@@ -89,9 +92,13 @@ LIS_tppLista listaRecebida ;
 	TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	{
 
-		int inxCasa    = -1 ,
-			numLidos   = -1 ,
-			CondRetEsp = -1  ;
+		int inxCasa      = -1 ,
+			inxCasa2     = -1 ,
+			igualdadeEsp = -1 ,
+			numLidos     = -1 ,
+			CondRetEsp   = -1 ;
+
+		int igualdade ;
 
 		TST_tpCondRet CondRet ;
 
@@ -104,18 +111,19 @@ LIS_tppLista listaRecebida ;
 		int i ;
 
 		CriarCasasTeste( ) ;
+		CriarCasasTeste2( ) ;
 
 		/* Efetuar reset de teste de casa */
 
 		if ( strcmp( ComandoTeste , RESET_PECA_CMD ) == 0 )
 		{
 
-			for( i = 0 ; i < DIM_VT_CASA ; i++ )
-		{
-		  	vtCasas[ i ] = NULL ;
-		} /* for */
+				for( i = 0 ; i < DIM_VT_CASA ; i++ )
+			{
+			  	vtCasas[ i ] = NULL ;
+			} /* for */
 
-		return TST_CondRetOK ;
+			return TST_CondRetOK ;
 
 		} /* fim ativa: Efetuar reset de teste de casa */
 
@@ -124,19 +132,19 @@ LIS_tppLista listaRecebida ;
 		else if ( strcmp( ComandoTeste , CRIAR_CASA_CMD ) == 0 )
 		{
 
-		numLidos = LER_LerParametros( "ii" , &inxCasa ,
-									&CondRetEsp) ;
+			numLidos = LER_LerParametros( "ii" , &inxCasa ,
+										&CondRetEsp) ;
 
-		if ( ( numLidos != 2 )
-		  || ( ! ValidarInxCasa( inxCasa , VAZIO )))
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( ( numLidos != 2 )
+			  || ( ! ValidarInxCasa( inxCasa , VAZIO )))
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		CondRet = CSA_CriarCasa( &vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_CriarCasa( &vtCasas[ inxCasa ] ) ;
 
-		return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao criar casa." ) ;
+			return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao criar casa." ) ;
 
 		} /* fim ativa: Testar CriarCasa */
 
@@ -149,15 +157,15 @@ LIS_tppLista listaRecebida ;
 										&nomePecaEsp , &corPecaEsp ,
 										&CondRetEsp ) ;
 
-		if ( ( numLidos != 4 ) )
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( ( numLidos != 4 ) )
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		CondRet = CSA_InserirPecaCasa( nomePecaEsp , corPecaEsp , vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_InserirPecaCasa( nomePecaEsp , corPecaEsp , vtCasas[ inxCasa ] ) ;
 
-		return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao inserir peca." ) ;
+			return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao inserir peca." ) ;
 
 		} /* fim ativa: Testar Inserir peça na casa */
 
@@ -169,15 +177,15 @@ LIS_tppLista listaRecebida ;
 			numLidos = LER_LerParametros( "ii" , &inxCasa ,
 										&CondRetEsp ) ;
 
-		if ( numLidos != 2 )
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( numLidos != 2 )
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		CondRet = CSA_RetirarPecaCasa( vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_RetirarPecaCasa( vtCasas[ inxCasa ] ) ;
 
-		return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao remover peca." ) ;
+			return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao remover peca." ) ;
 
 		} /* fim ativa: Testar Remover peça da casa */
 
@@ -190,41 +198,75 @@ LIS_tppLista listaRecebida ;
 										&nomePecaEsp , &corPecaEsp ,
 										&CondRetEsp ) ;
 
-		if ( numLidos != 4 )
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( numLidos != 4 )
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-		corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
+			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
+			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-		CondRet = CSA_ObterPecaCasa( &nomePeca , &corPeca , vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_ObterPecaCasa( &nomePeca , &corPeca , vtCasas[ inxCasa ] ) ;
 
-		if ( CondRetEsp )
-		{
-		  	return TST_CompararInt( CondRetEsp , CondRet ,
-		        					"Casa deveria estar vazia." ) ;
-		}/* if */
+			if ( CondRetEsp )
+			{
+			  	return TST_CompararInt( CondRetEsp , CondRet ,
+			        					"Casa deveria estar vazia." ) ;
+			}/* if */
 
-		if ( nomePecaEsp != *nomePeca )
-		{
-			return TST_CompararChar( nomePecaEsp , *nomePeca ,
-									"Nome da peca recebido errado." ) ;
-		}/* if */
+			if ( nomePecaEsp != *nomePeca )
+			{
+				return TST_CompararChar( nomePecaEsp , *nomePeca ,
+										"Nome da peca recebido errado." ) ;
+			}/* if */
 
-		if ( corPecaEsp != *corPeca )
-		{
-			return TST_CompararChar( corPecaEsp , *corPeca ,
-									"Cor da peca recebida errada." ) ;
-		}/* if */
+			if ( corPecaEsp != *corPeca )
+			{
+				return TST_CompararChar( corPecaEsp , *corPeca ,
+										"Cor da peca recebida errada." ) ;
+			}/* if */
 
-		free( nomePeca ) ;
-		free( corPeca ) ;
+			free( nomePeca ) ;
+			free( corPeca ) ;
 
-		return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao obter peca." ) ;
+			return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao obter peca." ) ;
 
 		} /* fim ativa: Testar Obter peça da casa */
+
+		else if ( strcmp( ComandoTeste , COMPARA_CASAS_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "iiii" , &inxCasa ,
+										&inxCasa2 , &igualdadeEsp ,
+										&CondRetEsp ) ;
+
+			if ( numLidos != 4 )
+			{
+			   return TST_CondRetParm ;
+			} /* if */
+
+			CondRet = CSA_CompararCasa( vtCasas[ inxCasa ] , vtCasas[ inxCasa2 ] , &igualdade ) ;
+
+			if ( CondRetEsp )
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+			        					"Condicao de retorno errada ao comparar casa." ) ;
+			} /* if */
+
+
+			if ( igualdadeEsp != igualdade )
+			{
+				return TST_CompararInt( igualdadeEsp , igualdade ,
+			        					"Igualdade errada ao comparar casa." ) ;
+			}
+			else
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+			        					"Condicao de retorno errada ao comparar casa." ) ;
+			} /* if */
+
+		} /* fim ativa: Testar Remover peça da casa */
 
 		/* Testar Modificar lista ameacantes */
 
@@ -234,18 +276,20 @@ LIS_tppLista listaRecebida ;
 			numLidos = LER_LerParametros( "ii" , &inxCasa ,
 										&CondRetEsp ) ;
 
-		if ( ( numLidos != 2 )
-		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( ( numLidos != 2 )
+			  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		CondRet = CSA_ModificarListaAmeacantesCasa( casasTeste , DIM_VT_CASA , vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_ModificarListaAmeacantesCasa( casasTeste , DIM_VT_CASA , vtCasas[ inxCasa ] ) ;
 
-		return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao remover peca." ) ;
+			return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao modificar lista ameacantes." ) ;
 
-		} /* fim ativa: Testar Modificar lista ameacados */
+			} /* fim ativa: Testar Modificar lista ameacantes */
+
+		/* Testar Modificar lista ameacados */
 
 		else if ( strcmp( ComandoTeste , MODIFICAR_LISTA_AMEACADOS_CMD ) == 0 )
 		{
@@ -253,16 +297,16 @@ LIS_tppLista listaRecebida ;
 			numLidos = LER_LerParametros( "ii" , &inxCasa ,
 										&CondRetEsp ) ;
 
-		if ( ( numLidos != 2 )
-		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( ( numLidos != 2 )
+			  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		CondRet = CSA_ModificarListaAmeacadosCasa( casasTeste , DIM_VT_CASA , vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_ModificarListaAmeacadosCasa( casasTeste , DIM_VT_CASA , vtCasas[ inxCasa ] ) ;
 
-		return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao remover peca." ) ;
+			return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao modificar lista ameacados." ) ;
 
 		} /* fim ativa: Testar Modificar lista ameacados */
 
@@ -271,50 +315,50 @@ LIS_tppLista listaRecebida ;
 		else if ( strcmp( ComandoTeste , OBTER_LISTA_AMEACANTE_CMD ) == 0 )
 		{
 
-			numLidos = LER_LerParametros( "ii" , &inxCasa ,
-										&CondRetEsp ) ;
+			numLidos = LER_LerParametros( "iii" , &inxCasa ,
+										&igualdadeEsp , &CondRetEsp ) ;
 
-		if ( ( numLidos != 2 )
-		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( ( numLidos != 3 )
+			  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		CondRet = CSA_ObterListaAmeacantesCasa( &listaRecebida , vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_ObterListaAmeacantesCasa( &listaRecebida , vtCasas[ inxCasa ] ) ;
 
-		if ( ComparaListaCasas( ) )
-		{
-			return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao obter lista ameacantes." ) ;
-		} /* if */
+			if ( ComparaListaCasas( igualdadeEsp ) )
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao obter lista ameacantes." ) ;
+			} /* if */
 
-		return TST_NotificarFalha( "Lista de ameacantes recebida errada." ) ;
+			return TST_NotificarFalha( "Lista de ameacantes recebida errada." ) ;
 
-		} /* fim ativa: Testar Obter lista ameacantes */
+			} /* fim ativa: Testar Obter lista ameacantes */
 
-		/* Testar Obter lista ameacados */
+			/* Testar Obter lista ameacados */
 
-		else if ( strcmp( ComandoTeste , OBTER_LISTA_AMEACADOS_CMD ) == 0 )
-		{
+			else if ( strcmp( ComandoTeste , OBTER_LISTA_AMEACADOS_CMD ) == 0 )
+			{
 
-			numLidos = LER_LerParametros( "ii" , &inxCasa ,
-										&CondRetEsp ) ;
+				numLidos = LER_LerParametros( "iii" , &inxCasa ,
+											&igualdadeEsp , &CondRetEsp ) ;
 
-		if ( ( numLidos != 2 )
-		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( ( numLidos != 3 )
+			  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		CondRet = CSA_ObterListaAmeacadosCasa( &listaRecebida , vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_ObterListaAmeacadosCasa( &listaRecebida , vtCasas[ inxCasa ] ) ;
 
-		if ( ComparaListaCasas( ) )
-		{
-			return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao obter lista ameacados." ) ;
-		} /* if */
+			if ( ComparaListaCasas( igualdadeEsp ) )
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao obter lista ameacados." ) ;
+			} /* if */
 
-		return TST_NotificarFalha( "Lista de ameacados recebida errada." ) ;
+			return TST_NotificarFalha( "Lista de ameacados recebida errada." ) ;
 
 		} /* fim ativa: Testar Obter lista ameacados */
 
@@ -415,22 +459,63 @@ LIS_tppLista listaRecebida ;
 
 /***********************************************************************
 *
-*  $FC Função: TCSA -Comparar Lista com Casas de teste
+*  $FC Função: TCSA -Criar casas de teste 2
 *
 ***********************************************************************/
 
-   	int ComparaListaCasas( )
+   	void CriarCasasTeste2( )
    	{
 
    		int i ;
 
      	for ( i = 0 ; i < DIM_VT_CASA ; i++ )
      	{
-     		if ( ComparaCasas( listaRecebida->pElemCorr->pValor , casasTeste[ i ] ) == FALSE )
-     		{
-     			return FALSE ;
-     		} /* if */	
+     		CSA_CriarCasa( &casasTeste2[ i ] ) ;
+     		CSA_InserirPecaCasa( 'P' , 'P' ,  casasTeste2[ i ] ) ;
      	} /* for */
+
+   	} /* Fim função: TCSA -Criar casas de teste 2 */
+
+
+/***********************************************************************
+*
+*  $FC Função: TCSA -Comparar Lista com Casas de teste
+*
+***********************************************************************/
+
+   	int ComparaListaCasas( int igualdade )
+   	{
+
+   		int i ;
+   		CSA_tppCasa pCasa1 ;
+
+   		if ( igualdade )
+   		{
+   			for ( i = 0 ; i < DIM_VT_CASA ; i++ )
+	     	{
+	     		printf("I: %d\n", i);
+	     		LIS_ObterValor( listaRecebida , &pCasa1 ) ;
+	     		LIS_AvancarElementoCorrente( listaRecebida , 1 ) ;
+	     		if ( ComparaCasas( pCasa1 , casasTeste[ i ] ) == FALSE )
+	     		{
+	     			return FALSE ;
+	     		} /* if */	
+	     	} /* for */
+   		}
+   		else
+   		{
+   			for ( i = 0 ; i < DIM_VT_CASA ; i++ )
+	     	{
+	     		printf("I: %d\n", i);
+	     		LIS_ObterValor( listaRecebida , &pCasa1 ) ;
+	     		LIS_AvancarElementoCorrente( listaRecebida , 1 ) ;
+	     		if ( ComparaCasas( pCasa1 , casasTeste2[ i ] ) == FALSE )
+	     		{
+	     			return FALSE ;
+	     		} /* if */	
+	     	} /* for */
+   		} /* if */
+
 
     	return TRUE ;
 
@@ -443,21 +528,21 @@ LIS_tppLista listaRecebida ;
 *
 ***********************************************************************/
 
-   	int ComparaCasas( void *pDado_1 ,  CSA_tppCasa pDado_2 )
+   	int ComparaCasas( CSA_tppCasa pCasa1 ,  CSA_tppCasa pCasa2 )
    	{
 
-   		// CSA_tppCasa casa = ( CSA_tppCasa ) pDado_1 ;
+   		int igualdade ;
 
-   		// if ( casa->peca->nomePeca == pDado_2->peca->nomePeca 
-   		// 	&& casa->peca->corPeca == pDado_2->peca->corPeca )
-   		// {
-   		// 	return TRUE ;
-   		// }
-   		// else
-   		// {
-   		// 	return FALSE ;
-   		// } /* if */
-   		return TRUE ;
+   		CSA_CompararCasa( pCasa1 , pCasa2 , &igualdade ) ;
+
+   		if ( igualdade )
+   		{
+   			return TRUE ;
+   		}
+   		else
+   		{
+   			return FALSE ;
+   		} /* if */
 
    	} /* Fim função: TCSA -Comparar casas */
 

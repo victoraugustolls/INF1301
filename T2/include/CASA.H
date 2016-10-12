@@ -68,8 +68,11 @@ typedef enum {
     
     CSA_CondRetNaoExiste = 1 ,
     /* A casa não existe */
+
+    CSA_CondRetVazia = 2 ,
+    /* A casa está vazia */
     
-    CSA_CondRetFaltouMemoria = 2 ,
+    CSA_CondRetFaltouMemoria = 3 ,
     /* Faltou memória ao tentar criar um elemento casa */
     
 } CSA_tpCondRet ;
@@ -176,6 +179,28 @@ CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca ,
 
 /***********************************************************************
  *
+ *  $FC Função: CSA  &Retirar peça da casa
+ *
+ *  $ED Descrição da função
+ *     Retira a peça presente na casa passada pelo ponteiro.
+ *
+ *  $EP Parâmetros
+ *     pCasa1             - ponteiro para a primeira casa da comparacao
+ *	   pCasa2             - ponteiro para a segunda casa da comparacao
+ *     igualdade          - ponteiro para o valor da igualdade
+ *
+ *  $FV Valor retornado
+ *     CSA_CondRetOK            - retirou sem problemas
+ *     CSA_CondRetNaoExiste     - a casa não existe
+ *
+ ***********************************************************************/
+
+CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
+								CSA_tppCasa pCasa2 ,
+								int * igualdade ) ;
+
+/***********************************************************************
+ *
  *  $FC Função: CSA  &Obter lista de ameaçantes de uma casa
  *
  *  $ED Descrição da função
@@ -188,6 +213,7 @@ CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca ,
  *  $FV Valor retornado
  *     CSA_CondRetOK           - obteve lista sem problemas
  *     CSA_CondRetNaoExiste    - a casa não existe
+ *	   CSA_CondRetVazia        - a casa esta vazia
  *
  ***********************************************************************/
 

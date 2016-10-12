@@ -70,6 +70,27 @@
 
 // ---------------------------------------------
 
+== Teste Comparar Peças Iguais
+=criarPeca       peca0   'P'     'P'   OK
+=criarPeca       peca1   'P'     'P'   OK
+=comparaPecas	 peca0   peca1   1     OK
+=destroiPeca     peca0   OK
+=destroiPeca     peca1   OK
+
+== Teste Comparar Peças Diferentes
+=criarPeca       peca0   'P'     'P'   OK
+=criarPeca       peca1   'V'     'V'   OK
+=comparaPecas	 peca0   peca1   0     OK
+=destroiPeca     peca0   OK
+=destroiPeca     peca1   OK
+
+== Teste Comparar Peças Vazias
+=criarPeca       peca0   'P'     'P'   OK
+=comparaPecas	 peca0   peca1   0     PecaInexistente
+=destroiPeca     peca0   OK
+
+// ---------------------------------------------
+
 == Teste com múltiplas peças
 =criarPeca       peca0   'P'    'P'    OK
 =criarPeca       peca1   'T'    'B'    OK

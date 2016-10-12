@@ -11,6 +11,8 @@ tab         =  ..\tabs
 inc         =  ..\tabs
 
 [Modulos]
+LISTA
+PECA
 TESTCSA
 CASA
 

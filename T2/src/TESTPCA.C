@@ -33,6 +33,7 @@ static const char RESET_PECA_CMD             [ ] = "=resetTeste"        ;
 static const char CRIAR_PECA_CMD             [ ] = "=criarPeca"         ;
 static const char ALTERAR_PECA_CMD           [ ] = "=alterarPeca"       ;
 static const char OBTER_NO_CMD               [ ] = "=obterNo"           ;
+static const char COMPARA_PECAS_CMD          [ ] = "=comparaPecas"      ;
 static const char DESTROI_PECA_CMD           [ ] = "=destroiPeca"       ;
 
 
@@ -75,9 +76,13 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 	TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	{
 
-		int inxPeca    = -1 ,
-			numLidos   = -1 ,
-			CondRetEsp = -1  ;
+		int inxPeca       = -1 ,
+			inxPeca2      = -1 ,
+			igualdadeEsp  = -1 ,
+			numLidos      = -1 ,
+			CondRetEsp    = -1 ;
+
+		int igualdade ;
 
 		TST_tpCondRet CondRet ;
 
@@ -95,68 +100,68 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		{
 
 			for( i = 0 ; i < DIM_VT_PECA ; i++ )
-		{
-		  	vtPecas[ i ] = NULL ;
-		} /* for */
+			{
+		  		vtPecas[ i ] = NULL ;
+			} /* for */
 
-		return TST_CondRetOK ;
+			return TST_CondRetOK ;
 
-		} /* fim ativa: Efetuar reset de teste de peça */
+			} /* fim ativa: Efetuar reset de teste de peça */
 
 		/* Testar CriarPeca */
 
 		else if ( strcmp( ComandoTeste , CRIAR_PECA_CMD ) == 0 )
 		{
 
-		numLidos = LER_LerParametros( "icci" , &inxPeca ,
+			numLidos = LER_LerParametros( "icci" , &inxPeca ,
 									&nomePecaEsp , &corPecaEsp ,
 									&CondRetEsp) ;
 
-		if ( ( numLidos != 4 )
-		  || ( ! ValidarInxPeca( inxPeca , VAZIO )))
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( ( numLidos != 4 )
+		  		|| ( ! ValidarInxPeca( inxPeca , VAZIO )))
+			{
+		  	 return TST_CondRetParm ;
+			} /* if */
 
-		nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-		corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
-		*nomePeca = nomePecaEsp ;
-		*corPeca = corPecaEsp ;
+			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
+			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
+			*nomePeca = nomePecaEsp ;
+			*corPeca = corPecaEsp ;
 
-		CondRet = PCA_CriarPeca( &vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
+			CondRet = PCA_CriarPeca( &vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
 
-		free( nomePeca ) ;
-		free( corPeca ) ;
+			free( nomePeca ) ;
+			free( corPeca ) ;
 
-		return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao criar peca." ) ;
+			return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao criar peca." ) ;
 
 		} /* fim ativa: Testar AlterarPeca */
 
 		else if ( strcmp( ComandoTeste , ALTERAR_PECA_CMD ) == 0 )
 		{
 
-		numLidos = LER_LerParametros( "icci" , &inxPeca ,
-									&nomePecaEsp , &corPecaEsp ,
-									&CondRetEsp) ;
+			numLidos = LER_LerParametros( "icci" , &inxPeca ,
+										&nomePecaEsp , &corPecaEsp ,
+										&CondRetEsp) ;
 
-		if ( numLidos != 4 )
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( numLidos != 4 )
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-		corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
-		*nomePeca = nomePecaEsp ;
-		*corPeca = corPecaEsp ;
+			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
+			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
+			*nomePeca = nomePecaEsp ;
+			*corPeca = corPecaEsp ;
 
-		CondRet = PCA_AlterarPeca( vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
+			CondRet = PCA_AlterarPeca( vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
 
-		free( nomePeca ) ;
-		free( corPeca ) ;
+			free( nomePeca ) ;
+			free( corPeca ) ;
 
-		return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao alterar peca." ) ;
+			return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao alterar peca." ) ;
 
 		} /* fim ativa: Testar AlterarPeca */
 
@@ -169,42 +174,78 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 										&nomePecaEsp , &corPecaEsp ,
 										&CondRetEsp ) ;
 
-		if ( ( numLidos != 4 )
-		  || ( ! ValidarInxPeca( inxPeca , NAO_VAZIO )))
-		{
-		   return TST_CondRetParm ;
-		} /* if */
+			if ( ( numLidos != 4 )
+			  || ( ! ValidarInxPeca( inxPeca , NAO_VAZIO )))
+			{
+			   return TST_CondRetParm ;
+			} /* if */
 
-		nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-		corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
+			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
+			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-		CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , &nomePeca , &corPeca ) ;
+			CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , &nomePeca , &corPeca ) ;
 
-		if ( CondRetEsp )
-		{
-		  	return TST_CompararInt( CondRetEsp , CondRet ,
-		        					"Peca deveria estar vazia." ) ;
-		}/* if */
+			if ( CondRetEsp )
+			{
+			  	return TST_CompararInt( CondRetEsp , CondRet ,
+			        					"Peca deveria estar vazia." ) ;
+			}/* if */
 
-		if ( nomePecaEsp != *nomePeca )
-		{
-			return TST_CompararChar( nomePecaEsp , *nomePeca ,
-									"Nome da peca recebido errado." ) ;
-		}/* if */
+			if ( nomePecaEsp != *nomePeca )
+			{
+				return TST_CompararChar( nomePecaEsp , *nomePeca ,
+										"Nome da peca recebido errado." ) ;
+			}/* if */
 
-		if ( corPecaEsp != *corPeca )
-		{
-			return TST_CompararChar( corPecaEsp , *corPeca ,
-									"Cor da peca recebida errada." ) ;
-		}/* if */
+			if ( corPecaEsp != *corPeca )
+			{
+				return TST_CompararChar( corPecaEsp , *corPeca ,
+										"Cor da peca recebida errada." ) ;
+			}/* if */
 
-		free( nomePeca ) ;
-		free( corPeca ) ;
+			free( nomePeca ) ;
+			free( corPeca ) ;
 
-		return TST_CompararInt( CondRetEsp , CondRet ,
-		        				"Condicao de retorno errada ao criar peca." ) ;
+			return TST_CompararInt( CondRetEsp , CondRet ,
+		        					"Condicao de retorno errada ao criar peca." ) ;
 
 		} /* fim ativa: Testar Obter valor da peça */
+
+		/* Testar ComparaPeca */
+
+		else if ( strcmp( ComandoTeste , COMPARA_PECAS_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "iiii" , &inxPeca ,
+										&inxPeca2 , &igualdadeEsp ,
+										&CondRetEsp ) ;
+
+			if ( numLidos != 4 )
+			{
+			   return TST_CondRetParm ;
+			} /* if */
+
+			CondRet = PCA_ComparaPecas( vtPecas[ inxPeca ] , vtPecas[ inxPeca2 ] , &igualdade ) ;
+
+			if ( CondRetEsp )
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+			        					"Condicao de retorno errada ao comparar peca." ) ;
+			} /* if */
+
+
+			if ( igualdadeEsp != igualdade )
+			{
+				return TST_CompararInt( igualdadeEsp , igualdade ,
+			        					"Igualdade errada ao comparar peca." ) ;
+			}
+			else
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+			        					"Condicao de retorno errada ao comparar peca." ) ;
+			} /* if */
+
+		} /* fim ativa: Testar ComparaPeca */
 
 		/* Testar Destruir peça */
 

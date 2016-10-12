@@ -136,6 +136,29 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 
 /***********************************************************************
 *
+*  $FC Função: PCA  &Compara duas peças
+*
+*  $ED Descrição da função
+*     Obtem a referência para o valor contido na peça
+*
+*  $EP Parâmetros
+*     pPeca_1            - ponteiro para a primeira peça da comparação
+*     pPeca_2            - ponteiro para a segunda peça da comparação
+*     igualdade          - ponteiro para o valor da igualdade
+*
+*  $FV Valor retornado
+*     PCA_CondRetOK
+*     PCA_CondRetPecaNaoExiste
+*
+***********************************************************************/
+
+  	PCA_tpCondRet PCA_ComparaPecas( PCA_tppPeca pPeca_1 ,
+  									PCA_tppPeca pPeca_2 ,
+  									int * igualdade ) ;
+
+
+/***********************************************************************
+*
 *  $FC Função: PCA  &Destruir peça
 *
 *  $ED Descrição da função
