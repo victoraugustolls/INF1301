@@ -14,6 +14,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     3       lff   12/out/2016 desenvolvimento acabado
  *     2       lff   11/out/2016 desenvolvimento em andamento
  *     1       lff   10/out/2016 início desenvolvimento
  *
@@ -24,21 +25,18 @@
 #include   <memory.h>
 #include   <malloc.h>
 #include   <assert.h>
+#include   "PECA.H"
+#include   "LISTA.H"
 
 #define CASA_OWN
 #include "CASA.H"
 #undef CASA_OWN
 
-#include "PECA.H"
-#include "LISTA.H"
-
 /***** Protótipos das funções encapuladas no módulo *****/
 
 static void DestruirValor( void * pDado ) ;
 
-static int CompararValor( void * pDado_1 , void * pDado_2 ) ;
-
-static int IgualValor( void * pDado_1 , void * pDado_2 ) ;
+static int NuncaIgual( void * pDado_1 , void * pDado_2 ) ;
 
 /***********************************************************************
  *
@@ -69,6 +67,9 @@ typedef struct CSA_tagCasa {
 CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa )
 {
     
+    PCA_tpCondRet retPeca ;
+    LIS_tpCondRet retLista ;
+    
     PCA_tppPeca peca = NULL ;
     LIS_tppLista listaAmeacantes = NULL ;
     LIS_tppLista listaAmeacados = NULL ;
@@ -82,21 +83,37 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa )
         return CSA_CondRetFaltouMemoria ;
     } /* if */
     
-    PCA_CriarPeca( &peca ,
+    retPeca = PCA_CriarPeca( &peca ,
                    &charPeca ,
                    &charPeca ) ;
+    if ( retPeca == PCA_CondRetFaltouMemoria )
+    {
+        return CSA_CondRetFaltouMemoria ;
+    }/* if */
     
-    LIS_CriarLista( listaAmeacantes ,
+    retLista = LIS_CriarLista( listaAmeacantes ,
                     "listaAmeacantes" ,
                     DestruirValor ,
-                    CompararValor ,
-                    IgualValor ) ;
+                    NuncaIgual ,
+                    NuncaIgual ) ;
+    if ( retLista == LIS_CondRetFaltouMemoria )
+    {
+        return CSA_CondRetFaltouMemoria ;
+    }/* if */
     
-    LIS_CriarLista( listaAmeacados ,
+    retLista = LIS_CriarLista( listaAmeacados ,
                     "listaAmeacantes" ,
                     DestruirValor ,
-                    CompararValor ,
-                    IgualValor ) ;
+                    NuncaIgual ,
+                    NuncaIgual ) ;
+    if ( retLista == LIS_CondRetFaltouMemoria )
+    {
+        return CSA_CondRetFaltouMemoria ;
+    }/* if */
+    
+    pCasa->peca = peca ;
+    pCasa->listaAmeacantes = listaAmeacantes ;
+    pCasa->listaAmeacados = listaAmeacados ;
     
     return CSA_CondRetOK ;
     
@@ -110,14 +127,31 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa )
 CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa )
 {
     
+    PCA_tpCondRet retPeca ;
+    LIS_tpCondRet retLista ;
+
     if ( pCasa = NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    PCA_DestruirPeca( pCasa->peca ) ;
-    LIS_DestruirLista( pCasa->listaAmeacantes ) ;
-    LIS_DestruirLista( pCasa->listaAmeacados ) ;
+    retPeca = PCA_DestruirPeca( pCasa->peca ) ;
+    if ( retPeca == PCA_CondRetPecaNaoExiste )
+    {
+        return CSA_CondRetNaoExiste ;
+    }
+    
+    retLista = LIS_DestruirLista( pCasa->listaAmeacantes ) ;
+    if ( retLista == LIS_CondRetListaNaoExiste )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    retLista = LIS_DestruirLista( pCasa->listaAmeacados ) ;
+    if ( retLista == LIS_CondRetListaNaoExiste )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
     
     DestruirValor ( pCasa ) ;
     
@@ -135,14 +169,20 @@ CSA_tpCondRet CSA_InserirPecaCasa( char nomePeca ,
                                    CSA_tppCasa pCasa )
 {
     
+    PCA_tpCondRet retPeca ;
+    
     if ( pCasa = NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    PCA_CriarPeca(  &( pCasa->peca ) ,
-                    &nomePeca ,
-                    &corPeca ) ;
+    retPeca = PCA_CriarPeca( &( pCasa->peca ) ,
+                             &nomePeca ,
+                             &corPeca ) ;
+    if ( retPeca == PCA_CondRetFaltouMemoria )
+    {
+        return CSA_CondRetNaoExiste ;
+    }
     
     return CSA_CondRetOK ;
     
@@ -156,12 +196,18 @@ CSA_tpCondRet CSA_InserirPecaCasa( char nomePeca ,
 CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa )
 {
     
+    PCA_tpCondRet retPeca ;
+
     if ( pCasa = NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    PCA_DestruirPeca( &( pCasa->peca ) ) ;
+    retPeca = PCA_DestruirPeca( &( pCasa->peca ) ) ;
+    if ( retPeca == PCA_CondRetPecaNaoExiste )
+    {
+        return CSA_CondRetNaoExiste ;
+    }
     
     return CSA_CondRetOK ;
     
@@ -177,14 +223,20 @@ CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
                                  CSA_tppCasa pCasa )
 {
     
+    PCA_tpCondRet retPeca ;
+    
     if ( pCasa = NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    PCA_ObterValor( &( pCasa->peca ) ,
-                    &pNomePeca ,
-                    &pCorPeca ) ;
+    retPeca = PCA_ObterValor( &( pCasa->peca ) ,
+                              &pNomePeca ,
+                              &pCorPeca ) ;
+    if ( retPeca == PCA_CondRetPecaVazia )
+    {
+        return CSA_CondRetNaoExiste ;
+    }
 
     
     return CSA_CondRetOK ;
@@ -196,7 +248,7 @@ CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
  *  Função: CSA  &Obter lista de ameaçantes de uma casa
  *  ****/
 
-CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista pListaAmeacantes,
+CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista * pListaAmeacantes,
                                             CSA_tppCasa pCasa )
 {
     
@@ -205,12 +257,7 @@ CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista pListaAmeacantes,
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    /* verificar possíveis movimentos da peça presente na casa */
-    
-    /* para cada um dos movimentos checar se tem alguma peça na casa destino 
-        e inserir essa peça na lista
-     */
-    
+    *pListaAmeacantes = pCasa->listaAmeacantes ;
     
     return CSA_CondRetOK ;
     
@@ -221,7 +268,7 @@ CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista pListaAmeacantes,
  *  Função: CSA  &Obter lista de ameaçados de uma casa
  *  ****/
 
-CSA_tpCondRet CSA_ObterListaAmeacadosCasa( LIS_tppLista pListaAmeacantes,
+CSA_tpCondRet CSA_ObterListaAmeacadosCasa( LIS_tppLista * pListaAmeacantes,
                                            CSA_tppCasa pCasa )
 {
     
@@ -230,14 +277,109 @@ CSA_tpCondRet CSA_ObterListaAmeacadosCasa( LIS_tppLista pListaAmeacantes,
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    /* verificar possíveis movimentos das peças de cor diferente que a presente na casa */
-    
-    /* para cada um dos movimentos checar se tem como destino a casa em questão */
-    
+    *pListaAmeacados = pCasa->listaAmeacados ;
     
     return CSA_CondRetOK ;
     
 } /* Fim função: CSA  &Obter lista de ameaçados de uma casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Modificar lista de ameaçantes de uma casa
+ *  ****/
+
+CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacantes ,
+                                                int qtdCasasAmeacantes ,
+                                                CSA_tppCasa pCasa )
+{
+    
+    int i ;
+    LIS_tpCondRet retLista ;
+    
+    if ( pCasa = NULL )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    /* Limpa o lista para preenche-la */
+    retLista = LIS_DestruirLista( pCasa->listaAmeacantes ) ;
+    if ( retLista == LIS_CondRetListaNaoExiste )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    retLista = LIS_CriarLista( pCasa->listaAmeacantes ,
+                               "listaAmeacantes" ,
+                               DestruirValor ,
+                               NuncaIgual ,
+                               NuncaIgual ) ;
+    if ( retLista == LIS_CondRetFaltouMemoria )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    /* Preenche a lista com as casas recebidas pelo vetor */
+    for ( i = 0 ; i < qtdCasasAmeacantes ; i++ )
+    {
+        retLista = LIS_InserirElementoApos( pCasa->listaAmeacantes , vetorCasasAmeacantes[i] ) ;
+        if ( retLista == LIS_CondRetFaltouMemoria )
+        {
+            return CSA_CondRetNaoExiste ;
+        }/* if */
+    } /* for */
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Modificar lista de ameaçantes de uma casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Modificar lista de ameaçados de uma casa
+ *  ****/
+
+CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas ,
+                                               int qtdCasasAmeacadas ,
+                                               CSA_tppCasa pCasa )
+{
+    
+    int i ;
+    LIS_tpCondRet retLista ;
+    
+    if ( pCasa = NULL )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    /* Limpa o lista para preenche-la */
+    retLista = LIS_DestruirLista( pCasa->listaAmeacados ) ;
+    if ( retLista == LIS_CondRetListaNaoExiste )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    retLista = LIS_CriarLista( pCasa->listaAmeacados ,
+                              "listaAmeacados" ,
+                              DestruirValor ,
+                              NuncaIgual ,
+                              NuncaIgual ) ;
+    if ( retLista == LIS_CondRetFaltouMemoria )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    /* Preenche a lista com as casas recebidas pelo vetor */
+    for ( i = 0 ; i < qtdCasasAmeacadas ; i++ )
+    {
+        retLista = LIS_InserirElementoApos( pCasa->listaAmeacados , vetorCasasAmeacadas[i] ) ;
+        if ( retLista == LIS_CondRetFaltouMemoria )
+        {
+            return CSA_CondRetNaoExiste ;
+        }/* if */
+    } /* for */
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Modificar lista de ameaçados de uma casa */
 
 /*****  Código das funções encapsuladas no módulo  *****/
 
@@ -250,6 +392,10 @@ CSA_tpCondRet CSA_ObterListaAmeacadosCasa( LIS_tppLista pListaAmeacantes,
 void DestruirValor( void * pDado )
 {
     
+    PCA_DestruirPeca( pDado->peca ) ;
+    LIS_DestruirLista( pDado->listaAmeacantes ) ;
+    LIS_DestruirLista( pDado->listaAmeacados ) ;
+    
     free ( pDado ) ;
     
 } /* Fim Função: CSA -Destruir valor */
@@ -257,34 +403,17 @@ void DestruirValor( void * pDado )
 
 /***********************************************************************
  *
- *  $FC Função: CSA -Comparar valor
+ *  $FC Função: CSA -Nunca igual
  *
  ***********************************************************************/
 
-int CompararValor( void * pDado_1 , void * pDado_2 )
+int NuncaIgual( void * pDado_1 , void * pDado_2 )
 {
+    /* Duas casas nunca são iguais */
+    return 1 ;
     
-    char * valor_1 = ( char * ) pDado_1 ;
-    char * valor_2 = ( char * ) pDado_2 ;
-    return strcmp( valor_1 , valor_2 ) ;
-    
-} /* Fim função: CSA -Comparar valor */
+} /* Fim função: CSA -Nunca igual */
 
-
-/***********************************************************************
- *
- *  $FC Função: CSA -Igual valor
- *
- ***********************************************************************/
-
-int IgualValor( void * pDado_1 , void * pDado_2 )
-{
-    
-    char * valor_1 = ( char * ) pDado_1 ;
-    char * valor_2 = ( char * ) pDado_2 ;
-    return strcmp( valor_1 , valor_2 ) ;
-    
-} /* Fim função: CSA -Igual valor */
 
 /********** Fim do mÛdulo de implementaÁ„o:  CSA  Casa de um tabuleiro para jogo de xadrez
  **********/
