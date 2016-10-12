@@ -155,7 +155,7 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa )
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    DestruirValor ( pCasa ) ;
+    free( pCasa ) ;
     
     return CSA_CondRetOK ;
     
