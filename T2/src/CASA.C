@@ -10,10 +10,11 @@
  *
  *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
  *  Gestor:  LES/DI/PUC-Rio
- *  Autores: lff
+ *  Autores: lff, vas
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     4       vas   12/out/2016 corrigir esvaziar peça da casa
  *     3       lff   12/out/2016 desenvolvimento acabado
  *     2       lff   11/out/2016 desenvolvimento em andamento
  *     1       lff   10/out/2016 início desenvolvimento
@@ -72,11 +73,13 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     PCA_tppPeca peca = NULL ;
     LIS_tppLista listaAmeacantes = NULL ;
     LIS_tppLista listaAmeacados = NULL ;
-    char charPeca = 'V' ;
-    
+
     CSA_tppCasa newCasa = NULL ;
+
+    char * charPeca = ( char * ) malloc( sizeof( char ) ) ;
+    *charPeca = 'V' ;
     
-    newCasa = ( CSA_tpCasa * ) malloc( sizeof( CSA_tpCasa )) ;
+    newCasa = ( CSA_tpCasa * ) malloc( sizeof( CSA_tpCasa ) ) ;
 
     if ( newCasa == NULL )
     {
@@ -84,8 +87,8 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     } /* if */
     
     retPeca = PCA_CriarPeca( &peca ,
-                   &charPeca ,
-                   &charPeca ) ;
+                   charPeca ,
+                   charPeca ) ;
     if ( retPeca == PCA_CondRetFaltouMemoria )
     {
         return CSA_CondRetFaltouMemoria ;
@@ -200,12 +203,15 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa )
     
     PCA_tpCondRet retPeca ;
 
+    char * pecaVazia = ( char * ) malloc( sizeof( char ) ) ;
+    *pecaVazia = 'V' ;
+
     if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    retPeca = PCA_DestruirPeca( pCasa->peca ) ;
+    retPeca = PCA_AlterarPeca( pCasa->peca , pecaVazia , pecaVazia ) ;
     if ( retPeca == PCA_CondRetPecaNaoExiste )
     {
         return CSA_CondRetNaoExiste ;
@@ -220,8 +226,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa )
  *  Função: CSA  &Obter peça da casa
  *  ****/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
-                                 char* pCorPeca,
+CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca,
+                                 char** pCorPeca,
                                  CSA_tppCasa pCasa )
 {
     
@@ -233,8 +239,8 @@ CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
     }/* if */
     
     retPeca = PCA_ObterValor( pCasa->peca ,
-                              &pNomePeca ,
-                              &pCorPeca ) ;
+                              pNomePeca ,
+                              pCorPeca ) ;
     if ( retPeca == PCA_CondRetPecaVazia )
     {
         return CSA_CondRetNaoExiste ;

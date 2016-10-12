@@ -32,17 +32,17 @@
 // ---------------------------------------------
 
 == Teste Destruição de Casas
-=destroiPeca      casa0   OK
+=destroiCasa      casa0   OK
 
 == Teste Destruição de Listas Inexistentes
-=destroiPeca      casa0   CasaInexistente
+=destroiCasa      casa0   CasaInexistente
 
 // ---------------------------------------------
 
 == Teste Inserir Peça na Casa
 =criarCasa      casa0   OK
 =inserePeca		casa0	'P'   'P'   OK
-=destroiPeca    casa0   OK
+=destroiCasa    casa0   OK
 
 == Teste Inserir Peça na Casa Inexistente
 =inserePeca		casa0	'P'   'P'   CasaInexistente
@@ -52,13 +52,13 @@
 == Teste Obter Peça da Casa
 =criarCasa      casa0   OK
 =obterPeca      casa0   'V'   'V'   OK
-=destroiPeca    casa0   OK
+=destroiCasa    casa0   OK
 
 == Teste Obter Peça da Casa
 =criarCasa      casa0   OK
 =inserePeca		casa0	'P'   'P'   OK
 =obterPeca      casa0   'P'   'P'   OK
-=destroiPeca    casa0   OK
+=destroiCasa    casa0   OK
 
 == Teste Obter Peça da Casa Inexistente
 =obterPeca		casa0	'P'   'P'   CasaInexistente
@@ -71,7 +71,7 @@
 =obterPeca      casa0   'P'   'P'   OK
 =removePeca		casa0	OK
 =obterPeca      casa0   'V'   'V'   OK
-=destroiPeca    casa0   OK
+=destroiCasa    casa0   OK
 
 == Teste Remover Peça da Casa Inexistente
 =removePeca		casa0   CasaInexistente

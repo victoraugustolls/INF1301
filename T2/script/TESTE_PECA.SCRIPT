@@ -59,6 +59,17 @@
 
 // ---------------------------------------------
 
+== Teste Alterar Valor Peça
+=criarPeca       peca0   'P'   'P'   OK
+=alterarPeca     peca0   'V'   'V'   OK
+=obterNo         peca0   'V'   'V'   OK
+=destroiPeca     peca0   OK
+
+== Teste Alterar Valor Peça Inexistente
+=alterarPeca     peca0   'V'   'V'   PecaInexistente
+
+// ---------------------------------------------
+
 == Teste com múltiplas peças
 =criarPeca       peca0   'P'    'P'    OK
 =criarPeca       peca1   'T'    'B'    OK

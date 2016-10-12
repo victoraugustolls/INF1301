@@ -90,6 +90,29 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 
 /***********************************************************************
 *
+*  $FC Função: PCA  &Alterar peça
+*
+*  $ED Descrição da função
+*     Altera valor de uma peça do jogo de xadrez.
+*
+*  $EP Parâmetros
+*     pPeca            - ponteiro para peça sendo alterada
+*     nomePeca         - novo nome da peça sendo alterada
+*	  corPeca 		   - nova cor da peça sendo alterada
+*
+*  $FV Valor retornado
+*     PCA_CondRetOK             - peça foi alterada corretamente
+*     PCA_CondRetPecaNaoExiste  - peça não existe
+*
+***********************************************************************/
+
+  	PCA_tpCondRet PCA_AlterarPeca( PCA_tppPeca pPeca ,
+            					char * nomePeca ,
+								char * corPeca ) ;
+
+
+/***********************************************************************
+*
 *  $FC Função: PCA  &Obter referência para o valor contido no elemento
 *
 *  $ED Descrição da função

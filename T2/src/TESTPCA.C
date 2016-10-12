@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*	  2		  vas   12/out/2016 adição do teste de alterar peça
 *     1       vas   06/out/2016 início desenvolvimento
 *
 ***************************************************************************/
@@ -30,6 +31,7 @@
 
 static const char RESET_PECA_CMD             [ ] = "=resetTeste"        ;
 static const char CRIAR_PECA_CMD             [ ] = "=criarPeca"         ;
+static const char ALTERAR_PECA_CMD           [ ] = "=alterarPeca"       ;
 static const char OBTER_NO_CMD               [ ] = "=obterNo"           ;
 static const char DESTROI_PECA_CMD           [ ] = "=destroiPeca"       ;
 
@@ -64,6 +66,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 *     =resetTeste
 *           - anula o vetor de peças. Provoca vazamento de memória
 *     =criarPeca                    inx    nomePeca     corPeca       condRetorno
+*	  =alterarPeca 					inx    nomePeca     corPeca       condRetorno
 *     =obterNo                      inx    nomePeca     corPeca       condRetorno
 *     =destroiPeca                  inx    condRetorno
 *
@@ -128,7 +131,34 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		return TST_CompararInt( CondRetEsp , CondRet ,
 		        				"Condicao de retorno errada ao criar peca." ) ;
 
-		} /* fim ativa: Testar CriarPeca */
+		} /* fim ativa: Testar AlterarPeca */
+
+		else if ( strcmp( ComandoTeste , ALTERAR_PECA_CMD ) == 0 )
+		{
+
+		numLidos = LER_LerParametros( "icci" , &inxPeca ,
+									&nomePecaEsp , &corPecaEsp ,
+									&CondRetEsp) ;
+
+		if ( numLidos != 4 )
+		{
+		   return TST_CondRetParm ;
+		} /* if */
+
+		nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
+		corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
+		*nomePeca = nomePecaEsp ;
+		*corPeca = corPecaEsp ;
+
+		CondRet = PCA_AlterarPeca( vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
+
+		free( nomePeca ) ;
+		free( corPeca ) ;
+
+		return TST_CompararInt( CondRetEsp , CondRet ,
+		        				"Condicao de retorno errada ao alterar peca." ) ;
+
+		} /* fim ativa: Testar AlterarPeca */
 
 		/* Testar Obter valor da peça */
 

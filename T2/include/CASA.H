@@ -170,8 +170,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca ,
-                                 char* pCorPeca ,
+CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca ,
+                                 char** pCorPeca ,
                                  CSA_tppCasa pCasa ) ;
 
 /***********************************************************************

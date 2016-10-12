@@ -169,8 +169,7 @@ LIS_tppLista listaRecebida ;
 			numLidos = LER_LerParametros( "ii" , &inxCasa ,
 										&CondRetEsp ) ;
 
-		if ( ( numLidos != 2 )
-		  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+		if ( numLidos != 2 )
 		{
 		   return TST_CondRetParm ;
 		} /* if */
@@ -199,7 +198,7 @@ LIS_tppLista listaRecebida ;
 		nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
 		corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-		CondRet = CSA_ObterPecaCasa( nomePeca , corPeca , vtCasas[ inxCasa ] ) ;
+		CondRet = CSA_ObterPecaCasa( &nomePeca , &corPeca , vtCasas[ inxCasa ] ) ;
 
 		if ( CondRetEsp )
 		{

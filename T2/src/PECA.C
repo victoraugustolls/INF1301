@@ -78,6 +78,9 @@
      	*pNewPeca->nomePeca = *nomePeca ;
      	*pNewPeca->corPeca = *corPeca ;
 
+      	printf("Nome: %c\n", *nomePeca);
+     	printf("Cor: %c\n", *corPeca);
+
      	*pPeca = pNewPeca ;
 
      	return PCA_CondRetOK ;
@@ -86,10 +89,36 @@
 
 /***************************************************************************
 *
+*  Função: PCA  &Alterar peça
+*  ****/
+
+    PCA_tpCondRet PCA_AlterarPeca( PCA_tppPeca pPeca ,
+                      			char * nomePeca ,
+                      			char * corPeca )
+    {
+
+      	if ( pPeca == NULL )
+      	{
+        	return PCA_CondRetPecaNaoExiste ;
+      	}
+
+      	*pPeca->nomePeca = *nomePeca ;
+      	*pPeca->corPeca = *corPeca ;
+
+      	printf("Nome novo: %c\n", *nomePeca);
+      	printf("Cor nova: %c\n", *corPeca);
+
+      	return PCA_CondRetOK ;
+
+    } /* Fim função: PCA  &Alterar peça */
+
+/***************************************************************************
+*
 *  Função: PCA  &Obter referência para o valor contido no elemento
 *  ****/
 
-  	PCA_tpCondRet PCA_ObterValor( PCA_tppPeca pPeca , char ** nomePeca ,
+  	PCA_tpCondRet PCA_ObterValor( PCA_tppPeca pPeca ,
+  								char ** nomePeca ,
                                	char ** corPeca )
   	{
 
