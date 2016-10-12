@@ -132,7 +132,7 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa )
     PCA_tpCondRet retPeca ;
     LIS_tpCondRet retLista ;
 
-    if ( pCasa = NULL )
+    if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
@@ -173,7 +173,7 @@ CSA_tpCondRet CSA_InserirPecaCasa( char nomePeca ,
     
     PCA_tpCondRet retPeca ;
     
-    if ( pCasa = NULL )
+    if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
@@ -200,7 +200,7 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa )
     
     PCA_tpCondRet retPeca ;
 
-    if ( pCasa = NULL )
+    if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
@@ -227,7 +227,7 @@ CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
     
     PCA_tpCondRet retPeca ;
     
-    if ( pCasa = NULL )
+    if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
@@ -254,7 +254,7 @@ CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista * pListaAmeacantes,
                                             CSA_tppCasa pCasa )
 {
     
-    if ( pCasa = NULL )
+    if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
@@ -274,7 +274,7 @@ CSA_tpCondRet CSA_ObterListaAmeacadosCasa( LIS_tppLista * pListaAmeacados,
                                            CSA_tppCasa pCasa )
 {
     
-    if ( pCasa = NULL )
+    if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
@@ -298,7 +298,7 @@ CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacant
     int i ;
     LIS_tpCondRet retLista ;
     
-    if ( pCasa = NULL )
+    if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
@@ -347,7 +347,7 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
     int i ;
     LIS_tpCondRet retLista ;
     
-    if ( pCasa = NULL )
+    if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
