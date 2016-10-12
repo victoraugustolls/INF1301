@@ -42,6 +42,8 @@
     #define CASA_EXT extern
 #endif
 
+#include   "LISTA.H"
+
 /***** Declarações exportadas pelo módulo *****/
 
 /* Tipo referÍncia para um tabuleiro */
