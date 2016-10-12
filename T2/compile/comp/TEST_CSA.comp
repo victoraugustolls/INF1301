@@ -13,8 +13,6 @@ inc         =  ..\tabs
 [Modulos]
 TESTCSA
 CASA
-LISTA
-PECA
 
 [BuildInicio]
 /OUT:TEST_CSA.exe
