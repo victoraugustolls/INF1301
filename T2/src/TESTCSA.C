@@ -446,6 +446,7 @@ LIS_tppLista listaRecebida ;
 
    	int ComparaCasas( void *pDado_1 ,  CSA_tppCasa pDado_2 )
    	{
+
    		// CSA_tppCasa casa = ( CSA_tppCasa ) pDado_1 ;
 
    		// if ( casa->peca->nomePeca == pDado_2->peca->nomePeca 

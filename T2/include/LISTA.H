@@ -124,7 +124,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $EP Parâmetros
 *
 *     pLista          - ponteiro para a lista sendo criada
-*     idLista         - id da lista sendo criada
+*     idLista         - id da lista sendo criada, máximo de 4 caracteres
 *     ExcluirValor    - ponteiro para a função que processa a
 *                     exclusão do valor referenciado pelo elemento
 *                     a ser excluído.
