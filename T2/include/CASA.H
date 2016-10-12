@@ -16,6 +16,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     3       lff   11/out/2016 adição de funções de modificar lista
  *     2       lff   10/out/2016 conserto de alguns erros
  *     1       lff   04/out/2016 início desenvolvimento
  *
@@ -167,8 +168,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
-                                 char* pCorPeca,
+CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca ,
+                                 char* pCorPeca ,
                                  CSA_tppCasa pCasa ) ;
 
 /***********************************************************************
@@ -188,7 +189,7 @@ CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista pListaAmeacantes,
+CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista * pListaAmeacantes ,
                                             CSA_tppCasa pCasa ) ;
 
 /***********************************************************************
@@ -199,8 +200,8 @@ CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista pListaAmeacantes,
  *     Obtém a lista de ameaçados pela peça presente na casa passada pelo ponteiro.
  *
  *  $EP Parâmetros
- *     pListaAmeacados     - ponteiro para onde a lista de ameaçados será retornada
- *     pTabuleiro          - ponteiro para a casa onde a peça está sendo ameaçada
+ *     pListaAmeacados  - ponteiro para onde a lista de ameaçados será retornada
+ *     pCasa            - ponteiro para a casa onde a peça está sendo ameaçada
  *
  *  $FV Valor retornado
  *     CSA_CondRetOK           - obteve lista sem problemas
@@ -208,8 +209,52 @@ CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista pListaAmeacantes,
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_ObterListaAmeacadosCasa( LIS_tppLista pListaAmeacados,
+CSA_tpCondRet CSA_ObterListaAmeacadosCasa( LIS_tppLista * pListaAmeacados ,
                                            CSA_tppCasa pCasa ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: CSA  &Modificar lista de ameaçantes de uma casa
+ *
+ *  $ED Descrição da função
+ *     Modifica a lista de ameaçantes (a peça presente na casa passada pelo ponteiro) adicionando a ela as casas passadas pelo array.
+ *
+ *  $EP Parâmetros
+ *     vetorCasasAmeacantes - vetor de casas ameaçantes a casa passada pelo ponteiro pCasa
+ *     qtdCasasAmeacantes  - quantidade de casas no vetor
+ *     pCasa                - ponteiro para a casa onde a peça está sendo ameaçada
+ *
+ *  $FV Valor retornado
+ *     CSA_CondRetOK           - modificou lista sem problemas
+ *     CSA_CondRetNaoExiste    - a casa não existe
+ *
+ ***********************************************************************/
+
+CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacantes ,
+                                                int qtdCasasAmeacantes ,
+                                                CSA_tppCasa pCasa ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: CSA  &Modificar lista de ameaçados de uma casa
+ *
+ *  $ED Descrição da função
+ *     Modifica a lista de ameaçados (pela peça presente na casa passada pelo ponteiro) adicionando a ela as casas passadas pelo array.
+ *
+ *  $EP Parâmetros
+ *     vetorCasasAmeacadas - vetor de casas ameaçadas pela casa passada pelo ponteiro pCasa
+ *     qtdCasasAmeacadas   - quantidade de casas no vetor
+ *     pCasa               - ponteiro para a casa onde a peça está ameaçando
+ *
+ *  $FV Valor retornado
+ *     CSA_CondRetOK           - modificou lista sem problemas
+ *     CSA_CondRetNaoExiste    - a casa não existe
+ *
+ ***********************************************************************/
+
+CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas ,
+                                               int qtdCasasAmeacadas ,
+                                               CSA_tppCasa pCasa ) ;
 
 #undef CASA_EXT
 
