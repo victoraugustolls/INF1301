@@ -26,7 +26,6 @@
 #include   <malloc.h>
 #include   <assert.h>
 #include   "PECA.H"
-#include   "LISTA.H"
 
 #define CASA_OWN
 #include "CASA.H"
