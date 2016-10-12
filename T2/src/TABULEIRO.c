@@ -76,6 +76,7 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
 {
     
     int i , j ;
+    CSA_tpCondRet retModCasa ;
     
     if ( pTabuleiro == NULL )
     {
@@ -86,7 +87,11 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
     {
         for ( j = 0; j < 8 ; j++ )
         {
-            CSA_DestruirCasa( pTabuleiro->tabuleiro[i][j] ) ;
+            retCasa = CSA_DestruirCasa( pTabuleiro->tabuleiro[i][j] ) ;
+            if ( retCasa == CSA_CondRetNaoExiste )
+            {
+                return TAB_tpCondRetNaoExiste ;
+            } /* if */
         } /* for */
     } /* for */
     

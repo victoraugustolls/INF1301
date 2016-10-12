@@ -41,6 +41,8 @@
 #define TABULEIRO_EXT extern
 #endif
 
+#include  "LISTA.H"
+
 /***** DeclaraÁıes exportadas pelo mÛdulo *****/
 
 /* Tipo referÍncia para um tabuleiro */
