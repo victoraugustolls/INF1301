@@ -91,7 +91,7 @@ typedef enum {
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa ) ;
+CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa ) ;
 
 
 /***********************************************************************

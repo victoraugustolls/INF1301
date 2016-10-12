@@ -63,7 +63,7 @@ typedef struct CSA_tagCasa {
  *  Função: PCA  &Criar peça
  *  ****/
 
-CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa )
+CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
 {
     
     PCA_tpCondRet retPeca ;
@@ -74,10 +74,11 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa )
     LIS_tppLista listaAmeacados = NULL ;
     char charPeca = 'V' ;
     
-    pCasa = NULL ;
+    CSA_tppCasa newCasa = NULL ;
     
-    pCasa = ( CSA_tpCasa * ) malloc( sizeof( CSA_tpCasa )) ;
-    if ( pCasa == NULL )
+    newCasa = ( CSA_tpCasa * ) malloc( sizeof( CSA_tpCasa )) ;
+
+    if ( newCasa == NULL )
     {
         return CSA_CondRetFaltouMemoria ;
     } /* if */
@@ -110,9 +111,11 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa pCasa )
         return CSA_CondRetFaltouMemoria ;
     }/* if */
     
-    pCasa->peca = peca ;
-    pCasa->listaAmeacantes = listaAmeacantes ;
-    pCasa->listaAmeacados = listaAmeacados ;
+    newCasa->peca = peca ;
+    newCasa->listaAmeacantes = listaAmeacantes ;
+    newCasa->listaAmeacados = listaAmeacados ;
+
+    *pCasa = newCasa ;
     
     return CSA_CondRetOK ;
     

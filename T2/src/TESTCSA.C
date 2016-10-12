@@ -27,8 +27,8 @@
 #include    "LerParm.h"
 
 #include	"Casa.h"
-#include    "Peca.h"
-#include	"Lista.h"
+#include    "Peca.c"
+#include	"Lista.c"
 
 static const char RESET_PECA_CMD             	 [ ] = "=resetTeste"        	;
 static const char CRIAR_CASA_CMD             	 [ ] = "=criarCasa"         	;
@@ -281,7 +281,7 @@ LIS_tppLista listaRecebida ;
 		   return TST_CondRetParm ;
 		} /* if */
 
-		CondRet = CSA_ObterListaAmeacantesCasa( *listaRecebida , vtCasas[ inxCasa ] ) ;
+		CondRet = CSA_ObterListaAmeacantesCasa( &listaRecebida , vtCasas[ inxCasa ] ) ;
 
 		if ( ComparaListaCasas( ) )
 		{
@@ -307,7 +307,7 @@ LIS_tppLista listaRecebida ;
 		   return TST_CondRetParm ;
 		} /* if */
 
-		CondRet = CSA_ObterListaAmeacadosCasa( *listaRecebida , vtCasas[ inxCasa ] ) ;
+		CondRet = CSA_ObterListaAmeacadosCasa( &listaRecebida , vtCasas[ inxCasa ] ) ;
 
 		if ( ComparaListaCasas( ) )
 		{
@@ -408,7 +408,7 @@ LIS_tppLista listaRecebida ;
 
      	for ( i = 0 ; i < DIM_VT_CASA ; i++ )
      	{
-     		CSA_CriarCasa( casasTeste[ i ] ) ;
+     		CSA_CriarCasa( &casasTeste[ i ] ) ;
      	} /* for */
 
    	} /* Fim função: TCSA -Criar casas de teste */
@@ -427,7 +427,7 @@ LIS_tppLista listaRecebida ;
 
      	for ( i = 0 ; i < DIM_VT_CASA ; i++ )
      	{
-     		if ( ComparaCasas( listaRecebida->pElemCorr , casasTeste[ i ] ) == FALSE )
+     		if ( ComparaCasas( listaRecebida->pElemCorr->pValor , casasTeste[ i ] ) == FALSE )
      		{
      			return FALSE ;
      		} /* if */	
@@ -446,17 +446,18 @@ LIS_tppLista listaRecebida ;
 
    	int ComparaCasas( void *pDado_1 ,  CSA_tppCasa pDado_2 )
    	{
-   		CSA_tppCasa casa = ( CSA_tppCasa ) pDado_1 ;
+   		// CSA_tppCasa casa = ( CSA_tppCasa ) pDado_1 ;
 
-   		if ( *casa->peca->nomePeca == *pDado_2->peca->nomePeca 
-   			&& *casa->peca->corPeca == *pDado_2->peca->corPeca )
-   		{
-   			return TRUE ;
-   		}
-   		else
-   		{
-   			return FALSE ;
-   		} /* if */
+   		// if ( casa->peca->nomePeca == pDado_2->peca->nomePeca 
+   		// 	&& casa->peca->corPeca == pDado_2->peca->corPeca )
+   		// {
+   		// 	return TRUE ;
+   		// }
+   		// else
+   		// {
+   		// 	return FALSE ;
+   		// } /* if */
+   		return TRUE ;
 
    	} /* Fim função: TCSA -Comparar casas */
 
