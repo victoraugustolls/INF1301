@@ -140,6 +140,36 @@
 
 /***************************************************************************
 *
+*  Função: PCA  &Compara duas peças
+*  ****/
+
+    PCA_tpCondRet PCA_ComparaPecas( PCA_tppPeca pPeca_1 ,
+                    				PCA_tppPeca pPeca_2 ,
+                    				int * igualdade )
+    {
+
+      	if ( pPeca_1 == NULL || pPeca_2 == NULL )
+        {
+        	printf("Uma das pecas e nula") ;
+        	return PCA_CondRetPecaNaoExiste ;
+        } /* if */
+
+        if ( *pPeca_1->nomePeca == *pPeca_2->nomePeca 
+        	&& *pPeca_1->corPeca == *pPeca_2->corPeca )
+        {
+        	*igualdade = 1 ;
+        }
+        else
+        {
+        	*igualdade = 0 ;
+        }
+
+        return PCA_CondRetOK ;
+
+   } /* Fim função: PCA  &Compara duas peças */
+
+/***************************************************************************
+*
 *  Função: PCA  &Destruir peça
 *  ****/
 
