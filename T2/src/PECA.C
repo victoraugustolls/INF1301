@@ -78,9 +78,6 @@
      	*pNewPeca->nomePeca = *nomePeca ;
      	*pNewPeca->corPeca = *corPeca ;
 
-      	printf("Nome: %c\n", *nomePeca);
-     	printf("Cor: %c\n", *corPeca);
-
      	*pPeca = pNewPeca ;
 
      	return PCA_CondRetOK ;

@@ -75,3 +75,59 @@
 
 == Teste Remover Peça da Casa Inexistente
 =removePeca		casa0   CasaInexistente
+
+// ---------------------------------------------
+
+== Teste Comparar Casas Iguais
+=criarCasa      casa0   OK
+=criarCasa      casa1   OK
+=inserePeca		casa0	'P'     'P'   OK
+=inserePeca		casa1	'P'     'P'   OK
+=comparaCasas   casa0   casa1   1     OK
+=destroiCasa    casa0   OK
+=destroiCasa    casa1   OK
+
+== Teste Comparar Casas Diferentes
+=criarCasa      casa0   OK
+=criarCasa      casa1   OK
+=inserePeca		casa0	'P'     'P'   OK
+=inserePeca		casa1	'V'     'V'   OK
+=comparaCasas   casa0   casa1   0     OK
+=destroiCasa    casa0   OK
+=destroiCasa    casa1   OK
+
+== Teste Comparar Casas Inexistentes
+=criarCasa      casa0   OK
+=inserePeca		casa0	'P'     'P'   OK
+=comparaCasas   casa0   casa1   1     CasaInexistente
+=destroiCasa    casa0   OK
+
+// ---------------------------------------------
+
+== Teste Modificar Ameacantes da Casa Iguais
+=criarCasa      		casa0   OK
+=modificarAmeacante		casa0   OK
+=obterAmeacante			casa0	1    OK
+=destroiCasa    		casa0   OK
+
+== Teste do Teste Modificar Ameacantes da Casa Diferentes
+=criarCasa      		casa0   OK
+=modificarAmeacante		casa0   OK
+=obterAmeacante			casa0	0    OK
+=recuperar
+=destroiCasa    		casa0   OK
+
+// ---------------------------------------------
+
+== Teste Modificar Ameacados da Casa Iguais
+=criarCasa      		casa0   OK
+=modificarAmeacados		casa0   OK
+=obterAmeacados			casa0	1    OK
+=destroiCasa    		casa0   OK
+
+== Teste do Teste Modificar Ameacados da Casa Diferentes
+=criarCasa      		casa0   OK
+=modificarAmeacados		casa0   OK
+=obterAmeacados			casa0	0    OK
+=recuperar
+=destroiCasa    		casa0   OK

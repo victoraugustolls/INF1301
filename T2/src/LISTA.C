@@ -124,8 +124,6 @@
 
       LimparCabeca( pNewLista ) ;
 
-      printf("Id Lista Cria: %s\n", idLista ) ;
-
       pNewLista->idLista = ( char * ) malloc ( strlen ( idLista ) + 1 ) ;
       strcpy( pNewLista->idLista , idLista ) ;
       pNewLista->ExcluirValor = ExcluirValor ;
@@ -133,8 +131,6 @@
       pNewLista->Igual = Igual ;
 
       *pLista = pNewLista;
-
-      printf("Lista Criada\n");
 
       return LIS_CondRetOK ;
 
@@ -170,8 +166,7 @@
                                           void * pValor        )
    {
 
-      tpElemLista * pElem ;
-      printf("Elemento para Inserir: %c\n", *(char *)pValor);
+      tpElemLista * pElem ;;
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
@@ -273,16 +268,12 @@
          assert( pLista != NULL ) ;
       #endif
 
-      printf("Entrou no obter valor da lista\n");
-
       if ( pLista->pElemCorr == NULL )
       {
-         printf("Lista vazia\n");
          return LIS_CondRetListaVazia ;
       } /* if */
-      printf("Lista cheia\n");
+      
       *elementoCorrente = pLista->pElemCorr->pValor ;
-      printf("Elemento Corrente: %c\n", *(char*)*elementoCorrente);
 
       return LIS_CondRetOK ;
 
@@ -301,7 +292,6 @@
       #endif
       
       *idLista = pLista->idLista ;
-      printf("Id Lista Obtem: %s\n", *idLista ) ;
 
       return LIS_CondRetOK ;
 
@@ -431,15 +421,15 @@
    void LiberarElemento( LIS_tppLista   pLista ,
                          tpElemLista  * pElem   )
    {
-      printf("Entrou na liberar elemento\n");
+
       if ( ( pLista->ExcluirValor != NULL )
         && ( pElem->pValor != NULL        ))
       {
          pLista->ExcluirValor( pElem->pValor ) ;
       } /* if */
-      printf("Vai dar free no pElem\n");
+
       free( pElem ) ;
-      printf("Deu free no pElem\n");
+
       pLista->numElem-- ;
 
    } /* Fim função: LIS  -Liberar elemento da lista */
@@ -486,8 +476,6 @@
       tpElemLista * pElem ;
       tpElemLista * pProx ;
 
-      printf("Esvaiza lista\n");
-
       pElem = pLista->pOrigemLista ;
       while ( pElem != NULL )
       {
@@ -495,7 +483,7 @@
          LiberarElemento( pLista , pElem ) ;
          pElem = pProx ;
       } /* while */
-      printf("Vai entrar na Limpa cabeca\n");
+
       LimparCabeca( pLista ) ;
 
    } /* Fim função: LIS  -Esvaziar a lista */
@@ -509,7 +497,7 @@
 
    void LimparCabeca( LIS_tppLista pLista )
    {
-      printf("Entrou na Limpa cabeca\n");
+
       pLista->idLista = NULL;
       pLista->pOrigemLista = NULL ;
       pLista->pFimLista = NULL ;

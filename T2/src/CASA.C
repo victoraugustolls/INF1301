@@ -253,6 +253,38 @@ CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca,
 
 /***************************************************************************
  *
+ *  Função: CSA  &Comparar Casas
+ *  ****/
+
+CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
+                                CSA_tppCasa pCasa2 ,
+                                int * igualdade )
+{
+    
+    PCA_tpCondRet retPeca ;
+    
+    if ( pCasa1 == NULL || pCasa2 == NULL )
+    {
+        return CSA_CondRetNaoExiste ;
+    }/* if */
+    
+    retPeca = PCA_ComparaPecas( pCasa1->peca ,
+                                pCasa2->peca ,
+                                igualdade ) ;
+
+    if ( retPeca == PCA_CondRetPecaNaoExiste )
+    {
+        return CSA_CondRetVazia ;
+    }
+
+
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Comparar Casas */
+
+
+/***************************************************************************
+ *
  *  Função: CSA  &Obter lista de ameaçantes de uma casa
  *  ****/
 
@@ -317,7 +349,7 @@ CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacant
     }/* if */
     
     retLista = LIS_CriarLista( &( pCasa->listaAmeacantes ) ,
-                               "listaAmeacantes" ,
+                               "amts" ,
                                DestruirValor ,
                                NuncaIgual ,
                                NuncaIgual ) ;
@@ -366,7 +398,7 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
     }/* if */
     
     retLista = LIS_CriarLista( &( pCasa->listaAmeacados ) ,
-                              "listaAmeacados" ,
+                              "amds" ,
                               DestruirValor ,
                               NuncaIgual ,
                               NuncaIgual ) ;
