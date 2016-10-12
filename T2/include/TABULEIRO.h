@@ -74,7 +74,10 @@ typedef enum {
     TAB_CondRetMovInvalido = 3 ,
     /* O movimento não é válido em tal tabuleiro */
     
-    TAB_CondRetFaltouMemoria = 4,
+    TAB_CondRetFalhaArq = 4 ,
+    /* Falha ao manipular algum arquivo necessário para o tabuleiro */
+    
+    TAB_CondRetFaltouMemoria = 5 ,
     /* Faltou memória ao tentar criar um elemento do tabuleiro */
     
 } TAB_tpCondRet ;
@@ -165,7 +168,9 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
  *     TAB_CondRetOK                - moveu sem problemas
  *     TAB_CondRetCoordNaoExiste    - coordenada não existe
  *     TAB_CondRetMovInvalido       - o movimento indicado não é válido
- *     TAB_CondRetNaoExiste         - não existe peça na posição
+ *     TAB_CondRetNaoExiste         - algum dos elementos usados não existe
+ *     TAB_CondRetFalhaArq          - falha ao manipular arquivo necessário
+ *                                      para verificar o movimento
  *     TAB_CondRetFaltouMemoria     - faltou memória para alocação da peça
  *
  ***********************************************************************/

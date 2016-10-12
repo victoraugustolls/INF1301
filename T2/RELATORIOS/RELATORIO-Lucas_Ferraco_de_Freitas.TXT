@@ -44,3 +44,5 @@
 11/10/2016; 3 horas ; codificar e revisar código do módulo; Terminei de implementar o CASA.C, alterando o CASA.H ao adicionar funções de modificação das listas de ameaçantes/ameaçados.
 
 12/10/2016; 3 horas ; codificar e revisar código do módulo; Revisei e consertei o módulo TABULEIRO, faltando apenas terminar de implementar a função de mover uma peça.
+
+12/10/2016; 1.5 horas ; codificar e revisar código do módulo; Implementei a função de mover uma peça no TABULEIRO.C e revisei a documentação de outros módulos.

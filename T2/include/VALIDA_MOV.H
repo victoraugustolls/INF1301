@@ -124,7 +124,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 *     pConfigDir          - ponteiro para o identificador de configuração
 *
 *  $FV Valor retornado
-*     VMV_CondRetOK       - Identificador de configuração criado corretamente
+*     VMV_CondRetOK       - Identificador de configuração destruído corretamente
 *
 ***********************************************************************/
 

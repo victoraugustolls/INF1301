@@ -179,10 +179,11 @@ CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca ,
 
 /***********************************************************************
  *
- *  $FC Função: CSA  &Retirar peça da casa
+ *  $FC Função: CSA  &Comparar casas
  *
  *  $ED Descrição da função
- *     Retira a peça presente na casa passada pelo ponteiro.
+ *     Compara as casas passadas nos parâmetros e 
+ *      retorna (através de outro parâmetro) 1, se forem iguais, e 0, se diferentes.
  *
  *  $EP Parâmetros
  *     pCasa1             - ponteiro para a primeira casa da comparacao
@@ -190,7 +191,7 @@ CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca ,
  *     igualdade          - ponteiro para o valor da igualdade
  *
  *  $FV Valor retornado
- *     CSA_CondRetOK            - retirou sem problemas
+ *     CSA_CondRetOK            - comparou sem problemas
  *     CSA_CondRetNaoExiste     - a casa não existe
  *
  ***********************************************************************/

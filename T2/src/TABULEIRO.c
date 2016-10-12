@@ -51,6 +51,8 @@ typedef struct TAB_tagTabuleiro {
 int TAB_VerificaCoordValida( char coluna , char linha ) ;
 int TAB_CasaVazia( void * casa ) ;
 int TAB_CasaInimigo( void * casa ) ;
+int TAB_Dim0( void * casa ) ;
+int TAB_Dim1 (void * casa ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -183,9 +185,11 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     VMV_tpMovimentoValido   retMov ;
     VMV_tppConfigDir        pConfigDir ;
     
-    int colAtual , linAtual , colDestino , linDestino ;
+    int i , j , colAtual , linAtual , colDestino , linDestino ;
     int sinal[] = { 1 , 0 } , condEsp[] = { 0 } ;
     char * peca , * cor ;
+    
+    int (*TAB_Dimensao[2]) (void* casa) = { TAB_Dim0 , TAB_Dim1 } ;
     
     if ( TAB_VerificaCoordValida( coluna , linha ) )
     {
@@ -198,14 +202,32 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     colAtual   = colInicial - 'A' + 1 ;
     colDestino = colFinal   - 'A' + 1 ;
     
+    
     /* Pré-processamento para validação do movimento */
     retDirMov = VMV_CriarConfigDir ( &pConfigDir, NULL ) ;
+    if ( ( retDirMov == VMV_CondRetErrAberturaArquivo ) ||
+         ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) )
+    {
+        return TAB_CondRetFalhaArq ;
+    } /* if */
+    else if ( retDirMov == VMV_CondRetErrFaltouMemoria )
+    {
+        return TAB_CondRetFaltouMemoria ;
+    } /* if */
     
-    retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
+    retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[linAtual][colAtual] ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
         return TAB_CondRetNaoExiste ;
     } /* if */
+    
+    for ( i = 0 ; i < 8; i++ )
+    {
+        for ( j = 0 ; j < 8; j++ )
+        {
+            vetTodasCasas[j + 8 * i] = pTabuleiro->tabuleiro[i][j] ;
+        } /* for */
+    } /* for */
     
     if ( *cor == 'B' )
     {
@@ -215,6 +237,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     {
         sinal[0] = -1 ;
     } /* if */
+
     
     /* Verificar validade do movimento */
     retDirMov = VMV_ChecarMovimentoPeca ( pConfig ,
@@ -223,17 +246,63 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
                                           *cor ,
                                           pTabuleiro->tabuleiro[linAtual][colAtual] ,
                                           pTabuleiro->tabuleiro[linDestino][colDestino] ,
-                                          void* casas ,
+                                          vetTodasCasas ,
                                           64 ,
                                           2 ,
-                                          int (*array_dimensao)(void* casa) ,
+                                          TAB_Dimensao ,
                                           sinal ,
                                           TAB_CasaVazia ,
                                           TAB_CasaInimigo ,
                                           condEsp ,
                                           0 ) ;
+    if ( ( retDirMov == VMV_CondRetErrAberturaArquivo ) ||
+         ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) ||
+         ( retDirMov == VMV_CondRetErrManuseioArquivo ) )
+    {
+        return TAB_CondRetFalhaArq ;
+    } /* if */
+    else if ( ( retDirMov == VMV_CondRetVariavelNaoExistente ) ||
+              ( retDirMov == VMV_CondRetErrComandoNaoExistente ) )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
     
     retDirMov = VMV_DestruirConfigDir ( pConfigDir ) ;
+    
+    if ( retMov == VMV_MovimentoValidoNao )
+    {
+        return TAB_CondRetMovInvalido ;
+    }
+    
+    
+    /* Mover peça de casa */
+    retCasa = CSA_RetirarPecaCasa ( pTabuleiro->tabuleiro[linAtual][colAtual] ) ;
+    if ( retCasa == CSA_CondRetNaoExiste )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
+    
+    retCasa = CSA_InserirPecaCasa( 'V' ,
+                                   'V' ,
+                                   pTabuleiro->tabuleiro[linAtual][colAtual] ) ;
+    if ( retCasa == CSA_CondRetNaoExiste )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
+    
+    retCasa = CSA_RetirarPecaCasa ( pTabuleiro->tabuleiro[linDestino][colDestino] ) ;
+    if ( retCasa == CSA_CondRetNaoExiste )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
+    
+    retCasa = CSA_InserirPecaCasa( peca ,
+                                   cor ,
+                                   pTabuleiro->tabuleiro[linDestino][colDestino] ) ;
+    if ( retCasa == CSA_CondRetNaoExiste )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
 
     return TAB_CondRetOK ;
     
@@ -415,6 +484,50 @@ int TAB_CasaInimigo( void * casa )
         return 0 ;
     }
     return 1 ;
+    
+}
+
+int TAB_Dim0( void * casa )
+{
+    
+    CSA_tppCasa pCasa = (CSA_tppCasa) casa ;
+    int i , j , igual ;
+    
+    for ( i = 0 ; i < 8; i++ )
+    {
+        for ( j = 0 ; j < 8; j++ )
+        {
+            CSA_CompararCasa( pCasa ,
+                              pTabuleiro->tabuleiro[i][j] ,
+                              &igual ) ;
+            
+            if ( igual == 1 ) {
+                return i ;
+            }
+        } /* for */
+    } /* for */
+    
+}
+
+int TAB_Dim1 (void * casa )
+{
+    
+    CSA_tppCasa pCasa = (CSA_tppCasa) casa ;
+    int i , j , igual ;
+    
+    for ( i = 0 ; i < 8; i++ )
+    {
+        for ( j = 0 ; j < 8; j++ )
+        {
+            CSA_CompararCasa( pCasa ,
+                             pTabuleiro->tabuleiro[i][j] ,
+                             &igual ) ;
+            
+            if ( igual == 1 ) {
+                return j ;
+            }
+        } /* for */
+    } /* for */
     
 }
 
