@@ -45,4 +45,6 @@
 
 12/10/2016; 3 horas ; codificar e revisar código do módulo; Revisei e consertei o módulo TABULEIRO, faltando apenas terminar de implementar a função de mover uma peça.
 
-12/10/2016; 1.5 horas ; codificar e revisar código do módulo; Implementei a função de mover uma peça no TABULEIRO.C e revisei a documentação de outros módulos.
+12/10/2016; 2 horas ; codificar e revisar código do módulo; Implementei a função de mover uma peça no TABULEIRO.C e revisei a documentação de outros módulos.
+
+12/10/2016; 2 horas ; codificar e revisar código do módulo; Revisei e consertei o TESTTAB.C, terminando sua implementação.
