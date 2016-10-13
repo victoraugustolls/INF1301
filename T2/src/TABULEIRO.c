@@ -376,6 +376,38 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
 
 /***************************************************************************
  *
+ *  Função: TAB  &Obter casa do tabuleiro
+ *  ****/
+
+TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
+                                     char linha ,
+                                     CSA_tppCasa * pCasa ,
+                                     TAB_tppTabuleiro pTabuleiro )
+{
+    
+    int i , j ;
+    
+    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
+    
+    /* Converte a linha e a coluna para inteiros */
+    i = linha - '0' ;
+    j = coluna - 'A' + 1 ;
+    
+    &pCasa = pTabuleiro->tabuleiro[i][j] ;
+    if ( pCasa == NULL )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
+    
+    return TAB_CondRetOK ;
+    
+}/* Fim função: TAB  &Obter casa do tabuleiro */
+
+/***************************************************************************
+ *
  *  Função: TAB  &Obter lista de ameaçantes de uma peça do tabuleiro
  *  ****/
 

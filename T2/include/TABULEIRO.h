@@ -42,6 +42,7 @@
 #endif
 
 #include  "LISTA.H"
+#include  "CASA.H"
 
 /***** DeclaraÁıes exportadas pelo mÛdulo *****/
 
@@ -203,6 +204,31 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro(  char colInicial ,
 TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
                                         char linha ,
                                         TAB_tppTabuleiro pTabuleiro ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Obter casa do tabuleiro
+ *
+ *  $ED Descrição da função
+ *     Obtém a casa presente na posição especificada do tabuleiro.
+ *
+ *  $EP Parâmetros
+ *     coluna      - coordenada da coluna onde a casa será obtida
+ *     linha       - coordenada da linha onde a casa será obtida
+ *     pCasa       - casa a ser obtida do tabuleiro
+ *     pTabuleiro  - ponteiro para o tabuleiro onde a casa vai ser obtida
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK                - obteve sem problemas
+ *     TAB_CondRetNaoExiste         - não existe casa na posição
+ *     TAB_CondRetCoordNaoExiste    - coordenada não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
+                                      char linha ,
+                                      CSA_tppCasa * pCasa ,
+                                      TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
  *
