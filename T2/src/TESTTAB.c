@@ -264,6 +264,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         int igual ;
         CSA_tppCasa casaTst ;
+        CSA_tppCasa vetCasaTst[1] ;
         CSA_tppCasa * casaAtual ;
         
         numLidos = LER_LerParametros( "cci" ,
@@ -275,6 +276,9 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         {
             return TST_CondRetParm ;
         } /* if */
+        
+        i = charParm1 - '0' ;
+        j = charParm2 - 'A' + 1 ;
         
         CondRet = CSA_CriarCasa( &casaTst ) ;
         if ( CondRet == LIS_CondRetFaltouMemoria )
@@ -294,9 +298,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                             "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
-        CondRet = CSA_ModificarListaAmeacantesCasa( [ casaTst ] ,
+        vetCasaTst[0] = casaTst ;
+        CondRet = CSA_ModificarListaAmeacantesCasa( vetCasaTst ,
                                                     1 ,
-                                                    pTabuleiro->tabuleiro[charParm1][charParm2] ) ;
+                                                    pTabuleiro->tabuleiro[i][j] ) ;
         if ( CondRet == CSA_CondRetNaoExiste )
         {
             CondRet = TAB_CondRetNaoExiste ;
@@ -318,7 +323,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = TAB_ObterListaAmeacantesTabuleiro ( charParm1 ,
                                                       charParm2 ,
-                                                      listaRet ,
+                                                      &listaRet ,
                                                       pTabuleiro ) ;
         
         if ( CondRet == TAB_CondRetOK )
@@ -358,8 +363,9 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     else if ( strcmp( ComandoTeste , OBTER_AMEACADOS_CMD ) == 0 )
     {
         
-        int igual ;
+        int i , j , igual ;
         CSA_tppCasa casaTst ;
+        CSA_tppCasa vetCasaTst[1] ;
         CSA_tppCasa * casaAtual ;
         
         numLidos = LER_LerParametros( "cci" ,
@@ -371,6 +377,9 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         {
             return TST_CondRetParm ;
         } /* if */
+        
+        i = charParm1 - '0' ;
+        j = charParm2 - 'A' + 1 ;
         
         CondRet = CSA_CriarCasa( &casaTst ) ;
         if ( CondRet == LIS_CondRetFaltouMemoria )
@@ -390,9 +399,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
-        CondRet = CSA_ModificarListaAmeacadosCasa( [ casaTst ] ,
+        vetCasaTst[0] = casaTst ;
+        CondRet = CSA_ModificarListaAmeacadosCasa( vetCasaTst ,
                                                    1 ,
-                                                   pTabuleiro->tabuleiro[charParm1][charParm2] ) ;
+                                                   pTabuleiro->tabuleiro[i][j] ) ;
         if ( CondRet == CSA_CondRetNaoExiste )
         {
             CondRet = TAB_CondRetNaoExiste ;
@@ -414,7 +424,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = TAB_ObterListaAmeacadosTabuleiro ( charParm1 ,
                                                      charParm2 ,
-                                                     listaRet ,
+                                                     &listaRet ,
                                                      pTabuleiro ) ;
         
         if ( CondRet == TAB_CondRetOK )
