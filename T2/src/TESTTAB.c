@@ -369,8 +369,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = TAB_ObterCasaTabuleiro( charParm1 ,
                                           charParm2 ,
-                                          &casaAtual ,
-                                          pTabuleiro )
+                                          casaAtual ,
+                                          pTabuleiro ) ;
         if ( CondRet != TAB_CondRetOK )
         {
             return TST_CompararInt( CondRetEsp , CondRet ,
@@ -379,7 +379,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = CSA_ModificarListaAmeacantesCasa( vetCasaTst ,
                                                     1 ,
-                                                    casaAtual ) ;
+                                                    *casaAtual ) ;
         if ( CondRet == CSA_CondRetNaoExiste )
         {
             CondRet = TAB_CondRetNaoExiste ;
@@ -406,7 +406,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         if ( CondRet == TAB_CondRetOK )
         {
-            CondRet = LIS_ObterValor( listaRet , &casaAtual ) ;
+            CondRet = LIS_ObterValor( listaRet , ( void ** ) &casaAtual ) ;
             if ( CondRet == LIS_CondRetListaVazia )
             {
                 CondRet = TAB_CondRetNaoExiste ;
@@ -481,8 +481,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = TAB_ObterCasaTabuleiro( charParm1 ,
                                          charParm2 ,
-                                         &casaAtual ,
-                                         pTabuleiro )
+                                         casaAtual ,
+                                         pTabuleiro ) ;
         if ( CondRet != TAB_CondRetOK )
         {
             return TST_CompararInt( CondRetEsp , CondRet ,
@@ -491,7 +491,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = CSA_ModificarListaAmeacadosCasa( vetCasaTst ,
                                                    1 ,
-                                                   casaAtual ) ;
+                                                   *casaAtual ) ;
         if ( CondRet == CSA_CondRetNaoExiste )
         {
             CondRet = TAB_CondRetNaoExiste ;
@@ -518,7 +518,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         if ( CondRet == TAB_CondRetOK )
         {
-            CondRet = LIS_ObterValor( listaRet , &casaAtual ) ;
+            CondRet = LIS_ObterValor( listaRet , ( void ** ) &casaAtual ) ;
             if ( CondRet == LIS_CondRetListaVazia )
             {
                 CondRet = TAB_CondRetNaoExiste ;
