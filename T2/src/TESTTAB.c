@@ -27,7 +27,7 @@
 #include    "LerParm.h"
 
 #include    "LISTA.H"
-
+#include    "CASA.H"
 #include    "TABULEIRO.H"
 
 
@@ -240,15 +240,15 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                            &corObtida ,
                                            pTabuleiro ) ;
         
-        if ( charParm3 != ( *idObtido ) )
+        if ( charParm3 != ( *nomeObtido ) )
         {
-            return TST_CompararString( charParm3 , idObtido ,
+            return TST_CompararString( &charParm3 , nomeObtido ,
                                       "Id da peca retornada nao corresponde ao id esperado." ) ;
         } /* if */
         
         else if ( charParm4 != ( *corObtida ) )
         {
-            return TST_CompararString( charParm4 , corObtida ,
+            return TST_CompararString( &charParm4 , corObtida ,
                                       "Cor da peca retornada nao corresponde a cor esperada." ) ;
         } /* if */
         
