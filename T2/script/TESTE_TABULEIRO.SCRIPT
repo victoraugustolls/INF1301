@@ -73,8 +73,6 @@
 
 // ---------------------------------------------
 
-// ---------------------------------------------
-
 == Teste de Obtenção de Peça do Tabuleiro
 =criarTabuleiro      OK
 =inserirPeca         'A'   '1'   'T'   'P'   OK

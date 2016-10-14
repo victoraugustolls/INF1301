@@ -332,11 +332,12 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         int i , j , igual ;
         CSA_tppCasa casaTst ;
         CSA_tppCasa vetCasaTst[1] ;
-        CSA_tppCasa * casaAtual ;
-        
+        CSA_tppCasa casaAtual ;
+        printf("Entrei no teste OBTER_AMEACANTES_CMD") ;
+
         numLidos = LER_LerParametros( "cci" ,
-                                     charParm1 ,
-                                     charParm2 ,
+                                     &charParm1 ,
+                                     &charParm2 ,
                                      &CondRetEsp) ;
         
         if ( ( numLidos != 3 ) )
@@ -344,24 +345,33 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CondRetParm ;
         } /* if */
         
-        i = charParm1 - '0' ;
-        j = charParm2 - 'A' + 1 ;
+        i = charParm2 - '0' ;
+        j = charParm1 - 'A' + 1 ;
         
-        CondRet = CSA_CriarCasa( casaAtual ) ;
+        printf("Recebi os parametros\n") ;
+        
+        CondRet = CSA_CriarCasa( &casaAtual ) ;
+        printf("passei criarcasa\n") ;
+
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
+            printf("entrei casa faltou memoria\n") ;
             CondRet = TAB_CondRetNaoExiste ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
         CondRet = CSA_CriarCasa( &casaTst ) ;
+        printf("passei criarcasa 2\n") ;
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
+            printf("entrei casa faltou memoria 2\n") ;
             CondRet = TAB_CondRetNaoExiste ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                             "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
+        
+        printf("Criei as casas parametros\n") ;
         
         CondRet = CSA_InserirPecaCasa( 'V' ,
                                        'V' ,
@@ -373,11 +383,13 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                             "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
+        printf("Inseri uma peca em uma casa\n") ;
+        
         vetCasaTst[0] = casaTst ;
         
         CondRet = TAB_ObterCasaTabuleiro( charParm1 ,
                                           charParm2 ,
-                                          casaAtual ,
+                                          &casaAtual ,
                                           pTabuleiro ) ;
         if ( CondRet != TAB_CondRetOK )
         {
@@ -385,15 +397,19 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
+        printf("Recuperei casa do tabuleiro\n") ;
+        
         CondRet = CSA_ModificarListaAmeacantesCasa( vetCasaTst ,
                                                     1 ,
-                                                    *casaAtual ) ;
+                                                    casaAtual ) ;
         if ( CondRet == CSA_CondRetNaoExiste )
         {
             CondRet = TAB_CondRetNaoExiste ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
+        
+        printf("Modifiquei lista da casa\n") ;
         
         CondRet = LIS_CriarLista( &listaRet ,
                                   "amts" ,
@@ -407,10 +423,13 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                             "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
+        printf("Criei uma lista\n") ;
+        
         CondRet = TAB_ObterListaAmeacantesTabuleiro ( charParm1 ,
                                                       charParm2 ,
                                                       &listaRet ,
                                                       pTabuleiro ) ;
+        printf("Recuperei lista referente a casa\n") ;
         
         if ( CondRet == TAB_CondRetOK )
         {
@@ -421,15 +440,17 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                 return TST_CompararInt( CondRetEsp , CondRet ,
                                 "Condicao de retorno errada ao obter lista de ameacantes." ) ;
             } /* if */
+            printf("Recuperei valor do no corrente da lista referente a casa\n") ;
             
-            CondRet = CSA_CompararCasa( *casaAtual , casaTst , &igual ) ;
+            CondRet = CSA_CompararCasa( casaAtual , casaTst , &igual ) ;
             if ( CondRet == CSA_CondRetNaoExiste )
             {
                 CondRet = TAB_CondRetNaoExiste ;
                 return TST_CompararInt( CondRetEsp , CondRet ,
                                 "Condicao de retorno errada ao obter lista de ameacantes." ) ;
             } /* if */
-            
+            printf("Comparei a casa obtida com a esperada\n") ;
+
             if ( igual )
             {
                 return TST_CondRetOK ;
@@ -452,11 +473,12 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         int i , j , igual ;
         CSA_tppCasa casaTst ;
         CSA_tppCasa vetCasaTst[1] ;
-        CSA_tppCasa * casaAtual ;
-        
+        CSA_tppCasa casaAtual ;
+        printf("Entrei na OBTER_AMEACADOS_CMD") ;
+
         numLidos = LER_LerParametros( "cci" ,
-                                     charParm1 ,
-                                     charParm2 ,
+                                     &charParm1 ,
+                                     &charParm2 ,
                                      &CondRetEsp) ;
         
         if ( ( numLidos != 3 ) )
@@ -464,25 +486,31 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CondRetParm ;
         } /* if */
         
-        i = charParm1 - '0' ;
-        j = charParm2 - 'A' + 1 ;
-        
-        CondRet = CSA_CriarCasa( casaAtual ) ;
+        i = charParm2 - '0' ;
+        j = charParm1 - 'A' + 1 ;
+        printf("Recebi os parametros\n") ;
+
+        CondRet = CSA_CriarCasa( &casaAtual ) ;
+        printf("passei criarcasa\n") ;
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
+            printf("entrei casa faltou memoria\n") ;
             CondRet = TAB_CondRetNaoExiste ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
         CondRet = CSA_CriarCasa( &casaTst ) ;
+        printf("passei criarcasa 2\n") ;
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
+            printf("entrei casa faltou memoria 2\n") ;
             CondRet = TAB_CondRetNaoExiste ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
-        
+        printf("Criei as casas parametros\n") ;
+
         CondRet = CSA_InserirPecaCasa( 'V' ,
                                       'V' ,
                                       casaTst ) ;
@@ -492,7 +520,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
-        
+        printf("Inseri uma peca em uma casa\n") ;
+
         vetCasaTst[0] = casaTst ;
         
         CondRet = TAB_ObterCasaTabuleiro( charParm1 ,
@@ -507,7 +536,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = CSA_ModificarListaAmeacadosCasa( vetCasaTst ,
                                                    1 ,
-                                                   *casaAtual ) ;
+                                                   casaAtual ) ;
         if ( CondRet == CSA_CondRetNaoExiste )
         {
             CondRet = TAB_CondRetNaoExiste ;
@@ -542,7 +571,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                 "Condicao de retorno errada ao obter lista de ameacantes." ) ;
             } /* if */
             
-            CondRet = CSA_CompararCasa( *casaAtual , casaTst , &igual ) ;
+            CondRet = CSA_CompararCasa( casaAtual , casaTst , &igual ) ;
             if ( CondRet == CSA_CondRetNaoExiste )
             {
                 CondRet = TAB_CondRetNaoExiste ;
