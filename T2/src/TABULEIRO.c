@@ -195,7 +195,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     int i , j , colAtual , linAtual , colDestino , linDestino ;
     int sinal[] = { 1 , 0 } , condEsp[] = { 0 } ;
     char * peca , * cor ;
-    const char nome[100] = "..\\pecas\\teste\\config_teste_correto.conf" ;
+    const char nome[100] = "..\\pecas\\default\\config.conf" ;
 
     int (*TAB_Dimensao[2]) (void* casa) = { TAB_Dim0 , TAB_Dim1 } ;
     printf("entrei na TAB_MoverPecaTabuleiro\n");
