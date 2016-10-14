@@ -205,16 +205,16 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     
     
     /* Pré-processamento para validação do movimento */
-    printf("antes de configurar o arq") ;
     retDirMov = VMV_CriarConfigDir ( &pConfigDir, "..\\pecas\\default\\config.conf" ) ;
-    printf("depois de configurar o arq") ;
     if ( ( retDirMov == VMV_CondRetErrAberturaArquivo ) ||
          ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) )
     {
+        printf("crash 1") ;
         return TAB_CondRetFalhaArq ;
     } /* if */
     else if ( retDirMov == VMV_CondRetErrFaltouMemoria )
     {
+        printf("crash 2") ;
         return TAB_CondRetFaltouMemoria ;
     } /* if */
     
@@ -241,7 +241,8 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
         sinal[0] = -1 ;
     } /* if */
 
-    
+    printf("crash 3") ;
+
     /* Verificar validade do movimento */
     retDirMov = VMV_ChecarMovimentoPeca ( pConfigDir ,
                                           &retMov ,
@@ -257,10 +258,14 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
                                           TAB_CasaInimigo ,
                                           condEsp ,
                                           0 ) ;
+    printf("crash 4") ;
+
     if ( ( retDirMov == VMV_CondRetErrAberturaArquivo ) ||
          ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) ||
          ( retDirMov == VMV_CondRetErrManuseioArquivo ) )
     {
+        printf("crash 5") ;
+
         return TAB_CondRetFalhaArq ;
     } /* if */
     else if ( ( retDirMov == VMV_CondRetVariavelNaoExistente ) ||
