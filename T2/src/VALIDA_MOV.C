@@ -901,6 +901,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
 
       VMV_tpCondRet statusOperacao;
 
+       printf( "" ) ;
       if(pathConfigArq == NULL)
       {
          statusOperacao = VMV_AbreArquivo(CONFIG_DEFAULT_FILE_NAME, &configArq);

@@ -191,6 +191,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     VMV_tpCondRet           retDirMov ;
     VMV_tpMovimentoValido   retMov ;
     VMV_tppConfigDir        pConfigDir ;
+    const char nome[100] = "..\\pecas\\teste\\config_teste_correto.conf" ;
     
     int i , j , colAtual , linAtual , colDestino , linDestino ;
     int sinal[] = { 1 , 0 } , condEsp[] = { 0 } ;
@@ -212,7 +213,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     
     
     /* Pré-processamento para validação do movimento */
-    retDirMov = VMV_CriarConfigDir ( &pConfigDir, NULL ) ;
+    retDirMov = VMV_CriarConfigDir ( &pConfigDir, nome ) ;
     printf("configurei o dir") ;
     if ( retDirMov == VMV_CondRetErrAberturaArquivo )
     {
