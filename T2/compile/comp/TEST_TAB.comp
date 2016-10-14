@@ -13,6 +13,9 @@ inc         =  ..\tabs
 [Modulos]
 TESTTAB
 TABULEIRO
+CASA
+LISTA
+VALIDA_MOV
 
 [BuildInicio]
 /OUT:TEST_TAB.exe
