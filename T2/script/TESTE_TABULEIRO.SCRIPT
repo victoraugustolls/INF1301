@@ -38,9 +38,6 @@
 == Teste de Remoção de Peça do Tabuleiro
 =retirarPeca         'A'   '1'   OK
 
-== Teste de Remoção de Peça Inexistente do Tabuleiro
-=retirarPeca         'A'   '1'   NaoExiste
-
 // ---------------------------------------------
 
 == Teste de Destruição de Tabuleiro
