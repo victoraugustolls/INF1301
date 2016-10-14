@@ -522,13 +522,12 @@ int TAB_CasaInimigo( void * casa )
 int TAB_Dim0( void * casa )
 {
     
+    int i , j , igual ;
     TAB_tppTabuleiro pTabuleiro ;
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
 
     TAB_CriarTabuleiro( &pTabuleiro ) ;
-    
-    int i , j , igual ;
-    
+        
     for ( i = 0 ; i < 8; i++ )
     {
         for ( j = 0 ; j < 8; j++ )
@@ -548,12 +547,11 @@ int TAB_Dim0( void * casa )
 int TAB_Dim1 (void * casa )
 {
     
+    int i , j , igual ;
     TAB_tppTabuleiro pTabuleiro ;
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
 
     TAB_CriarTabuleiro( &pTabuleiro ) ;
-    
-    int i , j , igual ;
     
     for ( i = 0 ; i < 8; i++ )
     {
