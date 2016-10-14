@@ -328,13 +328,13 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     else if ( strcmp( ComandoTeste , OBTER_AMEACANTES_CMD ) == 0 )
     {
-        printf("Entrei no teste OBTER_AMEACANTES_CMD") ;
         
         int i , j , igual ;
         CSA_tppCasa casaTst ;
         CSA_tppCasa vetCasaTst[1] ;
         CSA_tppCasa * casaAtual ;
-        
+        printf("Entrei no teste OBTER_AMEACANTES_CMD") ;
+
         numLidos = LER_LerParametros( "cci" ,
                                      &charParm1 ,
                                      &charParm2 ,
