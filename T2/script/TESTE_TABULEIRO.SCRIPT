@@ -43,14 +43,14 @@
 
 == Teste de Movimentação de Peça no Tabuleiro
 =criarTabuleiro      OK
-=inserirPeca         'A'   '1'   'T'   'P'   OK
+=inserirPeca         'A'   '1'   'P'   'P'   OK
 =moverPeca           'A'   '1'   'A'   '2'   OK
 =retirarPeca         'A'   '1'   OK
 =destruirTabuleiro   OK
 
 == Teste de Movimentação Inválida de Peça no Tabuleiro
 =criarTabuleiro      OK
-=inserirPeca         'A'   '1'   'T'   'P'   OK
+=inserirPeca         'A'   '1'   'P'   'P'   OK
 =moverPeca           'A'   '1'   'B'   '2'   MovInvalido
 =retirarPeca         'A'   '1'   OK
 =destruirTabuleiro   OK

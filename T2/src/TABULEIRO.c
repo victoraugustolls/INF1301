@@ -215,20 +215,20 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     printf("convertinha char pra int na TAB_MoverPecaTabuleiro\n");
     /* Pré-processamento para validação do movimento */
     retDirMov = VMV_CriarConfigDir ( &pConfigDir, nome ) ;
-    printf("configurei o dir") ;
+    printf("configurei o dir\n") ;
     if ( retDirMov == VMV_CondRetErrAberturaArquivo )
     {
-        printf("crash abertura arquivo") ;
+        printf("crash abertura arquivo\n") ;
         return TAB_CondRetFalhaArq ;
     } /* if */
     else if ( retDirMov == VMV_CondRetErrFormatoArquivoErrado )
     {
-        printf("crash formato errado") ;
+        printf("crash formato errado\n") ;
         return TAB_CondRetFalhaArq ;
     } /* if */
     else if ( retDirMov == VMV_CondRetErrFaltouMemoria )
     {
-        printf("crash faltou memoria") ;
+        printf("crash faltou memoria\n") ;
         return TAB_CondRetFaltouMemoria ;
     } /* if */
     
@@ -255,7 +255,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
         sinal[0] = -1 ;
     } /* if */
 
-    printf("crash 3") ;
+    printf("crash 3\n") ;
 
     /* Verificar validade do movimento */
     retDirMov = VMV_ChecarMovimentoPeca ( pConfigDir ,
@@ -272,13 +272,13 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
                                           TAB_CasaInimigo ,
                                           condEsp ,
                                           0 ) ;
-    printf("crash 4") ;
+    printf("crash 4\n") ;
 
     if ( ( retDirMov == VMV_CondRetErrAberturaArquivo ) ||
          ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) ||
          ( retDirMov == VMV_CondRetErrManuseioArquivo ) )
     {
-        printf("crash 5") ;
+        printf("crash 5\n") ;
 
         return TAB_CondRetFalhaArq ;
     } /* if */
