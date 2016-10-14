@@ -18,10 +18,6 @@
 == Teste de Criação de Tabuleiro
 =criarTabuleiro   OK
 
-== Teste do Teste de Criação de Tabuleiro
-=criarTabuleiro  OK
-=recuperar
-
 // ---------------------------------------------
 
 == Teste de Inserção de Peça no Tabuleiro
