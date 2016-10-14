@@ -63,7 +63,7 @@
 
 == Teste de Obtenção de Casa do Tabuleiro
 =criarTabuleiro      OK
-=inserirPeca         'A'   '1'   OK
+=inserirPeca         'A'   '1'   'T'   'P'   OK
 =obterCasa           'A'   '1'   OK
 =retirarPeca         'A'   '1'   OK
 =destruirTabuleiro   OK
