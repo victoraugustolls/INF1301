@@ -337,8 +337,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         printf("Entrei no teste OBTER_AMEACANTES_CMD\n") ;
         
         numLidos = LER_LerParametros( "cci" ,
-                                     charParm1 ,
-                                     charParm2 ,
+                                     &charParm1 ,
+                                     &charParm2 ,
                                      &CondRetEsp) ;
         
         if ( ( numLidos != 3 ) )
@@ -474,8 +474,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         printf("Entrei na OBTER_AMEACADOS_CMD\n") ;
 
         numLidos = LER_LerParametros( "cci" ,
-                                     charParm1 ,
-                                     charParm2 ,
+                                     &charParm1 ,
+                                     &charParm2 ,
                                      &CondRetEsp) ;
         
         if ( ( numLidos != 3 ) )
