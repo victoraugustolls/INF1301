@@ -344,8 +344,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CondRetParm ;
         } /* if */
         
-        i = charParm1 - '0' ;
-        j = charParm2 - 'A' + 1 ;
+        i = charParm2 - '0' ;
+        j = charParm1 - 'A' + 1 ;
         
         CondRet = CSA_CriarCasa( casaAtual ) ;
         if ( CondRet == CSA_CondRetFaltouMemoria )
@@ -464,8 +464,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CondRetParm ;
         } /* if */
         
-        i = charParm1 - '0' ;
-        j = charParm2 - 'A' + 1 ;
+        i = charParm2 - '0' ;
+        j = charParm1 - 'A' + 1 ;
         
         CondRet = CSA_CriarCasa( casaAtual ) ;
         if ( CondRet == CSA_CondRetFaltouMemoria )
