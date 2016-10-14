@@ -1,9 +1,7 @@
-————— Trabalho 1 - Programação Modular —————
-
- - Parte 1 do Trabalho
+————— Trabalho 2 - Programação Modular —————
 
  - Pontifícia Universidade Católica do Rio de Janeiro
- - Data: 15 de Setembro de 2016
+ - Data: 13 de Outubro de 2016
 
 ————— Autores —————
 
@@ -14,41 +12,72 @@
 ————— Estrutura de Arquivos e Diretórios —————
 
 == Diretórios
+	 = bat
+	 	Contém os batches de execução dos scripts de teste.
+
+	 	- EXECUTAR_TESTE_CASA.BAT.TXT
+	 	- EXECUTAR_TESTE_LISTA.BAT.TXT
+	 	- EXECUTAR_TESTE_PECA.BAT.TXT
+	 	- EXECUTAR_TESTE_TABULEIRO.BAT.TXT
+	 	- EXECUTAR_TESTE_VMV.BAT.TXT
+
+	 = bin
+	 	Contém os executáveis do teste de cada módulo.
+
 	 = include
 	 	Contém os módulos de definição do projeto.
 
-	 	- LISTA.H
+	 	- CASA.H
 	 	- GENERICO.H
 	 	- LERPARM.H
+	 	- LISTA.H
+	 	- PECA.H
+	 	- TABULEIRO.H
 	 	- TST_ESPC.H
+	 	- VALIDA_MOV.H
 
 	 = lib
 	 	Contém as bibliotecas estáticas do projeto.
 
 	 	- ArcaboucoTeste.lib.TXT
 
+	 = log
+	 	Destino da saída da execução dos scripts de teste
+
+	 = pecas
+	 	Contém os arquivos que definem o movimento de uma peça. Novas
+	 	peças devem ser adicionadas aqui.
+
+	 = script
+	 	Contém os scripts de testes a serem executados.
+
 	 = source
 	 	Contém os módulos de implementação do projeto.
 
+	 	- CASA.C
 	 	- LISTA.C
+	 	- PECA.C
+	 	- TABULEIRO.C
+	 	- VALIDA_MOV.C
+
+	 	- TESTCSA.C
 	 	- TESTLIS.C
+	 	- TESTPCA.C
+	 	- TESTTAB.C
+	 	- TESTVMV.C
 
 == Arquivos
-	 - TRAB1-1.EXE.TXT
-	 	O executável do trabalho.
-
-	 - TESTE_LISTA.SCRIPT
-	 	O script de teste.
-
-	 - EXECUTAR_TESTE_LISTA.bat.TXT
-	 	A rotina que coordena a execução dos testes.
 
 	 - LEIAME.TXT
 	 	Arquivo descritivo com informações sobre o projeto e sua manipulação.
 
+	 - COMO_ADD_NOVA_PECA.TXT
+	 	Arquivo com instruções de como adicionar peças ao jogo.
+
 ————— Descrição do Programa —————
 
-Testa as funções do módulo lista de acordo com o script de teste fornecido.
+Cada executável na pasta bin testa as funções do módulo 
+correspondente de acordo com o script de teste fornecido.
 
 ————— Instruções Importantes —————
 
@@ -72,11 +101,11 @@ Testa as funções do módulo lista de acordo com o script de teste fornecido.
 ————— Modo de Execução do Script de Testes ————— 
 
 	IMPORTANTE: Antes de seguir os passos abaixo, renomeie 
-	o arquivo TRAB1-1.EXE.TXT para TRAB1-1.EXE e EXECUTAR_TESTE_LISTA.bat.TXT
-	para EXECUTAR_TESTE_LISTA.bat como descrito a cima.
+	os arquivos da pasta bin e da pasta bat, removendo o final .TXT de cada um deles.
 
-1. 	Execute (dê dois cliques) no arquivo EXECUTAR_TESTE_LISTA.bat.
-	Este arquivo executará o executável TRAB1-1.EXE que coordena os testes descritos em TESTE_LISTA.SCRIPT 
-	e gera um relatório contendo os resultados dos testes no arquivo TESTE_LISTA.log.
+	Execute (dê dois cliques) em cada arquivo na pasta bat. Logs de saída 
+	serão gerados na pasta log para cada arquivo .BAT correspondente.
 
-2.	Os resultados dos testes estarão contidos em "TESTE_LISTA.log"
+————— Adicionando uma Peça Nova —————————————————————————————— 
+
+	Ler arquivo COMO_ADD_NOVA_PECA.TXT

@@ -1,0 +1,43 @@
+% Aluno: Ian Albuquerque Raymundo da Silva
+%
+% Outros Integrantes do Grupo:
+%	Victor Augusto
+%	Lucas Ferraço
+%
+% Data (DD/MM/AAAA); Horas Trabalhadas; Tipo Tarefa; Descrição da Tarefa Realizada
+%
+% Tipo de Tarefas:
+% - estudar
+% - especificar os módulos
+% - especificar as funções
+% - revisar especificações
+% - projetar
+% - revisar projetos
+% - codificar módulo
+% - revisar código do módulo
+% - redigir script de teste
+% - revisar script de teste
+% - realizar os testes
+% - diagnosticar e corrigir os problemas encontrados
+
+29/09/2016; 2 horas ; especificar os módulos; Especificou a divisão de módulos do projeto, assim como estrutura fisica.
+
+30/09/2016; 5 horas ; projetar; Elaborou estrutura de compilação e diretórios do projeto.
+
+03/10/2016; 2 horas ; projetar; Projetou sintaxe para definição de peças (novas ou não)
+
+03/10/2016; 1 hora ; especificar as funções; Especificou as funções de acesso do módulo VMV.
+
+03/10/2016; 1 hora ; projetar; Projetou linguagem lógica de especificação de peças a ser usada pelo módulo VMV.
+
+04/10/2016; 8 horas ; codificar módulo; Codificou módulo VMV.
+
+05/10/2016; 3 horas ; codificar módulo; Codificou módulo de testes para testar o módulo VMV.
+
+05/10/2016; 2 horas; redigir script de teste; Redigiu script de teste e scripts lógicos para testar o módulo VMV.
+
+13/10/2016; 1 hora ; revisar script de teste; Revisão de documentação do módulo de testes para VMV.
+
+
+
+

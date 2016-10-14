@@ -233,7 +233,7 @@
 =checarmovpeca      OK                      T      'f'     1 1     2 3
 =checarmovpeca      OK                      T      'f'     5 6     2 3
 
-== Finaliza Testes de Proposicao (P)
+== Finaliza Testes de Proposicao (L)
 =destruirconfig     OK 
 
 // ---------------------------------------------

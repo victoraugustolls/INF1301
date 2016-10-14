@@ -35,29 +35,6 @@ static const char DESTRUIR_CONFIG_CMD             [ ] = "=destruirconfig"       
 static const char LER_TAB_INICIAL_CMD             [ ] = "=lertabinicial"            ;
 static const char CHECAR_MOV_PEÇA_CMD             [ ] = "=checarmovpeca"            ;
 
-/*
-   VMV_tpCondRet VMV_CriarConfigDir (  VMV_tppConfigDir* pConfigDir, const char* pathConfigArq );
-   VMV_tpCondRet VMV_DestruirConfigDir (  VMV_tppConfigDir pConfigDir );
-   VMV_tpCondRet VMV_LerTabuleiroInicial (   VMV_tppConfigDir pConfig,
-                                             char** pecas, 
-                                             char** cores, 
-                                             int* num_casas );
-   VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig,
-                                             VMV_tpMovimentoValido* movimento_valido,
-                                             char peca,
-                                             void* casa_atual,
-                                             void* casa_destino,
-                                             void** casas,
-                                             int num_casas,
-                                             int num_dimensoes,
-                                             int (**array_dimensao)(void* casa),
-                                             int* array_sinal,
-                                             int (*vazio)(void* casa),
-                                             int (*inimigo)(void* casa),
-                                             int* cond_especiais,
-                                             int num_cond_especiais);
-*/
-
 /***************************************************************************
 *
 *  Constantes Usadas
@@ -66,31 +43,6 @@ static const char CHECAR_MOV_PEÇA_CMD             [ ] = "=checarmovpeca"        
 
 #define TRUE  1
 #define FALSE 0
-
-/***************************************************************************
-*
-*  Geometria do Tabuleiro Utilizada no Comando checarmovpeca
-*
-*   NUM DIMENSIONS = 2
-*   NUM_COND_ESPECIAIS = 5
-*   COND_ESPECIAIS = {0,1,0,1,0}
-*
-*      0   1   2   3   4   5   6 ----> DIM 0, SIG 0, X
-*   0  .   .   .   I   .   .   .
-*   1  .   .   .   .   .   .   .
-*   2  .   I   .   .   .   .   .
-*   3  .   F   .   .   .   I   .
-*   4  .   .   .   .   .   .   .
-*   5  I   I   .   F   F   F   .
-*   6  I   I   .   .   .   .   I
-*   |
-*   |
-*   V
-*   DIM 1
-*   SIG 1
-*   Y
-*
-***************************************************************************/
 
 #define NUM_CASAS 49
 #define NUM_DIMENSOES 2
@@ -176,13 +128,42 @@ int configDirAberto = FALSE;
 *
 *  $FC Função: TVMV &Testar Validado de Movimento
 *
+*  O teste utiliza um arquivo de configuração global.
+*  Uma vez criada uma config, somente será possivel criar
+*  uma nova com sucesso após destruir a primeira.
+*
 *  $ED Descrição da função
 *
 *     Comandos disponíveis:
 *
-*     =resetteste
-*     =criarlista                   inxLista
-
+*     =criarconfig condRet pathArquivo
+*     =criarconfigdefault condRet
+*     =destruirconfig condRet
+*     =lertabinicial condRet numCasasEsperado  pecasStringEsperado coresStringEsperado
+*     =checarmovpeca condRet movValidoSimOuNao peca xAtual yAtual xDestino yDestino*
+*
+* --------------------------------------------
+*
+*  Geometria do Tabuleiro Utilizada no Comando checarmovpeca
+*
+*   NUM DIMENSIONS = 2
+*   NUM_COND_ESPECIAIS = 5
+*   COND_ESPECIAIS = {0,1,0,1,0}
+*
+*      0   1   2   3   4   5   6 ----> DIM 0, SIG 0, X
+*   0  .   .   .   I   .   .   .
+*   1  .   .   .   .   .   .   .
+*   2  .   I   .   .   .   .   .
+*   3  .   F   .   .   .   I   .
+*   4  .   .   .   .   .   .   .
+*   5  I   I   .   F   F   F   .
+*   6  I   I   .   .   .   .   I
+*   |
+*   |
+*   V
+*   DIM 1
+*   SIG 1
+*   Y
 *
 ***********************************************************************/
 
