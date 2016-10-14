@@ -142,7 +142,7 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
     int i , j ;
     CSA_tpCondRet retCasa ;
     
-    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
@@ -191,8 +191,8 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     
     int (*TAB_Dimensao[2]) (void* casa) = { TAB_Dim0 , TAB_Dim1 } ;
     
-    if ( TAB_VerificaCoordValida( colInicial , linInicial ) &&
-         TAB_VerificaCoordValida( colFinal , linFinal ) )
+    if ( ( ! TAB_VerificaCoordValida( colInicial , linInicial ) ) ||
+         ( ! TAB_VerificaCoordValida( colFinal , linFinal ) ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
@@ -321,7 +321,7 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
     int i , j ;
     CSA_tpCondRet retCasa ;
     
-    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
@@ -355,7 +355,7 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
     int i , j ;
     CSA_tpCondRet retCasa ;
     
-    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
@@ -387,7 +387,7 @@ TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
     
     int i , j ;
     
-    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
@@ -420,7 +420,7 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
     int i , j ;
     CSA_tpCondRet retCasa ;
     
-    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
@@ -449,7 +449,7 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
     int i , j ;
     CSA_tpCondRet retCasa ;
     
-    if ( TAB_VerificaCoordValida( coluna , linha ) )
+    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
