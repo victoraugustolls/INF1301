@@ -442,7 +442,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             } /* if */
             printf("Recuperei valor do no corrente da lista referente a casa\n") ;
             
-            CondRet = CSA_CompararCasa( *casaAtual , casaTst , &igual ) ;
+            CondRet = CSA_CompararCasa( casaAtual , casaTst , &igual ) ;
             if ( CondRet == CSA_CondRetNaoExiste )
             {
                 CondRet = TAB_CondRetNaoExiste ;
