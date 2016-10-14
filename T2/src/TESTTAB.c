@@ -347,6 +347,14 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         i = charParm1 - '0' ;
         j = charParm2 - 'A' + 1 ;
         
+        CondRet = CSA_CriarCasa( casaAtual ) ;
+        if ( CondRet == CSA_CondRetFaltouMemoria )
+        {
+            CondRet = TAB_CondRetNaoExiste ;
+            return TST_CompararInt( CondRetEsp , CondRet ,
+                                   "Condicao de retorno errada ao obter lista de ameacantes." ) ;
+        } /* if */
+        
         CondRet = CSA_CriarCasa( &casaTst ) ;
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
@@ -458,6 +466,14 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         i = charParm1 - '0' ;
         j = charParm2 - 'A' + 1 ;
+        
+        CondRet = CSA_CriarCasa( casaAtual ) ;
+        if ( CondRet == CSA_CondRetFaltouMemoria )
+        {
+            CondRet = TAB_CondRetNaoExiste ;
+            return TST_CompararInt( CondRetEsp , CondRet ,
+                                   "Condicao de retorno errada ao obter lista de ameacantes." ) ;
+        } /* if */
         
         CondRet = CSA_CriarCasa( &casaTst ) ;
         if ( CondRet == CSA_CondRetFaltouMemoria )
