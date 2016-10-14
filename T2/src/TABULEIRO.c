@@ -75,11 +75,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro )
         return TAB_CondRetFaltouMemoria ;
     } /* if */
     
-    if ( pTabuleiro != NULL )
-    {
-        return TAB_CondRetJaCriado ;
-    } /* if */
-    
     for ( i = 0 ; i < 8 ; i++ )
     {
         for ( j = 0 ; j < 8 ; j++ )
