@@ -146,18 +146,25 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
     
     int i , j ;
     CSA_tpCondRet retCasa ;
-    
+    printf( "entrei na TAB_InserirPecaTabuleiro\n" ) ;
+
     if ( ! TAB_VerificaCoordValida( coluna , linha ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
-    
+    printf( "verifiquei coord\n" ) ;
+
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
-    
+    printf( "entrei na CSA_InserirPecaCasa\n" ) ;
+
     retCasa = CSA_InserirPecaCasa( nomePeca, corPeca, pTabuleiro->tabuleiro[i][j] ) ;
+    printf( "inseri a peca\n" ) ;
+
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf( "deu ruim casa\n" ) ;
+
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
              
