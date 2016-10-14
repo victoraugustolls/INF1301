@@ -351,16 +351,21 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         printf("Recebi os parametros\n") ;
         
         CondRet = CSA_CriarCasa( casaAtual ) ;
+        printf("passei criarcasa\n") ;
+
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
+            printf("entrei casa faltou memoria\n") ;
             CondRet = TAB_CondRetNaoExiste ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
         CondRet = CSA_CriarCasa( &casaTst ) ;
+        printf("passei criarcasa 2\n") ;
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
+            printf("entrei casa faltou memoria 2\n") ;
             CondRet = TAB_CondRetNaoExiste ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                             "Condicao de retorno errada ao obter lista de ameacantes." ) ;
@@ -472,8 +477,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         printf("Entrei na OBTER_AMEACADOS_CMD") ;
 
         numLidos = LER_LerParametros( "cci" ,
-                                     charParm1 ,
-                                     charParm2 ,
+                                     &charParm1 ,
+                                     &charParm2 ,
                                      &CondRetEsp) ;
         
         if ( ( numLidos != 3 ) )
