@@ -153,13 +153,14 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         {
             return TST_CondRetParm ;
         } /* if */
-        
+        printf( "chamei a TAB_InserirPecaTabuleiro\n" ) ;
         CondRet = TAB_InserirPecaTabuleiro ( charParm1 ,
                                              charParm2 ,
                                              charParm3 ,
                                              charParm4 ,
                                              pTabuleiro ) ;
-        
+        printf( "retornei da TAB_InserirPecaTabuleiro\n" ) ;
+
         return TST_CompararInt( CondRetEsp , CondRet ,
                                "Condicao de retorno errada ao inserir peca no tabuleiro." ) ;
         
