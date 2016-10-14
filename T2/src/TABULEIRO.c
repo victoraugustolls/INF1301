@@ -523,9 +523,10 @@ int TAB_Dim0( void * casa )
 {
     
     TAB_tppTabuleiro pTabuleiro ;
+    CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
+
     TAB_CriarTabuleiro( &pTabuleiro ) ;
     
-    CSA_tppCasa pCasa = (CSA_tppCasa) casa ;
     int i , j , igual ;
     
     for ( i = 0 ; i < 8; i++ )
