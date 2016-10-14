@@ -244,7 +244,6 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
             CondRet = TAB_CondRetNaoExiste ;
-            printf( "retornou TAB_CondRetNaoExiste %d\n", CondRet ) ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
@@ -253,7 +252,6 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
             CondRet = TAB_CondRetNaoExiste ;
-            printf( "retornou TAB_CondRetNaoExiste %d\n", CondRet ) ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
@@ -264,7 +262,6 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         if ( CondRet == CSA_CondRetNaoExiste )
         {
             CondRet = TAB_CondRetNaoExiste ;
-            printf( "retornou TAB_CondRetNaoExiste %d\n", CondRet ) ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
@@ -275,7 +272,6 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                           pTabuleiro ) ;
         if ( CondRet != TAB_CondRetOK )
         {
-            printf( "retornou TAB_CondRetNaoExiste %d\n", CondRet ) ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
@@ -284,19 +280,16 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         if ( CondRet == CSA_CondRetNaoExiste )
         {
             CondRet = TAB_CondRetNaoExiste ;
-            printf( "retornou TAB_CondRetNaoExiste %d\n", CondRet ) ;
             return TST_CompararInt( CondRetEsp , CondRet ,
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
         if ( !igual )
         {
-            printf( "CASA OBTIDA E CASA ESPERADA SÃO DIFERENTES" ) ;
             return TST_CondRetErro ;
         } /* if */
         
         CondRet = TAB_CondRetOK ;
-        printf( "retornou TAB_CondRetOK %d\n", CondRet ) ;
 
         
         return TST_CompararInt( CondRetEsp , CondRet ,
