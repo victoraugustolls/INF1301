@@ -101,7 +101,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     if ( strcmp( ComandoTeste , CRIAR_TABULEIRO_CMD ) == 0 )
     {
-        
+        printf( "entrei na CRIAR_TABULEIRO_CMD\n" ) ;
         numLidos = LER_LerParametros( "i" , &CondRetEsp ) ;
         
         if ( ( numLidos != 1 ) )
@@ -120,7 +120,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     else if ( strcmp( ComandoTeste , DESTRUIR_TABULEIRO_CMD ) == 0 )
     {
-        
+        printf( "entrei na DESTRUIR_TABULEIRO_CMD\n" ) ;
+
         numLidos = LER_LerParametros( "i" , &CondRetEsp ) ;
         
         if ( ( numLidos != 1 ) )
@@ -139,7 +140,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     else if ( strcmp( ComandoTeste , INSERIR_PECA_CMD ) == 0 )
     {
-        
+        printf( "entrei na INSERIR_PECA_CMD\n" ) ;
+
         numLidos = LER_LerParametros( "cccci" ,
                                       &charParm1 ,
                                       &charParm2 ,
@@ -167,7 +169,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     else if ( strcmp( ComandoTeste , MOVER_PECA_CMD ) == 0 )
     {
-        
+        printf( "entrei na MOVER_PECA_CMD\n" ) ;
+
         numLidos = LER_LerParametros( "cccci" ,
                                       &charParm1 ,
                                       &charParm2 ,
@@ -179,13 +182,13 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         {
             return TST_CondRetParm ;
         } /* if */
-        
+        printf( "recebi parametros na MOVER_PECA_CMD\n" ) ;
         CondRet = TAB_MoverPecaTabuleiro ( charParm1 ,
                                            charParm2 ,
                                            charParm3 ,
                                            charParm4 ,
                                            pTabuleiro ) ;
-        
+        printf( "chamei a funcao de mover na MOVER_PECA_CMD\n" ) ;
         return TST_CompararInt( CondRetEsp , CondRet ,
                                "Condicao de retorno errada ao mover peca no tabuleiro." ) ;
         
@@ -195,7 +198,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     else if ( strcmp( ComandoTeste , RETIRAR_PECA_CMD ) == 0 )
     {
-        
+        printf( "entrei na RETIRAR_PECA_CMD\n" ) ;
+
         numLidos = LER_LerParametros( "cci" ,
                                       &charParm1 ,
                                       &charParm2 ,
@@ -219,9 +223,11 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     else if ( strcmp( ComandoTeste , OBTER_CASA_CMD ) == 0 )
     {
-        
+
         int igual ;
         CSA_tppCasa casaTst, casaObtida ;
+        
+        printf( "entrei na OBTER_CASA_CMD\n" ) ;
 
         numLidos = LER_LerParametros( "cci" ,
                                      &charParm1 ,
@@ -285,7 +291,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     else if ( strcmp( ComandoTeste , OBTER_PECA_CMD ) == 0 )
     {
-        
+        printf( "entrei na OBTER_PECA_CMD\n" ) ;
+
         numLidos = LER_LerParametros( "cccci" ,
                                       &charParm1 ,
                                       &charParm2 ,
