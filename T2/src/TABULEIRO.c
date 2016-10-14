@@ -207,15 +207,19 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     /* Pré-processamento para validação do movimento */
     retDirMov = VMV_CriarConfigDir ( &pConfigDir, "..\\pecas\\default\\config.conf" ) ;
     printf("configurei o dir") ;
-    if ( ( retDirMov == VMV_CondRetErrAberturaArquivo ) ||
-         ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) )
+    if ( retDirMov == VMV_CondRetErrAberturaArquivo )
     {
-        printf("crash 1") ;
+        printf("crash abertura arquivo") ;
+        return TAB_CondRetFalhaArq ;
+    } /* if */
+    else if ( retDirMov == VMV_CondRetErrFormatoArquivoErrado )
+    {
+        printf("crash formato errado") ;
         return TAB_CondRetFalhaArq ;
     } /* if */
     else if ( retDirMov == VMV_CondRetErrFaltouMemoria )
     {
-        printf("crash 2") ;
+        printf("crash faltou memoria") ;
         return TAB_CondRetFaltouMemoria ;
     } /* if */
     
