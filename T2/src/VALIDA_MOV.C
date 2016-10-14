@@ -140,6 +140,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
 
       if(arquivoEntrada == NULL)
       {
+          printf("ficou nulo na VMV_AbreArquivo\n");
          return VMV_CondRetErrAberturaArquivo;
       }
 
