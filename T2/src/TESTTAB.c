@@ -277,11 +277,19 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         } /* if */
         
         CondRet = CSA_CompararCasa( casaTst , casaObtida , &igual ) ;
+        if ( CondRet == CSA_CondRetNaoExiste )
+        {
+            CondRet = TAB_CondRetNaoExiste ;
+            return TST_CompararInt( CondRetEsp , CondRet ,
+                                   "Condicao de retorno errada ao obter lista de ameacantes." ) ;
+        } /* if */
         
         if ( !igual )
         {
             return TST_CondRetErro ;
         } /* if */
+        
+        CondRet = TAB_CondRetOK ;
         
         return TST_CompararInt( CondRetEsp , CondRet ,
                                "Condicao de retorno errada ao obter peca." ) ;
