@@ -86,7 +86,7 @@
 
 == Teste de Obtenção de Lista de Ameaçados de uma Peça do Tabuleiro
 =criarTabuleiro         OK
-=inserirPeca            'A'   '1'   'T'   'P'   OK
+=inserirPeca            'A'   '1'   'P'   'P'   OK
 =obterListaAmeacados    'A'   '1'   OK
 =retirarPeca            'A'   '1'   OK
 =destruirTabuleiro      OK
