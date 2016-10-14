@@ -239,7 +239,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         {
             return TST_CondRetParm ;
         } /* if */
-        
+        printf( "PARAMETROS CERTOS NA OBTER CASA\n" ) ;
         CondRet = CSA_CriarCasa( &casaObtida ) ;
         if ( CondRet == CSA_CondRetFaltouMemoria )
         {
@@ -258,8 +258,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
-        CondRet = CSA_InserirPecaCasa( 'V' ,
-                                       'V' ,
+        CondRet = CSA_InserirPecaCasa( 'T' ,
+                                       'P' ,
                                        casaTst ) ;
         if ( CondRet == CSA_CondRetNaoExiste )
         {
@@ -291,6 +291,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         if ( !igual )
         {
+            printf( "CASA OBTIDA E CASA ESPERADA SÃO DIFERENTES" ) ;
             return TST_CondRetErro ;
         } /* if */
         
