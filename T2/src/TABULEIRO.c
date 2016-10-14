@@ -212,7 +212,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     
     
     /* Pré-processamento para validação do movimento */
-    retDirMov = VMV_CriarConfigDir ( &pConfigDir, "..\\pecas\\default\\config.conf" ) ;
+    retDirMov = VMV_CriarConfigDir ( &pConfigDir, NULL ) ;
     printf("configurei o dir") ;
     if ( retDirMov == VMV_CondRetErrAberturaArquivo )
     {
