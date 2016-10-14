@@ -191,27 +191,28 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     VMV_tpCondRet           retDirMov ;
     VMV_tpMovimentoValido   retMov ;
     VMV_tppConfigDir        pConfigDir ;
-    const char nome[100] = "..\\pecas\\teste\\config_teste_correto.conf" ;
     
     int i , j , colAtual , linAtual , colDestino , linDestino ;
     int sinal[] = { 1 , 0 } , condEsp[] = { 0 } ;
     char * peca , * cor ;
-    
+    const char nome[100] = "..\\pecas\\teste\\config_teste_correto.conf" ;
+
     int (*TAB_Dimensao[2]) (void* casa) = { TAB_Dim0 , TAB_Dim1 } ;
-    
+    printf("entrei na TAB_MoverPecaTabuleiro\n");
     if ( ( ! TAB_VerificaCoordValida( colInicial , linInicial ) ) ||
          ( ! TAB_VerificaCoordValida( colFinal , linFinal ) ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
-    
+    printf("testei coordenadas na TAB_MoverPecaTabuleiro\n");
+
     /* Converte a linha e a coluna para inteiros */
     linAtual   = linInicial - '0' ;
     linDestino = linFinal   - '0' ;
     colAtual   = colInicial - 'A' + 1 ;
     colDestino = colFinal   - 'A' + 1 ;
     
-    
+    printf("convertinha char pra int na TAB_MoverPecaTabuleiro\n");
     /* Pré-processamento para validação do movimento */
     retDirMov = VMV_CriarConfigDir ( &pConfigDir, nome ) ;
     printf("configurei o dir") ;

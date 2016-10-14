@@ -184,6 +184,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CondRetParm ;
         } /* if */
         printf( "recebi parametros na MOVER_PECA_CMD\n" ) ;
+        printf("charParm1: %s\n\n", charParm1);
+        printf("charParm2: %s\n\n", charParm2);
+        printf("charParm3: %s\n\n", charParm3);
+        printf("charParm4: %s\n\n", charParm4);
         CondRet = TAB_MoverPecaTabuleiro ( charParm1 ,
                                            charParm2 ,
                                            charParm3 ,
