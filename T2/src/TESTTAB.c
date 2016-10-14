@@ -533,7 +533,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = TAB_ObterCasaTabuleiro( charParm1 ,
                                          charParm2 ,
-                                         casaAtual ,
+                                         &casaAtual ,
                                          pTabuleiro ) ;
         if ( CondRet != TAB_CondRetOK )
         {
