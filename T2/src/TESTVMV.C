@@ -81,31 +81,35 @@ TVMV_tppCasa getCasa(int x, int y)
    return pCasas[7*y+x];
 }
 
-int dim0(void* _pCasa)
+int dim0(void* _pCasa,void* aux)
 {
    TVMV_tppCasa pCasa = (TVMV_tppCasa) _pCasa;
+   (void) aux;
    return pCasa->x;
 }
 
-int dim1(void* _pCasa)
+int dim1(void* _pCasa,void* aux)
 {
    TVMV_tppCasa pCasa = (TVMV_tppCasa) _pCasa;
+   (void) aux;
    return pCasa->y;
 }
 
-int (*dimensao[2]) (void* _pCasa) = {dim0, dim1};
+int (*dimensao[2]) (void* _pCasa,void* aux) = {dim0, dim1};
 
 int sinal[2] = {0,1};
 
-int vazio(void* _pCasa)
+int vazio(void* _pCasa,void* aux)
 {
    TVMV_tppCasa pCasa = (TVMV_tppCasa) _pCasa;
+   (void) aux;
    return pCasa->v == '.'?1:0;
 }
 
-int inimigo(void* _pCasa)
+int inimigo(void* _pCasa,void* aux)
 {
    TVMV_tppCasa pCasa = (TVMV_tppCasa) _pCasa;
+   (void) aux;
    return pCasa->v == 'I'?1:0;
 }
 
@@ -390,7 +394,8 @@ int configDirAberto = FALSE;
                                                       vazio,
                                                       inimigo,
                                                       condicoesEspeciais,
-                                                      NUM_COND_ESPECIAIS);
+                                                      NUM_COND_ESPECIAIS,
+                                                      NULL);
 
          if( condRetEsperada != condRetRecebida )
          {

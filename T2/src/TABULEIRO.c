@@ -29,7 +29,7 @@
 #include   "VALIDA_MOV.H"
 
 #define TABULEIRO_OWN
-#include "TABULEIRO.h"
+#include "TABULEIRO.H"
 #undef TABULEIRO_OWN
 
 /***********************************************************************
@@ -49,10 +49,10 @@ typedef struct TAB_tagTabuleiro {
 /***** Protótipos das funções encapuladas no módulo *****/
 
 int TAB_VerificaCoordValida( char coluna , char linha ) ;
-int TAB_CasaVazia( void * casa ) ;
-int TAB_CasaInimigo( void * casa ) ;
-int TAB_Dim0( void * casa ) ;
-int TAB_Dim1 (void * casa ) ;
+int TAB_CasaVazia( void * casa, void* aux ) ;
+int TAB_CasaInimigo( void * casa, void* aux ) ;
+int TAB_Dim0( void * casa, void* aux ) ;
+int TAB_Dim1 (void * casa, void* aux ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -187,17 +187,25 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 {
     
     CSA_tpCondRet           retCasa ;
-    CSA_tppCasa *           vetTodasCasas ;
+    CSA_tppCasa             vetTodasCasas[64] ;
     VMV_tpCondRet           retDirMov ;
     VMV_tpMovimentoValido   retMov ;
     VMV_tppConfigDir        pConfigDir ;
     
-    int i , j , colAtual , linAtual , colDestino , linDestino ;
-    int sinal[] = { 1 , 0 } , condEsp[] = { 0 } ;
-    char * peca , * cor ;
+    int i , j ;
+    int colAtual , linAtual ;
+    int colDestino , linDestino ;
+
+    int sinal[] = { 0 , 0 };
+    int condEsp[] = { 0 } ;
+
+    char* peca ;
+    char* cor ;
+
     const char nome[100] = "..\\pecas\\default\\config.conf" ;
 
-    int (*TAB_Dimensao[2]) (void* casa) = { TAB_Dim0 , TAB_Dim1 } ;
+    int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim0 , TAB_Dim1 } ;
+
     printf("entrei na TAB_MoverPecaTabuleiro\n");
     if ( ( ! TAB_VerificaCoordValida( colInicial , linInicial ) ) ||
          ( ! TAB_VerificaCoordValida( colFinal , linFinal ) ) )
@@ -261,8 +269,8 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     retDirMov = VMV_ChecarMovimentoPeca ( pConfigDir ,
                                           &retMov ,
                                           *peca ,
-                                          ( void* ) &pTabuleiro->tabuleiro[linAtual][colAtual] ,
-                                          ( void* ) &pTabuleiro->tabuleiro[linDestino][colDestino] ,
+                                          ( void* ) pTabuleiro->tabuleiro[linAtual][colAtual] ,
+                                          ( void* ) pTabuleiro->tabuleiro[linDestino][colDestino] ,
                                           vetTodasCasas ,
                                           64 ,
                                           2 ,
@@ -271,14 +279,15 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
                                           TAB_CasaVazia ,
                                           TAB_CasaInimigo ,
                                           condEsp ,
-                                          0 ) ;
+                                          0,
+                                          ( void* ) pTabuleiro ) ;
     printf("crash 4\n") ;
 
     if ( ( retDirMov == VMV_CondRetErrAberturaArquivo ) ||
          ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) ||
          ( retDirMov == VMV_CondRetErrManuseioArquivo ) )
     {
-        printf("crash 5\n") ;
+        printf("crash 5 %d\n",retDirMov) ;
 
         return TAB_CondRetFalhaArq ;
     } /* if */
@@ -508,11 +517,13 @@ int TAB_VerificaCoordValida( char coluna , char linha )
     
 }
 
-int TAB_CasaVazia( void * casa )
+int TAB_CasaVazia( void * casa, void* aux)
 {
-    
+
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
     char * nomePeca, * corPeca ;
+
+    (void) aux;
     
     CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
     
@@ -524,12 +535,14 @@ int TAB_CasaVazia( void * casa )
     
 }
 
-int TAB_CasaInimigo( void * casa )
+int TAB_CasaInimigo( void * casa, void* aux )
 {
     
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
     char * nomePeca, * corPeca ;
-    
+
+    (void) aux;
+
     CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
     
     if ( ( *nomePeca == 'V' ) && ( *corPeca == 'V' ) )
@@ -540,53 +553,44 @@ int TAB_CasaInimigo( void * casa )
     
 }
 
-int TAB_Dim0( void * casa )
+int TAB_Dim0( void * casa, void* tab )
 {
-    
-    int i , j , igual ;
-    TAB_tppTabuleiro pTabuleiro ;
+    int i , j;
+    TAB_tppTabuleiro pTabuleiro = (TAB_tppTabuleiro) tab;
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
-
-    TAB_CriarTabuleiro( &pTabuleiro ) ;
         
     for ( i = 0 ; i < 8; i++ )
     {
         for ( j = 0 ; j < 8; j++ )
         {
-            CSA_CompararCasa( pCasa ,
-                              pTabuleiro->tabuleiro[i][j] ,
-                              &igual ) ;
-            
-            if ( igual == 1 ) {
+            if ( pCasa == (pTabuleiro->tabuleiro[i][j]) ) {
+                printf("0>>>>>>%d\n",i);
                 return i ;
             }
         } /* for */
     } /* for */
+    printf("0>>>>>>%d\n",-1);
+    return -1;
     
 }
 
-int TAB_Dim1 (void * casa )
-{
-    
-    int i , j , igual ;
-    TAB_tppTabuleiro pTabuleiro ;
-    CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
 
-    TAB_CriarTabuleiro( &pTabuleiro ) ;
+int TAB_Dim1 (void * casa, void* tab )
+{
+    int i , j ;
+    TAB_tppTabuleiro pTabuleiro = (TAB_tppTabuleiro) tab;
+    CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
     
     for ( i = 0 ; i < 8; i++ )
     {
         for ( j = 0 ; j < 8; j++ )
         {
-            CSA_CompararCasa( pCasa ,
-                             pTabuleiro->tabuleiro[i][j] ,
-                             &igual ) ;
-            
-            if ( igual == 1 ) {
+            if ( pCasa == (pTabuleiro->tabuleiro[i][j]) ) {
                 return j ;
             }
         } /* for */
     } /* for */
+    return -1;
     
 }
 

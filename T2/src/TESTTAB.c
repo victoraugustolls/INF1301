@@ -229,75 +229,62 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     else if ( strcmp( ComandoTeste , OBTER_CASA_CMD ) == 0 )
     {
 
-        int igual ;
-        CSA_tppCasa casaTst, casaObtida ;
-        
-        printf( "entrei na OBTER_CASA_CMD\n" ) ;
+        CSA_tppCasa casaObtida;
+        CSA_tpCondRet csaRet;
 
-        numLidos = LER_LerParametros( "cci" ,
-                                     &charParm1 ,
-                                     &charParm2 ,
-                                     &CondRetEsp) ;
+        numLidos = LER_LerParametros( "cccci" ,
+                                      &charParm1 ,
+                                      &charParm2 ,
+                                      &charParm3 ,
+                                      &charParm4 ,
+                                      &CondRetEsp) ;
         
-        if ( ( numLidos != 3 ) )
+        if ( ( numLidos != 5 ) )
         {
             return TST_CondRetParm ;
         } /* if */
-        printf( "PARAMETROS CERTOS NA OBTER CASA\n" ) ;
-        CondRet = CSA_CriarCasa( &casaObtida ) ;
-        if ( CondRet == CSA_CondRetFaltouMemoria )
-        {
-            CondRet = TAB_CondRetNaoExiste ;
-            return TST_CompararInt( CondRetEsp , CondRet ,
-                                   "Condicao de retorno errada ao obter lista de ameacantes." ) ;
-        } /* if */
         
-        CondRet = CSA_CriarCasa( &casaTst ) ;
-        if ( CondRet == CSA_CondRetFaltouMemoria )
-        {
-            CondRet = TAB_CondRetNaoExiste ;
-            return TST_CompararInt( CondRetEsp , CondRet ,
-                                   "Condicao de retorno errada ao obter lista de ameacantes." ) ;
-        } /* if */
-        
-        CondRet = CSA_InserirPecaCasa( 'P' ,
-                                       'P' ,
-                                       casaTst ) ;
-        if ( CondRet == CSA_CondRetNaoExiste )
-        {
-            CondRet = TAB_CondRetNaoExiste ;
-            return TST_CompararInt( CondRetEsp , CondRet ,
-                                   "Condicao de retorno errada ao obter lista de ameacantes." ) ;
-        } /* if */
-        
-        CondRet = TAB_ObterCasaTabuleiro ( charParm1 ,
-                                          charParm2 ,
-                                          &casaObtida ,
-                                          pTabuleiro ) ;
-        if ( CondRet != TAB_CondRetOK )
-        {
-            return TST_CompararInt( CondRetEsp , CondRet ,
-                                   "Condicao de retorno errada ao obter lista de ameacantes." ) ;
-        } /* if */
-        
-        CondRet = CSA_CompararCasa( casaTst , casaObtida , &igual ) ;
-        if ( CondRet == CSA_CondRetNaoExiste )
-        {
-            CondRet = TAB_CondRetNaoExiste ;
-            return TST_CompararInt( CondRetEsp , CondRet ,
-                                   "Condicao de retorno errada ao obter lista de ameacantes." ) ;
-        } /* if */
-        
-        if ( !igual )
-        {
-            return TST_CondRetErro ;
-        } /* if */
-        
-        CondRet = TAB_CondRetOK ;
+        nomeObtido = ( char * ) malloc ( sizeof ( char ) ) ;
+        corObtida = ( char * ) malloc ( sizeof ( char ) ) ;
 
+        CondRet = TAB_ObterCasaTabuleiro( charParm1 ,
+                                          charParm2 ,
+                                          &casaObtida,
+                                          pTabuleiro ) ;
+        if ( CondRet == TAB_CondRetNaoExiste )
+        {
+            return TST_NotificarFalha("A casa não existe.");
+        }
+        if ( CondRet == TAB_CondRetCoordNaoExiste )
+        {
+            return TST_NotificarFalha("A coordenada da casa não existe.");
+        }
+
+        csaRet = CSA_ObterPecaCasa(&nomeObtido,&corObtida,casaObtida);
+
+        if ( csaRet != CSA_CondRetOK )
+        {
+            return TST_NotificarFalha("A casa não existe.");
+        }
+                if ( csaRet != CSA_CondRetOK )
+        {
+            return TST_NotificarFalha("A casa não existe.");
+        }
+        
+        if ( charParm3 != ( *nomeObtido ) )
+        {
+            return TST_CompararString( &charParm3 , nomeObtido ,
+                                      "Id da peca retornada nao corresponde ao id esperado." ) ;
+        } /* if */
+        
+        else if ( charParm4 != ( *corObtida ) )
+        {
+            return TST_CompararString( &charParm4 , corObtida ,
+                                      "Cor da peca retornada nao corresponde a cor esperada." ) ;
+        } /* if */
         
         return TST_CompararInt( CondRetEsp , CondRet ,
-                               "Condicao de retorno errada ao obter peca." ) ;
+                               "Condicao de retorno errada ao obter casa." ) ;
         
     } /* fim ativa: Testar ObterCasaTabuleiro */
     

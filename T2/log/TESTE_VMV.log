@@ -42,19 +42,15 @@
   203  == L_AND
   214  == L_IFTHEN
   226  == L_FORALL COMPLEXO
->>>    1  Linha:   231  Condicao de retorno recebida diferente da esperada. 
->>>    2  Linha:   232  Não é comando recuperar:  =checarmovpeca      OK                      T      'f'     5 1     2 3
->>>    3  Linha:   233  Comando de teste ignorado:  =checarmovpeca      OK                      T      'f'     1 1     2 3
->>>    4  Linha:   234  Comando de teste ignorado:  =checarmovpeca      OK                      T      'f'     5 6     2 3
-  236  == Finaliza Testes de Proposicao (P)
-!!!    4  Linha:   239  // --------------------------------------------- 
+  232  == Finaliza Testes de Proposicao (L)
+!!!    0  Linha:   235  // --------------------------------------------- 
 
-!!! Número de linhas lidas:         243
+!!! Número de linhas lidas:         239
 !!! Número de casos de teste:        22
 !!! Número comandos corretos:       140
-!!! Número de falhas encontradas:     4
+!!! Número de falhas encontradas:     0
 
-!!! Foram encontrados problemas
+!!! Não foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0

@@ -56,12 +56,13 @@
       void** casas;
       int num_casas;
       int num_dimensoes;
-      int (**array_dimensao)(void* casa);
+      int (**array_dimensao)(void* casa, void* aux);
       int* array_sinal;
-      int (*vazio)(void* casa);
-      int (*inimigo)(void* casa);
+      int (*vazio)(void* casa, void* aux);
+      int (*inimigo)(void* casa, void* aux);
       int* cond_especiais;
       int num_cond_especiais;
+      void* aux;
 
    } VMV_tpExprEvalTools ;
 
@@ -477,7 +478,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
             
             if( strcmp( buffer, CMD_PCA_C_A ) == 0 )
             {
-               if( tools->vazio(tools->casa_atual) == 1 )
+               if( tools->vazio(tools->casa_atual,tools->aux) == 1 )
                {
                   *booleanValue = VMV_MovimentoValidoSim;
                   return VMV_CondRetOK;
@@ -490,7 +491,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
             }
             else if( strcmp( buffer, CMD_PCA_C_D ) == 0 )
             {
-               if( tools->vazio(tools->casa_destino) == 1 )
+               if( tools->vazio(tools->casa_destino,tools->aux) == 1 )
                {
                   *booleanValue = VMV_MovimentoValidoSim;
                   return VMV_CondRetOK;
@@ -507,7 +508,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
                {
                   if( strcmp( buffer, casaIterators[i].id ) == 0 )
                   {
-                     if( tools->vazio(casaIterators[i].casa) == 1 )
+                     if( tools->vazio(casaIterators[i].casa,tools->aux) == 1 )
                      {
                         *booleanValue = VMV_MovimentoValidoSim;
                         return VMV_CondRetOK;
@@ -534,7 +535,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
             
             if( strcmp( buffer, CMD_PCA_C_A ) == 0 )
             {
-               if( tools->inimigo(tools->casa_atual) == 1 )
+               if( tools->inimigo(tools->casa_atual,tools->aux) == 1 )
                {
                   *booleanValue = VMV_MovimentoValidoSim;
                   return VMV_CondRetOK;
@@ -547,7 +548,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
             }
             else if( strcmp( buffer, CMD_PCA_C_D ) == 0 )
             {
-               if( tools->inimigo(tools->casa_destino) == 1 )
+               if( tools->inimigo(tools->casa_destino,tools->aux) == 1 )
                {
                   *booleanValue = VMV_MovimentoValidoSim;
                   return VMV_CondRetOK;
@@ -564,7 +565,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
                {
                   if( strcmp( buffer, casaIterators[i].id ) == 0 )
                   {
-                     if( tools->inimigo(casaIterators[i].casa) == 1 )
+                     if( tools->inimigo(casaIterators[i].casa,tools->aux) == 1 )
                      {
                         *booleanValue = VMV_MovimentoValidoSim;
                         return VMV_CondRetOK;
@@ -719,12 +720,12 @@ static const char CMD_PCA_C_C [ ]                = "C";
             
             if( strcmp( buffer, CMD_PCA_C_A ) == 0 )
             {
-               *integerValue = (*tools->array_dimensao[valor])(tools->casa_atual);
+               *integerValue = (*tools->array_dimensao[valor])(tools->casa_atual,tools->aux);
                return VMV_CondRetOK;          
             }
             else if( strcmp( buffer, CMD_PCA_C_D ) == 0 )
             {
-               *integerValue = (*tools->array_dimensao[valor])(tools->casa_destino);
+               *integerValue = (*tools->array_dimensao[valor])(tools->casa_destino,tools->aux);
                return VMV_CondRetOK;              
             }
             else
@@ -733,7 +734,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
                {
                   if( strcmp( buffer, casaIterators[i].id ) == 0 )
                   {
-                     *integerValue = (*tools->array_dimensao[valor])(casaIterators[i].casa);
+                     *integerValue = (*tools->array_dimensao[valor])(casaIterators[i].casa,tools->aux);
                      return VMV_CondRetOK;              
                   } 
                }
@@ -1017,12 +1018,13 @@ static const char CMD_PCA_C_C [ ]                = "C";
                                              void** casas,
                                              int num_casas,
                                              int num_dimensoes,
-                                             int (**array_dimensao)(void* casa),
+                                             int (**array_dimensao)(void* casa, void* aux),
                                              int* array_sinal,
-                                             int (*vazio)(void* casa),
-                                             int (*inimigo)(void* casa),
+                                             int (*vazio)(void* casa, void* aux),
+                                             int (*inimigo)(void* casa, void* aux),
                                              int* cond_especiais,
-                                             int num_cond_especiais)
+                                             int num_cond_especiais,
+                                             void* aux)
 
    {
       FILE* arquivoMovimento;
@@ -1064,6 +1066,7 @@ static const char CMD_PCA_C_C [ ]                = "C";
       tools.inimigo = inimigo;
       tools.cond_especiais = cond_especiais;
       tools.num_cond_especiais = num_cond_especiais;
+      tools.aux = aux;
 
       status =     VMV_AvaliarProxLinha (   arquivoMovimento,
                                              VMV_ReturnExpectedBool,

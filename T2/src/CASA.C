@@ -451,6 +451,8 @@ void DestruirValor( void * pDado )
 
 int NuncaIgual( void * pDado_1 , void * pDado_2 )
 {
+    (void) pDado_1;
+    (void) pDado_2;
     /* Duas casas nunca são iguais */
     return 1 ;
     

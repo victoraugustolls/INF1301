@@ -188,12 +188,13 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
                                              void ** casas ,
                                              int num_casas ,
                                              int num_dimensoes ,
-                                             int ( ** array_dimensao ) ( void * casa ) ,
+                                             int ( ** array_dimensao ) ( void * casa, void * aux ) ,
                                              int * array_sinal ,
-                                             int ( * vazio) ( void * casa ) ,
-                                             int ( * inimigo ) ( void * casa ) ,
+                                             int ( * vazio) ( void * casa, void * aux ) ,
+                                             int ( * inimigo ) ( void * casa, void * aux ) ,
                                              int * cond_especiais ,
-                                             int num_cond_especiais ) ;
+                                             int num_cond_especiais,
+                                             void* aux ) ;
 
 #undef VALIDA_MOV_EXT
 
