@@ -1,12 +1,12 @@
 Data	   Horas Trabalhadas	 Tipo Tarefa	 		                        		Descrição da Tarefa Realizada
-03/10/16   1			         Projetar	 		                                    Verificar os testes que faltam para cobrir todos os casos no 																							módulo lista
+03/10/16   1			         Projetar	 		                                    Verificar os testes que faltam para cobrir todos os casos no 																																						módulo lista
 04/10/16   15min                 Especificar as funções                                 Decidir as funções para o módulo lista
-04/10/16   1                     Revisar código                                         Verificar a implementação do módulo lista para os requisitos do 																						trabalho 2
-04/10/16   2                     Codificar módulo                                 		Implementar no módulo lista as funções que faltavam, remover as 																						desnecessárias e modificar as existentes
-04/10/16   30min                 Revisar código do módulo                               Verificar no TESTLIS.C o que precisaria ser alterado para a nova 																						 lista
+04/10/16   1                     Revisar código                                         Verificar a implementação do módulo lista para os requisitos do 																																					trabalho 2
+04/10/16   2                     Codificar módulo                                 		Implementar no módulo lista as funções que faltavam, remover as 																																					desnecessárias e modificar as existentes
+04/10/16   30min                 Revisar código do módulo                               Verificar no TESTLIS.C o que precisaria ser alterado para a nova 																						 															lista
 04/10/16   30min                 Planejar testes                                 		Planejar os novos testes para a lista
 04/10/16   2                     Codificar módulo                                       Mudar os testes do TESTLIS.C para nova lista
-05/10/16   1                     Diagnosticar e corrigir os problemas encontrados       Corrigir diversos erros no TESTLIS.C vinculados ao retorno de 																							parâmetros por referência
+05/10/16   1                     Diagnosticar e corrigir os problemas encontrados       Corrigir diversos erros no TESTLIS.C vinculados ao retorno de 																																						parâmetros por referência
 05/10/16   1                     Redigir Script de teste                                Alterar os testes do módulo de lista
 05/10/16   1                     Projetar				                                Projetar o módulo peça
 05/10/16   30min                 Especificar as funções				                    Especificar as funcões do módulo peça
@@ -15,3 +15,11 @@ Data	   Horas Trabalhadas	 Tipo Tarefa	 		                        		Descrição da
 06/10/16   30min                 Redigir Script de teste                                Redigir os scripts de teste para o módulo peça
 06/10/16   30min                 Diagnosticar e corrigir os problemas encontrados       Corrigir módulo peça, para armazenar char no lugar de string
 06/10/16   30min                 Revisar especificações                                 Revisar o enunciado do trabalho para montar a entrega final
+10/10/16   1					 Diagnosticar e corrigir os problemas encontrados		Corrigir o teste do módulo peça
+10/10/16   30min				 Redigir Script de teste 								Correção do script de teste do módulo peça
+11/10/16   2					 Codificar módulo										Implementar os testes do módulo casa
+11/10/16   1					 Redigir Script de teste 								Redigir os scripts de teste do módulo casa
+11/10/16   1					 Diagnosticar e corrigir os problemas encontrados		Corrigir os problemas apontados pelo teste no módulo casa
+11/10/16   2					 Codificar módulo										Adição de novas funções no módulo casa
+12/10/16   1					 Codificar módulo										Adição de novos testes na casa
+12/10/16   1					 Redigir Script de teste 								Redigir os scripts de teste para as novas funções do módulo casa

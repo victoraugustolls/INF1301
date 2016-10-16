@@ -1,8 +1,8 @@
 /***************************************************************************
 *  $MCI Módulo de implementação: TCSA Teste casas do tabuleiro
 *
-*  Arquivo gerado:              TestPCA.c
-*  Letras identificadoras:      TPCA
+*  Arquivo gerado:              TestCSA.c
+*  Letras identificadoras:      TCSA
 *
 *  Nome da base de software:    Arcabouço para a automação de testes de programas redigidos em C
 *  Arquivo da base de software: D:\AUTOTEST\PROJETOS\LISTA.BSW
@@ -73,18 +73,24 @@ LIS_tppLista listaRecebida ;
 
 /***********************************************************************
 *
-*  $FC Função: TCSA &Testar peça
+*  $FC Função: TCSA &Testar casa
 *
 *  $ED Descrição da função
-*     Podem ser criadas até 10 peças, identificadas pelos índices 0 a 10
+*     Podem ser criadas até 10 casas, identificadas pelos índices 0 a 10
 *
 *     Comandos disponíveis:
 *
 *     =resetTeste
-*           - anula o vetor de peças. Provoca vazamento de memória
-*     =criarPeca                    inx    condRetorno
+*           - anula o vetor de casas. Provoca vazamento de memória
+*     =criarCasa                    inx    condRetorno
 *	  =inserePeca 					inx    nomePeca     corPeca 	  condRetorno
-*     =obterNo                      inx    nomePeca     corPeca       condRetorno
+*	  =removePeca                   inx    condRetorno
+*     =obterPeca                    inx    nomePeca     corPeca       condRetorno
+*	  =comparaCasas 				inx1   inx2 		igualdade     condRetorno
+*	  =modificarAmeacante 			inx    condRetorno
+*	  =modificarAmeacados 			inx    condRetorno
+*	  =obterAmeacante 				inx    igualdade    condRetorno
+*	  =obterAmeacados 				inx    igualdade    condRetorno
 *     =destroiPeca                  inx    condRetorno
 *
 ***********************************************************************/
