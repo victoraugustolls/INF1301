@@ -260,7 +260,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                    "Condicao de retorno errada ao obter lista de ameacantes." ) ;
         } /* if */
         
-        CondRet = CSA_InserirPecaCasa( 'T' ,
+        CondRet = CSA_InserirPecaCasa( 'P' ,
                                        'P' ,
                                        casaTst ) ;
         if ( CondRet == CSA_CondRetNaoExiste )
