@@ -1,7 +1,7 @@
 ————— Trabalho 2 - Programação Modular —————
 
  - Pontifícia Universidade Católica do Rio de Janeiro
- - Data: 13 de Outubro de 2016
+ - Data: 16 de Outubro de 2016
 
 ————— Autores —————
 
@@ -20,9 +20,16 @@
 	 	- EXECUTAR_TESTE_PECA.BAT.TXT
 	 	- EXECUTAR_TESTE_TABULEIRO.BAT.TXT
 	 	- EXECUTAR_TESTE_VMV.BAT.TXT
+	 	- EXECUTAR_TODOS_TESTES.BAT.TXT
 
 	 = bin
 	 	Contém os executáveis do teste de cada módulo.
+
+	 	- TEST_CSA.EXE
+	 	- TEST_LIS.EXE
+	 	- TEST_PCA.EXE
+	 	- TEST_TAB.EXE
+	 	- TEST_VMV.EXE
 
 	 = include
 	 	Contém os módulos de definição do projeto.
@@ -42,14 +49,23 @@
 	 	- ArcaboucoTeste.lib.TXT
 
 	 = log
-	 	Destino da saída da execução dos scripts de teste
+	 	Destino da saída da execução dos scripts de teste.
+	 	A pasta deve estar vazia.
 
 	 = pecas
-	 	Contém os arquivos que definem o movimento de uma peça. Novas
-	 	peças devem ser adicionadas aqui.
+	 	Contém os arquivos que definem o movimento de uma peça.
+	 	Novas peças devem ser adicionadas aqui.
+
+	 	pecas\teste possui arquivos que são utilizados nos testes.
 
 	 = script
 	 	Contém os scripts de testes a serem executados.
+
+	 	- TESTE_CASA.SCRIPT
+	 	- TESTE_LISTA.SCRIPT
+	 	- TESTE_PECA.SCRIPT
+	 	- TESTE_TABULEIRO.SCRIPT
+	 	- TESTE_VMV.SCRIPT
 
 	 = source
 	 	Contém os módulos de implementação do projeto.
@@ -74,29 +90,38 @@
 	 - COMO_ADD_NOVA_PECA.TXT
 	 	Arquivo com instruções de como adicionar peças ao jogo.
 
-————— Descrição do Programa —————
-
-Cada executável na pasta bin testa as funções do módulo 
-correspondente de acordo com o script de teste fornecido.
+	 - RENOMEIA_BAT_EXE_LIB.BAT.TXT
+	 	Script que renomeia todos os arquivos BAT.TXT, .EXE.TXT e .lib.TXT para
+	 	.BAT, .EXE e .lib
 
 ————— Instruções Importantes —————
 
- Devido ao sistema de segurança da maioria dos provedores de e-mail, os arquivos
- de extensão .EXE e .bat foram renomeados para a extensão .EXE.TXT e .bat.TXT, respectivamente.
+	 Devido ao sistema de segurança da maioria dos provedores de e-mail, os arquivos
+	 de extensão .EXE, .lib e .BAT foram renomeados para a extensão .EXE.TXT, .lib.TXT .BAT.TXT, respectivamente.
 
- Para o correto funcionamento dos programas, renomeie os arquivos com extensão .EXE.TXT e .bat.TXT
- para apenas a extensão .EXE e .bat, respectivamente.
+	 Para o correto funcionamento dos programas, renomeie os arquivos com extensão .EXE.TXT, .lib.TXT e .BAT.TXT
+	 para apenas a extensão .EXE, .lib e .bat, respectivamente.
 
- Para renomear, siga os seguintes passos:
- 	- Clique com o botão direito. Um menu irá aparecer.
- 	- Clique na opção Renomear.
- 	- Altere o final do arquivo de .EXE.TXT para .EXE (ou de .bat.TXT para .bat)
- 	- Caso o Windows pergunte se você realmente deseja fazer isso, diga que sim.
+	 Um script para essa tarefa é fornecido (RENOMEIA_BAT_EXE_LIB.BAT.TXT)
+	 Contudo, esse script deve ser renomeado antes de ser executado
 
-————— Observação Importante Para Interessados em Compilar o Programas —————
+	 Para renomear, siga os seguintes passos:
+	 	- Clique com o botão direito em RENOMEIA_BAT_EXE_LIB.BAT.TXT. Um menu irá aparecer.
+	 	- Clique na opção Renomear.
+	 	- Altere o final do arquivo de .BAT.TXT para .BAT
+	 	- Caso o Windows pergunte se você realmente deseja fazer isso, diga que sim.
 
- 	Os arquivos .lib também foram renomeados para .lib.TXT pelo mesmo motivo
- 	que o descrito a cima.
+	Agora basta apenas executar o recém renomeado arquivo RENOMEIA_BAT_EXE_LIB.BAT com dois cliques.
+
+	Verifique se os arquivos nas bastas bat, lib, e bin estão sem o final .TXT.
+
+————— Descrição do Programa —————
+
+	Cada executável na pasta bin testa as funções do módulo 
+	correspondente de acordo com o script de teste fornecido.
+
+	O arquivo EXECUTAR_TODOS_TESTES.BAT executa todos os testes,
+	em sequência.
 
 ————— Modo de Execução do Script de Testes ————— 
 
@@ -106,6 +131,12 @@ correspondente de acordo com o script de teste fornecido.
 	Execute (dê dois cliques) em cada arquivo na pasta bat. Logs de saída 
 	serão gerados na pasta log para cada arquivo .BAT correspondente.
 
+	O arquivo EXECUTAR_TODOS_TESTES.BAT executa todos os testes,
+	em sequência.
+
 ————— Adicionando uma Peça Nova —————————————————————————————— 
 
 	Ler arquivo COMO_ADD_NOVA_PECA.TXT
+
+	Este contém as instruções de como adicionar novas peças.
+	

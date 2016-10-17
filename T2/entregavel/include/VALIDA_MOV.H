@@ -16,10 +16,13 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     1       avs   04/out/2016 início desenvolvimento
+*     1       iars   04/out/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
-*     TODO
+*     Módulo responsável por checar a validez do movimento de uma peça de uma casa para outra
+*     assim como a configuração inicial destas.
+*     Essa validez é checada através de uma série de arquivos de definição de peça
+*     que definem a lógica do movimento de cada peça.
 *
 ***************************************************************************/
 
@@ -51,22 +54,22 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
                /* Concluiu corretamente */
 
          VMV_CondRetErrAberturaArquivo = 1 ,
-               /* Ocorreu um erro na leitura do arquivo */
+               /* Ocorreu um erro na abertura do arquivo */
 
          VMV_CondRetErrFormatoArquivoErrado = 2 ,
-               /* Ocorreu um erro na leitura do arquivo */
+               /* O arquivo possui uma sintaxe errada */
 
          VMV_CondRetErrFaltouMemoria = 3 ,
-               /* Ocorreu um erro na leitura do arquivo */
+               /* Faltou memória para completar a operação*/
 
          VMV_CondRetVariavelNaoExistente = 4 ,
-               /* Ocorreu um erro na leitura do arquivo */
+               /* A variável utilizada não existe */
 
          VMV_CondRetErrManuseioArquivo = 5 ,
-               /* Ocorreu um erro na leitura do arquivo */
+               /* Ocorreu algum erro na manipulação da posição de leitura do arquivo */
 
          VMV_CondRetErrComandoNaoExistente = 6
-               /* Ocorreu um erro na leitura do arquivo */
+               /* O comando encontrado não existe */
 
    } VMV_tpCondRet ;
 
@@ -86,7 +89,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
                /* O Movimento não é válido */
 
          VMV_MovimentoValidoSim = 1
-               /* O Movimento não é válido */
+               /* O Movimento é válido */
 
    } VMV_tpMovimentoValido ;
 
@@ -161,22 +164,54 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 
 /***********************************************************************
 *
-*  $FC Função: VMV  &TODO
+*  $FC Função: VMV  &Checar Movimento de Peça
 *
 *  $ED Descrição da função
-*     TODO
+*     Função que checa se o movimento de uma peça da casa atual para a casa de destino é válido.
+*     Recebe uma série de vetores e funções que auxiliam a identificação da geometria do tabuleiro
+*     em questão.
+*     Suporta tabuleiros genéricos.
 *
 *  $EP Parâmetros
-*     TODO          - TODO
-*     TODO          - TODO
+*       pConfig              - Arquivo de configuração aberto, com o uso de VMV_CriarConfigDir.
+*       movimento_valido     - Retorno que informa se o movimento é válido ou não.
+*       peca                 - Nome da peça sendo checada. Deve existir um arquivo com o exato nome
+*                              desta peça no diretório definido no arquivo .conf.
+*       casa_atual           - Ponteiro para a casa atual do movimento sendo checado
+*       casa_destino         - Ponteiro para a casa de destino do movimento sendo checado.
+*
+*
+*       casas                - Vetor com todas as casas do tabuleiro. O ordenamento não é relevante.
+*       num_casas            - O número de elementos em casas.
+*
+*       num_dimensoes        - O número de dimensões e sinais no tabuleiro.
+*       array_dimensao       - Vetor de funções em que a iésima função recebem uma 
+*                               casa e uma estrutura auxiliar e retorna a iésima dimensão daquela casa
+*       array_sinal          - Vetor de inteiros associado à peça em questão sendo analizada.
+*                              Usualmente associado à cor da peça, atribuindo um sentido
+*                              a cada uma das dimensões.
+*
+*       vazio                - Função que recebe uma casa e uma estrutura auxiliar e retorna 1 se
+*                              a casa em questão está vazia e 0 caso não.
+*       inimigo              - Função que recebe uma casa e uma estrutura auxiliar e retorna 1 se
+*                              a casa em questão possui um inimigo e 0 caso não.
+*
+*       cond_especiais       - Vetor com inteiros 1 ou 0 referentes à condições especiais 
+*                              relacionadas à peça em questão.
+*                              Usualmente utilizado para eventos do tabuleiro, como quando
+*                              a peça em questão nunca foi movimentada.
+*       num_cond_especiais   - Número de elementos de cond_especiais.
+*
+*       aux                  - Estrutura auxiliar que será passada como parâmetro para algumas
+*                              das funções sendo recebidas como parâmetros.
 *
 *  $FV Valor retornado
-*      VMV_CondRetOK = 0
-*      VMV_CondRetErrAberturaArquivo = 1
-*      VMV_CondRetErrFormatoArquivoErrado = 2
-*      VMV_CondRetVariavelNaoExistente = 4
-*      VMV_CondRetErrManuseioArquivo = 5
-*      VMV_CondRetErrComandoNaoExistente = 6
+*      VMV_CondRetOK                       - Retornou corretamente o estado inicial do tabuleiro
+*      VMV_CondRetErrAberturaArquivo       - Não encontrou o arquivo de definição de movimento da peça
+*      VMV_CondRetErrFormatoArquivoErrado  - O formato (sintaxe) do arquivo está incorreto
+*      VMV_CondRetVariavelNaoExistente     - Variável utilizada no arquivo não existe
+*      VMV_CondRetErrManuseioArquivo       - Erro ao manipular o arquivo em memória
+*      VMV_CondRetErrComandoNaoExistente   - Comando lido no arquivo da peça não existente
 *
 ***********************************************************************/
 
@@ -198,7 +233,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 
 #undef VALIDA_MOV_EXT
 
-/********** Fim do módulo de definição: VMV  Lista duplamente encadeada **********/
+/********** Fim do módulo de definição: VMV Validação de Movimento **********/
 
 #else
 #endif
