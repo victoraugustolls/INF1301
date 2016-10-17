@@ -1,0 +1,241 @@
+
+Existem três tipos de arquivos para serem alterados ao
+se definir uma nova peça
+
+. Arquivo de Configuração
+	Determina o local dos arquivos que determinam
+	o movimento das peças e as posições das peças
+	do tabuleiro inicial.
+
+. Arquivo de Tabuleiro Inicial
+	Determina a arrumação inicial do tabuleiro.
+
+. Arquivo de Movimento de Peças (.PCA)
+	Determina uma expressão lógica para determinar
+	quando uma peça pode realizar um movimento válido.
+
+NOTA IMPORTANTE:
+	Adicionar peças novas requer um conhecimento
+	sobre básico sobre composição (aninhamento) de
+	comandos e lógica proposicional e/ou de primeira
+	ordem.
+	Apesar de mais complexo, essa forma de definição
+	é mais poderosa e permite a definição de uma variedade
+	de peças com movimentos e regras de movimentação
+	bastante arbitrárias.
+
+----------------------------------------------------
+--- Arquivo de Configuração ------------------------
+----------------------------------------------------
+
+	Na pasta pecas/default existe um arquivo chamado config.conf.
+
+	Esse arquivo contém o caminho dos diretórios dos arquivos que devem
+	ser alterados. Este arquivo deve possuir a sintaxe:
+
+----------------------------------------------------
+
+	tabuleiro_inicial       <CAMINHO PARA O ARQUIVO DE TABULEIRO INICIAL>
+	diretorio_pecas         <CAMINHO PARA A PASTA AONDE CADA PEÇA SERÁ INSERIDA>
+
+----------------------------------------------------
+
+	Exemplo:
+
+	tabuleiro_inicial       default\inicial.pca
+	diretorio_pecas         default\pecas\
+
+----------------------------------------------------
+--- Arquivo de Tabuleiro Inicial -------------------
+----------------------------------------------------
+
+	Este arquivo determina a configuração do tabuleiro inicial.
+
+	Ele possui a seguinte sintaxe:
+
+----------------------------------------------------
+
+	<NUMERO N DE CASAS TOTAIS NO TABULEIRO>
+
+	<CARACTER IDENTIFICADOR DA PEÇA 1> <CARACTER IDENTIFICADOR DA COR DA PEÇA 1>
+	<CARACTER IDENTIFICADOR DA PEÇA 2> <CARACTER IDENTIFICADOR DA COR DA PEÇA 2>
+	<CARACTER IDENTIFICADOR DA PEÇA 3> <CARACTER IDENTIFICADOR DA COR DA PEÇA 3>
+	...
+	<CARACTER IDENTIFICADOR DA PEÇA N> <CARACTER IDENTIFICADOR DA COR DA PEÇA N>
+	
+----------------------------------------------------
+
+	Exemplo (Xadrez usual):
+
+	64
+	TP CP BP DP RP BP CP TP
+	PP PP PP PP PP PP PP PP
+	VV VV VV VV VV VV VV VV
+	VV VV VV VV VV VV VV VV
+	VV VV VV VV VV VV VV VV
+	VV VV VV VV VV VV VV VV
+	PB PB PB PB PB PB PB PB
+	TB CB BB DB RB BB CB TB
+
+----------------------------------------------------
+--- Arquivos de Cada Peça --------------------------
+----------------------------------------------------
+
+	Dentro do diretorio especificado em diretorio_pecas no arquivo
+	de configuração, deve haver um arquivo X.pca para cada peça aonde
+	X é o caracter identifcador daquela peça.
+
+	Esse arquivo define uma expressão em lógica de primeira ordem.
+	Caso essa expressão seja avaliada como verdadeira em um dado momento,
+	a peça na casa atual A pode realizar um movimento válido para a casa
+	de destino D.
+
+	O arquivo deve possuir a seguinte sintaxe: (note que o arquivo
+	contém somente a expressão lógica, mas que é possível compor
+	expressões lógicas para aumentar sua complexidade)
+
+----------------------------------------------------
+
+	< CMD_BOOL >
+
+----------------------------------------------------
+
+	Definindo mais formalmente a sintaxe:
+
+	< CMD_BOOL > :: 	< CMD_LOGICO > | 
+						< CMD_PROP >
+
+	< CMD_LOGICO > :: 	'L_OR' < CMD_BOOL > < CMD_BOOL > | 
+						'L_AND' < CMD_BOOL > < CMD_BOOL > | 
+						'L_IFTHEN' < CMD_BOOL > < CMD_BOOL > | 
+						'L_NOT' < CMD_BOOL > | 
+						'L_FORALL' < VAR > < CMD_BOOL > | 
+						'L_EXIST' < VAR > < CMD_BOOL > 
+
+	< CMD_PROP > :: 	'P_IGUAL' < CMD_NUM > < CMD_NUM > |
+						'P_MAIOR' < CMD_NUM > < CMD_NUM > |
+						'P_MENOR' < CMD_NUM > < CMD_NUM > |
+						'P_VAZ' < CASA > |
+						'P_INI' < CASA > |
+						'P_COND' < NUMERO > |
+
+	< CMD_NUM > ::		< CMD_FUNC > |
+						< CMD_VAL >
+
+	< CMD_FUNC > ::		'F_ADD' < CMD_NUM > < CMD_NUM > |
+						'F_SUB' < CMD_NUM > < CMD_NUM > |
+						'F_MUL' < CMD_NUM > < CMD_NUM > |
+						'F_ABS' < CMD_NUM > < CMD_NUM >
+
+	< CMD_VAL > ::		'V_DIM' < NUMERO > < CASA > |
+						'V_SIG' < NUMERO > |
+						'V_NUM' < NUMERO >
+
+	< CASA > ::			'A' |
+						'D' |
+						< VAR >
+
+	< VAR > ::			< QUALQUER SEQUENCIA DE CARACTERES NAO BRANCOS >
+
+	< NUMERO > ::		< QUALQUER SEQUENCIA DE DIGITOS NUMÉRICOS >
+
+----------------------------------------------------
+
+	Semântica dos Comandos:
+
+	CONSTANTES
+	A 		:= CASA ATUAL
+	D		:= CASA DE DESTINO
+
+	L_ Expressão Lógica (verdadeiro ou falso)
+	(ARGUMENTOS DEVEM SER L_ ou P_)
+
+	L_OR X Y 		:= OU LÓGICO DE X E Y
+	L_AND X Y		:= E LÓGICO DE X E Y
+	L_IFTHEN X Y	:= CONDICIONAL LOGICO DE X E Y
+	L_NOT X 		:= NEGACAO LOGICA DE X
+	L_FORALL C X 	:= TODAS CASAS C SATISFAZEM X (PODE USAR C EM X)
+	L_EXIST C X 	:= ALGUMA CASA C SATISFAZ X (PODE USAR C EM X)
+
+	P_ Preposição Lógica (verdadeiro ou falso)
+
+	P_IGUAL X Y	:= 	VALOR DE X IGUAL AO VALOR 
+					DE Y (ARGUMENTOS DEVEM SER F_ ou V_)
+	P_MAIOR X Y	:= 	VALOR DE X MAIOR QUE O 
+					VALOR DE Y (ARGUMENTOS DEVEM SER F_ ou V_)
+	P_MENOR X Y	:= 	VALOR DE X MENOR QUE 
+					O VALOR DE Y (ARGUMENTOS DEVEM SER F_ ou V_)
+	P_VAZ X 	:= 	X É UMA CASA VAZIA (ARGUMENTO DEVE SER C, A OU D)
+	P_INI X 	:= 	X É UMA CASA QUE CONTÉM 
+					PEÇA INIMIGA (ARGUMENTO DEVE SER C, A OU D)
+	P_COND i 	:= 	A CONDICAO ESPECIAL i É VÁLIDA
+
+	F_ Função (retorna um valor V_)
+	(ARGUMENTOS DEVEM SER F_ ou V_)
+	
+	F_ADD X Y		:= X+Y
+	F_SUB X Y		:= X-Y
+	F_MUL X Y		:= X*Y
+	F_ABS	X 		:= VALOR ABSOLUTO DE X
+
+	V_ Valores Numéricos
+
+	V_DIM i X 	:= VALOR DA i-ESIMA DIMENSAO DA CASA X (X PODE SER C, A OU D)
+	V_SIG i 	:= VALOR DO SINAL i-ESIMA DIMENSAO DA CASA ATUAL (A)
+	V_NUM X 	:= VALOR NUMÉRICO DE X (QUE SERÁ IGUAL A X)
+
+----------------------------------------------------
+
+	No caso geral:
+
+	A dimensão i correponde a algo como a linha e a coluna do tabuleiro em
+	um xadrez com um tabuleiro quadrado. É um dos valores em que se mede
+	a posicao de uma dada casa.
+	(Note que é possível existir um tabuleiro cúbico ou até circular)
+
+	O valor do sinal de uma dimensão é um valor correpspondente
+	ao sentido da peça presente na casa A, usualmente
+	associado com a cor da peça.
+
+	Uma condição especial é um valor que correponde a alguma condicao
+	ou estado do tabuleiro ou da peça.
+
+----------------------------------------------------
+
+	No nosso caso:
+
+	A dimensão zero são as colunas
+	A dimensão um são as linhas
+	O valor do sinal da dimensão zero é zero
+	O valor do sinal da dimensão um é: 
+					-1 se a peça for branca
+					+1 se a peça for preta
+	A condição especial 0 é verdadeira se a peça
+					na casa atual ainda não foi
+					movida no jogo.
+
+----------------------------------------------------
+
+	Exemplos:
+
+	- Peça que se move para qualquer casa que esteja na mesma linha que ela
+
+	P_IGUAL
+		V_DIM 1 A
+		V_DIM 1 D
+
+	- Peça que se move para qualquer casa em que a linha da casa de destino
+	 	esteja completamente vazia
+
+	L_FORALL X
+		L_IFTHEN
+			P_IGUAL
+				V_DIM 1 X
+				V_DIM 1 D
+			P_VAZ X
+
+
+
+
+
+

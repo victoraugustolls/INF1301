@@ -1,0 +1,204 @@
+#if ! defined( VALIDA_MOV_ )
+#define VALIDA_MOV_
+/***************************************************************************
+*
+*  $MCD Módulo de definição: VMV  Validador de Movimentos
+*
+*  Arquivo gerado:              VALIDA_MOV.H
+*  Letras identificadoras:      VMV
+*
+*  Nome da base de software:    Arcabouço para a automação de testes de programas redigidos em C
+*  Arquivo da base de software: D:\AUTOTEST\PROJETOS\LISTA.BSW
+*
+*  Projeto: INF 1301 / 1628 Tabuleiro de Xadrez
+*  Gestor:  LES/DI/PUC-Rio
+*  Autores: iars
+*
+*  $HA Histórico de evolução:
+*     Versão  Autor    Data     Observações
+*     1       avs   04/out/2016 início desenvolvimento
+*
+*  $ED Descrição do módulo
+*     TODO
+*
+***************************************************************************/
+
+#if defined( VALIDA_MOV_OWN )
+   #define VALIDA_MOV_EXT
+#else
+   #define VALIDA_MOV_EXT extern
+#endif
+
+/***** Declarações exportadas pelo módulo *****/
+
+/* Tipo referência para uma configuracao de diretorio de movimento */
+
+typedef struct VMV_configDir * VMV_tppConfigDir ;
+
+/***********************************************************************
+*
+*  $TC Tipo de dados: VMV Condições de retorno
+*
+*
+*  $ED Descrição do tipo
+*     Condições de retorno das funções do validador de movimento
+*
+***********************************************************************/
+
+   typedef enum {
+
+         VMV_CondRetOK = 0 ,
+               /* Concluiu corretamente */
+
+         VMV_CondRetErrAberturaArquivo = 1 ,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetErrFormatoArquivoErrado = 2 ,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetErrFaltouMemoria = 3 ,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetVariavelNaoExistente = 4 ,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetErrManuseioArquivo = 5 ,
+               /* Ocorreu um erro na leitura do arquivo */
+
+         VMV_CondRetErrComandoNaoExistente = 6
+               /* Ocorreu um erro na leitura do arquivo */
+
+   } VMV_tpCondRet ;
+
+/***********************************************************************
+*
+*  $TC Tipo de dados: VMV Validez do Movimento
+*
+*
+*  $ED Descrição do tipo
+*     Determinação se um movimento é válido ou não
+*
+***********************************************************************/
+
+   typedef enum {
+
+         VMV_MovimentoValidoNao = 0 ,
+               /* O Movimento não é válido */
+
+         VMV_MovimentoValidoSim = 1
+               /* O Movimento não é válido */
+
+   } VMV_tpMovimentoValido ;
+
+/***********************************************************************
+*
+*  $FC Função: VMV  &Cria um identificador para o arquivo de configuração
+*
+*  $ED Descrição da função
+*     Dado um diretório, retorna por referência um identificador de um arquivo
+*     de configuração.
+*
+*  $EP Parâmetros
+*     pConfigDir          - ponteiro para o identificador de configuração
+*     pathConfigArq       - diretório do arquivo
+*
+*  $FV Valor retornado
+*     VMV_CondRetOK                       - Identificador de configuração criado corretamente
+*     VMV_CondRetErrFaltouMemoria         - Ocorreu um erro na criação do identificador de configuração
+*     VMV_CondRetErrAberturaArquivo       - Erro ao abrir o arquivo de configuração
+*     VMV_CondRetErrFormatoArquivoErrado  - Arquivo de configuração foi criado no formato errado
+*
+***********************************************************************/
+
+   VMV_tpCondRet VMV_CriarConfigDir ( VMV_tppConfigDir * pConfigDir , const char * pathConfigArq ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: VMV  &Destroi o identificador do arquivo de configuração
+*
+*  $ED Descrição da função
+*     Destrói o identificador de configuração.
+*
+*  $EP Parâmetros
+*     pConfigDir          - ponteiro para o identificador de configuração
+*
+*  $FV Valor retornado
+*     VMV_CondRetOK       - Identificador de configuração destruído corretamente
+*
+***********************************************************************/
+
+   VMV_tpCondRet VMV_DestruirConfigDir ( VMV_tppConfigDir pConfigDir ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: VMV  &Obter estado inicial do tabuleiro
+*
+*  $ED Descrição da função
+*     Dado o identificador de configuração, retorna por referência um vetor de
+*     peças e cores do tabuleiro no início. Ambos os vetores tem tamanho também
+*     passado como parâmetro
+*
+*  $EP Parâmetros
+*     pConfig       - identificador de configuração
+*     pecas         - ponteiro para o vetor de peças
+*     cores         - ponteiro para o vetor de cores
+*     num_casas     - tamanho do vetor de peças e cores
+*
+*  $FV Valor retornado
+*     VMV_CondRetOK                       - Retornou corretamente o estado inicial do tabuleiro
+*     VMV_CondRetErrFaltouMemoria         - Ocorreu um erro ao pegar o estado inicial do tabuleiro
+*     VMV_CondRetErrAberturaArquivo       - Erro ao abrir o arquivo de configuração
+*     VMV_CondRetErrFormatoArquivoErrado  - Arquivo de configuração foi criado no formato errado
+*
+***********************************************************************/
+
+   VMV_tpCondRet VMV_LerTabuleiroInicial (   VMV_tppConfigDir pConfig,
+                                             char ** pecas, 
+                                             char ** cores, 
+                                             int * num_casas ) ;
+
+/***********************************************************************
+*
+*  $FC Função: VMV  &TODO
+*
+*  $ED Descrição da função
+*     TODO
+*
+*  $EP Parâmetros
+*     TODO          - TODO
+*     TODO          - TODO
+*
+*  $FV Valor retornado
+*      VMV_CondRetOK = 0
+*      VMV_CondRetErrAberturaArquivo = 1
+*      VMV_CondRetErrFormatoArquivoErrado = 2
+*      VMV_CondRetVariavelNaoExistente = 4
+*      VMV_CondRetErrManuseioArquivo = 5
+*      VMV_CondRetErrComandoNaoExistente = 6
+*
+***********************************************************************/
+
+   VMV_tpCondRet VMV_ChecarMovimentoPeca (   VMV_tppConfigDir pConfig ,
+                                             VMV_tpMovimentoValido * movimento_valido ,
+                                             char peca ,
+                                             void * casa_atual ,
+                                             void * casa_destino ,
+                                             void ** casas ,
+                                             int num_casas ,
+                                             int num_dimensoes ,
+                                             int ( ** array_dimensao ) ( void * casa, void * aux ) ,
+                                             int * array_sinal ,
+                                             int ( * vazio) ( void * casa, void * aux ) ,
+                                             int ( * inimigo ) ( void * casa, void * aux ) ,
+                                             int * cond_especiais ,
+                                             int num_cond_especiais,
+                                             void* aux ) ;
+
+#undef VALIDA_MOV_EXT
+
+/********** Fim do módulo de definição: VMV  Lista duplamente encadeada **********/
+
+#else
+#endif

@@ -25,7 +25,7 @@
    40  == Teste Destruição de Listas Inexistentes
 !!!    0  Linha:    43  // --------------------------------------------- 
    45  == Teste Obter Id Lista
-   50  == Teste do Teste Obter Id Lista
+   50  == Teste Obter Id Lista Falha
 >>>    1  Linha:    52  Valor do id errado. Deveria ser: >abc<  É: >cba<
 <<<    0  Linha:    53  Falha esperada foi recuperada. 
 !!!    0  Linha:    56  // --------------------------------------------- 
