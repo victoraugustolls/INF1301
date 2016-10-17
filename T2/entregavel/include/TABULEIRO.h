@@ -241,10 +241,10 @@ TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
  *     Obtém a peça presente na posição especificada do tabuleiro.
  *
  *  $EP Parâmetros
- *     coluna      - coordenada da coluna onde a peça será obtida
- *     linha       - coordenada da linha onde a peça será obtida
- *     pNomePeca   - identificador da peça a ser obtida do tabuleiro
- *     pCorPeca    - cor da peça a ser obtida do tabuleiro
+ *     coluna      - coordenada da coluna da casa onde a peça será obtida
+ *     linha       - coordenada da linha da casa onde a peça será obtida
+ *     pNomePeca   - ponteiro para o ponteiro referente ao nome da peça contida na casa
+ *     pCorPeca    - ponteiro para o ponteiro referente à cor da peça contida na casa
  *     pTabuleiro  - ponteiro para o tabuleiro onde a peça vai ser obtida
  *
  *  $FV Valor retornado

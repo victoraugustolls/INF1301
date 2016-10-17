@@ -120,12 +120,12 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *
 *  $EP Parâmetros
 *     pPeca            - ponteiro para a peça de onde se quer o valor
-*     nomePeca         - ponteiro para o valor do nome da peça
-*     corPeca          - ponteiro para o valor da cor da peça
+*     nomePeca         - ponteiro para o ponteiro referente ao valor do nome da peça
+*     corPeca          - ponteiro para o ponteiro referente ao valor da cor da peça
 *
 *  $FV Valor retornado
-*     PCA_CondRetOK
-*     PCA_CondRetPecaVazia
+*     PCA_CondRetOK			- valor foi obtido corretamente
+*     PCA_CondRetPecaVazia	- valores da peça vazios
 *
 ***********************************************************************/
 
@@ -147,8 +147,8 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *     igualdade          - ponteiro para o valor da igualdade
 *
 *  $FV Valor retornado
-*     PCA_CondRetOK
-*     PCA_CondRetPecaNaoExiste
+*     PCA_CondRetOK				- peças comparadas corretamente
+*     PCA_CondRetPecaNaoExiste	- uma das peças não existe
 *
 ***********************************************************************/
 

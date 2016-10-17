@@ -16,6 +16,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     4       vas   12/out/2016 corrigir esvaziar peça da casa
  *     3       lff   11/out/2016 adição de funções de modificar lista
  *     2       lff   10/out/2016 conserto de alguns erros
  *     1       lff   04/out/2016 início desenvolvimento
@@ -163,8 +164,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *     Obtém a peça presente na casa passada pelo ponteiro.
  *
  *  $EP Parâmetros
- *     pNomePeca   - variável onde o identificador da peça será retornado
- *     pCorPeca    - variável onde a cor da peça será retornada
+ *     pNomePeca   - ponteiro para o ponteiro referente ao nome da peça contina na casa
+ *     pCorPeca    - ponteiro para o ponteiro referente à cor da peça contina na casa
  *     pCasa       - ponteiro para a casa onde a peça vai ser obtida
  *
  *  $FV Valor retornado
