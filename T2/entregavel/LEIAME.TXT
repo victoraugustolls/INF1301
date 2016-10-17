@@ -1,7 +1,7 @@
 ————— Trabalho 2 - Programação Modular —————
 
  - Pontifícia Universidade Católica do Rio de Janeiro
- - Data: 13 de Outubro de 2016
+ - Data: 16 de Outubro de 2016
 
 ————— Autores —————
 
@@ -20,9 +20,16 @@
 	 	- EXECUTAR_TESTE_PECA.BAT.TXT
 	 	- EXECUTAR_TESTE_TABULEIRO.BAT.TXT
 	 	- EXECUTAR_TESTE_VMV.BAT.TXT
+	 	- EXECUTAR_TODOS_TESTES.BAT.TXT
 
 	 = bin
 	 	Contém os executáveis do teste de cada módulo.
+
+	 	- TEST_CSA.EXE
+	 	- TEST_LIS.EXE
+	 	- TEST_PCA.EXE
+	 	- TEST_TAB.EXE
+	 	- TEST_VMV.EXE
 
 	 = include
 	 	Contém os módulos de definição do projeto.
@@ -42,14 +49,23 @@
 	 	- ArcaboucoTeste.lib.TXT
 
 	 = log
-	 	Destino da saída da execução dos scripts de teste
+	 	Destino da saída da execução dos scripts de teste.
+	 	A pasta deve estar vazia.
 
 	 = pecas
-	 	Contém os arquivos que definem o movimento de uma peça. Novas
-	 	peças devem ser adicionadas aqui.
+	 	Contém os arquivos que definem o movimento de uma peça.
+	 	Novas peças devem ser adicionadas aqui.
+
+	 	pecas\teste possui arquivos que são utilizados nos testes.
 
 	 = script
 	 	Contém os scripts de testes a serem executados.
+
+	 	- TESTE_CASA.SCRIPT
+	 	- TESTE_LISTA.SCRIPT
+	 	- TESTE_PECA.SCRIPT
+	 	- TESTE_TABULEIRO.SCRIPT
+	 	- TESTE_VMV.SCRIPT
 
 	 = source
 	 	Contém os módulos de implementação do projeto.

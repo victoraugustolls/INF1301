@@ -16,7 +16,7 @@ se definir uma nova peça
 
 NOTA IMPORTANTE:
 	Adicionar peças novas requer um conhecimento
-	sobre básico sobre composição (aninhamento) de
+	básico sobre composição (aninhamento) de
 	comandos e lógica proposicional e/ou de primeira
 	ordem.
 	Apesar de mais complexo, essa forma de definição
@@ -234,6 +234,13 @@ NOTA IMPORTANTE:
 				V_DIM 1 D
 			P_VAZ X
 
+	- Peça que se move para qualquer casa somente se todas as peças do tabuleiro estão na mesma linha
+
+	L_FORALL X
+		L_FORALL Y
+			P_IGUAL
+				V_DIM 1 X
+				V_DIM 1 Y
 
 
 
