@@ -50,3 +50,5 @@
 12/10/2016; 2 horas ; codificar e revisar código do módulo; Revisei e consertei o TESTTAB.C, terminando sua implementação.
 
 12/10/2016; 4 horas ; realizar testes e revisar código do módulo; Testei e consertei o TABULEIRO por completo.
+
+16/10/2016; 1 horas ; projetar; Fiz os exemplos dos módulos TABULEIRO e CASA.
