@@ -189,8 +189,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $FV Valor retornado
 *     Valor retornado
-*        LIS_CondRetOK
-*        LIS_CondRetFaltouMemoria
+*        LIS_CondRetOK              - inseriu elemento após corretamente
+*        LIS_CondRetFaltouMemoria   - ocorreu um erro na inserção do elemento
 *
 ***********************************************************************/
 
@@ -212,8 +212,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *     pLista    - ponteiro para a lista na qual deve excluir.
 *
 *  $FV Valor retornado
-*     LIS_CondRetOK
-*     LIS_CondRetListaVazia
+*     LIS_CondRetOK           - excluiu elemento da lista corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
 *
 ***********************************************************************/
 
@@ -229,11 +229,11 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $EP Parâmetros
 *     pLista           - ponteiro para a lista de onde se quer o valor
-*     elementoCorrente - ponteiro para o valor do nó corrente
+*     elementoCorrente - ponteiro para o ponteiro referente ao valor do nó corrente
 *
 *  $FV Valor retornado
-*     LIS_CondRetOK
-*     LIS_CondRetListaVazia
+*     LIS_CondRetOK           - obteve valor do nó corrente corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
 *
 ***********************************************************************/
 
@@ -250,10 +250,10 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $EP Parâmetros
 *     pLista  - ponteiro para a lista de onde se quer o valor
-*     idLista - ponteiro para o valor do id da lista
+*     idLista - ponteiro para o ponteiro referente ao valor do id da lista
 *
 *  $FV Valor retornado
-*     LIS_CondRetOK
+*     LIS_CondRetOK   - obteve o id da lista corretamente
 *
 ***********************************************************************/
 
