@@ -27,7 +27,7 @@
 
 /***********************************************************************
 *
-*  $TC Tipo de dados: VMV TODO
+*  $TC Tipo de dados: VMV configDir
 *
 ***********************************************************************/
 
@@ -44,7 +44,7 @@
 
 /***********************************************************************
 *
-*  $TC Tipo de dados: VMV TODO
+*  $TC Tipo de dados: VMV exprEvalTools
 *
 ***********************************************************************/
 
@@ -68,7 +68,7 @@
 
 /***********************************************************************
 *
-*  $TC Tipo de dados: VMV TODO
+*  $TC Tipo de dados: VMV casaIterator
 *
 ***********************************************************************/
 
@@ -82,16 +82,16 @@
 
 /***********************************************************************
 *
-*  $TC Tipo de dados: VMV TODO
+*  $TC Tipo de dados: VMV Retorno Esperado
 *
 ***********************************************************************/
    typedef enum {
 
          VMV_ReturnExpectedBool = 0 ,
-               /* O Movimento não é válido */
+               /* O retorno esperado é um booleano */
 
          VMV_ReturnExpectedInteger = 1
-               /* O Movimento não é válido */
+               /* O retorno esperado é um inteiro */
 
    } VMV_tpReturnExpected ;
 
@@ -129,7 +129,6 @@ static const char CMD_PCA_V_NUM [ ]          = "V_NUM";
 
 static const char CMD_PCA_C_A [ ]                = "A";
 static const char CMD_PCA_C_D [ ]                = "D";
-static const char CMD_PCA_C_C [ ]                = "C";
 
 /***********************************************************************
 * Protótipos das funções encapuladas no módulo
