@@ -13,7 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     1       avs   06/10/2016 início desenvolvimento
+*     1       iars   06/10/2016 início desenvolvimento
 *
 ***************************************************************************/
 
@@ -140,15 +140,29 @@ int configDirAberto = FALSE;
 *
 *     Comandos disponíveis:
 *
-*     =criarconfig condRet pathArquivo
-*     =criarconfigdefault condRet
-*     =destruirconfig condRet
-*     =lertabinicial condRet numCasasEsperado  pecasStringEsperado coresStringEsperado
-*     =checarmovpeca condRet movValidoSimOuNao peca xAtual yAtual xDestino yDestino*
+*     =criarconfig         condRet pathArquivo
+*     =criarconfigdefault  condRet
+*     =destruirconfig      condRet
+*     =lertabinicial       condRet numCasasEsperado  pecasStringEsperado coresStringEsperado
+*     =checarmovpeca       condRet movValidoSimOuNao peca xAtual yAtual xDestino yDestino
+*
+*     Descrição dos Parâmetros:
+*        condRet = Condição de retorno esperada
+*        pathArquivo = local do arquivo .conf a ser utilizado
+*        numCasasEsperado = número de casas esperado no arquivo de configuração inicial
+*        pecasStringEsperado = array contendo os caracteres de pecas na ordem em que devem aparecer no arquivo
+*        pecasStringEsperado = array contendo os caracteres de cores na ordem em que devem aparecer no arquivo
+*        movValidoSimOuNao = se espera-se que o movimento deve ser válido ou não
+*        peca = caracter correspondente à peça em questão (arquivo correspondente deve existir)
+*        xAtual = x da casa atual, utilizando geometria definida abaixo
+*        yAtual = y da casa atual, utilizando geometria definida abaixo
+*        xDestino = x da casa destino, utilizando geometria definida abaixo
+*        yDestino = y da casa destino, utilizando geometria definida abaixo
 *
 * --------------------------------------------
 *
 *  Geometria do Tabuleiro Utilizada no Comando checarmovpeca
+*  Todos os testes assumem essa geometria
 *
 *   NUM DIMENSIONS = 2
 *   NUM_COND_ESPECIAIS = 5
@@ -168,6 +182,11 @@ int configDirAberto = FALSE;
 *   DIM 1
 *   SIG 1
 *   Y
+*
+*   Aonde 
+*         I = Inimigo
+*         F = Não Inimigo
+*         . = Vazio
 *
 ***********************************************************************/
 
@@ -210,7 +229,7 @@ int configDirAberto = FALSE;
 
          numParametrosLidos = LER_LerParametros(   "is" ,
                                                    &condRetEsperada,
-                                                   &configPath );
+                                                   &configPath ) ;
 
          if( numParametrosLidos != 2 || configDirAberto == TRUE )
          {
@@ -218,7 +237,7 @@ int configDirAberto = FALSE;
          }
 
          condRetRecebida = VMV_CriarConfigDir(  &configDirBeingTested, 
-                                                configPath );
+                                                configPath ) ;
 
          if(condRetRecebida == VMV_CondRetOK)
          {
@@ -231,7 +250,7 @@ int configDirAberto = FALSE;
          }
          else
          {
-            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.");
+            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.") ;
          }
 
       }
@@ -239,7 +258,7 @@ int configDirAberto = FALSE;
       {
 
          numParametrosLidos = LER_LerParametros(   "i" ,
-                                                   &condRetEsperada );
+                                                   &condRetEsperada ) ;
 
          if( numParametrosLidos != 1 || configDirAberto == TRUE )
          {
@@ -247,7 +266,7 @@ int configDirAberto = FALSE;
          }
 
          condRetRecebida = VMV_CriarConfigDir(  &configDirBeingTested, 
-                                                NULL );
+                                                NULL ) ;
 
          if(condRetRecebida == VMV_CondRetOK)
          {
@@ -260,19 +279,19 @@ int configDirAberto = FALSE;
          }
          else
          {
-            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.");
+            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.") ;
          }
 
       }
       else if( strcmp( comandoTeste , DESTRUIR_CONFIG_CMD ) == 0 )
       {
          numParametrosLidos = LER_LerParametros(   "i" ,
-                                                   &condRetEsperada );
+                                                   &condRetEsperada ) ;
          if( numParametrosLidos != 1 || configDirAberto == FALSE )
          {
             return TST_CondRetParm ;
          }
-         condRetRecebida = VMV_DestruirConfigDir( configDirBeingTested );
+         condRetRecebida = VMV_DestruirConfigDir( configDirBeingTested ) ;
 
          if(condRetRecebida == VMV_CondRetOK)
          {
@@ -285,7 +304,7 @@ int configDirAberto = FALSE;
          }
          else
          {
-            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.");
+            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.") ;
          }
       }
       else if( strcmp( comandoTeste , LER_TAB_INICIAL_CMD ) == 0 )
@@ -294,7 +313,7 @@ int configDirAberto = FALSE;
                                                    &condRetEsperada,
                                                    &numCasasLidasEsperado,
                                                    pecasStringEsperado,
-                                                   coresStringEsperado );
+                                                   coresStringEsperado ) ;
 
          if( numParametrosLidos != 4 || configDirAberto == FALSE )
          {
@@ -304,16 +323,16 @@ int configDirAberto = FALSE;
          condRetRecebida = VMV_LerTabuleiroInicial(   configDirBeingTested, 
                                                       &pecasStringRecebido,
                                                       &coresStringRecebido,
-                                                      &numCasasLidasRecebido );
+                                                      &numCasasLidasRecebido ) ;
 
          if( condRetEsperada != condRetRecebida )
          {
             if( condRetRecebida == VMV_CondRetOK )
             {
-               free(pecasStringRecebido);
-               free(coresStringRecebido);
+               free(pecasStringRecebido) ;
+               free(coresStringRecebido) ;
             }
-            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.");
+            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.") ;
          }
 
          if( condRetRecebida == VMV_CondRetErrFaltouMemoria )
@@ -330,10 +349,10 @@ int configDirAberto = FALSE;
          {
             if( condRetRecebida == VMV_CondRetOK )
             {
-               free(pecasStringRecebido);
-               free(coresStringRecebido);
+               free(pecasStringRecebido) ;
+               free(coresStringRecebido) ;
             }
-            return TST_NotificarFalha("Numero de casas lidas diferente do esperado.");
+            return TST_NotificarFalha("Numero de casas lidas diferente do esperado.") ;
          }
 
          for( i=0; i<numCasasLidasRecebido; i++)
@@ -342,24 +361,24 @@ int configDirAberto = FALSE;
             {
                if( condRetRecebida == VMV_CondRetOK )
                {
-                  free(pecasStringRecebido);
-                  free(coresStringRecebido);
+                  free(pecasStringRecebido) ;
+                  free(coresStringRecebido) ;
                }
-               return TST_NotificarFalha("Pecas recebidas diferentes do esperado.");
+               return TST_NotificarFalha("Pecas recebidas diferentes do esperado.") ;
             }
             if( coresStringRecebido[i] != coresStringEsperado[i] )
             {
                if( condRetRecebida == VMV_CondRetOK )
                {
-                  free(pecasStringRecebido);
-                  free(coresStringRecebido);
+                  free(pecasStringRecebido) ;
+                  free(coresStringRecebido) ;
                }
-               return TST_NotificarFalha("Cores recebidas diferentes do esperado.");
+               return TST_NotificarFalha("Cores recebidas diferentes do esperado.") ;
             }
          }
 
-         free(pecasStringRecebido);
-         free(coresStringRecebido);
+         free(pecasStringRecebido) ;
+         free(coresStringRecebido) ;
          return TST_CondRetOK;
       }
       else if( strcmp( comandoTeste , CHECAR_MOV_PEÇA_CMD ) == 0 )
@@ -371,15 +390,15 @@ int configDirAberto = FALSE;
                                                    &xAtual,
                                                    &yAtual,
                                                    &xDest,
-                                                   &yDest );
+                                                   &yDest ) ;
 
          if( numParametrosLidos != 7 || configDirAberto == FALSE )
          {
             return TST_CondRetParm ;
          }
 
-         casaAtual = getCasa(xAtual,yAtual);
-         casaDestino = getCasa(xDest,yDest);
+         casaAtual = getCasa(xAtual,yAtual) ;
+         casaDestino = getCasa(xDest,yDest) ;
 
          condRetRecebida = VMV_ChecarMovimentoPeca (  configDirBeingTested,
                                                       &validezMovimentoRecebida,
@@ -395,11 +414,11 @@ int configDirAberto = FALSE;
                                                       inimigo,
                                                       condicoesEspeciais,
                                                       NUM_COND_ESPECIAIS,
-                                                      NULL);
+                                                      NULL) ;
 
          if( condRetEsperada != condRetRecebida )
          {
-            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.");
+            return TST_NotificarFalha("Condicao de retorno recebida diferente da esperada.") ;
          }
 
          if( condRetRecebida != VMV_CondRetOK )
@@ -409,7 +428,7 @@ int configDirAberto = FALSE;
 
          if( validezMovimentoRecebidaEsperada != validezMovimentoRecebida )
          {
-            return TST_NotificarFalha("Condicao de validez de movimento diferente do esperado.");
+            return TST_NotificarFalha("Condicao de validez de movimento diferente do esperado.") ;
          } 
 
          return TST_CondRetOK;    

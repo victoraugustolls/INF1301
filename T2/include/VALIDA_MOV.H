@@ -16,7 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*     1       avs   04/out/2016 início desenvolvimento
+*     1       iars   04/out/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
 *     Módulo responsável por checar a validez do movimento de uma peça de uma casa para outra
