@@ -1,0 +1,133 @@
+// Script: TestecASA.script
+// Autores: Victor Augusto
+// Autor Original: Victor Augusto
+// Data: 11/out/2016
+// Propósito: Testar por completo as funções de acesso do módulo CASA, com exceção
+// do caso em que ocorre falta de memória.
+//
+//
+
+// ---------------------------------------------
+
+== Inicializar Constantes
+=declararparm   OK                int  0
+=declararparm	CasaInexistente   int  1
+=declararparm   FaltouMemoria     int  2
+
+// ---------------------------------------------
+
+== Inicializar valores
+=declararparm   casa0  int 0
+=declararparm   casa1  int 1
+
+// ---------------------------------------------
+
+== Teste Criação de Casas
+=criarCasa      casa0   OK
+
+== Teste do Teste de Criação de Peças
+=criarCasa      casa0   OK
+=recuperar
+
+// ---------------------------------------------
+
+== Teste Destruição de Casas
+=destroiCasa      casa0   OK
+
+== Teste Destruição de Listas Inexistentes
+=destroiCasa      casa0   CasaInexistente
+
+// ---------------------------------------------
+
+== Teste Inserir Peça na Casa
+=criarCasa      casa0   OK
+=inserePeca		casa0	'P'   'P'   OK
+=destroiCasa    casa0   OK
+
+== Teste Inserir Peça na Casa Inexistente
+=inserePeca		casa0	'P'   'P'   CasaInexistente
+
+// ---------------------------------------------
+
+== Teste Obter Peça da Casa
+=criarCasa      casa0   OK
+=obterPeca      casa0   'V'   'V'   OK
+=destroiCasa    casa0   OK
+
+== Teste Obter Peça da Casa
+=criarCasa      casa0   OK
+=inserePeca		casa0	'P'   'P'   OK
+=obterPeca      casa0   'P'   'P'   OK
+=destroiCasa    casa0   OK
+
+== Teste Obter Peça da Casa Inexistente
+=obterPeca		casa0	'P'   'P'   CasaInexistente
+
+// ---------------------------------------------
+
+== Teste Remover Peça da Casa
+=criarCasa      casa0   OK
+=inserePeca		casa0	'P'   'P'   OK
+=obterPeca      casa0   'P'   'P'   OK
+=removePeca		casa0	OK
+=obterPeca      casa0   'V'   'V'   OK
+=destroiCasa    casa0   OK
+
+== Teste Remover Peça da Casa Inexistente
+=removePeca		casa0   CasaInexistente
+
+// ---------------------------------------------
+
+== Teste Comparar Casas Iguais
+=criarCasa      casa0   OK
+=criarCasa      casa1   OK
+=inserePeca		casa0	'P'     'P'   OK
+=inserePeca		casa1	'P'     'P'   OK
+=comparaCasas   casa0   casa1   1     OK
+=destroiCasa    casa0   OK
+=destroiCasa    casa1   OK
+
+== Teste Comparar Casas Diferentes
+=criarCasa      casa0   OK
+=criarCasa      casa1   OK
+=inserePeca		casa0	'P'     'P'   OK
+=inserePeca		casa1	'V'     'V'   OK
+=comparaCasas   casa0   casa1   0     OK
+=destroiCasa    casa0   OK
+=destroiCasa    casa1   OK
+
+== Teste Comparar Casas Inexistentes
+=criarCasa      casa0   OK
+=inserePeca		casa0	'P'     'P'   OK
+=comparaCasas   casa0   casa1   1     CasaInexistente
+=destroiCasa    casa0   OK
+
+// ---------------------------------------------
+
+== Teste Modificar Ameacantes da Casa Iguais
+=criarCasa      		casa0   OK
+=modificarAmeacante		casa0   OK
+=obterAmeacante			casa0	1    OK
+=destroiCasa    		casa0   OK
+
+== Teste do Teste Modificar Ameacantes da Casa Diferentes
+=criarCasa      		casa0   OK
+=modificarAmeacante		casa0   OK
+=obterAmeacante			casa0	0    OK
+=recuperar
+=destroiCasa    		casa0   OK
+
+// ---------------------------------------------
+
+== Teste Modificar Ameacados da Casa Iguais
+=criarCasa      		casa0   OK
+=modificarAmeacados		casa0   OK
+=obterAmeacados			casa0	1    OK
+=destroiCasa    		casa0   OK
+
+== Teste do Teste Modificar Ameacados da Casa Diferentes
+=criarCasa      		casa0   OK
+=modificarAmeacados		casa0   OK
+=obterAmeacados			casa0	0    OK
+=recuperar
+=destroiCasa    		casa0   OK

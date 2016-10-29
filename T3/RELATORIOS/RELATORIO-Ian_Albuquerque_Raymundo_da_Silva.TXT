@@ -1,0 +1,22 @@
+% Aluno: Ian Albuquerque Raymundo da Silva
+%
+% Outros Integrantes do Grupo:
+%	Victor Augusto
+%	Lucas Ferraço
+%
+% Data (DD/MM/AAAA); Horas Trabalhadas; Tipo Tarefa; Descrição da Tarefa Realizada
+%
+% Tipo de Tarefas:
+% - estudar
+% - especificar os módulos
+% - especificar as funções
+% - revisar especificações
+% - projetar
+% - revisar projetos
+% - codificar módulo
+% - revisar código do módulo
+% - redigir script de teste
+% - revisar script de teste
+% - realizar os testes
+% - diagnosticar e corrigir os problemas encontrados
+

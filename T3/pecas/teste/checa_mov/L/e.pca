@@ -1,0 +1,10 @@
+L_FORALL X
+	L_IFTHEN
+		L_AND
+			P_MENOR	
+				V_DIM 0 X
+				V_NUM 2
+			P_MENOR	
+				V_DIM 1 X
+				V_NUM 2
+		P_VAZ X
