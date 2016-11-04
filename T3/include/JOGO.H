@@ -95,7 +95,7 @@ typedef enum {
  *
  *
  *  $ED Descrição do tipo
- *     Cores referentes aos dois tipos de jogadores do jogo: branco e preto
+ *     Eventos que podem ocorrer durante o movimento de uma peça
  *
  ***********************************************************************/
 
@@ -217,7 +217,7 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
  ***********************************************************************/
 
 JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogadorAtual,
-                                                     JGO_tpEventoOcorrido eventoOcorrido,
+                                                     JGO_tpEventoOcorrido* eventoOcorrido,
                                                      char linhaCasaAtual,
                                                      char colunaCasaAtual,
                                                      char linhaCasaDestino,
