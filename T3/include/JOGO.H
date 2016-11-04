@@ -64,8 +64,11 @@ typedef enum {
     JGO_CondRetMovInvalido = 3 ,
     /* O movimento não é válido em tal jogo */
     
-    JGO_CondRetJaCriado = 4
+    JGO_CondRetJaCriado = 4,
     /* Já existe juiz em operação */
+
+    JGO_CondRetFaltouMemoria = 5
+    /* Faltou memória */
 
 } JGO_tpCondRet ;
 
@@ -95,7 +98,7 @@ typedef enum {
  *
  *
  *  $ED Descrição do tipo
- *     Cores referentes aos dois tipos de jogadores do jogo: branco e preto
+ *     Eventos que podem ocorrer durante o movimento de uma peça
  *
  ***********************************************************************/
 
@@ -122,8 +125,6 @@ typedef enum {
  *
  *  $EP Par‚metros
  *     pJuiz - ponteiro para o juiz a ser criado
- *     nomeJogadorBranco - nome do jogador que controla as peças de cor branca
- *     nomeJogadorPreto - nome do jogador que controla as peças de cor preta
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK                - criou sem problemas
@@ -131,7 +132,7 @@ typedef enum {
  *
  ***********************************************************************/
 
-JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz, char* nomeJogadorBranco, char* nomeJogadorPreto ) ;
+JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz ) ;
 
 
 /***********************************************************************
@@ -217,7 +218,7 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
  ***********************************************************************/
 
 JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogadorAtual,
-                                                     JGO_tpEventoOcorrido eventoOcorrido,
+                                                     JGO_tpEventoOcorrido* eventoOcorrido,
                                                      char linhaCasaAtual,
                                                      char colunaCasaAtual,
                                                      char linhaCasaDestino,
