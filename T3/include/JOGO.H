@@ -64,8 +64,11 @@ typedef enum {
     JGO_CondRetMovInvalido = 3 ,
     /* O movimento não é válido em tal jogo */
     
-    JGO_CondRetJaCriado = 4
+    JGO_CondRetJaCriado = 4,
     /* Já existe juiz em operação */
+
+    JGO_CondRetFaltouMemoria = 5
+    /* Faltou memória */
 
 } JGO_tpCondRet ;
 
