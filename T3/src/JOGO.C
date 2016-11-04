@@ -122,6 +122,8 @@ typedef enum {
  *
  *  $EP Par‚metros
  *     pJuiz - ponteiro para o juiz a ser criado
+ *     nomeJogadorBranco - nome do jogador que controla as peças de cor branca
+ *     nomeJogadorPreto - nome do jogador que controla as peças de cor preta
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK                - criou sem problemas
@@ -129,7 +131,7 @@ typedef enum {
  *
  ***********************************************************************/
 
-JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz ) ;
+JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz, char* nomeJogadorBranco, char* nomeJogadorPreto ) ;
 
 
 /***********************************************************************
