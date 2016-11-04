@@ -1,11 +1,11 @@
-#if ! defined( JUIZ_ )
-#define JUIZ_
+#if ! defined( JOGO_ )
+#define JOGO_
 /***************************************************************************
  *
- *  $MCD MÛdulo de definiÁ„o: JUZ  Juiz para jogo de xadrez
+ *  $MCD MÛdulo de definiÁ„o: JGO  Juiz para jogo de xadrez
  *
- *  Arquivo gerado:              JUIZ.H
- *  Letras identificadoras:      JUZ
+ *  Arquivo gerado:              JOGO.H
+ *  Letras identificadoras:      JGO
  *
  *  Projeto: INF 1301 / 1628 AutomatizaÁ„o dos testes de mÛdulos C
  *  Gestor:  LES/DI/PUC-Rio
@@ -28,21 +28,21 @@
  *
  ***************************************************************************/
 
-#if defined( JUIZ_OWN )
-#define JUIZ_EXT
+#if defined( JOGO_OWN )
+#define JOGO_EXT
 #else
-#define JUIZ_EXT extern
+#define JOGO_EXT extern
 #endif
 
 /***** DeclaraÁıes exportadas pelo mÛdulo *****/
 
 /* Tipo referÍncia para um tabuleiro */
 
-typedef struct JUZ_tagJuiz * JUZ_tppJuiz ;
+typedef struct JGO_tagJuiz * JGO_tppJuiz ;
 
 /***********************************************************************
  *
- *  $TC Tipo de dados: JUZ Condições de retorno
+ *  $TC Tipo de dados: JGO Condições de retorno
  *
  *
  *  $ED Descrição do tipo
@@ -52,26 +52,26 @@ typedef struct JUZ_tagJuiz * JUZ_tppJuiz ;
 
 typedef enum {
     
-    JUZ_CondRetOK = 0 ,
+    JGO_CondRetOK = 0 ,
     /* Concluiu corretamente */
     
-    JUZ_CondRetNaoExiste = 1 ,
+    JGO_CondRetNaoExiste = 1 ,
     /* O juiz ou algum dos componentes do jogo não existe */
     
-    JUZ_CondRetCoordNaoExiste = 2 ,
+    JGO_CondRetCoordNaoExiste = 2 ,
     /* A coordenada não existe em tal jogo */
     
-    JUZ_CondRetMovInvalido = 3 ,
+    JGO_CondRetMovInvalido = 3 ,
     /* O movimento não é válido em tal jogo */
     
-    JUZ_CondRetJaCriado = 6 ,
+    JGO_CondRetJaCriado = 6 ,
     /* Já existe juiz em operação */
 
-} JUZ_tpCondRet ;
+} JGO_tpCondRet ;
 
 /***********************************************************************
  *
- *  $FC Função: TAB  &Criar juiz
+ *  $FC Função: JGO  &Criar juiz
  *
  *  $ED Descrição da função
  *     Cria um novo juiz de xadrez.
@@ -80,17 +80,17 @@ typedef enum {
  *     pJuiz - ponteiro para o juiz a ser criado
  *
  *  $FV Valor retornado
- *     JUZ_CondRetOK                - criou sem problemas
- *     JUZ_CondRetFaltouMemoria     - faltou memória para criar o juiz
+ *     JGO_CondRetOK                - criou sem problemas
+ *     JGO_CondRetFaltouMemoria     - faltou memória para criar o juiz
  *
  ***********************************************************************/
 
-JUZ_tpCondRet JUZ_CriarJuiz( JUZ_tppJuiz * pJuiz ) ;
+JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz ) ;
 
 
 /***********************************************************************
  *
- *  $FC Função: TAB  &Destruir juiz
+ *  $FC Função: JGO  &Destruir juiz
  *
  *  $ED Descrição da função
  *     Destrói o juiz de xadrez.
@@ -99,17 +99,17 @@ JUZ_tpCondRet JUZ_CriarJuiz( JUZ_tppJuiz * pJuiz ) ;
  *     pJuiz - ponteiro para o juiz a ser destruído
  *
  *  $FV Valor retornado
- *     JUZ_CondRetOK                - destruiu sem problemas
- *     JUZ_CondRetNaoExiste         - o juiz não existe
+ *     JGO_CondRetOK                - destruiu sem problemas
+ *     JGO_CondRetNaoExiste         - o juiz não existe
  *
  ***********************************************************************/
 
-JUZ_tpCondRet JUZ_DestruirJuiz( JUZ_tppJuiz pJuiz ) ;
+JGO_tpCondRet JGO_DestruirJuiz( JGO_tppJuiz pJuiz ) ;
 
 
 /***********************************************************************
  *
- *  $FC Função: TAB  &Iniciar jogo
+ *  $FC Função: JGO  &Iniciar jogo
  *
  *  $ED Descrição da função
  *     Inicia um novo jogo entre dois jogadores.
@@ -118,17 +118,17 @@ JUZ_tpCondRet JUZ_DestruirJuiz( JUZ_tppJuiz pJuiz ) ;
  *     pJuiz - ponteiro para o juiz a iniciar o jogo
  *
  *  $FV Valor retornado
- *     JUZ_CondRetOK                - iniciou sem problemas
- *     JUZ_CondRetFaltouMemoria     - faltou memória para iniciar o jogo
+ *     JGO_CondRetOK                - iniciou sem problemas
+ *     JGO_CondRetFaltouMemoria     - faltou memória para iniciar o jogo
  *
  ***********************************************************************/
 
-JUZ_tpCondRet JUZ_IniciarJogo( JUZ_tppJuiz pJuiz ) ;
+JGO_tpCondRet JGO_IniciarJogo( JGO_tppJuiz pJuiz ) ;
 
 
 /***********************************************************************
  *
- *  $FC Função: TAB  &Terminar jogo
+ *  $FC Função: JGO  &Terminar jogo
  *
  *  $ED Descrição da função
  *     Termina o jogo.
@@ -137,17 +137,17 @@ JUZ_tpCondRet JUZ_IniciarJogo( JUZ_tppJuiz pJuiz ) ;
  *     pJuiz - ponteiro para o juiz a terminar o jogo
  *
  *  $FV Valor retornado
- *     JUZ_CondRetOK            - terminou sem problemas
- *     JUZ_CondRetNaoExiste     - o jogo não existe
+ *     JGO_CondRetOK            - terminou sem problemas
+ *     JGO_CondRetNaoExiste     - o jogo não existe
  *
  ***********************************************************************/
 
-JUZ_tpCondRet JUZ_TerminarJogo( JUZ_tppJuiz pJuiz ) ;
+JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
 
 
 /***********************************************************************
  *
- *  $FC Função: TAB  &Realizar jogada
+ *  $FC Função: JGO  &Realizar jogada
  *
  *  $ED Descrição da função
  *     Apresenta o tabuleiro na tela e pede para um dos jogadores
@@ -158,16 +158,16 @@ JUZ_tpCondRet JUZ_TerminarJogo( JUZ_tppJuiz pJuiz ) ;
  *     pJuiz - ponteiro para o juiz a terminar o jogo
  *
  *  $FV Valor retornado
- *     JUZ_CondRetOK            - realizou sem problemas
- *     JUZ_CondRetNaoExiste     - o jogo não existe
+ *     JGO_CondRetOK            - realizou sem problemas
+ *     JGO_CondRetNaoExiste     - o jogo não existe
  *
  ***********************************************************************/
 
-JUZ_tpCondRet JUZ_RealizarJogada( JUZ_tppJuiz pJuiz ) ;
+JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz ) ;
 
-#undef JUIZ_EXT
+#undef JOGO_EXT
 
-/********** Fim do mÛdulo de definiÁ„o: JUZ  Juiz para jogo de xadrez **********/
+/********** Fim do mÛdulo de definiÁ„o: JGO  Juiz para jogo de xadrez **********/
 
 #else
 #endif
