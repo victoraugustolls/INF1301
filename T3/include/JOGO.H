@@ -64,7 +64,7 @@ typedef enum {
     JGO_CondRetMovInvalido = 3 ,
     /* O movimento não é válido em tal jogo */
     
-    JGO_CondRetJaCriado = 6 ,
+    JGO_CondRetJaCriado = 4
     /* Já existe juiz em operação */
 
 } JGO_tpCondRet ;
@@ -78,6 +78,9 @@ typedef enum {
  *
  *  $EP Par‚metros
  *     pJuiz - ponteiro para o juiz a ser criado
+ *     nomeJogadorBranco - nome do jogador que controla as peças de cor branca
+ *     nomeJogadorPreto - nome do jogador que controla as peças de cor preta
+ *     nomePecaRei - caracter da peça que é a condição de vitória do jogo (usualmente, o rei)
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK                - criou sem problemas
@@ -85,7 +88,7 @@ typedef enum {
  *
  ***********************************************************************/
 
-JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz ) ;
+JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz, char* nomeJogadorBranco, char* nomeJogadorPreto, char nomePecaRei ) ;
 
 
 /***********************************************************************
@@ -156,14 +159,19 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
  *
  *  $EP Parâmetros
  *     pJuiz - ponteiro para o juiz a terminar o jogo
+ *     linhaCasaAtual - a linha da casa atual da peça sendo movida
+ *     colunaCasaAtual - a coluna da casa atual da peça sendo movida
+ *     linhaCasaDestino - a linha da casa atual da peça sendo movida
+ *     colunaCasaDestino - a coluna da casa atual da peça sendo movida
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK            - realizou sem problemas
  *     JGO_CondRetNaoExiste     - o jogo não existe
+ *     JGO_CondRetMovInvalido - o movimento solicitado nao é valido
  *
  ***********************************************************************/
 
-JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz ) ;
+JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, char linhaCasaAtual, char colunaCasaAtual, char linhaCasaDestino, char colunaCasaDestino ) ;
 
 #undef JOGO_EXT
 
