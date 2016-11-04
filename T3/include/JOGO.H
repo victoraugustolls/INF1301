@@ -71,6 +71,50 @@ typedef enum {
 
 /***********************************************************************
  *
+ *  $TC Tipo de dados: JGO Cores dos Jogadores
+ *
+ *
+ *  $ED Descrição do tipo
+ *     Cores referentes aos dois tipos de jogadores do jogo: branco e preto
+ *
+ ***********************************************************************/
+
+typedef enum {
+    
+    JGO_JogadorPreto = 0 ,
+    /* Cor do jogador preto */
+
+    JGO_JogadorBranco = 1
+    /* Cor do jogador branco */
+
+} JGO_tpCorJogador ;
+
+/***********************************************************************
+ *
+ *  $TC Tipo de dados: JGO Eventos do Jogo
+ *
+ *
+ *  $ED Descrição do tipo
+ *     Cores referentes aos dois tipos de jogadores do jogo: branco e preto
+ *
+ ***********************************************************************/
+
+typedef enum {
+    
+    JGO_Nenhum = 0 ,
+    /* Não ocorreu nenhum evento */
+
+    JGO_Cheque = 1,
+    /* Ocorreu um cheque com a jogada */
+
+    JGO_ChequeMate = 2
+    /* Ocorreu um cheque-mate com a jogada */
+
+} JGO_tpEventoOcorrido ;
+
+
+/***********************************************************************
+ *
  *  $FC Função: JGO  &Criar juiz
  *
  *  $ED Descrição da função
@@ -80,7 +124,6 @@ typedef enum {
  *     pJuiz - ponteiro para o juiz a ser criado
  *     nomeJogadorBranco - nome do jogador que controla as peças de cor branca
  *     nomeJogadorPreto - nome do jogador que controla as peças de cor preta
- *     nomePecaRei - caracter da peça que é a condição de vitória do jogo (usualmente, o rei)
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK                - criou sem problemas
@@ -88,7 +131,7 @@ typedef enum {
  *
  ***********************************************************************/
 
-JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz, char* nomeJogadorBranco, char* nomeJogadorPreto, char nomePecaRei ) ;
+JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz, char* nomeJogadorBranco, char* nomeJogadorPreto ) ;
 
 
 /***********************************************************************
@@ -159,6 +202,8 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
  *
  *  $EP Parâmetros
  *     pJuiz - ponteiro para o juiz a terminar o jogo
+ *     corJogadorAtual - a cor do jogador da vez
+ *     eventoOcorrido - evento que ocorreu durante a jogada dada
  *     linhaCasaAtual - a linha da casa atual da peça sendo movida
  *     colunaCasaAtual - a coluna da casa atual da peça sendo movida
  *     linhaCasaDestino - a linha da casa atual da peça sendo movida
@@ -171,7 +216,12 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
  *
  ***********************************************************************/
 
-JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, char linhaCasaAtual, char colunaCasaAtual, char linhaCasaDestino, char colunaCasaDestino ) ;
+JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogadorAtual,
+                                                     JGO_tpEventoOcorrido eventoOcorrido,
+                                                     char linhaCasaAtual,
+                                                     char colunaCasaAtual,
+                                                     char linhaCasaDestino,
+                                                     char colunaCasaDestino ) ;
 
 #undef JOGO_EXT
 
