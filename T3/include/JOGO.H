@@ -67,8 +67,14 @@ typedef enum {
     JGO_CondRetJaCriado = 4,
     /* Já existe juiz em operação */
 
-    JGO_CondRetFaltouMemoria = 5
+    JGO_CondRetFaltouMemoria = 5,
     /* Faltou memória */
+
+    JGO_CondRetJogoJaIniciado = 6,
+    /* O jogo já havia sido iniciado */
+
+    JGO_CondRetJogoNaoIniciado = 7
+    /* O jogo nao havia sido iniciado */
 
 } JGO_tpCondRet ;
 
@@ -166,6 +172,7 @@ JGO_tpCondRet JGO_DestruirJuiz( JGO_tppJuiz pJuiz ) ;
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK                - iniciou sem problemas
+ *     JGO_CondRetJogoJaIniciado    - o jogo ja havia sido iniciado
  *     JGO_CondRetFaltouMemoria     - faltou memória para iniciar o jogo
  *
  ***********************************************************************/
@@ -185,7 +192,7 @@ JGO_tpCondRet JGO_IniciarJogo( JGO_tppJuiz pJuiz ) ;
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK            - terminou sem problemas
- *     JGO_CondRetNaoExiste     - o jogo não existe
+ *     JGO_CondRetJogoNaoIniciado - o jogo ainda nao foi iniciado
  *
  ***********************************************************************/
 
