@@ -128,6 +128,7 @@ typedef enum {
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK                - criou sem problemas
+ *     JGO_CondRetJaCriado          - já existe juiz em operação
  *     JGO_CondRetFaltouMemoria     - faltou memória para criar o juiz
  *
  ***********************************************************************/
