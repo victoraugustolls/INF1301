@@ -1,0 +1,53 @@
+// Script: TESTE_JOGO.SCRIPT
+// Autores: Lucas Ferraço
+// Data: 09/nov/2016
+// Propósito: Testar por completo as funções de acesso do módulo JOGO, com exceção
+// do caso em que ocorre falta de memória.
+//
+// ---------------------------------------------
+
+== Inicializar Constantes
+=declararparm   OK                int  0
+=declararparm   NaoExiste         int  1
+=declararparm	CoordNaoExiste	  int  2
+=declararparm	MovInvalido       int  3
+=declararparm   JaCriado	  int  4
+=declararparm   FaltouMemoria     int  5
+
+// ---------------------------------------------
+
+== Teste de Criação de Juiz
+=criarJuiz	OK
+
+== Teste de Criação de um Segundo Juiz
+=criarJuiz	JaCriado
+
+// ---------------------------------------------
+
+== Teste de Destruição de Juiz
+=destruirJuiz	OK
+
+== Teste de Destruição de Juiz Inexistente
+=destruirJuiz	NaoExiste
+
+// ---------------------------------------------
+
+== Teste de Inicialização de Jogo
+=criarJuiz	OK
+=iniciarJogo	OK
+
+== Teste do teste de Inicialização de Jogo
+=iniciarJogo	OK
+=recuperar
+
+// ---------------------------------------------
+
+== Teste de Término de Jogo
+=terminarJogo	OK
+
+// ---------------------------------------------
+
+== Teste de Realização de Jogada
+=iniciarJogo	Ok
+=realizarJogada	
+

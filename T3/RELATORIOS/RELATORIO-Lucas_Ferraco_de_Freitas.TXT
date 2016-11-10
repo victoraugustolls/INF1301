@@ -16,3 +16,7 @@
 % - diagnosticar e corrigir os problemas encontrados
 
 03/10/2016; 1.5 horas ; estudar e especificar as funções; Estudei o enunciado do terceiro trabalho e especifiquei o JUIZ.H.
+
+04/11/2016; 2 horas ; projetar; Projetei o TESTJGO.C.
+
+09/11/2016; 0.5 hora ; redigir script de teste; Comecei a redigir o script de testes para o módulo JOGO (TESTE_JOGO.SCRIPT).
