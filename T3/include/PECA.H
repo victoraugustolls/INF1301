@@ -16,6 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*	  2       vas   10/nov/2016 mudança dos prototipos para nova estrutura
 *     1       vas   06/out/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
@@ -84,8 +85,8 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 ***********************************************************************/
 
   	PCA_tpCondRet PCA_CriarPeca( PCA_tppPeca * pPeca ,
-            					char * nomePeca ,
-								char * corPeca ) ;
+            					char nomePeca ,
+								char corPeca ) ;
 
 
 /***********************************************************************
@@ -98,7 +99,7 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *  $EP Parâmetros
 *     pPeca            - ponteiro para peça sendo alterada
 *     nomePeca         - novo nome da peça sendo alterada
-*	  corPeca 		   - nova cor da peça sendo alterada
+*	    corPeca 		   - nova cor da peça sendo alterada
 *
 *  $FV Valor retornado
 *     PCA_CondRetOK             - peça foi alterada corretamente
@@ -107,8 +108,8 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 ***********************************************************************/
 
   	PCA_tpCondRet PCA_AlterarPeca( PCA_tppPeca pPeca ,
-            					char * nomePeca ,
-								char * corPeca ) ;
+            					char nomePeca ,
+								char corPeca ) ;
 
 
 /***********************************************************************
@@ -120,18 +121,18 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *
 *  $EP Parâmetros
 *     pPeca            - ponteiro para a peça de onde se quer o valor
-*     nomePeca         - ponteiro para o ponteiro referente ao valor do nome da peça
-*     corPeca          - ponteiro para o ponteiro referente ao valor da cor da peça
+*     nomePeca         - ponteiro referente ao valor do nome da peça
+*     corPeca          - ponteiro referente ao valor da cor da peça
 *
 *  $FV Valor retornado
-*     PCA_CondRetOK			- valor foi obtido corretamente
-*     PCA_CondRetPecaVazia	- valores da peça vazios
+*     PCA_CondRetOK			    - valor foi obtido corretamente
+*     PCA_CondRetPecaNaoExiste  - peça não existe
 *
 ***********************************************************************/
 
   	PCA_tpCondRet PCA_ObterValor( PCA_tppPeca pPeca ,
-                               	char ** nomePeca ,
-                               	char ** corPeca ) ;
+                               	char * nomePeca ,
+                               	char * corPeca ) ;
 
 
 /***********************************************************************

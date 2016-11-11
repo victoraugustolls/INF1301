@@ -14,6 +14,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     5       vas   10/nov/2016 alteracoes devido a mudanca da estrutura da peca
  *     4       vas   12/out/2016 corrigir esvaziar peça da casa
  *     3       lff   12/out/2016 desenvolvimento acabado
  *     2       lff   11/out/2016 desenvolvimento em andamento
@@ -76,8 +77,7 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
 
     CSA_tppCasa newCasa = NULL ;
 
-    char * charPeca = ( char * ) malloc( sizeof( char ) ) ;
-    *charPeca = 'V' ;
+    char charPeca = 'V' ;
     
     newCasa = ( CSA_tpCasa * ) malloc( sizeof( CSA_tpCasa ) ) ;
 
@@ -182,8 +182,8 @@ CSA_tpCondRet CSA_InserirPecaCasa( char nomePeca ,
     }/* if */
     
     retPeca = PCA_CriarPeca( &( pCasa->peca ) ,
-                             &nomePeca ,
-                             &corPeca ) ;
+                            nomePeca ,
+                            corPeca ) ;
     if ( retPeca == PCA_CondRetFaltouMemoria )
     {
         return CSA_CondRetFaltouMemoria ;
@@ -203,8 +203,7 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa )
     
     PCA_tpCondRet retPeca ;
 
-    char * pecaVazia = ( char * ) malloc( sizeof( char ) ) ;
-    *pecaVazia = 'V' ;
+    char pecaVazia = 'V' ;
 
     if ( pCasa == NULL )
     {
@@ -226,8 +225,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa )
  *  Função: CSA  &Obter peça da casa
  *  ****/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca,
-                                 char** pCorPeca,
+CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
+                                 char* pCorPeca,
                                  CSA_tppCasa pCasa )
 {
     
@@ -245,7 +244,6 @@ CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca,
     {
         return CSA_CondRetNaoExiste ;
     }
-
     
     return CSA_CondRetOK ;
     
@@ -262,11 +260,19 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
 {
     
     PCA_tpCondRet retPeca ;
+
+    printf("Entrou no CSA_CompararCasa\n");
     
     if ( pCasa1 == NULL || pCasa2 == NULL )
     {
+        printf("Uma das casas e nula\n");
+        *igualdade = 0 ;
+        printf("Saiu do CSA_CompararCasa\n");
         return CSA_CondRetNaoExiste ;
     }/* if */
+
+
+    printf("Nenhuma das casas era nula\n");
     
     retPeca = PCA_ComparaPecas( pCasa1->peca ,
                                 pCasa2->peca ,
@@ -274,10 +280,11 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
 
     if ( retPeca == PCA_CondRetPecaNaoExiste )
     {
+        printf("Saiu do CSA_CompararCasa\n");
         return CSA_CondRetVazia ;
     }
 
-
+    printf("Saiu do CSA_CompararCasa\n");
     return CSA_CondRetOK ;
     
 } /* Fim função: CSA  &Comparar Casas */

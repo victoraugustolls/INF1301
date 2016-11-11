@@ -16,6 +16,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     5       vas   10/nov/2016 alteracoes devido a mudanca da estrutura da peca
  *     4       vas   12/out/2016 corrigir esvaziar peça da casa
  *     3       lff   11/out/2016 adição de funções de modificar lista
  *     2       lff   10/out/2016 conserto de alguns erros
@@ -165,8 +166,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *     Obtém a peça presente na casa passada pelo ponteiro.
  *
  *  $EP Parâmetros
- *     pNomePeca   - ponteiro para o ponteiro referente ao nome da peça contina na casa
- *     pCorPeca    - ponteiro para o ponteiro referente à cor da peça contina na casa
+ *     pNomePeca   - ponteiro referente ao nome da peça contina na casa
+ *     pCorPeca    - ponteiro referente à cor da peça contina na casa
  *     pCasa       - ponteiro para a casa onde a peça vai ser obtida
  *
  *  $FV Valor retornado
@@ -175,8 +176,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca ,
-                                 char** pCorPeca ,
+CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca ,
+                                 char* pCorPeca ,
                                  CSA_tppCasa pCasa ) ;
 
 /***********************************************************************
@@ -216,7 +217,6 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
  *  $FV Valor retornado
  *     CSA_CondRetOK           - obteve lista sem problemas
  *     CSA_CondRetNaoExiste    - a casa não existe
- *	   CSA_CondRetVazia        - a casa esta vazia
  *
  ***********************************************************************/
 

@@ -6,7 +6,7 @@
 !!!    0  Linha:     1  // Script: TestePeca.script 
 !!!    0  Linha:     2  // Autores: Victor Augusto 
 !!!    0  Linha:     3  // Autor Original: Victor Augusto 
-!!!    0  Linha:     4  // Data: 06/out/2016 
+!!!    0  Linha:     4  // Data: 11/nov/2016 
 !!!    0  Linha:     5  // Propósito: Testar por completo as funções de acesso do módulo PECA, com exceção 
 !!!    0  Linha:     6  // do caso em que ocorre falta de memória. 
 !!!    0  Linha:     7  // 
@@ -31,19 +31,20 @@
    54  == Teste Obter Valor Peça Falha Cor
 >>>    1  Linha:    56  Cor da peca recebida errada. Deveria ser: 'B'  �: 'P'
 <<<    0  Linha:    57  Falha esperada foi recuperada. 
-!!!    0  Linha:    60  // --------------------------------------------- 
-   62  == Teste Alterar Valor Peça
-   68  == Teste Alterar Valor Peça Inexistente
-!!!    0  Linha:    71  // --------------------------------------------- 
-   73  == Teste Comparar Peças Iguais
-   80  == Teste Comparar Peças Diferentes
-   87  == Teste Comparar Peças Vazias
-!!!    0  Linha:    92  // --------------------------------------------- 
-   94  == Teste com múltiplas peças
+   60  == Teste Obter Valor Peça Inexistente
+!!!    0  Linha:    63  // --------------------------------------------- 
+   65  == Teste Alterar Valor Peça
+   71  == Teste Alterar Valor Peça Inexistente
+!!!    0  Linha:    74  // --------------------------------------------- 
+   76  == Teste Comparar Peças Iguais
+   83  == Teste Comparar Peças Diferentes
+   90  == Teste Comparar Peças Vazias
+!!!    0  Linha:    95  // --------------------------------------------- 
+   97  == Teste com múltiplas peças
 
-!!! N�mero de linhas lidas:         100
-!!! N�mero de casos de teste:        15
-!!! N�mero comandos corretos:        40
+!!! N�mero de linhas lidas:         103
+!!! N�mero de casos de teste:        16
+!!! N�mero comandos corretos:        41
 !!! N�mero de falhas encontradas:     0
 
 !!! N�o foram encontrados problemas

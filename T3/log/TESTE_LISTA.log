@@ -6,7 +6,7 @@
 !!!    0  Linha:     1  // Script: TesteLista.script 
 !!!    0  Linha:     2  // Autores: Ian Albuquerque, Lucas Ferraço e Victor Augusto 
 !!!    0  Linha:     3  // Autor Original: Arndt von Staa 
-!!!    0  Linha:     4  // Data: 04/out/2016 
+!!!    0  Linha:     4  // Data: 11/nov/2016 
 !!!    0  Linha:     5  // Propósito: Testar por completo as funções de acesso do módulo LISTA, com exceção 
 !!!    0  Linha:     6  // do caso em que ocorre falta de memória. 
 !!!    0  Linha:     7  // 
@@ -42,11 +42,16 @@
   113  ==Teste Simples de Alterar nó corrente
   122  ==Teste Simples de Alterar nó corrente de lista inexistente
 !!!    0  Linha:   125  // --------------------------------------------- 
-  127  ==Teste com múltiplas listas
+  127  == Teste Verifica Lista Vazia
+  132  == Teste Verifica Lista Nao Vazia
+  138  == Teste Verifica Lista Vazia Apos Remocao
+  145  == Teste Verifica Lista Vazia de Lista Inexistente
+!!!    0  Linha:   148  // --------------------------------------------- 
+  150  ==Teste com múltiplas listas
 
-!!! Número de linhas lidas:         143
-!!! Número de casos de teste:        18
-!!! Número comandos corretos:        75
+!!! Número de linhas lidas:         166
+!!! Número de casos de teste:        22
+!!! Número comandos corretos:        88
 !!! Número de falhas encontradas:     0
 
 !!! Não foram encontrados problemas

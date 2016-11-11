@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     3       vas   10/nov/2016 mudança dos testes para nova estrutura
 *	  2		  vas   12/out/2016 adição do teste de alterar peça
 *     1       vas   06/out/2016 início desenvolvimento
 *
@@ -123,15 +124,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		  	 return TST_CondRetParm ;
 			} /* if */
 
-			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
-			*nomePeca = nomePecaEsp ;
-			*corPeca = corPecaEsp ;
-
-			CondRet = PCA_CriarPeca( &vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
-
-			free( nomePeca ) ;
-			free( corPeca ) ;
+			CondRet = PCA_CriarPeca( &vtPecas[ inxPeca ] , nomePecaEsp , corPecaEsp ) ;
 
 			return TST_CompararInt( CondRetEsp , CondRet ,
 			        				"Condicao de retorno errada ao criar peca." ) ;
@@ -150,15 +143,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 			   return TST_CondRetParm ;
 			} /* if */
 
-			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
-			*nomePeca = nomePecaEsp ;
-			*corPeca = corPecaEsp ;
-
-			CondRet = PCA_AlterarPeca( vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
-
-			free( nomePeca ) ;
-			free( corPeca ) ;
+			CondRet = PCA_AlterarPeca( vtPecas[ inxPeca ] , nomePecaEsp , corPecaEsp ) ;
 
 			return TST_CompararInt( CondRetEsp , CondRet ,
 			        				"Condicao de retorno errada ao alterar peca." ) ;
@@ -174,8 +159,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 										&nomePecaEsp , &corPecaEsp ,
 										&CondRetEsp ) ;
 
-			if ( ( numLidos != 4 )
-			  || ( ! ValidarInxPeca( inxPeca , NAO_VAZIO )))
+			if ( numLidos != 4 )
 			{
 			   return TST_CondRetParm ;
 			} /* if */
@@ -183,22 +167,28 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
 			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-			CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , &nomePeca , &corPeca ) ;
+			CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
+
+			printf("Nome obter: %c / Cor obter: %c\n", *nomePeca, *corPeca);
 
 			if ( CondRetEsp )
 			{
+				free( nomePeca ) ;
+				free( corPeca ) ;
 			  	return TST_CompararInt( CondRetEsp , CondRet ,
 			        					"Peca deveria estar vazia." ) ;
 			}/* if */
 
 			if ( nomePecaEsp != *nomePeca )
 			{
+				free( corPeca ) ;
 				return TST_CompararChar( nomePecaEsp , *nomePeca ,
 										"Nome da peca recebido errado." ) ;
 			}/* if */
 
 			if ( corPecaEsp != *corPeca )
 			{
+				free( nomePeca ) ;
 				return TST_CompararChar( corPecaEsp , *corPeca ,
 										"Cor da peca recebida errada." ) ;
 			}/* if */

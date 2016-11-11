@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     2       vas   10/nov/2016 alteracoes devido a mudanca da estrutura da peca
 *     1       vas   10/out/2016 início desenvolvimento
 *
 ***************************************************************************/
@@ -212,7 +213,7 @@ LIS_tppLista listaRecebida ;
 			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
 			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-			CondRet = CSA_ObterPecaCasa( &nomePeca , &corPeca , vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_ObterPecaCasa( nomePeca , corPeca , vtCasas[ inxCasa ] ) ;
 
 			if ( CondRetEsp )
 			{
@@ -282,8 +283,7 @@ LIS_tppLista listaRecebida ;
 			numLidos = LER_LerParametros( "ii" , &inxCasa ,
 										&CondRetEsp ) ;
 
-			if ( ( numLidos != 2 )
-			  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			if ( numLidos != 2 )
 			{
 			   return TST_CondRetParm ;
 			} /* if */
@@ -303,8 +303,7 @@ LIS_tppLista listaRecebida ;
 			numLidos = LER_LerParametros( "ii" , &inxCasa ,
 										&CondRetEsp ) ;
 
-			if ( ( numLidos != 2 )
-			  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			if ( numLidos != 2 )
 			{
 			   return TST_CondRetParm ;
 			} /* if */
@@ -324,13 +323,21 @@ LIS_tppLista listaRecebida ;
 			numLidos = LER_LerParametros( "iii" , &inxCasa ,
 										&igualdadeEsp , &CondRetEsp ) ;
 
-			if ( ( numLidos != 3 )
-			  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			if ( numLidos != 3 )
 			{
 			   return TST_CondRetParm ;
 			} /* if */
 
 			CondRet = CSA_ObterListaAmeacantesCasa( &listaRecebida , vtCasas[ inxCasa ] ) ;
+
+			if ( CondRet != CondRetEsp )
+			{
+				printf("Condicao de retorno errada ao obter lista ameacantes\n");
+				return TST_CompararInt( CondRetEsp , CondRet ,
+			        				"Condicao de retorno errada ao obter lista ameacantes." ) ;
+			}
+
+			printf("Obteve lista ameacantes da casa\n") ;
 
 			if ( ComparaListaCasas( igualdadeEsp ) )
 			{
@@ -350,8 +357,7 @@ LIS_tppLista listaRecebida ;
 				numLidos = LER_LerParametros( "iii" , &inxCasa ,
 											&igualdadeEsp , &CondRetEsp ) ;
 
-			if ( ( numLidos != 3 )
-			  || ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			if ( numLidos != 3 )
 			{
 			   return TST_CondRetParm ;
 			} /* if */
@@ -492,8 +498,18 @@ LIS_tppLista listaRecebida ;
    	int ComparaListaCasas( int igualdade )
    	{
 
-   		int i ;
+   		int i , vazia ;
    		CSA_tppCasa pCasa1 ;
+
+   		printf("Entrou na compara lista casas\n") ;
+
+   		LIS_VerificaVazia( listaRecebida , &vazia ) ;
+
+   		if ( vazia )
+   		{
+   			printf("Lista esta vazia\n");
+   			return TRUE ;
+   		} /* if */
 
    		if ( igualdade )
    		{
@@ -512,14 +528,18 @@ LIS_tppLista listaRecebida ;
    			for ( i = 0 ; i < DIM_VT_CASA ; i++ )
 	     	{
 	     		LIS_ObterValor( listaRecebida , &pCasa1 ) ;
-	     		LIS_AvancarElementoCorrente( listaRecebida , 1 ) ;
+	     		printf("Obteve valor da lista\n");
 	     		if ( ComparaCasas( pCasa1 , casasTeste2[ i ] ) == FALSE )
 	     		{
+	     			printf("Compara casas retornou\n");
 	     			return FALSE ;
-	     		} /* if */	
+	     		} /* if */
+	     		LIS_AvancarElementoCorrente( listaRecebida , 1 ) ;
+	     		printf("Avancou elemento da lista\n");
 	     	} /* for */
    		} /* if */
 
+	    printf("Acabou compara lista casas\n");
 
     	return TRUE ;
 
@@ -537,14 +557,18 @@ LIS_tppLista listaRecebida ;
 
    		int igualdade ;
 
+   		printf("Entrou na compara casas\n");
+
    		CSA_CompararCasa( pCasa1 , pCasa2 , &igualdade ) ;
 
    		if ( igualdade )
    		{
+   			printf("Acabou compara casas\n");
    			return TRUE ;
    		}
    		else
    		{
+   			printf("Acabou compara casas\n");
    			return FALSE ;
    		} /* if */
 

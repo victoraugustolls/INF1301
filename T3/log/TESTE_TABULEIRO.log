@@ -23,22 +23,34 @@
    39  == Teste de Destrui‹o de Tabuleiro
 !!!    0  Linha:    42  // --------------------------------------------- 
    44  == Teste de Movimenta‹o de Pea no Tabuleiro
+>>>    1  Linha:    47  Condicao de retorno errada ao mover peca no tabuleiro. Deveria ser: 0  É: 4
+>>>    2  Linha:    48  Não é comando recuperar:  =retirarPeca         'A'   '1'   OK
+>>>    3  Linha:    49  Comando de teste ignorado:  =destruirTabuleiro   OK
    51  == Teste de Movimenta‹o Inv‡lida de Pea no Tabuleiro
-!!!    0  Linha:    58  // --------------------------------------------- 
+>>>    4  Linha:    54  Condicao de retorno errada ao mover peca no tabuleiro. Deveria ser: 3  É: 4
+>>>    5  Linha:    55  Não é comando recuperar:  =retirarPeca         'A'   '1'   OK
+>>>    6  Linha:    56  Comando de teste ignorado:  =destruirTabuleiro   OK
+!!!    6  Linha:    58  // --------------------------------------------- 
    60  == Teste de Obten‹o de Casa do Tabuleiro
-!!!    0  Linha:    67  // --------------------------------------------- 
+>>>    7  Linha:    63  Id da peca retornada nao corresponde ao id esperado. Deveria ser: >RP<  É: >ds<
+>>>    8  Linha:    64  Não é comando recuperar:  =retirarPeca         'A'   '1'   OK
+>>>    9  Linha:    65  Comando de teste ignorado:  =destruirTabuleiro   OK
+!!!    9  Linha:    67  // --------------------------------------------- 
    69  == Teste de Obten‹o de Pea do Tabuleiro
-!!!    0  Linha:    76  // --------------------------------------------- 
+>>>   10  Linha:    72  Id da peca retornada nao corresponde ao id esperado. Deveria ser: >RP<  É: >^ª<
+>>>   11  Linha:    73  Não é comando recuperar:  =retirarPeca         'A'   '1'   OK
+>>>   12  Linha:    74  Comando de teste ignorado:  =destruirTabuleiro   OK
+!!!   12  Linha:    76  // --------------------------------------------- 
    78  == Teste de Obten‹o de Lista de Ameaantes de uma Pea do Tabuleiro
-!!!    0  Linha:    85  // --------------------------------------------- 
+!!!   12  Linha:    85  // --------------------------------------------- 
    87  == Teste de Obten‹o de Lista de Ameaados de uma Pea do Tabuleiro
 
 !!! Número de linhas lidas:          92
 !!! Número de casos de teste:        13
-!!! Número comandos corretos:        41
-!!! Número de falhas encontradas:     0
+!!! Número comandos corretos:        29
+!!! Número de falhas encontradas:    12
 
-!!! Não foram encontrados problemas
+!!! Foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0
