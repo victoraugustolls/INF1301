@@ -165,8 +165,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *     Obtém a peça presente na casa passada pelo ponteiro.
  *
  *  $EP Parâmetros
- *     pNomePeca   - ponteiro para o ponteiro referente ao nome da peça contina na casa
- *     pCorPeca    - ponteiro para o ponteiro referente à cor da peça contina na casa
+ *     pNomePeca   - ponteiro referente ao nome da peça contina na casa
+ *     pCorPeca    - ponteiro referente à cor da peça contina na casa
  *     pCasa       - ponteiro para a casa onde a peça vai ser obtida
  *
  *  $FV Valor retornado
