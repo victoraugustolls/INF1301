@@ -132,6 +132,7 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa ) ;
  *  $FV Valor retornado
  *     CSA_CondRetOK                - inseriu sem problemas
  *     CSA_CondRetNaoExiste         - a casa não existe
+ *     CSA_CondRetFaltouMemoria     - faltou memoria para inserir peça
  *
  ***********************************************************************/
 

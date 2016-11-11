@@ -96,14 +96,17 @@ typedef enum {
  *
  *  $EP Par‚metros
  *     pTabuleiro - ponteiro para o tabuleiro sendo criado
+ *     pathConfig - local do arquivo de configuração de tabuleiro
  *
  *  $FV Valor retornado
  *     TAB_CondRetOK                - criou sem problemas
  *     TAB_CondRetFaltouMemoria     - faltou memória para alocação do tabuleiro
+ *     TAB_CondRetFalhaArq          - falha ao manipular arquivo necessário
+ *                                      para verificar o movimento
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro ) ;
+TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfig ) ;
 
 
 /***********************************************************************
@@ -256,8 +259,8 @@ TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
                                       char linha ,
-                                      char** pNomePeca ,
-                                      char** pCorPeca ,
+                                      char* pNomePeca ,
+                                      char* pCorPeca ,
                                       TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -270,7 +273,8 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
  *  $EP Parâmetros
  *     coluna              - coordenada da coluna da peça ameaçada
  *     linha               - coordenada da linha da peça ameaçada
- *     pListaAmeacantes    - ponteiro para onde a lista de ameaçantes será retornada
+ *     pListaAmeacantesLinhas    - ponteiro para onde a lista de linhas de casas ameaçantes será retornada
+ *     pListaAmeacantesColunas    - ponteiro para onde a lista de colunas de ameaçantes será retornada
  *     pTabuleiro          - ponteiro para o tabuleiro onde a peça está sendo ameaçada
  *
  *  $FV Valor retornado
@@ -282,7 +286,8 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
                                                  char linha ,
-                                                 LIS_tppLista * pListaAmeacantes ,
+                                                 LIS_tppLista * pListaAmeacantesLinhas ,
+                                                 LIS_tppLista * pListaAmeacantesColunas ,
                                                  TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -295,7 +300,8 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
  *  $EP Parâmetros
  *     coluna              - coordenada da coluna da peça ameaçante
  *     linha               - coordenada da linha da peça ameaçante
- *     pListaAmeacados     - ponteiro para onde a lista de ameaçados será retornada
+ *     pListaAmeacadosLinhas     - ponteiro para onde a lista de linhas de casas ameaçadas será retornada
+ *     pListaAmeacadosColunas     - ponteiro para onde a lista de colunas de casas ameaçadas será retornada
  *     pTabuleiro          - ponteiro para o tabuleiro onde a peça está sendo ameaçando
  *
  *  $FV Valor retornado
@@ -306,8 +312,34 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
                                                 char linha ,
-                                                LIS_tppLista * pListaAmeacados ,
+                                                LIS_tppLista * pListaAmeacadosLinhas ,
+                                                LIS_tppLista * pListaAmeacadosColunas ,
                                                 TAB_tppTabuleiro pTabuleiro ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Obter Casas Com Peça
+ *
+ *  $ED Descrição da função
+ *     Obtém a lista de casas que possuem a peça definida pelos parâmetros peca e cor.
+ *
+ *  $EP Parâmetros
+ *     pListaCasasLinhas              - lista com todas as linhas das casas com a peça definida
+ *     pListaCasasColunas              - lista com todas as colunas das casas com a peça definida
+ *     peca                     - nome da peça definida
+ *     cor                      - cor da peça definida
+ *     pTabuleiro               - ponteiro para o tabuleiro onde a peça está sendo ameaçando
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK                - obteve lista sem problemas
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
+                                     LIS_tppLista * pListaCasasColunas ,
+                                     char peca,
+                                     char cor,
+                                     TAB_tppTabuleiro pTabuleiro ) ;
 
 #undef TABULEIRO_EXT
 
