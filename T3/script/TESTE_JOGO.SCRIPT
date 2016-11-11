@@ -14,18 +14,26 @@
 =declararparm   JaCriado	  int  4
 =declararparm   FaltouMemoria     int  5
 
+=declararparm	JgPreto		  int  0
+=declararparm	JgBranco	  int  1
+
+=declararparm	Nenhum		  int  0
+=declararparm	Xeque		  int  1
+=declararparm	XequeMate	  int  2
+
 // ---------------------------------------------
 
 == Teste de Criação de Juiz
 =criarJuiz	OK
 
-== Teste de Criação de um Segundo Juiz
-=criarJuiz	JaCriado
-
 // ---------------------------------------------
 
 == Teste de Destruição de Juiz
 =destruirJuiz	OK
+
+== Teste do Teste de Destruição de Juiz
+=destruirJuiz	OK
+=recuperar
 
 == Teste de Destruição de Juiz Inexistente
 =destruirJuiz	NaoExiste
@@ -34,20 +42,41 @@
 
 == Teste de Inicialização de Jogo
 =criarJuiz	OK
-=iniciarJogo	OK
-
-== Teste do teste de Inicialização de Jogo
-=iniciarJogo	OK
-=recuperar
+=iniciarJogo	"..\\pecas\\teste_jogo\\config.conf"  OK
 
 // ---------------------------------------------
 
 == Teste de Término de Jogo
 =terminarJogo	OK
 
+== Teste de Término de Jogo Inexistente
+=terminarJogo	NaoExiste
+
 // ---------------------------------------------
 
+== Teste de Realização de Jogada em Jogo Inexistente
+=realizarJogada	‘D’  ‘2’  ‘D’  ‘3’  JgBranco	Nenhum  NaoExiste
+
 == Teste de Realização de Jogada
-=iniciarJogo	Ok
-=realizarJogada	
+=iniciarJogo	"..\\pecas\\teste_jogo\\config_xeque.conf"  OK
+=realizarJogada	‘H’  ‘3’  ‘F’  ‘3’  JgBranco	Nenhum  OK
+
+== Teste de Realização de Jogada Não Válida
+=realizarJogada	‘E’  ‘1’  ‘F’  ‘1’  JgPreto	Nenhum  OK
+
+== Teste de Realização de Xeque
+=realizarJogada	‘E’  ‘1’  ‘D’  ‘1’  JgPreto	Nenhum  OK
+=realizarJogada	‘F’  ‘3’  ‘D’  ‘3’  JgBranco	Xeque	OK
+=terminarJogo	OK
+
+== Teste de Realização de Xeque Mate
+=iniciarJogo	"..\\pecas\\teste_jogo\\config.conf"	   OK
+=realizarJogada	‘D’  ‘2’  ‘D’  ‘3’  JgBranco	Nenhum	   OK
+=realizarJogada	‘E’  ‘7’  ‘E’  ‘6’  JgPreto	Nenhum     OK
+=realizarJogada	‘E’  ‘2’  ‘E’  ‘4’  JgBranco	Nenhum     OK
+=realizarJogada	‘G’  ‘7’  ‘G’  ‘5’  JgPreto	Nenhum     OK
+=realizarJogada	‘D’  ‘1’  ‘H’  ‘5’  JgBranco	XequeMate  OK
+=terminarJogo	OK
+=destruirJuiz	OK
+
 

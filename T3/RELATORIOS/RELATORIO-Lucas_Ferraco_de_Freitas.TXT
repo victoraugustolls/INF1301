@@ -20,3 +20,5 @@
 04/11/2016; 2 horas ; projetar; Projetei o TESTJGO.C.
 
 09/11/2016; 0.5 hora ; redigir script de teste; Comecei a redigir o script de testes para o módulo JOGO (TESTE_JOGO.SCRIPT).
+
+11/11/2016; 3 horas ; revisar código do módulo e redigir script de teste; Revisei o TSTJGO.C e revisei o script de testes TESTE_JOGO.SCRIPT.
