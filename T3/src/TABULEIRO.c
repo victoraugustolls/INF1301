@@ -58,6 +58,7 @@ int TAB_Dim1 (void * casa, void* aux ) ;
 void ExcluirChar ( void * pDado );
 int CompararChar ( void * pDado_1, void * pDado_2 );
 int IgualChar ( void * pDado_1, void * pDado_2 );
+void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro );
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -155,6 +156,8 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfi
     free(pecas);
     free(cores);
     *pTabuleiro = pNovoTabuleiro ;
+
+    AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro);
     
     return TAB_CondRetOK ;
     
@@ -226,6 +229,8 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
              
+    AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro);
+
     return TAB_CondRetOK ;
             
 } /* Fim função: TAB  &Inserir peça no tabuleiro */
@@ -254,7 +259,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     VMV_tpCondRet           retDirMov ;
     VMV_tpMovimentoValido   retMov ;
     
-    int i , j, k, l;
+    int i , j;
     int colAtual , linAtual ;
     int colDestino , linDestino ;
 
@@ -263,11 +268,6 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
     char peca ;
     char cor ;
-
-    CSA_tppCasa vetorCasasAmeacantes[8][8][64];
-    int size_vetorCasasAmeacantes[8][8];
-    CSA_tppCasa vetorCasasAmeacadas[8][8][64];
-    int size_vetorCasasAmeacadas[8][8];
 
     int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim0 , TAB_Dim1 } ;
 
@@ -363,69 +363,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
         return TAB_CondRetNaoExiste ;
     } /* if */
 
-    /* Atualizar Lista de Ameaçacdos e Ameaçantes */
-
-    for ( i = 0 ; i < 8; i++ )
-    {
-        for ( j = 0 ; j < 8; j++ )
-        {
-            size_vetorCasasAmeacantes[i][j] = 0;
-            size_vetorCasasAmeacadas[i][j] = 0;
-        }
-    }
-
-    for ( i = 0 ; i < 8; i++ )
-    {
-        for ( j = 0 ; j < 8; j++ )
-        {
-            retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
-            if(TAB_CasaVazia(( void* ) pTabuleiro->tabuleiro[i][j], ( void* ) pTabuleiro ) == 1)
-            {
-                continue;
-            }
-
-            for ( k = 0 ; k < 8; k++ )
-            {
-                for ( l = 0 ; l < 8; l++ )
-                {
-                    retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
-                    sinal[0] =  cor == 'B'?1:-1;
-
-                    retDirMov = VMV_ChecarMovimentoPeca ( pTabuleiro->configDir ,
-                                                          &retMov ,
-                                                          peca ,
-                                                          ( void* ) pTabuleiro->tabuleiro[i][j] ,
-                                                          ( void* ) pTabuleiro->tabuleiro[k][l] ,
-                                                          vetTodasCasas ,
-                                                          64 ,
-                                                          2 ,
-                                                          TAB_Dimensao ,
-                                                          sinal ,
-                                                          TAB_CasaVazia ,
-                                                          TAB_CasaInimigo ,
-                                                          condEsp ,
-                                                          0,
-                                                          ( void* ) pTabuleiro ) ;
-                    if ( retMov == VMV_MovimentoValidoSim )
-                    {
-                        vetorCasasAmeacantes[k][l][size_vetorCasasAmeacantes] = pTabuleiro->tabuleiro[i][j];
-                        vetorCasasAmeacadas[i][j][size_vetorCasasAmeacadas] = pTabuleiro->tabuleiro[k][l];
-                        size_vetorCasasAmeacantes[k][l]++;
-                        size_vetorCasasAmeacadas[i][j]++;
-                    }
-                }
-            }   
-        }
-    }
-
-    for ( i = 0 ; i < 8; i++ )
-    {
-        for ( j = 0 ; j < 8; j++ )
-        {
-            size_vetorCasasAmeacantes[i][j] = 0;
-            size_vetorCasasAmeacadas[i][j] = 0;
-        }
-    }   
+    AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro);
 
     return TAB_CondRetOK ;
     
@@ -459,6 +397,8 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
         return TAB_CondRetNaoExiste ;
     } /* if */
     
+    AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro);
+
     return TAB_CondRetOK ;
     
 } /* Fim função: TAB  &Retirar peça do tabuleiro */
@@ -608,26 +548,6 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
         retLista = LIS_AvancarElementoCorrente(*pListaAmeacantes , 1) ;
     }
 
-    retLista = LIS_ObterValor( pListaAmeacantes , (void **) &ptCasa ) ;
-    for(i=0; i<8; i++)
-    {
-        for(j=0; j<8; j++)
-        {
-            if(ptCasa == pTabuleiro->tabuleiro[i][j])
-            {
-                linhaIns = (char*) malloc(sizeof(char));
-                colunaIns = (char*) malloc(sizeof(char));
-                *linhaIns = i + 1 + '0';
-                *colunaIns = j + 'A';
-                retLista = LIS_InserirElementoApos( pListaAmeacantesLinhas ,
-                                                    (void*) linhaIns) ;
-                retLista = LIS_InserirElementoApos( pListaAmeacantesColunas ,
-                                                    (void*) colunaIns) ;
-
-            }
-        }
-    }
-
     return TAB_CondRetOK ;
 
 } /* Fim função: TAB  &Obter lista de ameaçados de uma peça do tabuleiro */
@@ -703,26 +623,6 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
         }
 
         retLista = LIS_AvancarElementoCorrente(*pListaAmeacados , 1) ;
-    }
-
-    retLista = LIS_ObterValor( pListaAmeacados , (void **) &ptCasa ) ;
-    for(i=0; i<8; i++)
-    {
-        for(j=0; j<8; j++)
-        {
-            if(ptCasa == pTabuleiro->tabuleiro[i][j])
-            {
-                linhaIns = (char*) malloc(sizeof(char));
-                colunaIns = (char*) malloc(sizeof(char));
-                *linhaIns = i + 1 + '0';
-                *colunaIns = j + 'A';
-                retLista = LIS_InserirElementoApos( pListaAmeacadosLinhas ,
-                                                    (void*) linhaIns) ;
-                retLista = LIS_InserirElementoApos( pListaAmeacadosColunas ,
-                                                    (void*) colunaIns) ;
-
-            }
-        }
     }
 
     return TAB_CondRetOK ;
@@ -887,6 +787,103 @@ int IgualChar ( void * pDado_1, void * pDado_2 )
     char* x = (char) pDado_1;
     char* y = (char) pDado_2;
     return *x==*y;   
+}
+
+void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
+{
+    int i , j, k, l;
+
+    char peca ;
+    char cor ;
+
+    CSA_tppCasa vetorCasasAmeacantes[8][8][64];
+    int size_vetorCasasAmeacantes[8][8];
+    CSA_tppCasa vetorCasasAmeacadas[8][8][64];
+    int size_vetorCasasAmeacadas[8][8];
+
+    CSA_tpCondRet           retCasa ;
+    CSA_tppCasa             vetTodasCasas[64] ;
+    VMV_tpCondRet           retDirMov ;
+    VMV_tpMovimentoValido   retMov ;
+
+    int sinal[] = { 0 , 0 };
+    int condEsp[] = { 0 } ;
+
+    int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim0 , TAB_Dim1 } ;
+
+    /* Atualizar Lista de Ameaçacdos e Ameaçantes */
+
+    for ( i = 0 ; i < 8; i++ )
+    {
+        for ( j = 0 ; j < 8; j++ )
+        {
+            vetTodasCasas[j + 8 * i] = pTabuleiro->tabuleiro[i][j] ;
+        } /* for */
+    } /* for */
+    
+
+    for ( i = 0 ; i < 8; i++ )
+    {
+        for ( j = 0 ; j < 8; j++ )
+        {
+            size_vetorCasasAmeacantes[i][j] = 0;
+            size_vetorCasasAmeacadas[i][j] = 0;
+        }
+    }
+
+    for ( i = 0 ; i < 8; i++ )
+    {
+        for ( j = 0 ; j < 8; j++ )
+        {
+            retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
+            if(TAB_CasaVazia(( void* ) pTabuleiro->tabuleiro[i][j], ( void* ) pTabuleiro ) == 1)
+            {
+                continue;
+            }
+
+            for ( k = 0 ; k < 8; k++ )
+            {
+                for ( l = 0 ; l < 8; l++ )
+                {
+                    retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
+                    sinal[0] =  cor == 'B'?1:-1;
+
+                    retDirMov = VMV_ChecarMovimentoPeca ( pTabuleiro->configDir ,
+                                                          &retMov ,
+                                                          peca ,
+                                                          ( void* ) pTabuleiro->tabuleiro[i][j] ,
+                                                          ( void* ) pTabuleiro->tabuleiro[k][l] ,
+                                                          vetTodasCasas ,
+                                                          64 ,
+                                                          2 ,
+                                                          TAB_Dimensao ,
+                                                          sinal ,
+                                                          TAB_CasaVazia ,
+                                                          TAB_CasaInimigo ,
+                                                          condEsp ,
+                                                          0,
+                                                          ( void* ) pTabuleiro ) ;
+                    if ( retMov == VMV_MovimentoValidoSim )
+                    {
+                        vetorCasasAmeacantes[k][l][size_vetorCasasAmeacantes] = pTabuleiro->tabuleiro[i][j];
+                        vetorCasasAmeacadas[i][j][size_vetorCasasAmeacadas] = pTabuleiro->tabuleiro[k][l];
+                        size_vetorCasasAmeacantes[k][l]++;
+                        size_vetorCasasAmeacadas[i][j]++;
+                    }
+                }
+            }   
+        }
+    }
+
+    for ( i = 0 ; i < 8; i++ )
+    {
+        for ( j = 0 ; j < 8; j++ )
+        {
+            size_vetorCasasAmeacantes[i][j] = 0;
+            size_vetorCasasAmeacadas[i][j] = 0;
+        }
+    }   
+
 }
 
 /********** Fim do módulo de implementação: TAB  Tabuleiro para jogo de xadrez **********/

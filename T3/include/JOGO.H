@@ -223,6 +223,7 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK            - realizou sem problemas
+ *     JGO_CondRetJogoNaoIniciado - o jogo ainda nao foi iniciado
  *     JGO_CondRetNaoExiste     - o jogo não existe
  *     JGO_CondRetMovInvalido   - o movimento solicitado nao é valido
  *     JGO_CondRetFalhaArq      - falha ao ler arquivo da peça
