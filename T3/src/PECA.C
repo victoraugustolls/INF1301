@@ -73,9 +73,6 @@
 
      	PCA_LimparPeca( pNewPeca ) ;
 
-     	// pNewPeca->nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-     	// pNewPeca->corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
-
      	pNewPeca->nomePeca = nomePeca ;
      	pNewPeca->corPeca = corPeca ;
 
@@ -98,13 +95,10 @@
       	if ( pPeca == NULL )
       	{
         	return PCA_CondRetPecaNaoExiste ;
-      	}
-
-      	printf("Novo nome: %c / Nova cor: %c\n", nomePeca, corPeca);
+      	} /* if */
 
       	pPeca->nomePeca = nomePeca ;
       	pPeca->corPeca = corPeca ;
-
 
       	return PCA_CondRetOK ;
 
@@ -120,14 +114,14 @@
                                	char * corPeca )
   	{
 
+  		if ( pPeca == NULL )
+  		{
+  			return PCA_CondRetPecaNaoExiste ;
+  		} /* if */
+
      	#ifdef _DEBUG
         	assert( pPeca != NULL ) ;
      	#endif
-
-     	if ( pPeca->nomePeca == 'V' || pPeca->corPeca == 'V' )
-      	{
-         	return PCA_CondRetPecaVazia ;
-      	} /* if */
 
        	*nomePeca = pPeca->nomePeca ;
        	*corPeca = pPeca->corPeca ;

@@ -125,8 +125,8 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *     corPeca          - ponteiro para o ponteiro referente ao valor da cor da peça
 *
 *  $FV Valor retornado
-*     PCA_CondRetOK			- valor foi obtido corretamente
-*     PCA_CondRetPecaVazia	- valores da peça vazios
+*     PCA_CondRetOK			    - valor foi obtido corretamente
+*     PCA_CondRetPecaNaoExiste  - peça não existe
 *
 ***********************************************************************/
 

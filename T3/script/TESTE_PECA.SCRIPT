@@ -1,7 +1,7 @@
 // Script: TestePeca.script
 // Autores: Victor Augusto
 // Autor Original: Victor Augusto
-// Data: 06/out/2016
+// Data: 11/nov/2016
 // Propósito: Testar por completo as funções de acesso do módulo PECA, com exceção
 // do caso em que ocorre falta de memória.
 //
@@ -56,6 +56,9 @@
 =obterNo	     peca0   'P'    'B'   OK
 =recuperar
 =destroiPeca     peca0   OK
+
+== Teste Obter Valor Peça Inexistente
+=obterNo		 peca0   'P'    'P'   PecaInexistente
 
 // ---------------------------------------------
 

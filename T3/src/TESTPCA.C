@@ -124,15 +124,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 		  	 return TST_CondRetParm ;
 			} /* if */
 
-			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
-			*nomePeca = nomePecaEsp ;
-			*corPeca = corPecaEsp ;
-
 			CondRet = PCA_CriarPeca( &vtPecas[ inxPeca ] , nomePecaEsp , corPecaEsp ) ;
-
-			free( nomePeca ) ;
-			free( corPeca ) ;
 
 			return TST_CompararInt( CondRetEsp , CondRet ,
 			        				"Condicao de retorno errada ao criar peca." ) ;
@@ -151,15 +143,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 			   return TST_CondRetParm ;
 			} /* if */
 
-			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
-			*nomePeca = nomePecaEsp ;
-			*corPeca = corPecaEsp ;
-
 			CondRet = PCA_AlterarPeca( vtPecas[ inxPeca ] , nomePecaEsp , corPecaEsp ) ;
-
-			free( nomePeca ) ;
-			free( corPeca ) ;
 
 			return TST_CompararInt( CondRetEsp , CondRet ,
 			        				"Condicao de retorno errada ao alterar peca." ) ;
@@ -175,8 +159,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 										&nomePecaEsp , &corPecaEsp ,
 										&CondRetEsp ) ;
 
-			if ( ( numLidos != 4 )
-			  || ( ! ValidarInxPeca( inxPeca , NAO_VAZIO )))
+			if ( numLidos != 4 )
 			{
 			   return TST_CondRetParm ;
 			} /* if */
@@ -190,18 +173,22 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 
 			if ( CondRetEsp )
 			{
+				free( nomePeca ) ;
+				free( corPeca ) ;
 			  	return TST_CompararInt( CondRetEsp , CondRet ,
 			        					"Peca deveria estar vazia." ) ;
 			}/* if */
 
 			if ( nomePecaEsp != *nomePeca )
 			{
+				free( corPeca ) ;
 				return TST_CompararChar( nomePecaEsp , *nomePeca ,
 										"Nome da peca recebido errado." ) ;
 			}/* if */
 
 			if ( corPecaEsp != *corPeca )
 			{
+				free( nomePeca ) ;
 				return TST_CompararChar( corPecaEsp , *corPeca ,
 										"Cor da peca recebida errada." ) ;
 			}/* if */

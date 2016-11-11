@@ -16,6 +16,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     5       vas   10/nov/2016 alteracoes devido a mudanca da estrutura da peca
  *     4       vas   12/out/2016 corrigir esvaziar peça da casa
  *     3       lff   11/out/2016 adição de funções de modificar lista
  *     2       lff   10/out/2016 conserto de alguns erros
@@ -174,8 +175,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca ,
-                                 char** pCorPeca ,
+CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca ,
+                                 char* pCorPeca ,
                                  CSA_tppCasa pCasa ) ;
 
 /***********************************************************************

@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     2       vas   10/nov/2016 alteracoes devido a mudanca da estrutura da peca
 *     1       vas   10/out/2016 início desenvolvimento
 *
 ***************************************************************************/
@@ -212,7 +213,7 @@ LIS_tppLista listaRecebida ;
 			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
 			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-			CondRet = CSA_ObterPecaCasa( &nomePeca , &corPeca , vtCasas[ inxCasa ] ) ;
+			CondRet = CSA_ObterPecaCasa( nomePeca , corPeca , vtCasas[ inxCasa ] ) ;
 
 			if ( CondRetEsp )
 			{
