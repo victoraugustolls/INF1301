@@ -186,7 +186,7 @@ CSA_tpCondRet CSA_InserirPecaCasa( char nomePeca ,
                              &corPeca ) ;
     if ( retPeca == PCA_CondRetFaltouMemoria )
     {
-        return CSA_CondRetNaoExiste ;
+        return CSA_CondRetFaltouMemoria ;
     }
     
     return CSA_CondRetOK ;

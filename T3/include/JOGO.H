@@ -73,8 +73,11 @@ typedef enum {
     JGO_CondRetJogoJaIniciado = 6,
     /* O jogo já havia sido iniciado */
 
-    JGO_CondRetJogoNaoIniciado = 7
+    JGO_CondRetJogoNaoIniciado = 7,
     /* O jogo nao havia sido iniciado */
+
+    JGO_CondRetFalhaArq = 8
+    /* Erro ao ler arquivo */
 
 } JGO_tpCondRet ;
 
@@ -113,11 +116,11 @@ typedef enum {
     JGO_Nenhum = 0 ,
     /* Não ocorreu nenhum evento */
 
-    JGO_Cheque = 1,
-    /* Ocorreu um cheque com a jogada */
+    JGO_Xeque = 1,
+    /* Ocorreu um xeque com a jogada */
 
-    JGO_ChequeMate = 2
-    /* Ocorreu um cheque-mate com a jogada */
+    JGO_XequeMate = 2
+    /* Ocorreu um xeque-mate com a jogada */
 
 } JGO_tpEventoOcorrido ;
 
@@ -178,7 +181,7 @@ JGO_tpCondRet JGO_DestruirJuiz( JGO_tppJuiz pJuiz ) ;
  *
  ***********************************************************************/
 
-JGO_tpCondRet JGO_IniciarJogo( JGO_tppJuiz pJuiz ) ;
+JGO_tpCondRet JGO_IniciarJogo( JGO_tppJuiz pJuiz, char* pathConfig ) ;
 
 
 /***********************************************************************
@@ -221,7 +224,9 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
  *  $FV Valor retornado
  *     JGO_CondRetOK            - realizou sem problemas
  *     JGO_CondRetNaoExiste     - o jogo não existe
- *     JGO_CondRetMovInvalido - o movimento solicitado nao é valido
+ *     JGO_CondRetMovInvalido   - o movimento solicitado nao é valido
+ *     JGO_CondRetFalhaArq      - falha ao ler arquivo da peça
+ *     JGO_CondRetFaltouMemoria - falha de falta de memória
  *
  ***********************************************************************/
 
