@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     3       vas   10/nov/2016 mudança dos testes para nova estrutura
 *	  2		  vas   12/out/2016 adição do teste de alterar peça
 *     1       vas   06/out/2016 início desenvolvimento
 *
@@ -128,7 +129,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 			*nomePeca = nomePecaEsp ;
 			*corPeca = corPecaEsp ;
 
-			CondRet = PCA_CriarPeca( &vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
+			CondRet = PCA_CriarPeca( &vtPecas[ inxPeca ] , nomePecaEsp , corPecaEsp ) ;
 
 			free( nomePeca ) ;
 			free( corPeca ) ;
@@ -155,7 +156,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 			*nomePeca = nomePecaEsp ;
 			*corPeca = corPecaEsp ;
 
-			CondRet = PCA_AlterarPeca( vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
+			CondRet = PCA_AlterarPeca( vtPecas[ inxPeca ] , nomePecaEsp , corPecaEsp ) ;
 
 			free( nomePeca ) ;
 			free( corPeca ) ;
@@ -183,7 +184,9 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 			nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
 			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
-			CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , &nomePeca , &corPeca ) ;
+			CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
+
+			printf("Nome obter: %c / Cor obter: %c\n", *nomePeca, *corPeca);
 
 			if ( CondRetEsp )
 			{

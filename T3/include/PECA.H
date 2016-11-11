@@ -16,6 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*	  2       vas   10/nov/2016 mudança dos prototipos para nova estrutura
 *     1       vas   06/out/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
@@ -84,8 +85,8 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 ***********************************************************************/
 
   	PCA_tpCondRet PCA_CriarPeca( PCA_tppPeca * pPeca ,
-            					char * nomePeca ,
-								char * corPeca ) ;
+            					char nomePeca ,
+								char corPeca ) ;
 
 
 /***********************************************************************
@@ -107,8 +108,8 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 ***********************************************************************/
 
   	PCA_tpCondRet PCA_AlterarPeca( PCA_tppPeca pPeca ,
-            					char * nomePeca ,
-								char * corPeca ) ;
+            					char nomePeca ,
+								char corPeca ) ;
 
 
 /***********************************************************************
@@ -130,8 +131,8 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 ***********************************************************************/
 
   	PCA_tpCondRet PCA_ObterValor( PCA_tppPeca pPeca ,
-                               	char ** nomePeca ,
-                               	char ** corPeca ) ;
+                               	char * nomePeca ,
+                               	char * corPeca ) ;
 
 
 /***********************************************************************
