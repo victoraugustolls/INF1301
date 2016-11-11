@@ -38,19 +38,25 @@
    90  == Teste Comparar Casas Diferentes
    99  == Teste Comparar Casas Inexistentes
 !!!    0  Linha:   105  // --------------------------------------------- 
-  107  == Teste Modificar Ameacantes da Casa Iguais
-  113  == Teste do Teste Modificar Ameacantes da Casa Diferentes
->>>    1  Linha:   116  Lista de ameacantes recebida errada. 
-<<<    0  Linha:   117  Falha esperada foi recuperada. 
-!!!    0  Linha:   120  // --------------------------------------------- 
-  122  == Teste Modificar Ameacados da Casa Iguais
-  128  == Teste do Teste Modificar Ameacados da Casa Diferentes
->>>    1  Linha:   131  Lista de ameacados recebida errada. 
-<<<    0  Linha:   132  Falha esperada foi recuperada. 
+  107  == Teste Obter Lista Ameacantes
+  112  == Teste Obter Lista Ameacantes Casa Inexistente
+  115  == Teste Modificar Ameacantes da Casa Iguais
+  121  == Teste do Teste Modificar Ameacantes da Casa Diferentes
+>>>    1  Linha:   124  Lista de ameacantes recebida errada. 
+<<<    0  Linha:   125  Falha esperada foi recuperada. 
+  128  == Teste Modificar Ameacantes Casa Inexistente
+!!!    0  Linha:   131  // --------------------------------------------- 
+  133  == Teste do Teste Obter Lista Ameacados
+  138  == Teste Obter Lista Ameacados Casa Inexistente
+  141  == Teste Modificar Ameacados da Casa
+  147  == Teste do Teste Modificar Ameacados da Casa
+>>>    1  Linha:   150  Lista de ameacados recebida errada. 
+<<<    0  Linha:   151  Falha esperada foi recuperada. 
+  154  == Teste Modificar Ameacados Casa Inexistente
 
-!!! Número de linhas lidas:         133
-!!! Número de casos de teste:        20
-!!! Número comandos corretos:        59
+!!! Número de linhas lidas:         155
+!!! Número de casos de teste:        26
+!!! Número comandos corretos:        69
 !!! Número de falhas encontradas:     0
 
 !!! Não foram encontrados problemas

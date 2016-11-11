@@ -216,7 +216,6 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
  *  $FV Valor retornado
  *     CSA_CondRetOK           - obteve lista sem problemas
  *     CSA_CondRetNaoExiste    - a casa não existe
- *	   CSA_CondRetVazia        - a casa esta vazia
  *
  ***********************************************************************/
 

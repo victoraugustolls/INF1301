@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
 *                               e retirada de funções não utilizadas
 *     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
@@ -402,7 +403,34 @@
 
       return LIS_CondRetOK ;
 
-   } /* Fim função: LIS  &Altera conteudo do nó corrente
+   } /* Fim função: LIS  &Altera conteudo do nó corrente */
+
+/***************************************************************************
+*
+*  Função: LIS  &Verifica se a lista está vazia
+*  ****/
+
+   LIS_tpCondRet LIS_VerificaVazia( LIS_tppLista pLista ,
+                                    int * vazia )
+   {
+
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      if ( pLista->numElem == 0 )
+      {
+         *vazia = 1 ;
+      }
+      else
+      {
+         *vazia = 0 ;
+      } /* if */
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Verifica se a lista está vazia */
 
 
 /*****  Código das funções encapsuladas no módulo  *****/

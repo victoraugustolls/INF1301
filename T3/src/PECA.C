@@ -139,9 +139,13 @@
                     				PCA_tppPeca pPeca_2 ,
                     				int * igualdade )
     {
+    	
+    	printf("Entrou no PCA_ComparaPecas\n");
 
       	if ( pPeca_1 == NULL || pPeca_2 == NULL )
         {
+          	*igualdade = 0 ;
+          	printf("Saiu do PCA_ComparaPecas\n");
         	return PCA_CondRetPecaNaoExiste ;
         } /* if */
 
@@ -155,6 +159,7 @@
         	*igualdade = 0 ;
         }
 
+        printf("Saiu do PCA_ComparaPecas\n");
         return PCA_CondRetOK ;
 
    } /* Fim função: PCA  &Compara duas peças */

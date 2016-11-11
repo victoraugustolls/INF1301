@@ -16,6 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
 *                               e retirada de funções não utilizadas
 *     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
@@ -312,6 +313,27 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_AlteraValor( LIS_tppLista pLista ,
                                   void * pValor ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Verifica se a lista está vazia
+*
+*  $ED Descrição da função
+*     Verifica se a lista está vazia ou não.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser verificada
+*     vazia   - ponteiro para o valor da condição
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_VerificaVazia( LIS_tppLista pLista ,
+                                  int * vazia ) ;
 
 #undef LISTA_EXT
 

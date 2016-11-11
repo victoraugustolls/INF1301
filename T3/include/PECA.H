@@ -99,7 +99,7 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *  $EP Parâmetros
 *     pPeca            - ponteiro para peça sendo alterada
 *     nomePeca         - novo nome da peça sendo alterada
-*	  corPeca 		   - nova cor da peça sendo alterada
+*	    corPeca 		   - nova cor da peça sendo alterada
 *
 *  $FV Valor retornado
 *     PCA_CondRetOK             - peça foi alterada corretamente
@@ -121,8 +121,8 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *
 *  $EP Parâmetros
 *     pPeca            - ponteiro para a peça de onde se quer o valor
-*     nomePeca         - ponteiro para o ponteiro referente ao valor do nome da peça
-*     corPeca          - ponteiro para o ponteiro referente ao valor da cor da peça
+*     nomePeca         - ponteiro referente ao valor do nome da peça
+*     corPeca          - ponteiro referente ao valor da cor da peça
 *
 *  $FV Valor retornado
 *     PCA_CondRetOK			    - valor foi obtido corretamente
