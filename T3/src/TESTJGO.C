@@ -58,7 +58,7 @@ JGO_tppJuiz   pJuiz ;
  *     =destruirJuiz        condRetorno
  *     =iniciarJogo         condRetorno
  *     =terminarJogo        condRetorno
- *     =realizarJogada      lAtual  cAtual  lDestino  cDestino  evento  condRetorno
+ *     =realizarJogada      lAtual  cAtual  lDestino  cDestino  corJog  evento  condRetorno
  *
  ***********************************************************************/
 
@@ -74,7 +74,9 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     char colunaAtual ;
     char linhaDestino ;
     char colunaDestino ;
+    char * pathArqConfig ;
     JGO_tpEventoOcorrido EveOcor , EveOcorEsp ;
+    JGO_tpCorJogador JgAtual ;
     
     /* Testar CriarJuiz */
     
@@ -117,14 +119,14 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     if ( strcmp( ComandoTeste , INICIAR_JOGO_CMD ) == 0 )
     {
-        numLidos = LER_LerParametros( "i" , &CondRetEsp ) ;
+        numLidos = LER_LerParametros( "si" , &pathArqConfig , &CondRetEsp ) ;
         
-        if ( ( numLidos != 1 ) )
+        if ( ( numLidos != 2 ) )
         {
             return TST_CondRetParm ;
         } /* if */
         
-        CondRet = JGO_IniciarJogo ( pJuiz ) ;
+        CondRet = JGO_IniciarJogo ( pJuiz , pathArqConfig ) ;
         
         return TST_CompararInt( CondRetEsp , CondRet ,
                                "Condicao de retorno errada ao iniciar jogo." ) ;
@@ -158,6 +160,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                       &colunaAtual ,
                                       &linhaDestino ,
                                       &colunaDestino ,
+                                      &JgAtual ,
                                       &EveOcorEsp ,
                                       &CondRetEsp ) ;
         
@@ -167,6 +170,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         } /* if */
         
         CondRet = JGO_RealizarJogada ( pJuiz ,
+                                       JgAtual ,
                                        EveOcor ,
                                        linhaAtual ,
                                        colunaAtual ,

@@ -1,0 +1,13 @@
+L_OR
+	P_MENOR
+		F_ABS
+			F_SUB
+				V_DIM 0 D
+				V_DIM 0 A
+		V_NUM 2
+	P_MENOR
+		F_ABS
+			F_SUB
+				V_DIM 1 D
+				V_DIM 1 A
+		V_NUM 2
