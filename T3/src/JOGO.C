@@ -7,11 +7,14 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     2       vas    12/nov/2016 correcao de diversos erros de sintaxe
  *     1       iars   03/nov/2016 inicio desenvolvimento
  *
  ***************************************************************************/
 
 #include   <stdio.h>
+#include   <memory.h>
+#include   <malloc.h>
 #include   "TABULEIRO.H"
 #include   "LISTA.H"
 
@@ -26,14 +29,14 @@ struct JGO_tagJuiz
 
 JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz )
 {
-    *pJuiz = malloc(sizeof(JGO_tagJuiz));
+    *pJuiz = malloc(sizeof(struct JGO_tagJuiz));
 
     if(pJuiz == NULL)
     {
         return JGO_CondRetFaltouMemoria;
     }
 
-    pJuiz->tabuleiro = NULL;
+    (*pJuiz)->tabuleiro = NULL;
 
     return JGO_CondRetOK;
 }
@@ -78,7 +81,7 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz )
         return JGO_CondRetJogoNaoIniciado;        
     }
 
-    TAB_DestruirTabuleiro( pJuiz->pTabuleiro ) ;
+    TAB_DestruirTabuleiro( pJuiz->tabuleiro ) ;
 
     pJuiz->tabuleiro = NULL;
 
@@ -101,7 +104,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
     char charCorCorrente;
     char charCorOposta;
     int isListaVazia;
-    TAB_tpCondRet listaRet;
+    LIS_tpCondRet listaRet;
     LIS_tppLista listaLinhas;
     LIS_tppLista listaColunas;
     LIS_tppLista pListaAmeacantesLinhas;
@@ -129,7 +132,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                             linhaCasaAtual ,
                                             &peca_atual ,
                                             &cor_atual ,
-                                            pJuiz->pTabuleiro );
+                                            pJuiz->tabuleiro );
 
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
@@ -148,7 +151,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                             linhaCasaDestino ,
                                             &peca_destino ,
                                             &cor_destino ,
-                                            pJuiz->pTabuleiro );
+                                            pJuiz->tabuleiro );
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
         return JGO_CondRetMovInvalido;
@@ -158,11 +161,11 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                          linhaCasaAtual,
                                          colunaCasaDestino,
                                          linhaCasaDestino,
-                                         pJuiz->pTabuleiro);
+                                         pJuiz->tabuleiro );
 
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
-        return JGO_CondRetMovInvalido
+        return JGO_CondRetMovInvalido;
     }
     else if(tabCondRet == TAB_CondRetMovInvalido)
     {
@@ -188,22 +191,22 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                             &listaColunas,
                                             'R', 
                                             charCorCorrente, 
-                                            pJuiz->pTabuleiro);
+                                            pJuiz->tabuleiro );
 
-    retLista = LIS_AvancarElementoCorrente(*listaLinhas , -64) ;
-    retLista = LIS_AvancarElementoCorrente(*listaColunas , -64) ;
-    if(retLista != LIS_CondRetListaVazia)
+    listaRet = LIS_AvancarElementoCorrente(listaLinhas , -64) ;
+    listaRet = LIS_AvancarElementoCorrente(listaColunas , -64) ;
+    if(listaRet != LIS_CondRetListaVazia)
     {
-        while(retLista != LIS_CondRetNoCorrenteUlt)
+        while(listaRet != LIS_CondRetNoCorrenteUlt)
         {
-            retLista = LIS_ObterValor( listaLinhas , (void **) &linha ) ;
-            retLista = LIS_ObterValor( listaColunas , (void **) &coluna ) ;
+            listaRet = LIS_ObterValor( listaLinhas , (void **) &linha ) ;
+            listaRet = LIS_ObterValor( listaColunas , (void **) &coluna ) ;
 
             tabCondRet = TAB_ObterListaAmeacantesTabuleiro(  *coluna ,
                                                              *linha ,
                                                              &pListaAmeacantesLinhas ,
                                                              &pListaAmeacantesColunas ,
-                                                             pJuiz->pTabuleiro );
+                                                             pJuiz->tabuleiro );
 
             listaRet = LIS_VerificaVazia(pListaAmeacantesLinhas, &isListaVazia);
 
@@ -213,13 +216,13 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                                      linhaCasaDestino,
                                                      colunaCasaAtual,
                                                      linhaCasaAtual,
-                                                     pJuiz->pTabuleiro);
+                                                     pJuiz->tabuleiro );
 
                 tabCondRet = TAB_InserirPecaTabuleiro(  colunaCasaDestino,
                                                         linhaCasaDestino ,
                                                         peca_destino ,
                                                         cor_destino ,
-                                                        pJuiz->pTabuleiro  ) ;  
+                                                        pJuiz->tabuleiro  ) ;  
 
                 listaRet = LIS_DestruirLista(pListaAmeacantesLinhas);
                 listaRet = LIS_DestruirLista(pListaAmeacantesColunas);
@@ -229,8 +232,8 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 
             listaRet = LIS_DestruirLista(pListaAmeacantesLinhas);
             listaRet = LIS_DestruirLista(pListaAmeacantesColunas);
-            retLista = LIS_AvancarElementoCorrente(*listaLinhas , 1) ;
-            retLista = LIS_AvancarElementoCorrente(*listaColunas , 1) ;
+            listaRet = LIS_AvancarElementoCorrente(listaLinhas , 1) ;
+            listaRet = LIS_AvancarElementoCorrente(listaColunas , 1) ;
         }   
     }
 
@@ -238,27 +241,27 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                             &listaColunas,
                                             'R', 
                                             charCorOposta, 
-                                            pJuiz->pTabuleiro);
+                                            pJuiz->tabuleiro );
 
-    retLista = LIS_AvancarElementoCorrente(*listaLinhas , -64) ;
-    retLista = LIS_AvancarElementoCorrente(*listaColunas , -64) ;
+    listaRet = LIS_AvancarElementoCorrente(listaLinhas , -64) ;
+    listaRet = LIS_AvancarElementoCorrente(listaColunas , -64) ;
 
-    if(retLista == LIS_CondRetListaVazia)
+    if(listaRet == LIS_CondRetListaVazia)
     {
         *eventoOcorrido = JGO_Nenhum;
         return JGO_CondRetOK;
     }
 
-    while(retLista != LIS_CondRetNoCorrenteUlt)
+    while(listaRet != LIS_CondRetNoCorrenteUlt)
     {
-        retLista = LIS_ObterValor( listaLinhas , (void **) &linha ) ;
-        retLista = LIS_ObterValor( listaColunas , (void **) &coluna ) ;
+        listaRet = LIS_ObterValor( listaLinhas , (void **) &linha ) ;
+        listaRet = LIS_ObterValor( listaColunas , (void **) &coluna ) ;
 
         tabCondRet = TAB_ObterListaAmeacantesTabuleiro(  *coluna ,
                                                          *linha ,
                                                          &pListaAmeacantesLinhas ,
                                                          &pListaAmeacantesColunas ,
-                                                         pJuiz->pTabuleiro );
+                                                         pJuiz->tabuleiro );
 
         listaRet = LIS_VerificaVazia(pListaAmeacantesLinhas, &isListaVazia);
 
@@ -269,8 +272,8 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 
         listaRet = LIS_DestruirLista(pListaAmeacantesLinhas);
         listaRet = LIS_DestruirLista(pListaAmeacantesColunas);
-        retLista = LIS_AvancarElementoCorrente(*listaLinhas , 1) ;
-        retLista = LIS_AvancarElementoCorrente(*listaColunas , 1) ;
+        listaRet = LIS_AvancarElementoCorrente(listaLinhas , 1) ;
+        listaRet = LIS_AvancarElementoCorrente(listaColunas , 1) ;
     }
 
     if(existeXeque == 0)
@@ -279,31 +282,31 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
         return JGO_CondRetOK;
     }
 
-    retLista = LIS_AvancarElementoCorrente(*listaLinhas , -64) ;
-    retLista = LIS_AvancarElementoCorrente(*listaColunas , -64) ;
+    listaRet = LIS_AvancarElementoCorrente(listaLinhas , -64) ;
+    listaRet = LIS_AvancarElementoCorrente(listaColunas , -64) ;
 
-    while(retLista != LIS_CondRetNoCorrenteUlt)
+    while(listaRet != LIS_CondRetNoCorrenteUlt)
     {
-        retLista = LIS_ObterValor( listaLinhas , (void **) &linha ) ;
-        retLista = LIS_ObterValor( listaColunas , (void **) &coluna ) ;
+        listaRet = LIS_ObterValor( listaLinhas , (void **) &linha ) ;
+        listaRet = LIS_ObterValor( listaColunas , (void **) &coluna ) ;
 
         for(l='1'; l<='8'; l++)
         {
-            for(c='A'; c<='H'; H++)
+            for(c='A'; c<='H'; c++)
             {
                 tabCondRet = TAB_ObterPecaTabuleiro(    c ,
                                                         l ,
                                                         &peca_destino ,
                                                         &cor_destino ,
-                                                        pJuiz->pTabuleiro );
+                                                        pJuiz->tabuleiro );
                 
                 tabCondRet = TAB_MoverPecaTabuleiro( *coluna,
                                                      *linha,
                                                      c,
                                                      l,
-                                                     pJuiz->pTabuleiro);
+                                                     pJuiz->tabuleiro );
 
-                else if(tabCondRet == TAB_CondRetFalhaArq)
+                if(tabCondRet == TAB_CondRetFalhaArq)
                 {
                     return JGO_CondRetFalhaArq;
                 }
@@ -320,24 +323,24 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                                                  l ,
                                                                  &pListaAmeacantesLinhas ,
                                                                  &pListaAmeacantesColunas ,
-                                                                 pJuiz->pTabuleiro );
+                                                                 pJuiz->tabuleiro );
 
-                retLista = LIS_AvancarElementoCorrente(*pListaAmeacantesLinhas , -64) ;
-                retLista = LIS_AvancarElementoCorrente(*pListaAmeacantesColunas , -64) ;
+                listaRet = LIS_AvancarElementoCorrente(pListaAmeacantesLinhas , -64) ;
+                listaRet = LIS_AvancarElementoCorrente(pListaAmeacantesColunas , -64) ;
 
-                if(retLista == LIS_CondRetListaVazia)
+                if(listaRet == LIS_CondRetListaVazia)
                 {
                     tabCondRet = TAB_MoverPecaTabuleiro( c,
                                                          l,
                                                          *coluna,
                                                          *linha,
-                                                         pJuiz->pTabuleiro);
+                                                         pJuiz->tabuleiro );
 
                     tabCondRet = TAB_InserirPecaTabuleiro(  c,
                                                             l ,
                                                             peca_destino ,
                                                             cor_destino ,
-                                                            pJuiz->pTabuleiro  ) ;  
+                                                            pJuiz->tabuleiro  ) ;  
                     listaRet = LIS_DestruirLista(pListaAmeacantesLinhas);
                     listaRet = LIS_DestruirLista(pListaAmeacantesColunas);  
 
@@ -346,17 +349,17 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                 }
 
                 existeAmeacanteInimigo = 0;
-                while(retLista != LIS_CondRetNoCorrenteUlt)
+                while(listaRet != LIS_CondRetNoCorrenteUlt)
                 {
-                    retLista = LIS_ObterValor( pListaAmeacantesLinhas , (void **) &linhaAmeacante ) ;
-                    retLista = LIS_ObterValor( pListaAmeacantesColunas , (void **) &colunaAmeacante ) ;
+                    listaRet = LIS_ObterValor( pListaAmeacantesLinhas , (void **) &linhaAmeacante ) ;
+                    listaRet = LIS_ObterValor( pListaAmeacantesColunas , (void **) &colunaAmeacante ) ;
 
 
-                    tabCondRet = TAB_ObterPecaTabuleiro( colunaAmeacante,
-                                                          linhaAmeacante,
+                    tabCondRet = TAB_ObterPecaTabuleiro( *colunaAmeacante,
+                                                          *linhaAmeacante,
                                                           &pecaAmeacante,
                                                           &corAmeacante,
-                                                          pJuiz->pTabuleiro );
+                                                          pJuiz->tabuleiro );
 
                     if(corAmeacante == charCorCorrente)
                     {
@@ -364,8 +367,8 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                         break;
                     }
 
-                    retLista = LIS_AvancarElementoCorrente(*pListaAmeacantesLinhas , 1) ;
-                    retLista = LIS_AvancarElementoCorrente(*pListaAmeacantesColunas , 1) ;
+                    listaRet = LIS_AvancarElementoCorrente(pListaAmeacantesLinhas , 1) ;
+                    listaRet = LIS_AvancarElementoCorrente(pListaAmeacantesColunas , 1) ;
                 }
 
                 if(!existeAmeacanteInimigo == 0)
@@ -374,13 +377,13 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                                          l,
                                                          *coluna,
                                                          *linha,
-                                                         pJuiz->pTabuleiro);
+                                                         pJuiz->tabuleiro );
 
                     tabCondRet = TAB_InserirPecaTabuleiro(  c,
                                                             l ,
                                                             peca_destino ,
                                                             cor_destino ,
-                                                            pJuiz->pTabuleiro  ) ;  
+                                                            pJuiz->tabuleiro  ) ;  
                     listaRet = LIS_DestruirLista(pListaAmeacantesLinhas);
                     listaRet = LIS_DestruirLista(pListaAmeacantesColunas);  
 
@@ -392,21 +395,21 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                                          l,
                                                          *coluna,
                                                          *linha,
-                                                         pJuiz->pTabuleiro);
+                                                         pJuiz->tabuleiro );
 
                 tabCondRet = TAB_InserirPecaTabuleiro(  c,
                                                         l ,
                                                         peca_destino ,
                                                         cor_destino ,
-                                                        pJuiz->pTabuleiro  ) ; 
+                                                        pJuiz->tabuleiro  ) ; 
 
                 listaRet = LIS_DestruirLista(pListaAmeacantesLinhas);
                 listaRet = LIS_DestruirLista(pListaAmeacantesColunas);               
             }
         }
 
-        retLista = LIS_AvancarElementoCorrente(*listaLinhas , 1) ;
-        retLista = LIS_AvancarElementoCorrente(*listaColunas , 1) ;
+        listaRet = LIS_AvancarElementoCorrente(listaLinhas , 1) ;
+        listaRet = LIS_AvancarElementoCorrente(listaColunas , 1) ;
     }
 
     *eventoOcorrido = JGO_XequeMate;

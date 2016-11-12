@@ -9,11 +9,12 @@
  *
  *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
  *  Gestor:  LES/DI/PUC-Rio
- *  Autores: lff, iars
+ *  Autores: lff, iars, vas
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
- *     1       lff   05/out/2016 início desenvolvimento
+ *     2       vas   12/nov/2016 correcao de diversos erros de sintaxe
+ *     1       lff   05/nov/2016 início desenvolvimento
  *
  ***************************************************************************/
 
@@ -171,7 +172,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = JGO_RealizarJogada ( pJuiz ,
                                        JgAtual ,
-                                       EveOcor ,
+                                       &EveOcor ,
                                        linhaAtual ,
                                        colunaAtual ,
                                        linhaDestino ,

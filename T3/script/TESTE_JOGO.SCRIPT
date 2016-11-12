@@ -1,8 +1,8 @@
 // Script: TESTE_JOGO.SCRIPT
-// Autores: Lucas Ferraço
+// Autores: Lucas FerraçÁo
 // Data: 09/nov/2016
-// Propósito: Testar por completo as funções de acesso do módulo JOGO, com exceção
-// do caso em que ocorre falta de memória.
+// Proposito: Testar por completo as funçcoes de acesso do modulo JOGO, com exceçcao
+// do caso em que ocorre falta de memoria.
 //
 // ---------------------------------------------
 
@@ -11,72 +11,70 @@
 =declararparm   NaoExiste         int  1
 =declararparm	CoordNaoExiste	  int  2
 =declararparm	MovInvalido       int  3
-=declararparm   JaCriado	  int  4
+=declararparm   JaCriado	  	  int  4
 =declararparm   FaltouMemoria     int  5
 
-=declararparm	JgPreto		  int  0
-=declararparm	JgBranco	  int  1
+=declararparm	JgPreto		      int  0
+=declararparm	JgBranco	      int  1
 
-=declararparm	Nenhum		  int  0
-=declararparm	Xeque		  int  1
-=declararparm	XequeMate	  int  2
+=declararparm	Nenhum		      int  0
+=declararparm	Xeque		      int  1
+=declararparm	XequeMate	      int  2
 
 // ---------------------------------------------
 
-== Teste de Criação de Juiz
+== Teste de Criaçcao de Juiz
 =criarJuiz	OK
 
 // ---------------------------------------------
 
-== Teste de Destruição de Juiz
+== Teste de Destruiçcao de Juiz
 =destruirJuiz	OK
 
-== Teste do Teste de Destruição de Juiz
+== Teste do Teste de Destruiçcao de Juiz
 =destruirJuiz	OK
 =recuperar
 
-== Teste de Destruição de Juiz Inexistente
+== Teste de Destruiçcao de Juiz Inexistente
 =destruirJuiz	NaoExiste
 
 // ---------------------------------------------
 
-== Teste de Inicialização de Jogo
-=criarJuiz	OK
+== Teste de Inicializaçcao de Jogo
+=criarJuiz	    OK
 =iniciarJogo	"..\\pecas\\teste_jogo\\config.conf"  OK
 
 // ---------------------------------------------
 
-== Teste de Término de Jogo
+== Teste de Termino de Jogo
 =terminarJogo	OK
 
-== Teste de Término de Jogo Inexistente
+== Teste de Termino de Jogo Inexistente
 =terminarJogo	NaoExiste
 
 // ---------------------------------------------
 
-== Teste de Realização de Jogada em Jogo Inexistente
-=realizarJogada	‘D’  ‘2’  ‘D’  ‘3’  JgBranco	Nenhum  NaoExiste
+== Teste de Realizaçcao de Jogada em Jogo Inexistente
+=realizarJogada	'D'  '2'  'D'  '3'  JgBranco	Nenhum  NaoExiste
 
-== Teste de Realização de Jogada
+== Teste de Realizaçcao de Jogada
 =iniciarJogo	"..\\pecas\\teste_jogo\\config_xeque.conf"  OK
-=realizarJogada	‘H’  ‘3’  ‘F’  ‘3’  JgBranco	Nenhum  OK
+=realizarJogada	'H'  '3'  'F'  '3'  JgBranco	Nenhum  OK
 
-== Teste de Realização de Jogada Não Válida
-=realizarJogada	‘E’  ‘1’  ‘F’  ‘1’  JgPreto	Nenhum  OK
+== Teste de Realizaçcao de Jogada Nao Valida
+=realizarJogada	'E'  '1'  'F'  '1'  JgPreto	    Nenhum  OK
 
-== Teste de Realização de Xeque
-=realizarJogada	‘E’  ‘1’  ‘D’  ‘1’  JgPreto	Nenhum  OK
-=realizarJogada	‘F’  ‘3’  ‘D’  ‘3’  JgBranco	Xeque	OK
+== Teste de Realizaçcao de Xeque
+=realizarJogada	'E'  '1'  'D'  '1'  JgPreto	    Nenhum  OK
+=realizarJogada	'F'  '3'  'D'  '3'  JgBranco	Xeque	OK
 =terminarJogo	OK
 
-== Teste de Realização de Xeque Mate
+== Teste de Realizaçcao de Xeque Mate
 =iniciarJogo	"..\\pecas\\teste_jogo\\config.conf"	   OK
-=realizarJogada	‘D’  ‘2’  ‘D’  ‘3’  JgBranco	Nenhum	   OK
-=realizarJogada	‘E’  ‘7’  ‘E’  ‘6’  JgPreto	Nenhum     OK
-=realizarJogada	‘E’  ‘2’  ‘E’  ‘4’  JgBranco	Nenhum     OK
-=realizarJogada	‘G’  ‘7’  ‘G’  ‘5’  JgPreto	Nenhum     OK
-=realizarJogada	‘D’  ‘1’  ‘H’  ‘5’  JgBranco	XequeMate  OK
+=realizarJogada	'D'  '2'  'D'  '3'  JgBranco	Nenhum	   OK
+=realizarJogada	'E'  '7'  'E'  '6'  JgPreto	    Nenhum     OK
+=realizarJogada	'E'  '2'  'E'  '4'  JgBranco	Nenhum     OK
+=realizarJogada	'G'  '7'  'G'  '5'  JgPreto 	Nenhum     OK
+=realizarJogada	'D'  '1'  'H'  '5'  JgBranco	XequeMate  OK
 =terminarJogo	OK
 =destruirJuiz	OK
-
-

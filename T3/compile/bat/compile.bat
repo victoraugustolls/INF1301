@@ -17,3 +17,7 @@ if exist ..\err\TEST_TAB.err notepad ..\err\TEST_TAB.err
 nmake /F..\comp\TEST_CSA.make 
 copy ..\obj\TEST_CSA.exe ..\..\bin\TEST_CSA.EXE
 if exist ..\err\TEST_CSA.err notepad ..\err\TEST_CSA.err
+
+nmake /F..\comp\TEST_JGO.make 
+copy ..\obj\TEST_JGO.exe ..\..\bin\TEST_JGO.EXE
+if exist ..\err\TEST_JGO.err notepad ..\err\TEST_JGO.err

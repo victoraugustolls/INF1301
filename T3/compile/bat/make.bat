@@ -3,3 +3,4 @@
 ..\bin\gmake  /p..\bin\gmake.parm /b..\comp  /cTEST_PCA
 ..\bin\gmake  /p..\bin\gmake.parm /b..\comp  /cTEST_TAB
 ..\bin\gmake  /p..\bin\gmake.parm /b..\comp  /cTEST_CSA
+..\bin\gmake  /p..\bin\gmake.parm /b..\comp  /cTEST_JGO
