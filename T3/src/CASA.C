@@ -1,6 +1,6 @@
 /***************************************************************************
  *
- *  $MCD Módulo de definição: CSA  Casa de um tabuleiro para jogo de xadrez
+ *  $MCD Módulo de implementação: CSA  Casa de um tabuleiro para jogo de xadrez
  *
  *  Arquivo gerado:              CASA.h
  *  Letras identificadoras:      CSA
