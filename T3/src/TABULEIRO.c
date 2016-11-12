@@ -52,10 +52,10 @@ typedef struct TAB_tagTabuleiro {
 /***** Protótipos das funções encapuladas no módulo *****/
 
 int TAB_VerificaCoordValida ( char coluna , char linha ) ;
-int TAB_CasaVazia ( void * casa , void* aux ) ;
-int TAB_CasaInimigo ( void * casa , void* aux ) ;
-int TAB_Dim0 ( void * casa , void* aux ) ;
-int TAB_Dim1 ( void * casa , void* aux ) ;
+int TAB_CasaVazia ( void * casa , void * aux ) ;
+int TAB_CasaInimigo ( void * casa , void * aux ) ;
+int TAB_Dim0 ( void * casa , void * aux ) ;
+int TAB_Dim1 ( void * casa , void * aux ) ;
 void ExcluirChar ( void * pDado ) ;
 int CompararChar ( void * pDado_1 , void * pDado_2 ) ;
 int IgualChar ( void * pDado_1 , void * pDado_2 ) ;
