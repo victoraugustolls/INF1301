@@ -108,7 +108,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
             return TST_CondRetParm ;
         } /* if */
         
-        CondRet = TAB_CriarTabuleiro ( &pTabuleiro ) ;
+        CondRet = TAB_CriarTabuleiro ( &pTabuleiro , "" ) ;
         
         return TST_CompararInt( CondRetEsp , CondRet ,
                                 "Condicao de retorno errada ao criar tabuleiro." ) ;
@@ -240,22 +240,22 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                           pTabuleiro ) ;
         if ( CondRet == TAB_CondRetNaoExiste )
         {
-            return TST_NotificarFalha("A casa não existe.");
+            return TST_NotificarFalha( "A casa não existe." ) ;
         }
         if ( CondRet == TAB_CondRetCoordNaoExiste )
         {
-            return TST_NotificarFalha("A coordenada da casa não existe.");
+            return TST_NotificarFalha( "A coordenada da casa não existe." ) ;
         }
 
-        csaRet = CSA_ObterPecaCasa(&nomeObtido,&corObtida,casaObtida);
+        csaRet = CSA_ObterPecaCasa( nomeObtido , corObtida , casaObtida ) ;
 
         if ( csaRet != CSA_CondRetOK )
         {
-            return TST_NotificarFalha("A casa não existe.");
+            return TST_NotificarFalha( "A casa não existe." ) ;
         }
                 if ( csaRet != CSA_CondRetOK )
         {
-            return TST_NotificarFalha("A casa não existe.");
+            return TST_NotificarFalha( "A casa não existe." ) ;
         }
         
         if ( charParm3 != ( *nomeObtido ) )
@@ -297,8 +297,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = TAB_ObterPecaTabuleiro ( charParm1 ,
                                            charParm2 ,
-                                           &nomeObtido ,
-                                           &corObtida ,
+                                           nomeObtido ,
+                                           corObtida ,
                                            pTabuleiro ) ;
         
         if ( charParm3 != ( *nomeObtido ) )
@@ -410,6 +410,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = TAB_ObterListaAmeacantesTabuleiro ( charParm1 ,
                                                       charParm2 ,
+                                                      &listaRet ,
                                                       &listaRet ,
                                                       pTabuleiro ) ;
         
@@ -530,6 +531,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         CondRet = TAB_ObterListaAmeacadosTabuleiro ( charParm1 ,
                                                      charParm2 ,
+                                                     &listaRet ,
                                                      &listaRet ,
                                                      pTabuleiro ) ;
         
