@@ -15,5 +15,78 @@
 
 // ---------------------------------------------
 
-== Teste de Criação de Tabuleiro
+== Teste de Criaçcao de Tabuleiro
 =criarTabuleiro   OK
+
+// ---------------------------------------------
+
+== Teste de Inserçcao de Peçca no Tabuleiro
+=inserirPeca         'A'   '1'   'V'   'V'   OK
+
+== Teste de Inserçcao de Peçca em Coluna Invalida no Tabuleiro
+=inserirPeca         'I'   '1'   'V'   'V'   CoordNaoExiste
+
+== Teste de Inserçcao de Peçca em Linha Invalida no Tabuleiro
+=inserirPeca         'A'   '9'   'V'   'V'   CoordNaoExiste
+
+// ---------------------------------------------
+
+== Teste de Remoçcao de Pecça do Tabuleiro
+=retirarPeca         'A'   '1'   OK
+
+// ---------------------------------------------
+
+== Teste de Destruiçcao de Tabuleiro
+=destruirTabuleiro   OK
+
+// ---------------------------------------------
+
+== Teste de Movimentaçcao de Peçca no Tabuleiro
+=criarTabuleiro      OK
+=inserirPeca         'A'   '1'   'R'   'P'   OK
+=moverPeca           'A'   '1'   'A'   '2'   OK
+=retirarPeca         'A'   '1'   OK
+=destruirTabuleiro   OK
+
+== Teste de Movimentaçcao Invalida de Pecça no Tabuleiro
+=criarTabuleiro      OK
+=inserirPeca         'A'   '1'   'R'   'P'   OK
+=moverPeca           'A'   '1'   'C'   '3'   MovInvalido
+=retirarPeca         'A'   '1'   OK
+=destruirTabuleiro   OK
+
+// ---------------------------------------------
+
+== Teste de Obtençcao de Casa do Tabuleiro
+=criarTabuleiro      OK
+=inserirPeca         'A'   '1'   'R'   'P'   OK
+=obterCasa           'A'   '1'   'R'   'P'   OK
+=retirarPeca         'A'   '1'   OK
+=destruirTabuleiro   OK
+
+// ---------------------------------------------
+
+== Teste de Obtençcao de Pecça do Tabuleiro
+=criarTabuleiro      OK
+=inserirPeca         'A'   '1'   'R'   'P'   OK
+=obterPeca           'A'   '1'   'R'   'P'   OK
+=retirarPeca         'A'   '1'   OK
+=destruirTabuleiro   OK
+
+// ---------------------------------------------
+
+== Teste de Obtençcao de Lista de Ameaçcantes de uma Peçca do Tabuleiro
+=criarTabuleiro         OK
+=inserirPeca            'A'   '1'   'R'   'P'   OK
+=obterListaAmeacantes   'A'   '1'   OK
+=retirarPeca            'A'   '1'   OK
+=destruirTabuleiro      OK
+
+// ---------------------------------------------
+
+== Teste de Obtençcao de Lista de Ameaçcados de uma Peçca do Tabuleiro
+=criarTabuleiro         OK
+=inserirPeca            'A'   '1'   'R'   'P'   OK
+=obterListaAmeacados    'A'   '1'   OK
+=retirarPeca            'A'   '1'   OK
+=destruirTabuleiro      OK

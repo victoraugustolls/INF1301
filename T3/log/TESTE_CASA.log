@@ -46,7 +46,7 @@
 <<<    0  Linha:   125  Falha esperada foi recuperada. 
   128  == Teste Modificar Ameacantes Casa Inexistente
 !!!    0  Linha:   131  // --------------------------------------------- 
-  133  == Teste do Teste Obter Lista Ameacados
+  133  == Teste Obter Lista Ameacados
   138  == Teste Obter Lista Ameacados Casa Inexistente
   141  == Teste Modificar Ameacados da Casa
   147  == Teste do Teste Modificar Ameacados da Casa

@@ -68,7 +68,7 @@ void AtualizaListaAmeacantesAmeacados ( TAB_tppTabuleiro pTabuleiro ) ;
  *  Função: TAB  &Criar tabuleiro
  *  ****/
 
-TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfig )
+TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConfig )
 {
 
     int i , j ;
@@ -106,12 +106,12 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfi
         return TAB_CondRetFaltouMemoria ;
     } /* if */
     
-    condRetCriarConfigDir = VMV_LerTabuleiroInicial (    pNovoTabuleiro->configDir ,
+    condRetCriarConfigDir = VMV_LerTabuleiroInicial (   pNovoTabuleiro->configDir ,
                                                         &pecas , 
                                                         &cores , 
                                                         &num_casas ) ;
 
-    printf("Vai entrar nos fors\n");
+    printf("Vai entrar nos fors, %d\n", condRetCriarConfigDir) ;
 
     for ( i = 0 ; i < 8 ; i++ )
     {
@@ -134,9 +134,10 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfi
                 return TAB_CondRetFaltouMemoria ;
             } /* if */
 
-           retCasa = CSA_InserirPecaCasa(   pecas[ 8 * i + j ] ,
+            retCasa = CSA_InserirPecaCasa(   pecas[ 8 * i + j ] ,
                                             cores[ 8 * i + j ] ,
                                             pNovoTabuleiro->tabuleiro[i][j] ) ;
+            // printf("retCasa: %d\n", retCasa);
             if ( retCasa == CSA_CondRetFaltouMemoria )
             {
                 for ( ; i >= 0 ; i-- )
@@ -152,23 +153,23 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfi
                 VMV_DestruirConfigDir( pNovoTabuleiro->configDir ) ;
                 return TAB_CondRetFaltouMemoria ;
             } /* if */
-            printf("for 2: %d\n", j);
+            // printf("for 2: %d\n", j) ;
 
         } /* for */
-        printf("for 1: %d\n", i);
+        // printf("for 1: %d\n", i) ;
     } /* for */
 
-    printf("Acabou todos os fors\n");
+    printf("Acabou todos os fors\n") ;
 
     free( pecas ) ;
     free( cores ) ;
     *pTabuleiro = pNovoTabuleiro ;
 
-    printf("Vai atualizar listas\n");
+    printf("Vai atualizar listas\n") ;
 
-    AtualizaListaAmeacantesAmeacados ( *pTabuleiro ) ;
+    // AtualizaListaAmeacantesAmeacados ( * pTabuleiro ) ;
 
-    printf("Atualizou listas, vai retornar %d\n", TAB_CondRetOK);
+    printf("Atualizou listas, vai retornar %d\n", TAB_CondRetOK) ;
     
     return TAB_CondRetOK ;
     
@@ -239,6 +240,8 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
 
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
+
+    printf("TAB_InserirPecaTabuleiro vai chamar AtualizaListaAmeacantesAmeacados\n");
              
     AtualizaListaAmeacantesAmeacados ( pTabuleiro );
 
@@ -709,13 +712,13 @@ int TAB_CasaVazia( void* casa, void* aux)
 {
 
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
-    char * nomePeca, * corPeca ;
+    char nomePeca, corPeca ;
 
-    ( void ) aux;
+    // ( void ) aux;
     
-    CSA_ObterPecaCasa( nomePeca , corPeca , pCasa ) ;
+    CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
     
-    if ( ( *nomePeca == 'V' ) && ( *corPeca == 'V' ) )
+    if ( ( nomePeca == 'V' ) && ( corPeca == 'V' ) )
     {
         return 1 ;
     } /* if */
@@ -727,13 +730,13 @@ int TAB_CasaInimigo( void * casa, void * aux )
 {
     
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
-    char * nomePeca, * corPeca ;
+    char nomePeca, corPeca ;
 
-    ( void ) aux ;
+    // ( void ) aux ;
 
-    CSA_ObterPecaCasa( nomePeca , corPeca , pCasa ) ;
+    CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
     
-    if ( ( *nomePeca == 'V' ) && ( *corPeca == 'V' ) )
+    if ( ( nomePeca == 'V' ) && ( corPeca == 'V' ) )
     {
         return 0 ;
     } /* if */
