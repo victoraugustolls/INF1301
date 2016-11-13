@@ -16,6 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     8       vas   13/nov/2016 adição do protótipo da função de comparar listas
 *     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
 *                               e retirada de funções não utilizadas
@@ -334,6 +335,29 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_VerificaVazia( LIS_tppLista pLista ,
                                   int * vazia ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Compara duas listas
+*
+*  $ED Descrição da função
+*     Verifica se as duas listas são iguais ou não.
+*
+*  $EP Parâmetros
+*     pLista1   - ponteiro para a primeira lista da comparação
+*     pLista2   - ponteiro para a segunda lista da comparação
+*     igualdade - ponteiro para o valor da igualdade
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_VerificaIgualdade( LIS_tppLista pLista1 ,
+                                        LIS_tppLista pLista2 ,
+                                        int * igualdade ) ;
 
 #undef LISTA_EXT
 

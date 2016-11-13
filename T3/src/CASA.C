@@ -37,7 +37,7 @@
 
 static void DestruirValor( void * pDado ) ;
 
-static int NuncaIgual( void * pDado_1 , void * pDado_2 ) ;
+static int CompararValores( void * pDado_1 , void * pDado_2 ) ;
 
 /***********************************************************************
  *
@@ -97,8 +97,8 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     retLista = LIS_CriarLista( &listaAmeacantes ,
                     "amts" ,
                     DestruirValor ,
-                    NuncaIgual ,
-                    NuncaIgual ) ;
+                    CompararValores ,
+                    CompararValores ) ;
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetFaltouMemoria ;
@@ -107,8 +107,8 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     retLista = LIS_CriarLista( &listaAmeacados ,
                     "amds" ,
                     DestruirValor ,
-                    NuncaIgual ,
-                    NuncaIgual ) ;
+                    CompararValores ,
+                    CompararValores ) ;
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetFaltouMemoria ;
@@ -355,8 +355,8 @@ CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacant
     retLista = LIS_CriarLista( &( pCasa->listaAmeacantes ) ,
                                "amts" ,
                                DestruirValor ,
-                               NuncaIgual ,
-                               NuncaIgual ) ;
+                               CompararValores ,
+                               CompararValores ) ;
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetNaoExiste ;
@@ -404,8 +404,8 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
     retLista = LIS_CriarLista( &( pCasa->listaAmeacados ) ,
                               "amds" ,
                               DestruirValor ,
-                              NuncaIgual ,
-                              NuncaIgual ) ;
+                              CompararValores ,
+                              CompararValores ) ;
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetNaoExiste ;
@@ -449,18 +449,24 @@ void DestruirValor( void * pDado )
 
 /***********************************************************************
  *
- *  $FC Função: CSA -Nunca igual
+ *  $FC Função: CSA -Comparar Valores
  *
  ***********************************************************************/
 
-int NuncaIgual( void * pDado_1 , void * pDado_2 )
+int CompararValores( void * pDado_1 , void * pDado_2 )
 {
-    (void) pDado_1;
-    (void) pDado_2;
-    /* Duas casas nunca são iguais */
-    return 1 ;
+    CSA_tppCasa valor1 = ( CSA_tppCasa ) pDado_1;
+    CSA_tppCasa valor2 = ( CSA_tppCasa ) pDado_2;
+
+    int igualdade ;
     
-} /* Fim função: CSA -Nunca igual */
+    PCA_ComparaPecas( valor1->peca ,
+                    valor2->peca ,
+                    &igualdade ) ;
+
+    return igualdade ;
+    
+} /* Fim função: CSA -Comparar Valores */
 
 
 /********** Fim do mÛdulo de implementaÁ„o:  CSA  Casa de um tabuleiro para jogo de xadrez

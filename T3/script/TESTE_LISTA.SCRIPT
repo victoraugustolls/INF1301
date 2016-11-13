@@ -147,7 +147,50 @@
 
 // ---------------------------------------------
 
-==Teste com múltiplas listas
+== Teste Verifica igualdade de Listas Iguais e Vazias
+=criarlista			 lista0	   "abc"	OK
+=criarlista			 lista1	   "abc"	OK
+=comparaListas		 lista0    lista1   1   OK
+=destroiLista		 lista0	   OK
+=destroiLista		 lista1	   OK
+
+== Teste Verifica igualdade de Listas Iguais não Vazias
+=criarlista			 lista0	   "abc"	OK
+=criarlista			 lista1	   "abc"	OK
+=inserirNo           lista0    'a'      OK
+=inserirNo           lista1    'a'      OK
+=comparaListas		 lista0    lista1   1   OK
+=destroiLista		 lista0	   OK
+=destroiLista		 lista1	   OK
+
+== Teste Verifica igualdade de Listas de Tamanhos Diferentes
+=criarlista			 lista0	   "abc"	OK
+=criarlista			 lista1	   "abc"	OK
+=inserirNo           lista0    'a'      OK
+=comparaListas		 lista0    lista1   0   OK
+=destroiLista		 lista0	   OK
+=destroiLista		 lista1	   OK
+
+== Teste Verifica igualdade de Listas Diferentes
+=criarlista			 lista0	   "abc"	OK
+=criarlista			 lista1	   "abc"	OK
+=inserirNo           lista0    'a'      OK
+=inserirNo           lista0    'b'      OK
+=comparaListas		 lista0    lista1   0   OK
+=destroiLista		 lista0	   OK
+=destroiLista		 lista1	   OK
+
+== Teste Verifica igualdade de ambas as Listas Inexistentes
+=comparaListas		 lista0    lista1   0   ListaInexistente
+
+== Teste Verifica igualdade de apenas uma Lista Inexistente
+=criarlista			 lista0	   "abc"	OK
+=comparaListas		 lista0    lista1   0   ListaInexistente
+=destroiLista		 lista0	   OK
+
+// ---------------------------------------------
+
+== Teste com múltiplas listas
 =criarlista          lista0    "abc"            OK
 =criarlista          lista1    "cba"            OK
 =inserirNo           lista0    'a'              OK

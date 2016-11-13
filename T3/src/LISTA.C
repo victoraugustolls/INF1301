@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     8       vas   13/nov/2016 adição da implementação da função de comparar listas
 *     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
 *                               e retirada de funções não utilizadas
@@ -427,6 +428,49 @@
       {
          *vazia = 0 ;
       } /* if */
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Verifica se a lista está vazia */
+
+/***************************************************************************
+*
+*  Função: LIS  &Compara duas listas
+*  ****/
+
+   LIS_tpCondRet LIS_VerificaIgualdade( LIS_tppLista pLista1 ,
+                                        LIS_tppLista pLista2 ,
+                                        int * igualdade )
+   {
+
+      int i ;
+
+      if ( pLista1 == NULL || pLista2 == NULL )
+      {
+         *igualdade = 0 ;
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      if ( pLista1->numElem != pLista2->numElem )
+      {
+         *igualdade = 0 ;
+         return LIS_CondRetOK ;
+      } /* if */
+
+      for ( i = 0 ; i < pLista1->numElem ; i++ )
+      {
+         if ( !pLista1->CompararValores( pLista1->pElemCorr , pLista2->pElemCorr ) )
+         {
+            *igualdade = 0;
+            return LIS_CondRetOK ;
+         } /* if */
+
+         LIS_AvancarElementoCorrente( pLista1 , 1 ) ;
+         LIS_AvancarElementoCorrente( pLista2 , 1 ) ;
+
+      } /* for */
+
+      *igualdade = 1 ;
 
       return LIS_CondRetOK ;
 

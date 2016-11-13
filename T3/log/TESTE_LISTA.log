@@ -47,11 +47,18 @@
   138  == Teste Verifica Lista Vazia Apos Remocao
   145  == Teste Verifica Lista Vazia de Lista Inexistente
 !!!    0  Linha:   148  // --------------------------------------------- 
-  150  ==Teste com múltiplas listas
+  150  == Teste Verifica igualdade de Listas Iguais e Vazias
+  157  == Teste Verifica igualdade de Listas Iguais não Vazias
+  166  == Teste Verifica igualdade de Listas de Tamanhos Diferentes
+  174  == Teste Verifica igualdade de Listas Diferentes
+  183  == Teste Verifica igualdade de ambas as Listas Inexistentes
+  186  == Teste Verifica igualdade de apenas uma Lista Inexistente
+!!!    0  Linha:   191  // --------------------------------------------- 
+  193  == Teste com múltiplas listas
 
-!!! Número de linhas lidas:         166
-!!! Número de casos de teste:        22
-!!! Número comandos corretos:        88
+!!! Número de linhas lidas:         209
+!!! Número de casos de teste:        28
+!!! Número comandos corretos:       117
 !!! Número de falhas encontradas:     0
 
 !!! Não foram encontrados problemas

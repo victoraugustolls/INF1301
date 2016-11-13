@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     7       vas   13/nov/2016 adição do teste para comparar duas listas
 *     6       vas   11/nov/2016 criação do teste para verificar lista vazia
 *     5       vas   04/out/2016 modificar as funções de teste para as expecificadas no enunciado
 *     4       avs   01/fev/2006 criar linguagem script simbólica
@@ -44,6 +45,7 @@ static const char IR_PROX_CMD                [ ] = "=irProx"            ;
 static const char IR_ANT_CMD                 [ ] = "=irAnt"             ;
 static const char ALTERAR_NO_CMD             [ ] = "=alterarNoCorrente" ;
 static const char VERIFICA_VAZIA_CMD         [ ] = "=verificaVazia"     ;
+static const char COMPARA_LISTAS_CMD         [ ] = "=comparaListas"     ;
 static const char DESTROI_LISTA_CMD          [ ] = "=destroiLista"      ;
 
 
@@ -99,6 +101,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
    {
 
       int inxLista         = -1 ,
+          inxLista2        = -1 ,
           numLidos         = -1 ,
           CondRetEsp       = -1 ,
           verificaVaziaEsp = -1 ;
@@ -336,13 +339,43 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
             if ( CondRetEsp )
             {
               return TST_CompararInt( CondRetEsp , CondRet ,
-                     "Condicao de retorno errada ao alterar o elemento." ) ;
+                     "Condicao de retorno errada ao verificar lista." ) ;
             }
 
             return TST_CompararInt( verificaVaziaEsp , verificaVazia ,
                      "Estado da lista (vazia ou não) errada." ) ;
 
          } /* fim ativa: Testar Verficar se a lista está vazia */
+
+      /* Testar Verficar se duas listas são iguais */
+
+         else if ( strcmp( ComandoTeste , COMPARA_LISTAS_CMD ) == 0 )
+         {
+
+            numLidos = LER_LerParametros( "iiii" , &inxLista ,
+                                          &inxLista2 , &verificaVaziaEsp ,
+                                          &CondRetEsp ) ;
+
+            if ( numLidos != 4 )
+            {
+               return TST_CondRetParm ;
+            } /* if */
+            
+            verificaVazia = -1 ;
+
+            CondRet = LIS_VerificaIgualdade( vtListas[ inxLista ] , vtListas[ inxLista2 ] ,
+                                              &verificaVazia ) ;
+
+            if ( CondRetEsp )
+            {
+              return TST_CompararInt( CondRetEsp , CondRet ,
+                     "Condicao de retorno errada ao comparar listas." ) ;
+            }
+
+            return TST_CompararInt( verificaVaziaEsp , verificaVazia ,
+                     "Estado da igualdade das listas errada." ) ;
+
+         } /* fim ativa: Testar Verficar se duas listas são iguais */
 
       /* Testar Destruir lista */
 
