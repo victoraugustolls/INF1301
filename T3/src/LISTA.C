@@ -108,7 +108,7 @@
 *  Função: LIS  &Criar lista
 *  ****/
 
-   LIS_tpCondRet LIS_CriarLista( LIS_tppLista* pLista ,
+   LIS_tpCondRet LIS_CriarLista( LIS_tppLista * pLista ,
              char * idLista ,
              void   ( * ExcluirValor ) ( void * pDado ),
              int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
@@ -131,7 +131,7 @@
       pNewLista->CompararValores = CompararValores ;
       pNewLista->Igual = Igual ;
 
-      *pLista = pNewLista;
+      *pLista = pNewLista ;
 
       return LIS_CondRetOK ;
 

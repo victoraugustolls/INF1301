@@ -48,7 +48,7 @@ typedef struct TAB_tagTabuleiro {
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
-int TAB_VerificaCoordValida( char coluna , char linha ) ;
+int TAB_VerificaCoordValida( int linha , int coluna ) ;
 int TAB_CasaVazia( void * casa, void* aux ) ;
 int TAB_CasaInimigo( void * casa, void* aux ) ;
 int TAB_Dim0( void * casa, void* aux ) ;
@@ -142,13 +142,13 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
     int i , j ;
     CSA_tpCondRet retCasa ;
 
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
+    i = linha - '0' ;
+    j = coluna - 'A' + 1 ;
+
+    if ( ! TAB_VerificaCoordValida( i , j ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
-
-    i = linha - '0' ;
-    j = coluna - 'A' + 1 ;
 
     retCasa = CSA_InserirPecaCasa( nomePeca, corPeca, pTabuleiro->tabuleiro[i][j] ) ;
 
@@ -335,15 +335,15 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
     
     int i , j ;
     CSA_tpCondRet retCasa ;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
 
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
+    
+    if ( ! TAB_VerificaCoordValida( i , j ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     retCasa = CSA_RetirarPecaCasa( pTabuleiro->tabuleiro[i][j] ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
@@ -369,15 +369,15 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
     
     int i , j ;
     CSA_tpCondRet retCasa ;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
-    
+
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
+    
+    if ( ! TAB_VerificaCoordValida( i , j ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     retCasa = CSA_ObterPecaCasa( pNomePeca , pCorPeca , pTabuleiro->tabuleiro[i][j] ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
@@ -401,15 +401,15 @@ TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
 {
     
     int i , j ;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
-    
+
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
+    
+    if ( ! TAB_VerificaCoordValida( i , j ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     *pCasa = pTabuleiro->tabuleiro[i][j] ;
     if ( pCasa == NULL )
@@ -434,15 +434,15 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
     
     int i , j ;
     CSA_tpCondRet retCasa ;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
-    
+
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
+    
+    if ( ! TAB_VerificaCoordValida( i , j ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     retCasa = CSA_ObterListaAmeacantesCasa( pListaAmeacantes , pTabuleiro->tabuleiro[i][j] ) ;
     
@@ -463,15 +463,15 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
     
     int i , j ;
     CSA_tpCondRet retCasa ;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
-    
+
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' ;
     j = coluna - 'A' + 1 ;
+    
+    if ( ! TAB_VerificaCoordValida( i , j ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     retCasa = CSA_ObterListaAmeacadosCasa( pListaAmeacados , pTabuleiro->tabuleiro[i][j] ) ;
     
@@ -486,15 +486,13 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
 
 /***** Código das funções encapuladas no módulo *****/
 
-int TAB_VerificaCoordValida( char coluna , char linha )
+int TAB_VerificaCoordValida( int linha , int coluna )
 {
+
+    printf("linha: %d\n", linha);
+    printf("coluna: %d\n", coluna);
     
-    int i , j ;
-    
-    i = linha - '0' ;
-    j = coluna - 'A' + 1 ;
-    
-    if ( ( i > 8 ) || ( i < 0 ) || ( j > 8 ) || ( j < 0 ) )
+    if ( ( linha > 8 ) || ( linha < 0 ) || ( coluna > 8 ) || ( coluna < 0 ) )
     {
         return 0 ;
     } /* if */

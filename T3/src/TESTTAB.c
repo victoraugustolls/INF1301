@@ -107,12 +107,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         {
             return TST_CondRetParm ;
         } /* if */
-
-        printf("Vai chamar TAB_CriarTabuleiro\n");
         
         CondRet = TAB_CriarTabuleiro ( &pTabuleiro , "..\\pecas\\default\\config.conf" ) ;
-
-        printf("Condicao de retorno da criar tabuleiro: %d\n", CondRet);
         
         return TST_CompararInt( CondRetEsp , CondRet ,
                                 "Condicao de retorno errada ao criar tabuleiro." ) ;

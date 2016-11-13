@@ -260,19 +260,12 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
 {
     
     PCA_tpCondRet retPeca ;
-
-    printf("Entrou no CSA_CompararCasa\n");
     
     if ( pCasa1 == NULL || pCasa2 == NULL )
     {
-        printf("Uma das casas e nula\n");
         *igualdade = 0 ;
-        printf("Saiu do CSA_CompararCasa\n");
         return CSA_CondRetNaoExiste ;
     }/* if */
-
-
-    printf("Nenhuma das casas era nula\n");
     
     retPeca = PCA_ComparaPecas( pCasa1->peca ,
                                 pCasa2->peca ,
@@ -280,11 +273,9 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
 
     if ( retPeca == PCA_CondRetPecaNaoExiste )
     {
-        printf("Saiu do CSA_CompararCasa\n");
         return CSA_CondRetVazia ;
     }
 
-    printf("Saiu do CSA_CompararCasa\n");
     return CSA_CondRetOK ;
     
 } /* Fim função: CSA  &Comparar Casas */
@@ -298,13 +289,19 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
 CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista * pListaAmeacantes,
                                             CSA_tppCasa pCasa )
 {
+
+    printf("Entrou CSA_ObterListaAmeacantesCasa\n");
     
     if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
+
+    printf("Casa nao e nula\n");
     
     *pListaAmeacantes = pCasa->listaAmeacantes ;
+
+    printf("Passou valor\n");
     
     return CSA_CondRetOK ;
     

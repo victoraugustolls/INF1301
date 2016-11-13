@@ -51,7 +51,7 @@ typedef struct TAB_tagTabuleiro {
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
-int TAB_VerificaCoordValida ( char coluna , char linha ) ;
+int TAB_VerificaCoordValida ( int linha , int coluna ) ;
 int TAB_CasaVazia ( void * casa , void * aux ) ;
 int TAB_CasaInimigo ( void * casa , void * aux ) ;
 int TAB_Dim0 ( void * casa , void * aux ) ;
@@ -111,7 +111,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
                                                         &cores , 
                                                         &num_casas ) ;
 
-    printf("Vai entrar nos fors, %d\n", condRetCriarConfigDir) ;
+    // printf("Vai entrar nos fors, %d\n", condRetCriarConfigDir) ;
 
     for ( i = 0 ; i < 8 ; i++ )
     {
@@ -159,17 +159,17 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
         // printf("for 1: %d\n", i) ;
     } /* for */
 
-    printf("Acabou todos os fors\n") ;
+    // printf("Acabou todos os fors\n") ;
 
     free( pecas ) ;
     free( cores ) ;
     *pTabuleiro = pNovoTabuleiro ;
 
-    printf("Vai atualizar listas\n") ;
+    // printf("Vai atualizar listas\n") ;
 
     // AtualizaListaAmeacantesAmeacados ( * pTabuleiro ) ;
 
-    printf("Atualizou listas, vai retornar %d\n", TAB_CondRetOK) ;
+    // printf("Atualizou listas, vai retornar %d\n", TAB_CondRetOK) ;
     
     return TAB_CondRetOK ;
     
@@ -225,23 +225,22 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
     int i , j ;
     CSA_tpCondRet retCasa ;
 
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
+    i = linha - '0' - 1 ;
+    j = coluna - 'A' ;
+
+    if ( ! TAB_VerificaCoordValida( i , j ) )
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
-
-    i = linha - '0' - 1 ;
-    j = coluna - 'A' ;
 
     retCasa = CSA_InserirPecaCasa( nomePeca, corPeca, pTabuleiro->tabuleiro[i][j] ) ;
 
     if ( retCasa == CSA_CondRetNaoExiste )
     {
-
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
 
-    printf("TAB_InserirPecaTabuleiro vai chamar AtualizaListaAmeacantesAmeacados\n");
+    // printf("TAB_InserirPecaTabuleiro vai chamar AtualizaListaAmeacantesAmeacados\n");
              
     AtualizaListaAmeacantesAmeacados ( pTabuleiro );
 
@@ -388,15 +387,15 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
     
     int i , j ;
     CSA_tpCondRet retCasa ;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
 
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' - 1;
     j = coluna - 'A';
+    
+    if ( ! TAB_VerificaCoordValida( i , j ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     retCasa = CSA_RetirarPecaCasa( pTabuleiro->tabuleiro[i][j] ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
@@ -424,15 +423,15 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
     
     int i , j ;
     CSA_tpCondRet retCasa ;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
-    
+
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0'- 1;
     j = coluna - 'A' ;
+    
+    if ( ! TAB_VerificaCoordValida( i , j ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     retCasa = CSA_ObterPecaCasa( pNomePeca , pCorPeca , pTabuleiro->tabuleiro[i][j] ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
@@ -456,15 +455,15 @@ TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
 {
     
     int i , j ;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
-    
+
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' - 1;
     j = coluna - 'A';
+    
+    if ( ! TAB_VerificaCoordValida( i , j ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
     
     *pCasa = pTabuleiro->tabuleiro[i][j] ;
     if ( pCasa == NULL )
@@ -492,47 +491,68 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
     int linhaInt , colunaInt ;
     CSA_tpCondRet retCasa ;
     LIS_tpCondRet retLista ;
-    LIS_tppLista * pListaAmeacantes;
+    LIS_tppLista pListaAmeacantes;
     CSA_tppCasa ptCasa;
     char* linhaIns;
     char* colunaIns;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
-    
+
+    printf("Entrou TAB_ObterListaAmeacantesTabuleiro\n");
+
     /* Converte a linha e a coluna para inteiros */
     linhaInt = linha - '0' - 1 ;
     colunaInt = coluna - 'A' ;
+
+    printf("Vai verificar coordenada\n");
     
-    retCasa = CSA_ObterListaAmeacantesCasa( pListaAmeacantes , pTabuleiro->tabuleiro[linhaInt][colunaInt] ) ;
+    if ( ! TAB_VerificaCoordValida( linhaInt , colunaInt ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
+
+    retLista = LIS_CriarLista(   &pListaAmeacantes,
+                                 "lin" ,
+                                 ExcluirChar,
+                                 CompararChar,
+                                 IgualChar) ;
+
+    printf("Verificou coordenadas\n");
+    
+    retCasa = CSA_ObterListaAmeacantesCasa( &pListaAmeacantes , pTabuleiro->tabuleiro[linhaInt][colunaInt] ) ;
+
+    printf("Chamou CSA_ObterListaAmeacantesCasa, retorno %d\n", retCasa);
     
     if ( retCasa == CSA_CondRetNaoExiste )
     {
         return TAB_CondRetNaoExiste ;
     } /* if */
+
+    printf("Vai criar as listas\n");
     
     retLista = LIS_CriarLista(    pListaAmeacantesLinhas,
                                  "lin" ,
                                  ExcluirChar,
                                  CompararChar,
                                  IgualChar) ;
+    printf("Criou primeira lista\n");
     retLista = LIS_CriarLista(    pListaAmeacantesColunas,
                                  "col" ,
                                  ExcluirChar,
                                  CompararChar,
                                  IgualChar) ;
+    printf("Criou segunda lista\n");
 
-    retLista = LIS_AvancarElementoCorrente(*pListaAmeacantes , -64) ;
+    retLista = LIS_AvancarElementoCorrente(pListaAmeacantes , -64) ;
+    printf("Avancou na lista\n");
     if(retLista == LIS_CondRetListaVazia)
     {
         return TAB_CondRetOK;
     } /* if */ 
 
+    printf("Vai entrar no while\n");
+
     while(retLista != LIS_CondRetNoCorrenteUlt)
     {
-        retLista = LIS_ObterValor( *pListaAmeacantes , (void **) &ptCasa ) ;
+        retLista = LIS_ObterValor( pListaAmeacantes , (void **) &ptCasa ) ;
         for(i=0; i<8; i++)
         {
             for(j=0; j<8; j++)
@@ -552,8 +572,10 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
             } /* for */
         } /* for */
 
-        retLista = LIS_AvancarElementoCorrente(*pListaAmeacantes , 1) ;
+        retLista = LIS_AvancarElementoCorrente(pListaAmeacantes , 1) ;
     } /* while */
+
+    printf("Acabou o while\n");
 
     return TAB_CondRetOK ;
 
@@ -569,19 +591,25 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
     int linhaInt , colunaInt ;
     CSA_tpCondRet retCasa ;
     LIS_tpCondRet retLista ;
-    LIS_tppLista * pListaAmeacados;
+    LIS_tppLista pListaAmeacados;
     CSA_tppCasa ptCasa;
     char* linhaIns;
     char* colunaIns;
-    
-    if ( ! TAB_VerificaCoordValida( coluna , linha ) )
-    {
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
-    
+
     /* Converte a linha e a coluna para inteiros */
     linhaInt = linha - '0' - 1 ;
     colunaInt = coluna - 'A' ;
+    
+    if ( ! TAB_VerificaCoordValida( linhaInt , colunaInt ) )
+    {
+        return TAB_CondRetCoordNaoExiste ;
+    } /* if */
+
+    retLista = LIS_CriarLista(  &pListaAmeacados ,
+                                "lin" ,
+                                ExcluirChar ,
+                                CompararChar ,
+                                IgualChar) ;
     
     retCasa = CSA_ObterListaAmeacadosCasa( pListaAmeacados , pTabuleiro->tabuleiro[linhaInt][colunaInt] ) ;
     
@@ -601,7 +629,7 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
                                 CompararChar ,
                                 IgualChar) ;
 
-    retLista = LIS_AvancarElementoCorrente( *pListaAmeacados , -64 ) ;
+    retLista = LIS_AvancarElementoCorrente( pListaAmeacados , -64 ) ;
     if( retLista == LIS_CondRetListaVazia )
     {
         return TAB_CondRetOK ;
@@ -609,7 +637,7 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
 
     while( retLista != LIS_CondRetNoCorrenteUlt )
     {
-        retLista = LIS_ObterValor( *pListaAmeacados , (void **) &ptCasa ) ;
+        retLista = LIS_ObterValor( pListaAmeacados , (void **) &ptCasa ) ;
         for( i = 0 ; i < 8 ; i++ )
         {
             for( j = 0 ; j < 8 ; j++ )
@@ -629,7 +657,7 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
             } /* for */
         } /* for */
 
-        retLista = LIS_AvancarElementoCorrente(*pListaAmeacados , 1) ;
+        retLista = LIS_AvancarElementoCorrente(pListaAmeacados , 1) ;
     } /* while */
 
     return TAB_CondRetOK ;
@@ -692,15 +720,10 @@ TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
 
 /***** Código das funções encapuladas no módulo *****/
 
-int TAB_VerificaCoordValida( char coluna , char linha )
+int TAB_VerificaCoordValida( int linha , int coluna )
 {
     
-    int i , j ;
-    
-    i = linha - '0' - 1 ;
-    j = coluna - 'A' ;
-    
-    if ( ( i > 8 ) || ( i < 0 ) || ( j > 8 ) || ( j < 0 ) )
+    if ( ( linha > 7 ) || ( linha < 0 ) || ( coluna > 7 ) || ( coluna < 0 ) )
     {
         return 0 ;
     } /* if */
@@ -896,9 +919,6 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
             size_vetorCasasAmeacadas[i][j] = 0 ;
         } /* for */
     } /* for */
-
-
-    printf("Terminou AtualizaListaAmeacantesAmeacados\n");
 
 }
 

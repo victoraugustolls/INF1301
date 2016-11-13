@@ -1,0 +1,56 @@
+
+!!! Inicio dos testes
+!!!      Construto sob teste: ..\bin\TEST_TAB
+!!!      Script de teste:     ..\script\TESTE_TABULEIRO.script
+
+!!!    0  Linha:     1  // Script: TESTE_TABULEIRO.SCRIPT 
+!!!    0  Linha:     2  // Autores: Lucas Ferrao 
+!!!    0  Linha:     3  // Data: 06/out/2016 
+!!!    0  Linha:     4  // Prop—sito: Testar por completo as fun›es de acesso do m—dulo TABULEIRO, com exce‹o 
+!!!    0  Linha:     5  // do caso em que ocorre falta de mem—ria. 
+!!!    0  Linha:     6  // 
+!!!    0  Linha:     7  // --------------------------------------------- 
+    9  == Inicializar Constantes
+!!!    0  Linha:    16  // --------------------------------------------- 
+   18  == Teste de Criacao de Tabuleiro
+!!!    0  Linha:    21  // --------------------------------------------- 
+   23  == Teste de Insercao de Peca no Tabuleiro
+   26  == Teste de Insercao de Peca em Coluna Invalida no Tabuleiro
+   29  == Teste de Insercao de Peca em Linha Invalida no Tabuleiro
+!!!    0  Linha:    32  // --------------------------------------------- 
+   34  == Teste de Remocao de Peca do Tabuleiro
+!!!    0  Linha:    37  // --------------------------------------------- 
+   39  == Teste de Destruicao de Tabuleiro
+!!!    0  Linha:    42  // --------------------------------------------- 
+   44  == Teste de Movimentacao de Peca no Tabuleiro
+>>>    1  Linha:    47  Condicao de retorno errada ao mover peca no tabuleiro. Deveria ser: 0  É: 2
+>>>    2  Linha:    48  Não é comando recuperar:  =retirarPeca         'A'   '1'   OK
+>>>    3  Linha:    49  Comando de teste ignorado:  =destruirTabuleiro   OK
+   51  == Teste de Movimentacao Invalida de Peca no Tabuleiro
+>>>    4  Linha:    54  Condicao de retorno errada ao mover peca no tabuleiro. Deveria ser: 3  É: 2
+>>>    5  Linha:    55  Não é comando recuperar:  =retirarPeca         'A'   '1'   OK
+>>>    6  Linha:    56  Comando de teste ignorado:  =destruirTabuleiro   OK
+!!!    6  Linha:    58  // --------------------------------------------- 
+   60  == Teste de Obtencao de Casa do Tabuleiro
+!!!    6  Linha:    67  // --------------------------------------------- 
+   69  == Teste de Obtencao de Peca do Tabuleiro
+!!!    6  Linha:    76  // --------------------------------------------- 
+   78  == Teste de Obtencao de Lista de Ameacantes de uma Peca do Tabuleiro
+>>>    7  Linha:    81  Condicao de retorno errada ao obter lista de ameacantes. Deveria ser: 0  É: 1
+>>>    8  Linha:    82  Não é comando recuperar:  =retirarPeca            'A'   '1'   OK
+>>>    9  Linha:    83  Comando de teste ignorado:  =destruirTabuleiro      OK
+!!!    9  Linha:    85  // --------------------------------------------- 
+   87  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
+>>>   10  Linha:    90  Condicao de retorno errada ao obter lista de ameacantes. Deveria ser: 0  É: 1
+>>>   11  Linha:    91  Não é comando recuperar:  =retirarPeca            'A'   '1'   OK
+>>>   12  Linha:    92  Comando de teste ignorado:  =destruirTabuleiro      OK
+
+!!! Número de linhas lidas:          92
+!!! Número de casos de teste:        13
+!!! Número comandos corretos:        29
+!!! Número de falhas encontradas:    12
+
+!!! Foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0
