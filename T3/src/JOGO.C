@@ -109,8 +109,6 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
     LIS_tppLista listaColunas;
     LIS_tppLista pListaAmeacantesLinhas;
     LIS_tppLista pListaAmeacantesColunas;
-    LIS_tppLista pListaAmeacadosLinhas;
-    LIS_tppLista pListaAmeacadosColunas;
     int existeXeque;
     char* linha;
     char* coluna;
@@ -252,6 +250,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
         return JGO_CondRetOK;
     }
 
+    existeXeque = 0;
     while(listaRet != LIS_CondRetNoCorrenteUlt)
     {
         listaRet = LIS_ObterValor( listaLinhas , (void **) &linha ) ;

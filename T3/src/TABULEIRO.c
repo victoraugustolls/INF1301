@@ -676,19 +676,17 @@ TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
 {
     TAB_tpCondRet tabRet ;
     LIS_tpCondRet retLista ;
-    LIS_tppLista pListaAmeacadosLinhas ;
-    LIS_tppLista pListaAmeacadosColunas ;
     char pecaRecebida ;
     char corRecebida ;
     int i ;
     int j ;
 
-    retLista = LIS_CriarLista(   &pListaAmeacadosLinhas,
+    retLista = LIS_CriarLista(   pListaCasasLinhas,
                                  "lin" ,
                                  ExcluirChar,
                                  CompararChar,
                                  IgualChar ) ;
-    retLista = LIS_CriarLista(   &pListaAmeacadosColunas,
+    retLista = LIS_CriarLista(   pListaCasasColunas,
                                  "col" ,
                                  ExcluirChar,
                                  CompararChar,
@@ -709,9 +707,9 @@ TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
                 char* colunaIns = ( char* ) malloc( sizeof( char ) ) ;
                 *linhaIns = ( char ) i + 1 + '0' ;
                 *colunaIns = ( char ) j + 'A' ;
-                retLista = LIS_InserirElementoApos( pListaAmeacadosLinhas ,
+                retLista = LIS_InserirElementoApos( *pListaCasasLinhas ,
                                                     ( void* ) linhaIns ) ;
-                retLista = LIS_InserirElementoApos( pListaAmeacadosColunas ,
+                retLista = LIS_InserirElementoApos( *pListaCasasColunas ,
                                                     ( void* ) colunaIns ) ;
 
             } /* if */
@@ -812,6 +810,7 @@ int TAB_Dim1 ( void * casa , void* tab )
 
 void ExcluirChar ( void * pDado )
 {
+    (void) pDado;
     return ;
 }
 
