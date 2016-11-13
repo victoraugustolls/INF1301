@@ -105,12 +105,13 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfi
     {
         return TAB_CondRetFaltouMemoria ;
     } /* if */
-
     
-   condRetCriarConfigDir = VMV_LerTabuleiroInicial (    pNovoTabuleiro->configDir ,
+    condRetCriarConfigDir = VMV_LerTabuleiroInicial (    pNovoTabuleiro->configDir ,
                                                         &pecas , 
                                                         &cores , 
                                                         &num_casas ) ;
+
+    printf("Vai entrar nos fors\n");
 
     for ( i = 0 ; i < 8 ; i++ )
     {
@@ -151,15 +152,23 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfi
                 VMV_DestruirConfigDir( pNovoTabuleiro->configDir ) ;
                 return TAB_CondRetFaltouMemoria ;
             } /* if */
+            printf("for 2: %d\n", j);
 
         } /* for */
+        printf("for 1: %d\n", i);
     } /* for */
+
+    printf("Acabou todos os fors\n");
 
     free( pecas ) ;
     free( cores ) ;
     *pTabuleiro = pNovoTabuleiro ;
 
+    printf("Vai atualizar listas\n");
+
     AtualizaListaAmeacantesAmeacados ( *pTabuleiro ) ;
+
+    printf("Atualizou listas, vai retornar %d\n", TAB_CondRetOK);
     
     return TAB_CondRetOK ;
     
@@ -884,6 +893,9 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
             size_vetorCasasAmeacadas[i][j] = 0 ;
         } /* for */
     } /* for */
+
+
+    printf("Terminou AtualizaListaAmeacantesAmeacados\n");
 
 }
 
