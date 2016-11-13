@@ -9,8 +9,8 @@
 == Inicializar Constantes
 =declararparm   OK                int  0
 =declararparm   NaoExiste         int  1
-=declararparm	CoordNaoExiste	  int  2
-=declararparm	MovInvalido       int  3
+=declararparm   CoordNaoExiste    int  2
+=declararparm   MovInvalido       int  3
 =declararparm   FaltouMemoria     int  4
 
 // ---------------------------------------------

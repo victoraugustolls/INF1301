@@ -2,35 +2,35 @@
 #define TABULEIRO_
 /***************************************************************************
  *
- *  $MCD MÛdulo de definiÁ„o: TAB  Tabuleiro para jogo de xadrez
+ *  $MCD MÛdulo de definição: TAB  Tabuleiro para jogo de xadrez
  *
  *  Arquivo gerado:              TABULEIRO.h
  *  Letras identificadoras:      TAB
  *
- *  Nome da base de software:    ArcabouÁo para a automaÁ„o de testes de programas redigidos em C
+ *  Nome da base de software:    Arcabouçoo para a automaçãoo de testes de programas redigidos em C
  *  Arquivo da base de software: D:\AUTOTEST\PROJETOS\LISTA.BSW
  *
- *  Projeto: INF 1301 / 1628 AutomatizaÁ„o dos testes de mÛdulos C
+ *  Projeto: INF 1301 / 1628 AutomatizaÁ„o dos testes de módulos C
  *  Gestor:  LES/DI/PUC-Rio
  *  Autores: lff
  *
- *  $HA HistÛrico de evoluÁ„o:
- *     Vers„o  Autor    Data     ObservaÁıes
+ *  $HA Histórico de evolução:
+ *     Versão  Autor    Data     ObservaÁıes
  *     2       lff   05/out/2016 desenvolvimento
- *     1       lff   04/out/2016 inÌcio desenvolvimento
+ *     1       lff   04/out/2016 início desenvolvimento
  *
- *  $ED DescriÁ„o do mÛdulo
+ *  $ED Descrição do módulo
  *     Implementa um tabuleiro de xadrez composto por n casas.
  *     Pode existir apenas um tabuleiro em operação.
  *
  *     Cada tabuleiro é homogêneo quanto ao tipo dos dados que armazena.
- *     Cada elemento do tabuleiro referencia o valor que contÈm.
+ *     Cada elemento do tabuleiro referencia o valor que contem.
  *
- *     Os ponteiros para os dados s„o copiados para elementos do tabuleiro.
- *        N„o È copiado o valor apontado por estes ponteiros.
+ *     Os ponteiros para os dados são copiados para elementos do tabuleiro.
+ *        N„o é copiado o valor apontado por estes ponteiros.
  *
- *     O controle da destruiÁ„o do valor de um elemento a ser excluÌdo
- *        È realizado por uma funÁ„o interna do módulo.
+ *     O controle da destruição do valor de um elemento a ser excluído
+ *        é realizado por uma função interna do módulo.
  *
  *
  ***************************************************************************/
@@ -44,9 +44,9 @@
 #include  "LISTA.H"
 #include  "CASA.H"
 
-/***** DeclaraÁıes exportadas pelo mÛdulo *****/
+/***** Declarações exportadas pelo módulo *****/
 
-/* Tipo referÍncia para um tabuleiro */
+/* Tipo referência para um tabuleiro */
 
 typedef struct TAB_tagTabuleiro * TAB_tppTabuleiro ;
 
