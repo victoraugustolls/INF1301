@@ -13,6 +13,9 @@
 =declararparm	MovInvalido       int  3
 =declararparm   JaCriado	  	  int  4
 =declararparm   FaltouMemoria     int  5
+=declararparm   JogoIniciado      int  6
+=declararparm   JogoNaoIniciado   int  7
+=declararparm   FalhaArquivo      int  8
 
 =declararparm	JgPreto		      int  0
 =declararparm	JgBranco	      int  1
@@ -50,12 +53,12 @@
 =terminarJogo	OK
 
 == Teste de Termino de Jogo Inexistente
-=terminarJogo	NaoExiste
+=terminarJogo	JogoNaoIniciado
 
 // ---------------------------------------------
 
 == Teste de Realizaçcao de Jogada em Jogo Inexistente
-=realizarJogada	'D'  '2'  'D'  '3'  JgBranco	Nenhum  NaoExiste
+=realizarJogada	'D'  '2'  'D'  '3'  JgBranco	Nenhum  JogoNaoIniciado
 
 == Teste de Realizaçcao de Jogada
 =iniciarJogo	"..\\pecas\\teste_jogo\\config_xeque.conf"  OK

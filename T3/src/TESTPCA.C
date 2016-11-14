@@ -168,8 +168,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 			corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
 
 			CondRet = PCA_ObterValor( vtPecas[ inxPeca ] , nomePeca , corPeca ) ;
-
-			printf("Nome obter: %c / Cor obter: %c\n", *nomePeca, *corPeca);
+			
 
 			if ( CondRetEsp )
 			{

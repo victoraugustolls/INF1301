@@ -168,8 +168,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     // printf("Vai atualizar listas\n") ;
 
     AtualizaListaAmeacantesAmeacados ( * pTabuleiro ) ;
-
-    printf("Atualizou listas, vai retornar %d\n", TAB_CondRetOK) ;
     
     return TAB_CondRetOK ;
     
@@ -287,9 +285,6 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     linDestino = linFinal   - '0' - 1 ;
     colAtual   = colInicial - 'A' ;
     colDestino = colFinal   - 'A' ;
-
-    printf("Atual -> l: %d / c: %d\n", linAtual, colAtual);
-    printf("Destino -> l: %d / c: %d\n", linDestino, colDestino);
 
     if ( ( ! TAB_VerificaCoordValida( linAtual , colAtual ) ) ||
          ( ! TAB_VerificaCoordValida( linDestino , colDestino ) ) )
@@ -521,13 +516,9 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
     char* linhaIns ;
     char* colunaIns ;
 
-    printf("Entrou TAB_ObterListaAmeacantesTabuleiro\n");
-
     /* Converte a linha e a coluna para inteiros */
     linhaInt = linha - '0' - 1 ;
     colunaInt = coluna - 'A' ;
-
-    printf("Vai verificar coordenada\n");
     
     if ( ! TAB_VerificaCoordValida( linhaInt , colunaInt ) )
     {
@@ -539,41 +530,32 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
                                 ExcluirChar ,
                                 CompararChar ,
                                 IgualChar ) ;
-
-    printf("Verificou coordenadas\n");
     
     retCasa = CSA_ObterListaAmeacantesCasa( &pListaAmeacantes , pTabuleiro->tabuleiro[linhaInt][colunaInt] ) ;
-
-    printf( "Chamou CSA_ObterListaAmeacantesCasa, retorno %d\n" , retCasa ) ;
     
     if ( retCasa == CSA_CondRetNaoExiste )
     {
         return TAB_CondRetNaoExiste ;
     } /* if */
-
-    printf("Vai criar as listas\n");
     
     retLista = LIS_CriarLista(  pListaAmeacantesLinhas ,
                                 "lin" ,
                                 ExcluirChar ,
                                 CompararChar ,
                                 IgualChar ) ;
-    printf("Criou primeira lista\n");
+    
     retLista = LIS_CriarLista(  pListaAmeacantesColunas ,
                                 "col" ,
                                 ExcluirChar ,
                                 CompararChar ,
                                 IgualChar ) ;
-    printf("Criou segunda lista\n");
 
     retLista = LIS_AvancarElementoCorrente( pListaAmeacantes , -64 ) ;
-    printf("Avancou na lista\n");
+    
     if( retLista == LIS_CondRetListaVazia )
     {
         return TAB_CondRetOK ;
     } /* if */ 
-
-    printf("Vai entrar no while\n");
 
     while( retLista != LIS_CondRetNoCorrenteUlt )
     {
@@ -592,6 +574,9 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
                                                         ( void* ) linhaIns ) ;
                     retLista = LIS_InserirElementoApos( *pListaAmeacantesColunas ,
                                                         ( void* ) colunaIns ) ;
+                    printf("i -> %d / j -> %d\n", i , j ) ;
+                    printf("linha: %c\n", *linhaIns);
+                    printf("coluna: %c\n", *colunaIns);
    
                 } /* if */
             } /* for */
@@ -599,8 +584,6 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
 
         retLista = LIS_AvancarElementoCorrente( pListaAmeacantes , 1 ) ;
     } /* while */
-
-    printf("Acabou o while\n");
 
     return TAB_CondRetOK ;
 
@@ -938,21 +921,16 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
 
     for ( i = 0 ; i < 8; i++ )
     {
-        printf("i: %d\n", i);
         for ( j = 0 ; j < 8; j++ )
         {
-            printf("j: %d\n", j);
             CSA_ModificarListaAmeacantesCasa( vetorCasasAmeacantes[i][j] , 
                                             size_vetorCasasAmeacantes[i][j] , 
                                             pTabuleiro->tabuleiro[i][j] ) ;
             CSA_ModificarListaAmeacadosCasa( vetorCasasAmeacadas[i][j] , 
                                             size_vetorCasasAmeacadas[i][j] , 
                                             pTabuleiro->tabuleiro[i][j] ) ;
-            printf("Tamanho: %d\n", size_vetorCasasAmeacantes[i][j]);
         } /* for */
     } /* for */
-
-    printf("Acabou AtualizaListaAmeacantesAmeacados\n");
 }
 
 /********** Fim do módulo de implementação: TAB  Tabuleiro para jogo de xadrez **********/
