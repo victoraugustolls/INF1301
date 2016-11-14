@@ -524,12 +524,6 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
     {
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
-
-    retLista = LIS_CriarLista(  &pListaAmeacantes ,
-                                "lin" ,
-                                ExcluirChar ,
-                                CompararChar ,
-                                IgualChar ) ;
     
     retCasa = CSA_ObterListaAmeacantesCasa( &pListaAmeacantes , pTabuleiro->tabuleiro[linhaInt][colunaInt] ) ;
     
@@ -613,12 +607,6 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
 
-    retLista = LIS_CriarLista(  &pListaAmeacados ,
-                                "lin" ,
-                                ExcluirChar ,
-                                CompararChar ,
-                                IgualChar ) ;
-    
     retCasa = CSA_ObterListaAmeacadosCasa( &pListaAmeacados , pTabuleiro->tabuleiro[linhaInt][colunaInt] ) ;
     
     if ( retCasa == CSA_CondRetNaoExiste )
