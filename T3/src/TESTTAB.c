@@ -405,10 +405,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 			} /* if */
 
 
-			printf("linha deveria ser: %c / mas e: %c\n", charParm4 , *linhaObtida);
-			printf("coluna deveria ser: %c / mas e: %c\n", charParm3 , *colunaObtida);
+/*			printf("linha deveria ser: %c / mas e: %c\n", charParm4 , *linhaObtida);
+			printf("coluna deveria ser: %c / mas e: %c\n", charParm3 , *colunaObtida);*/
 
-			if ( *linhaObtida != charParm2 || *colunaObtida != charParm1 )
+			if ( *linhaObtida != charParm4 || *colunaObtida != charParm3 )
 			{
 				free( linhaObtida ) ;
 				free( colunaObtida ) ;

@@ -734,7 +734,7 @@ int TAB_CasaVazia( void* casa, void* aux )
     ( void ) aux;
     
     CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
-    
+
     if ( ( nomePeca == 'V' ) && ( corPeca == 'V' ) )
     {
         return 1 ;
