@@ -149,13 +149,13 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa )
         return CSA_CondRetNaoExiste ;
     }
     
-    retLista = LIS_DestruirLista( pCasa->listaAmeacantes ) ;
+    retLista = LIS_Esvazia( pCasa->listaAmeacantes ) ;
     if ( retLista == LIS_CondRetListaNaoExiste )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    retLista = LIS_DestruirLista( pCasa->listaAmeacados ) ;
+    retLista = LIS_Esvazia( pCasa->listaAmeacados ) ;
     if ( retLista == LIS_CondRetListaNaoExiste )
     {
         return CSA_CondRetNaoExiste ;

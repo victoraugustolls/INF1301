@@ -1,0 +1,66 @@
+
+!!! Inicio dos testes
+!!!      Construto sob teste: ..\bin\TEST_TAB
+!!!      Script de teste:     ..\script\TESTE_TABULEIRO.script
+
+!!!    0  Linha:     1  // Script: TESTE_TABULEIRO.SCRIPT 
+!!!    0  Linha:     2  // Autores: Lucas Ferrao, Victor Augusto 
+!!!    0  Linha:     3  // Data: 13/out/2016 
+!!!    0  Linha:     4  // Proposito: Testar por completo as funcoes de acesso do modulo TABULEIRO, com excecao 
+!!!    0  Linha:     5  // do caso em que ocorre falta de memoria. 
+!!!    0  Linha:     6  // 
+!!!    0  Linha:     7  // --------------------------------------------- 
+    9  == Inicializar Constantes
+!!!    0  Linha:    17  // --------------------------------------------- 
+   19  == Inicializar valores
+!!!    0  Linha:    23  // --------------------------------------------- 
+   25  == Teste de Criacao de Tabuleiro
+   28  == Teste do Teste de Criacao de Tabuleiro
+>>>    1  Linha:    29  Erro nos parâmetros do comando:  =criarTabuleiro    tab0    OK
+<<<    0  Linha:    30  Falha esperada foi recuperada. 
+!!!    0  Linha:    32  // --------------------------------------------- 
+   34  == Teste de Destruicao de Tabuleiro
+   37  == Teste de Destruicao de Tabuleiro
+!!!    0  Linha:    40  // --------------------------------------------- 
+   42  == Teste de Insercao de Peca no Tabuleiro
+   47  == Teste de Insercao de Peca em Coluna Invalida no Tabuleiro
+   52  == Teste de Insercao de Peca em Linha Invalida no Tabuleiro
+!!!    0  Linha:    57  // --------------------------------------------- 
+   59  == Teste de Remocao de Peca do Tabuleiro
+   65  == Teste de Remocao de Peca do Tabuleiro Inexistente
+   68  == Teste de Remoca de Peca do Tabuleiro em CoordenadaInvalida
+!!!    0  Linha:    73  // --------------------------------------------- 
+   75  == Teste de Movimentacao de Peca no Tabuleiro
+   82  == Teste de Movimentacao Invalida de Peca no Tabuleiro
+   89  == Teste de Movimentacao Invalida de Peca para CoordenadaInvalida
+   96  == Teste de Movimentacao Invalida de Peca em Tabuleiro Inexistente
+   99  == Teste de Movimentacao de Peca Invalida
+!!!    0  Linha:   106  // --------------------------------------------- 
+  108  == Teste de Obtencao de Casa do Tabuleiro
+  115  == Teste de Obtencao de Casa do Tabuleiro Inexistente
+  118  == Teste de Obtencao de Casa do Tabuleiro em Coordenada Invalida
+!!!    0  Linha:   125  // --------------------------------------------- 
+  127  == Teste de Obtencao de Peca do Tabuleiro
+  134  == Teste de Obtencao de Peca do Tabuleiro Inexistente
+  137  == Teste de Obtencao de Peca do Tabuleiro Inexistente
+!!!    0  Linha:   144  // --------------------------------------------- 
+  146  == Teste de Obtencao de Lista de Ameacantes de uma Peca do Tabuleiro
+>>>    1  Linha:   149  Lista de ameacantes recebida errada 
+>>>    2  Linha:   150  Não é comando recuperar:  =retirarPeca            tab0  'A'   '1'   OK
+>>>    3  Linha:   151  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+!!!    3  Linha:   153  // --------------------------------------------- 
+  155  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
+>>>    4  Linha:   156  Erro nos parâmetros do comando:  =criarTabuleiro         tab0  OK
+>>>    5  Linha:   158  Comando de teste ignorado:  =obterListaAmeacados    tab0  'A'   '1'   OK
+>>>    6  Linha:   159  Comando de teste ignorado:  =retirarPeca            tab0  'A'   '1'   OK
+>>>    7  Linha:   160  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+
+!!! Número de linhas lidas:         160
+!!! Número de casos de teste:        25
+!!! Número comandos corretos:        73
+!!! Número de falhas encontradas:     7
+
+!!! Foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0
