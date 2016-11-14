@@ -149,6 +149,7 @@
 =inserirPeca            tab0  'A'   '2'   'R'   'B'   OK
 =obterListaAmeacantes   tab0  'A'   '1'   'A'   '2'   OK
 =retirarPeca            tab0  'A'   '1'   OK
+=retirarPeca            tab0  'A'   '2'   OK
 =destruirTabuleiro      tab0  OK
 
 // ---------------------------------------------

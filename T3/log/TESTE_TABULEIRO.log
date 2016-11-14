@@ -45,15 +45,15 @@
   137  == Teste de Obtencao de Peca do Tabuleiro Inexistente
 !!!    0  Linha:   144  // --------------------------------------------- 
   146  == Teste de Obtencao de Lista de Ameacantes de uma Peca do Tabuleiro
-!!!    0  Linha:   154  // --------------------------------------------- 
-  156  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
->>>    1  Linha:   160  Lista de ameacados recebida errada 
->>>    2  Linha:   161  Não é comando recuperar:  =retirarPeca            tab0  'A'   '1'   OK
->>>    3  Linha:   162  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+!!!    0  Linha:   155  // --------------------------------------------- 
+  157  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
+>>>    1  Linha:   161  Lista de ameacados recebida errada 
+>>>    2  Linha:   162  Não é comando recuperar:  =retirarPeca            tab0  'A'   '1'   OK
+>>>    3  Linha:   163  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
 
-!!! Número de linhas lidas:         162
+!!! Número de linhas lidas:         163
 !!! Número de casos de teste:        25
-!!! Número comandos corretos:        80
+!!! Número comandos corretos:        81
 !!! Número de falhas encontradas:     3
 
 !!! Foram encontrados problemas
