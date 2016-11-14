@@ -896,7 +896,7 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
         for ( j = 0 ; j < 8 ; j++ )
         {
             retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
-            if(TAB_CasaVazia(( void* ) pTabuleiro->tabuleiro[i][j], ( void* ) pTabuleiro ) == 1)
+            if( TAB_CasaVazia( ( void* ) pTabuleiro->tabuleiro[i][j] , ( void* ) pTabuleiro ) == 1)
             {
                 continue;
             } /* if */
@@ -937,13 +937,20 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
 
     for ( i = 0 ; i < 8; i++ )
     {
+        printf("i: %d\n", i);
         for ( j = 0 ; j < 8; j++ )
         {
-            size_vetorCasasAmeacantes[i][j] = 0 ;
-            size_vetorCasasAmeacadas[i][j] = 0 ;
+            printf("j: %d\n", j);
+            CSA_ModificarListaAmeacantesCasa( vetorCasasAmeacantes[i][j] , 
+                                            size_vetorCasasAmeacantes[i][j] , 
+                                            pTabuleiro->tabuleiro[i][j] ) ;
+            CSA_ModificarListaAmeacadosCasa( vetorCasasAmeacadas[i][j] , 
+                                            size_vetorCasasAmeacadas[i][j] , 
+                                            pTabuleiro->tabuleiro[i][j] ) ;
         } /* for */
     } /* for */
 
+    printf("Acabou AtualizaListaAmeacantesAmeacados\n");
 }
 
 /********** Fim do módulo de implementação: TAB  Tabuleiro para jogo de xadrez **********/
