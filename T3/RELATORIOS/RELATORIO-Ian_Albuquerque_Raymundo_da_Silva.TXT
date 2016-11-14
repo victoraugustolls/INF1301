@@ -20,3 +20,14 @@
 % - realizar os testes
 % - diagnosticar e corrigir os problemas encontrados
 
+10/11/2016; 2 horas ; revisar especificações; Revisar especificações dos módulos Tabuleiro e Jogo
+
+10/11/2016; 6 horas ; codificar módulo; Revisar especificações dos módulos Tabuleiro e Jogo
+
+10/11/2016; 2 horas ; revisar especificações; Revisar códio dos módulos Tabuleiro e Jogo
+
+12/11/2016; 1 hora ; diagnosticar e corrigir os problemas encontrados; Ajudar a corrigir problemas de alguns dos módulos de testes e dos módulos Peça e Casa
+
+14/11/2016; 2 horas ; especificar os módulos; Especificacao do modulo para criacao de pecas simplificadas
+
+14/11/2016; 4 horas ; codificar módulo; Criacao do programa para criacao de pecas simplificadas
