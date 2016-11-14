@@ -169,7 +169,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
     AtualizaListaAmeacantesAmeacados ( * pTabuleiro ) ;
 
-    // printf("Atualizou listas, vai retornar %d\n", TAB_CondRetOK) ;
+    printf("Atualizou listas, vai retornar %d\n", TAB_CondRetOK) ;
     
     return TAB_CondRetOK ;
     
@@ -923,6 +923,7 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
                                                           condEsp ,
                                                           0 ,
                                                           ( void * ) pTabuleiro ) ;
+                    // retDirMov = VMV_MovimentoValidoSim ;
                     if ( retMov == VMV_MovimentoValidoSim )
                     {
                         vetorCasasAmeacantes[k][l][size_vetorCasasAmeacantes[k][l]] = pTabuleiro->tabuleiro[i][j] ;
@@ -947,6 +948,7 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
             CSA_ModificarListaAmeacadosCasa( vetorCasasAmeacadas[i][j] , 
                                             size_vetorCasasAmeacadas[i][j] , 
                                             pTabuleiro->tabuleiro[i][j] ) ;
+            printf("Tamanho: %d\n", size_vetorCasasAmeacantes[i][j]);
         } /* for */
     } /* for */
 

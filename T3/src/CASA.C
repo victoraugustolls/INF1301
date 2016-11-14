@@ -349,7 +349,7 @@ CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacant
     }/* if */
     
     /* Limpa o lista para preenche-la */
-    retLista = LIS_DestruirLista( pCasa->listaAmeacantes ) ;
+    retLista = LIS_Esvazia( pCasa->listaAmeacantes ) ;
     if ( retLista == LIS_CondRetListaNaoExiste )
     {
         return CSA_CondRetNaoExiste ;
@@ -374,6 +374,8 @@ CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacant
             return CSA_CondRetNaoExiste ;
         }/* if */
     } /* for */
+
+    printf("Acabou CSA_ModificarListaAmeacantesCasa\n");
     
     return CSA_CondRetOK ;
     
@@ -398,7 +400,7 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
     }/* if */
     
     /* Limpa o lista para preenche-la */
-    retLista = LIS_DestruirLista( pCasa->listaAmeacados ) ;
+    retLista = LIS_Esvazia( pCasa->listaAmeacados ) ;
     if ( retLista == LIS_CondRetListaNaoExiste )
     {
         return CSA_CondRetNaoExiste ;
@@ -423,6 +425,8 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
             return CSA_CondRetNaoExiste ;
         }/* if */
     } /* for */
+
+    printf("Acabou CSA_ModificarListaAmeacadosCasa\n");
     
     return CSA_CondRetOK ;
     

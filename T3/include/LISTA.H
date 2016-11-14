@@ -359,6 +359,25 @@ typedef struct LIS_tagLista * LIS_tppLista ;
                                         LIS_tppLista pLista2 ,
                                         int * igualdade ) ;
 
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Esvazia lista
+*
+*  $ED Descrição da função
+*     Esvazia uma lista sem destrui-la.
+*
+*  $EP Parâmetros
+*     pLista1   - ponteiro para a lista que será esvaziada
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_Esvazia( LIS_tppLista pLista ) ;
+
 #undef LISTA_EXT
 
 /********** Fim do módulo de definição: LIS  Lista duplamente encadeada **********/

@@ -107,7 +107,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	char * corObtida  ;
 	char * linhaObtida ;
 	char * colunaObtida ;
-	
+
 	LIS_tppLista listaLinhas ;
 	LIS_tppLista listaColunas ;
 	
