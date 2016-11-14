@@ -15,4 +15,7 @@ Data       Horas Trabalhadas     Tipo Tarefa                                    
 13/11/16   15min                 Planejar teste                                         Projetar os testes para as novas funções do módulo lista.
 13/11/16   30min                 Codificar módulo                                       Implementar testes para novas funções do módulo lista.
 13/11/16   30min                 Redigir Script de teste                                Completar o script de teste para as novas funções do módulo lista.
-13/11/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir mais problemas apontados pelos testes do módulo tabuleiro.
+13/11/16   3h30min               Diagnosticar e corrigir os problemas encontrados       Corrigir mais problemas apontados pelos testes do módulo tabuleiro.
+13/11/16   1h                    Codificar módulo                                       Modificar os testes do tabuleiro para ser possível testar mais casos.
+13/11/16   1h                    Redigir Script de teste                                Completar o script de teste do tabuleiro para cobrir os casos possíveis.
+13/11/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir novos problemas encontrados no módulo jogo e em seus testes
