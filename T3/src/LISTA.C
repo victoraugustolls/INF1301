@@ -484,35 +484,12 @@
    LIS_tpCondRet LIS_Esvazia( LIS_tppLista pLista )
    {
 
-      int i ;
-
       if ( pLista == NULL )
       {
          return LIS_CondRetListaNaoExiste ;
       } /* if */
 
-      printf("Vai entrar no while\n");
-
-      while( pLista->pElemCorr->pProx != NULL ) {
-         printf("Entrou no while\n");
-         LIS_AvancarElementoCorrente( pLista , 1 ) ;
-      }
-      printf("Saiu do while\n");
-
-      for ( i = 0 ; i < pLista->numElem ; i++ )
-      {
-         printf("Entrou no for\n");
-         LIS_AvancarElementoCorrente( pLista, -1 ) ;
-         pLista->numElem-- ;
-         pLista->pElemCorr->pProx = NULL ;
-      } /* for */
-
-      printf("Saiu do for\n");
-
-      pLista->pElemCorr = NULL ;
-      pLista->numElem-- ;
-
-      printf("Acabou LIS_Esvazia\n");
+      free( pLista ) ;
 
       return LIS_CondRetOK ;
 
