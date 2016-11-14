@@ -1,2 +1,2 @@
 all:
-	gcc CRIAPECA.C
+	gcc CRIAPECA.c

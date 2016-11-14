@@ -21,14 +21,61 @@
 #include   <errno.h>
 
 #define PECAS_DIR "..\\pecas\\default\\pecas"
+#define MAX_MOVIMENTOS 32
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
+enum Direcao
+{
+  HORIZONTAL=0,
+  VERTICAL=1,
+  DIAGONAL_CRESCENTE=2,
+  DIAGONAL_DECRESCENTE=3
+};
+
+typedef enum Direcao tpDirecao;
+
+struct MovimentoSimples
+{
+  int pontual;
+
+  // Se pontual == 1
+  int horizontal;
+  int vertical;
+
+  // Se pontual == 0
+  tpDirecao direcao; 
+};
+
+typedef struct MovimentoSimples tpMovimentoSimples;
+
+void escreveMovimentoNoArquivo(FILE* file, tpMovimentoSimples mov);
+void printMovimentoSimples(tpMovimentoSimples mov);
+int countPecasExistentes();
+void getPecasExistentes(char** pecas, int* num_pecas);
+void printPecasExistentes();
+void deletaPeca();
+void criarNovaPeca();
+void criarArquivoPecaMovimento(char char_peca, tpMovimentoSimples* movimentosPeca, int num_movimentos);
 
 /***************************************************************************
  *
  *  Função: CRP  &Criar peça
  *  ****/
+
+void printMovimentoSimples(tpMovimentoSimples mov)
+{
+  char nomeDirecoes[4][100] = {"HORIZONTAL", "VERTICAL", "DIAGONAL CRESCENTE", "DIAGONAL DECRESCENTE"};
+
+  if(mov.pontual == 1)
+  {
+    printf("Movimento Pontual (horizontal = %d, vertical = %d)\n",mov.horizontal,mov.vertical);
+  }
+  else
+  {
+    printf("Movimento Continuo na Direcao: %s\n",nomeDirecoes[(int)mov.direcao]);
+  }
+}
 
 int countPecasExistentes()
 {
@@ -184,6 +231,8 @@ void criarNovaPeca()
   int num_pecas;
   int i;
   int opcao_escolhida;
+  tpMovimentoSimples movimentosPeca[MAX_MOVIMENTOS];
+  int num_movimentos;
 
   int pula_que_nem_cavalo;
 
@@ -210,26 +259,312 @@ void criarNovaPeca()
 
   free(pecas);
 
-  printf("--------------------\n");
-  printf("CARACTERISTICAS DA PECA:\n");
-  printf("--------------------\n");
+  num_movimentos = 0;
 
-  printf("A peca pulara outras pecas (que nem o cavalo?):\n");
-  printf("(0) - Nao\n");
-  printf("(1) - Sim\n");
-  printf(">> ");
-  scanf(" %d",&opcao_escolhida);
-
-  switch(opcao_escolhida)
+  while(1)
   {
-    case 0:
-      pula_que_nem_cavalo = 0;
-    case 1:
-      pula_que_nem_cavalo = 1;
+    printf("========================================\n");
+    printf("MOVIMENTOS DA PECA %c:\n",char_peca);
+    printf("========================================\n");
+
+    printf("Total Movimentos: %d (max: %d)\n",num_movimentos,MAX_MOVIMENTOS);
+    if(num_movimentos>0)
+    {
+      printf("--------------------\n");
+      printf("Lista de Movimentos:\n");
+      printf("--------------------\n");
+      if(num_movimentos>1)
+      {
+        printf("(Nao ha problemas de existirem movimentos redundantes)\n");
+      }
+      for(i=0;i<num_movimentos;i++)
+      {
+        printf("%d) ",i+1);
+        printMovimentoSimples(movimentosPeca[i]);
+      }
+    }
+
+    while(1)
+    {
+      printf("--------------------\n");
+      printf("Inserir novo movimento ou finalizar peca?\n");
+      printf("(0) - Finalizar\n");
+      printf("(1) - Inserir Novo Movimento\n");
+      printf(">> ");
+      scanf(" %d",&opcao_escolhida);
+
+      if(opcao_escolhida == 0 && num_movimentos == 0)
+      {
+        printf("Voce deve adicionar ao menos 1 movimento a nova peca!\n");
+        continue;
+      }
+
+      if(opcao_escolhida == 0 || opcao_escolhida == 1)
+      {
+        break;
+      }
+      else
+      {
+        printf("Opcao invalida!\n");        
+      }
+    }
+
+    if(opcao_escolhida==0)
+    {
       break;
-    default:
-      printf("Opcao nao existente.\n");
-      return;
+    }
+
+    while(1)
+    {
+      printf("--------------------\n");
+      printf("Movimento pontual (movimento direto para o local) ou continuo?\n");
+      printf("\n");
+      printf("Movimento pontual = move instantaneamente para a posicao de destino.\n");
+      printf("Movimento continuo = liberdade de se mover continuamente em uma direcao\n");
+      printf("\n");
+      printf("(0) - Pontual (exemplo: cavalo, rei, peao)\n");
+      printf("(1) - Continuo (exexemplo: torre, bispo, rainha)\n");
+      printf(">> ");
+      scanf(" %d",&opcao_escolhida);
+
+      if(opcao_escolhida == 0 || opcao_escolhida == 1)
+      {
+        break;
+      }
+      else
+      {
+        printf("Opcao invalida!\n");        
+      }
+    }
+
+    if(opcao_escolhida==0)
+    {
+      movimentosPeca[num_movimentos].pontual = 1;
+      printf("--------------------\n");
+      printf("[MOVIMENTO PONTUAL]\n");
+      printf("Quantas casas devem ser movidas (puladas) horizontalmente?\n");
+      printf("Numero positivo -> movimento para direita\n");
+      printf("Numero negativo -> movimento para esquerda\n");
+      printf(">> ");
+      scanf(" %d",&movimentosPeca[num_movimentos].horizontal);
+      printf("--------------------\n");
+      printf("[MOVIMENTO PONTUAL]\n");
+      printf("Quantas casas devem ser movidas (puladas) verticalmente?\n");
+      printf("Numero positivo -> movimento para baixo\n");
+      printf("Numero negativo -> movimento para cima\n");
+      printf(">> ");
+      scanf(" %d",&movimentosPeca[num_movimentos].vertical);
+    }
+    else
+    {
+      while(1)
+      {
+        printf("--------------------\n");
+        printf("[MOVIMENTO CONTINUO]\n");
+        printf("Qual direcao do movimento a ser realizado\n");
+        printf("(0) - Horizontal\n");
+        printf("(1) - Vertical\n");
+        printf("(2) - Diagonal Crescente (/)\n");
+        printf("(3) - Diagonal Decrescente (\\)\n");
+        printf(">> ");
+        scanf(" %d",&opcao_escolhida);
+
+        if(opcao_escolhida >= 0 && opcao_escolhida <= 3)
+        {
+          break;
+        }
+        else
+        {
+          printf("Opcao invalida!\n");   
+        }
+      }
+
+      switch(opcao_escolhida)
+      {
+        case 0:
+        movimentosPeca[num_movimentos].direcao = HORIZONTAL;
+        break;
+        case 1:
+        movimentosPeca[num_movimentos].direcao = VERTICAL;
+        break;
+        case 2:
+        movimentosPeca[num_movimentos].direcao = DIAGONAL_CRESCENTE;
+        break;
+        case 3:
+        movimentosPeca[num_movimentos].direcao = DIAGONAL_DECRESCENTE;
+        break;
+        default:
+        printf("ERRO DESCONHECIDO.\n");
+        exit(1);
+        break;
+      }
+    }
+
+    num_movimentos++;
+
+  }
+
+  printf("========================================\n");
+  printf("Nova Peca: %c\n",char_peca);
+  printf("========================================\n");
+
+  printf("Total Movimentos: %d (max: %d)\n",num_movimentos,MAX_MOVIMENTOS);
+  if(num_movimentos>0)
+  {
+    printf("--------------------\n");
+    printf("Lista de Movimentos:\n");
+    printf("--------------------\n");
+    if(num_movimentos>1)
+    {
+      printf("(Nao ha problemas de existirem movimentos redundantes)\n");
+    }
+    for(i=0;i<num_movimentos;i++)
+    {
+      printf("%d) ",i+1);
+      printMovimentoSimples(movimentosPeca[i]);
+    }
+  }
+
+  while(1)
+  {
+    printf("--------------------\n");
+    printf("Confirmar Peca?\n");
+    printf("(0) - Cancelar\n");
+    printf("(1) - Confirmar\n");
+    printf(">> ");
+    scanf(" %d",&opcao_escolhida);
+
+    if(opcao_escolhida == 0 || opcao_escolhida == 1)
+    {
+      break;
+    }
+    else
+    {
+      printf("Opcao invalida!\n");        
+    }
+  }
+
+  if(opcao_escolhida==0)
+  {
+    return;
+  }
+
+  criarArquivoPecaMovimento(char_peca, movimentosPeca, num_movimentos);    
+}
+
+void criarArquivoPecaMovimento(char char_peca, tpMovimentoSimples* movimentosPeca, int num_movimentos)
+{
+  char file_name[200];
+  char char_peca_string[2] = "x";
+  FILE* file;
+  int i;
+
+  char_peca_string[0] = char_peca;
+
+  strcpy(file_name,PECAS_DIR);
+  strcat(file_name,"\\");
+  strcat(file_name,char_peca_string);
+  strcat(file_name,".pca");
+
+  file = fopen(file_name,"w");
+  if(file == NULL)
+  {
+    printf("ERRO: Erro ao abrir arquivo %s. Peca nao criada.\n",file_name);
+    return;
+  }
+
+  for(i=0; i<num_movimentos-1; i++)
+  {
+    fprintf(file,"L_OR \n");
+    escreveMovimentoNoArquivo(file,movimentosPeca[i]);
+  }
+  escreveMovimentoNoArquivo(file,movimentosPeca[num_movimentos-1]);
+
+  printf("SUCESSO!\n");
+  printf("Peca %c criada com sucesso!\n",char_peca);
+  printf("Arquivo %s gerado.\n",file_name);
+
+  fclose(file);
+}
+
+void escreveMovimentoNoArquivo(FILE* file, tpMovimentoSimples mov)
+{
+  if(mov.pontual == 1)
+  {
+    fprintf(file,"L_AND\n");
+
+    fprintf(file,"\tL_OR P_VAZ D P_INI D\n");
+
+    fprintf(file,"L_AND\n");
+
+    fprintf(file,"\tP_IGUAL\n");
+    fprintf(file,"\t\tF_SUB V_DIM 0 D V_DIM 0 A\n");
+    fprintf(file,"\t\tV_NUM %d\n",mov.horizontal);
+
+    fprintf(file,"\tP_IGUAL\n");
+    fprintf(file,"\t\tF_SUB V_DIM 1 D V_DIM 1 A\n");
+    fprintf(file,"\t\tV_NUM %d\n",mov.vertical);
+  }
+  else
+  {
+    fprintf(file,"L_AND\n");
+
+    fprintf(file,"\tL_OR P_VAZ D P_INI D\n");
+
+    fprintf(file,"L_AND\n");
+
+    if(mov.direcao == HORIZONTAL)
+    {
+      fprintf(file,"L_AND\n");
+      fprintf(file,"\tP_IGUAL V_DIM 1 D V_DIM 1 A\n");
+      fprintf(file,"\tL_FORALL C\n");
+      fprintf(file,"\t\tL_IFTHEN\n");
+      fprintf(file,"\t\t\tL_AND\n");
+      fprintf(file,"\t\t\t\tP_IGUAL V_DIM 1 C V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\tP_MENOR\n");
+      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 0 C V_DIM 0 A\n");
+      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 0 D V_DIM 0 A\n");
+      fprintf(file,"\t\t\tP_VAZ C\n");
+    }
+    else if(mov.direcao == VERTICAL)
+    {
+      fprintf(file,"L_AND\n");
+      fprintf(file,"\tP_IGUAL V_DIM 0 D V_DIM 0 A\n");
+      fprintf(file,"\tL_FORALL C\n");
+      fprintf(file,"\t\tL_IFTHEN\n");
+      fprintf(file,"\t\t\tL_AND\n");
+      fprintf(file,"\t\t\t\tP_IGUAL V_DIM 0 C V_DIM 0 A\n");
+      fprintf(file,"\t\t\t\tP_MENOR\n");
+      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 C V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 D V_DIM 1 A\n");
+      fprintf(file,"\t\t\tP_VAZ C\n");
+    }
+    else if(mov.direcao == DIAGONAL_CRESCENTE)
+    {
+      fprintf(file,"L_AND\n");
+      fprintf(file,"\tP_IGUAL F_ADD F_SUB V_DIM 0 D V_DIM 0 A F_SUB V_DIM 1 D V_DIM 1 A V_NUM 0\n");
+      fprintf(file,"\tL_FORALL C\n");
+      fprintf(file,"\t\tL_IFTHEN\n");
+      fprintf(file,"\t\t\tL_AND\n");
+      fprintf(file,"\t\t\t\tP_IGUAL F_ADD F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0\n");
+      fprintf(file,"\t\t\t\tP_MENOR\n");
+      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 C V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 D V_DIM 1 A\n");
+      fprintf(file,"\t\t\tP_VAZ C\n");
+    }
+    else if(mov.direcao == DIAGONAL_DECRESCENTE)
+    {
+      fprintf(file,"L_AND\n");
+      fprintf(file,"\tP_IGUAL F_SUB F_SUB V_DIM 0 D V_DIM 0 A F_SUB V_DIM 1 D V_DIM 1 A V_NUM 0\n");
+      fprintf(file,"\tL_FORALL C\n");
+      fprintf(file,"\t\tL_IFTHEN\n");
+      fprintf(file,"\t\t\tL_AND\n");
+      fprintf(file,"\t\t\t\tP_IGUAL F_SUB F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0\n");
+      fprintf(file,"\t\t\t\tP_MENOR\n");
+      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 C V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 D V_DIM 1 A\n");
+      fprintf(file,"\t\t\tP_VAZ C\n");
+    }
   }
 }
 
