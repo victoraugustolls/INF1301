@@ -277,6 +277,11 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
     int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim0 , TAB_Dim1 } ;
 
+    if ( pTabuleiro == NULL )
+    {
+        return TAB_CondRetNaoExiste ;
+    }
+
     /* Converte a linha e a coluna para inteiros */
     linAtual   = linInicial - '0' - 1 ;
     linDestino = linFinal   - '0' - 1 ;
@@ -392,6 +397,11 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
     int i , j ;
     CSA_tpCondRet retCasa ;
 
+    if ( pTabuleiro == NULL )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
+
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' - 1 ;
     j = coluna - 'A';
@@ -402,6 +412,7 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
     } /* if */
     
     retCasa = CSA_RetirarPecaCasa( pTabuleiro->tabuleiro[i][j] ) ;
+    
     if ( retCasa == CSA_CondRetNaoExiste )
     {
         return TAB_CondRetNaoExiste ;
@@ -427,6 +438,11 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
     
     int i , j ;
     CSA_tpCondRet retCasa ;
+
+    if ( pTabuleiro == NULL )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
 
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0'- 1 ;
@@ -459,6 +475,11 @@ TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
 {
     
     int i , j ;
+
+    if ( pTabuleiro == NULL )
+    {
+        return TAB_CondRetNaoExiste ;
+    } /* if */
 
     /* Converte a linha e a coluna para inteiros */
     i = linha - '0' - 1 ;

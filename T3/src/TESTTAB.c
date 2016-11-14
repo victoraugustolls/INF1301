@@ -105,6 +105,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
 	char * nomeObtido ;
 	char * corObtida  ;
+	char * linhaObtida ;
+	char * colunaObtida ;
 	
 	LIS_tppLista listaRet ;
 	LIS_tppLista listaLinhas ;
@@ -349,7 +351,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 									&charParm1 , &charParm2 ,
 									&CondRetEsp ) ;
 		
-		if ( ( numLidos != 5 ) )
+		if ( ( numLidos != 4 ) )
 		{
 			return TST_CondRetParm ;
 		} /* if */
@@ -421,24 +423,38 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		CondRet = TAB_ObterListaAmeacantesTabuleiro ( charParm1 , charParm2 ,
 													&listaLinhas , &listaColunas ,
 													vtTabuleiros[ inxTab ] ) ;
+
+		printf("Obteve lista ameacantes\n");
+
+		linhaObtida = ( char * ) malloc( sizeof( char ) ) ;
+		colunaObtida = ( char * ) malloc( sizeof( char ) ) ;
 		
 		if ( !CondRet )
 		{
-            retLista = LIS_ObterValor( listaLinhas , ( void ** ) &casaAtual ) ;
+			retLista = LIS_ObterValor( listaLinhas , ( void ** ) &linhaObtida ) ;
 
-            if ( CondRet == LIS_CondRetListaVazia )
-            {
-                CondRet = TAB_CondRetNaoExiste ;
-                return TST_CompararInt( CondRetEsp , CondRet ,
-                                "Condicao de retorno errada ao obter lista de ameacantes.7" ) ;
-            } /* if */
+			if ( retLista == LIS_CondRetListaVazia )
+			{
+				CondRet = TAB_CondRetNaoExiste ;
+				return TST_CompararInt( CondRetEsp , CondRet ,
+										"Condicao de retorno errada ao obter lista de ameacantes.7" ) ;
+			} /* if */
+
+			retLista = LIS_ObterValor( listaColunas , ( void ** ) &colunaObtida ) ;
+
+			if ( retLista == LIS_CondRetListaVazia )
+			{
+				CondRet = TAB_CondRetNaoExiste ;
+				return TST_CompararInt( CondRetEsp , CondRet ,
+										"Condicao de retorno errada ao obter lista de ameacantes.8" ) ;
+			} /* if */
             
             CondRet = CSA_CompararCasa( casaAtual , casaTst , &igual ) ;
             if ( CondRet == CSA_CondRetNaoExiste )
             {
                 CondRet = TAB_CondRetNaoExiste ;
                 return TST_CompararInt( CondRetEsp , CondRet ,
-                                "Condicao de retorno errada ao obter lista de ameacantes.8" ) ;
+                                "Condicao de retorno errada ao obter lista de ameacantes.9" ) ;
             } /* if */
 
             if ( igual )
@@ -451,7 +467,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         LIS_DestruirLista( listaRet ) ;
         
         return TST_CompararInt( CondRetEsp , CondRet ,
-                               "Condicao de retorno errada ao obter lista de ameacantes.9" ) ;
+                               "Condicao de retorno errada ao obter lista de ameacantes.10" ) ;
         
     } /* fim ativa: Testar ObterListaAmeacantesTabuleiro */
 
@@ -465,12 +481,12 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         CSA_tppCasa vetCasaTst[1] ;
         CSA_tppCasa casaAtual ;
 
-        numLidos = LER_LerParametros( "cci" ,
+        numLidos = LER_LerParametros( "icci" , &inxTab ,
                                      &charParm1 ,
                                      &charParm2 ,
                                      &CondRetEsp) ;
         
-        if ( ( numLidos != 3 ) )
+        if ( ( numLidos != 4 ) )
         {
             return TST_CondRetParm ;
         } /* if */
@@ -494,21 +510,12 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                    "Condicao de retorno errada ao obter lista de ameacados.2" ) ;
         } /* if */
 
-        CondRet = CSA_InserirPecaCasa( 'V' , 'V' ,
-                                      casaTst ) ;
-        if ( CondRet == CSA_CondRetNaoExiste )
-        {
-            CondRet = TAB_CondRetNaoExiste ;
-            return TST_CompararInt( CondRetEsp , CondRet ,
-                                   "Condicao de retorno errada ao obter lista de ameacados.3" ) ;
-        } /* if */
-
         vetCasaTst[0] = casaTst ;
         
         CondRet = TAB_ObterCasaTabuleiro( charParm1 ,
                                          charParm2 ,
                                          &casaAtual ,
-                                         pTabuleiro ) ;
+                                         vtTabuleiros[ inxTab ] ) ;
         if ( CondRet != TAB_CondRetOK )
         {
             return TST_CompararInt( CondRetEsp , CondRet ,
@@ -541,7 +548,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                                      charParm2 ,
                                                      &listaRet ,
                                                      &listaRet ,
-                                                     pTabuleiro ) ;
+                                                     vtTabuleiros[ inxTab ] ) ;
         
         if ( CondRet == TAB_CondRetOK )
         {

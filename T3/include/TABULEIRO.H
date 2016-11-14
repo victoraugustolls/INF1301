@@ -78,11 +78,8 @@ typedef enum {
     TAB_CondRetFalhaArq = 4 ,
     /* Falha ao manipular algum arquivo necessário para o tabuleiro */
     
-    TAB_CondRetFaltouMemoria = 5 ,
+    TAB_CondRetFaltouMemoria = 5
     /* Faltou memória ao tentar criar um elemento do tabuleiro */
-    
-    TAB_CondRetJaCriado = 6 ,
-    /* Já existe tabuleiro em operação */
 
 } TAB_tpCondRet ;
 
