@@ -43,12 +43,12 @@ JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz )
 
 JGO_tpCondRet JGO_DestruirJuiz( JGO_tppJuiz pJuiz )
 {
-    JGO_TerminarJogo(pJuiz);
-
     if(pJuiz == NULL)
     {
         return JGO_CondRetNaoExiste;
     }
+
+    JGO_TerminarJogo(pJuiz);
 
     free(pJuiz);
 

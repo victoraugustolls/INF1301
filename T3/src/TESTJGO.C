@@ -75,7 +75,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     char colunaAtual ;
     char linhaDestino ;
     char colunaDestino ;
-    char * pathArqConfig ;
+    char pathArqConfig[100] ;
     JGO_tpEventoOcorrido EveOcor , EveOcorEsp ;
     JGO_tpCorJogador JgAtual ;
     
@@ -110,6 +110,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         } /* if */
         
         CondRet = JGO_DestruirJuiz ( pJuiz ) ;
+
+        pJuiz = NULL ;
         
         return TST_CompararInt( CondRetEsp , CondRet ,
                                "Condicao de retorno errada ao destruir juiz." ) ;
@@ -120,7 +122,9 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     if ( strcmp( ComandoTeste , INICIAR_JOGO_CMD ) == 0 )
     {
-        numLidos = LER_LerParametros( "si" , &pathArqConfig , &CondRetEsp ) ;
+        numLidos = LER_LerParametros( "si" , pathArqConfig , &CondRetEsp ) ;
+
+        printf("%s\n", pathArqConfig);
         
         if ( ( numLidos != 2 ) )
         {
@@ -156,7 +160,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     
     if ( strcmp( ComandoTeste , REALIZAR_JOGADA_CMD ) == 0 )
     {
-        numLidos = LER_LerParametros( "ccccii" ,
+        numLidos = LER_LerParametros( "cccciii" ,
                                       &linhaAtual ,
                                       &colunaAtual ,
                                       &linhaDestino ,
@@ -165,7 +169,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                       &EveOcorEsp ,
                                       &CondRetEsp ) ;
         
-        if ( ( numLidos != 6 ) )
+        if ( ( numLidos != 7 ) )
         {
             return TST_CondRetParm ;
         } /* if */
@@ -177,6 +181,12 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                        colunaAtual ,
                                        linhaDestino ,
                                        colunaDestino ) ;
+
+        if ( CondRet )
+        {
+            return TST_CompararInt( CondRetEsp , CondRet ,
+                                "Condicao de retorno errada ao realizar jogada." ) ;
+        } /* if */
         
         if ( EveOcor != EveOcorEsp )
         {

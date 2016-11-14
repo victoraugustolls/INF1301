@@ -45,21 +45,22 @@
   137  == Teste de Obtencao de Peca do Tabuleiro Inexistente
 !!!    0  Linha:   144  // --------------------------------------------- 
   146  == Teste de Obtencao de Lista de Ameacantes de uma Peca do Tabuleiro
->>>    1  Linha:   149  Lista de ameacantes recebida errada 
->>>    2  Linha:   150  Não é comando recuperar:  =retirarPeca            tab0  'A'   '1'   OK
->>>    3  Linha:   151  Comando de teste ignorado:  =retirarPeca            tab0  'A'   '2'   OK
->>>    4  Linha:   152  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
-!!!    4  Linha:   154  // --------------------------------------------- 
-  156  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
->>>    5  Linha:   157  Erro nos parâmetros do comando:  =criarTabuleiro         tab0  OK
->>>    6  Linha:   159  Comando de teste ignorado:  =obterListaAmeacados    tab0  'A'   '1'   OK
->>>    7  Linha:   160  Comando de teste ignorado:  =retirarPeca            tab0  'A'   '1'   OK
->>>    8  Linha:   161  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+>>>    1  Linha:   150  Lista de ameacantes recebida errada 
+>>>    2  Linha:   151  Não é comando recuperar:  =retirarPeca            tab0  'A'   '1'   OK
+>>>    3  Linha:   152  Comando de teste ignorado:  =retirarPeca            tab0  'A'   '2'   OK
+>>>    4  Linha:   153  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+!!!    4  Linha:   155  // --------------------------------------------- 
+  157  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
+>>>    5  Linha:   158  Erro nos parâmetros do comando:  =criarTabuleiro         tab0  OK
+>>>    6  Linha:   160  Comando de teste ignorado:  =inserirPeca            tab0  'A'   '2'   'R'   'B'   OK
+>>>    7  Linha:   161  Comando de teste ignorado:  =obterListaAmeacados    tab0  'A'   '1'   'A'   '2'   OK
+>>>    8  Linha:   162  Comando de teste ignorado:  =retirarPeca            tab0  'A'   '1'   OK
+>>>    9  Linha:   163  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
 
-!!! Número de linhas lidas:         161
+!!! Número de linhas lidas:         163
 !!! Número de casos de teste:        25
-!!! Número comandos corretos:        73
-!!! Número de falhas encontradas:     8
+!!! Número comandos corretos:        74
+!!! Número de falhas encontradas:     9
 
 !!! Foram encontrados problemas
 
