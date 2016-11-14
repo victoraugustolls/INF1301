@@ -89,6 +89,7 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     retPeca = PCA_CriarPeca( &peca ,
                    charPeca ,
                    charPeca ) ;
+    
     if ( retPeca == PCA_CondRetFaltouMemoria )
     {
         return CSA_CondRetFaltouMemoria ;
@@ -99,6 +100,7 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
                     DestruirValor ,
                     CompararValores ,
                     CompararValores ) ;
+
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetFaltouMemoria ;
@@ -109,6 +111,7 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
                     DestruirValor ,
                     CompararValores ,
                     CompararValores ) ;
+
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetFaltouMemoria ;

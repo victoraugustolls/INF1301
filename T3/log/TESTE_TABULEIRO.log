@@ -4,44 +4,51 @@
 !!!      Script de teste:     ..\script\TESTE_TABULEIRO.script
 
 !!!    0  Linha:     1  // Script: TESTE_TABULEIRO.SCRIPT 
-!!!    0  Linha:     2  // Autores: Lucas Ferrao 
-!!!    0  Linha:     3  // Data: 06/out/2016 
+!!!    0  Linha:     2  // Autores: Lucas Ferrao, Victor Augusto 
+!!!    0  Linha:     3  // Data: 13/out/2016 
 !!!    0  Linha:     4  // Prop—sito: Testar por completo as fun›es de acesso do m—dulo TABULEIRO, com exce‹o 
 !!!    0  Linha:     5  // do caso em que ocorre falta de mem—ria. 
 !!!    0  Linha:     6  // 
 !!!    0  Linha:     7  // --------------------------------------------- 
     9  == Inicializar Constantes
 !!!    0  Linha:    16  // --------------------------------------------- 
-   18  == Teste de Criacao de Tabuleiro
-!!!    0  Linha:    21  // --------------------------------------------- 
-   23  == Teste de Insercao de Peca no Tabuleiro
-   26  == Teste de Insercao de Peca em Coluna Invalida no Tabuleiro
-   29  == Teste de Insercao de Peca em Linha Invalida no Tabuleiro
-!!!    0  Linha:    32  // --------------------------------------------- 
-   34  == Teste de Remocao de Peca do Tabuleiro
-!!!    0  Linha:    37  // --------------------------------------------- 
-   39  == Teste de Destruicao de Tabuleiro
-!!!    0  Linha:    42  // --------------------------------------------- 
-   44  == Teste de Movimentacao de Peca no Tabuleiro
-   51  == Teste de Movimentacao Invalida de Peca no Tabuleiro
-!!!    0  Linha:    58  // --------------------------------------------- 
-   60  == Teste de Obtencao de Casa do Tabuleiro
-!!!    0  Linha:    67  // --------------------------------------------- 
-   69  == Teste de Obtencao de Peca do Tabuleiro
-!!!    0  Linha:    76  // --------------------------------------------- 
-   78  == Teste de Obtencao de Lista de Ameacantes de uma Peca do Tabuleiro
->>>    1  Linha:    81  Condicao de retorno errada ao obter lista de ameacantes.7 Deveria ser: 0  É: 1
->>>    2  Linha:    82  Não é comando recuperar:  =retirarPeca            'A'   '1'   OK
->>>    3  Linha:    83  Comando de teste ignorado:  =destruirTabuleiro      OK
-!!!    3  Linha:    85  // --------------------------------------------- 
-   87  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
->>>    4  Linha:    90  Condicao de retorno errada ao obter lista de ameacantes.7 Deveria ser: 0  É: 1
->>>    5  Linha:    91  Não é comando recuperar:  =retirarPeca            'A'   '1'   OK
->>>    6  Linha:    92  Comando de teste ignorado:  =destruirTabuleiro      OK
+   18  == Inicializar valores
+!!!    0  Linha:    22  // --------------------------------------------- 
+   24  == Teste de Criacao de Tabuleiro
+   27  == Teste do Teste de Criacao de Tabuleiro
+>>>    1  Linha:    28  Erro nos parâmetros do comando:  =criarTabuleiro    tab0    OK
+<<<    0  Linha:    29  Falha esperada foi recuperada. 
+!!!    0  Linha:    31  // --------------------------------------------- 
+   33  == Teste de Destruicao de Tabuleiro
+   36  == Teste de Destruicao de Tabuleiro
+!!!    0  Linha:    39  // --------------------------------------------- 
+   41  == Teste de Insercao de Peca no Tabuleiro
+   46  == Teste de Insercao de Peca em Coluna Invalida no Tabuleiro
+   51  == Teste de Insercao de Peca em Linha Invalida no Tabuleiro
+!!!    0  Linha:    56  // --------------------------------------------- 
+   58  == Teste de Remocao de Peca do Tabuleiro
+   64  == Teste de Remoca de Peca do Tabuleiro em CoordenadaInvalida
+!!!    0  Linha:    69  // --------------------------------------------- 
+   71  == Teste de Movimentacao de Peca no Tabuleiro
+   78  == Teste de Movimentacao Invalida de Peca no Tabuleiro
+!!!    0  Linha:    85  // --------------------------------------------- 
+   87  == Teste de Obtencao de Casa do Tabuleiro
+!!!    0  Linha:    94  // --------------------------------------------- 
+   96  == Teste de Obtencao de Peca do Tabuleiro
+!!!    0  Linha:   103  // --------------------------------------------- 
+  105  == Teste de Obtencao de Lista de Ameacantes de uma Peca do Tabuleiro
+>>>    1  Linha:   108  Erro nos parâmetros do comando:  =obterListaAmeacantes   tab0  'A'   '1'   OK
+>>>    2  Linha:   110  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+!!!    2  Linha:   112  // --------------------------------------------- 
+  114  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
+>>>    3  Linha:   115  Erro nos parâmetros do comando:  =criarTabuleiro         OK
+>>>    4  Linha:   117  Comando de teste ignorado:  =obterListaAmeacados    'A'   '1'   OK
+>>>    5  Linha:   118  Comando de teste ignorado:  =retirarPeca            'A'   '1'   OK
+>>>    6  Linha:   119  Comando de teste ignorado:  =destruirTabuleiro      OK
 
-!!! Número de linhas lidas:          92
-!!! Número de casos de teste:        13
-!!! Número comandos corretos:        35
+!!! Número de linhas lidas:         119
+!!! Número de casos de teste:        17
+!!! Número comandos corretos:        48
 !!! Número de falhas encontradas:     6
 
 !!! Foram encontrados problemas
