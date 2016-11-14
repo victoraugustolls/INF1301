@@ -146,8 +146,10 @@
 == Teste de Obtençcao de Lista de Ameaçcantes de uma Peçca do Tabuleiro
 =criarTabuleiro         tab0  OK
 =inserirPeca            tab0  'A'   '1'   'R'   'P'   OK
-=obterListaAmeacantes   tab0  'A'   '1'   OK
+=inserirPeca            tab0  'A'   '2'   'R'   'B'   OK
+=obterListaAmeacantes   tab0  'A'   '1'   'A'   '2'   OK
 =retirarPeca            tab0  'A'   '1'   OK
+=retirarPeca            tab0  'A'   '2'   OK
 =destruirTabuleiro      tab0  OK
 
 // ---------------------------------------------
@@ -155,6 +157,7 @@
 == Teste de Obtençcao de Lista de Ameaçcados de uma Peçca do Tabuleiro
 =criarTabuleiro         tab0  OK
 =inserirPeca            tab0  'A'   '1'   'R'   'P'   OK
-=obterListaAmeacados    tab0  'A'   '1'   OK
+=inserirPeca            tab0  'A'   '2'   'R'   'B'   OK
+=obterListaAmeacados    tab0  'A'   '1'   'A'   '2'   OK
 =retirarPeca            tab0  'A'   '1'   OK
 =destruirTabuleiro      tab0  OK

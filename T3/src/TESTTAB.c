@@ -124,7 +124,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 			return TST_CondRetParm ;
 		} /* if */
 		
-		CondRet = TAB_CriarTabuleiro( &vtTabuleiros[ inxTab ] , "..\\pecas\\default\\config.conf" ) ;
+		CondRet = TAB_CriarTabuleiro( &vtTabuleiros[ inxTab ] , "..\\pecas\\teste_tabuleiro\\config.conf" ) ;
 		
 		return TST_CompararInt( CondRetEsp , CondRet ,
 								"Condicao de retorno errada ao criar tabuleiro." ) ;
@@ -341,11 +341,12 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
 		LIS_tpCondRet retLista ;
 
-		numLidos = LER_LerParametros( "icci" , &inxTab ,
+		numLidos = LER_LerParametros( "icccci" , &inxTab ,
 									&charParm1 , &charParm2 ,
+									&charParm3 , &charParm4 ,
 									&CondRetEsp ) ;
 		
-		if ( ( numLidos != 4 ) )
+		if ( ( numLidos != 6 ) )
 		{
 			return TST_CondRetParm ;
 		} /* if */
@@ -403,6 +404,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 										"Condicao de retorno errada ao obter lista de ameacantes, lista de colunas vazia." ) ;
 			} /* if */
 
+
+			printf("linha deveria ser: %c / mas e: %c\n", charParm4 , *linhaObtida);
+			printf("coluna deveria ser: %c / mas e: %c\n", charParm3 , *colunaObtida);
+
 			if ( *linhaObtida != charParm2 || *colunaObtida != charParm1 )
 			{
 				free( linhaObtida ) ;
@@ -429,11 +434,12 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		
 		LIS_tpCondRet retLista ;
 
-		numLidos = LER_LerParametros( "icci" , &inxTab ,
+		numLidos = LER_LerParametros( "icccci" , &inxTab ,
 									&charParm1 , &charParm2 ,
+									&charParm3 , &charParm4 ,
 									&CondRetEsp ) ;
 		
-		if ( ( numLidos != 4 ) )
+		if ( ( numLidos != 6 ) )
 		{
 			return TST_CondRetParm ;
 		} /* if */
@@ -491,7 +497,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 										"Condicao de retorno errada ao obter lista de ameacados, lista de colunas vazia." ) ;
 			} /* if */
 
-			if ( *linhaObtida != charParm2 || *colunaObtida != charParm1 )
+			if ( *linhaObtida != charParm4 || *colunaObtida != charParm3 )
 			{
 				free( linhaObtida ) ;
 				free( colunaObtida ) ;

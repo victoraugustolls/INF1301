@@ -292,19 +292,13 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
 CSA_tpCondRet CSA_ObterListaAmeacantesCasa( LIS_tppLista * pListaAmeacantes,
                                             CSA_tppCasa pCasa )
 {
-
-    printf("Entrou CSA_ObterListaAmeacantesCasa\n");
     
     if ( pCasa == NULL )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
-
-    printf("Casa nao e nula\n");
     
     *pListaAmeacantes = pCasa->listaAmeacantes ;
-
-    printf("Passou valor\n");
     
     return CSA_CondRetOK ;
     
@@ -374,8 +368,6 @@ CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacant
             return CSA_CondRetNaoExiste ;
         }/* if */
     } /* for */
-
-    printf("Acabou CSA_ModificarListaAmeacantesCasa\n");
     
     return CSA_CondRetOK ;
     
@@ -425,8 +417,6 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
             return CSA_CondRetNaoExiste ;
         }/* if */
     } /* for */
-
-    printf("Acabou CSA_ModificarListaAmeacadosCasa\n");
     
     return CSA_CondRetOK ;
     
