@@ -1,0 +1,55 @@
+
+!!! Inicio dos testes
+!!!      Construto sob teste: ..\bin\TEST_JGO
+!!!      Script de teste:     ..\script\TESTE_JOGO.script
+
+!!!    0  Linha:     1  // Script: TESTE_JOGO.SCRIPT 
+!!!    0  Linha:     2  // Autores: Lucas Ferraço 
+!!!    0  Linha:     3  // Data: 09/nov/2016 
+!!!    0  Linha:     4  // Proposito: Testar por completo as funcoes de acesso do modulo JOGO, com excecao 
+!!!    0  Linha:     5  // do caso em que ocorre falta de memoria. 
+!!!    0  Linha:     6  // 
+!!!    0  Linha:     7  // --------------------------------------------- 
+    9  == Inicializar Constantes
+!!!    0  Linha:    27  // --------------------------------------------- 
+   29  == Teste de Criacao de Juiz
+!!!    0  Linha:    32  // --------------------------------------------- 
+   34  == Teste de Destruicao de Juiz
+   37  == Teste do Teste de Destruicao de Juiz
+>>>    1  Linha:    38  Condicao de retorno errada ao destruir juiz. Deveria ser: 0  É: 1
+<<<    0  Linha:    39  Falha esperada foi recuperada. 
+   41  == Teste de Destruicao de Juiz Inexistente
+!!!    0  Linha:    44  // --------------------------------------------- 
+   46  == Teste de Inicializacao de Jogo
+!!!    0  Linha:    50  // --------------------------------------------- 
+   52  == Teste de Termino de Jogo
+   55  == Teste de Termino de Jogo Inexistente
+!!!    0  Linha:    58  // --------------------------------------------- 
+   60  == Teste de Realizacao de Jogada em Jogo Inexistente
+   63  == Teste de Realizacao de Jogada
+>>>    1  Linha:    65  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
+   67  == Teste de Realizacao de Jogada Nao Valida
+>>>    2  Linha:    68  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
+   70  == Teste de Realizacao de Xeque
+>>>    3  Linha:    71  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
+>>>    4  Linha:    72  Não é comando recuperar:  =realizarJogada	'F'  '3'  'D'  '3'  JgBranco	Xeque	OK
+>>>    5  Linha:    73  Comando de teste ignorado:  =terminarJogo	OK
+   75  == Teste de Realizacao de Xeque Mate
+>>>    6  Linha:    76  Condicao de retorno errada ao iniciar jogo. Deveria ser: 0  É: 6
+>>>    7  Linha:    77  Não é comando recuperar:  =realizarJogada	'D'  '2'  'D'  '3'  JgBranco	Nenhum	   OK
+>>>    8  Linha:    78  Comando de teste ignorado:  =realizarJogada	'E'  '7'  'E'  '6'  JgPreto	    Nenhum     OK
+>>>    9  Linha:    79  Comando de teste ignorado:  =realizarJogada	'E'  '2'  'E'  '4'  JgBranco	Nenhum     OK
+>>>   10  Linha:    80  Comando de teste ignorado:  =realizarJogada	'G'  '7'  'G'  '5'  JgPreto 	Nenhum     OK
+>>>   11  Linha:    81  Comando de teste ignorado:  =realizarJogada	'D'  '1'  'H'  '5'  JgBranco	XequeMate  OK
+>>>   12  Linha:    82  Comando de teste ignorado:  =terminarJogo	OK
+>>>   13  Linha:    83  Comando de teste ignorado:  =destruirJuiz	OK
+
+!!! Número de linhas lidas:          83
+!!! Número de casos de teste:        13
+!!! Número comandos corretos:        23
+!!! Número de falhas encontradas:    13
+
+!!! Foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

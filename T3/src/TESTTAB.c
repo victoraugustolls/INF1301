@@ -103,10 +103,17 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		 charParm3 ,
 		 charParm4 ;
 
+	char listaCharLinhas[100];
+	char listaCharColunas[100];
+
 	char * nomeObtido ;
 	char * corObtida  ;
 	char * linhaObtida ;
 	char * colunaObtida ;
+
+	int size_string;
+
+	int i;
 
 	LIS_tppLista listaLinhas ;
 	LIS_tppLista listaColunas ;
@@ -338,12 +345,13 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	
 	else if ( strcmp( ComandoTeste , OBTER_AMEACANTES_CMD ) == 0 )
 	{
+		LIS_tpCondRet retLista1 ;
+		LIS_tpCondRet retLista2 ;
+		int found;
 
-		LIS_tpCondRet retLista ;
-
-		numLidos = LER_LerParametros( "icccci" , &inxTab ,
+		numLidos = LER_LerParametros( "iccssi" , &inxTab ,
 									&charParm1 , &charParm2 ,
-									&charParm3 , &charParm4 ,
+									listaCharColunas , listaCharLinhas,
 									&CondRetEsp ) ;
 		
 		if ( ( numLidos != 6 ) )
@@ -351,79 +359,95 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 			return TST_CondRetParm ;
 		} /* if */
 		
-		retLista = LIS_CriarLista( &listaLinhas , "linh" ,
-								DestruirValor , CompararValor ,
-								IgualValor ) ;
-
-		if ( retLista )
-		{
-			CondRet = TAB_CondRetFaltouMemoria ;
-			return TST_CompararInt( CondRetEsp , CondRet ,
-									"Condicao de retorno errada ao criar lista na obter lista de ameacantes." ) ;
-		} /* if */
-
-		retLista = LIS_CriarLista( &listaColunas , "colu" ,
-								DestruirValor , CompararValor ,
-								IgualValor ) ;
-
-		if ( retLista )
-		{
-			CondRet = TAB_CondRetFaltouMemoria ;
-			return TST_CompararInt( CondRetEsp , CondRet ,
-									"Condicao de retorno errada ao criar lista na obter lista de ameacantes." ) ;
-		} /* if */
-		
 		CondRet = TAB_ObterListaAmeacantesTabuleiro ( charParm1 , charParm2 ,
 													&listaLinhas , &listaColunas ,
 													vtTabuleiros[ inxTab ] ) ;
 
-		linhaObtida = ( char * ) malloc( sizeof( char ) ) ;
-		colunaObtida = ( char * ) malloc( sizeof( char ) ) ;
-		
-		if ( !CondRet )
+		if( CondRet != CondRetEsp )
 		{
-			retLista = LIS_ObterValor( listaLinhas , ( void ** ) &linhaObtida ) ;
+			return TST_NotificarFalha( "Condicao de retorno errada." ) ;	
+		}
 
-			if ( retLista == LIS_CondRetListaVazia )
+		size_string = strlen(listaCharLinhas);
+
+
+   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
+   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
+		if( retLista1 != retLista2 )
+		{
+			return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
+		}
+
+		if(retLista1 == LIS_CondRetListaVazia)
+		{
+			if(size_string==0)
 			{
-				free( linhaObtida ) ;
-				free( colunaObtida ) ;
-				CondRet = TAB_CondRetNaoExiste ;
-				return TST_CompararInt( CondRetEsp , CondRet ,
-										"Condicao de retorno errada ao obter lista de ameacantes, lista de linhas vazia." ) ;
-			} /* if */
-
-			retLista = LIS_ObterValor( listaColunas , ( void ** ) &colunaObtida ) ;
-
-			if ( retLista == LIS_CondRetListaVazia )
+            return TST_CondRetOK;
+			}
+			else
 			{
-				free( linhaObtida ) ;
-				free( colunaObtida ) ;
-				CondRet = TAB_CondRetNaoExiste ;
-				return TST_CompararInt( CondRetEsp , CondRet ,
-										"Condicao de retorno errada ao obter lista de ameacantes, lista de colunas vazia." ) ;
-			} /* if */
+				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;	
+			}
+		}
 
-
-/*			printf("linha deveria ser: %c / mas e: %c\n", charParm4 , *linhaObtida);
-			printf("coluna deveria ser: %c / mas e: %c\n", charParm3 , *colunaObtida);*/
-
-			if ( *linhaObtida != charParm4 || *colunaObtida != charParm3 )
+   	while(retLista1 != LIS_CondRetNoCorrenteUlt)
+   	{
+		   retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
+		   retLista2 = LIS_ObterValor( listaColunas, &colunaObtida) ;  
+			if( retLista1 != retLista2 )
 			{
-				free( linhaObtida ) ;
-				free( colunaObtida ) ;
-				return TST_NotificarFalha( "Lista de ameacantes recebida errada" ) ;
+				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
 			}
 
-		} /* if */
-		
-		free( linhaObtida ) ;
-		free( colunaObtida ) ;
-		LIS_DestruirLista( listaLinhas ) ;
-		LIS_DestruirLista( listaColunas ) ;
-		
-		return TST_CompararInt( CondRetEsp , CondRet ,
-								"Condicao de retorno errada ao obter lista de ameacantes." ) ;
+			found = 0;
+			for(i=0; i<size_string; i++)
+			{
+				if(listaCharLinhas[i] == *linhaObtida && listaCharColunas[i] == *colunaObtida)
+				{
+					found = 1;
+					break;
+				}
+			}
+
+			if(found == 0)
+			{
+				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;				
+			}
+
+	   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
+	   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
+			if( retLista1 != retLista2 )
+			{
+				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
+			}
+	   }
+
+		for(i=0; i<size_string; i++)
+		{
+			found = 0;
+	   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
+	   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
+		   while(retLista1 != LIS_CondRetNoCorrenteUlt)
+	   	{
+			   retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
+			   retLista2 = LIS_ObterValor( listaColunas, &colunaObtida) ;  
+
+				if(listaCharLinhas[i] == *linhaObtida && listaCharColunas[i] == *colunaObtida)
+				{
+					found = 1;
+					break;
+				}
+
+		   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
+		   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
+		   }  
+			if(found == 0)
+			{
+				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;				
+			}
+		}	
+
+      return TST_CondRetOK;		
 
 	} /* fim ativa: Testar ObterListaAmeacantesTabuleiro */
 
@@ -432,11 +456,13 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	else if ( strcmp( ComandoTeste , OBTER_AMEACADOS_CMD ) == 0 )
 	{
 		
-		LIS_tpCondRet retLista ;
+		LIS_tpCondRet retLista1 ;
+		LIS_tpCondRet retLista2 ;
+		int found;
 
-		numLidos = LER_LerParametros( "icccci" , &inxTab ,
+		numLidos = LER_LerParametros( "iccssi" , &inxTab ,
 									&charParm1 , &charParm2 ,
-									&charParm3 , &charParm4 ,
+									listaCharColunas , listaCharLinhas,
 									&CondRetEsp ) ;
 		
 		if ( ( numLidos != 6 ) )
@@ -444,75 +470,95 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 			return TST_CondRetParm ;
 		} /* if */
 		
-		retLista = LIS_CriarLista( &listaLinhas , "linh" ,
-								DestruirValor , CompararValor ,
-								IgualValor ) ;
-
-		if ( retLista )
-		{
-			CondRet = TAB_CondRetFaltouMemoria ;
-			return TST_CompararInt( CondRetEsp , CondRet ,
-									"Condicao de retorno errada ao criar lista na obter lista de ameacados." ) ;
-		} /* if */
-
-		retLista = LIS_CriarLista( &listaColunas , "colu" ,
-								DestruirValor , CompararValor ,
-								IgualValor ) ;
-
-		if ( retLista )
-		{
-			CondRet = TAB_CondRetFaltouMemoria ;
-			return TST_CompararInt( CondRetEsp , CondRet ,
-									"Condicao de retorno errada ao criar lista na obter lista de ameacados." ) ;
-		} /* if */
-		
 		CondRet = TAB_ObterListaAmeacadosTabuleiro ( charParm1 , charParm2 ,
 													&listaLinhas , &listaColunas ,
 													vtTabuleiros[ inxTab ] ) ;
 
-		linhaObtida = ( char * ) malloc( sizeof( char ) ) ;
-		colunaObtida = ( char * ) malloc( sizeof( char ) ) ;
-		
-		if ( !CondRet )
+		if( CondRet != CondRetEsp )
 		{
-			retLista = LIS_ObterValor( listaLinhas , ( void ** ) &linhaObtida ) ;
+			return TST_NotificarFalha( "Condicao de retorno errada." ) ;	
+		}
 
-			if ( retLista == LIS_CondRetListaVazia )
+		size_string = strlen(listaCharLinhas);
+
+
+   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
+   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
+		if( retLista1 != retLista2 )
+		{
+			return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
+		}
+
+		if(retLista1 == LIS_CondRetListaVazia)
+		{
+			if(size_string==0)
 			{
-				free( linhaObtida ) ;
-				free( colunaObtida ) ;
-				CondRet = TAB_CondRetNaoExiste ;
-				return TST_CompararInt( CondRetEsp , CondRet ,
-										"Condicao de retorno errada ao obter lista de ameacados, lista de linhas vazia." ) ;
-			} /* if */
-
-			retLista = LIS_ObterValor( listaColunas , ( void ** ) &colunaObtida ) ;
-
-			if ( retLista == LIS_CondRetListaVazia )
+            return TST_CondRetOK;
+			}
+			else
 			{
-				free( linhaObtida ) ;
-				free( colunaObtida ) ;
-				CondRet = TAB_CondRetNaoExiste ;
-				return TST_CompararInt( CondRetEsp , CondRet ,
-										"Condicao de retorno errada ao obter lista de ameacados, lista de colunas vazia." ) ;
-			} /* if */
+				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;	
+			}
+		}
 
-			if ( *linhaObtida != charParm4 || *colunaObtida != charParm3 )
+   	while(retLista1 != LIS_CondRetNoCorrenteUlt)
+   	{
+		   retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
+		   retLista2 = LIS_ObterValor( listaColunas, &colunaObtida) ;  
+			if( retLista1 != retLista2 )
 			{
-				free( linhaObtida ) ;
-				free( colunaObtida ) ;
-				return TST_NotificarFalha( "Lista de ameacados recebida errada" ) ;
+				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
 			}
 
-		} /* if */
+			found = 0;
+			for(i=0; i<size_string; i++)
+			{
+				if(listaCharLinhas[i] == *linhaObtida && listaCharColunas[i] == *colunaObtida)
+				{
+					found = 1;
+					break;
+				}
+			}
+
+			if(found == 0)
+			{
+				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;				
+			}
+
+	   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
+	   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
+			if( retLista1 != retLista2 )
+			{
+				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
+			}
+	   }
+
+		for(i=0; i<size_string; i++)
+		{
+			found = 0;
+	   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
+	   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
+		   while(retLista1 != LIS_CondRetNoCorrenteUlt)
+	   	{
+			   retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
+			   retLista2 = LIS_ObterValor( listaColunas, &colunaObtida) ;  
+
+				if(listaCharLinhas[i] == *linhaObtida && listaCharColunas[i] == *colunaObtida)
+				{
+					found = 1;
+					break;
+				}
+
+		   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
+		   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
+		   }  
+			if(found == 0)
+			{
+				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;				
+			}
+		}	
 		
-		free( linhaObtida ) ;
-		free( colunaObtida ) ;
-		LIS_DestruirLista( listaLinhas ) ;
-		LIS_DestruirLista( listaColunas ) ;
-		
-		return TST_CompararInt( CondRetEsp , CondRet ,
-								"Condicao de retorno errada ao obter lista de ameacados." ) ;
+      return TST_CondRetOK;	
         
     } /* fim ativa: Testar ObterListaAmeacadosTabuleiro */
     

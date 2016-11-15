@@ -568,9 +568,6 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
                                                         ( void* ) linhaIns ) ;
                     retLista = LIS_InserirElementoApos( *pListaAmeacantesColunas ,
                                                         ( void* ) colunaIns ) ;
-                    printf("i -> %d / j -> %d\n", i , j ) ;
-                    printf("linha: %c\n", *linhaIns);
-                    printf("coluna: %c\n", *colunaIns);
    
                 } /* if */
             } /* for */

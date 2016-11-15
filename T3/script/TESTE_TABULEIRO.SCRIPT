@@ -147,7 +147,7 @@
 =criarTabuleiro         tab0  OK
 =inserirPeca            tab0  'A'   '1'   'R'   'P'   OK
 =inserirPeca            tab0  'A'   '2'   'R'   'B'   OK
-=obterListaAmeacantes   tab0  'A'   '1'   'A'   '2'   OK
+=obterListaAmeacantes   tab0  'A'   '1'   "A"   "2"   OK
 =retirarPeca            tab0  'A'   '1'   OK
 =destruirTabuleiro      tab0  OK
 
@@ -157,6 +157,20 @@
 =criarTabuleiro         tab0  OK
 =inserirPeca            tab0  'A'   '1'   'R'   'P'   OK
 =inserirPeca            tab0  'A'   '2'   'R'   'B'   OK
-=obterListaAmeacados    tab0  'A'   '1'   'A'   '2'   OK
+=obterListaAmeacados    tab0  'A'   '1'   "ABB"   "212"   OK
+=retirarPeca            tab0  'A'   '1'   OK
+=destruirTabuleiro      tab0  OK
+
+// ---------------------------------------------
+
+== Teste de Obtençcao de Lista de Ameaçcados de uma Peçca do Tabuleiro
+=criarTabuleiro         tab0  OK
+=inserirPeca            tab0  'C'   '3'   'R'   'P'   OK
+=inserirPeca            tab0  'H'   '8'   'R'   'B'   OK
+=obterListaAmeacados    tab0  'C'   '3'   "BBBCCDDD"   "23424234"   OK
+=obterListaAmeacantes   tab0  'C'   '3'   ""   ""   OK
+=inserirPeca            tab0  'C'   '4'   'R'   'B'   OK
+=obterListaAmeacados    tab0  'C'   '3'   "BBBCCDDD"   "23424234"   OK
+=obterListaAmeacantes   tab0  'C'   '3'   "C"   "4"   OK
 =retirarPeca            tab0  'A'   '1'   OK
 =destruirTabuleiro      tab0  OK
