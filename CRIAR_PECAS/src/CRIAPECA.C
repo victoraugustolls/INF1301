@@ -491,79 +491,77 @@ void escreveMovimentoNoArquivo(FILE* file, tpMovimentoSimples mov)
 {
   if(mov.pontual == 1)
   {
-    fprintf(file,"L_AND\n");
+    fprintf(file,"\tL_AND\n");
 
-    fprintf(file,"\tL_OR P_VAZ D P_INI D\n");
+    fprintf(file,"\t\tL_OR P_VAZ D P_INI D\n");
 
-    fprintf(file,"L_AND\n");
+    fprintf(file,"\t\tL_AND\n");
 
-    fprintf(file,"\tP_IGUAL\n");
-    fprintf(file,"\t\tF_SUB V_DIM 0 D V_DIM 0 A\n");
-    fprintf(file,"\t\tV_NUM %d\n",mov.horizontal);
+    fprintf(file,"\t\t\tP_IGUAL\n");
+    fprintf(file,"\t\t\t\tF_SUB V_DIM 0 D V_DIM 0 A\n");
+    fprintf(file,"\t\t\t\tV_NUM %d\n",mov.horizontal);
 
-    fprintf(file,"\tP_IGUAL\n");
-    fprintf(file,"\t\tF_SUB V_DIM 1 D V_DIM 1 A\n");
-    fprintf(file,"\t\tV_NUM %d\n",mov.vertical);
+    fprintf(file,"\t\t\tP_IGUAL\n");
+    fprintf(file,"\t\t\t\tF_SUB V_DIM 1 D V_DIM 1 A\n");
+    fprintf(file,"\t\t\t\tV_NUM %d\n",mov.vertical);
   }
   else
   {
-    fprintf(file,"L_AND\n");
+    fprintf(file,"\tL_AND\n");
 
-    fprintf(file,"\tL_OR P_VAZ D P_INI D\n");
-
-    fprintf(file,"L_AND\n");
+    fprintf(file,"\t\tL_OR P_VAZ D P_INI D\n");
 
     if(mov.direcao == HORIZONTAL)
     {
-      fprintf(file,"L_AND\n");
-      fprintf(file,"\tP_IGUAL V_DIM 1 D V_DIM 1 A\n");
-      fprintf(file,"\tL_FORALL C\n");
-      fprintf(file,"\t\tL_IFTHEN\n");
-      fprintf(file,"\t\t\tL_AND\n");
-      fprintf(file,"\t\t\t\tP_IGUAL V_DIM 1 C V_DIM 1 A\n");
-      fprintf(file,"\t\t\t\tP_MENOR\n");
-      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 0 C V_DIM 0 A\n");
-      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 0 D V_DIM 0 A\n");
-      fprintf(file,"\t\t\tP_VAZ C\n");
+      fprintf(file,"\t\tL_AND\n");
+      fprintf(file,"\t\t\tP_IGUAL V_DIM 1 D V_DIM 1 A\n");
+      fprintf(file,"\t\t\tL_FORALL C\n");
+      fprintf(file,"\t\t\t\tL_IFTHEN\n");
+      fprintf(file,"\t\t\t\t\tL_AND\n");
+      fprintf(file,"\t\t\t\t\t\tP_IGUAL V_DIM 1 C V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\t\tP_MENOR\n");
+      fprintf(file,"\t\t\t\t\t\t\tF_ABS F_SUB V_DIM 0 C V_DIM 0 A\n");
+      fprintf(file,"\t\t\t\t\t\t\tF_ABS F_SUB V_DIM 0 D V_DIM 0 A\n");
+      fprintf(file,"\t\t\t\t\tP_VAZ C\n");
     }
     else if(mov.direcao == VERTICAL)
     {
-      fprintf(file,"L_AND\n");
-      fprintf(file,"\tP_IGUAL V_DIM 0 D V_DIM 0 A\n");
-      fprintf(file,"\tL_FORALL C\n");
-      fprintf(file,"\t\tL_IFTHEN\n");
-      fprintf(file,"\t\t\tL_AND\n");
-      fprintf(file,"\t\t\t\tP_IGUAL V_DIM 0 C V_DIM 0 A\n");
-      fprintf(file,"\t\t\t\tP_MENOR\n");
-      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 C V_DIM 1 A\n");
-      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 D V_DIM 1 A\n");
-      fprintf(file,"\t\t\tP_VAZ C\n");
+      fprintf(file,"\t\tL_AND\n");
+      fprintf(file,"\t\t\tP_IGUAL V_DIM 0 D V_DIM 0 A\n");
+      fprintf(file,"\t\t\tL_FORALL C\n");
+      fprintf(file,"\t\t\t\tL_IFTHEN\n");
+      fprintf(file,"\t\t\t\t\tL_AND\n");
+      fprintf(file,"\t\t\t\t\t\tP_IGUAL V_DIM 0 C V_DIM 0 A\n");
+      fprintf(file,"\t\t\t\t\t\tP_MENOR\n");
+      fprintf(file,"\t\t\t\t\t\t\tF_ABS F_SUB V_DIM 1 C V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\t\t\tF_ABS F_SUB V_DIM 1 D V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\tP_VAZ C\n");
     }
     else if(mov.direcao == DIAGONAL_CRESCENTE)
     {
-      fprintf(file,"L_AND\n");
-      fprintf(file,"\tP_IGUAL F_ADD F_SUB V_DIM 0 D V_DIM 0 A F_SUB V_DIM 1 D V_DIM 1 A V_NUM 0\n");
-      fprintf(file,"\tL_FORALL C\n");
-      fprintf(file,"\t\tL_IFTHEN\n");
-      fprintf(file,"\t\t\tL_AND\n");
-      fprintf(file,"\t\t\t\tP_IGUAL F_ADD F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0\n");
-      fprintf(file,"\t\t\t\tP_MENOR\n");
-      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 C V_DIM 1 A\n");
-      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 D V_DIM 1 A\n");
-      fprintf(file,"\t\t\tP_VAZ C\n");
+      fprintf(file,"\t\tL_AND\n");
+      fprintf(file,"\t\t\tP_IGUAL F_ADD F_SUB V_DIM 0 D V_DIM 0 A F_SUB V_DIM 1 D V_DIM 1 A V_NUM 0\n");
+      fprintf(file,"\t\t\tL_FORALL C\n");
+      fprintf(file,"\t\t\t\tL_IFTHEN\n");
+      fprintf(file,"\t\t\t\t\tL_AND\n");
+      fprintf(file,"\t\t\t\t\t\tP_IGUAL F_ADD F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0\n");
+      fprintf(file,"\t\t\t\t\t\tP_MENOR\n");
+      fprintf(file,"\t\t\t\t\t\t\tF_ABS F_SUB V_DIM 1 C V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\t\t\tF_ABS F_SUB V_DIM 1 D V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\tP_VAZ C\n");
     }
     else if(mov.direcao == DIAGONAL_DECRESCENTE)
     {
-      fprintf(file,"L_AND\n");
-      fprintf(file,"\tP_IGUAL F_SUB F_SUB V_DIM 0 D V_DIM 0 A F_SUB V_DIM 1 D V_DIM 1 A V_NUM 0\n");
-      fprintf(file,"\tL_FORALL C\n");
-      fprintf(file,"\t\tL_IFTHEN\n");
-      fprintf(file,"\t\t\tL_AND\n");
-      fprintf(file,"\t\t\t\tP_IGUAL F_SUB F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0\n");
-      fprintf(file,"\t\t\t\tP_MENOR\n");
-      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 C V_DIM 1 A\n");
-      fprintf(file,"\t\t\t\t\tF_ABS F_SUB V_DIM 1 D V_DIM 1 A\n");
-      fprintf(file,"\t\t\tP_VAZ C\n");
+      fprintf(file,"\t\tL_AND\n");
+      fprintf(file,"\t\t\tP_IGUAL F_SUB F_SUB V_DIM 0 D V_DIM 0 A F_SUB V_DIM 1 D V_DIM 1 A V_NUM 0\n");
+      fprintf(file,"\t\t\tL_FORALL C\n");
+      fprintf(file,"\t\t\t\tL_IFTHEN\n");
+      fprintf(file,"\t\t\t\t\tL_AND\n");
+      fprintf(file,"\t\t\t\t\t\tP_IGUAL F_SUB F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0\n");
+      fprintf(file,"\t\t\t\t\t\tP_MENOR\n");
+      fprintf(file,"\t\t\t\t\t\t\tF_ABS F_SUB V_DIM 1 C V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\t\t\tF_ABS F_SUB V_DIM 1 D V_DIM 1 A\n");
+      fprintf(file,"\t\t\t\t\tP_VAZ C\n");
     }
   }
 }

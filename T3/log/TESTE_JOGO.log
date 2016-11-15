@@ -27,27 +27,25 @@
 !!!    0  Linha:    58  // --------------------------------------------- 
    60  == Teste de Realizacao de Jogada em Jogo Inexistente
    63  == Teste de Realizacao de Jogada
->>>    1  Linha:    65  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
    67  == Teste de Realizacao de Jogada Nao Valida
->>>    2  Linha:    68  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
    70  == Teste de Realizacao de Xeque
->>>    3  Linha:    71  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
->>>    4  Linha:    72  Não é comando recuperar:  =realizarJogada	'F'  '3'  'D'  '3'  JgBranco	Xeque	OK
->>>    5  Linha:    73  Comando de teste ignorado:  =terminarJogo	OK
+>>>    1  Linha:    71  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
+>>>    2  Linha:    72  Não é comando recuperar:  =realizarJogada	'F'  '3'  'D'  '3'  JgBranco	Xeque	OK
+>>>    3  Linha:    73  Comando de teste ignorado:  =terminarJogo	OK
    75  == Teste de Realizacao de Xeque Mate
->>>    6  Linha:    76  Condicao de retorno errada ao iniciar jogo. Deveria ser: 0  É: 6
->>>    7  Linha:    77  Não é comando recuperar:  =realizarJogada	'D'  '2'  'D'  '3'  JgBranco	Nenhum	   OK
->>>    8  Linha:    78  Comando de teste ignorado:  =realizarJogada	'E'  '7'  'E'  '6'  JgPreto	    Nenhum     OK
->>>    9  Linha:    79  Comando de teste ignorado:  =realizarJogada	'E'  '2'  'E'  '4'  JgBranco	Nenhum     OK
->>>   10  Linha:    80  Comando de teste ignorado:  =realizarJogada	'G'  '7'  'G'  '5'  JgPreto 	Nenhum     OK
->>>   11  Linha:    81  Comando de teste ignorado:  =realizarJogada	'D'  '1'  'H'  '5'  JgBranco	XequeMate  OK
->>>   12  Linha:    82  Comando de teste ignorado:  =terminarJogo	OK
->>>   13  Linha:    83  Comando de teste ignorado:  =destruirJuiz	OK
+>>>    4  Linha:    76  Condicao de retorno errada ao iniciar jogo. Deveria ser: 0  É: 6
+>>>    5  Linha:    77  Não é comando recuperar:  =realizarJogada	'D'  '2'  'D'  '3'  JgBranco	Nenhum	   OK
+>>>    6  Linha:    78  Comando de teste ignorado:  =realizarJogada	'E'  '7'  'E'  '6'  JgPreto	    Nenhum     OK
+>>>    7  Linha:    79  Comando de teste ignorado:  =realizarJogada	'E'  '2'  'E'  '4'  JgBranco	Nenhum     OK
+>>>    8  Linha:    80  Comando de teste ignorado:  =realizarJogada	'G'  '7'  'G'  '5'  JgPreto 	Nenhum     OK
+>>>    9  Linha:    81  Comando de teste ignorado:  =realizarJogada	'D'  '1'  'H'  '5'  JgBranco	XequeMate  OK
+>>>   10  Linha:    82  Comando de teste ignorado:  =terminarJogo	OK
+>>>   11  Linha:    83  Comando de teste ignorado:  =destruirJuiz	OK
 
 !!! Número de linhas lidas:          83
 !!! Número de casos de teste:        13
-!!! Número comandos corretos:        23
-!!! Número de falhas encontradas:    13
+!!! Número comandos corretos:        25
+!!! Número de falhas encontradas:    11
 
 !!! Foram encontrados problemas
 

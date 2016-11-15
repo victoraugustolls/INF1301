@@ -273,10 +273,11 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     char peca ;
     char cor ;
 
-    int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim0 , TAB_Dim1 } ;
+    int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim1 , TAB_Dim1 } ;
 
     if ( pTabuleiro == NULL )
     {
+        printf(">>1\n");
         return TAB_CondRetNaoExiste ;
     }
 
@@ -295,6 +296,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[linAtual][colAtual] ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf(">>2\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
@@ -329,12 +331,13 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
          ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) ||
          ( retDirMov == VMV_CondRetErrManuseioArquivo ) )
     {
-
+        printf("retorno do vmv %d\n",retDirMov);
         return TAB_CondRetFalhaArq ;
     }
     else if ( ( retDirMov == VMV_CondRetVariavelNaoExistente ) ||
               ( retDirMov == VMV_CondRetErrComandoNaoExistente ) )
     {
+        printf(">>3\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
 
@@ -348,6 +351,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf(">>4\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
@@ -356,12 +360,14 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf(">>5\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
     retCasa = CSA_RetirarPecaCasa ( pTabuleiro->tabuleiro[linDestino][colDestino] ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf(">>6\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
@@ -370,6 +376,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf(">>7\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
 
@@ -758,7 +765,8 @@ int TAB_CasaInimigo( void * casa, void * aux )
     
 }
 
-int TAB_Dim0( void * casa, void* tab )
+// linhas
+int TAB_Dim1( void * casa, void* tab )
 {
     int i , j ;
     TAB_tppTabuleiro pTabuleiro = (TAB_tppTabuleiro) tab ;
@@ -777,8 +785,8 @@ int TAB_Dim0( void * casa, void* tab )
     
 }
 
-
-int TAB_Dim1 ( void * casa , void* tab )
+// colunas
+int TAB_Dim0 ( void * casa , void* tab )
 {
     int i , j ;
     TAB_tppTabuleiro pTabuleiro = ( TAB_tppTabuleiro ) tab ;

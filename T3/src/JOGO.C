@@ -134,14 +134,17 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
+        printf("E");
         return JGO_CondRetMovInvalido;
     }
     if(corJogadorAtual == JGO_JogadorPreto && cor_atual != 'P' )
     {
+        printf("F%d%c",corJogadorAtual,cor_atual);
         return JGO_CondRetMovInvalido;
     }
     else if(corJogadorAtual == JGO_JogadorBranco && cor_atual != 'B' )
     {
+        printf("G");
         return JGO_CondRetMovInvalido;
     }
 
@@ -152,6 +155,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                             pJuiz->tabuleiro );
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
+        printf("D");
         return JGO_CondRetMovInvalido;
     }
     
@@ -163,18 +167,24 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
+        printf("A");
         return JGO_CondRetMovInvalido;
     }
     else if(tabCondRet == TAB_CondRetMovInvalido)
     {
+        printf("B\n");
+        printf("%d%c%c\n",corJogadorAtual,peca_atual,cor_atual);
+        printf("%d%c%c\n",corJogadorAtual,peca_destino,cor_destino);
         return JGO_CondRetMovInvalido;
     }
     else if(tabCondRet == TAB_CondRetNaoExiste)
     {
+        printf("COND RET NAO EXISTE\n");
         return JGO_CondRetNaoExiste;
     }
     else if(tabCondRet == TAB_CondRetFalhaArq)
     {
+        printf("AQUI ARQ\n");
         return JGO_CondRetFalhaArq;
     }
     else if(tabCondRet == TAB_CondRetFaltouMemoria)
@@ -225,6 +235,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                 listaRet = LIS_DestruirLista(pListaAmeacantesLinhas);
                 listaRet = LIS_DestruirLista(pListaAmeacantesColunas);
 
+                printf("C");
                 return JGO_CondRetMovInvalido;               
             }           
 

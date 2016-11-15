@@ -62,10 +62,10 @@
 
 == Teste de Realizaçcao de Jogada
 =iniciarJogo	"..\\pecas\\teste_jogo\\config_xeque.conf"  OK
-=realizarJogada	'H'  '3'  'F'  '3'  JgBranco	Nenhum  OK
+=realizarJogada	'H'  '6'  'F'  '6'  JgPreto		Nenhum  OK
 
 == Teste de Realizaçcao de Jogada Nao Valida
-=realizarJogada	'E'  '1'  'F'  '1'  JgPreto	    Nenhum  OK
+=realizarJogada	'E'  '1'  'D'  '1'  JgPreto	    Nenhum  OK
 
 == Teste de Realizaçcao de Xeque
 =realizarJogada	'E'  '1'  'D'  '1'  JgPreto	    Nenhum  OK
