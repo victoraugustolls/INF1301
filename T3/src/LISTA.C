@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     9       iars  15/nov/2016 copia lista
 *     8       vas   13/nov/2016 adição da implementação da função de comparar listas
 *     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
@@ -138,6 +139,58 @@
 
    } /* Fim função: LIS  &Criar lista */
 
+
+/***************************************************************************
+*
+*  Função: LIS  &Copiar lista
+*  ****/
+
+
+   LIS_tpCondRet LIS_CopiarLista( LIS_tppLista* pLista , LIS_tppLista listaOriginal )
+   {
+
+      LIS_tppLista pNewLista = NULL ;
+      tpElemLista * pElem ;
+      LIS_tpCondRet listaCondRet;
+
+      pNewLista = ( LIS_tpLista * ) malloc( sizeof( LIS_tpLista )) ;
+      if ( pNewLista == NULL )
+      {
+         return LIS_CondRetFaltouMemoria ;
+      } /* if */
+
+      LimparCabeca( pNewLista ) ;
+
+      pNewLista->idLista = ( char * ) malloc ( strlen ( listaOriginal->idLista ) + 1 ) ;
+      strcpy( pNewLista->idLista , listaOriginal->idLista ) ;
+
+      pNewLista->ExcluirValor = listaOriginal->ExcluirValor ;
+      pNewLista->CompararValores = listaOriginal->CompararValores ;
+      pNewLista->Igual = listaOriginal->Igual ;
+
+      if ( listaOriginal->pElemCorr == NULL )
+      {
+         *pLista = pNewLista ;
+         return LIS_CondRetOK ;
+      } /* if */
+
+      for ( pElem  = listaOriginal->pElemCorr ;
+            pElem != NULL ;
+            pElem  = pElem->pProx )
+      {
+         listaCondRet = LIS_InserirElementoApos( pNewLista, pElem->pValor);
+         if(listaCondRet == LIS_CondRetFaltouMemoria)
+         {
+            LIS_DestruirLista(pNewLista);
+            return LIS_CondRetFaltouMemoria;
+         }
+      } /* for */
+
+      *pLista = pNewLista ;
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Copiar lista */
+
 /***************************************************************************
 *
 *  Função: LIS  &Destruir lista
@@ -168,7 +221,7 @@
                                           void * pValor        )
    {
 
-      tpElemLista * pElem ;;
+      tpElemLista * pElem ;
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;

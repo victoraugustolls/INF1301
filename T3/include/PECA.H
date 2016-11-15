@@ -16,7 +16,8 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
-*	  2       vas   10/nov/2016 mudança dos prototipos para nova estrutura
+*     3       iars  15/nov/2016 copiar peca
+*	    2       vas   10/nov/2016 mudança dos prototipos para nova estrutura
 *     1       vas   06/out/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
@@ -87,6 +88,27 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
   	PCA_tpCondRet PCA_CriarPeca( PCA_tppPeca * pPeca ,
             					char nomePeca ,
 								char corPeca ) ;
+
+/***********************************************************************
+*
+*  $FC Função: PCA  &Copiar peça
+*
+*  $ED Descrição da função
+*     Cria uma peça do jogo de xadrez igual a peca original.
+*     pecaOriginal nao deve ser nula.
+*
+*  $EP Parâmetros
+*     pPeca            - ponteiro para peça sendo criada
+*     pecaOriginal         - peca original
+*
+*  $FV Valor retornado
+*     PCA_CondRetOK            - peça foi criada corretamente
+*     PCA_CondRetFaltouMemoria - ocorreu um erro na criação da peça
+*
+***********************************************************************/
+
+    PCA_tpCondRet PCA_CopiarPeca( PCA_tppPeca * pPeca ,
+                      PCA_tppPeca pecaOriginal) ;
 
 
 /***********************************************************************

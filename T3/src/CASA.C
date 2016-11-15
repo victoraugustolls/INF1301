@@ -62,7 +62,7 @@ typedef struct CSA_tagCasa {
 
 /***************************************************************************
  *
- *  Função: PCA  &Criar peça
+ *  Função: CSA  &Criar casa
  *  ****/
 
 CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
@@ -83,6 +83,7 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
 
     if ( newCasa == NULL )
     {
+        free(newCasa);
         return CSA_CondRetFaltouMemoria ;
     } /* if */
     
@@ -92,6 +93,7 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     
     if ( retPeca == PCA_CondRetFaltouMemoria )
     {
+        free(newCasa);
         return CSA_CondRetFaltouMemoria ;
     }/* if */
     
@@ -125,7 +127,69 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     
     return CSA_CondRetOK ;
     
-} /* Fim função: PCA  &Criar peça */
+} /* Fim função: CSA  &Criar casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Copiar casa
+ *  ****/
+
+CSA_tpCondRet CSA_CopiarCasa( CSA_tppCasa * pCasa, CSA_tppCasa casaOriginal )
+{
+    
+    PCA_tpCondRet retPeca ;
+    LIS_tpCondRet retLista ;
+    
+    PCA_tppPeca peca = NULL ;
+    LIS_tppLista listaAmeacantes = NULL ;
+    LIS_tppLista listaAmeacados = NULL ;
+
+    CSA_tppCasa newCasa = NULL ;
+    
+    newCasa = ( CSA_tpCasa * ) malloc( sizeof( CSA_tpCasa ) ) ;
+
+    if ( newCasa == NULL )
+    {
+        free(newCasa);
+        return CSA_CondRetFaltouMemoria ;
+    } /* if */
+    
+    retPeca = PCA_CopiarPeca( &peca, casaOriginal->peca ) ;
+    
+    if ( retPeca == PCA_CondRetFaltouMemoria )
+    {
+        free(newCasa);
+        return CSA_CondRetFaltouMemoria ;
+    }/* if */
+    
+    retLista = LIS_CopiarLista( &listaAmeacantes , casaOriginal->listaAmeacantes) ;
+
+    if ( retLista == LIS_CondRetFaltouMemoria )
+    {
+        free(newCasa);
+        LIS_DestruirLista(listaAmeacantes);
+        return CSA_CondRetFaltouMemoria ;
+    }/* if */
+    
+    retLista = LIS_CopiarLista( &listaAmeacados , casaOriginal->listaAmeacados) ;
+
+    if ( retLista == LIS_CondRetFaltouMemoria )
+    {
+        free(newCasa);
+        LIS_DestruirLista(listaAmeacantes);
+        LIS_DestruirLista(listaAmeacados);
+        return CSA_CondRetFaltouMemoria ;
+    }/* if */
+    
+    newCasa->peca = peca ;
+    newCasa->listaAmeacantes = listaAmeacantes ;
+    newCasa->listaAmeacados = listaAmeacados ;
+
+    *pCasa = newCasa ;
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Criar casa */
 
 /***************************************************************************
  *

@@ -157,6 +157,27 @@ typedef struct LIS_tagLista * LIS_tppLista ;
              int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) ) ;
 
 
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Copiar lista
+*
+*  $ED Descrição da função
+*     Copia uma lista genérica duplamente encadeada.
+*
+*  $EP Parâmetros
+*
+*     pLista          - ponteiro para a lista sendo criada
+*     listaOriginal   - lista original a ser copiada
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK            - lista foi criada corretamente
+*     LIS_CondRetFaltouMemoria - ocorreu um erro na criação da lista
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_CopiarLista( LIS_tppLista* pLista , LIS_tppLista listaOriginal ) ;
+
 /***********************************************************************
 *
 *  $FC Função: LIS  &Destruir lista

@@ -16,6 +16,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     6       iars  15/nov/2016 copiar casa
  *     5       vas   10/nov/2016 alteracoes devido a mudanca da estrutura da peca
  *     4       vas   12/out/2016 corrigir esvaziar peça da casa
  *     3       lff   11/out/2016 adição de funções de modificar lista
@@ -97,6 +98,25 @@ typedef enum {
  ***********************************************************************/
 
 CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: CSA  &Copiar casa
+ *
+ *  $ED Descrição da função
+ *     Cria uma casa igual a casa original.
+ *
+ *  $EP Parâmetros
+ *     pCasa - ponteiro para a casa sendo criado
+ *    casaOriginal - casa original
+ *
+ *  $FV Valor retornado
+ *     CSA_CondRetOK                - criou sem problemas
+ *     CSA_CondRetFaltouMemoria     - faltou memória para alocação da casa
+ *
+ ***********************************************************************/
+
+CSA_tpCondRet CSA_CopiarCasa( CSA_tppCasa * pCasa, CSA_tppCasa casaOriginal ) ;
 
 
 /***********************************************************************

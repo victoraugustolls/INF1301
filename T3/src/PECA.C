@@ -84,6 +84,17 @@
 
 /***************************************************************************
 *
+*  Função: PCA  &Copiar peça
+*  ****/
+
+    PCA_tpCondRet PCA_CopiarPeca(   PCA_tppPeca * pPeca ,
+                                    PCA_tppPeca pecaOriginal)
+    {
+        return PCA_CriarPeca( pPeca , pecaOriginal->nomePeca, pecaOriginal->corPeca);
+    } /* Fim função: PCA  &Copiar peça */
+
+/***************************************************************************
+*
 *  Função: PCA  &Alterar peça
 *  ****/
 

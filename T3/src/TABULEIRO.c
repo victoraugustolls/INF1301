@@ -53,7 +53,7 @@ typedef struct TAB_tagTabuleiro {
 
 int TAB_VerificaCoordValida ( int linha , int coluna ) ;
 int TAB_CasaVazia ( void * casa , void * aux ) ;
-int TAB_CasaInimigo ( void * casa , void * aux ) ;
+int TAB_CasaInimigo( void * casa, void* casa_atual, void * aux );
 int TAB_Dim0 ( void * casa , void * aux ) ;
 int TAB_Dim1 ( void * casa , void * aux ) ;
 void ExcluirChar ( void * pDado ) ;
@@ -81,6 +81,11 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     VMV_tpCondRet condRetCriarConfigDir ;
     
     pNovoTabuleiro = ( TAB_tpTabuleiro * ) malloc( sizeof( TAB_tpTabuleiro ) ) ;
+    if ( pNovoTabuleiro == NULL )
+    {
+        return TAB_CondRetFaltouMemoria ;
+    } /* if */
+    
 
     condRetCriarConfigDir = VMV_CriarConfigDir( &pNovoTabuleiro->configDir ,
                                                 pathConfig ) ;
@@ -98,11 +103,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     else if ( condRetCriarConfigDir == VMV_CondRetErrFaltouMemoria )
     {
         free( pNovoTabuleiro ) ;
-        return TAB_CondRetFaltouMemoria ;
-    } /* if */
-    
-    if ( pNovoTabuleiro == NULL )
-    {
         return TAB_CondRetFaltouMemoria ;
     } /* if */
     
@@ -162,6 +162,58 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
 
     AtualizaListaAmeacantesAmeacados ( * pTabuleiro ) ;
+    
+    return TAB_CondRetOK ;
+    
+} /* Fim função: TAB  &Criar tabuleiro */
+
+/***************************************************************************
+ *
+ *  Função: TAB  &Copiar tabuleiro
+ *  ****/
+
+TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabuleiro tabuleiroOriginal )
+{
+
+    int i , j ;
+    TAB_tppTabuleiro pNovoTabuleiro = NULL ;
+    CSA_tpCondRet retCasa ;
+
+    VMV_tpCondRet condRetCriarConfigDir ;
+    
+    pNovoTabuleiro = ( TAB_tpTabuleiro * ) malloc( sizeof( TAB_tpTabuleiro ) ) ;
+    if ( pNovoTabuleiro == NULL )
+    {
+        return TAB_CondRetFaltouMemoria ;
+    } /* if */
+
+    condRetCriarConfigDir = VMV_CopiarConfigDir( &pNovoTabuleiro->configDir , tabuleiroOriginal->configDir) ;
+    if ( condRetCriarConfigDir == VMV_CondRetErrFaltouMemoria )
+    {
+        free( pNovoTabuleiro ) ;
+        return TAB_CondRetFaltouMemoria ;
+    } /* if */
+    
+    if ( pNovoTabuleiro == NULL )
+    {
+        return TAB_CondRetFaltouMemoria ;
+    } /* if */
+
+    for ( i = 0 ; i < 8 ; i++ )
+    {
+        for ( j = 0 ; j < 8 ; j++ )
+        {
+            retCasa = CSA_CopiarCasa(&pNovoTabuleiro->tabuleiro[i][j],tabuleiroOriginal->tabuleiro[i][j]);
+            if( retCasa == CSA_CondRetFaltouMemoria)
+            {
+                return TAB_CondRetFaltouMemoria;
+            }
+        } /* for */
+    } /* for */
+
+    *pTabuleiro = pNovoTabuleiro ;
+
+    AtualizaListaAmeacantesAmeacados ( *pTabuleiro ) ;
     
     return TAB_CondRetOK ;
     
@@ -732,21 +784,27 @@ int TAB_CasaVazia( void* casa, void* aux )
     
 }
 
-int TAB_CasaInimigo( void * casa, void * aux )
+int TAB_CasaInimigo( void * casa, void* casa_atual, void * aux )
 {
     
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
+    CSA_tppCasa pCasaAtual = ( CSA_tppCasa ) casa_atual ;
     char nomePeca, corPeca ;
+    char corAtual;
+    char corOposta;
 
     ( void ) aux ;
 
     CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
+    CSA_ObterPecaCasa( &nomePeca , &corAtual , pCasaAtual ) ;
+
+    corOposta = corAtual == 'B'?'P':'B';
     
-    if ( ( nomePeca == 'V' ) && ( corPeca == 'V' ) )
+    if ( corPeca == corOposta )
     {
-        return 0 ;
+        return 1 ;
     } /* if */
-    return 1 ;
+    return 0 ;
     
 }
 

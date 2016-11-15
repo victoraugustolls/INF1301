@@ -66,18 +66,21 @@
 
 == Teste de Realizaçcao de Jogada Nao Valida
 =realizarJogada	'E'  '1'  'D'  '1'  JgPreto	    Nenhum  OK
+=realizarJogada	'D'  '1'  'E'  '1'  JgPreto	    Nenhum  OK
+=realizarJogada	'E'  '1'  'F'  '1'  JgPreto	    Nenhum  OK
+=realizarJogada	'E'  '8'  'F'  '8'  JgBranco	Nenhum  MovInvalido
+=realizarJogada	'B'  '8'  'B'  '7'  JgBranco	Nenhum  MovInvalido
 
 == Teste de Realizaçcao de Xeque
 =realizarJogada	'F'  '6'  'D'  '6'  JgPreto		Nenhum	OK
 =realizarJogada	'D'  '6'  'E'  '6'  JgPreto		Xeque	OK
-=terminarJogo	OK
+=realizarJogada	'E'  '8'  'D'  '8'  JgBranco	Nenhum  OK
+=realizarJogada	'D'  '8'  'E'  '8'  JgBranco	Nenhum  MovInvalido
+=realizarJogada	'E'  '6'  'D'  '6'  JgPreto		Xeque	OK
 
-== Teste de Realizaçcao de Xeque Mate
-=iniciarJogo	"..\\pecas\\teste_jogo\\config.conf"	   OK
-=realizarJogada	'D'  '2'  'D'  '3'  JgBranco	Nenhum	   OK
-=realizarJogada	'E'  '7'  'E'  '6'  JgPreto	    Nenhum     OK
-=realizarJogada	'E'  '2'  'E'  '4'  JgBranco	Nenhum     OK
-=realizarJogada	'G'  '7'  'G'  '5'  JgPreto 	Nenhum     OK
-=realizarJogada	'D'  '1'  'H'  '5'  JgBranco	XequeMate  OK
+== Teste de Realizaçcao de Xeque Mate   OK
+=realizarJogada	'D'  '6'  'H'  '6'  JgPreto		Nenhum	OK
+=realizarJogada	'A'  '8'  'A'  '7'  JgPreto		Nenhum	OK
+=realizarJogada	'H'  '6'  'H'  '8'  JgPreto		XequeMate	OK
 =terminarJogo	OK
 =destruirJuiz	OK

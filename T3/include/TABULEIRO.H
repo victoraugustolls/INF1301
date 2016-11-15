@@ -16,6 +16,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     ObservaÁıes
+ *     3       iars  15/nov/2016 copiar tabuleiro e nova interface ameacantes ameacados
  *     2       lff   05/out/2016 desenvolvimento
  *     1       lff   04/out/2016 início desenvolvimento
  *
@@ -104,6 +105,27 @@ typedef enum {
  ***********************************************************************/
 
 TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfig ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Copiar tabuleiro
+ *
+ *  $ED Descrição da função
+ *     Cria um tabuleiro igual ao tabuleiroOriginal.
+ *
+ *  $EP Par‚metros
+ *     pTabuleiro - ponteiro para o tabuleiro sendo criado
+ *     tabuleiroOriginal - tabuleiro original a ser copiado
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK                - criou sem problemas
+ *     TAB_CondRetFaltouMemoria     - faltou memória para alocação do tabuleiro
+ *     TAB_CondRetFalhaArq          - falha ao manipular arquivo necessário
+ *                                      para verificar o movimento
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabuleiro tabuleiroOriginal ) ;
 
 
 /***********************************************************************
