@@ -190,7 +190,6 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
         
         if ( EveOcor != EveOcorEsp )
         {
-            return TST_CondRetOK;
             return TST_CompararInt( EveOcorEsp , EveOcor ,
                                     "Evento Ocorrido errado ao realizar jogada." ) ;
         } /* if */

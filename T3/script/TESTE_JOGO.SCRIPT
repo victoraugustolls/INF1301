@@ -68,8 +68,8 @@
 =realizarJogada	'E'  '1'  'D'  '1'  JgPreto	    Nenhum  OK
 
 == Teste de Realizaçcao de Xeque
-=realizarJogada	'E'  '1'  'D'  '1'  JgPreto	    Nenhum  OK
-=realizarJogada	'F'  '3'  'D'  '3'  JgBranco	Xeque	OK
+=realizarJogada	'F'  '6'  'D'  '6'  JgPreto		Nenhum	OK
+=realizarJogada	'D'  '6'  'E'  '6'  JgPreto		Xeque	OK
 =terminarJogo	OK
 
 == Teste de Realizaçcao de Xeque Mate

@@ -111,7 +111,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
                                                         &cores , 
                                                         &num_casas ) ;
 
-    // printf("Vai entrar nos fors, %d\n", condRetCriarConfigDir) ;
 
     for ( i = 0 ; i < 8 ; i++ )
     {
@@ -137,7 +136,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
             retCasa = CSA_InserirPecaCasa(  pecas[ 8 * i + j ] ,
                                             cores[ 8 * i + j ] ,
                                             pNovoTabuleiro->tabuleiro[i][j] ) ;
-            // printf("retCasa: %d\n", retCasa);
             if ( retCasa == CSA_CondRetFaltouMemoria )
             {
                 for ( ; i >= 0 ; i-- )
@@ -153,19 +151,15 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
                 VMV_DestruirConfigDir( pNovoTabuleiro->configDir ) ;
                 return TAB_CondRetFaltouMemoria ;
             } /* if */
-            // printf("for 2: %d\n", j) ;
 
         } /* for */
-        // printf("for 1: %d\n", i) ;
     } /* for */
 
-    // printf("Acabou todos os fors\n") ;
 
     free( pecas ) ;
     free( cores ) ;
     *pTabuleiro = pNovoTabuleiro ;
 
-    // printf("Vai atualizar listas\n") ;
 
     AtualizaListaAmeacantesAmeacados ( * pTabuleiro ) ;
     
@@ -238,7 +232,6 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
 
-    // printf("TAB_InserirPecaTabuleiro vai chamar AtualizaListaAmeacantesAmeacados\n");
              
     AtualizaListaAmeacantesAmeacados ( pTabuleiro );
 
@@ -273,11 +266,10 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     char peca ;
     char cor ;
 
-    int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim1 , TAB_Dim1 } ;
+    int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim0 , TAB_Dim1 } ;
 
     if ( pTabuleiro == NULL )
     {
-        printf(">>1\n");
         return TAB_CondRetNaoExiste ;
     }
 
@@ -296,7 +288,6 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[linAtual][colAtual] ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
-        printf(">>2\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
@@ -331,13 +322,11 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
          ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) ||
          ( retDirMov == VMV_CondRetErrManuseioArquivo ) )
     {
-        printf("retorno do vmv %d\n",retDirMov);
         return TAB_CondRetFalhaArq ;
     }
     else if ( ( retDirMov == VMV_CondRetVariavelNaoExistente ) ||
               ( retDirMov == VMV_CondRetErrComandoNaoExistente ) )
     {
-        printf(">>3\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
 
@@ -351,7 +340,6 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
     if ( retCasa == CSA_CondRetNaoExiste )
     {
-        printf(">>4\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
@@ -360,14 +348,12 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
     if ( retCasa == CSA_CondRetNaoExiste )
     {
-        printf(">>5\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
     retCasa = CSA_RetirarPecaCasa ( pTabuleiro->tabuleiro[linDestino][colDestino] ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
-        printf(">>6\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
@@ -376,7 +362,6 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
     if ( retCasa == CSA_CondRetNaoExiste )
     {
-        printf(">>7\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
 
@@ -789,9 +774,9 @@ int TAB_Dim1( void * casa, void* tab )
 int TAB_Dim0 ( void * casa , void* tab )
 {
     int i , j ;
-    TAB_tppTabuleiro pTabuleiro = ( TAB_tppTabuleiro ) tab ;
+    TAB_tppTabuleiro pTabuleiro = (TAB_tppTabuleiro) tab ;
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
-    
+        
     for ( i = 0 ; i < 8; i++ )
     {
         for ( j = 0 ; j < 8; j++ )
