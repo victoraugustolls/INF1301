@@ -94,6 +94,14 @@
 
 // ---------------------------------------------
 
+== Teste Copiar Peça
+=criarPeca       peca0   'P'     'P'   OK
+=copiaPeca       peca0   peca1   1     OK
+=destroiPeca     peca0   OK
+=destroiPeca     peca1   OK
+
+// ---------------------------------------------
+
 == Teste com múltiplas peças
 =criarPeca       peca0   'P'    'P'    OK
 =criarPeca       peca1   'T'    'B'    OK
