@@ -68,7 +68,7 @@ int main( void ) {
     JGO_tpEventoOcorrido EventoJogada = -1 ;
     JGO_tpCondRet CondRet ;
     
-    char * OpcaoEscolhida;
+    char * OpcaoEscolhida[100] ;
     Jogador JogadorDaVez , JogadorBranco , JogadorPreto ;
     
     JogadorBranco.cor = JGO_JogadorBranco ;
@@ -95,7 +95,7 @@ int main( void ) {
         printf( "   - Inserir nova peca ( inserir ).)\n" ) ;
         printf( "   - Sair do jogo ( sair ).)\n" ) ;
         printf( "\nDigite a opcao desejada:\n" ) ;
-        scanf( "%s" , &OpcaoEscolhida );
+        scanf( "%s" , OpcaoEscolhida );
         
         /* Iniciar partida */
         if ( ! strcmp( OpcaoEscolhida , INICIAR_PARTIDA ) )
@@ -213,7 +213,7 @@ int main( void ) {
         /* Inserir peça */
         else if ( ! strcmp( OpcaoEscolhida , INSERIR_PECA ) )
         {
-            // Implementar inserção de nova peça aqui
+            printf( "\n      VICTOR VAI TOMAR NO CU\n" ) ;
 
         } /* fim ativa: Inserir peça */
         
