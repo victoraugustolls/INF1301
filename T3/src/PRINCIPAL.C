@@ -263,6 +263,7 @@ int main( void ) {
 		else
 		{
 			printf( "Opcao invalida\n" ) ;
+			
 		} /* if */
 		
 	} while ( OpcaoEscolhida != 2 ); /* do-while */
