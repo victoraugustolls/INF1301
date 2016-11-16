@@ -91,6 +91,16 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz )
     return JGO_CondRetOK;   
 }
 
+JGO_tpCondRet JGO_GetPrintTabuleiro( JGO_tppJuiz pJuiz, char** print )
+{
+    TAB_tpCondRet tabCondRet;
+    tabCondRet = TAB_GetPrintTabuleiro( pJuiz->tabuleiro, print );
+    if(tabCondRet == TAB_CondRetFaltouMemoria)
+    {
+        return JGO_CondRetFaltouMemoria;
+    }
+    return JGO_CondRetOK;
+}
 
 JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogadorAtual,
                                                      JGO_tpEventoOcorrido* eventoOcorrido,

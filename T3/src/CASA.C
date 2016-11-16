@@ -486,6 +486,23 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
     
 } /* Fim função: CSA  &Modificar lista de ameaçados de uma casa */
 
+/***************************************************************************
+ *
+ *  Função: CSA  &Get Print Casa
+ *  ****/
+
+CSA_tpCondRet CSA_GetPrintCasa ( CSA_tppCasa pCasa, char** print )
+{
+    PCA_tpCondRet pcaCondRet;
+    pcaCondRet = PCA_GetPrintPeca( pCasa->peca, print );
+    if(pcaCondRet == PCA_CondRetFaltouMemoria)
+    {
+        return CSA_CondRetFaltouMemoria;
+    }
+    return CSA_CondRetOK;
+}
+
+
 /*****  Código das funções encapsuladas no módulo  *****/
 
 /***********************************************************************

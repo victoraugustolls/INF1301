@@ -191,6 +191,24 @@
 
   	} /* Fim função: PCA  &Destruir peça */
 
+/***************************************************************************
+*
+*  Função: PCA  &Get Print Peca
+*  ****/
+
+    PCA_tpCondRet PCA_GetPrintPeca( PCA_tppPeca pPeca, char** print )
+    {
+        *print = (char*) malloc(sizeof(char)*3);
+        if(*print == NULL)
+        {
+            return PCA_CondRetFaltouMemoria;
+        }
+        *print[0] = pPeca->nomePeca;
+        *print[1] = pPeca->corPeca;
+        *print[3] = '\0';
+        return PCA_CondRetOK;
+    }
+
 /***********************************************************************
 *
 *  $FC Função: PCA  -Esvaziar a peça
