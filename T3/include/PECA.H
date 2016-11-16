@@ -199,6 +199,26 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 
   	PCA_tpCondRet PCA_DestruirPeca( PCA_tppPeca pPeca ) ;
 
+
+/***********************************************************************
+*
+*  $FC Função: PCA  &Print peça
+*
+*  $ED Descrição da função
+*     Retorna a string (alocada dinamicamente) referente ao print da peca
+*
+*  $EP Parâmetros
+*     pPeca            - ponteiro para a peca
+*     print            - ponteiro para a string
+*
+*  $FV Valor retornado
+*     PCA_CondRetOK             - nao ocorreram problemas
+*     PCA_CondRetFaltouMemoria  - faltou memoria
+*
+***********************************************************************/
+
+    PCA_tpCondRet PCA_GetPrintPeca( PCA_tppPeca pPeca, char** print ) ;
+
 #undef PECA_EXT
 
 /********** Fim do módulo de definição: PCA  Peças de um jogo de xadrez **********/

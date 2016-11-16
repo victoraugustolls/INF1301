@@ -753,6 +753,46 @@ TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
 
 } /* Fim função: TAB  &Obter Casas Com Peça */
 
+TAB_tpCondRet  TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
+{
+
+    int i,j;
+    char* tempPrint;
+    CSA_tpCondRet casaCondRet;
+    char* letterString = "X";
+
+    *print = (char*) malloc(sizeof(char)*(10*11*3+1));
+    if(*print == NULL)
+    {
+        return TAB_CondRetFaltouMemoria;
+    }
+    *print[0] = '\0';
+
+    strcat(*print," |A  B  C  D  E  F  G  H  \n");
+    strcat(*print,"--------------------------\n");
+    for(i=0;i<8;i++)
+    {
+        letterString[0] = (char)i+'1';
+        strcat(*print,letterString);
+        strcat(*print,"|");
+        for(j=0;j<8;j++)
+        {
+
+            casaCondRet = CSA_GetPrintCasa ( pTabuleiro->tabuleiro[i][j], &tempPrint ) ;
+            if(casaCondRet == CSA_CondRetFaltouMemoria)
+            {
+                free(*print);
+                return TAB_CondRetFaltouMemoria;
+            }
+            strcat(*print,tempPrint);
+            strcat(*print," ");
+            free(tempPrint);
+        }
+        strcat(*print,"\n");
+    }
+    return TAB_CondRetOK ;
+}
+
 /***** Código das funções encapuladas no módulo *****/
 
 int TAB_VerificaCoordValida( int linha , int coluna )

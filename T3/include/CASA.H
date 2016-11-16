@@ -307,6 +307,25 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
                                                int qtdCasasAmeacadas ,
                                                CSA_tppCasa pCasa ) ;
 
+/***********************************************************************
+*
+*  $FC Função: CSA  &Print Casa
+*
+*  $ED Descrição da função
+*     Retorna a string (alocada dinamicamente) referente ao print da casa
+*
+*  $EP Parâmetros
+*     pCasa            - ponteiro para a casa
+*     print            - ponteiro para a string
+*
+*  $FV Valor retornado
+*     CSA_CondRetOK             - nao ocorreram problemas
+*     CSA_CondRetFaltouMemoria  - faltou memoria
+*
+***********************************************************************/
+
+CSA_tpCondRet CSA_GetPrintCasa ( CSA_tppCasa pCasa, char** print ) ;
+
 #undef CASA_EXT
 
 /********** Fim do módulo de definição: CSA  Casa de um tabuleiro para jogo de xadrez **********/

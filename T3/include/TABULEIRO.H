@@ -360,6 +360,25 @@ TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
                                      char cor,
                                      TAB_tppTabuleiro pTabuleiro ) ;
 
+/***********************************************************************
+*
+*  $FC Função: TAB  &Print Tabuleiro
+*
+*  $ED Descrição da função
+*     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro
+*
+*  $EP Parâmetros
+*     pTabuleiro            - ponteiro para o tabuleiro
+*     print                 - ponteiro para a string
+*
+*  $FV Valor retornado
+*     TAB_CondRetOK             - nao ocorreram problemas
+*     TAB_CondRetFaltouMemoria  - faltou memoria
+*
+***********************************************************************/
+
+TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print ) ;
+
 #undef TABULEIRO_EXT
 
 /********** Fim do mÛdulo de definiÁ„o: TAB  Tabuleiro para jogo de xadrez **********/
