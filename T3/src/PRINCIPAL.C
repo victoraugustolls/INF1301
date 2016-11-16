@@ -58,6 +58,10 @@ typedef struct
 
 static void ImprimirTabuleiro( ) ;
 static void InicializarTabuleiro( ) ;
+static void AtualizarTabuleiro( char LinhaInicial ,
+                                char ColunaInicial ,
+                                char LinhaFinal ,
+                                char ColunaFinal  ) ;
 
 int main( void ) {
     
@@ -209,7 +213,7 @@ int main( void ) {
                 
                 else
                 {
-                    printf( "\n      Opacao invalida\n" ) ;
+                    printf( "\n      Opcao invalida\n" ) ;
                     strcpy( OpcaoEscolhida , JOGAR ) ;
                     
                 }/* if */
@@ -235,13 +239,13 @@ int main( void ) {
         /* Inserir peça */
         else if ( ! strcmp( OpcaoEscolhida , INSERIR_PECA ) )
         {
-            printf( "\n      VICTOR VAI TOMAR NO CU\n" ) ;
+            printf( "\n      Visite o LEIAME.txt do programa e \n" ) ;
 
         } /* fim ativa: Inserir peça */
         
         else
         {
-            printf( "\n      Opacao invalida\n" ) ;
+            printf( "\n      Opcao invalida\n" ) ;
         } /* if */
         
     } while ( strcmp( OpcaoEscolhida , SAIR_JOGO ) ); /* do-while */
@@ -254,23 +258,6 @@ int main( void ) {
     JGO_DestruirJuiz( Juiz ) ;
     
     return 0 ;
-}
-
-static void ImprimirTabuleiro( )
-{
-    int i , j ;
-    
-    printf( "\n       A   B   C   D   E   F   G   H\n" ) ;
-    
-    for ( i = 0 ; i < 8 ; i++ ) {
-        printf( "   %d   " , i + 1 ) ;
-        for ( j = 0 ; j < 8 ; j++ ) {
-            printf( "%s  " , Tabuleiro[i][j] ) ;
-        } /* for */
-        printf( "\n" ) ;
-    } /* for */
-    
-    printf( "\n" ) ;
 }
 
 static void InicializarTabuleiro( )
@@ -308,6 +295,43 @@ static void InicializarTabuleiro( )
     strcpy( Tabuleiro[7][5] , "BB" ) ;
     strcpy( Tabuleiro[7][6] , "CB" ) ;
     strcpy( Tabuleiro[7][7] , "TB" ) ;
+}
+
+
+static void ImprimirTabuleiro(  )
+{
+    int x , y ;
+    
+    for ( x = 0 ; x < 8 ; x++ )
+    {
+        for ( y = 0 ; y < 8 ; y++ )
+        {
+            printf("%c%c\t\t" , Tabuleiro[x][y][0] , Tabuleiro[x][y][1] ) ;
+        }/* for */
+        
+        printf("\n");
+    }/* for */
+    
+}
+
+static void AtualizarTabuleiro( char LinhaInicial ,
+                                char ColunaInicial ,
+                                char LinhaFinal ,
+                                char ColunaFinal  )
+{
+    int i1 , j1 , i2 , j2 ;
+    char peca[2] ;
+    
+    i1 = LinhaInicial - '0' - 1 ;
+    j1 = ColunaInicial - 'A' ;
+    i2 = LinhaFinal - '0' - 1 ;
+    j2 = ColunaFinal - 'A' ;
+    
+    peca = Tabuleiro[i1][j1] ;
+    
+    strcpy( Tabuleiro[i1][j1] , ".." ) ;
+    strcpy( Tabuleiro[i2][j2] , peca ) ;
+
 }
 
 /********** Fim do dódulo de implementação: PRNC Módulo principal **********/
