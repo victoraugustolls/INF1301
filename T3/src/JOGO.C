@@ -130,14 +130,17 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
+        printf("Motivo: coordenada casa atual nao existe\n");
         return JGO_CondRetMovInvalido;
     }
     if(corJogadorAtual == JGO_JogadorPreto && cor_atual != 'P' )
     {
+        printf("Motivo: cor da peca diferente da cor do jogador passada\n");
         return JGO_CondRetMovInvalido;
     }
     else if(corJogadorAtual == JGO_JogadorBranco && cor_atual != 'B' )
     {
+        printf("Motivo: cor da peca diferente da cor do jogador passada\n");
         return JGO_CondRetMovInvalido;
     }
 
@@ -148,6 +151,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                             pJuiz->tabuleiro );
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
+        printf("Motivo: coordenada casa destino nao existe\n");
         return JGO_CondRetMovInvalido;
     }
 
@@ -165,10 +169,12 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
+        printf("Motivo: coordenada nao existe\n");
         return JGO_CondRetMovInvalido;
     }
     else if(tabCondRet == TAB_CondRetMovInvalido)
     {
+        printf("Motivo: o movimento dado nao corresponde ao movimento da peca\n");
         return JGO_CondRetMovInvalido;
     }
     else if(tabCondRet == TAB_CondRetNaoExiste)
@@ -189,6 +195,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 
     if(isTabuleiroEmXeque(tabuleiroTemp, corJogadorAtual))
     {
+        printf("Motivo: o movimento deixaria seu rei em xeque\n");
         return JGO_CondRetMovInvalido;
     }
     TAB_DestruirTabuleiro(tabuleiroTemp);
