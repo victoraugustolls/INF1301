@@ -252,6 +252,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 *  $FV Valor retornado
 *     JGO_CondRetOK             - nao ocorreram problemas
 *     JGO_CondRetFaltouMemoria  - faltou memoria
+*     JGO_CondRetJogoNaoIniciado - jogo nao iniciado
 *
 ***********************************************************************/
 

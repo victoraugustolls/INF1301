@@ -94,6 +94,11 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz )
 JGO_tpCondRet JGO_GetPrintTabuleiro( JGO_tppJuiz pJuiz, char** print )
 {
     TAB_tpCondRet tabCondRet;
+    if( pJuiz->tabuleiro == NULL)
+    {
+        return JGO_CondRetJogoNaoIniciado;        
+    }
+
     tabCondRet = TAB_GetPrintTabuleiro( pJuiz->tabuleiro, print );
     if(tabCondRet == TAB_CondRetFaltouMemoria)
     {

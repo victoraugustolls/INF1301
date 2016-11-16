@@ -777,7 +777,6 @@ TAB_tpCondRet  TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print 
         strcat(*print,"|");
         for(j=0;j<8;j++)
         {
-
             casaCondRet = CSA_GetPrintCasa ( pTabuleiro->tabuleiro[i][j], &tempPrint ) ;
             if(casaCondRet == CSA_CondRetFaltouMemoria)
             {
