@@ -26,8 +26,8 @@
 #include   <assert.h>
 #include   "JOGO.H"
 
-static const char JOGAR            [ ] = "JOGAR"    ;
-static const char TERMINAR_PARTIDA [ ] = "FIM" ;
+static const char JOGAR            [ ] = "JOGAR" ;
+static const char TERMINAR_PARTIDA [ ] = "FIM"   ;
 
 char Tabuleiro[8][8][2] ;
 JGO_tppJuiz Juiz ;
@@ -55,6 +55,8 @@ typedef struct
 /***** Protótipos das funções encapuladas no arquivo *****/
 
 static void ImprimirTabuleiro( ) ;
+static void toUpperCase( char *f ) ;
+static void flush_in(  ) ;
 
 int main( void ) {
 	
@@ -137,6 +139,7 @@ int main( void ) {
 				printf( "--------------------\n" ) ;
 				printf( "Opcao >> " ) ;
 				scanf( " %s" , OpcaoJogada ) ;
+				toUpperCase( OpcaoJogada ) ;
 				
 				if ( ! strcmp( OpcaoJogada , JOGAR ) )
 				{
@@ -144,10 +147,14 @@ int main( void ) {
 					printf("Digite a casa inicial (Coluna / Linha , ex. H3):\n");
 					printf( "Casa >> " ) ;
 					scanf( " %c%c" , &ColunaInicial , &LinhaInicial ) ;
+					toUpperCase( &ColunaInicial ) ;
+					flush_in( ) ;
 					printf("%c%c\n", ColunaInicial, LinhaInicial);
 					printf("Digite a casa destino (Coluna / Linha , ex. H3):\n");
 					printf( "Casa >> " ) ;
 					scanf( " %c%c" , &ColunaFinal , &LinhaFinal ) ;
+					toUpperCase( &ColunaFinal ) ;
+					flush_in( ) ;
 					printf("%c%c\n", ColunaFinal, LinhaFinal);
 					
 					CondRet = JGO_RealizarJogada( Juiz ,
@@ -276,6 +283,23 @@ void ImprimirTabuleiro(  )
 	JGO_GetPrintTabuleiro( Juiz , &estadoTabuleiro ) ;
 	printf( "%s\n" , estadoTabuleiro ) ;
 	free( estadoTabuleiro ) ;
+}
+
+void toUpperCase( char *f )
+{
+	while( *f != '\0' )
+	{
+		*f = *f >= 'a' && *f <= 'z' ? *f + 'A' - 'a' : *f ;
+		f++ ;
+	}/* while */
+}
+
+void flush_in(  ) {
+    int ch ;
+    do {
+        ch = fgetc(stdin) ;
+    } 
+    while (ch != EOF && ch != '\n') ; /* do-while */
 }
 
 /********** Fim do dódulo de implementação: PRNC Módulo principal **********/
