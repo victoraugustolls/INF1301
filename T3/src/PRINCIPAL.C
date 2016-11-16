@@ -117,7 +117,7 @@ int main( void ) {
             }/* if */
             
             JogadorDaVez = JogadorBranco ;
-            OpcaoEscolhida = JOGAR ;
+            strcpy( OpcaoEscolhida , JOGAR ) ;
             
             while ( ( EventoJogada != JGO_XequeMate ) &&
                     ( ! strcmp( OpcaoEscolhida , JOGAR ) ) )
