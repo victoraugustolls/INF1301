@@ -210,6 +210,7 @@ int main( void ) {
                 else
                 {
                     printf( "\n      Opacao invalida\n" ) ;
+                    strcpy( OpcaoEscolhida , JOGAR ) ;
                     
                 }/* if */
                 
