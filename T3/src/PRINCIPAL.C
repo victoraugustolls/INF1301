@@ -33,6 +33,7 @@ static const char INSERIR_PECA     [ ] = "inserir"  ;
 static const char SAIR_JOGO        [ ] = "FIM"     ;
 
 char Tabuleiro[8][8][2] ;
+JGO_tppJuiz Juiz ;
 
 /***********************************************************************
  *
@@ -68,7 +69,6 @@ int main( void ) {
 	char LinhaInicial , ColunaInicial ;
 	char LinhaFinal , ColunaFinal ;
 
-	JGO_tppJuiz Juiz ;
 	JGO_tpEventoOcorrido EventoJogada = -1 ;
 	JGO_tpCondRet CondRet ;
 	
@@ -120,7 +120,7 @@ int main( void ) {
 			printf("Jogador preto: %s\n", JogadorPreto.nome);
 			printf( "--------------------\n" ) ;
 			
-			//InicializarTabuleiro( ) ;
+			// InicializarTabuleiro( ) ;
 			//ImprimirTabuleiro( ) ;
 			
 			printf( "JOGO INICIADO\n" ) ;
@@ -131,6 +131,8 @@ int main( void ) {
 			if ( CondRet == JGO_CondRetJogoJaIniciado ) {
 				return 0 ;
 			}/* if */
+
+			ImprimirTabuleiro( ) ;
 			
 			JogadorDaVez = JogadorBranco ;
 			
@@ -320,7 +322,10 @@ static void InicializarTabuleiro( )
 
 static void ImprimirTabuleiro(  )
 {
-	   
+	char * estadoTabuleiro ;
+	JGO_GetPrintTabuleiro( Juiz , &estadoTabuleiro ) ;
+	printf( "%s\n" , estadoTabuleiro ) ;
+	free( estadoTabuleiro ) ;
 }
 
 static void AtualizarTabuleiro( char LinhaInicial ,
