@@ -91,6 +91,7 @@
                                     PCA_tppPeca pecaOriginal)
     {
         return PCA_CriarPeca( pPeca , pecaOriginal->nomePeca, pecaOriginal->corPeca);
+        
     } /* Fim função: PCA  &Copiar peça */
 
 /***************************************************************************
