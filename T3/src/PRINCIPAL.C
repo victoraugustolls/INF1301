@@ -124,7 +124,7 @@ int main( void ) {
             {
                 printf( "\n      Jogador da vez: %s\n" , JogadorDaVez.nome ) ;
                 
-                printf( "\n      Jogar (jogar) ou terminar (terminar) a partida?" ) ;
+                printf( "\n      Jogar (jogar) ou terminar (terminar) a partida?\n" ) ;
                 scanf( "%s" , OpcaoEscolhida ) ;
                 
                 if ( ! strcmp( OpcaoEscolhida , JOGAR ) )
@@ -192,6 +192,26 @@ int main( void ) {
                     } /* if */
                     
                 } /* if */
+                
+                else if ( ! strcmp( OpcaoEscolhida , TERMINAR_PARTIDA ) )
+                {
+                    CondRet = JGO_TerminarJogo( Juiz ) ;
+                    
+                    if ( CondRet == JGO_CondRetJogoNaoIniciado )
+                    {
+                        printf( "\n      Nenhum jogo foi iniciado\n" ) ;
+                    }
+                    else
+                    {
+                        printf( "\n      Jogo terminado\n" ) ;
+                    }/* if */
+                }
+                
+                else
+                {
+                    printf( "\n      Opacao invalida\n" ) ;
+                    
+                }/* if */
                 
             }/* while */
         } /* fim ativa: Iniciar partida */
