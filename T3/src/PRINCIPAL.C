@@ -113,10 +113,11 @@ int main( void ) {
             CondRet = JGO_IniciarJogo( Juiz , "..\\pecas\\teste_jogo\\config.conf" ) ;
             
             if ( CondRet == JGO_CondRetJogoJaIniciado ) {
-                return 0;
+                return 0 ;
             }/* if */
             
             JogadorDaVez = JogadorBranco ;
+            OpcaoEscolhida = JOGAR ;
             
             while ( ( EventoJogada != JGO_XequeMate ) &&
                     ( ! strcmp( OpcaoEscolhida , JOGAR ) ) )
