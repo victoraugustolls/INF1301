@@ -181,7 +181,7 @@ int main( void ) {
 					{
 						printf( "Jogada invalida\n" ) ;
 					}
-					else
+					else if ( CondRet == JGO_CondRetOK )
 					{
 						/* Atualizar o tabuleiro impresso */
 
@@ -207,6 +207,9 @@ int main( void ) {
 						if ( EventoJogada == JGO_Xeque ) {
 							printf( "Jogador %s esta em Xeque\n" , JogadorDaVez.nome ) ;
 						} /* if */
+					}
+					else {
+						printf("Erro inesperado %d\n", CondRet);
 					} /* if */
 					
 				} /* if */
@@ -263,7 +266,7 @@ int main( void ) {
 		else
 		{
 			printf( "Opcao invalida\n" ) ;
-			
+
 		} /* if */
 		
 	} while ( OpcaoEscolhida != 2 ); /* do-while */

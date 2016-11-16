@@ -7,7 +7,7 @@ L_OR
 				L_IFTHEN
 					L_AND
 						P_IGUAL V_DIM 1 C V_DIM 1 A
-						P_AND
+						L_AND
 							P_MAIOR
 								F_SUB V_DIM 0 C V_DIM 0 A
 								V_NUM 0
@@ -24,7 +24,7 @@ L_OR
 				L_IFTHEN
 					L_AND
 						P_IGUAL V_DIM 0 C V_DIM 0 A
-						P_AND
+						L_AND
 							P_MAIOR
 								F_SUB V_DIM 1 C V_DIM 1 A
 								V_NUM 0
@@ -41,7 +41,7 @@ L_OR
 				L_IFTHEN
 					L_AND
 						P_IGUAL F_ADD F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0
-						P_AND
+						L_AND
 							P_MAIOR
 								F_SUB V_DIM 0 C V_DIM 0 A
 								V_NUM 0
@@ -57,7 +57,7 @@ L_OR
 				L_IFTHEN
 					L_AND
 						P_IGUAL F_SUB F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0
-						P_AND
+						L_AND
 							P_MAIOR
 								F_SUB V_DIM 0 C V_DIM 0 A
 								V_NUM 0
