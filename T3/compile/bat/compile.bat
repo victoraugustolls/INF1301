@@ -21,3 +21,7 @@ if exist ..\err\TEST_CSA.err notepad ..\err\TEST_CSA.err
 nmake /F..\comp\TEST_JGO.make 
 copy ..\obj\TEST_JGO.exe ..\..\bin\TEST_JGO.EXE
 if exist ..\err\TEST_JGO.err notepad ..\err\TEST_JGO.err
+
+nmake /F..\comp\PRINCIPAL.make 
+copy ..\obj\PRINCIPAL.exe ..\..\bin\PRINCIPAL.EXE
+if exist ..\err\PRINCIPAL.err notepad ..\err\PRINCIPAL.err

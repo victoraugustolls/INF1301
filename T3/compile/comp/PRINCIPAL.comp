@@ -1,0 +1,22 @@
+[Diretorios]
+
+Nome        =  PRINCIPAL
+PathDefault =  ..\..\include
+err         =  ..\err
+obj         =  ..\obj
+c           =  ..\..\src
+h           =  ..\..\include
+def         =  ..\tabs
+tab         =  ..\tabs
+inc         =  ..\tabs
+
+[Modulos]
+PRINCIPAL
+JOGO
+
+[BuildInicio]
+/OUT:PRINCIPAL.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[Fim]

@@ -4,3 +4,4 @@
 ..\bin\gmake  /p..\bin\gmake.parm /b..\comp  /cTEST_TAB
 ..\bin\gmake  /p..\bin\gmake.parm /b..\comp  /cTEST_CSA
 ..\bin\gmake  /p..\bin\gmake.parm /b..\comp  /cTEST_JGO
+..\bin\gmake  /p..\bin\gmake.parm /b..\comp  /cPRINCIPAL
