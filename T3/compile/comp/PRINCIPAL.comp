@@ -13,6 +13,7 @@ inc         =  ..\tabs
 [Modulos]
 PRINCIPAL
 JOGO
+TABULEIRO
 
 [BuildInicio]
 /OUT:PRINCIPAL.exe

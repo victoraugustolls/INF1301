@@ -59,13 +59,13 @@ typedef struct
 static void ImprimirTabuleiro( ) ;
 static void InicializarTabuleiro( ) ;
 
-int main(int argc, const char * argv[]) {
+int main( void ) {
     
     char LinhaInicial , ColunaInicial ;
     char LinhaFinal , ColunaFinal ;
 
     JGO_tppJuiz Juiz ;
-    JGO_tpEventoOcorrido EventoJogada ;
+    JGO_tpEventoOcorrido EventoJogada = -1 ;
     JGO_tpCondRet CondRet ;
     
     char * OpcaoEscolhida;
@@ -173,7 +173,7 @@ int main(int argc, const char * argv[]) {
                             printf( "\n      Jogador %s deixou seu oponente em Xeque-Mate\n" , JogadorDaVez.nome ) ;
                             printf( "\n      %s ganhou, parabens!\n" , JogadorDaVez.nome ) ;
                             
-                            OpcaoEscolhida = TERMINAR_PARTIDA ;
+                            strcpy( OpcaoEscolhida , TERMINAR_PARTIDA ) ;
                         } /* if */
                         
                         if ( JogadorDaVez.cor == JGO_JogadorBranco )
