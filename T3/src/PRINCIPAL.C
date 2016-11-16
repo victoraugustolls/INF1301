@@ -123,14 +123,15 @@ int main( void ) {
 				return 0 ;
 			}/* if */
 
-			// ImprimirTabuleiro( ) ;
+			ImprimirTabuleiro( ) ;
 			
 			JogadorDaVez = JogadorBranco ;
 			
 			while ( ( EventoJogada != JGO_XequeMate ) &&
 					!( strcmp( OpcaoJogada , JOGAR ) ) )
 			{
-				printf( "Jogador da vez: %s\n" , JogadorDaVez.nome ) ;
+				printf( "Jogador da vez:\n" ) ;
+				printf("Nome: %s\n" , JogadorDaVez.nome );
 				printf( "--------------------\n" ) ;
 				printf( "Digite a opcao desejada:\n" ) ;
 				printf( "(JOGAR) - Comecar nova partida\n" ) ;
@@ -178,6 +179,8 @@ int main( void ) {
 					else
 					{
 						/* Atualizar o tabuleiro impresso */
+
+						ImprimirTabuleiro( ) ;
 						
 						if ( EventoJogada == JGO_XequeMate )
 						{
