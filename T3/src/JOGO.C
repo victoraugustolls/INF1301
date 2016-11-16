@@ -107,6 +107,7 @@ JGO_tpCondRet JGO_GetPrintTabuleiro( JGO_tppJuiz pJuiz, char** print )
     return JGO_CondRetOK;
 }
 
+int DEBUG = 0;
 JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogadorAtual,
                                                      JGO_tpEventoOcorrido* eventoOcorrido,
                                                      char linhaCasaAtual,
@@ -208,11 +209,14 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
     //--------------------------------------------------
     // Testar se o novo movimento e ivalido pois deixou seu rei em xeque
 
+    DEBUG = 1;
     if(isTabuleiroEmXeque(tabuleiroTemp, corJogadorAtual))
     {
+        DEBUG=0;
         printf("Motivo: o movimento deixaria seu rei em xeque\n");
         return JGO_CondRetMovInvalido;
     }
+    DEBUG = 0;
     TAB_DestruirTabuleiro(tabuleiroTemp);
     tabCondRet = TAB_MoverPecaTabuleiro( colunaCasaAtual,
                                          linhaCasaAtual,
@@ -349,6 +353,10 @@ int isTabuleiroEmXeque( TAB_tppTabuleiro tabuleiro, JGO_tpCorJogador corJogador)
 
                     if(cor == charCorOposta)
                     {
+                        if(DEBUG)
+                        {
+                            printf("A peca %c%c na posicao %c%c esta ameacando o rei.\n",peca,cor,*coluna,*linha);
+                        }
                         return 1;
                     }
 
