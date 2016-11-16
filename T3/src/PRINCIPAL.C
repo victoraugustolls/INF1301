@@ -26,11 +26,8 @@
 #include   <assert.h>
 #include   "JOGO.H"
 
-static const char INICIAR_PARTIDA  [ ] = "iniciar"  ;
 static const char JOGAR            [ ] = "JOGAR"    ;
 static const char TERMINAR_PARTIDA [ ] = "FIM" ;
-static const char INSERIR_PECA     [ ] = "inserir"  ;
-static const char SAIR_JOGO        [ ] = "FIM"     ;
 
 char Tabuleiro[8][8][2] ;
 JGO_tppJuiz Juiz ;
@@ -131,10 +128,11 @@ int main( void ) {
 					!( strcmp( OpcaoJogada , JOGAR ) ) )
 			{
 				printf( "Jogador da vez:\n" ) ;
-				printf("Nome: %s\n" , JogadorDaVez.nome );
+				printf("Nome: %s\n" , JogadorDaVez.nome ) ;
+				printf("Cor: %s\n", JogadorDaVez.cor ? "Branco" : "Preto" ) ;
 				printf( "--------------------\n" ) ;
 				printf( "Digite a opcao desejada:\n" ) ;
-				printf( "(JOGAR) - Comecar nova partida\n" ) ;
+				printf( "(JOGAR) - Realizar jogada\n" ) ;
 				printf( " (FIM)  - Sair do jogo\n" ) ;
 				printf( "--------------------\n" ) ;
 				printf( "Opcao >> " ) ;
