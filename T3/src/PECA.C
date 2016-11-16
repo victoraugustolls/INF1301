@@ -203,9 +203,9 @@
         {
             return PCA_CondRetFaltouMemoria;
         }
-        *print[0] = pPeca->nomePeca;
-        *print[1] = pPeca->corPeca;
-        *print[3] = '\0';
+        (*print)[0] = pPeca->nomePeca;
+        (*print)[1] = pPeca->corPeca;
+        (*print)[2] = '\0';
         return PCA_CondRetOK;
     }
 

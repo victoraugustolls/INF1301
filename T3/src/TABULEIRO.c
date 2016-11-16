@@ -759,14 +759,14 @@ TAB_tpCondRet  TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print 
     int i,j;
     char* tempPrint;
     CSA_tpCondRet casaCondRet;
-    char* letterString = "X";
+    char letterString[2] = "X";
 
     *print = (char*) malloc(sizeof(char)*(10*11*3+1));
     if(*print == NULL)
     {
         return TAB_CondRetFaltouMemoria;
     }
-    *print[0] = '\0';
+    (*print)[0] = '\0';
 
     strcat(*print," |A  B  C  D  E  F  G  H  \n");
     strcat(*print,"--------------------------\n");
