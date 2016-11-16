@@ -44,35 +44,6 @@ char Tabuleiro[8][8][2] ;
  *
  ***********************************************************************/
 
-typedef enum
-{
-    IniciarPartida = INICIAR_PARTIDA ,
-    /* Iniciar partida de xadrez */
-    
-    Jogar = JOGAR ,
-    /* Iniciar partida de xadrez */
-    
-    TerminarPartida = TERMINAR_PARTIDA,
-    /* Terminar partida de xadrez */
-    
-    InserirPeca = INSERIR_PECA,
-    /* Inserir nova peça ao jogo */
-    
-    SairJogo = SAIR_JOGO
-    /* Sair e fechar jogo */
-    
-} Opcao ;
-
-/***********************************************************************
- *
- *  $TC Tipo de dados: PRNC Opções do Jogo
- *
- *
- *  $ED Descrição do tipo
- *     Opções que o usuário pode escolher durante a execução do jogo.
- *
- ***********************************************************************/
-
 typedef struct
 {
     char nome[20] ;
@@ -97,7 +68,7 @@ int main(int argc, const char * argv[]) {
     JGO_tpEventoOcorrido EventoJogada ;
     JGO_tpCondRet CondRet ;
     
-    Opcao OpcaoEscolhida;
+    char * OpcaoEscolhida;
     Jogador JogadorDaVez , JogadorBranco , JogadorPreto ;
     
     JogadorBranco.cor = JGO_JogadorBranco ;
@@ -108,7 +79,7 @@ int main(int argc, const char * argv[]) {
     printf( "\n      Jogo de Xadrez\n" ) ;
     printf( "\n---------------------------------------------" ) ;
     
-    CondRet = JGO_CriarJuiz( Juiz ) ;
+    CondRet = JGO_CriarJuiz( &Juiz ) ;
     if ( CondRet == JGO_CondRetFaltouMemoria )
     {
         printf( "\n      Memoria insuficiente para rodar o jogo\n" ) ;
@@ -170,7 +141,7 @@ int main(int argc, const char * argv[]) {
                     scanf( " %c" , &ColunaFinal ) ;
                     
                     CondRet = JGO_RealizarJogada( Juiz ,
-                                                 JogadorDaVez ,
+                                                 JogadorDaVez.cor ,
                                                  &EventoJogada ,
                                                  LinhaInicial ,
                                                  ColunaInicial ,
