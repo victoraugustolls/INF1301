@@ -27,7 +27,7 @@
 #include   "JOGO.H"
 
 static const char INICIAR_PARTIDA  [ ] = "iniciar"  ;
-static const char JOGAR            [ ] = "jogar"    ;
+static const char JOGAR            [ ] = "JOGAR"    ;
 static const char TERMINAR_PARTIDA [ ] = "FIM" ;
 static const char INSERIR_PECA     [ ] = "inserir"  ;
 static const char SAIR_JOGO        [ ] = "FIM"     ;
@@ -58,11 +58,6 @@ typedef struct
 /***** Protótipos das funções encapuladas no arquivo *****/
 
 static void ImprimirTabuleiro( ) ;
-static void InicializarTabuleiro( ) ;
-static void AtualizarTabuleiro( char LinhaInicial ,
-								char ColunaInicial ,
-								char LinhaFinal ,
-								char ColunaFinal  ) ;
 
 int main( void ) {
 	
@@ -73,7 +68,7 @@ int main( void ) {
 	JGO_tpCondRet CondRet ;
 	
 	int OpcaoEscolhida ;
-	char OpcaoJogada[100] = "jogar" ;
+	char OpcaoJogada[100] = "JOGAR" ;
 	Jogador JogadorDaVez , JogadorBranco , JogadorPreto ;
 	
 	JogadorBranco.cor = JGO_JogadorBranco ;
@@ -119,10 +114,6 @@ int main( void ) {
 			printf("Jogador branco: %s\n", JogadorBranco.nome);
 			printf("Jogador preto: %s\n", JogadorPreto.nome);
 			printf( "--------------------\n" ) ;
-			
-			// InicializarTabuleiro( ) ;
-			//ImprimirTabuleiro( ) ;
-			
 			printf( "JOGO INICIADO\n" ) ;
 			printf( "--------------------\n" ) ;
 			
@@ -132,7 +123,7 @@ int main( void ) {
 				return 0 ;
 			}/* if */
 
-			ImprimirTabuleiro( ) ;
+			// ImprimirTabuleiro( ) ;
 			
 			JogadorDaVez = JogadorBranco ;
 			
@@ -141,7 +132,6 @@ int main( void ) {
 			{
 				printf( "Jogador da vez: %s\n" , JogadorDaVez.nome ) ;
 				printf( "--------------------\n" ) ;
-
 				printf( "Digite a opcao desejada:\n" ) ;
 				printf( "(JOGAR) - Comecar nova partida\n" ) ;
 				printf( " (FIM)  - Sair do jogo\n" ) ;
@@ -152,17 +142,14 @@ int main( void ) {
 				if ( ! strcmp( OpcaoJogada , JOGAR ) )
 				{
 					printf( "--------------------\n" ) ;
-					printf( "\n      Casa Inicial:" ) ;
-					printf( "\n      Linha:" ) ;
-					scanf( " %c" , &LinhaInicial ) ;
-					printf( "\n      Coluna:" ) ;
-					scanf( " %c" , &ColunaInicial ) ;
-					
-					printf( "\n      Casa Destino:" ) ;
-					printf( "\n      Linha:" ) ;
-					scanf( " %c" , &LinhaFinal ) ;
-					printf( "\n      Coluna:" ) ;
-					scanf( " %c" , &ColunaFinal ) ;
+					printf("Digite a casa inicial (Coluna / Linha , ex. H3):\n");
+					printf( "Casa >> " ) ;
+					scanf( " %c%c" , &ColunaInicial , &LinhaInicial ) ;
+					printf("%c%c\n", ColunaInicial, LinhaInicial);
+					printf("Digite a casa destino (Coluna / Linha , ex. H3):\n");
+					printf( "Casa >> " ) ;
+					scanf( " %c%c" , &ColunaFinal , &LinhaFinal ) ;
+					printf("%c%c\n", ColunaFinal, LinhaFinal);
 					
 					CondRet = JGO_RealizarJogada( Juiz ,
 												 JogadorDaVez.cor ,
@@ -174,19 +161,19 @@ int main( void ) {
 					
 					if ( CondRet == JGO_CondRetFaltouMemoria )
 					{
-						printf( "\n      Memoria insuficiente para rodar o jogo\n" ) ;
-						printf( "\n      O jogo sera encerrado\n" ) ;
+						printf( "Memoria insuficiente para rodar o jogo\n" ) ;
+						printf( "O jogo sera encerrado\n" ) ;
 						return 0 ;
 					}
 					else if ( CondRet == JGO_CondRetFalhaArq )
 					{
-						printf( "\n      Erro inesperado ao abrir arquivos internos do jogo\n" ) ;
-						printf( "\n      O jogo sera encerrado\n" ) ;
+						printf( "Erro inesperado ao abrir arquivos internos do jogo\n" ) ;
+						printf( "O jogo sera encerrado\n" ) ;
 						return 0 ;
 					}
 					else if ( CondRet == JGO_CondRetMovInvalido )
 					{
-						printf( "\n      Jogada invalida\n" ) ;
+						printf( "Jogada invalida\n" ) ;
 					}
 					else
 					{
@@ -194,8 +181,8 @@ int main( void ) {
 						
 						if ( EventoJogada == JGO_XequeMate )
 						{
-							printf( "\n      Jogador %s deixou seu oponente em Xeque-Mate\n" , JogadorDaVez.nome ) ;
-							printf( "\n      %s ganhou, parabens!\n" , JogadorDaVez.nome ) ;
+							printf( "Jogador %s deixou seu oponente em Xeque-Mate\n" , JogadorDaVez.nome ) ;
+							printf( "%s ganhou, parabens!\n" , JogadorDaVez.nome ) ;
 							
 							OpcaoEscolhida = 2 ;
 						} /* if */
@@ -210,7 +197,7 @@ int main( void ) {
 						} /* if */
 						
 						if ( EventoJogada == JGO_Xeque ) {
-							printf( "\n      Jogador %s esta em Xeque\n" , JogadorDaVez.nome ) ;
+							printf( "Jogador %s esta em Xeque\n" , JogadorDaVez.nome ) ;
 						} /* if */
 					} /* if */
 					
@@ -223,11 +210,11 @@ int main( void ) {
 					
 					if ( CondRet == JGO_CondRetJogoNaoIniciado )
 					{
-						printf( "\n      Nenhum jogo foi iniciado\n" ) ;
+						printf( "Nenhum jogo foi iniciado\n" ) ;
 					}
 					else
 					{
-						printf( "\n      Jogo terminado\n" ) ;
+						printf( "Jogo terminado\n" ) ;
 					}/* if */
 				}
 				
@@ -249,18 +236,18 @@ int main( void ) {
 			
 			if ( CondRet == JGO_CondRetJogoNaoIniciado )
 			{
-				printf( "\n      Nenhum jogo foi iniciado\n" ) ;
+				printf( "Nenhum jogo foi iniciado\n" ) ;
 			}
 			else
 			{
-				printf( "\n      Jogo terminado\n" ) ;
+				printf( "Jogo terminado\n" ) ;
 			}/* if */
 		} /* fim ativa: Terminar partida */
 		
 		/* Inserir peça */
 		else if ( OpcaoEscolhida == 1 )
 		{
-			printf( "Visite o LEIAME.txt do programa e \n" ) ;
+			printf( "Visite o LEIAME.txt do programa e siga suas instrucoes!\n" ) ;
 			printf( "--------------------\n" ) ;
 
 		} /* fim ativa: Inserir peça */
@@ -282,58 +269,12 @@ int main( void ) {
 	return 0 ;
 }
 
-static void InicializarTabuleiro( )
-{
-	int i , j ;
-	
-	strcpy( Tabuleiro[0][0] , "TP" ) ;
-	strcpy( Tabuleiro[0][1] , "CP" ) ;
-	strcpy( Tabuleiro[0][2] , "BP" ) ;
-	strcpy( Tabuleiro[0][3] , "DP" ) ;
-	strcpy( Tabuleiro[0][4] , "RP" ) ;
-	strcpy( Tabuleiro[0][5] , "BP" ) ;
-	strcpy( Tabuleiro[0][6] , "CP" ) ;
-	strcpy( Tabuleiro[0][7] , "TP" ) ;
-	
-	for ( i = 0 ; i < 8 ; i++ ) {
-		strcpy( Tabuleiro[1][i] , "PP" ) ;
-	} /* for */
-	
-	for ( i = 2 ; i < 6 ; i++ ) {
-		for ( j = 0 ; j < 8 ; j++ ) {
-			strcpy( Tabuleiro[i][j] , ".." ) ;
-		} /* for */
-	} /* for */
-	
-	for ( i = 0 ; i < 8 ; i++ ) {
-		strcpy( Tabuleiro[6][i] , "PB" ) ;
-	} /* for */
-	
-	strcpy( Tabuleiro[7][0] , "TB" ) ;
-	strcpy( Tabuleiro[7][1] , "CB" ) ;
-	strcpy( Tabuleiro[7][2] , "BB" ) ;
-	strcpy( Tabuleiro[7][3] , "DB" ) ;
-	strcpy( Tabuleiro[7][4] , "RB" ) ;
-	strcpy( Tabuleiro[7][5] , "BB" ) ;
-	strcpy( Tabuleiro[7][6] , "CB" ) ;
-	strcpy( Tabuleiro[7][7] , "TB" ) ;
-}
-
-
-static void ImprimirTabuleiro(  )
+void ImprimirTabuleiro(  )
 {
 	char * estadoTabuleiro ;
 	JGO_GetPrintTabuleiro( Juiz , &estadoTabuleiro ) ;
 	printf( "%s\n" , estadoTabuleiro ) ;
 	free( estadoTabuleiro ) ;
-}
-
-static void AtualizarTabuleiro( char LinhaInicial ,
-								char ColunaInicial ,
-								char LinhaFinal ,
-								char ColunaFinal  )
-{
-	
 }
 
 /********** Fim do dódulo de implementação: PRNC Módulo principal **********/
