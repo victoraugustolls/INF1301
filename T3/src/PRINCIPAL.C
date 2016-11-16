@@ -26,6 +26,12 @@
 #include   <assert.h>
 #include   "JOGO.H"
 
+static const char INICIAR_PARTIDA  [ ] = "iniciar"  ;
+static const char JOGAR            [ ] = "jogar"    ;
+static const char TERMINAR_PARTIDA [ ] = "terminar" ;
+static const char INSERIR_PECA     [ ] = "inserir"  ;
+static const char SAIR_JOGO        [ ] = "sair"     ;
+
 char Tabuleiro[8][8][2] ;
 
 /***********************************************************************
@@ -40,19 +46,19 @@ char Tabuleiro[8][8][2] ;
 
 typedef enum
 {
-    IniciarPartida = "iniciar" ,
+    IniciarPartida = INICIAR_PARTIDA ,
     /* Iniciar partida de xadrez */
     
-    Jogar = "jogar" ,
+    Jogar = JOGAR ,
     /* Iniciar partida de xadrez */
     
-    TerminarPartida = "terminar",
+    TerminarPartida = TERMINAR_PARTIDA,
     /* Terminar partida de xadrez */
     
-    InserirPeca = "inserir",
+    InserirPeca = INSERIR_PECA,
     /* Inserir nova peça ao jogo */
     
-    SairJogo = "sair"
+    SairJogo = SAIR_JOGO
     /* Sair e fechar jogo */
     
 } Opcao ;
@@ -121,7 +127,7 @@ int main(int argc, const char * argv[]) {
         scanf( "%s" , &OpcaoEscolhida );
         
         /* Iniciar partida */
-        if ( ! strcmp( OpcaoEscolhida , IniciarPartida ) )
+        if ( ! strcmp( OpcaoEscolhida , INICIAR_PARTIDA ) )
         {
             printf( "\n      Digite o nome do quem jogara com as pecas brancas:\n" ) ;
             scanf( "%s" , JogadorBranco.nome );
@@ -142,14 +148,14 @@ int main(int argc, const char * argv[]) {
             JogadorDaVez = JogadorBranco ;
             
             while ( ( EventoJogada != JGO_XequeMate ) &&
-                    ( ! strcmp( OpcaoEscolhida , Jogar ) ) )
+                    ( ! strcmp( OpcaoEscolhida , JOGAR ) ) )
             {
                 printf( "\n      Jogador da vez: %s\n" , JogadorDaVez.nome ) ;
                 
                 printf( "\n      Jogar (jogar) ou terminar (terminar) a partida?" ) ;
                 scanf( "%s" , &OpcaoEscolhida ) ;
                 
-                if ( ! strcmp( OpcaoEscolhida , Jogar ) )
+                if ( ! strcmp( OpcaoEscolhida , JOGAR ) )
                 {
                     printf( "\n      Casa Inicial:" ) ;
                     printf( "\n      Linha:" ) ;
@@ -196,7 +202,7 @@ int main(int argc, const char * argv[]) {
                             printf( "\n      Jogador %s deixou seu oponente em Xeque-Mate\n" , JogadorDaVez.nome ) ;
                             printf( "\n      %s ganhou, parabens!\n" , JogadorDaVez.nome ) ;
                             
-                            OpcaoEscolhida = TerminarPartida ;
+                            OpcaoEscolhida = TERMINAR_PARTIDA ;
                         } /* if */
                         
                         if ( JogadorDaVez.cor == JGO_JogadorBranco )
@@ -219,7 +225,7 @@ int main(int argc, const char * argv[]) {
         } /* fim ativa: Iniciar partida */
         
         /* Terminar partida */
-        else if ( ! strcmp( OpcaoEscolhida , TerminarPartida ) )
+        else if ( ! strcmp( OpcaoEscolhida , TERMINAR_PARTIDA ) )
         {
             CondRet = JGO_TerminarJogo( Juiz ) ;
             
@@ -234,7 +240,7 @@ int main(int argc, const char * argv[]) {
         } /* fim ativa: Terminar partida */
         
         /* Inserir peça */
-        else if ( ! strcmp( OpcaoEscolhida , InserirPeca ) )
+        else if ( ! strcmp( OpcaoEscolhida , INSERIR_PECA ) )
         {
             // Implementar inserção de nova peça aqui
 
@@ -245,7 +251,7 @@ int main(int argc, const char * argv[]) {
             printf( "\n      Opacao invalida\n" ) ;
         } /* if */
         
-    } while ( strcmp( OpcaoEscolhida , SairJogo ) ); /* do-while */
+    } while ( strcmp( OpcaoEscolhida , SAIR_JOGO ) ); /* do-while */
     
     printf( "\n      O jogo esta sendo encerrado." ) ;
     printf( "\n      Obrigado por jogar com a gente!\n" ) ;
