@@ -68,7 +68,7 @@ int main( void ) {
     JGO_tpEventoOcorrido EventoJogada = -1 ;
     JGO_tpCondRet CondRet ;
     
-    char * OpcaoEscolhida[100] ;
+    char OpcaoEscolhida[100] ;
     Jogador JogadorDaVez , JogadorBranco , JogadorPreto ;
     
     JogadorBranco.cor = JGO_JogadorBranco ;
@@ -124,7 +124,7 @@ int main( void ) {
                 printf( "\n      Jogador da vez: %s\n" , JogadorDaVez.nome ) ;
                 
                 printf( "\n      Jogar (jogar) ou terminar (terminar) a partida?" ) ;
-                scanf( "%s" , &OpcaoEscolhida ) ;
+                scanf( "%s" , OpcaoEscolhida ) ;
                 
                 if ( ! strcmp( OpcaoEscolhida , JOGAR ) )
                 {
