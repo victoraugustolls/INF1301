@@ -110,7 +110,7 @@ int main( void ) {
             
             printf( "\n      Jogo iniciado\n" ) ;
             
-            CondRet = JGO_IniciarJogo( Juiz , "..\\pecas\\teste_jogo\\config.conf" ) ;
+            CondRet = JGO_IniciarJogo( Juiz , "..\\pecas\\default\\config.conf" ) ;
             
             if ( CondRet == JGO_CondRetJogoJaIniciado ) {
                 return 0 ;
