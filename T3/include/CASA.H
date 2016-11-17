@@ -105,6 +105,7 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa ) ;
  *
  *  $ED Descrição da função
  *     Cria uma casa igual a casa original.
+ *     Casa que deseja-se copiar não pode ser nula.
  *
  *  $EP Parâmetros
  *     pCasa - ponteiro para a casa sendo criado
@@ -312,7 +313,8 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
 *  $FC Função: CSA  &Print Casa
 *
 *  $ED Descrição da função
-*     Retorna a string (alocada dinamicamente) referente ao print da casa
+*     Retorna a string (alocada dinamicamente) referente ao print da casa.
+*     Casa que deseja-se pegar o print não pode ser nula.
 *
 *  $EP Parâmetros
 *     pCasa            - ponteiro para a casa

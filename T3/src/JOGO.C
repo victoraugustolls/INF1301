@@ -23,13 +23,26 @@
 #include "JOGO.H"
 #undef JOGO_OWN
 
+/***** Protótipos das funções encapuladas no módulo *****/
+
+static int isTabuleiroEmXeque( TAB_tppTabuleiro tabuleiroTemp, JGO_tpCorJogador corJogadorAtual);
+
+/***********************************************************************
+ *
+ *  $TC Tipo de dados: JGO Descritor do jogo
+ *
+ *
+ ***********************************************************************/
+
 struct JGO_tagJuiz
 {
     TAB_tppTabuleiro tabuleiro;
 };
 
-
-int isTabuleiroEmXeque( TAB_tppTabuleiro tabuleiroTemp, JGO_tpCorJogador corJogadorAtual);
+/***************************************************************************
+ *
+ *  Função: JGO  &Criar juiz
+ *  ****/
 
 JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz )
 {
@@ -43,7 +56,12 @@ JGO_tpCondRet JGO_CriarJuiz( JGO_tppJuiz * pJuiz )
     (*pJuiz)->tabuleiro = NULL;
 
     return JGO_CondRetOK;
-}
+} /* Fim função: JGO  &Criar juiz */
+
+/***************************************************************************
+ *
+ *  Função: JGO  &Destruir juiz
+ *  ****/
 
 JGO_tpCondRet JGO_DestruirJuiz( JGO_tppJuiz pJuiz )
 {
@@ -57,7 +75,12 @@ JGO_tpCondRet JGO_DestruirJuiz( JGO_tppJuiz pJuiz )
     free(pJuiz);
 
     return JGO_CondRetOK;
-}
+} /* Fim função: JGO  &Destruir juiz */
+
+/***************************************************************************
+ *
+ *  Função: JGO  &Iniciar jogo
+ *  ****/
 
 JGO_tpCondRet JGO_IniciarJogo( JGO_tppJuiz pJuiz, char* pathConfig  )
 {
@@ -76,7 +99,12 @@ JGO_tpCondRet JGO_IniciarJogo( JGO_tppJuiz pJuiz, char* pathConfig  )
         return JGO_CondRetFaltouMemoria;     
     }
     return JGO_CondRetOK;
-}
+} /* Fim função: JGO  &Iniciar jogo */
+
+/***************************************************************************
+ *
+ *  Função: JGO  &Terminar jogo
+ *  ****/
 
 JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz )
 {
@@ -90,7 +118,12 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz )
     pJuiz->tabuleiro = NULL;
 
     return JGO_CondRetOK;   
-}
+} /* Fim função: JGO  &Terminar jogo */
+
+/***************************************************************************
+ *
+ *  Função: JGO  &Pegar print do tabuleiro
+ *  ****/
 
 JGO_tpCondRet JGO_GetPrintTabuleiro( JGO_tppJuiz pJuiz, char** print )
 {
@@ -106,7 +139,12 @@ JGO_tpCondRet JGO_GetPrintTabuleiro( JGO_tppJuiz pJuiz, char** print )
         return JGO_CondRetFaltouMemoria;
     }
     return JGO_CondRetOK;
-}
+} /* Fim função: JGO  &Pegar print do tabuleiro */
+
+/***************************************************************************
+ *
+ *  Função: JGO  &Pegar print da lista de ameacantes
+ *  ****/
 
 JGO_tpCondRet JGO_GetPrintListaAmeacantes( JGO_tppJuiz pJuiz, char linha, char coluna, char** print )
 {
@@ -169,8 +207,12 @@ JGO_tpCondRet JGO_GetPrintListaAmeacantes( JGO_tppJuiz pJuiz, char linha, char c
     }
 
     return JGO_CondRetOK;
-}
+} /* Fim função: JGO  &Pegar print da lista de ameacantes */
 
+/***************************************************************************
+ *
+ *  Função: JGO  &Pegar print da lista de ameacados
+ *  ****/
 
 JGO_tpCondRet JGO_GetPrintListaAmeacados( JGO_tppJuiz pJuiz, char linha, char coluna, char** print )
 {
@@ -232,9 +274,15 @@ JGO_tpCondRet JGO_GetPrintListaAmeacados( JGO_tppJuiz pJuiz, char linha, char co
     }
 
     return JGO_CondRetOK;
-}
+} /* Fim função: JGO  &Pegar print da lista de ameacados */
 
 int DEBUG = 0;
+
+/***************************************************************************
+ *
+ *  Função: JGO  &Realizar jogada
+ *  ****/
+
 JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogadorAtual,
                                                      JGO_tpEventoOcorrido* eventoOcorrido,
                                                      char linhaCasaAtual,
@@ -423,9 +471,18 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
     }
 
     *eventoOcorrido = JGO_XequeMate;
+
     return JGO_CondRetOK;
 
-}
+} /* Fim função: JGO  &Realizar jogada */
+
+/*****  Código das funções encapsuladas no módulo  *****/
+
+/***********************************************************************
+ *
+ *  $FC Função: JGO -Verifica xeque
+ *
+ ***********************************************************************/
 
 int isTabuleiroEmXeque( TAB_tppTabuleiro tabuleiro, JGO_tpCorJogador corJogador)
 {
@@ -500,6 +557,6 @@ int isTabuleiroEmXeque( TAB_tppTabuleiro tabuleiro, JGO_tpCorJogador corJogador)
         }   
     }
     return 0;
-}
+} /* Fim função: JGO  &Verifica xeque */
 
 /********** Fim do módulo de implementação: JGO  Juiz para jogo de xadrez **********/
