@@ -1,0 +1,42 @@
+
+!!! Inicio dos testes
+!!!      Construto sob teste: ..\bin\TEST_JGO
+!!!      Script de teste:     ..\script\TESTE_JOGO.script
+
+!!!    0  Linha:     1  // Script: TESTE_JOGO.SCRIPT 
+!!!    0  Linha:     2  // Autores: Lucas Ferraço 
+!!!    0  Linha:     3  // Data: 09/nov/2016 
+!!!    0  Linha:     4  // Proposito: Testar por completo as funcoes de acesso do modulo JOGO, com excecao 
+!!!    0  Linha:     5  // do caso em que ocorre falta de memoria. 
+!!!    0  Linha:     6  // 
+!!!    0  Linha:     7  // --------------------------------------------- 
+    9  == Inicializar Constantes
+!!!    0  Linha:    27  // --------------------------------------------- 
+   29  == Teste de Criacao de Juiz
+!!!    0  Linha:    32  // --------------------------------------------- 
+   34  == Teste de Destruicao de Juiz
+   37  == Teste do Teste de Destruicao de Juiz
+>>>    1  Linha:    38  Condicao de retorno errada ao destruir juiz. Deveria ser: 0  É: 1
+<<<    0  Linha:    39  Falha esperada foi recuperada. 
+   41  == Teste de Destruicao de Juiz Inexistente
+!!!    0  Linha:    44  // --------------------------------------------- 
+   46  == Teste de Inicializacao de Jogo
+!!!    0  Linha:    50  // --------------------------------------------- 
+   52  == Teste de Termino de Jogo
+   55  == Teste de Termino de Jogo Inexistente
+!!!    0  Linha:    58  // --------------------------------------------- 
+   60  == Teste de Realizacao de Jogada em Jogo Inexistente
+   63  == Teste de Realizacao de Jogada
+   67  == Teste de Realizacao de Jogada Nao Valida
+   74  == Teste de Realizacao de Xeque
+   81  == Teste de Realizacao de Xeque Mate   OK
+
+!!! Número de linhas lidas:          86
+!!! Número de casos de teste:        13
+!!! Número comandos corretos:        39
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

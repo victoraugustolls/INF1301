@@ -6,7 +6,7 @@
 !!!    0  Linha:     1  // Script: TestecASA.script 
 !!!    0  Linha:     2  // Autores: Victor Augusto 
 !!!    0  Linha:     3  // Autor Original: Victor Augusto 
-!!!    0  Linha:     4  // Data: 11/out/2016 
+!!!    0  Linha:     4  // Data: 16/out/2016 
 !!!    0  Linha:     5  // PropÃ³sito: Testar por completo as funÃ§Ãµes de acesso do mÃ³dulo CASA, com exceÃ§Ã£o 
 !!!    0  Linha:     6  // do caso em que ocorre falta de memÃ³ria. 
 !!!    0  Linha:     7  // 
@@ -38,28 +38,35 @@
    90  == Teste Comparar Casas Diferentes
    99  == Teste Comparar Casas Inexistentes
 !!!    0  Linha:   105  // --------------------------------------------- 
-  107  == Teste Obter Lista Ameacantes
-  112  == Teste Obter Lista Ameacantes Casa Inexistente
-  115  == Teste Modificar Ameacantes da Casa Iguais
-  121  == Teste do Teste Modificar Ameacantes da Casa Diferentes
->>>    1  Linha:   124  Lista de ameacantes recebida errada. 
-<<<    0  Linha:   125  Falha esperada foi recuperada. 
-  128  == Teste Modificar Ameacantes Casa Inexistente
-!!!    0  Linha:   131  // --------------------------------------------- 
-  133  == Teste Obter Lista Ameacados
-  138  == Teste Obter Lista Ameacados Casa Inexistente
-  141  == Teste Modificar Ameacados da Casa
-  147  == Teste do Teste Modificar Ameacados da Casa
->>>    1  Linha:   150  Lista de ameacados recebida errada. 
-<<<    0  Linha:   151  Falha esperada foi recuperada. 
-  154  == Teste Modificar Ameacados Casa Inexistente
+  107  == Teste Print Casa Nova
+  112  == Teste Print Casa Modificada
+!!!    0  Linha:   118  // --------------------------------------------- 
+  120  == Teste Copiar Casa
+>>>    1  Linha:   121  Erro nos parâmetros do comando:  =copiaCasa      casa0    casa1    OK
+>>>    2  Linha:   123  Comando de teste ignorado:  =destroiCasa    casa1    OK
+!!!    2  Linha:   125  // --------------------------------------------- 
+  127  == Teste Obter Lista Ameacantes
+  132  == Teste Obter Lista Ameacantes Casa Inexistente
+  135  == Teste Modificar Ameacantes da Casa Iguais
+  141  == Teste do Teste Modificar Ameacantes da Casa Diferentes
+>>>    3  Linha:   144  Lista de ameacantes recebida errada. 
+<<<    2  Linha:   145  Falha esperada foi recuperada. 
+  148  == Teste Modificar Ameacantes Casa Inexistente
+!!!    2  Linha:   151  // --------------------------------------------- 
+  153  == Teste Obter Lista Ameacados
+  158  == Teste Obter Lista Ameacados Casa Inexistente
+  161  == Teste Modificar Ameacados da Casa
+  167  == Teste do Teste Modificar Ameacados da Casa
+>>>    3  Linha:   170  Lista de ameacados recebida errada. 
+<<<    2  Linha:   171  Falha esperada foi recuperada. 
+  174  == Teste Modificar Ameacados Casa Inexistente
 
-!!! Número de linhas lidas:         155
-!!! Número de casos de teste:        26
-!!! Número comandos corretos:        69
-!!! Número de falhas encontradas:     0
+!!! Número de linhas lidas:         175
+!!! Número de casos de teste:        29
+!!! Número comandos corretos:        76
+!!! Número de falhas encontradas:     2
 
-!!! Não foram encontrados problemas
+!!! Foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0

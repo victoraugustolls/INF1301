@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     4       vas   16/nov/2016 adição dos testes para copiar e printar peça
 *     3       vas   10/nov/2016 mudança dos testes para nova estrutura
 *	  2		  vas   12/out/2016 adição do teste de alterar peça
 *     1       vas   06/out/2016 início desenvolvimento
@@ -36,6 +37,7 @@ static const char ALTERAR_PECA_CMD           [ ] = "=alterarPeca"       ;
 static const char OBTER_NO_CMD               [ ] = "=obterNo"           ;
 static const char COMPARA_PECAS_CMD          [ ] = "=comparaPecas"      ;
 static const char COPIAR_PECA_CMD            [ ] = "=copiarPeca"        ;
+static const char PRINT_PECA_CMD             [ ] = "=printPeca"         ;
 static const char DESTROI_PECA_CMD           [ ] = "=destroiPeca"       ;
 
 
@@ -73,6 +75,7 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 *     =obterNo                      inx    nomePeca     corPeca       condRetorno
 *     =comparaPecas                 inx    inx2         igualdade     condRetorno
 *     =copiarPeca                   inx    inx2         igualdade     condRetorno
+*     =printPeca                    inx    print        condRetorno
 *     =destroiPeca                  inx    condRetorno
 *
 ***********************************************************************/
@@ -95,6 +98,9 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 
 		char * nomePeca ;
 		char * corPeca ;
+		char * print ;
+
+		char printEsp[100] ;
 
 		int i ;
 
@@ -279,6 +285,33 @@ PCA_tppPeca   vtPecas[ DIM_VT_PECA ] ;
 									"Condicao de retorno errada ao comparar peca." ) ;
 
 		} /* fim ativa: Testar CopiaPeca */
+
+		/* Testar PrintPeca */
+
+		else if ( strcmp( ComandoTeste , PRINT_PECA_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "isi" , &inxPeca ,
+										printEsp , &CondRetEsp ) ;
+
+			if ( ( numLidos != 3 )
+				|| ( ! ValidarInxPeca( inxPeca , NAO_VAZIO )))
+			{
+				return TST_CondRetParm ;
+			} /* if */
+
+			CondRet = PCA_GetPrintPeca( vtPecas[ inxPeca ] , &print ) ;
+
+			if ( CondRetEsp != PCA_CondRetOK )
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+										"Condicao de retorno errada ao comparar peca." ) ;
+			} /* if */
+
+			return TST_CompararString( printEsp , print ,
+									"Condicao de retorno errada ao comparar peca." ) ;
+
+		} /* fim ativa: Testar PrintPeca */
 
 		/* Testar Destruir peça */
 
