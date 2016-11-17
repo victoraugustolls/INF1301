@@ -93,6 +93,7 @@ LIS_tppLista   vtListas[ DIM_VT_LISTA ] ;
 *     =irAnt                        inx    condRetorno
 *     =alterarNoCorrente            inx    char         condRetorno
 *     =verificaVazia                inx    valorVazia   condRetorno
+*     =comparaListas                inx    inx2         igualdade      condRetorno
 *     =destroiLista                 inx    condRetorno
 *
 ***********************************************************************/

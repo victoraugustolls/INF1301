@@ -53,8 +53,6 @@ JGO_tppJuiz   pJuiz ;
  *
  *     Comandos disponíveis:
  *
- *     =resetteste
- *           - anula o jogo. Provoca vazamento de memória
  *     =criarJuiz           condRetorno
  *     =destruirJuiz        condRetorno
  *     =iniciarJogo         condRetorno
@@ -67,7 +65,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 {
     
     int numLidos = -1 ,
-    CondRetEsp = -1 ;
+        CondRetEsp = -1 ;
     
     TST_tpCondRet CondRet ;
     
