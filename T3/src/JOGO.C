@@ -288,7 +288,8 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                                      char linhaCasaAtual,
                                                      char colunaCasaAtual,
                                                      char linhaCasaDestino,
-                                                     char colunaCasaDestino ) 
+                                                     char colunaCasaDestino,
+                                                     char** mensagem ) 
 {
     TAB_tppTabuleiro tabuleiroTemp;
     TAB_tpCondRet tabCondRet;
@@ -307,6 +308,13 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
     charCorCorrente = corJogadorAtual == JGO_JogadorPreto?'P':'B';
     charCorOposta = corJogadorAtual == JGO_JogadorPreto?'B':'P';
 
+    *mensagem = (char*) malloc(sizeof(char)*300);
+    if(*mensagem == NULL)
+    {
+        return JGO_CondRetFaltouMemoria;
+    }
+    (*mensagem)[0] = '\0';
+
     if( pJuiz->tabuleiro == NULL)
     {
         return JGO_CondRetJogoNaoIniciado;        
@@ -321,17 +329,17 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
-        printf("Motivo: coordenada casa atual nao existe\n");
+        strcpy(*mensagem,"Movimento Invalido: coordenada casa atual nao existe\n");
         return JGO_CondRetMovInvalido;
     }
     if(corJogadorAtual == JGO_JogadorPreto && cor_atual != 'P' )
     {
-        printf("Motivo: cor da peca diferente da cor do jogador passada\n");
+        strcpy(*mensagem,"Movimento Invalido: cor da peca diferente da cor do jogador passada\n");
         return JGO_CondRetMovInvalido;
     }
     else if(corJogadorAtual == JGO_JogadorBranco && cor_atual != 'B' )
     {
-        printf("Motivo: cor da peca diferente da cor do jogador passada\n");
+        strcpy(*mensagem,"Movimento Invalido: cor da peca diferente da cor do jogador passada\n");
         return JGO_CondRetMovInvalido;
     }
 
@@ -342,13 +350,14 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                             pJuiz->tabuleiro );
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
-        printf("Motivo: coordenada casa destino nao existe\n");
+        strcpy(*mensagem,"Movimento Invalido: coordenada casa destino nao existe\n");
         return JGO_CondRetMovInvalido;
     }
 
     tabCondRet = TAB_CopiarTabuleiro(&tabuleiroTemp, pJuiz->tabuleiro);
     if(tabCondRet == TAB_CondRetFaltouMemoria)
     {
+        free(*mensagem);
         return JGO_CondRetFaltouMemoria;
     }
     
@@ -360,12 +369,12 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 
     if(tabCondRet == TAB_CondRetCoordNaoExiste)
     {
-        printf("Motivo: coordenada nao existe\n");
+        strcpy(*mensagem,"Movimento Invalido: coordenada nao existe\n");
         return JGO_CondRetMovInvalido;
     }
     else if(tabCondRet == TAB_CondRetMovInvalido)
     {
-        printf("Motivo: o movimento dado nao corresponde ao movimento da peca\n");
+        strcpy(*mensagem,"Movimento Invalido: o movimento dado nao corresponde ao movimento da peca\n");
         return JGO_CondRetMovInvalido;
     }
     else if(tabCondRet == TAB_CondRetNaoExiste)
@@ -378,20 +387,18 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
     }
     else if(tabCondRet == TAB_CondRetFaltouMemoria)
     {
+        free(*mensagem);
         return JGO_CondRetFaltouMemoria;
     }
 
     //--------------------------------------------------
     // Testar se o novo movimento e ivalido pois deixou seu rei em xeque
 
-    DEBUG = 1;
     if(isTabuleiroEmXeque(tabuleiroTemp, corJogadorAtual))
     {
-        DEBUG=0;
-        printf("Motivo: o movimento deixaria seu rei em xeque\n");
+        strcpy(*mensagem,"Movimento Invalido: o movimento deixaria seu rei em xeque\n");
         return JGO_CondRetMovInvalido;
     }
-    DEBUG = 0;
     TAB_DestruirTabuleiro(tabuleiroTemp);
     tabCondRet = TAB_MoverPecaTabuleiro( colunaCasaAtual,
                                          linhaCasaAtual,
@@ -431,6 +438,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                         tabCondRet = TAB_CopiarTabuleiro(&tabuleiroTemp, pJuiz->tabuleiro);
                         if(tabCondRet == TAB_CondRetFaltouMemoria)
                         {
+                            free(*mensagem);
                             return JGO_CondRetFaltouMemoria;
                         }
 
@@ -449,6 +457,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                         }
                         else if(tabCondRet == TAB_CondRetFaltouMemoria)
                         {
+                            free(*mensagem);
                             return JGO_CondRetFaltouMemoria;
                         }
 
@@ -537,10 +546,6 @@ int isTabuleiroEmXeque( TAB_tppTabuleiro tabuleiro, JGO_tpCorJogador corJogador)
 
                     if(cor == charCorOposta)
                     {
-                        if(DEBUG)
-                        {
-                            printf("A peca %c%c na posicao %c%c esta ameacando o rei.\n",peca,cor,*coluna,*linha);
-                        }
                         return 1;
                     }
 

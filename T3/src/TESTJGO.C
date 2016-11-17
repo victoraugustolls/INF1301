@@ -78,6 +78,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     char pathArqConfig[100] ;
     JGO_tpEventoOcorrido EveOcor , EveOcorEsp ;
     JGO_tpCorJogador JgAtual ;
+    char* mensagem;
     
     /* Testar CriarJuiz */
     
@@ -124,7 +125,6 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
     {
         numLidos = LER_LerParametros( "si" , pathArqConfig , &CondRetEsp ) ;
 
-        printf("%s\n", pathArqConfig);
         
         if ( ( numLidos != 2 ) )
         {
@@ -180,7 +180,13 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
                                        linhaAtual ,
                                        colunaAtual ,
                                        linhaDestino ,
-                                       colunaDestino ) ;
+                                       colunaDestino,
+                                       &mensagem ) ;
+
+        if(CondRet != JGO_CondRetFaltouMemoria)
+        {
+            free(mensagem);
+        }
 
         if ( CondRet )
         {

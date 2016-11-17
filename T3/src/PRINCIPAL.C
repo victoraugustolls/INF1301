@@ -64,6 +64,7 @@ int main( void ) {
 	
 	char LinhaInicial , ColunaInicial ;
 	char LinhaFinal , ColunaFinal ;
+	char* mensagem;
 
 	JGO_tpEventoOcorrido EventoJogada = -1 ;
 	JGO_tpCondRet CondRet ;
@@ -171,28 +172,43 @@ int main( void ) {
 												 LinhaInicial ,
 												 ColunaInicial ,
 												 LinhaFinal ,
-												 ColunaFinal ) ;
-					
+												 ColunaFinal,
+												 &mensagem ) ;
+
+					if(CondRet != JGO_CondRetFaltouMemoria)
+			        {
+			        	if(CondRet == JGO_CondRetMovInvalido)
+			        	{
+							printf( "==========================\n" ) ;
+			        		printf("%s",mensagem);
+			        	}
+			            free(mensagem);
+			        }
+
 					if ( CondRet == JGO_CondRetFaltouMemoria )
 					{
+						printf( "==========================\n" ) ;
 						printf( "Memoria insuficiente para rodar o jogo\n" ) ;
 						printf( "O jogo sera encerrado\n" ) ;
 						return 0 ;
 					}
 					else if ( CondRet == JGO_CondRetFalhaArq )
 					{
+						printf( "==========================\n" ) ;
 						printf( "Erro inesperado ao abrir arquivos internos do jogo\n" ) ;
 						printf( "O jogo sera encerrado\n" ) ;
 						return 0 ;
 					}
 					else if ( CondRet == JGO_CondRetNaoExiste )
 					{
+						printf( "==========================\n" ) ;
 						printf( "Erro inesperado. Algum componente interno nao conseguiu ser criado.\n" ) ;
 						printf( "O jogo sera encerrado\n" ) ;
 						return 0 ;
 					}
 					else if ( CondRet == JGO_CondRetMovInvalido )
 					{
+						printf( "==========================\n" ) ;
 						printf( "Jogada invalida\n" ) ;
 					}
 					else if ( CondRet == JGO_CondRetOK )
@@ -203,6 +219,7 @@ int main( void ) {
 						
 						if ( EventoJogada == JGO_XequeMate )
 						{
+							printf( "==========================\n" ) ;
 							printf( "Jogador %s deixou seu oponente em Xeque-Mate\n" , JogadorDaVez.nome ) ;
 							printf( "%s ganhou, parabens!\n" , JogadorDaVez.nome ) ;
 							
@@ -219,10 +236,12 @@ int main( void ) {
 						} /* if */
 						
 						if ( EventoJogada == JGO_Xeque ) {
+							printf( "==========================\n" ) ;
 							printf( "Jogador %s esta em Xeque\n" , JogadorDaVez.nome ) ;
 						} /* if */
 					}
 					else {
+						printf( "==========================\n" ) ;
 						printf("Erro inesperado %d\n", CondRet);
 					} /* if */
 					

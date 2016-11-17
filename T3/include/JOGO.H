@@ -220,6 +220,8 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
  *     colunaCasaAtual - a coluna da casa atual da peça sendo movida
  *     linhaCasaDestino - a linha da casa atual da peça sendo movida
  *     colunaCasaDestino - a coluna da casa atual da peça sendo movida
+ *     mensagem - mensagem referente a o que aconteceu quando ocorreu movimento invalido
+ *                      (deve ser liberado se o retorno for diferente de JGO_CondRetFaltouMemoria)
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK            - realizou sem problemas
@@ -236,7 +238,8 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                                      char linhaCasaAtual,
                                                      char colunaCasaAtual,
                                                      char linhaCasaDestino,
-                                                     char colunaCasaDestino ) ;
+                                                     char colunaCasaDestino,
+                                                     char** mensagem ) ;
 
 /***********************************************************************
 *
