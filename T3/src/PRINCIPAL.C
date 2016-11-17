@@ -335,7 +335,7 @@ void ImprimirAmeacados(char c, char l)
 	if(jgoCondRet == JGO_CondRetOK)
 	{
 		printf( "==========================\n" ) ;
-		printf("Lista de movimentos validos:\n");
+		printf("Lista de movimentos possiveis:\n");
 		printf( "%s\n" , print ) ;
 	}
 	free( print ) ;
