@@ -1,11 +1,14 @@
-. Arquivo de Tabuleiro Inicial
+﻿. Arquivo de Tabuleiro Inicial
 	Determina a arrumação inicial do tabuleiro.
 
 ----------------------------------------------------
 --- Arquivo de Tabuleiro Inicial -------------------
 ----------------------------------------------------
 
+        Arquivo encontra-se no caminho ..\pecas\default\inicial.pca
+
 	Este arquivo determina a configuração do tabuleiro inicial.
+        Basta abrir o arquivo com o editor de texto de sua preferência.
 
 	Ele possui a seguinte sintaxe:
 
