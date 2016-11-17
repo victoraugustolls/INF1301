@@ -246,7 +246,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 *     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro do jogo
 *
 *  $EP Parâmetros
-*     pTabuleiro            - ponteiro para o juiz
+*     pJuiz            - ponteiro para o juiz
 *     print                 - ponteiro para a string
 *
 *  $FV Valor retornado
@@ -257,6 +257,54 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 ***********************************************************************/
 
 JGO_tpCondRet JGO_GetPrintTabuleiro( JGO_tppJuiz pJuiz, char** print ) ;
+
+/***********************************************************************
+*
+*  $FC Função: TAB  &Print Lista Ameacantes do Jogo
+*
+*  $ED Descrição da função
+*     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro do jogo
+*
+*  $EP Parâmetros
+*     pJuiz                 - ponteiro para o juiz
+*     linha                 - linha a obter-se a informacao
+*     coluna                - coluna a obter-se a informacao
+*     print                 - ponteiro para a string
+*
+*  $FV Valor retornado
+*     JGO_CondRetOK             - nao ocorreram problemas
+*     JGO_CondRetFaltouMemoria  - faltou memoria
+*     JGO_CondRetJogoNaoIniciado - jogo nao iniciado
+*     JGO_CondRetNaoExiste     - algum elemento interno nao existe
+*
+***********************************************************************/
+
+JGO_tpCondRet JGO_GetPrintListaAmeacantes( JGO_tppJuiz pJuiz, char linha, char coluna, char** print ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: TAB  &Print Lista Ameacados do Jogo
+*
+*  $ED Descrição da função
+*     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro do jogo
+*
+*  $EP Parâmetros
+*     pJuiz                 - ponteiro para o juiz
+*     linha                 - linha a obter-se a informacao
+*     coluna                - coluna a obter-se a informacao
+*     print                 - ponteiro para a string
+*
+*  $FV Valor retornado
+*     JGO_CondRetOK             - nao ocorreram problemas
+*     JGO_CondRetFaltouMemoria  - faltou memoria
+*     JGO_CondRetJogoNaoIniciado - jogo nao iniciado
+*     JGO_CondRetNaoExiste     - algum elemento interno nao existe
+*
+***********************************************************************/
+
+JGO_tpCondRet JGO_GetPrintListaAmeacados( JGO_tppJuiz pJuiz, char linha, char coluna, char** print ) ;
+
 
 #undef JOGO_EXT
 

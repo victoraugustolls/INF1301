@@ -1,67 +1,55 @@
 L_OR 
 	L_AND
-		L_OR P_VAZ D P_INI D
+		P_VAZ D
 		L_AND
-			P_IGUAL V_DIM 1 D V_DIM 1 A
-			L_FORALL C
-				L_IFTHEN
-					L_AND
-						P_IGUAL V_DIM 1 C V_DIM 1 A
-						L_AND
-							P_MAIOR
-								F_SUB V_DIM 0 C V_DIM 0 A
-								V_NUM 0
-							P_MENOR
-								F_SUB V_DIM 0 C V_DIM 0 A
-								F_SUB V_DIM 0 D V_DIM 0 A
-					P_VAZ C
+			P_IGUAL
+				F_SUB V_DIM 0 D V_DIM 0 A
+				V_NUM 0
+			P_IGUAL
+				F_SUB V_DIM 1 D V_DIM 1 A
+				V_SIG 0
 L_OR 
 	L_AND
-		L_OR P_VAZ D P_INI D
 		L_AND
-			P_IGUAL V_DIM 0 D V_DIM 0 A
-			L_FORALL C
-				L_IFTHEN
-					L_AND
-						P_IGUAL V_DIM 0 C V_DIM 0 A
-						L_AND
-							P_MAIOR
-								F_SUB V_DIM 1 C V_DIM 1 A
-								V_NUM 0
-							P_MENOR
-								F_SUB V_DIM 1 C V_DIM 1 A
-								F_SUB V_DIM 1 D V_DIM 1 A
-					P_VAZ C
+			P_VAZ D
+			L_OR
+				L_AND
+					P_IGUAL
+						V_SIG 0
+						V_NUM 1
+					P_IGUAL
+						V_DIM 1 A
+						V_NUM 1
+				L_AND
+					P_IGUAL
+						V_SIG 0
+						V_NUM -1
+					P_IGUAL
+						V_DIM 1 A
+						V_NUM 6
+		L_AND
+			P_IGUAL
+				F_SUB V_DIM 0 D V_DIM 0 A
+				V_NUM 0
+			P_IGUAL
+				F_SUB V_DIM 1 D V_DIM 1 A
+				F_MUL V_SIG 0 V_NUM 2			 
 L_OR 
 	L_AND
-		L_OR P_VAZ D P_INI D
+		P_INI D
 		L_AND
-			P_IGUAL F_ADD F_SUB V_DIM 0 D V_DIM 0 A F_SUB V_DIM 1 D V_DIM 1 A V_NUM 0
-			L_FORALL C
-				L_IFTHEN
-					L_AND
-						P_IGUAL F_ADD F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0
-						L_AND
-							P_MAIOR
-								F_SUB V_DIM 0 C V_DIM 0 A
-								V_NUM 0
-							P_MENOR
-								F_SUB V_DIM 0 C V_DIM 0 A
-								F_SUB V_DIM 0 D V_DIM 0 A
-					P_VAZ C
+			P_IGUAL
+				F_SUB V_DIM 0 D V_DIM 0 A
+				V_NUM 1
+			P_IGUAL
+				F_SUB V_DIM 1 D V_DIM 1 A
+				V_SIG 0 
 	L_AND
-		L_OR P_VAZ D P_INI D
+		P_INI D
 		L_AND
-			P_IGUAL F_SUB F_SUB V_DIM 0 D V_DIM 0 A F_SUB V_DIM 1 D V_DIM 1 A V_NUM 0
-			L_FORALL C
-				L_IFTHEN
-					L_AND
-						P_IGUAL F_SUB F_SUB V_DIM 0 C V_DIM 0 A F_SUB V_DIM 1 C V_DIM 1 A V_NUM 0
-						L_AND
-							P_MAIOR
-								F_SUB V_DIM 0 C V_DIM 0 A
-								V_NUM 0
-							P_MENOR
-								F_SUB V_DIM 0 C V_DIM 0 A
-								F_SUB V_DIM 0 D V_DIM 0 A
-					P_VAZ C
+			P_IGUAL
+				F_SUB V_DIM 0 D V_DIM 0 A
+				V_NUM -1
+			P_IGUAL
+				F_SUB V_DIM 1 D V_DIM 1 A
+				V_SIG 0 

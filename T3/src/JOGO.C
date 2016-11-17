@@ -15,6 +15,7 @@
 #include   <stdio.h>
 #include   <memory.h>
 #include   <malloc.h>
+#include   <string.h>
 #include   "TABULEIRO.H"
 #include   "LISTA.H"
 
@@ -104,6 +105,132 @@ JGO_tpCondRet JGO_GetPrintTabuleiro( JGO_tppJuiz pJuiz, char** print )
     {
         return JGO_CondRetFaltouMemoria;
     }
+    return JGO_CondRetOK;
+}
+
+JGO_tpCondRet JGO_GetPrintListaAmeacantes( JGO_tppJuiz pJuiz, char linha, char coluna, char** print )
+{
+    TAB_tpCondRet tabCondRet;
+    LIS_tpCondRet listaRet;
+
+    LIS_tppLista pListaAmeacantesLinhas;
+    LIS_tppLista pListaAmeacantesColunas;
+
+    char* linha_obtida;
+    char* coluna_obtida;
+
+    char stringcat[3] = "A1";
+
+    *print = (char*) malloc(sizeof(char)*100*3);
+    if(*print == NULL)
+    {
+        return JGO_CondRetFaltouMemoria;
+    }
+    (*print)[0] = '\0';
+
+    if( pJuiz->tabuleiro == NULL)
+    {
+        return JGO_CondRetJogoNaoIniciado;        
+    }
+
+    tabCondRet = TAB_ObterListaAmeacantesTabuleiro( coluna ,
+                                                     linha ,
+                                                     &pListaAmeacantesLinhas ,
+                                                     &pListaAmeacantesColunas ,
+                                                     pJuiz->tabuleiro );
+    if(tabCondRet == TAB_CondRetNaoExiste)
+    {
+        return JGO_CondRetNaoExiste;
+    }
+    else if(tabCondRet == TAB_CondRetCoordNaoExiste)
+    {
+        return JGO_CondRetMovInvalido;
+    }
+
+    listaRet = LIS_AvancarElementoCorrente(pListaAmeacantesLinhas , -64) ;
+    listaRet = LIS_AvancarElementoCorrente(pListaAmeacantesColunas , -64) ;
+    if(listaRet != LIS_CondRetListaVazia)
+    {
+        while(listaRet != LIS_CondRetNoCorrenteUlt)
+        {
+            listaRet = LIS_ObterValor( pListaAmeacantesLinhas , (void **) &linha_obtida ) ;
+            listaRet = LIS_ObterValor( pListaAmeacantesColunas , (void **) &coluna_obtida ) ;
+
+            stringcat[0] = *coluna_obtida;
+            stringcat[1] = *linha_obtida;
+
+            strcat(*print,stringcat);
+            strcat(*print," ");
+
+
+            listaRet = LIS_AvancarElementoCorrente(pListaAmeacantesLinhas , 1) ;
+            listaRet = LIS_AvancarElementoCorrente(pListaAmeacantesColunas , 1) ;
+        }   
+    }
+
+    return JGO_CondRetOK;
+}
+
+
+JGO_tpCondRet JGO_GetPrintListaAmeacados( JGO_tppJuiz pJuiz, char linha, char coluna, char** print )
+{
+    TAB_tpCondRet tabCondRet;
+    LIS_tpCondRet listaRet;
+
+    LIS_tppLista pListaAmeacadosLinhas;
+    LIS_tppLista pListaAmeacadosColunas;
+
+    char* linha_obtida;
+    char* coluna_obtida;
+
+    char stringcat[3] = "A1";
+
+    *print = (char*) malloc(sizeof(char)*100*3);
+    if(*print == NULL)
+    {
+        return JGO_CondRetFaltouMemoria;
+    }
+    (*print)[0] = '\0';
+
+    if( pJuiz->tabuleiro == NULL)
+    {
+        return JGO_CondRetJogoNaoIniciado;        
+    }
+
+    tabCondRet = TAB_ObterListaAmeacadosTabuleiro( coluna ,
+                                                     linha ,
+                                                     &pListaAmeacadosLinhas ,
+                                                     &pListaAmeacadosColunas ,
+                                                     pJuiz->tabuleiro );
+    if(tabCondRet == TAB_CondRetNaoExiste)
+    {
+        return JGO_CondRetNaoExiste;
+    }
+    else if(tabCondRet == TAB_CondRetCoordNaoExiste)
+    {
+        return JGO_CondRetMovInvalido;
+    }
+
+    listaRet = LIS_AvancarElementoCorrente(pListaAmeacadosLinhas , -64) ;
+    listaRet = LIS_AvancarElementoCorrente(pListaAmeacadosColunas , -64) ;
+    if(listaRet != LIS_CondRetListaVazia)
+    {
+        while(listaRet != LIS_CondRetNoCorrenteUlt)
+        {
+            listaRet = LIS_ObterValor( pListaAmeacadosLinhas , (void **) &linha_obtida ) ;
+            listaRet = LIS_ObterValor( pListaAmeacadosColunas , (void **) &coluna_obtida ) ;
+
+            stringcat[0] = *coluna_obtida;
+            stringcat[1] = *linha_obtida;
+
+            strcat(*print,stringcat);
+            strcat(*print," ");
+
+            listaRet = LIS_AvancarElementoCorrente(pListaAmeacadosLinhas , 1) ;
+            listaRet = LIS_AvancarElementoCorrente(pListaAmeacadosColunas , 1) ;
+        }   
+    }
+
     return JGO_CondRetOK;
 }
 
