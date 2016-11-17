@@ -1,5 +1,0 @@
-L_IFTHEN	
-	L_NOT
-		P_VAZ A
-	L_NOT
-		P_VAZ D
