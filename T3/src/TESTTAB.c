@@ -79,8 +79,6 @@ static int ValidarInxTabuleiro( int inxTab , int Modo ) ;
  *
  *     Comandos disponíveis:
  *
- *     =resetteste
- *           - anula o tabuleiro. Provoca vazamento de memória
  *     =criarTabuleiro           inx    condRetorno
  *	   =destruirTabuleiro        inx    condRetorno
  *     =inserirPeca              inx    colunaInicio linhaInicio colunaFim          linhaFim       condRetorno

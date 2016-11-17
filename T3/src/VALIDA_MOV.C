@@ -680,7 +680,7 @@ static const char CMD_PCA_C_D [ ]                = "D";
             if(condRet != VMV_CondRetOK)
                return condRet;
 
-            *integerValue = intRetA - intRetB;
+            *integerValue = intRetA * intRetB;
             return VMV_CondRetOK;
          }
          else if( strcmp( buffer, CMD_PCA_F_ABS ) == 0 )

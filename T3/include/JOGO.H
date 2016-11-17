@@ -220,6 +220,8 @@ JGO_tpCondRet JGO_TerminarJogo( JGO_tppJuiz pJuiz ) ;
  *     colunaCasaAtual - a coluna da casa atual da peça sendo movida
  *     linhaCasaDestino - a linha da casa atual da peça sendo movida
  *     colunaCasaDestino - a coluna da casa atual da peça sendo movida
+ *     mensagem - mensagem referente a o que aconteceu quando ocorreu movimento invalido
+ *                      (deve ser liberado se o retorno for diferente de JGO_CondRetFaltouMemoria)
  *
  *  $FV Valor retornado
  *     JGO_CondRetOK            - realizou sem problemas
@@ -236,7 +238,8 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
                                                      char linhaCasaAtual,
                                                      char colunaCasaAtual,
                                                      char linhaCasaDestino,
-                                                     char colunaCasaDestino ) ;
+                                                     char colunaCasaDestino,
+                                                     char** mensagem ) ;
 
 /***********************************************************************
 *
@@ -246,7 +249,7 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 *     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro do jogo
 *
 *  $EP Parâmetros
-*     pTabuleiro            - ponteiro para o juiz
+*     pJuiz            - ponteiro para o juiz
 *     print                 - ponteiro para a string
 *
 *  $FV Valor retornado
@@ -257,6 +260,55 @@ JGO_tpCondRet JGO_RealizarJogada( JGO_tppJuiz pJuiz, JGO_tpCorJogador corJogador
 ***********************************************************************/
 
 JGO_tpCondRet JGO_GetPrintTabuleiro( JGO_tppJuiz pJuiz, char** print ) ;
+
+/***********************************************************************
+*
+*  $FC Função: TAB  &Print Lista Ameacantes do Jogo
+*
+*  $ED Descrição da função
+*     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro do jogo
+*
+*  $EP Parâmetros
+*     pJuiz                 - ponteiro para o juiz
+*     linha                 - linha a obter-se a informacao
+*     coluna                - coluna a obter-se a informacao
+*     print                 - ponteiro para a string
+*
+*  $FV Valor retornado
+*     JGO_CondRetOK             - nao ocorreram problemas
+*     JGO_CondRetFaltouMemoria  - faltou memoria
+*     JGO_CondRetJogoNaoIniciado - jogo nao iniciado
+*     JGO_CondRetNaoExiste     - algum elemento interno nao existe
+*     JGO_CondRetMovInvalido    - as linhas e colunas nao sao validas
+*
+***********************************************************************/
+
+JGO_tpCondRet JGO_GetPrintListaAmeacantes( JGO_tppJuiz pJuiz, char linha, char coluna, char** print ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: TAB  &Print Lista Ameacados do Jogo
+*
+*  $ED Descrição da função
+*     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro do jogo
+*
+*  $EP Parâmetros
+*     pJuiz                 - ponteiro para o juiz
+*     linha                 - linha a obter-se a informacao
+*     coluna                - coluna a obter-se a informacao
+*     print                 - ponteiro para a string
+*
+*  $FV Valor retornado
+*     JGO_CondRetOK             - nao ocorreram problemas
+*     JGO_CondRetFaltouMemoria  - faltou memoria
+*     JGO_CondRetJogoNaoIniciado - jogo nao iniciado
+*     JGO_CondRetNaoExiste     - algum elemento interno nao existe
+*
+***********************************************************************/
+
+JGO_tpCondRet JGO_GetPrintListaAmeacados( JGO_tppJuiz pJuiz, char linha, char coluna, char** print ) ;
+
 
 #undef JOGO_EXT
 

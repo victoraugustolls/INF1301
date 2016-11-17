@@ -12,21 +12,21 @@ L_OR
 	L_AND
 		L_AND
 			P_VAZ D
-			L_OR
-				L_AND
-					P_IGUAL
+			L_AND
+				L_IFTHEN
+					L_IGUAL
 						V_SIG 0
 						V_NUM 1
 					P_IGUAL
 						V_DIM 1 A
-						V_NUM 1
-				L_AND
-					P_IGUAL
+						V_NUM 2
+				L_IFTHEN
+					L_IGUAL
 						V_SIG 0
 						V_NUM -1
 					P_IGUAL
 						V_DIM 1 A
-						V_NUM 6
+						V_NUM 7
 		L_AND
 			P_IGUAL
 				F_SUB V_DIM 0 D V_DIM 0 A

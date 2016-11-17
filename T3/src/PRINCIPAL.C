@@ -55,6 +55,8 @@ typedef struct
 /***** Protótipos das funções encapuladas no arquivo *****/
 
 static void ImprimirTabuleiro( ) ;
+static void ImprimirAmeacados(char c, char l);
+static void ImprimirAmeacantes(char c, char l);
 static void toUpperCase( char *f ) ;
 static void flush_in(  ) ;
 
@@ -62,6 +64,7 @@ int main( void ) {
 	
 	char LinhaInicial , ColunaInicial ;
 	char LinhaFinal , ColunaFinal ;
+	char* mensagem;
 
 	JGO_tpEventoOcorrido EventoJogada = -1 ;
 	JGO_tpCondRet CondRet ;
@@ -75,9 +78,9 @@ int main( void ) {
 	
 	/* Exibir logo do programa */
 	
-	printf( "--------------------\n" ) ;
+	printf( "==========================\n" ) ;
 	printf( "JOGO DE XADREZ\n" ) ;
-	printf( "--------------------\n" ) ;
+	printf( "==========================\n" ) ;
 	
 	CondRet = JGO_CriarJuiz( &Juiz ) ;
 	if ( CondRet == JGO_CondRetFaltouMemoria )
@@ -93,10 +96,10 @@ int main( void ) {
 		printf( "(0) - Comecar nova partida\n" ) ;
 		printf( "(1) - Inserir nova peca\n" ) ;
 		printf( "(2) - Sair do jogo\n" ) ;
-		printf( "--------------------\n" ) ;
+		printf( "==========================\n" ) ;
 		printf( "Opcao >> " ) ;
 		scanf( " %d" , &OpcaoEscolhida );
-		printf( "--------------------\n" ) ;
+		printf( "==========================\n" ) ;
 		
 		/* Iniciar partida */
 		if ( OpcaoEscolhida == 0 )
@@ -107,14 +110,13 @@ int main( void ) {
 			printf( "Digite o nome do quem jogara com as pecas pretas:\n" ) ;
 			printf( "Nome >> " ) ;
 			scanf( " %s" , JogadorPreto.nome ) ;
-			printf( "--------------------\n" ) ;
+			printf( "==========================\n" ) ;
 			printf("JOGADORES\n") ;
-			printf( "--------------------\n" ) ;
+			printf( "==========================\n" ) ;
 			printf("Jogador branco: %s\n", JogadorBranco.nome);
 			printf("Jogador preto: %s\n", JogadorPreto.nome);
-			printf( "--------------------\n" ) ;
+			printf( "==========================\n" ) ;
 			printf( "JOGO INICIADO\n" ) ;
-			printf( "--------------------\n" ) ;
 			
 			CondRet = JGO_IniciarJogo( Juiz , "..\\pecas\\default\\config.conf" ) ;
 			
@@ -129,33 +131,40 @@ int main( void ) {
 			while ( ( EventoJogada != JGO_XequeMate ) &&
 					!( strcmp( OpcaoJogada , JOGAR ) ) )
 			{
+				printf( "==========================\n" ) ;
 				printf( "Jogador da vez:\n" ) ;
 				printf("Nome: %s\n" , JogadorDaVez.nome ) ;
 				printf("Cor: %s\n", JogadorDaVez.cor ? "Branco" : "Preto" ) ;
-				printf( "--------------------\n" ) ;
+				printf( "==========================\n" ) ;
 				printf( "Digite a opcao desejada:\n" ) ;
 				printf( "(JOGAR) - Realizar jogada\n" ) ;
 				printf( " (FIM)  - Sair do jogo\n" ) ;
-				printf( "--------------------\n" ) ;
+				printf( "==========================\n" ) ;
 				printf( "Opcao >> " ) ;
 				scanf( " %s" , OpcaoJogada ) ;
 				toUpperCase( OpcaoJogada ) ;
 				
 				if ( ! strcmp( OpcaoJogada , JOGAR ) )
 				{
-					printf( "--------------------\n" ) ;
+
+					ImprimirTabuleiro( ) ;
+
+					printf( "==========================\n" ) ;
 					printf("Digite a casa inicial (Coluna / Linha , ex. H3):\n");
 					printf( "Casa >> " ) ;
 					scanf( " %c%c" , &ColunaInicial , &LinhaInicial ) ;
 					toUpperCase( &ColunaInicial ) ;
 					flush_in( ) ;
-					printf("%c%c\n", ColunaInicial, LinhaInicial);
+
+					ImprimirAmeacados(ColunaInicial,LinhaInicial);
+					ImprimirAmeacantes(ColunaInicial,LinhaInicial);
+
+					printf( "==========================\n" ) ;
 					printf("Digite a casa destino (Coluna / Linha , ex. H3):\n");
 					printf( "Casa >> " ) ;
 					scanf( " %c%c" , &ColunaFinal , &LinhaFinal ) ;
 					toUpperCase( &ColunaFinal ) ;
 					flush_in( ) ;
-					printf("%c%c\n", ColunaFinal, LinhaFinal);
 					
 					CondRet = JGO_RealizarJogada( Juiz ,
 												 JogadorDaVez.cor ,
@@ -163,22 +172,43 @@ int main( void ) {
 												 LinhaInicial ,
 												 ColunaInicial ,
 												 LinhaFinal ,
-												 ColunaFinal ) ;
-					
+												 ColunaFinal,
+												 &mensagem ) ;
+
+					if(CondRet != JGO_CondRetFaltouMemoria)
+			        {
+			        	if(CondRet == JGO_CondRetMovInvalido)
+			        	{
+							printf( "==========================\n" ) ;
+			        		printf("%s",mensagem);
+			        	}
+			            free(mensagem);
+			        }
+
 					if ( CondRet == JGO_CondRetFaltouMemoria )
 					{
+						printf( "==========================\n" ) ;
 						printf( "Memoria insuficiente para rodar o jogo\n" ) ;
 						printf( "O jogo sera encerrado\n" ) ;
 						return 0 ;
 					}
 					else if ( CondRet == JGO_CondRetFalhaArq )
 					{
+						printf( "==========================\n" ) ;
 						printf( "Erro inesperado ao abrir arquivos internos do jogo\n" ) ;
+						printf( "O jogo sera encerrado\n" ) ;
+						return 0 ;
+					}
+					else if ( CondRet == JGO_CondRetNaoExiste )
+					{
+						printf( "==========================\n" ) ;
+						printf( "Erro inesperado. Algum componente interno nao conseguiu ser criado.\n" ) ;
 						printf( "O jogo sera encerrado\n" ) ;
 						return 0 ;
 					}
 					else if ( CondRet == JGO_CondRetMovInvalido )
 					{
+						printf( "==========================\n" ) ;
 						printf( "Jogada invalida\n" ) ;
 					}
 					else if ( CondRet == JGO_CondRetOK )
@@ -189,6 +219,7 @@ int main( void ) {
 						
 						if ( EventoJogada == JGO_XequeMate )
 						{
+							printf( "==========================\n" ) ;
 							printf( "Jogador %s deixou seu oponente em Xeque-Mate\n" , JogadorDaVez.nome ) ;
 							printf( "%s ganhou, parabens!\n" , JogadorDaVez.nome ) ;
 							
@@ -205,10 +236,12 @@ int main( void ) {
 						} /* if */
 						
 						if ( EventoJogada == JGO_Xeque ) {
+							printf( "==========================\n" ) ;
 							printf( "Jogador %s esta em Xeque\n" , JogadorDaVez.nome ) ;
 						} /* if */
 					}
 					else {
+						printf( "==========================\n" ) ;
 						printf("Erro inesperado %d\n", CondRet);
 					} /* if */
 					
@@ -216,7 +249,7 @@ int main( void ) {
 				
 				else if ( ! strcmp( OpcaoJogada , TERMINAR_PARTIDA ) )
 				{
-					printf( "--------------------\n" ) ;
+					printf( "==========================\n" ) ;
 					CondRet = JGO_TerminarJogo( Juiz ) ;
 					
 					if ( CondRet == JGO_CondRetJogoNaoIniciado )
@@ -232,7 +265,7 @@ int main( void ) {
 				else
 				{
 					printf( "Opcao invalida!\n" ) ;
-					printf( "--------------------\n" ) ;
+					printf( "==========================\n" ) ;
 					strcpy( OpcaoJogada , JOGAR ) ;
 					
 				}/* if */
@@ -259,7 +292,7 @@ int main( void ) {
 		else if ( OpcaoEscolhida == 1 )
 		{
 			printf( "Visite o LEIAME.txt do programa e siga suas instrucoes!\n" ) ;
-			printf( "--------------------\n" ) ;
+			printf( "==========================\n" ) ;
 
 		} /* fim ativa: Inserir peça */
 		
@@ -283,11 +316,50 @@ int main( void ) {
 
 void ImprimirTabuleiro(  )
 {
-	char * estadoTabuleiro ;
-	JGO_GetPrintTabuleiro( Juiz , &estadoTabuleiro ) ;
-	printf( "%s\n" , estadoTabuleiro ) ;
-	free( estadoTabuleiro ) ;
+	char * print ;
+	char * it;
+	JGO_GetPrintTabuleiro( Juiz , &print ) ;
+	it = print;
+	while( *it != '\0' )
+	{
+		if(*it == 'V' && *(it+1) == 'V')
+		{
+			*it = '.';
+			*(it+1) = ' ';
+		}
+		it++ ;
+	}
+	printf( "==========================\n" ) ;
+	printf( "%s" , print ) ;
+	free( print ) ;
 }
+void ImprimirAmeacantes(char c, char l)
+{
+	char * print ;
+	JGO_tpCondRet jgoCondRet;
+	jgoCondRet = JGO_GetPrintListaAmeacantes( Juiz , l, c, &print ) ;
+	if(jgoCondRet == JGO_CondRetOK)
+	{
+		printf( "==========================\n" ) ;
+		printf("Lista de casas que ameacam esta casa:\n");
+		printf( "%s\n" , print ) ;
+	}
+	free( print ) ;
+}
+void ImprimirAmeacados(char c, char l)
+{
+	char * print ;
+	JGO_tpCondRet jgoCondRet;
+	jgoCondRet = JGO_GetPrintListaAmeacados( Juiz , l, c, &print ) ;
+	if(jgoCondRet == JGO_CondRetOK)
+	{
+		printf( "==========================\n" ) ;
+		printf("Lista de movimentos possiveis:\n");
+		printf( "%s\n" , print ) ;
+	}
+	free( print ) ;
+}
+
 
 void toUpperCase( char *f )
 {

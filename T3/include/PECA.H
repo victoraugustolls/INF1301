@@ -205,7 +205,8 @@ typedef struct PCA_tagPeca * PCA_tppPeca ;
 *  $FC Função: PCA  &Print peça
 *
 *  $ED Descrição da função
-*     Retorna a string (alocada dinamicamente) referente ao print da peca
+*     Retorna a string (alocada dinamicamente) referente ao print da peca.
+*     Peca que deseja-se pegar o print não pode ser nula.
 *
 *  $EP Parâmetros
 *     pPeca            - ponteiro para a peca
