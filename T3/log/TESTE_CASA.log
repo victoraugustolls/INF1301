@@ -42,31 +42,29 @@
   112  == Teste Print Casa Modificada
 !!!    0  Linha:   118  // --------------------------------------------- 
   120  == Teste Copiar Casa
->>>    1  Linha:   121  Erro nos parâmetros do comando:  =copiaCasa      casa0    casa1    OK
->>>    2  Linha:   123  Comando de teste ignorado:  =destroiCasa    casa1    OK
-!!!    2  Linha:   125  // --------------------------------------------- 
-  127  == Teste Obter Lista Ameacantes
-  132  == Teste Obter Lista Ameacantes Casa Inexistente
-  135  == Teste Modificar Ameacantes da Casa Iguais
-  141  == Teste do Teste Modificar Ameacantes da Casa Diferentes
->>>    3  Linha:   144  Lista de ameacantes recebida errada. 
-<<<    2  Linha:   145  Falha esperada foi recuperada. 
-  148  == Teste Modificar Ameacantes Casa Inexistente
-!!!    2  Linha:   151  // --------------------------------------------- 
-  153  == Teste Obter Lista Ameacados
-  158  == Teste Obter Lista Ameacados Casa Inexistente
-  161  == Teste Modificar Ameacados da Casa
-  167  == Teste do Teste Modificar Ameacados da Casa
->>>    3  Linha:   170  Lista de ameacados recebida errada. 
-<<<    2  Linha:   171  Falha esperada foi recuperada. 
-  174  == Teste Modificar Ameacados Casa Inexistente
+!!!    0  Linha:   126  // --------------------------------------------- 
+  128  == Teste Obter Lista Ameacantes
+  133  == Teste Obter Lista Ameacantes Casa Inexistente
+  136  == Teste Modificar Ameacantes da Casa Iguais
+  142  == Teste do Teste Modificar Ameacantes da Casa Diferentes
+>>>    1  Linha:   145  Lista de ameacantes recebida errada. 
+<<<    0  Linha:   146  Falha esperada foi recuperada. 
+  149  == Teste Modificar Ameacantes Casa Inexistente
+!!!    0  Linha:   152  // --------------------------------------------- 
+  154  == Teste Obter Lista Ameacados
+  159  == Teste Obter Lista Ameacados Casa Inexistente
+  162  == Teste Modificar Ameacados da Casa
+  168  == Teste do Teste Modificar Ameacados da Casa
+>>>    1  Linha:   171  Lista de ameacados recebida errada. 
+<<<    0  Linha:   172  Falha esperada foi recuperada. 
+  175  == Teste Modificar Ameacados Casa Inexistente
 
-!!! Número de linhas lidas:         175
+!!! Número de linhas lidas:         176
 !!! Número de casos de teste:        29
-!!! Número comandos corretos:        76
-!!! Número de falhas encontradas:     2
+!!! Número comandos corretos:        80
+!!! Número de falhas encontradas:     0
 
-!!! Foram encontrados problemas
+!!! Não foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0
