@@ -1,0 +1,41 @@
+% Aluno: Ian Albuquerque Raymundo da Silva
+%
+% Outros Integrantes do Grupo:
+%	Victor Augusto
+%	Lucas Ferraço
+%
+% Data (DD/MM/AAAA); Horas Trabalhadas; Tipo Tarefa; Descrição da Tarefa Realizada
+%
+% Tipo de Tarefas:
+% - estudar
+% - especificar os módulos
+% - especificar as funções
+% - revisar especificações
+% - projetar
+% - revisar projetos
+% - codificar módulo
+% - revisar código do módulo
+% - redigir script de teste
+% - revisar script de teste
+% - realizar os testes
+% - diagnosticar e corrigir os problemas encontrados
+
+10/11/2016; 2 horas ; revisar especificações; Revisar especificações dos módulos Tabuleiro e Jogo
+
+10/11/2016; 6 horas ; codificar módulo; Revisar especificações dos módulos Tabuleiro e Jogo
+
+10/11/2016; 2 horas ; revisar especificações; Revisar código dos módulos Tabuleiro e Jogo
+
+12/11/2016; 1 hora ; diagnosticar e corrigir os problemas encontrados; Ajudar a corrigir problemas de alguns dos módulos de testes e dos módulos Peça e Casa
+
+14/11/2016; 2 horas ; especificar os módulos; Especificacao do modulo para criacao de pecas simplificadas
+
+14/11/2016; 4 horas ; codificar módulo; Criacao do programa para criacao de pecas simplificadas
+
+15/11/2016; 7 horas ; codificar módulo; (Re)criacao do codigo de realizar jogada e detecção de xeques/xeque-mate
+
+16/11/2016; 6 horas ; diagnosticar e corrigir os problemas encontrados; Resolução da implementação do movimento das peças usuais do xadrez
+
+16/11/2016; 4 horas ; codificar módulo; Codificação de funções de print para os diversos módulos
+
+17/11/2016; 4 horas ; diagnosticar e corrigir os problemas encontrados; Debug geral, teste de game play, remoção de Instrumentação utilizada

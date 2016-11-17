@@ -1,0 +1,28 @@
+Data       Horas Trabalhadas     Tipo Tarefa                                            Descrição da Tarefa Realizada
+10/11/16   30min                 Revisar código                                         Verificar a implementação do módulo peça.
+10/11/16   1h                    Codificar módulo                                       Corrigir a implementação do módulo peça.
+11/11/16   1h                    Diagnosticar e corrigir os problemas encontrados       
+11/11/16   2h30min               Diagnosticar e corrigir os problemas encontrados       Verificar os problemas causados no módulo casa pela mudança no módulo peça
+                                                                                        e corrigir o mesmo, junto com seus testes.
+12/11/16   3h                    Diagnosticar e corrigir os problemas encontrados       Verificar os problemas causados no módulo tabuleiro pela mudança no módulo casa
+                                                                                        e corrigir o mesmo, junto com seus testes.
+12/11/16   1h                    Redigir Script de teste                                Adicionar testes para condições que não estavam sendo testadas nos módulos casa
+                                                                                        e peça.
+12/11/16   1h30min               Diagnosticar e corrigir os problemas encontrados       Verificar e corrigir os problemas apontados pelos testes do tabuleiro.
+12/11/16   1h30min               Diagnosticar e corrigir os problemas encontrados       Corrigir os problemas de compilação encontrados no módulo jogo.
+12/11/16   30min                 Codificar módulo                                       Realizar pequenas alterações internas no módulo tabuleiro quanto a organização.
+13/11/16   1h                    Codificar módulo                                       Adicionar novas funções no módulo lista.
+13/11/16   15min                 Planejar teste                                         Projetar os testes para as novas funções do módulo lista.
+13/11/16   30min                 Codificar módulo                                       Implementar testes para novas funções do módulo lista.
+13/11/16   30min                 Redigir Script de teste                                Completar o script de teste para as novas funções do módulo lista.
+13/11/16   3h30min               Diagnosticar e corrigir os problemas encontrados       Corrigir mais problemas apontados pelos testes do módulo tabuleiro.
+13/11/16   1h                    Codificar módulo                                       Modificar os testes do tabuleiro para ser possível testar mais casos.
+13/11/16   1h                    Redigir Script de teste                                Completar o script de teste do tabuleiro para cobrir os casos possíveis.
+13/11/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir novos problemas encontrados no módulo jogo e em seus testes.
+13/11/16   2h                    Diagnosticar e corrigir os problemas encontrados       Corrigir problemas encontrados no módulo tabuleiro na obtenção das listas.
+14/11/16   1h                    Codificar módulo                                       Refazer os testes do módulo tabuleiro para testar corretamente a obtenção das listas.
+14/11/16   30min                 Redigir Script de teste                                Modificar o script de teste do tabuleiro para os novos testes de obtenção das listas.
+15/11/16   3h                    Codificar módulo                                       Modificar a principal para deixar o jogo mais amigável e compreensível para o usuário.
+16/11/16   30min                 Diagnosticar e corrigir os problemas encontrados       Corrigir problemas encontrados na implementação do módulo de criar peça customizada.
+16/11/16   2h                    Codificar módulo                                       Criar testes para as novas funções dos módulos peça, casa e tabuleiro.
+17/11/16   1h                    Redigir Script de teste                                Completar os testes dos módulos peça, casa e tabuleiro para as novas funções.
