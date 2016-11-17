@@ -500,7 +500,7 @@ CSA_tpCondRet CSA_GetPrintCasa ( CSA_tppCasa pCasa, char** print )
         return CSA_CondRetFaltouMemoria;
     }
     return CSA_CondRetOK;
-}
+} /* Fim função: CSA  &Get Print Casa */
 
 
 /*****  Código das funções encapsuladas no módulo  *****/
