@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     3       vas   16/nov/2016 adicao dos testes para copiar e print casa
 *     2       vas   10/nov/2016 alteracoes devido a mudanca da estrutura da peca
 *     1       vas   10/out/2016 início desenvolvimento
 *
@@ -36,6 +37,8 @@ static const char INSERE_PECA_CASA_CMD       	 [ ] = "=inserePeca"    	    ;
 static const char REMOVE_PECA_CASA_CMD       	 [ ] = "=removePeca"	        ;
 static const char OBTER_PECA_CASA_CMD		 	 [ ] = "=obterPeca"				;
 static const char COMPARA_CASAS_CMD		 	     [ ] = "=comparaCasas"			;
+static const char COPIA_CASA_CMD		 	     [ ] = "=copiaCasa" 			;
+static const char PRINT_CASA_CMD		 	     [ ] = "=printCasa" 			;
 static const char MODIFICAR_LISTA_AMEACANTE_CMD  [ ] = "=modificarAmeacante"	;
 static const char MODIFICAR_LISTA_AMEACADOS_CMD  [ ] = "=modificarAmeacados"	;
 static const char OBTER_LISTA_AMEACANTE_CMD  	 [ ] = "=obterAmeacante"		;
@@ -114,6 +117,10 @@ LIS_tppLista listaRecebida ;
 
 		char * nomePeca ;
 		char * corPeca ;
+		char * print ;
+		char * print2 ;
+
+		char printEsp[ 10 ] ;
 
 		int i ;
 
@@ -241,6 +248,8 @@ LIS_tppLista listaRecebida ;
 
 		} /* fim ativa: Testar Obter peça da casa */
 
+		/* Testar ComparaCasas */
+
 		else if ( strcmp( ComandoTeste , COMPARA_CASAS_CMD ) == 0 )
 		{
 
@@ -273,7 +282,77 @@ LIS_tppLista listaRecebida ;
 			        					"Condicao de retorno errada ao comparar casa." ) ;
 			} /* if */
 
-		} /* fim ativa: Testar Remover peça da casa */
+		} /* fim ativa: Testar ComparaCasas */
+
+		/* Testar PrintCasa */
+
+		else if ( strcmp( ComandoTeste , PRINT_CASA_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "isi" , &inxCasa ,
+										printEsp , &CondRetEsp ) ;
+
+			if ( ( numLidos != 3 )
+				|| ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			{
+				return TST_CondRetParm ;
+			} /* if */
+
+			CondRet = CSA_GetPrintCasa( vtCasas[ inxCasa ] , &print ) ;
+
+			if ( CondRetEsp != CSA_CondRetOK )
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+									"Condicao de retorno errada ao pegar print da casa." ) ;
+			} /* if */
+
+			return TST_CompararString( printEsp , print ,
+										"Print da casa recebido errado." ) ;
+
+		} /* fim ativa: Testar PrintCasa */
+
+		/* Testar CopiarCasas */
+
+		else if ( strcmp( ComandoTeste , COPIA_CASA_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "iii" , &inxCasa ,
+										&inxCasa2 , &CondRetEsp ) ;
+
+			if ( ( numLidos != 3 )
+				|| ( ! ValidarInxCasa( inxCasa , NAO_VAZIO )))
+			{
+				return TST_CondRetParm ;
+			} /* if */
+
+			CondRet = CSA_CopiarCasa( &vtCasas[ inxCasa2 ] , vtCasas[ inxCasa ] ) ;
+
+			if ( CondRetEsp != CSA_CondRetOK )
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+									"Condicao de retorno errada ao copiar casa." ) ;
+			} /* if */
+
+			CondRet = CSA_GetPrintCasa( vtCasas[ inxCasa ] , &print ) ;
+
+			if ( CondRetEsp != CSA_CondRetOK )
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+									"Condicao de retorno errada ao pegar print da casa original." ) ;
+			} /* if */
+
+			CondRet = CSA_GetPrintCasa( vtCasas[ inxCasa2 ] , &print2 ) ;
+
+			if ( CondRetEsp != CSA_CondRetOK )
+			{
+				return TST_CompararInt( CondRetEsp , CondRet ,
+									"Condicao de retorno errada ao pegar print da casa copia." ) ;
+			} /* if */
+
+			return TST_CompararString( print , print2 ,
+										"Print da casa recebido errado ao copiar peca." ) ;
+
+		} /* fim ativa: Testar CopiarCasas */
 
 		/* Testar Modificar lista ameacantes */
 

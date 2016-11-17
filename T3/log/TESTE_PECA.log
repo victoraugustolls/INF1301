@@ -40,11 +40,15 @@
    83  == Teste Comparar PeÃ§as Diferentes
    90  == Teste Comparar PeÃ§as Vazias
 !!!    0  Linha:    95  // --------------------------------------------- 
-   97  == Teste com mÃºltiplas peÃ§as
+   97  == Teste Copiar PeÃ§a
+!!!    0  Linha:   103  // --------------------------------------------- 
+  105  == Teste Print PeÃ§a
+!!!    0  Linha:   110  // --------------------------------------------- 
+  112  == Teste com mÃºltiplas peÃ§as
 
-!!! Número de linhas lidas:         103
-!!! Número de casos de teste:        16
-!!! Número comandos corretos:        41
+!!! Número de linhas lidas:         118
+!!! Número de casos de teste:        18
+!!! Número comandos corretos:        48
 !!! Número de falhas encontradas:     0
 
 !!! Não foram encontrados problemas

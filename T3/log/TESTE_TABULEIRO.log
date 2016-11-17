@@ -44,18 +44,34 @@
   134  == Teste de Obtencao de Peca do Tabuleiro Inexistente
   137  == Teste de Obtencao de Peca do Tabuleiro Inexistente
 !!!    0  Linha:   144  // --------------------------------------------- 
-  146  == Teste de Obtencao de Lista de Ameacantes de uma Peca do Tabuleiro
-!!!    0  Linha:   155  // --------------------------------------------- 
-  157  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
-!!!    0  Linha:   165  // --------------------------------------------- 
-  167  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
+  146  == Teste de Obter Print do Tabuleiro
+!!!    0  Linha:   151  // --------------------------------------------- 
+  153  == Teste de Copiar Tabuleiro
+!!!    0  Linha:   159  // --------------------------------------------- 
+  161  == Teste de Obtencao de Lista de Ameacantes de uma Peca do Tabuleiro
+!!!    0  Linha:   170  // --------------------------------------------- 
+  172  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
+>>>    1  Linha:   176  As listas nao sao equivalentes. 
+>>>    2  Linha:   177  Não é comando recuperar:  =retirarPeca            tab0  'A'   '1'   OK
+>>>    3  Linha:   178  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+!!!    3  Linha:   180  // --------------------------------------------- 
+  182  == Teste de Obtencao de Lista de Ameacados de uma Peca do Tabuleiro
+>>>    4  Linha:   183  Erro nos parâmetros do comando:  =criarTabuleiro         tab0  OK
+>>>    5  Linha:   185  Comando de teste ignorado:  =inserirPeca            tab0  'H'   '8'   'R'   'B'   OK
+>>>    6  Linha:   186  Comando de teste ignorado:  =obterListaAmeacados    tab0  'C'   '3'   "BBBCCDDD"   "23424234"   OK
+>>>    7  Linha:   187  Comando de teste ignorado:  =obterListaAmeacantes   tab0  'C'   '3'   ""   ""   OK
+>>>    8  Linha:   188  Comando de teste ignorado:  =inserirPeca            tab0  'C'   '4'   'R'   'B'   OK
+>>>    9  Linha:   189  Comando de teste ignorado:  =obterListaAmeacados    tab0  'C'   '3'   "BBBCCDDD"   "23424234"   OK
+>>>   10  Linha:   190  Comando de teste ignorado:  =obterListaAmeacantes   tab0  'C'   '3'   "C"   "4"   OK
+>>>   11  Linha:   191  Comando de teste ignorado:  =retirarPeca            tab0  'A'   '1'   OK
+>>>   12  Linha:   192  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
 
-!!! Número de linhas lidas:         177
-!!! Número de casos de teste:        26
-!!! Número comandos corretos:        94
-!!! Número de falhas encontradas:     0
+!!! Número de linhas lidas:         192
+!!! Número de casos de teste:        28
+!!! Número comandos corretos:        88
+!!! Número de falhas encontradas:    12
 
-!!! Não foram encontrados problemas
+!!! Foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0
