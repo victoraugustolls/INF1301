@@ -1,15 +1,4 @@
 
-Existem três tipos de arquivos para serem alterados ao
-se definir uma nova peça
-
-. Arquivo de Configuração
-	Determina o local dos arquivos que determinam
-	o movimento das peças e as posições das peças
-	do tabuleiro inicial.
-
-. Arquivo de Tabuleiro Inicial
-	Determina a arrumação inicial do tabuleiro.
-
 . Arquivo de Movimento de Peças (.PCA)
 	Determina uma expressão lógica para determinar
 	quando uma peça pode realizar um movimento válido.
@@ -23,59 +12,6 @@ NOTA IMPORTANTE:
 	é mais poderosa e permite a definição de uma variedade
 	de peças com movimentos e regras de movimentação
 	bastante arbitrárias.
-
-----------------------------------------------------
---- Arquivo de Configuração ------------------------
-----------------------------------------------------
-
-	Na pasta pecas/default existe um arquivo chamado config.conf.
-
-	Esse arquivo contém o caminho dos diretórios dos arquivos que devem
-	ser alterados. Este arquivo deve possuir a sintaxe:
-
-----------------------------------------------------
-
-	tabuleiro_inicial       <CAMINHO PARA O ARQUIVO DE TABULEIRO INICIAL>
-	diretorio_pecas         <CAMINHO PARA A PASTA AONDE CADA PEÇA SERÁ INSERIDA>
-
-----------------------------------------------------
-
-	Exemplo:
-
-	tabuleiro_inicial       default\inicial.pca
-	diretorio_pecas         default\pecas\
-
-----------------------------------------------------
---- Arquivo de Tabuleiro Inicial -------------------
-----------------------------------------------------
-
-	Este arquivo determina a configuração do tabuleiro inicial.
-
-	Ele possui a seguinte sintaxe:
-
-----------------------------------------------------
-
-	<NUMERO N DE CASAS TOTAIS NO TABULEIRO>
-
-	<CARACTER IDENTIFICADOR DA PEÇA 1> <CARACTER IDENTIFICADOR DA COR DA PEÇA 1>
-	<CARACTER IDENTIFICADOR DA PEÇA 2> <CARACTER IDENTIFICADOR DA COR DA PEÇA 2>
-	<CARACTER IDENTIFICADOR DA PEÇA 3> <CARACTER IDENTIFICADOR DA COR DA PEÇA 3>
-	...
-	<CARACTER IDENTIFICADOR DA PEÇA N> <CARACTER IDENTIFICADOR DA COR DA PEÇA N>
-	
-----------------------------------------------------
-
-	Exemplo (Xadrez usual):
-
-	64
-	TP CP BP DP RP BP CP TP
-	PP PP PP PP PP PP PP PP
-	VV VV VV VV VV VV VV VV
-	VV VV VV VV VV VV VV VV
-	VV VV VV VV VV VV VV VV
-	VV VV VV VV VV VV VV VV
-	PB PB PB PB PB PB PB PB
-	TB CB BB DB RB BB CB TB
 
 ----------------------------------------------------
 --- Arquivos de Cada Peça --------------------------
@@ -233,9 +169,3 @@ NOTA IMPORTANTE:
 				V_DIM 1 X
 				V_DIM 1 D
 			P_VAZ X
-
-
-
-
-
-
