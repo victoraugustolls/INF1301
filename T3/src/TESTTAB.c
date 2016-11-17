@@ -13,7 +13,8 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
- *		 3       vas   13/nov/2016 mudaças para nova interface do tabuleiro
+ *       3       vas   17/nov/2016 adição dos testes para copia e print do tabuleiro
+ *		 2       vas   13/nov/2016 mudaças para nova interface do tabuleiro
  *       1       lff   05/out/2016 início desenvolvimento
  *
  ***************************************************************************/
@@ -39,6 +40,8 @@ static const char MOVER_PECA_CMD                 [ ] = "=moverPeca"             
 static const char RETIRAR_PECA_CMD               [ ] = "=retirarPeca"           ;
 static const char OBTER_CASA_CMD                 [ ] = "=obterCasa"             ;
 static const char OBTER_PECA_CMD                 [ ] = "=obterPeca"             ;
+static const char COPIA_TAB_CMD                  [ ] = "=copiaTab"              ;
+static const char PRINT_TAB_CMD                  [ ] = "=printTab"              ;
 static const char OBTER_AMEACANTES_CMD           [ ] = "=obterListaAmeacantes"  ;
 static const char OBTER_AMEACADOS_CMD            [ ] = "=obterListaAmeacados"   ;
 
@@ -80,19 +83,23 @@ static int ValidarInxTabuleiro( int inxTab , int Modo ) ;
  *           - anula o tabuleiro. Provoca vazamento de memória
  *     =criarTabuleiro           inx    condRetorno
  *	   =destruirTabuleiro        inx    condRetorno
- *     =inserirPeca              inx
- *     =moverPeca                inx    char         condRetorno
- *     =retirarPeca              inx    char         condRetorno
- *     =obterPeca                inx
- *     =obterListaAmeacantes     inx    condRetorno
- *     =obterListaAmeacados      inx    condRetorno
+ *     =inserirPeca              inx    colunaInicio linhaInicio colunaFim          linhaFim       condRetorno
+ *     =moverPeca                inx    colunaInicio linhaInicio colunaFim          linhaFim       condRetorno
+ *     =retirarPeca              inx    coluna       linha       condRetorno
+ *     =obterCasa                inx    coluna       linha       nome               cor            condRetorno
+ *     =obterPeca                inx    coluna       linha       nome               cor            condRetorno
+ *     =copiaTab                 inx    inx2         condRetorno
+ *     =printTab                 inx    condRetorno
+ *     =obterListaAmeacantes     inx    coluna       linha       conteudoColuna     conteudoLinha  condRetorno
+ *     =obterListaAmeacados      inx    coluna       linha       conteudoColuna     conteudoLinha  condRetorno
  *
  ***********************************************************************/
 
 TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 {
 	
-	int inxTab     = -1 , 
+	int inxTab     = -1 ,
+		inxTab2    = -1 , 
 		numLidos   = -1 ,
 		CondRetEsp = -1 ;
 	
@@ -110,6 +117,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	char * corObtida  ;
 	char * linhaObtida ;
 	char * colunaObtida ;
+	char * print ;
+	char * print2 ;
+
+	char printVazio[ 400 ] = " |A  B  C  D  E  F  G  H  \n--------------------------\n1|VV VV VV VV VV VV VV VV \n2|VV VV VV VV VV VV VV VV \n3|VV VV VV VV VV VV VV VV \n4|VV VV VV VV VV VV VV VV \n5|VV VV VV VV VV VV VV VV \n6|VV VV VV VV VV VV VV VV \n7|VV VV VV VV VV VV VV VV \n8|VV VV VV VV VV VV VV VV \n" ;
 
 	int size_string;
 
@@ -340,6 +351,76 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 								"Condicao de retorno errada ao obter peca." ) ;
 		
 	} /* fim ativa: Testar ObterPecaTabuleiro */
+
+	/* Testar PrintTabuleiro */
+	
+	else if ( strcmp( ComandoTeste , PRINT_TAB_CMD ) == 0 )
+	{
+
+		numLidos = LER_LerParametros( "ii" , &inxTab ,
+									&CondRetEsp ) ;
+		
+		if ( ( numLidos != 2 ) 
+			|| ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
+		{
+			return TST_CondRetParm ;
+		} /* if */
+		
+		CondRet = TAB_GetPrintTabuleiro( vtTabuleiros[ inxTab ] , &print  ) ;
+
+		if ( CondRet != TAB_CondRetOK )
+		{
+			return TST_CompararInt( CondRetEsp , CondRet ,
+								"Condicao de retorno errada ao obter print do tabuleiro." ) ;
+		} /* if */
+
+		return TST_CompararString( printVazio , print , 
+									"Print recebido errado ao obter print do tabuleiro." ) ;
+		
+	} /* fim ativa: Testar PrintTabuleiro */
+
+	/* Testar CopiaTabuleiro */
+	
+	else if ( strcmp( ComandoTeste , COPIA_TAB_CMD ) == 0 )
+	{
+
+		numLidos = LER_LerParametros( "iii" , &inxTab ,
+									&inxTab2 , &CondRetEsp ) ;
+		
+		if ( ( numLidos != 3 )
+			|| ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
+		{
+			return TST_CondRetParm ;
+		} /* if */
+		
+		CondRet = TAB_CopiarTabuleiro( &vtTabuleiros[ inxTab2 ] , vtTabuleiros[ inxTab ] ) ;
+
+		if ( CondRet != TAB_CondRetOK )
+		{
+			return TST_CompararInt( CondRetEsp , CondRet ,
+								"Condicao de retorno errada ao copiar tabuleiro." ) ;
+		} /* if */
+
+		CondRet = TAB_GetPrintTabuleiro( vtTabuleiros[ inxTab ] , &print ) ;
+
+		if ( CondRet != TAB_CondRetOK )
+		{
+			return TST_CompararInt( CondRetEsp , CondRet ,
+								"Condicao de retorno errada ao obter print do tabuleiro original." ) ;
+		} /* if */
+
+		CondRet = TAB_GetPrintTabuleiro( vtTabuleiros[ inxTab2 ] , &print2 ) ;
+
+		if ( CondRet != TAB_CondRetOK )
+		{
+			return TST_CompararInt( CondRetEsp , CondRet ,
+								"Condicao de retorno errada ao obter print do tabuleiro copia." ) ;
+		} /* if */
+
+		return TST_CompararString( print , print2 , 
+									"Print recebido errado ao copiar tabuleiro." ) ;
+		
+	} /* fim ativa: Testar CopiaTabuleiro */
 	
 	/* Testar ObterListaAmeacantesTabuleiro */
 	
@@ -347,7 +428,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	{
 		LIS_tpCondRet retLista1 ;
 		LIS_tpCondRet retLista2 ;
-		int found;
+		int found ;
 
 		numLidos = LER_LerParametros( "iccssi" , &inxTab ,
 									&charParm1 , &charParm2 ,
@@ -366,88 +447,93 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		if( CondRet != CondRetEsp )
 		{
 			return TST_NotificarFalha( "Condicao de retorno errada." ) ;	
-		}
+		} /* if */
 
-		size_string = strlen(listaCharLinhas);
+		size_string = strlen( listaCharLinhas ) ;
 
+		retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
+		retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
 
-   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
-   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
 		if( retLista1 != retLista2 )
 		{
 			return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
-		}
+		} /* if */
 
-		if(retLista1 == LIS_CondRetListaVazia)
+		if( retLista1 == LIS_CondRetListaVazia )
 		{
-			if(size_string==0)
+			if( size_string == 0 )
 			{
-            return TST_CondRetOK;
+				return TST_CondRetOK ;
 			}
 			else
 			{
 				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;	
-			}
+			} /* if */
+		} /* if */
+
+		while( retLista1 != LIS_CondRetNoCorrenteUlt )
+		{
+			retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida ) ;
+			retLista2 = LIS_ObterValor( listaColunas, &colunaObtida ) ;
+
+			if( retLista1 != retLista2 )
+			{
+				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
+			} /* if */
+
+			found = 0 ;
+
+			for( i = 0 ; i < size_string ; i++ )
+			{
+				if( listaCharLinhas[ i ] == *linhaObtida && listaCharColunas[ i ] == *colunaObtida )
+				{
+					found = 1 ;
+					break ;
+				} /* if */
+			} /* for */
+
+			if( found == 0 )
+			{
+				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;				
+			} /* if */
+
+			retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
+			retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
+
+			if( retLista1 != retLista2 )
+			{
+				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
+			} /* if */
 		}
 
-   	while(retLista1 != LIS_CondRetNoCorrenteUlt)
-   	{
-		   retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
-		   retLista2 = LIS_ObterValor( listaColunas, &colunaObtida) ;  
-			if( retLista1 != retLista2 )
-			{
-				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
-			}
-
-			found = 0;
-			for(i=0; i<size_string; i++)
-			{
-				if(listaCharLinhas[i] == *linhaObtida && listaCharColunas[i] == *colunaObtida)
-				{
-					found = 1;
-					break;
-				}
-			}
-
-			if(found == 0)
-			{
-				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;				
-			}
-
-	   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
-	   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
-			if( retLista1 != retLista2 )
-			{
-				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
-			}
-	   }
-
-		for(i=0; i<size_string; i++)
+		for( i = 0 ; i < size_string ; i++ )
 		{
-			found = 0;
-	   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
-	   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
-		   while(retLista1 != LIS_CondRetNoCorrenteUlt)
-	   	{
-			   retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
-			   retLista2 = LIS_ObterValor( listaColunas, &colunaObtida) ;  
+			found = 0 ;
+			retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
+			retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
 
-				if(listaCharLinhas[i] == *linhaObtida && listaCharColunas[i] == *colunaObtida)
+			while(retLista1 != LIS_CondRetNoCorrenteUlt)
+			{
+				retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida ) ;
+				retLista2 = LIS_ObterValor( listaColunas, &colunaObtida ) ;
+
+				if( listaCharLinhas[ i ] == *linhaObtida && listaCharColunas[ i ] == *colunaObtida )
 				{
-					found = 1;
-					break;
-				}
+					found = 1 ;
+					break ;
+				} /* if */
 
-		   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
-		   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
-		   }  
-			if(found == 0)
+				retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
+				retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
+			} /* while */
+
+			if( found == 0 )
 			{
 				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;				
-			}
-		}	
+			} /* if */
+		} /* for */
 
-      return TST_CondRetOK;		
+		return TST_CondRetOK;		
 
 	} /* fim ativa: Testar ObterListaAmeacantesTabuleiro */
 
@@ -458,7 +544,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		
 		LIS_tpCondRet retLista1 ;
 		LIS_tpCondRet retLista2 ;
-		int found;
+		int found ;
 
 		numLidos = LER_LerParametros( "iccssi" , &inxTab ,
 									&charParm1 , &charParm2 ,
@@ -477,93 +563,99 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		if( CondRet != CondRetEsp )
 		{
 			return TST_NotificarFalha( "Condicao de retorno errada." ) ;	
-		}
+		} /* if */
 
-		size_string = strlen(listaCharLinhas);
+		size_string = strlen( listaCharLinhas ) ;
 
+		retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
+		retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
 
-   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
-   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
 		if( retLista1 != retLista2 )
 		{
 			return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
-		}
+		} /* if */
 
 		if(retLista1 == LIS_CondRetListaVazia)
 		{
 			if(size_string==0)
 			{
-            return TST_CondRetOK;
+				return TST_CondRetOK;
 			}
 			else
 			{
 				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;	
-			}
-		}
+			} /* if */
+		} /* if */
 
-   	while(retLista1 != LIS_CondRetNoCorrenteUlt)
-   	{
-		   retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
-		   retLista2 = LIS_ObterValor( listaColunas, &colunaObtida) ;  
+		while(retLista1 != LIS_CondRetNoCorrenteUlt)
+		{
+			retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
+			retLista2 = LIS_ObterValor( listaColunas, &colunaObtida ) ;
+
 			if( retLista1 != retLista2 )
 			{
 				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
-			}
+			} /* if */
 
-			found = 0;
-			for(i=0; i<size_string; i++)
+			found = 0 ;
+
+			for( i = 0 ; i < size_string ; i++ )
 			{
-				if(listaCharLinhas[i] == *linhaObtida && listaCharColunas[i] == *colunaObtida)
+				if( listaCharLinhas[ i ] == *linhaObtida && listaCharColunas[ i ] == *colunaObtida )
 				{
-					found = 1;
-					break;
-				}
-			}
+					found = 1 ;
+					break ;
+				} /* if */
+			} /* for */
 
-			if(found == 0)
+			if( found == 0 )
 			{
 				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;				
-			}
+			} /* if */
 
-	   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
-	   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
+			retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
+			retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
+
 			if( retLista1 != retLista2 )
 			{
 				return TST_NotificarFalha( "Erro nas assertivas de TAB_ObterListaAmeacantesTabuleiro." ) ;	
-			}
-	   }
+			} /* if */
 
-		for(i=0; i<size_string; i++)
+		} /* while */
+
+		for( i = 0 ; i < size_string ; i++ )
 		{
 			found = 0;
-	   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
-	   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
-		   while(retLista1 != LIS_CondRetNoCorrenteUlt)
-	   	{
-			   retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
-			   retLista2 = LIS_ObterValor( listaColunas, &colunaObtida) ;  
+			retLista1 = LIS_AvancarElementoCorrente( listaLinhas, -100 ) ;
+			retLista2 = LIS_AvancarElementoCorrente( listaColunas, -100 ) ;
+
+			while(retLista1 != LIS_CondRetNoCorrenteUlt)
+			{
+				retLista1 = LIS_ObterValor( listaLinhas, &linhaObtida) ;
+				retLista2 = LIS_ObterValor( listaColunas, &colunaObtida) ;  
 
 				if(listaCharLinhas[i] == *linhaObtida && listaCharColunas[i] == *colunaObtida)
 				{
-					found = 1;
-					break;
-				}
+					found = 1 ;
+					break ;
+				} /* if */
 
-		   	retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
-		   	retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
-		   }  
-			if(found == 0)
+				retLista1 = LIS_AvancarElementoCorrente( listaLinhas, 1 ) ;
+				retLista2 = LIS_AvancarElementoCorrente( listaColunas, 1 ) ;
+			} /* while */
+
+			if( found == 0 )
 			{
 				return TST_NotificarFalha( "As listas nao sao equivalentes." ) ;				
-			}
-		}	
+			} /* if */
+		} /* for */
 		
-      return TST_CondRetOK;	
-        
-    } /* fim ativa: Testar ObterListaAmeacadosTabuleiro */
-    
-    return TST_CondRetNaoConhec ;
-    
+		return TST_CondRetOK;	
+		
+	} /* fim ativa: Testar ObterListaAmeacadosTabuleiro */
+	
+	return TST_CondRetNaoConhec ;
+	
 } /* Fim funÁ„o: TTAB &Testar tabuleiro */
 
 /*****  Código das funções encapsuladas no módulo  *****/

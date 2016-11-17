@@ -143,6 +143,21 @@
 
 // ---------------------------------------------
 
+== Teste de Obter Print do Tabuleiro
+=criarTabuleiro         tab0   OK
+=printTab               tab0   OK
+=destruirTabuleiro      tab0   OK
+
+// ---------------------------------------------
+
+== Teste de Copiar Tabuleiro
+=criarTabuleiro         tab0   OK
+=copiaTab               tab0   tab1    OK
+=destruirTabuleiro      tab0   OK
+=destruirTabuleiro      tab1   OK
+
+// ---------------------------------------------
+
 == Teste de Obtençcao de Lista de Ameaçcantes de uma Peçca do Tabuleiro
 =criarTabuleiro         tab0  OK
 =inserirPeca            tab0  'A'   '1'   'R'   'P'   OK

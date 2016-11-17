@@ -111,9 +111,10 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfi
  *  $FC Função: TAB  &Copiar tabuleiro
  *
  *  $ED Descrição da função
- *     Cria um tabuleiro igual ao tabuleiroOriginal.
+ *     Cria um tabuleiro igual ao tabuleiro original.
+ *     O tabuleiro o qual deseja-se copiar não pode ser nulo.
  *
- *  $EP Par‚metros
+ *  $EP Parametros
  *     pTabuleiro - ponteiro para o tabuleiro sendo criado
  *     tabuleiroOriginal - tabuleiro original a ser copiado
  *
@@ -365,7 +366,8 @@ TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
 *  $FC Função: TAB  &Print Tabuleiro
 *
 *  $ED Descrição da função
-*     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro
+*     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro.
+*     O tabuleiro o qual deseja-se obter o print não pode ser nulo.
 *
 *  $EP Parâmetros
 *     pTabuleiro            - ponteiro para o tabuleiro

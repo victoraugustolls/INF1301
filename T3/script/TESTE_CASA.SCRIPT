@@ -1,7 +1,7 @@
 // Script: TestecASA.script
 // Autores: Victor Augusto
 // Autor Original: Victor Augusto
-// Data: 11/out/2016
+// Data: 16/out/2016
 // Propósito: Testar por completo as funções de acesso do módulo CASA, com exceção
 // do caso em que ocorre falta de memória.
 //
@@ -101,6 +101,27 @@
 =inserePeca		casa0	'P'     'P'   OK
 =comparaCasas   casa0   casa1   1     CasaInexistente
 =destroiCasa    casa0   OK
+
+// ---------------------------------------------
+
+== Teste Print Casa Nova
+=criarCasa      casa0   OK
+=printCasa      casa0   "VV"    OK
+=destroiCasa    casa0   OK
+
+== Teste Print Casa Modificada
+=criarCasa      casa0   OK
+=inserePeca     casa0   'P'     'P'    OK
+=printCasa      casa0   "PP"    OK
+=destroiCasa    casa0   OK
+
+// ---------------------------------------------
+
+== Teste Copiar Casa
+=criarCasa      casa0    OK
+=copiaCasa      casa0    casa1    OK
+=destroiCasa    casa0    OK
+=destroiCasa    casa1    OK
 
 // ---------------------------------------------
 
