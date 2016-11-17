@@ -5,7 +5,7 @@
 
 NOTA IMPORTANTE:
 	Adicionar peças novas requer um conhecimento
-	sobre básico sobre composição (aninhamento) de
+	básico sobre composição (aninhamento) de
 	comandos e lógica proposicional e/ou de primeira
 	ordem.
 	Apesar de mais complexo, essa forma de definição
