@@ -161,6 +161,7 @@ int main( void ) {
 
 					printf( "==========================\n" ) ;
 					printf("Digite a casa destino (Coluna / Linha , ex. H3):\n");
+					printf( "(As casas ameacadas por uma casa indicam possibilidades de movimento.)\n" ) ;
 					printf( "Casa >> " ) ;
 					scanf( " %c%c" , &ColunaFinal , &LinhaFinal ) ;
 					toUpperCase( &ColunaFinal ) ;
@@ -215,7 +216,13 @@ int main( void ) {
 					{
 						/* Atualizar o tabuleiro impresso */
 
+						printf( "==========================\n" ) ;
+						printf( "Jogada %c%c -> %c%c.\n",ColunaInicial,LinhaInicial,ColunaFinal,LinhaFinal) ;
+
 						ImprimirTabuleiro( ) ;
+
+						ImprimirAmeacados(ColunaFinal,LinhaFinal);
+						ImprimirAmeacantes(ColunaFinal,LinhaFinal);
 						
 						if ( EventoJogada == JGO_XequeMate )
 						{
@@ -341,7 +348,7 @@ void ImprimirAmeacantes(char c, char l)
 	if(jgoCondRet == JGO_CondRetOK)
 	{
 		printf( "==========================\n" ) ;
-		printf("Lista de casas que ameacam esta casa:\n");
+		printf( "Lista de casas que ameacam a casa %c%c\n",c,l);
 		printf( "%s\n" , print ) ;
 	}
 	free( print ) ;
@@ -354,7 +361,7 @@ void ImprimirAmeacados(char c, char l)
 	if(jgoCondRet == JGO_CondRetOK)
 	{
 		printf( "==========================\n" ) ;
-		printf("Lista de movimentos possiveis:\n");
+		printf( "Lista de casas ameacadas pela casa %c%c\n",c,l);
 		printf( "%s\n" , print ) ;
 	}
 	free( print ) ;
