@@ -26,3 +26,5 @@
 12/11/2016; 5 horas ; diagnosticar e corrigir os problemas encontrados e codificar módulo; Ajudei o Victor a corrigir problemas dos testes dos módulos JOGO e TABULEIRO e também codifiquei o módulo PRINCIPAL, o qual será responsável por rodar o jogo.
 
 13/11/2016; 3 horas ; projetar; Fiz a argumentação de corretude da função TAB_DestruirTabuleiro.
+
+16/11/2016; 3 horas ; projetar; Fiz a arquitetura completa da aplicação.
