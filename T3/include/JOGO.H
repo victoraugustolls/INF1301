@@ -276,6 +276,7 @@ JGO_tpCondRet JGO_GetPrintTabuleiro( JGO_tppJuiz pJuiz, char** print ) ;
 *     JGO_CondRetFaltouMemoria  - faltou memoria
 *     JGO_CondRetJogoNaoIniciado - jogo nao iniciado
 *     JGO_CondRetNaoExiste     - algum elemento interno nao existe
+*     JGO_CondRetMovInvalido    - as linhas e colunas nao sao validas
 *
 ***********************************************************************/
 
