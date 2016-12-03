@@ -1,0 +1,25 @@
+[Diretorios]
+
+Nome        =  TEST_VMV
+PathDefault =  ..\..\include
+err         =  ..\err
+obj         =  ..\obj
+c           =  ..\..\src
+h           =  ..\..\include
+def         =  ..\tabs
+tab         =  ..\tabs
+inc         =  ..\tabs
+
+[Modulos]
+TESTVMV
+VALIDA_MOV
+
+[BuildInicio]
+/OUT:TEST_VMV.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+..\..\lib\ArcaboucoTeste.lib
+
+[Fim]

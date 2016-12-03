@@ -1,0 +1,25 @@
+[Diretorios]
+
+Nome        =  TEST_LIS
+PathDefault =  ..\..\include
+err         =  ..\err
+obj         =  ..\obj
+c           =  ..\..\src
+h           =  ..\..\include
+def         =  ..\tabs
+tab         =  ..\tabs
+inc         =  ..\tabs
+
+[Modulos]
+TESTLIS
+LISTA
+
+[BuildInicio]
+/OUT:TEST_LIS.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+..\..\lib\ArcaboucoTeste.lib
+
+[Fim]
