@@ -296,7 +296,9 @@ TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabulei
                 return TAB_CondRetFaltouMemoria ;
             } /* if */
             //TRATAR RET LISTA CORRETAMENTE
-            casaCopia = TAB_PegarCasa( *pTabuleiro , i , j ) ;
+            printf("Vai pegar casa copia\n");
+            casaCopia = TAB_PegarCasa( pNovoTabuleiro , i , j ) ;
+            printf("Pegou casa copia");
             if ( casaCopia == NULL )
             {
                 return TAB_CondRetFaltouMemoria ;
