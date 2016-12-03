@@ -13,6 +13,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     6       vas   03/dez/2016 transformar o tabuleiro em dinamico
  *     5       vas   12/nov/2016 correção de múltiplos erros devido a nova interface do modulo casa
  *     3       lff   11/out/2016 em desenvolvimento
  *     2       lff   05/out/2016 em desenvolvimento
@@ -28,6 +29,7 @@
 #include   <assert.h>
 #include   "CASA.H"
 #include   "VALIDA_MOV.H"
+#include   "LISTA.H"
 
 #define TABULEIRO_OWN
 #include "TABULEIRO.H"
@@ -42,7 +44,9 @@
 
 typedef struct TAB_tagTabuleiro {
     
-    CSA_tppCasa tabuleiro [8] [8] ;
+    // CSA_tppCasa tabuleiro [8] [8] ; //MUDAR
+    LIS_tppLista * tabuleiro ;
+
     /* Matriz de ponteiros para casas que define o tabuleiro */
 
     VMV_tppConfigDir configDir ;
@@ -51,15 +55,22 @@ typedef struct TAB_tagTabuleiro {
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
-int TAB_VerificaCoordValida ( int linha , int coluna ) ;
-int TAB_CasaVazia ( void * casa , void * aux ) ;
-int TAB_CasaInimigo( void * casa, void* casa_atual, void * aux );
-int TAB_Dim0 ( void * casa , void * aux ) ;
-int TAB_Dim1 ( void * casa , void * aux ) ;
-void ExcluirChar ( void * pDado ) ;
-int CompararChar ( void * pDado_1 , void * pDado_2 ) ;
-int IgualChar ( void * pDado_1 , void * pDado_2 ) ;
-void AtualizaListaAmeacantesAmeacados ( TAB_tppTabuleiro pTabuleiro ) ;
+static int TAB_VerificaCoordValida ( int linha , int coluna ) ;
+static int TAB_CasaVazia ( void * casa , void * aux ) ;
+static int TAB_CasaInimigo( void * casa, void* casa_atual, void * aux );
+static int TAB_Dim0 ( void * casa , void * aux ) ;
+static int TAB_Dim1 ( void * casa , void * aux ) ;
+static void ExcluirChar ( void * pDado ) ;
+static int CompararChar ( void * pDado_1 , void * pDado_2 ) ;
+static int IgualChar ( void * pDado_1 , void * pDado_2 ) ;
+static void ExcluirCasa ( void * pDado ) ;
+static int CompararCasa ( void * pDado_1 , void * pDado_2 ) ;
+static int IgualCasa ( void * pDado_1 , void * pDado_2 ) ;
+static void ExcluirLista ( void * pDado ) ;
+static int CompararLista ( void * pDado_1 , void * pDado_2 ) ;
+static int IgualLista ( void * pDado_1 , void * pDado_2 ) ;
+static void AtualizaListaAmeacantesAmeacados ( TAB_tppTabuleiro pTabuleiro ) ;
+static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna ) ;
 
 /*****  Código das funções exportadas pelo módulo  *****/
 
@@ -73,7 +84,11 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
     int i , j ;
     TAB_tppTabuleiro pNovoTabuleiro = NULL ;
+    CSA_tppCasa pCasa ;
     CSA_tpCondRet retCasa ;
+    LIS_tppLista pLista = NULL ;
+    LIS_tppLista novaLista = NULL ;
+    LIS_tpCondRet retLista ;
     char* pecas ;
     char* cores ;
     int num_casas ;
@@ -84,9 +99,17 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     if ( pNovoTabuleiro == NULL )
     {
         return TAB_CondRetFaltouMemoria ;
+    } /* if */ //MUDAR
+
+
+    retLista = LIS_CriarLista( pLista , "li" , ExcluirLista , CompararLista , IgualLista ) ;
+
+    if( retLista == LIS_CondRetFaltouMemoria )
+    {
+        free( pNovoTabuleiro ) ;
+        return TAB_CondRetFaltouMemoria ;
     } /* if */
     
-
     condRetCriarConfigDir = VMV_CriarConfigDir( &pNovoTabuleiro->configDir ,
                                                 pathConfig ) ;
 
@@ -111,19 +134,24 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
                                                         &cores , 
                                                         &num_casas ) ;
 
-
     for ( i = 0 ; i < 8 ; i++ )
     {
+        retLista = LIS_CriarLista( novaLista , "cl" , ExcluirCasa , CompararCasa , IgualCasa ) ;
+        if ( retLista = LIS_CondRetFaltouMemoria )
+        {
+            return TAB_CondRetFaltouMemoria ;
+        } /* if */
+        //TRATAR RET LISTA CORRETAMENTE
         for ( j = 0 ; j < 8 ; j++ )
         {
-            retCasa = CSA_CriarCasa( &( pNovoTabuleiro->tabuleiro[i][j] ) ) ;
+            retCasa = CSA_CriarCasa( &pCasa ) ;
             if ( retCasa == CSA_CondRetFaltouMemoria )
             {
                 for ( ; i >= 0 ; i-- )
                 {
                     for ( j-- ; j >= 0 ; j-- )
                     {
-                        CSA_DestruirCasa( ( *pTabuleiro )->tabuleiro[i][j] ) ;
+                        CSA_DestruirCasa( pCasa ) ;
                     } /* for */
                 } /* for */
                 free( pecas ) ;
@@ -135,14 +163,14 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
             retCasa = CSA_InserirPecaCasa(  pecas[ 8 * i + j ] ,
                                             cores[ 8 * i + j ] ,
-                                            pNovoTabuleiro->tabuleiro[i][j] ) ;
+                                            pCasa ) ;
             if ( retCasa == CSA_CondRetFaltouMemoria )
             {
                 for ( ; i >= 0 ; i-- )
                 {
-                    for (j--; j >= 0 ; j-- )
+                    for ( j-- ; j >= 0 ; j-- )
                     {
-                        CSA_DestruirCasa( ( *pTabuleiro )->tabuleiro[i][j] ) ;
+                        CSA_DestruirCasa( pCasa ) ;
                     } /* for */
                 } /* for */
                 free( pecas ) ;
@@ -151,15 +179,69 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
                 VMV_DestruirConfigDir( pNovoTabuleiro->configDir ) ;
                 return TAB_CondRetFaltouMemoria ;
             } /* if */
-
+            
+            retLista = LIS_InserirElementoApos( novaLista , ( void * ) pCasa ) ;
+            if ( retLista = LIS_CondRetFaltouMemoria )
+            {
+                return TAB_CondRetFaltouMemoria ;
+            } /* if */
+            //TRATAR RET LISTA CORRETAMENTE
         } /* for */
+        LIS_InserirElementoApos( pLista , ( void * ) novaLista ) ;
+        if ( retLista = LIS_CondRetFaltouMemoria )
+        {
+            return TAB_CondRetFaltouMemoria ;
+        } /* if */
+        //TRATAR RET LISTA CORRETAMENTE
     } /* for */
+
+    // for ( i = 0 ; i < 8 ; i++ )
+    // {
+    //     for ( j = 0 ; j < 8 ; j++ )
+    //     {
+    //         retCasa = CSA_CriarCasa( &( pNovoTabuleiro->tabuleiro[i][j] ) ) ;
+    //         if ( retCasa == CSA_CondRetFaltouMemoria )
+    //         {
+    //             for ( ; i >= 0 ; i-- )
+    //             {
+    //                 for ( j-- ; j >= 0 ; j-- )
+    //                 {
+    //                     CSA_DestruirCasa( ( *pTabuleiro )->tabuleiro[i][j] ) ;
+    //                 } /* for */
+    //             } /* for */
+    //             free( pecas ) ;
+    //             free( cores ) ;
+    //             free( pNovoTabuleiro ) ;
+    //             VMV_DestruirConfigDir( pNovoTabuleiro->configDir ) ;
+    //             return TAB_CondRetFaltouMemoria ;
+    //         } /* if */
+
+    //         retCasa = CSA_InserirPecaCasa(  pecas[ 8 * i + j ] ,
+    //                                         cores[ 8 * i + j ] ,
+    //                                         pNovoTabuleiro->tabuleiro[i][j] ) ;
+    //         if ( retCasa == CSA_CondRetFaltouMemoria )
+    //         {
+    //             for ( ; i >= 0 ; i-- )
+    //             {
+    //                 for (j--; j >= 0 ; j-- )
+    //                 {
+    //                     CSA_DestruirCasa( ( *pTabuleiro )->tabuleiro[i][j] ) ;
+    //                 } /* for */
+    //             } /* for */
+    //             free( pecas ) ;
+    //             free( cores ) ;
+    //             free( pNovoTabuleiro ) ;
+    //             VMV_DestruirConfigDir( pNovoTabuleiro->configDir ) ;
+    //             return TAB_CondRetFaltouMemoria ;
+    //         } /* if */
+
+    //     } /* for */
+    // } /* for */
 
 
     free( pecas ) ;
     free( cores ) ;
     *pTabuleiro = pNovoTabuleiro ;
-
 
     AtualizaListaAmeacantesAmeacados ( * pTabuleiro ) ;
     
@@ -911,6 +993,56 @@ int IgualChar ( void * pDado_1, void * pDado_2 )
     return *x == *y ;
 }
 
+void ExcluirCasa ( void * pDado )
+{
+    CSA_tppCasa x = ( CSA_tppCasa ) pDado ;
+    CSA_DestruirCasa( x ) ;
+    return ;
+}
+
+int CompararCasa ( void * pDado_1, void * pDado_2 )
+{
+    int igualdade ;
+    CSA_tppCasa x = ( CSA_tppCasa ) pDado_1 ;
+    CSA_tppCasa y = ( CSA_tppCasa ) pDado_2 ;
+    CSA_CompararCasa( x , y , &igualdade) ;
+    return igualdade ;
+}
+
+int IgualCasa ( void * pDado_1, void * pDado_2 )
+{
+    int igualdade ;
+    CSA_tppCasa x = ( CSA_tppCasa ) pDado_1 ;
+    CSA_tppCasa y = ( CSA_tppCasa ) pDado_2 ;
+    CSA_CompararCasa( x , y , &igualdade) ;
+    return igualdade ;
+}
+
+void ExcluirLista ( void * pDado )
+{
+    LIS_tppLista x = ( LIS_tppLista ) pDado ;
+    LIS_DestruirLista( x ) ;
+    return ;
+}
+
+int CompararLista ( void * pDado_1, void * pDado_2 )
+{
+    int igualdade ;
+    LIS_tppLista x = ( LIS_tppLista ) pDado_1 ;
+    LIS_tppLista y = ( LIS_tppLista ) pDado_2 ;
+    LIS_VerificaIgualdade( x , y , &igualdade) ;
+    return igualdade ;
+}
+
+int IgualLista ( void * pDado_1, void * pDado_2 )
+{
+    int igualdade ;
+    LIS_tppLista x = ( LIS_tppLista ) pDado_1 ;
+    LIS_tppLista y = ( LIS_tppLista ) pDado_2 ;
+    LIS_VerificaIgualdade( x , y , &igualdade) ;
+    return igualdade ;
+}
+
 void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
 {
     int i , j , k , l ;
@@ -1010,6 +1142,52 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
                                             pTabuleiro->tabuleiro[i][j] ) ;
         } /* for */
     } /* for */
+}
+
+CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna )
+{
+    CSA_tppCasa casa = NULL ;
+    LIS_tppLista linhas  = NULL ;
+    LIS_tppLista colunas = NULL ;
+    LIS_tpCondRet retLista ;
+
+    retLista = LIS_ObterValor( pTabuleiro->tabuleiro , ( void ** ) &linhas ) ;
+    if ( retLista == LIS_CondRetListaVazia )
+    {
+        return NULL ;
+    } /* if */
+    retLista = LIS_MoveInicio( linhas ) ;
+    if ( retLista == LIS_CondRetListaVazia )
+    {
+        return NULL ;
+    } /* if */
+    retLista = LIS_AvancarElementoCorrente( linhas , linha ) ;
+    if ( retLista == LIS_CondRetListaVazia )
+    {
+        return NULL ;
+    } /* if */
+    retLista = LIS_ObterValor( linhas , ( void ** ) &colunas ) ;
+    if ( retLista == LIS_CondRetListaVazia )
+    {
+        return NULL ;
+    } /* if */
+    retLista = LIS_MoveInicio( colunas ) ;
+    if ( retLista == LIS_CondRetListaVazia )
+    {
+        return NULL ;
+    } /* if */
+    retLista = LIS_AvancarElementoCorrente( colunas , coluna ) ;
+    if ( retLista == LIS_CondRetListaVazia )
+    {
+        return NULL ;
+    } /* if */
+    retLista = LIS_ObterValor( colunas , ( void ** ) &casa ) ;
+    if ( retLista == LIS_CondRetListaVazia )
+    {
+        return NULL ;
+    } /* if */
+
+    return casa ;
 }
 
 /********** Fim do módulo de implementação: TAB  Tabuleiro para jogo de xadrez **********/
