@@ -137,7 +137,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     for ( i = 0 ; i < 8 ; i++ )
     {
         retLista = LIS_CriarLista( &novaLista , "cl" , ExcluirCasa , CompararCasa , IgualCasa ) ;
-        if ( retLista = LIS_CondRetFaltouMemoria )
+        if ( retLista == LIS_CondRetFaltouMemoria )
         {
             return TAB_CondRetFaltouMemoria ;
         } /* if */
@@ -181,14 +181,14 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
             } /* if */
             
             retLista = LIS_InserirElementoApos( novaLista , ( void * ) pCasa ) ;
-            if ( retLista = LIS_CondRetFaltouMemoria )
+            if ( retLista == LIS_CondRetFaltouMemoria )
             {
                 return TAB_CondRetFaltouMemoria ;
             } /* if */
             //TRATAR RET LISTA CORRETAMENTE
         } /* for */
         LIS_InserirElementoApos( pLista , ( void * ) novaLista ) ;
-        if ( retLista = LIS_CondRetFaltouMemoria )
+        if ( retLista == LIS_CondRetFaltouMemoria )
         {
             return TAB_CondRetFaltouMemoria ;
         } /* if */
