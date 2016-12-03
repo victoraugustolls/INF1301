@@ -1153,11 +1153,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
     LIS_tppLista colunas = NULL ;
     LIS_tpCondRet retLista ;
 
-    retLista = LIS_ObterValor( pTabuleiro->tabuleiro , ( void ** ) &linhas ) ;
-    if ( retLista == LIS_CondRetListaVazia )
-    {
-        return NULL ;
-    } /* if */
+    linhas = pTabuleiro->tabuleiro ;
 
     retLista = LIS_MoveInicio( linhas ) ;
 
@@ -1174,7 +1170,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
     {
         return NULL ;
     } /* if */
-        
+
     retLista = LIS_ObterValor( linhas , ( void ** ) &colunas ) ;
     if ( retLista == LIS_CondRetListaVazia )
     {
