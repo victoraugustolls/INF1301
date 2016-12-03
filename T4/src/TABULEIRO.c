@@ -45,7 +45,7 @@
 typedef struct TAB_tagTabuleiro {
     
     // CSA_tppCasa tabuleiro [8] [8] ; //MUDAR
-    LIS_tppLista * tabuleiro ;
+    LIS_tppLista tabuleiro ;
 
     /* Matriz de ponteiros para casas que define o tabuleiro */
 
@@ -194,6 +194,8 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
         } /* if */
         //TRATAR RET LISTA CORRETAMENTE
     } /* for */
+
+    pNovoTabuleiro->tabuleiro = pLista ;
 
     // for ( i = 0 ; i < 8 ; i++ )
     // {
