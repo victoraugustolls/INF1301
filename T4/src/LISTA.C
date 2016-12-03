@@ -214,6 +214,17 @@
 
 /***************************************************************************
 *
+*  Função: LIS  &Move Inicio
+*  ****/
+
+   LIS_tpCondRet LIS_MoveInicio( LIS_tppLista pLista )
+   {
+      pLista->pElemCorr = pLista->pOrigemLista;
+      return LIS_CondRetOK;
+   }
+
+/***************************************************************************
+*
 *  Função: LIS  &Inserir elemento após
 *  ****/
 

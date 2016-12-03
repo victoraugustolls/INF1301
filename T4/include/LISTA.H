@@ -431,6 +431,23 @@ typedef struct LIS_tagLista * LIS_tppLista ;
    LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
                                     void * pValor) ;
 
+/***********************************************************************
+*
+*  $FC Função: LIS  &Move Inicio
+*
+*  $ED Descrição da função
+*     Move o corrente para o primeiro elemento da lista
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK  - Nenhum erro ocorreu
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_MoveInicio( LIS_tppLista pLista ) ;
+
 #undef LISTA_EXT
 
 /********** Fim do módulo de definição: LIS  Lista duplamente encadeada **********/
