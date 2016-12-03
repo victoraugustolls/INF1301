@@ -1157,12 +1157,8 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
         return NULL ;
     } /* if */
     retLista = LIS_MoveInicio( linhas ) ;
-    if ( retLista == LIS_CondRetListaVazia )
-    {
-        return NULL ;
-    } /* if */
     retLista = LIS_AvancarElementoCorrente( linhas , linha ) ;
-    if ( retLista == LIS_CondRetListaVazia )
+    if ( retLista != LIS_CondRetOK )
     {
         return NULL ;
     } /* if */
@@ -1172,12 +1168,8 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
         return NULL ;
     } /* if */
     retLista = LIS_MoveInicio( colunas ) ;
-    if ( retLista == LIS_CondRetListaVazia )
-    {
-        return NULL ;
-    } /* if */
     retLista = LIS_AvancarElementoCorrente( colunas , coluna ) ;
-    if ( retLista == LIS_CondRetListaVazia )
+    if ( retLista != LIS_CondRetOK )
     {
         return NULL ;
     } /* if */
