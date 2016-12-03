@@ -102,7 +102,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     } /* if */ //MUDAR
 
 
-    retLista = LIS_CriarLista( pLista , "li" , ExcluirLista , CompararLista , IgualLista ) ;
+    retLista = LIS_CriarLista( &pLista , "li" , ExcluirLista , CompararLista , IgualLista ) ;
 
     if( retLista == LIS_CondRetFaltouMemoria )
     {
@@ -136,7 +136,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
     for ( i = 0 ; i < 8 ; i++ )
     {
-        retLista = LIS_CriarLista( novaLista , "cl" , ExcluirCasa , CompararCasa , IgualCasa ) ;
+        retLista = LIS_CriarLista( &novaLista , "cl" , ExcluirCasa , CompararCasa , IgualCasa ) ;
         if ( retLista = LIS_CondRetFaltouMemoria )
         {
             return TAB_CondRetFaltouMemoria ;
@@ -296,7 +296,7 @@ TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabulei
                 return TAB_CondRetFaltouMemoria ;
             } /* if */
             //TRATAR RET LISTA CORRETAMENTE
-            casaCopia = TAB_PegarCasa( &pTabuleiro , i , j ) ;
+            casaCopia = TAB_PegarCasa( *pTabuleiro , i , j ) ;
             if ( casaCopia == NULL )
             {
                 return TAB_CondRetFaltouMemoria ;
@@ -304,7 +304,7 @@ TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabulei
             //TRATAR RET LISTA CORRETAMENTE
 
             // retCasa = CSA_CopiarCasa( &pNovoTabuleiro->tabuleiro[i][j] , tabuleiroOriginal->tabuleiro[ i ][ j ] ) ;
-            retCasa = CSA_CopiarCasa( casaCopia , casa ) ;
+            retCasa = CSA_CopiarCasa( &casaCopia , casa ) ;
             if( retCasa == CSA_CondRetFaltouMemoria)
             {
                 return TAB_CondRetFaltouMemoria;
@@ -328,8 +328,8 @@ TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabulei
 TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
 {
     
-    int i , j ;
-    CSA_tpCondRet retCasa ;
+    // int i , j ;
+    // CSA_tpCondRet retCasa ;
     LIS_tpCondRet retLista ;
     
     if ( pTabuleiro == NULL )
@@ -472,13 +472,13 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     sinal[0] = cor == 'B' ? 1 : -1 ;
 
 
-    casaAtual = TAB_PegarCasa( pTabuleiro , i , j ) ;
+    casaAtual = TAB_PegarCasa( pTabuleiro , linAtual , colDestino ) ;
     if ( casaAtual == NULL )
     {
         return TAB_CondRetNaoExiste ;
     } /* if */
 
-    casaDestino = TAB_PegarCasa( pTabuleiro , i , j ) ;
+    casaDestino = TAB_PegarCasa( pTabuleiro , linDestino , colDestino ) ;
     if ( casaDestino == NULL )
     {
         return TAB_CondRetNaoExiste ;
@@ -1052,21 +1052,21 @@ int TAB_Dim1( void * casa, void* tab )
 {
     int i , j ;
     TAB_tppTabuleiro pTabuleiro = (TAB_tppTabuleiro) tab ;
-    CSA_tppCasa casa ;
+    CSA_tppCasa casa2 ;
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
         
     for ( i = 0 ; i < 8; i++ )
     {
         for ( j = 0 ; j < 8; j++ )
         {
-            casa = TAB_PegarCasa( pTabuleiro , i , j ) ;
-            if ( casa == NULL )
+            casa2 = TAB_PegarCasa( pTabuleiro , i , j ) ;
+            if ( casa2 == NULL )
             {
                 return TAB_CondRetNaoExiste ;
             } /* if */
 
             // if ( pCasa == ( pTabuleiro->tabuleiro[i][j] ) )
-            if ( pCasa == casa )
+            if ( pCasa == casa2 )
             {
                 return i ;
             } /* if */
@@ -1081,21 +1081,21 @@ int TAB_Dim0 ( void * casa , void* tab )
 {
     int i , j ;
     TAB_tppTabuleiro pTabuleiro = (TAB_tppTabuleiro) tab ;
-    CSA_tppCasa casa ;
+    CSA_tppCasa casa2 ;
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
         
     for ( i = 0 ; i < 8; i++ )
     {
         for ( j = 0 ; j < 8; j++ )
         {
-            casa = TAB_PegarCasa( pTabuleiro , i , j ) ;
-            if ( casa == NULL )
+            casa2 = TAB_PegarCasa( pTabuleiro , i , j ) ;
+            if ( casa2 == NULL )
             {
                 return TAB_CondRetNaoExiste ;
             } /* if */
 
             // if ( pCasa == ( pTabuleiro->tabuleiro[i][j] ) )
-            if ( pCasa == casa )
+            if ( pCasa == casa2 )
             {
                 return j ;
             } /* if */
@@ -1232,7 +1232,8 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
 
             // retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
             retCasa = CSA_ObterPecaCasa( &peca , &cor , casa ) ;
-            if( TAB_CasaVazia( ( void* ) pTabuleiro->tabuleiro[i][j] , ( void* ) pTabuleiro ) == 1)
+            // if( TAB_CasaVazia( ( void* ) pTabuleiro->tabuleiro[i][j] , ( void* ) pTabuleiro ) == 1)
+            if( TAB_CasaVazia( ( void* ) casa , ( void* ) pTabuleiro ) == 1)
             {
                 continue;
             } /* if */
