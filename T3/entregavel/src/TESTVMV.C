@@ -106,10 +106,11 @@ int vazio(void* _pCasa,void* aux)
    return pCasa->v == '.'?1:0;
 }
 
-int inimigo(void* _pCasa,void* aux)
+int inimigo(void* _pCasa,void* casa_atual,void* aux)
 {
    TVMV_tppCasa pCasa = (TVMV_tppCasa) _pCasa;
    (void) aux;
+   (void) casa_atual;
    return pCasa->v == 'I'?1:0;
 }
 

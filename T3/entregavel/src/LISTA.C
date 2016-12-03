@@ -13,6 +13,9 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     9       iars  15/nov/2016 copia lista
+*     8       vas   13/nov/2016 adição da implementação da função de comparar listas
+*     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
 *                               e retirada de funções não utilizadas
 *     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
@@ -107,7 +110,7 @@
 *  Função: LIS  &Criar lista
 *  ****/
 
-   LIS_tpCondRet LIS_CriarLista( LIS_tppLista* pLista ,
+   LIS_tpCondRet LIS_CriarLista( LIS_tppLista * pLista ,
              char * idLista ,
              void   ( * ExcluirValor ) ( void * pDado ),
              int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
@@ -130,11 +133,63 @@
       pNewLista->CompararValores = CompararValores ;
       pNewLista->Igual = Igual ;
 
-      *pLista = pNewLista;
+      *pLista = pNewLista ;
 
       return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Criar lista */
+
+
+/***************************************************************************
+*
+*  Função: LIS  &Copiar lista
+*  ****/
+
+
+   LIS_tpCondRet LIS_CopiarLista( LIS_tppLista* pLista , LIS_tppLista listaOriginal )
+   {
+
+      LIS_tppLista pNewLista = NULL ;
+      tpElemLista * pElem ;
+      LIS_tpCondRet listaCondRet;
+
+      pNewLista = ( LIS_tpLista * ) malloc( sizeof( LIS_tpLista )) ;
+      if ( pNewLista == NULL )
+      {
+         return LIS_CondRetFaltouMemoria ;
+      } /* if */
+
+      LimparCabeca( pNewLista ) ;
+
+      pNewLista->idLista = ( char * ) malloc ( strlen ( listaOriginal->idLista ) + 1 ) ;
+      strcpy( pNewLista->idLista , listaOriginal->idLista ) ;
+
+      pNewLista->ExcluirValor = listaOriginal->ExcluirValor ;
+      pNewLista->CompararValores = listaOriginal->CompararValores ;
+      pNewLista->Igual = listaOriginal->Igual ;
+
+      if ( listaOriginal->pElemCorr == NULL )
+      {
+         *pLista = pNewLista ;
+         return LIS_CondRetOK ;
+      } /* if */
+
+      for ( pElem  = listaOriginal->pElemCorr ;
+            pElem != NULL ;
+            pElem  = pElem->pProx )
+      {
+         listaCondRet = LIS_InserirElementoApos( pNewLista, pElem->pValor);
+         if(listaCondRet == LIS_CondRetFaltouMemoria)
+         {
+            LIS_DestruirLista(pNewLista);
+            return LIS_CondRetFaltouMemoria;
+         }
+      } /* for */
+
+      *pLista = pNewLista ;
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Copiar lista */
 
 /***************************************************************************
 *
@@ -166,7 +221,7 @@
                                           void * pValor        )
    {
 
-      tpElemLista * pElem ;;
+      tpElemLista * pElem ;
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
@@ -402,7 +457,96 @@
 
       return LIS_CondRetOK ;
 
-   } /* Fim função: LIS  &Altera conteudo do nó corrente
+   } /* Fim função: LIS  &Altera conteudo do nó corrente */
+
+/***************************************************************************
+*
+*  Função: LIS  &Verifica se a lista está vazia
+*  ****/
+
+   LIS_tpCondRet LIS_VerificaVazia( LIS_tppLista pLista ,
+                                    int * vazia )
+   {
+
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      if ( pLista->numElem == 0 )
+      {
+         *vazia = 1 ;
+      }
+      else
+      {
+         *vazia = 0 ;
+      } /* if */
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Verifica se a lista está vazia */
+
+/***************************************************************************
+*
+*  Função: LIS  &Compara duas listas
+*  ****/
+
+   LIS_tpCondRet LIS_VerificaIgualdade( LIS_tppLista pLista1 ,
+                                        LIS_tppLista pLista2 ,
+                                        int * igualdade )
+   {
+
+      int i ;
+
+      if ( pLista1 == NULL || pLista2 == NULL )
+      {
+         *igualdade = 0 ;
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      if ( pLista1->numElem != pLista2->numElem )
+      {
+         *igualdade = 0 ;
+         return LIS_CondRetOK ;
+      } /* if */
+
+      for ( i = 0 ; i < pLista1->numElem ; i++ )
+      {
+         if ( !pLista1->CompararValores( pLista1->pElemCorr , pLista2->pElemCorr ) )
+         {
+            *igualdade = 0;
+            return LIS_CondRetOK ;
+         } /* if */
+
+         LIS_AvancarElementoCorrente( pLista1 , 1 ) ;
+         LIS_AvancarElementoCorrente( pLista2 , 1 ) ;
+
+      } /* for */
+
+      *igualdade = 1 ;
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Verifica se a lista está vazia */
+
+/***************************************************************************
+*
+*  Função: LIS  &Esvazia lista
+*  ****/
+
+   LIS_tpCondRet LIS_Esvazia( LIS_tppLista pLista )
+   {
+
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      free( pLista ) ;
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Esvazia lista */
 
 
 /*****  Código das funções encapsuladas no módulo  *****/
@@ -505,6 +649,38 @@
       pLista->numElem   = 0 ;
 
    } /* Fim função: LIS  -Limpar a cabeça da lista */
+
+/***************************************************************************
+*
+*  Função: LIS  &Procurar elemento contendo valor
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
+                                    void * pValor )
+   {
+
+      tpElemLista * pElem ;
+
+      if ( pLista->pElemCorr == NULL )
+      {
+         return LIS_CondRetListaVazia ;
+      } /* if */
+
+      for ( pElem  = pLista->pElemCorr ;
+            pElem != NULL ;
+            pElem  = pElem->pProx )
+      {
+         if ( pLista->Igual( pElem->pValor, pValor ) )
+         {
+            pLista->pElemCorr = pElem ;
+            return LIS_CondRetOK ;
+         } /* if */
+      } /* for */
+
+      return LIS_CondRetNaoAchou ;
+
+   } /* Fim função: LIS  &Procurar elemento contendo valor */
 
 /********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/
 

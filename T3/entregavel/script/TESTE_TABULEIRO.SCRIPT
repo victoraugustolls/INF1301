@@ -1,92 +1,192 @@
 // Script: TESTE_TABULEIRO.SCRIPT
-// Autores: Lucas Ferraço
-// Data: 06/out/2016
-// Propósito: Testar por completo as funções de acesso do módulo TABULEIRO, com exceção
-// do caso em que ocorre falta de memória.
+// Autores: Lucas Ferraço, Victor Augusto
+// Data: 13/out/2016
+// Proposito: Testar por completo as funçcoes de acesso do modulo TABULEIRO, com exceçcao
+// do caso em que ocorre falta de memoria.
 //
 // ---------------------------------------------
 
 == Inicializar Constantes
 =declararparm   OK                int  0
 =declararparm   NaoExiste         int  1
-=declararparm	CoordNaoExiste	  int  2
-=declararparm	MovInvalido       int  3
-=declararparm   FaltouMemoria     int  4
+=declararparm   CoordNaoExiste    int  2
+=declararparm   MovInvalido       int  3
+=declararparm   FalhaArquivo      int  4
+=declararparm   FaltouMemoria     int  5
 
 // ---------------------------------------------
 
-== Teste de Criação de Tabuleiro
-=criarTabuleiro   OK
+== Inicializar valores
+=declararparm   tab0  int 0
+=declararparm   tab1  int 1
 
 // ---------------------------------------------
 
-== Teste de Inserção de Peça no Tabuleiro
-=inserirPeca         'A'   '1'   'V'   'V'   OK
+== Teste de Criaçcao de Tabuleiro
+=criarTabuleiro    tab0    OK
 
-== Teste de Inserção de Peça em Coluna Inválida no Tabuleiro
-=inserirPeca         'I'   '1'   'V'   'V'   CoordNaoExiste
-
-== Teste de Inserção de Peça em Linha Inválida no Tabuleiro
-=inserirPeca         'A'   '9'   'V'   'V'   CoordNaoExiste
+== Teste do Teste de Criaçcao de Tabuleiro
+=criarTabuleiro    tab0    OK
+=recuperar
 
 // ---------------------------------------------
 
-== Teste de Remoção de Peça do Tabuleiro
-=retirarPeca         'A'   '1'   OK
+== Teste de Destruiçcao de Tabuleiro
+=destruirTabuleiro   tab0   OK
+
+== Teste de Destruiçcao de Tabuleiro
+=destruirTabuleiro   tab0   NaoExiste
 
 // ---------------------------------------------
 
-== Teste de Destruição de Tabuleiro
-=destruirTabuleiro   OK
+== Teste de Inserçcao de Peçca no Tabuleiro
+=criarTabuleiro      tab0   OK
+=inserirPeca         tab0   'A'   '1'   'V'   'V'   OK
+=destruirTabuleiro   tab0   OK
+
+== Teste de Inserçcao de Peçca em Coluna Invalida no Tabuleiro
+=criarTabuleiro      tab0   OK
+=inserirPeca         tab0   'I'   '1'   'V'   'V'   CoordNaoExiste
+=destruirTabuleiro   tab0   OK
+
+== Teste de Inserçcao de Peçca em Linha Invalida no Tabuleiro
+=criarTabuleiro      tab0   OK
+=inserirPeca         tab0   'A'   '9'   'V'   'V'   CoordNaoExiste
+=destruirTabuleiro   tab0   OK
 
 // ---------------------------------------------
 
-== Teste de Movimentação de Peça no Tabuleiro
-=criarTabuleiro      OK
-=inserirPeca         'A'   '1'   'R'   'P'   OK
-=moverPeca           'A'   '1'   'A'   '2'   OK
-=retirarPeca         'A'   '1'   OK
-=destruirTabuleiro   OK
+== Teste de Remoçcao de Pecça do Tabuleiro
+=criarTabuleiro      tab0   OK
+=inserirPeca         tab0   'A'   '1'   'V'   'V'   OK
+=retirarPeca         tab0   'A'   '1'   OK
+=destruirTabuleiro   tab0   OK
 
-== Teste de Movimentação Inválida de Peça no Tabuleiro
-=criarTabuleiro      OK
-=inserirPeca         'A'   '1'   'R'   'P'   OK
-=moverPeca           'A'   '1'   'C'   '3'   MovInvalido
-=retirarPeca         'A'   '1'   OK
-=destruirTabuleiro   OK
+== Teste de Remocao de Peca do Tabuleiro Inexistente
+=retirarPeca         tab0   'A'   '1'   NaoExiste
 
-// ---------------------------------------------
-
-== Teste de Obtenção de Casa do Tabuleiro
-=criarTabuleiro      OK
-=inserirPeca         'A'   '1'   'R'   'P'   OK
-=obterCasa           'A'   '1'   'R'   'P'   OK
-=retirarPeca         'A'   '1'   OK
-=destruirTabuleiro   OK
+== Teste de Remoca de Peca do Tabuleiro em CoordenadaInvalida
+=criarTabuleiro      tab0   OK
+=retirarPeca         tab0   'A'   '9'   CoordNaoExiste
+=destruirTabuleiro   tab0   OK
 
 // ---------------------------------------------
 
-== Teste de Obtenção de Peça do Tabuleiro
-=criarTabuleiro      OK
-=inserirPeca         'A'   '1'   'R'   'P'   OK
-=obterPeca           'A'   '1'   'R'   'P'   OK
-=retirarPeca         'A'   '1'   OK
-=destruirTabuleiro   OK
+== Teste de Movimentaçcao de Peçca no Tabuleiro
+=criarTabuleiro      tab0  OK
+=inserirPeca         tab0  'A'   '1'   'R'   'P'   OK
+=moverPeca           tab0  'A'   '1'   'A'   '2'   OK
+=retirarPeca         tab0  'A'   '1'   OK
+=destruirTabuleiro   tab0  OK
+
+== Teste de Movimentaçcao Invalida de Pecça no Tabuleiro
+=criarTabuleiro      tab0  OK
+=inserirPeca         tab0  'A'   '1'   'R'   'P'   OK
+=moverPeca           tab0  'A'   '1'   'C'   '3'   MovInvalido
+=retirarPeca         tab0  'A'   '1'   OK
+=destruirTabuleiro   tab0  OK
+
+== Teste de Movimentaçcao Invalida de Pecça para CoordenadaInvalida
+=criarTabuleiro      tab0  OK
+=inserirPeca         tab0  'A'   '1'   'R'   'P'   OK
+=moverPeca           tab0  'A'   '1'   'A'   '9'   CoordNaoExiste
+=retirarPeca         tab0  'A'   '1'   OK
+=destruirTabuleiro   tab0  OK
+
+== Teste de Movimentaçcao Invalida de Pecça em Tabuleiro Inexistente
+=moverPeca           tab0  'A'   '1'   'A'   '9'   NaoExiste
+
+== Teste de Movimentaçcao de Peçca Invalida
+=criarTabuleiro      tab0  OK
+=inserirPeca         tab0  'A'   '1'   'Z'   'P'   OK
+=moverPeca           tab0  'A'   '1'   'A'   '2'   FalhaArquivo
+=retirarPeca         tab0  'A'   '1'   OK
+=destruirTabuleiro   tab0  OK
 
 // ---------------------------------------------
 
-== Teste de Obtenção de Lista de Ameaçantes de uma Peça do Tabuleiro
-=criarTabuleiro         OK
-=inserirPeca            'A'   '1'   'R'   'P'   OK
-=obterListaAmeacantes   'A'   '1'   OK
-=retirarPeca            'A'   '1'   OK
-=destruirTabuleiro      OK
+== Teste de Obtençcao de Casa do Tabuleiro
+=criarTabuleiro      tab0  OK
+=inserirPeca         tab0  'A'   '1'   'R'   'P'   OK
+=obterCasa           tab0  'A'   '1'   'R'   'P'   OK
+=retirarPeca         tab0  'A'   '1'   OK
+=destruirTabuleiro   tab0  OK
+
+== Teste de Obtencao de Casa do Tabuleiro Inexistente
+=obterCasa           tab0  'A'   '1'   'T'   'P'   NaoExiste
+
+== Teste de Obtençcao de Casa do Tabuleiro em Coordenada Invalida
+=criarTabuleiro      tab0  OK
+=inserirPeca         tab0  'A'   '1'   'R'   'P'   OK
+=obterCasa           tab0  'A'   '9'   'R'   'P'   CoordNaoExiste
+=retirarPeca         tab0  'A'   '1'   OK
+=destruirTabuleiro   tab0  OK
 
 // ---------------------------------------------
 
-== Teste de Obtenção de Lista de Ameaçados de uma Peça do Tabuleiro
-=criarTabuleiro         OK
-=inserirPeca            'A'   '1'   'R'   'P'   OK
-=obterListaAmeacados    'A'   '1'   OK
-=retirarPeca            'A'   '1'   OK
-=destruirTabuleiro      OK
+== Teste de Obtençcao de Pecça do Tabuleiro
+=criarTabuleiro      tab0  OK
+=inserirPeca         tab0  'A'   '1'   'R'   'P'   OK
+=obterPeca           tab0  'A'   '1'   'R'   'P'   OK
+=retirarPeca         tab0  'A'   '1'   OK
+=destruirTabuleiro   tab0  OK
+
+== Teste de Obtençcao de Pecça do Tabuleiro Inexistente
+=obterPeca           tab0  'A'   '1'   'R'   'P'   NaoExiste
+
+== Teste de Obtençcao de Pecça do Tabuleiro Inexistente
+=criarTabuleiro      tab0  OK
+=inserirPeca         tab0  'A'   '1'   'R'   'P'   OK
+=obterPeca           tab0  'A'   '9'   'T'   'P'   CoordNaoExiste
+=retirarPeca         tab0  'A'   '1'   OK
+=destruirTabuleiro   tab0  OK
+
+// ---------------------------------------------
+
+== Teste de Obter Print do Tabuleiro
+=criarTabuleiro         tab0   OK
+=printTab               tab0   OK
+=destruirTabuleiro      tab0   OK
+
+// ---------------------------------------------
+
+== Teste de Copiar Tabuleiro
+=criarTabuleiro         tab0   OK
+=copiaTab               tab0   tab1    OK
+=destruirTabuleiro      tab0   OK
+=destruirTabuleiro      tab1   OK
+
+// ---------------------------------------------
+
+== Teste de Obtençcao de Lista de Ameaçcantes de uma Peçca do Tabuleiro
+=criarTabuleiro         tab0  OK
+=inserirPeca            tab0  'A'   '1'   'R'   'P'   OK
+=inserirPeca            tab0  'A'   '2'   'R'   'B'   OK
+=obterListaAmeacantes   tab0  'A'   '1'   "A"   "2"   OK
+=retirarPeca            tab0  'A'   '1'   OK
+=retirarPeca            tab0  'A'   '2'   OK
+=destruirTabuleiro      tab0  OK
+
+// ---------------------------------------------
+
+== Teste de Obtençcao de Lista de Ameaçcados de uma Peçca do Tabuleiro
+=criarTabuleiro         tab0  OK
+=inserirPeca            tab0  'A'   '1'   'R'   'P'   OK
+=inserirPeca            tab0  'A'   '2'   'R'   'B'   OK
+=obterListaAmeacados    tab0  'A'   '1'   "ABB"   "212"   OK
+=retirarPeca            tab0  'A'   '1'   OK
+=destruirTabuleiro      tab0  OK
+
+// ---------------------------------------------
+
+== Teste de Obtençcao de Lista de Ameaçcados de uma Peçca do Tabuleiro
+=criarTabuleiro         tab0  OK
+=inserirPeca            tab0  'C'   '3'   'R'   'P'   OK
+=inserirPeca            tab0  'H'   '8'   'R'   'B'   OK
+=obterListaAmeacados    tab0  'C'   '3'   "BBBCCDDD"   "23424234"   OK
+=obterListaAmeacantes   tab0  'C'   '3'   ""   ""   OK
+=inserirPeca            tab0  'C'   '4'   'R'   'B'   OK
+=obterListaAmeacados    tab0  'C'   '3'   "BBBCCDDD"   "23424234"   OK
+=obterListaAmeacantes   tab0  'C'   '3'   "C"   "4"   OK
+=retirarPeca            tab0  'A'   '1'   OK
+=destruirTabuleiro      tab0  OK

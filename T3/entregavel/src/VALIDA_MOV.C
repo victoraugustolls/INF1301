@@ -59,7 +59,7 @@
       int (**array_dimensao)(void* casa, void* aux);
       int* array_sinal;
       int (*vazio)(void* casa, void* aux);
-      int (*inimigo)(void* casa, void* aux);
+      int (*inimigo)(void* casa, void* casa_atual, void* aux);
       int* cond_especiais;
       int num_cond_especiais;
       void* aux;
@@ -533,7 +533,7 @@ static const char CMD_PCA_C_D [ ]                = "D";
             
             if( strcmp( buffer, CMD_PCA_C_A ) == 0 )
             {
-               if( tools->inimigo(tools->casa_atual,tools->aux) == 1 )
+               if( tools->inimigo(tools->casa_atual,tools->casa_atual,tools->aux) == 1 )
                {
                   *booleanValue = VMV_MovimentoValidoSim;
                   return VMV_CondRetOK;
@@ -546,7 +546,7 @@ static const char CMD_PCA_C_D [ ]                = "D";
             }
             else if( strcmp( buffer, CMD_PCA_C_D ) == 0 )
             {
-               if( tools->inimigo(tools->casa_destino,tools->aux) == 1 )
+               if( tools->inimigo(tools->casa_destino,tools->casa_atual,tools->aux) == 1 )
                {
                   *booleanValue = VMV_MovimentoValidoSim;
                   return VMV_CondRetOK;
@@ -563,7 +563,7 @@ static const char CMD_PCA_C_D [ ]                = "D";
                {
                   if( strcmp( buffer, casaIterators[i].id ) == 0 )
                   {
-                     if( tools->inimigo(casaIterators[i].casa,tools->aux) == 1 )
+                     if( tools->inimigo(casaIterators[i].casa,tools->casa_atual,tools->aux) == 1 )
                      {
                         *booleanValue = VMV_MovimentoValidoSim;
                         return VMV_CondRetOK;
@@ -680,7 +680,7 @@ static const char CMD_PCA_C_D [ ]                = "D";
             if(condRet != VMV_CondRetOK)
                return condRet;
 
-            *integerValue = intRetA - intRetB;
+            *integerValue = intRetA * intRetB;
             return VMV_CondRetOK;
          }
          else if( strcmp( buffer, CMD_PCA_F_ABS ) == 0 )
@@ -939,6 +939,41 @@ static const char CMD_PCA_C_D [ ]                = "D";
    } /* Fim função: VMV  &Cria Estrutura de Diretorio de Configuracao */
 
 /***********************************************************************
+* Função: VMV  &Copia Estrutura de Diretorio de Configuracao
+***********************************************************************/
+
+   VMV_tpCondRet VMV_CopiarConfigDir ( VMV_tppConfigDir * pConfigDir , VMV_tppConfigDir configDirOriginal)
+   {
+      VMV_tppConfigDir pNewConfigDir;
+      pNewConfigDir = (VMV_tppConfigDir) malloc(sizeof(VMV_tpConfigDir));
+      if(pNewConfigDir==NULL)
+      {
+         return VMV_CondRetErrFaltouMemoria;
+      }
+
+      pNewConfigDir->pPathDirPecas = (char*) malloc(sizeof(char)*strlen(configDirOriginal->pPathDirPecas));
+      if(pNewConfigDir->pPathDirPecas==NULL)
+      {
+         free(pNewConfigDir);
+         return VMV_CondRetErrFaltouMemoria;
+      }
+      pNewConfigDir->pPathArquivoInicial = (char*) malloc(sizeof(char)*strlen(configDirOriginal->pPathArquivoInicial));
+      if(pNewConfigDir->pPathArquivoInicial==NULL)
+      {
+         free(pNewConfigDir->pPathDirPecas);
+         free(pNewConfigDir);
+         return VMV_CondRetErrFaltouMemoria;
+      }
+
+      strcpy(pNewConfigDir->pPathDirPecas, configDirOriginal->pPathDirPecas);
+      strcpy(pNewConfigDir->pPathArquivoInicial, configDirOriginal->pPathArquivoInicial);
+
+      *pConfigDir = pNewConfigDir;
+      return VMV_CondRetOK;
+
+   } /* Fim função: VMV  &Copia Estrutura de Diretorio de Configuracao */
+
+/***********************************************************************
 * Função: VMV  &Destroi Estrutura de Diretorio de Configuracao
 ***********************************************************************/
 
@@ -1018,7 +1053,7 @@ static const char CMD_PCA_C_D [ ]                = "D";
                                              int (**array_dimensao)(void* casa, void* aux),
                                              int* array_sinal,
                                              int (*vazio)(void* casa, void* aux),
-                                             int (*inimigo)(void* casa, void* aux),
+                                             int (*inimigo)(void* casa, void* casa_atual, void* aux),
                                              int* cond_especiais,
                                              int num_cond_especiais,
                                              void* aux)

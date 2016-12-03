@@ -1,6 +1,6 @@
 /***************************************************************************
  *
- *  $MCD Módulo de definição: CSA  Casa de um tabuleiro para jogo de xadrez
+ *  $MCD Módulo de implementação: CSA  Casa de um tabuleiro para jogo de xadrez
  *
  *  Arquivo gerado:              CASA.h
  *  Letras identificadoras:      CSA
@@ -14,6 +14,7 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     5       vas   10/nov/2016 alteracoes devido a mudanca da estrutura da peca
  *     4       vas   12/out/2016 corrigir esvaziar peça da casa
  *     3       lff   12/out/2016 desenvolvimento acabado
  *     2       lff   11/out/2016 desenvolvimento em andamento
@@ -36,7 +37,7 @@
 
 static void DestruirValor( void * pDado ) ;
 
-static int NuncaIgual( void * pDado_1 , void * pDado_2 ) ;
+static int CompararValores( void * pDado_1 , void * pDado_2 ) ;
 
 /***********************************************************************
  *
@@ -61,7 +62,7 @@ typedef struct CSA_tagCasa {
 
 /***************************************************************************
  *
- *  Função: PCA  &Criar peça
+ *  Função: CSA  &Criar casa
  *  ****/
 
 CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
@@ -76,29 +77,32 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
 
     CSA_tppCasa newCasa = NULL ;
 
-    char * charPeca = ( char * ) malloc( sizeof( char ) ) ;
-    *charPeca = 'V' ;
+    char charPeca = 'V' ;
     
     newCasa = ( CSA_tpCasa * ) malloc( sizeof( CSA_tpCasa ) ) ;
 
     if ( newCasa == NULL )
     {
+        free(newCasa);
         return CSA_CondRetFaltouMemoria ;
     } /* if */
     
     retPeca = PCA_CriarPeca( &peca ,
                    charPeca ,
                    charPeca ) ;
+    
     if ( retPeca == PCA_CondRetFaltouMemoria )
     {
+        free(newCasa);
         return CSA_CondRetFaltouMemoria ;
     }/* if */
     
     retLista = LIS_CriarLista( &listaAmeacantes ,
                     "amts" ,
                     DestruirValor ,
-                    NuncaIgual ,
-                    NuncaIgual ) ;
+                    CompararValores ,
+                    CompararValores ) ;
+
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetFaltouMemoria ;
@@ -107,8 +111,9 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     retLista = LIS_CriarLista( &listaAmeacados ,
                     "amds" ,
                     DestruirValor ,
-                    NuncaIgual ,
-                    NuncaIgual ) ;
+                    CompararValores ,
+                    CompararValores ) ;
+
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetFaltouMemoria ;
@@ -122,7 +127,69 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     
     return CSA_CondRetOK ;
     
-} /* Fim função: PCA  &Criar peça */
+} /* Fim função: CSA  &Criar casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Copiar casa
+ *  ****/
+
+CSA_tpCondRet CSA_CopiarCasa( CSA_tppCasa * pCasa, CSA_tppCasa casaOriginal )
+{
+    
+    PCA_tpCondRet retPeca ;
+    LIS_tpCondRet retLista ;
+    
+    PCA_tppPeca peca = NULL ;
+    LIS_tppLista listaAmeacantes = NULL ;
+    LIS_tppLista listaAmeacados = NULL ;
+
+    CSA_tppCasa newCasa = NULL ;
+    
+    newCasa = ( CSA_tpCasa * ) malloc( sizeof( CSA_tpCasa ) ) ;
+
+    if ( newCasa == NULL )
+    {
+        free(newCasa);
+        return CSA_CondRetFaltouMemoria ;
+    } /* if */
+    
+    retPeca = PCA_CopiarPeca( &peca, casaOriginal->peca ) ;
+    
+    if ( retPeca == PCA_CondRetFaltouMemoria )
+    {
+        free(newCasa);
+        return CSA_CondRetFaltouMemoria ;
+    }/* if */
+    
+    retLista = LIS_CopiarLista( &listaAmeacantes , casaOriginal->listaAmeacantes) ;
+
+    if ( retLista == LIS_CondRetFaltouMemoria )
+    {
+        free(newCasa);
+        LIS_DestruirLista(listaAmeacantes);
+        return CSA_CondRetFaltouMemoria ;
+    }/* if */
+    
+    retLista = LIS_CopiarLista( &listaAmeacados , casaOriginal->listaAmeacados) ;
+
+    if ( retLista == LIS_CondRetFaltouMemoria )
+    {
+        free(newCasa);
+        LIS_DestruirLista(listaAmeacantes);
+        LIS_DestruirLista(listaAmeacados);
+        return CSA_CondRetFaltouMemoria ;
+    }/* if */
+    
+    newCasa->peca = peca ;
+    newCasa->listaAmeacantes = listaAmeacantes ;
+    newCasa->listaAmeacados = listaAmeacados ;
+
+    *pCasa = newCasa ;
+    
+    return CSA_CondRetOK ;
+    
+} /* Fim função: CSA  &Criar casa */
 
 /***************************************************************************
  *
@@ -146,13 +213,13 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa )
         return CSA_CondRetNaoExiste ;
     }
     
-    retLista = LIS_DestruirLista( pCasa->listaAmeacantes ) ;
+    retLista = LIS_Esvazia( pCasa->listaAmeacantes ) ;
     if ( retLista == LIS_CondRetListaNaoExiste )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
     
-    retLista = LIS_DestruirLista( pCasa->listaAmeacados ) ;
+    retLista = LIS_Esvazia( pCasa->listaAmeacados ) ;
     if ( retLista == LIS_CondRetListaNaoExiste )
     {
         return CSA_CondRetNaoExiste ;
@@ -182,11 +249,11 @@ CSA_tpCondRet CSA_InserirPecaCasa( char nomePeca ,
     }/* if */
     
     retPeca = PCA_CriarPeca( &( pCasa->peca ) ,
-                             &nomePeca ,
-                             &corPeca ) ;
+                            nomePeca ,
+                            corPeca ) ;
     if ( retPeca == PCA_CondRetFaltouMemoria )
     {
-        return CSA_CondRetNaoExiste ;
+        return CSA_CondRetFaltouMemoria ;
     }
     
     return CSA_CondRetOK ;
@@ -203,8 +270,7 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa )
     
     PCA_tpCondRet retPeca ;
 
-    char * pecaVazia = ( char * ) malloc( sizeof( char ) ) ;
-    *pecaVazia = 'V' ;
+    char pecaVazia = 'V' ;
 
     if ( pCasa == NULL )
     {
@@ -226,8 +292,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa )
  *  Função: CSA  &Obter peça da casa
  *  ****/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca,
-                                 char** pCorPeca,
+CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca,
+                                 char* pCorPeca,
                                  CSA_tppCasa pCasa )
 {
     
@@ -245,7 +311,6 @@ CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca,
     {
         return CSA_CondRetNaoExiste ;
     }
-
     
     return CSA_CondRetOK ;
     
@@ -265,6 +330,7 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
     
     if ( pCasa1 == NULL || pCasa2 == NULL )
     {
+        *igualdade = 0 ;
         return CSA_CondRetNaoExiste ;
     }/* if */
     
@@ -276,7 +342,6 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
     {
         return CSA_CondRetVazia ;
     }
-
 
     return CSA_CondRetOK ;
     
@@ -342,7 +407,7 @@ CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacant
     }/* if */
     
     /* Limpa o lista para preenche-la */
-    retLista = LIS_DestruirLista( pCasa->listaAmeacantes ) ;
+    retLista = LIS_Esvazia( pCasa->listaAmeacantes ) ;
     if ( retLista == LIS_CondRetListaNaoExiste )
     {
         return CSA_CondRetNaoExiste ;
@@ -351,8 +416,8 @@ CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacant
     retLista = LIS_CriarLista( &( pCasa->listaAmeacantes ) ,
                                "amts" ,
                                DestruirValor ,
-                               NuncaIgual ,
-                               NuncaIgual ) ;
+                               CompararValores ,
+                               CompararValores ) ;
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetNaoExiste ;
@@ -391,7 +456,7 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
     }/* if */
     
     /* Limpa o lista para preenche-la */
-    retLista = LIS_DestruirLista( pCasa->listaAmeacados ) ;
+    retLista = LIS_Esvazia( pCasa->listaAmeacados ) ;
     if ( retLista == LIS_CondRetListaNaoExiste )
     {
         return CSA_CondRetNaoExiste ;
@@ -400,8 +465,8 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
     retLista = LIS_CriarLista( &( pCasa->listaAmeacados ) ,
                               "amds" ,
                               DestruirValor ,
-                              NuncaIgual ,
-                              NuncaIgual ) ;
+                              CompararValores ,
+                              CompararValores ) ;
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
         return CSA_CondRetNaoExiste ;
@@ -420,6 +485,23 @@ CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas
     return CSA_CondRetOK ;
     
 } /* Fim função: CSA  &Modificar lista de ameaçados de uma casa */
+
+/***************************************************************************
+ *
+ *  Função: CSA  &Get Print Casa
+ *  ****/
+
+CSA_tpCondRet CSA_GetPrintCasa ( CSA_tppCasa pCasa, char** print )
+{
+    PCA_tpCondRet pcaCondRet;
+    pcaCondRet = PCA_GetPrintPeca( pCasa->peca, print );
+    if(pcaCondRet == PCA_CondRetFaltouMemoria)
+    {
+        return CSA_CondRetFaltouMemoria;
+    }
+    return CSA_CondRetOK;
+} /* Fim função: CSA  &Get Print Casa */
+
 
 /*****  Código das funções encapsuladas no módulo  *****/
 
@@ -445,18 +527,24 @@ void DestruirValor( void * pDado )
 
 /***********************************************************************
  *
- *  $FC Função: CSA -Nunca igual
+ *  $FC Função: CSA -Comparar Valores
  *
  ***********************************************************************/
 
-int NuncaIgual( void * pDado_1 , void * pDado_2 )
+int CompararValores( void * pDado_1 , void * pDado_2 )
 {
-    (void) pDado_1;
-    (void) pDado_2;
-    /* Duas casas nunca são iguais */
-    return 1 ;
+    CSA_tppCasa valor1 = ( CSA_tppCasa ) pDado_1;
+    CSA_tppCasa valor2 = ( CSA_tppCasa ) pDado_2;
+
+    int igualdade ;
     
-} /* Fim função: CSA -Nunca igual */
+    PCA_ComparaPecas( valor1->peca ,
+                    valor2->peca ,
+                    &igualdade ) ;
+
+    return igualdade ;
+    
+} /* Fim função: CSA -Comparar Valores */
 
 
 /********** Fim do mÛdulo de implementaÁ„o:  CSA  Casa de um tabuleiro para jogo de xadrez

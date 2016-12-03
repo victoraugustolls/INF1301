@@ -1,7 +1,7 @@
 // Script: TestecASA.script
 // Autores: Victor Augusto
 // Autor Original: Victor Augusto
-// Data: 11/out/2016
+// Data: 16/out/2016
 // Propósito: Testar por completo as funções de acesso do módulo CASA, com exceção
 // do caso em que ocorre falta de memória.
 //
@@ -104,6 +104,35 @@
 
 // ---------------------------------------------
 
+== Teste Print Casa Nova
+=criarCasa      casa0   OK
+=printCasa      casa0   "VV"    OK
+=destroiCasa    casa0   OK
+
+== Teste Print Casa Modificada
+=criarCasa      casa0   OK
+=inserePeca     casa0   'P'     'P'    OK
+=printCasa      casa0   "PP"    OK
+=destroiCasa    casa0   OK
+
+// ---------------------------------------------
+
+== Teste Copiar Casa
+=criarCasa      casa0    OK
+=copiaCasa      casa0    casa1    OK
+=destroiCasa    casa0    OK
+=destroiCasa    casa1    OK
+
+// ---------------------------------------------
+
+== Teste Obter Lista Ameacantes
+=criarCasa				casa0	OK
+=obterAmeacante			casa0	0	OK
+=destroiCasa			casa0	OK
+
+== Teste Obter Lista Ameacantes Casa Inexistente
+=obterAmeacante			casa0	0	CasaInexistente
+
 == Teste Modificar Ameacantes da Casa Iguais
 =criarCasa      		casa0   OK
 =modificarAmeacante		casa0   OK
@@ -117,17 +146,31 @@
 =recuperar
 =destroiCasa    		casa0   OK
 
+== Teste Modificar Ameacantes Casa Inexistente
+=modificarAmeacante		casa0	CasaInexistente
+
 // ---------------------------------------------
 
-== Teste Modificar Ameacados da Casa Iguais
+== Teste Obter Lista Ameacados
+=criarCasa				casa0	OK
+=obterAmeacados			casa0	1	OK
+=destroiCasa			casa0	OK
+
+== Teste Obter Lista Ameacados Casa Inexistente
+=obterAmeacados			casa0	0	CasaInexistente
+
+== Teste Modificar Ameacados da Casa
 =criarCasa      		casa0   OK
 =modificarAmeacados		casa0   OK
 =obterAmeacados			casa0	1    OK
 =destroiCasa    		casa0   OK
 
-== Teste do Teste Modificar Ameacados da Casa Diferentes
+== Teste do Teste Modificar Ameacados da Casa
 =criarCasa      		casa0   OK
 =modificarAmeacados		casa0   OK
 =obterAmeacados			casa0	0    OK
 =recuperar
 =destroiCasa    		casa0   OK
+
+== Teste Modificar Ameacados Casa Inexistente
+=modificarAmeacados		casa0	CasaInexistente

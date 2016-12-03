@@ -1,0 +1,48 @@
+﻿. Arquivo de Tabuleiro Inicial
+	Determina a arrumação inicial do tabuleiro.
+
+----------------------------------------------------
+--- Arquivo de Tabuleiro Inicial -------------------
+----------------------------------------------------
+
+        Arquivo encontra-se no caminho ..\pecas\default\inicial.pca
+
+	Este arquivo determina a configuração do tabuleiro inicial.
+        Basta abrir o arquivo com o editor de texto de sua preferência.
+
+	Ele possui a seguinte sintaxe:
+
+----------------------------------------------------
+
+	<NUMERO N DE CASAS TOTAIS NO TABULEIRO>
+
+	<CARACTER IDENTIFICADOR DA PEÇA 1> <CARACTER IDENTIFICADOR DA COR DA PEÇA 1>
+	<CARACTER IDENTIFICADOR DA PEÇA 2> <CARACTER IDENTIFICADOR DA COR DA PEÇA 2>
+	<CARACTER IDENTIFICADOR DA PEÇA 3> <CARACTER IDENTIFICADOR DA COR DA PEÇA 3>
+	...
+	<CARACTER IDENTIFICADOR DA PEÇA N> <CARACTER IDENTIFICADOR DA COR DA PEÇA N>
+	
+----------------------------------------------------
+
+	Exemplo (Xadrez usual):
+
+	64
+	TP CP BP DP RP BP CP TP
+	PP PP PP PP PP PP PP PP
+	VV VV VV VV VV VV VV VV
+	VV VV VV VV VV VV VV VV
+	VV VV VV VV VV VV VV VV
+	VV VV VV VV VV VV VV VV
+	PB PB PB PB PB PB PB PB
+	TB CB BB DB RB BB CB TB
+
+----------------------------------------------------
+ATENÇÃO: Por favor não alterar o valor "64" encontrado no início do arquivo
+----------------------------------------------------
+
+Para adicionar as peças novas, basta alterar o caracter identificador da peça
+pelo nome da sua peça. Atenção na hora de alterar, pois existe diferença entre
+caracteres maiúsculos e minúsculos.
+
+Ex.: Se criada uma peça com nome Z, alterar o carater identificador (na posição desejada)
+para Z. Já se a mesma peça for criada com o caracter minúsculo, z, alterar para z.

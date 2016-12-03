@@ -16,6 +16,8 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     8       vas   13/nov/2016 adição do protótipo da função de comparar listas
+*     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
 *                               e retirada de funções não utilizadas
 *     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
@@ -108,6 +110,9 @@ typedef struct LIS_tagLista * LIS_tppLista ;
          LIS_CondRetFaltouMemoria = 6 ,
                /* Faltou memória ao tentar criar um elemento de lista */
 
+         LIS_CondRetNaoAchou = 7
+               /* Nao encontrou o elemento da lista */
+
    } LIS_tpCondRet ;
 
 
@@ -151,6 +156,27 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
              int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) ) ;
 
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Copiar lista
+*
+*  $ED Descrição da função
+*     Copia uma lista genérica duplamente encadeada.
+*
+*  $EP Parâmetros
+*
+*     pLista          - ponteiro para a lista sendo criada
+*     listaOriginal   - lista original a ser copiada
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK            - lista foi criada corretamente
+*     LIS_CondRetFaltouMemoria - ocorreu um erro na criação da lista
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_CopiarLista( LIS_tppLista* pLista , LIS_tppLista listaOriginal ) ;
 
 /***********************************************************************
 *
@@ -312,6 +338,98 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_AlteraValor( LIS_tppLista pLista ,
                                   void * pValor ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Verifica se a lista está vazia
+*
+*  $ED Descrição da função
+*     Verifica se a lista está vazia ou não.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser verificada
+*     vazia   - ponteiro para o valor da condição
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_VerificaVazia( LIS_tppLista pLista ,
+                                  int * vazia ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Compara duas listas
+*
+*  $ED Descrição da função
+*     Verifica se as duas listas são iguais ou não.
+*
+*  $EP Parâmetros
+*     pLista1   - ponteiro para a primeira lista da comparação
+*     pLista2   - ponteiro para a segunda lista da comparação
+*     igualdade - ponteiro para o valor da igualdade
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_VerificaIgualdade( LIS_tppLista pLista1 ,
+                                        LIS_tppLista pLista2 ,
+                                        int * igualdade ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Esvazia lista
+*
+*  $ED Descrição da função
+*     Esvazia uma lista sem destrui-la.
+*
+*  $EP Parâmetros
+*     pLista1   - ponteiro para a lista que será esvaziada
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_Esvazia( LIS_tppLista pLista ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Procurar elemento contendo valor
+*
+*  $ED Descrição da função
+*     Procura o elemento que referencia o valor dado.
+*     A função compara o conteúdo apontado de acordo com função
+*       de igualdade passada na criação da lista.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista onde procura
+*     pValor  - ponteiro para o valor procurado
+*               Pode ser NULL
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK  - se encontrou.
+*                      O elemento corrente é o primeiro elemento do
+*                      elemento corrente inclusive para o fim da lista
+*                      e que contém o ponteiro procurado
+*
+*     LIS_CondRetNaoAchou - se o ponteiro não foi encontrado
+*                      O elemento corrente continua o mesmo
+*     LIS_CondRetListaVazia   - se a lista estiver vazia
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
+                                    void * pValor) ;
 
 #undef LISTA_EXT
 

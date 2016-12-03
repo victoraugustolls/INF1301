@@ -1,26 +1,28 @@
-Data	   Horas Trabalhadas	 Tipo Tarefa	 		                        		Descri��o da Tarefa Realizada
-03/10/16   1			         Projetar	 		                                    Verificar os testes que faltam para cobrir todos os casos no 																																						m�dulo lista
-04/10/16   15min                 Especificar as fun��es                                 Decidir as fun��es para o m�dulo lista
-04/10/16   1                     Revisar c�digo                                         Verificar a implementa��o do m�dulo lista para os requisitos do 																																					trabalho 2
-04/10/16   2                     Codificar m�dulo                                 		Implementar no m�dulo lista as fun��es que faltavam, remover as 																																					desnecess�rias e modificar as existentes
-04/10/16   30min                 Revisar c�digo do m�dulo                               Verificar no TESTLIS.C o que precisaria ser alterado para a nova 																						 															lista
-04/10/16   30min                 Planejar testes                                 		Planejar os novos testes para a lista
-04/10/16   2                     Codificar m�dulo                                       Mudar os testes do TESTLIS.C para nova lista
-05/10/16   1                     Diagnosticar e corrigir os problemas encontrados       Corrigir diversos erros no TESTLIS.C vinculados ao retorno de 																																						par�metros por refer�ncia
-05/10/16   1                     Redigir Script de teste                                Alterar os testes do m�dulo de lista
-05/10/16   1                     Projetar				                                Projetar o m�dulo pe�a
-05/10/16   30min                 Especificar as fun��es				                    Especificar as func�es do m�dulo pe�a
-05/10/16   2                     Codificar m�dulo                                 		Implementar o m�dulo pe�a
-06/10/16   2                     Codificar m�dulo                                 		Implementar os testes do m�dulo pe�a
-06/10/16   30min                 Redigir Script de teste                                Redigir os scripts de teste para o m�dulo pe�a
-06/10/16   30min                 Diagnosticar e corrigir os problemas encontrados       Corrigir m�dulo pe�a, para armazenar char no lugar de string
-06/10/16   30min                 Revisar especifica��es                                 Revisar o enunciado do trabalho para montar a entrega final
-10/10/16   1					 Diagnosticar e corrigir os problemas encontrados		Corrigir o teste do m�dulo pe�a
-10/10/16   30min				 Redigir Script de teste 								Corre��o do script de teste do m�dulo pe�a
-11/10/16   2					 Codificar m�dulo										Implementar os testes do m�dulo casa
-11/10/16   1					 Redigir Script de teste 								Redigir os scripts de teste do m�dulo casa
-11/10/16   1					 Diagnosticar e corrigir os problemas encontrados		Corrigir os problemas apontados pelo teste no m�dulo casa
-11/10/16   2					 Codificar m�dulo										Adi��o de novas fun��es no m�dulo casa
-12/10/16   1					 Codificar m�dulo										Adi��o de novos testes na casa
-12/10/16   1					 Redigir Script de teste 								Redigir os scripts de teste para as novas fun��es do m�dulo casa
-16/10/16   1					 Revisas Especifica��es 								Verificar as documenta��es dos m�dulos casa, pe�a e lista
+Data       Horas Trabalhadas     Tipo Tarefa                                            Descrição da Tarefa Realizada
+10/11/16   30min                 Revisar código                                         Verificar a implementação do módulo peça.
+10/11/16   1h                    Codificar módulo                                       Corrigir a implementação do módulo peça.
+11/11/16   1h                    Diagnosticar e corrigir os problemas encontrados       
+11/11/16   2h30min               Diagnosticar e corrigir os problemas encontrados       Verificar os problemas causados no módulo casa pela mudança no módulo peça
+                                                                                        e corrigir o mesmo, junto com seus testes.
+12/11/16   3h                    Diagnosticar e corrigir os problemas encontrados       Verificar os problemas causados no módulo tabuleiro pela mudança no módulo casa
+                                                                                        e corrigir o mesmo, junto com seus testes.
+12/11/16   1h                    Redigir Script de teste                                Adicionar testes para condições que não estavam sendo testadas nos módulos casa
+                                                                                        e peça.
+12/11/16   1h30min               Diagnosticar e corrigir os problemas encontrados       Verificar e corrigir os problemas apontados pelos testes do tabuleiro.
+12/11/16   1h30min               Diagnosticar e corrigir os problemas encontrados       Corrigir os problemas de compilação encontrados no módulo jogo.
+12/11/16   30min                 Codificar módulo                                       Realizar pequenas alterações internas no módulo tabuleiro quanto a organização.
+13/11/16   1h                    Codificar módulo                                       Adicionar novas funções no módulo lista.
+13/11/16   15min                 Planejar teste                                         Projetar os testes para as novas funções do módulo lista.
+13/11/16   30min                 Codificar módulo                                       Implementar testes para novas funções do módulo lista.
+13/11/16   30min                 Redigir Script de teste                                Completar o script de teste para as novas funções do módulo lista.
+13/11/16   3h30min               Diagnosticar e corrigir os problemas encontrados       Corrigir mais problemas apontados pelos testes do módulo tabuleiro.
+13/11/16   1h                    Codificar módulo                                       Modificar os testes do tabuleiro para ser possível testar mais casos.
+13/11/16   1h                    Redigir Script de teste                                Completar o script de teste do tabuleiro para cobrir os casos possíveis.
+13/11/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir novos problemas encontrados no módulo jogo e em seus testes.
+13/11/16   2h                    Diagnosticar e corrigir os problemas encontrados       Corrigir problemas encontrados no módulo tabuleiro na obtenção das listas.
+14/11/16   1h                    Codificar módulo                                       Refazer os testes do módulo tabuleiro para testar corretamente a obtenção das listas.
+14/11/16   30min                 Redigir Script de teste                                Modificar o script de teste do tabuleiro para os novos testes de obtenção das listas.
+15/11/16   3h                    Codificar módulo                                       Modificar a principal para deixar o jogo mais amigável e compreensível para o usuário.
+16/11/16   30min                 Diagnosticar e corrigir os problemas encontrados       Corrigir problemas encontrados na implementação do módulo de criar peça customizada.
+16/11/16   2h                    Codificar módulo                                       Criar testes para as novas funções dos módulos peça, casa e tabuleiro.
+17/11/16   1h                    Redigir Script de teste                                Completar os testes dos módulos peça, casa e tabuleiro para as novas funções.

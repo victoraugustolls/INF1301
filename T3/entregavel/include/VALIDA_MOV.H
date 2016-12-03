@@ -16,6 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     2       iars   15/nov/2016 copiar config dir
 *     1       iars   04/out/2016 início desenvolvimento
 *
 *  $ED Descrição do módulo
@@ -115,6 +116,25 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 
    VMV_tpCondRet VMV_CriarConfigDir ( VMV_tppConfigDir * pConfigDir , const char * pathConfigArq ) ;
 
+/***********************************************************************
+*
+*  $FC Função: VMV  &Copia um identificador para o arquivo de configuração
+*
+*  $ED Descrição da função
+*     Dado um diretório, retorna por referência um identificador de um arquivo
+*     de configuração igual ao original.
+*
+*  $EP Parâmetros
+*     pConfigDir          - ponteiro para o identificador de configuração
+*     configDirOriginal   - identificador de configuração original
+*
+*  $FV Valor retornado
+*     VMV_CondRetOK                       - Identificador de configuração criado corretamente
+*     VMV_CondRetErrFaltouMemoria         - Ocorreu um erro na criação do identificador de configuração
+*
+***********************************************************************/
+
+   VMV_tpCondRet VMV_CopiarConfigDir ( VMV_tppConfigDir * pConfigDir , VMV_tppConfigDir configDirOriginal) ;
 
 /***********************************************************************
 *
@@ -193,7 +213,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
 *
 *       vazio                - Função que recebe uma casa e uma estrutura auxiliar e retorna 1 se
 *                              a casa em questão está vazia e 0 caso não.
-*       inimigo              - Função que recebe uma casa e uma estrutura auxiliar e retorna 1 se
+*       inimigo              - Função que recebe uma casa, a casa atual e uma estrutura auxiliar e retorna 1 se
 *                              a casa em questão possui um inimigo e 0 caso não.
 *
 *       cond_especiais       - Vetor com inteiros 1 ou 0 referentes à condições especiais 
@@ -226,7 +246,7 @@ typedef struct VMV_configDir * VMV_tppConfigDir ;
                                              int ( ** array_dimensao ) ( void * casa, void * aux ) ,
                                              int * array_sinal ,
                                              int ( * vazio) ( void * casa, void * aux ) ,
-                                             int ( * inimigo ) ( void * casa, void * aux ) ,
+                                             int ( * inimigo ) ( void * casa, void* casa_atual, void * aux ) ,
                                              int * cond_especiais ,
                                              int num_cond_especiais,
                                              void* aux ) ;

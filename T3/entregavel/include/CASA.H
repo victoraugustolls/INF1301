@@ -16,6 +16,8 @@
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
+ *     6       iars  15/nov/2016 copiar casa
+ *     5       vas   10/nov/2016 alteracoes devido a mudanca da estrutura da peca
  *     4       vas   12/out/2016 corrigir esvaziar peça da casa
  *     3       lff   11/out/2016 adição de funções de modificar lista
  *     2       lff   10/out/2016 conserto de alguns erros
@@ -97,6 +99,26 @@ typedef enum {
 
 CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa ) ;
 
+/***********************************************************************
+ *
+ *  $FC Função: CSA  &Copiar casa
+ *
+ *  $ED Descrição da função
+ *     Cria uma casa igual a casa original.
+ *     Casa que deseja-se copiar não pode ser nula.
+ *
+ *  $EP Parâmetros
+ *     pCasa - ponteiro para a casa sendo criado
+ *    casaOriginal - casa original
+ *
+ *  $FV Valor retornado
+ *     CSA_CondRetOK                - criou sem problemas
+ *     CSA_CondRetFaltouMemoria     - faltou memória para alocação da casa
+ *
+ ***********************************************************************/
+
+CSA_tpCondRet CSA_CopiarCasa( CSA_tppCasa * pCasa, CSA_tppCasa casaOriginal ) ;
+
 
 /***********************************************************************
  *
@@ -131,6 +153,7 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa ) ;
  *  $FV Valor retornado
  *     CSA_CondRetOK                - inseriu sem problemas
  *     CSA_CondRetNaoExiste         - a casa não existe
+ *     CSA_CondRetFaltouMemoria     - faltou memoria para inserir peça
  *
  ***********************************************************************/
 
@@ -164,8 +187,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *     Obtém a peça presente na casa passada pelo ponteiro.
  *
  *  $EP Parâmetros
- *     pNomePeca   - ponteiro para o ponteiro referente ao nome da peça contina na casa
- *     pCorPeca    - ponteiro para o ponteiro referente à cor da peça contina na casa
+ *     pNomePeca   - ponteiro referente ao nome da peça contina na casa
+ *     pCorPeca    - ponteiro referente à cor da peça contina na casa
  *     pCasa       - ponteiro para a casa onde a peça vai ser obtida
  *
  *  $FV Valor retornado
@@ -174,8 +197,8 @@ CSA_tpCondRet CSA_RetirarPecaCasa( CSA_tppCasa pCasa ) ;
  *
  ***********************************************************************/
 
-CSA_tpCondRet CSA_ObterPecaCasa( char** pNomePeca ,
-                                 char** pCorPeca ,
+CSA_tpCondRet CSA_ObterPecaCasa( char* pNomePeca ,
+                                 char* pCorPeca ,
                                  CSA_tppCasa pCasa ) ;
 
 /***********************************************************************
@@ -215,7 +238,6 @@ CSA_tpCondRet CSA_CompararCasa( CSA_tppCasa pCasa1 ,
  *  $FV Valor retornado
  *     CSA_CondRetOK           - obteve lista sem problemas
  *     CSA_CondRetNaoExiste    - a casa não existe
- *	   CSA_CondRetVazia        - a casa esta vazia
  *
  ***********************************************************************/
 
@@ -285,6 +307,26 @@ CSA_tpCondRet CSA_ModificarListaAmeacantesCasa( CSA_tppCasa * vetorCasasAmeacant
 CSA_tpCondRet CSA_ModificarListaAmeacadosCasa( CSA_tppCasa * vetorCasasAmeacadas ,
                                                int qtdCasasAmeacadas ,
                                                CSA_tppCasa pCasa ) ;
+
+/***********************************************************************
+*
+*  $FC Função: CSA  &Print Casa
+*
+*  $ED Descrição da função
+*     Retorna a string (alocada dinamicamente) referente ao print da casa.
+*     Casa que deseja-se pegar o print não pode ser nula.
+*
+*  $EP Parâmetros
+*     pCasa            - ponteiro para a casa
+*     print            - ponteiro para a string
+*
+*  $FV Valor retornado
+*     CSA_CondRetOK             - nao ocorreram problemas
+*     CSA_CondRetFaltouMemoria  - faltou memoria
+*
+***********************************************************************/
+
+CSA_tpCondRet CSA_GetPrintCasa ( CSA_tppCasa pCasa, char** print ) ;
 
 #undef CASA_EXT
 
