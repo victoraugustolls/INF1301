@@ -1,0 +1,5 @@
+L_OR	
+	L_NOT
+		P_VAZ A
+	L_NOT
+		P_VAZ D

@@ -1,0 +1,142 @@
+————— Trabalho 2 - Programação Modular —————
+
+ - Pontifícia Universidade Católica do Rio de Janeiro
+ - Data: 16 de Outubro de 2016
+
+————— Autores —————
+
+ - Ian Albuquerque
+ - Lucas Ferraço
+ - Victor Augusto
+
+————— Estrutura de Arquivos e Diretórios —————
+
+== Diretórios
+	 = bat
+	 	Contém os batches de execução dos scripts de teste.
+
+	 	- EXECUTAR_TESTE_CASA.BAT.TXT
+	 	- EXECUTAR_TESTE_LISTA.BAT.TXT
+	 	- EXECUTAR_TESTE_PECA.BAT.TXT
+	 	- EXECUTAR_TESTE_TABULEIRO.BAT.TXT
+	 	- EXECUTAR_TESTE_VMV.BAT.TXT
+	 	- EXECUTAR_TODOS_TESTES.BAT.TXT
+
+	 = bin
+	 	Contém os executáveis do teste de cada módulo.
+
+	 	- TEST_CSA.EXE
+	 	- TEST_LIS.EXE
+	 	- TEST_PCA.EXE
+	 	- TEST_TAB.EXE
+	 	- TEST_VMV.EXE
+
+	 = include
+	 	Contém os módulos de definição do projeto.
+
+	 	- CASA.H
+	 	- GENERICO.H
+	 	- LERPARM.H
+	 	- LISTA.H
+	 	- PECA.H
+	 	- TABULEIRO.H
+	 	- TST_ESPC.H
+	 	- VALIDA_MOV.H
+
+	 = lib
+	 	Contém as bibliotecas estáticas do projeto.
+
+	 	- ArcaboucoTeste.lib.TXT
+
+	 = log
+	 	Destino da saída da execução dos scripts de teste.
+	 	A pasta deve estar vazia.
+
+	 = pecas
+	 	Contém os arquivos que definem o movimento de uma peça.
+	 	Novas peças devem ser adicionadas aqui.
+
+	 	pecas\teste possui arquivos que são utilizados nos testes.
+
+	 = script
+	 	Contém os scripts de testes a serem executados.
+
+	 	- TESTE_CASA.SCRIPT
+	 	- TESTE_LISTA.SCRIPT
+	 	- TESTE_PECA.SCRIPT
+	 	- TESTE_TABULEIRO.SCRIPT
+	 	- TESTE_VMV.SCRIPT
+
+	 = source
+	 	Contém os módulos de implementação do projeto.
+
+	 	- CASA.C
+	 	- LISTA.C
+	 	- PECA.C
+	 	- TABULEIRO.C
+	 	- VALIDA_MOV.C
+
+	 	- TESTCSA.C
+	 	- TESTLIS.C
+	 	- TESTPCA.C
+	 	- TESTTAB.C
+	 	- TESTVMV.C
+
+== Arquivos
+
+	 - LEIAME.TXT
+	 	Arquivo descritivo com informações sobre o projeto e sua manipulação.
+
+	 - COMO_ADD_NOVA_PECA.TXT
+	 	Arquivo com instruções de como adicionar peças ao jogo.
+
+	 - RENOMEIA_BAT_EXE_LIB.BAT.TXT
+	 	Script que renomeia todos os arquivos BAT.TXT, .EXE.TXT e .lib.TXT para
+	 	.BAT, .EXE e .lib
+
+————— Instruções Importantes —————
+
+	 Devido ao sistema de segurança da maioria dos provedores de e-mail, os arquivos
+	 de extensão .EXE, .lib e .BAT foram renomeados para a extensão .EXE.TXT, .lib.TXT .BAT.TXT, respectivamente.
+
+	 Para o correto funcionamento dos programas, renomeie os arquivos com extensão .EXE.TXT, .lib.TXT e .BAT.TXT
+	 para apenas a extensão .EXE, .lib e .bat, respectivamente.
+
+	 Um script para essa tarefa é fornecido (RENOMEIA_BAT_EXE_LIB.BAT.TXT)
+	 Contudo, esse script deve ser renomeado antes de ser executado
+
+	 Para renomear, siga os seguintes passos:
+	 	- Clique com o botão direito em RENOMEIA_BAT_EXE_LIB.BAT.TXT. Um menu irá aparecer.
+	 	- Clique na opção Renomear.
+	 	- Altere o final do arquivo de .BAT.TXT para .BAT
+	 	- Caso o Windows pergunte se você realmente deseja fazer isso, diga que sim.
+
+	Agora basta apenas executar o recém renomeado arquivo RENOMEIA_BAT_EXE_LIB.BAT com dois cliques.
+
+	Verifique se os arquivos nas bastas bat, lib, e bin estão sem o final .TXT.
+
+————— Descrição do Programa —————
+
+	Cada executável na pasta bin testa as funções do módulo 
+	correspondente de acordo com o script de teste fornecido.
+
+	O arquivo EXECUTAR_TODOS_TESTES.BAT executa todos os testes,
+	em sequência.
+
+————— Modo de Execução do Script de Testes ————— 
+
+	IMPORTANTE: Antes de seguir os passos abaixo, renomeie 
+	os arquivos da pasta bin e da pasta bat, removendo o final .TXT de cada um deles.
+
+	Execute (dê dois cliques) em cada arquivo na pasta bat. Logs de saída 
+	serão gerados na pasta log para cada arquivo .BAT correspondente.
+
+	O arquivo EXECUTAR_TODOS_TESTES.BAT executa todos os testes,
+	em sequência.
+
+————— Adicionando uma Peça Nova —————————————————————————————— 
+
+	Ler arquivo COMO_ADD_NOVA_PECA.TXT
+
+	Este contém as instruções de como adicionar novas peças.
+	

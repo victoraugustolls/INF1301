@@ -1,0 +1,30 @@
+[Diretorios]
+
+Nome        =  TEST_JGO
+PathDefault =  ..\..\include
+err         =  ..\err
+obj         =  ..\obj
+c           =  ..\..\src
+h           =  ..\..\include
+def         =  ..\tabs
+tab         =  ..\tabs
+inc         =  ..\tabs
+
+[Modulos]
+PECA
+CASA
+VALIDA_MOV
+TABULEIRO
+LISTA
+TESTJGO
+JOGO
+
+[BuildInicio]
+/OUT:TEST_JGO.exe
+/INCREMENTAL:NO
+/MACHINE:IX86
+
+[BuildFim]
+..\..\lib\ArcaboucoTeste.lib
+
+[Fim]
