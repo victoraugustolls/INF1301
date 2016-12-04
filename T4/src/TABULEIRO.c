@@ -66,9 +66,11 @@ static int IgualChar ( void * pDado_1 , void * pDado_2 ) ;
 static void ExcluirCasa ( void * pDado ) ;
 static int CompararCasa ( void * pDado_1 , void * pDado_2 ) ;
 static int IgualCasa ( void * pDado_1 , void * pDado_2 ) ;
+static void CopiarListaCasa ( void ** pValor, void * pValorOriginal ) ;
 static void ExcluirLista ( void * pDado ) ;
 static int CompararLista ( void * pDado_1 , void * pDado_2 ) ;
 static int IgualLista ( void * pDado_1 , void * pDado_2 ) ;
+static void CopiarListaLista ( void ** pValor, void * pValorOriginal ) ;
 static void AtualizaListaAmeacantesAmeacados ( TAB_tppTabuleiro pTabuleiro ) ;
 static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna ) ;
 
@@ -259,11 +261,11 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabuleiro tabuleiroOriginal )
 {
 
-    int i , j ;
+    // int i , j ;
     TAB_tppTabuleiro pNovoTabuleiro = NULL ;
-    CSA_tpCondRet retCasa ;
-    CSA_tppCasa casa ;
-    CSA_tppCasa casaCopia ;
+    // CSA_tpCondRet retCasa ;
+    // CSA_tppCasa casa ;
+    // CSA_tppCasa casaCopia ;
 
     VMV_tpCondRet condRetCriarConfigDir ;
     
@@ -285,34 +287,36 @@ TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabulei
         return TAB_CondRetFaltouMemoria ;
     } /* if */
 
-    for ( i = 0 ; i < 8 ; i++ )
-    {
-        for ( j = 0 ; j < 8 ; j++ )
-        {
+    LIS_CopiarLista( &pNovoTabuleiro->tabuleiro , tabuleiroOriginal->tabuleiro , CopiarListaLista ) ;
 
-            casa = TAB_PegarCasa( tabuleiroOriginal , i , j ) ;
-            if ( casa == NULL )
-            {
-                return TAB_CondRetFaltouMemoria ;
-            } /* if */
-            //TRATAR RET LISTA CORRETAMENTE
-            printf("Vai pegar casa copia\n");
-            casaCopia = TAB_PegarCasa( pNovoTabuleiro , i , j ) ;
-            printf("Pegou casa copia");
-            if ( casaCopia == NULL )
-            {
-                return TAB_CondRetFaltouMemoria ;
-            } /* if */
-            //TRATAR RET LISTA CORRETAMENTE
+    // for ( i = 0 ; i < 8 ; i++ )
+    // {
+    //     for ( j = 0 ; j < 8 ; j++ )
+    //     {
 
-            // retCasa = CSA_CopiarCasa( &pNovoTabuleiro->tabuleiro[i][j] , tabuleiroOriginal->tabuleiro[ i ][ j ] ) ;
-            retCasa = CSA_CopiarCasa( &casaCopia , casa ) ;
-            if( retCasa == CSA_CondRetFaltouMemoria)
-            {
-                return TAB_CondRetFaltouMemoria;
-            }
-        } /* for */
-    } /* for */
+    //         casa = TAB_PegarCasa( tabuleiroOriginal , i , j ) ;
+    //         if ( casa == NULL )
+    //         {
+    //             return TAB_CondRetFaltouMemoria ;
+    //         } /* if */
+    //         //TRATAR RET LISTA CORRETAMENTE
+    //         printf("Vai pegar casa copia\n");
+    //         casaCopia = TAB_PegarCasa( pNovoTabuleiro , i , j ) ;
+    //         printf("Pegou casa copia");
+    //         if ( casaCopia == NULL )
+    //         {
+    //             return TAB_CondRetFaltouMemoria ;
+    //         } /* if */
+    //         //TRATAR RET LISTA CORRETAMENTE
+
+    //         // retCasa = CSA_CopiarCasa( &pNovoTabuleiro->tabuleiro[i][j] , tabuleiroOriginal->tabuleiro[ i ][ j ] ) ;
+    //         retCasa = CSA_CopiarCasa( &casaCopia , casa ) ;
+    //         if( retCasa == CSA_CondRetFaltouMemoria)
+    //         {
+    //             return TAB_CondRetFaltouMemoria;
+    //         }
+    //     } /* for */
+    // } /* for */
 
     *pTabuleiro = pNovoTabuleiro ;
 
@@ -1152,6 +1156,14 @@ int IgualCasa ( void * pDado_1, void * pDado_2 )
     return igualdade ;
 }
 
+void CopiarListaCasa ( void ** pValor, void * pValorOriginal )
+{
+    CSA_tppCasa casaOriginal = ( CSA_tppCasa ) pValorOriginal ;
+    CSA_tppCasa * casaNova = ( CSA_tppCasa * ) pValor ;
+    CSA_CopiarCasa( casaNova , casaOriginal ) ;
+    return ;
+}
+
 void ExcluirLista ( void * pDado )
 {
     LIS_tppLista x = ( LIS_tppLista ) pDado ;
@@ -1175,6 +1187,14 @@ int IgualLista ( void * pDado_1, void * pDado_2 )
     LIS_tppLista y = ( LIS_tppLista ) pDado_2 ;
     LIS_VerificaIgualdade( x , y , &igualdade) ;
     return igualdade ;
+}
+
+void CopiarListaLista ( void ** pValor, void * pValorOriginal )
+{
+    LIS_tppLista listaOriginal = ( LIS_tppLista ) pValorOriginal ;
+    LIS_tppLista * listaNova = ( LIS_tppLista * ) pValor ;
+    LIS_CopiarLista( listaNova , listaOriginal , CopiarListaCasa ) ;
+    return ;
 }
 
 void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
