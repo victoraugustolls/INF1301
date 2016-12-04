@@ -39,6 +39,8 @@ static void DestruirValor( void * pDado ) ;
 
 static int CompararValores( void * pDado_1 , void * pDado_2 ) ;
 
+static void CopiarValores( void ** pDado_1 , void * pDado_2 );
+
 /***********************************************************************
  *
  *  $TC Tipo de dados: CSA Descritor da casa
@@ -162,7 +164,7 @@ CSA_tpCondRet CSA_CopiarCasa( CSA_tppCasa * pCasa, CSA_tppCasa casaOriginal )
         return CSA_CondRetFaltouMemoria ;
     }/* if */
     
-    retLista = LIS_CopiarLista( &listaAmeacantes , casaOriginal->listaAmeacantes) ;
+    retLista = LIS_CopiarLista( &listaAmeacantes , casaOriginal->listaAmeacantes, CopiarValores) ;
 
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
@@ -171,7 +173,7 @@ CSA_tpCondRet CSA_CopiarCasa( CSA_tppCasa * pCasa, CSA_tppCasa casaOriginal )
         return CSA_CondRetFaltouMemoria ;
     }/* if */
     
-    retLista = LIS_CopiarLista( &listaAmeacados , casaOriginal->listaAmeacados) ;
+    retLista = LIS_CopiarLista( &listaAmeacados , casaOriginal->listaAmeacados, CopiarValores) ;
 
     if ( retLista == LIS_CondRetFaltouMemoria )
     {
@@ -545,6 +547,21 @@ int CompararValores( void * pDado_1 , void * pDado_2 )
     return igualdade ;
     
 } /* Fim função: CSA -Comparar Valores */
+
+/***********************************************************************
+ *
+ *  $FC Função: CSA -Copiar Valores
+ *
+ ***********************************************************************/
+
+void CopiarValores( void ** pDado_1 , void * pDado_2 )
+{
+    CSA_tppCasa* valor1 = ( CSA_tppCasa* ) pDado_1;
+    CSA_tppCasa valor2 = ( CSA_tppCasa ) pDado_2;
+
+    *valor1 = valor2;
+    
+} /* Fim função: CSA -Copiar Valores */
 
 
 /********** Fim do mÛdulo de implementaÁ„o:  CSA  Casa de um tabuleiro para jogo de xadrez

@@ -146,12 +146,13 @@
 *  ****/
 
 
-   LIS_tpCondRet LIS_CopiarLista( LIS_tppLista* pLista , LIS_tppLista listaOriginal )
+   LIS_tpCondRet LIS_CopiarLista( LIS_tppLista* pLista , LIS_tppLista listaOriginal, void ( * CopiarElemento ) ( void ** pValor, void* pValorOriginal ) )
    {
 
       LIS_tppLista pNewLista = NULL ;
       tpElemLista * pElem ;
       LIS_tpCondRet listaCondRet;
+      void * pValorNovo;
 
       pNewLista = ( LIS_tpLista * ) malloc( sizeof( LIS_tpLista )) ;
       if ( pNewLista == NULL )
@@ -178,7 +179,8 @@
             pElem != NULL ;
             pElem  = pElem->pProx )
       {
-         listaCondRet = LIS_InserirElementoApos( pNewLista, pElem->pValor);
+         CopiarElemento(&pValorNovo, pElem->pValor);
+         listaCondRet = LIS_InserirElementoApos( pNewLista, pValorNovo);
          if(listaCondRet == LIS_CondRetFaltouMemoria)
          {
             LIS_DestruirLista(pNewLista);
