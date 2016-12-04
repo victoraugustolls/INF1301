@@ -175,7 +175,7 @@
          return LIS_CondRetOK ;
       } /* if */
 
-      for ( pElem  = listaOriginal->pElemCorr ;
+      for ( pElem  = listaOriginal->pOrigemLista ;
             pElem != NULL ;
             pElem  = pElem->pProx )
       {
