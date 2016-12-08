@@ -15,20 +15,4 @@
 % - realizar os testes
 % - diagnosticar e corrigir os problemas encontrados
 
-03/10/2016; 1.5 horas ; estudar e especificar as funções; Estudei o enunciado do terceiro trabalho e especifiquei o JUIZ.H.
-
-04/11/2016; 2 horas ; projetar; Projetei o TESTJGO.C.
-
-09/11/2016; 0.5 hora ; redigir script de teste; Comecei a redigir o script de testes para o módulo JOGO (TESTE_JOGO.SCRIPT).
-
-11/11/2016; 3 horas ; revisar código do módulo e redigir script de teste; Revisei o TSTJGO.C e revisei o script de testes TESTE_JOGO.SCRIPT.
-
-12/11/2016; 5 horas ; diagnosticar e corrigir os problemas encontrados e codificar módulo; Ajudei o Victor a corrigir problemas dos testes dos módulos JOGO e TABULEIRO e também codifiquei o módulo PRINCIPAL, o qual será responsável por rodar o jogo.
-
-13/11/2016; 3 horas ; projetar; Fiz a argumentação de corretude da função TAB_DestruirTabuleiro.
-
-15/11/2016; 3 horas ; projetar; Fiz a arquitetura completa da aplicação.
-
-16/11/2016; 1 hora ; projetar; Fiz a estrutura unificada da aplicação.
-
-16/11/2016; 2 hora ; projetar; Fiz o Manual do Usuário.
+08/12/2016; 2 horas ; estudar e projetar; Estudei o enunciado do quarto trabalho e modifiquei os exemplos físicos para nosso tabuleiro auto-verificável.
