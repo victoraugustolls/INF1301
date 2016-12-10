@@ -34,10 +34,10 @@
    typedef struct VMV_configDir {
 
          char * pPathDirPecas ;
-               /* Ponteiro para o valor contido no elemento */
+               /* String contendo o caminho para o diretório contendo as peças */
 
          char * pPathArquivoInicial ;
-               /* Ponteiro para o elemento predecessor */
+               /* String contendo o caminho para o arquivo de configuração de tabuleiro inicial */
 
    } VMV_tpConfigDir ;
 
