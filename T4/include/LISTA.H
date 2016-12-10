@@ -448,6 +448,9 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_MoveInicio( LIS_tppLista pLista ) ;
 
+
+#ifdef _DEBUG
+
 /***********************************************************************
 *
 *  $FC Função: LIS  &Tamanho
@@ -467,6 +470,51 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_Tamanho( LIS_tppLista pLista ,
                               int * tamanhoDaLista );
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Define o Tipo
+*
+*  $ED Descrição da função
+*     Define uma string que identifica o tipo que a lista armazena.
+*     A string deve possuir até 10 caracteres.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser verificada
+*     stringIdentificadoraDoTipo   -  string identificador do tipo.
+
+*  $FV Valor retornado
+*     LIS_CondRetOK             - retorno bem sucedido
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
+                              char* stringIdentificadoraDoTipo );
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obtem o Tipo
+*
+*  $ED Descrição da função
+*     Obtem a string que identifica o tipo que a lista armazena, armazenando em stringIdentificadoraDoTipo.
+*     O espaco apontado stringIdentificadoraDoTipo já deve estar previamente alocado com pelo menos 11 espaços de char.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser verificada
+*     stringIdentificadoraDoTipo   -  string identificador do tipo.
+
+*  $FV Valor retornado
+*     LIS_CondRetOK             - retorno bem sucedido
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
+                              char* stringIdentificadoraDoTipo );
+
+
+#endif
 
 #undef LISTA_EXT
 
