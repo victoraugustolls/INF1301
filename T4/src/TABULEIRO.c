@@ -31,6 +31,12 @@
 #include   "VALIDA_MOV.H"
 #include   "LISTA.H"
 
+#ifdef _DEBUG
+    #include "GENERICO.H"
+    #include "CESPDIN.H"
+    #include "CONTA.H"
+#endif
+
 #define TABULEIRO_OWN
 #include "TABULEIRO.H"
 #undef TABULEIRO_OWN
