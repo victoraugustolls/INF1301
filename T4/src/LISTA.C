@@ -91,7 +91,7 @@
 
          #ifdef _DEBUG
 
-         char tipoArmazenado[11];
+         char tipoArmazenado[64];
 
          #endif
 
@@ -702,8 +702,6 @@
 
    } /* Fim função: LIS  &Procurar elemento contendo valor */
 
-
-
 #ifdef _DEBUG
 
 LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
@@ -729,7 +727,7 @@ LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
    } /* if */
 
    strcpy(stringIdentificadoraDoTipo, pLista->tipoArmazenado);
-   
+
    return LIS_CondRetOK ;
 }
 

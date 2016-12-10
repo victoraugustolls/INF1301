@@ -477,7 +477,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Define uma string que identifica o tipo que a lista armazena.
-*     A string deve possuir até 10 caracteres.
+*     A string deve possuir até 63 caracteres.
 *
 *  $EP Parâmetros
 *     pLista  - ponteiro para a lista a ser verificada
@@ -498,7 +498,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $ED Descrição da função
 *     Obtem a string que identifica o tipo que a lista armazena, armazenando em stringIdentificadoraDoTipo.
-*     O espaco apontado stringIdentificadoraDoTipo já deve estar previamente alocado com pelo menos 11 espaços de char.
+*     O espaco apontado stringIdentificadoraDoTipo já deve estar previamente alocado com pelo menos 64 espaços de char.
 *
 *  $EP Parâmetros
 *     pLista  - ponteiro para a lista a ser verificada

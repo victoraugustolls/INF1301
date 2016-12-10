@@ -80,6 +80,38 @@ static void CopiarListaLista ( void ** pValor, void * pValorOriginal ) ;
 static void AtualizaListaAmeacantesAmeacados ( TAB_tppTabuleiro pTabuleiro ) ;
 static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna ) ;
 
+#ifdef _DEBUG
+
+/*
+    Checa se todas as linhas e colunas possuem 8 elementos do tipo "casa"
+    Retorna 1 se a estrutura está correta
+    Retorna 0 se a estrutura está errada (incorreta)
+*/
+static int TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro );
+
+static int TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro )
+{
+    int tamanho;
+    char identificadorTipo[64];
+
+    LIS_Tamanho( pTabuleiro->tabuleiro, &tamanho );
+    if(tamanho != 8)
+    {
+        return 0;
+    }
+
+    LIS_GetTipo( pTabuleiro->tabuleiro, &stringIdentificadoraDoTipo );
+    if(strcmp(stringIdentificadoraDoTipo, "LISTA_DE_CASAS") != 0)
+    {
+        return 0;
+    }
+
+
+
+}
+
+#endif
+
 /*****  Código das funções exportadas pelo módulo  *****/
 
 /***************************************************************************
