@@ -499,6 +499,27 @@
 
    } /* Fim função: LIS  &Verifica se a lista está vazia */
 
+
+/***************************************************************************
+*
+*  Função: LIS  &Retorna o tamanho da lista
+*  ****/
+
+   LIS_tpCondRet LIS_Tamanho( LIS_tppLista pLista ,
+                              int * tamanhoDaLista )
+   {
+
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      *tamanhoDaLista = pLista->numElem;
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Verifica se a lista está vazia */
+
 /***************************************************************************
 *
 *  Função: LIS  &Compara duas listas

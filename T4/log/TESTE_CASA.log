@@ -1,0 +1,70 @@
+
+!!! Inicio dos testes
+!!!      Construto sob teste: ..\bin\TEST_CSA
+!!!      Script de teste:     ..\script\TESTE_CASA.script
+
+!!!    0  Linha:     1  // Script: TestecASA.script 
+!!!    0  Linha:     2  // Autores: Victor Augusto 
+!!!    0  Linha:     3  // Autor Original: Victor Augusto 
+!!!    0  Linha:     4  // Data: 16/out/2016 
+!!!    0  Linha:     5  // Propósito: Testar por completo as funções de acesso do módulo CASA, com exceção 
+!!!    0  Linha:     6  // do caso em que ocorre falta de memória. 
+!!!    0  Linha:     7  // 
+!!!    0  Linha:     8  // 
+!!!    0  Linha:    10  // --------------------------------------------- 
+   12  == Inicializar Constantes
+!!!    0  Linha:    17  // --------------------------------------------- 
+   19  == Inicializar valores
+!!!    0  Linha:    23  // --------------------------------------------- 
+   25  == Teste Criação de Casas
+   28  == Teste do Teste de Criação de Peças
+>>>    1  Linha:    29  Erro nos par�metros do comando:  =criarCasa      casa0   OK
+<<<    0  Linha:    30  Falha esperada foi recuperada. 
+!!!    0  Linha:    32  // --------------------------------------------- 
+   34  == Teste Destruição de Casas
+   37  == Teste Destruição de Listas Inexistentes
+!!!    0  Linha:    40  // --------------------------------------------- 
+   42  == Teste Inserir Peça na Casa
+   47  == Teste Inserir Peça na Casa Inexistente
+!!!    0  Linha:    50  // --------------------------------------------- 
+   52  == Teste Obter Peça da Casa
+   57  == Teste Obter Peça da Casa
+   63  == Teste Obter Peça da Casa Inexistente
+!!!    0  Linha:    66  // --------------------------------------------- 
+   68  == Teste Remover Peça da Casa
+   76  == Teste Remover Peça da Casa Inexistente
+!!!    0  Linha:    79  // --------------------------------------------- 
+   81  == Teste Comparar Casas Iguais
+   90  == Teste Comparar Casas Diferentes
+   99  == Teste Comparar Casas Inexistentes
+!!!    0  Linha:   105  // --------------------------------------------- 
+  107  == Teste Print Casa Nova
+  112  == Teste Print Casa Modificada
+!!!    0  Linha:   118  // --------------------------------------------- 
+  120  == Teste Copiar Casa
+!!!    0  Linha:   126  // --------------------------------------------- 
+  128  == Teste Obter Lista Ameacantes
+  133  == Teste Obter Lista Ameacantes Casa Inexistente
+  136  == Teste Modificar Ameacantes da Casa Iguais
+  142  == Teste do Teste Modificar Ameacantes da Casa Diferentes
+>>>    1  Linha:   145  Lista de ameacantes recebida errada. 
+<<<    0  Linha:   146  Falha esperada foi recuperada. 
+  149  == Teste Modificar Ameacantes Casa Inexistente
+!!!    0  Linha:   152  // --------------------------------------------- 
+  154  == Teste Obter Lista Ameacados
+  159  == Teste Obter Lista Ameacados Casa Inexistente
+  162  == Teste Modificar Ameacados da Casa
+  168  == Teste do Teste Modificar Ameacados da Casa
+>>>    1  Linha:   171  Lista de ameacados recebida errada. 
+<<<    0  Linha:   172  Falha esperada foi recuperada. 
+  175  == Teste Modificar Ameacados Casa Inexistente
+
+!!! N�mero de linhas lidas:         176
+!!! N�mero de casos de teste:        29
+!!! N�mero comandos corretos:        80
+!!! N�mero de falhas encontradas:     0
+
+!!! N�o foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 0

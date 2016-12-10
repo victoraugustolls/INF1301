@@ -1,6 +1,6 @@
 
 !!! Inicio dos testes
-!!!      Construto sob teste: ..\bin\TRAB3-4
+!!!      Construto sob teste: ..\bin\TEST_JGO
 !!!      Script de teste:     ..\script\TESTE_JOGO.script
 
 !!!    0  Linha:     1  // Script: TESTE_JOGO.SCRIPT 
@@ -28,15 +28,28 @@
    60  == Teste de Realizacao de Jogada em Jogo Inexistente
    63  == Teste de Realizacao de Jogada
    67  == Teste de Realizacao de Jogada Nao Valida
+>>>    1  Linha:    68  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
+>>>    2  Linha:    69  Não é comando recuperar:  =realizarJogada	'D'  '1'  'E'  '1'  JgPreto	    Nenhum  OK
+>>>    3  Linha:    70  Comando de teste ignorado:  =realizarJogada	'E'  '1'  'F'  '1'  JgPreto	    Nenhum  OK
+>>>    4  Linha:    71  Comando de teste ignorado:  =realizarJogada	'E'  '8'  'F'  '8'  JgBranco	Nenhum  MovInvalido
+>>>    5  Linha:    72  Comando de teste ignorado:  =realizarJogada	'B'  '8'  'B'  '7'  JgBranco	Nenhum  MovInvalido
    74  == Teste de Realizacao de Xeque
+>>>    6  Linha:    77  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
+>>>    7  Linha:    78  Não é comando recuperar:  =realizarJogada	'D'  '8'  'E'  '8'  JgBranco	Nenhum  MovInvalido
+>>>    8  Linha:    79  Comando de teste ignorado:  =realizarJogada	'E'  '6'  'D'  '6'  JgPreto		Xeque	OK
    81  == Teste de Realizacao de Xeque Mate   OK
+>>>    9  Linha:    82  Condicao de retorno errada ao realizar jogada. Deveria ser: 0  É: 3
+>>>   10  Linha:    83  Não é comando recuperar:  =realizarJogada	'A'  '8'  'A'  '7'  JgPreto		Nenhum	OK
+>>>   11  Linha:    84  Comando de teste ignorado:  =realizarJogada	'H'  '6'  'H'  '8'  JgPreto		XequeMate	OK
+>>>   12  Linha:    85  Comando de teste ignorado:  =terminarJogo	OK
+>>>   13  Linha:    86  Comando de teste ignorado:  =destruirJuiz	OK
 
 !!! Número de linhas lidas:          86
 !!! Número de casos de teste:        13
-!!! Número comandos corretos:        39
-!!! Número de falhas encontradas:     0
+!!! Número comandos corretos:        26
+!!! Número de falhas encontradas:    13
 
-!!! Não foram encontrados problemas
+!!! Foram encontrados problemas
 
 
 !!! Numero de espacos ainda alocados: 0

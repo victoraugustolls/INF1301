@@ -50,6 +50,14 @@
 
 typedef struct TAB_tagTabuleiro {
     
+     #ifdef _DEBUG
+        int tamanhoLista ;
+           /* Numero de elementos presentes na lista */
+        
+        char tipoLista[10] ;
+           /* String contendo uma string que identifica o tipo armazenado pela lista */
+     #endif
+    
     // CSA_tppCasa tabuleiro [8] [8] ; //MUDAR
     LIS_tppLista tabuleiro ;
 

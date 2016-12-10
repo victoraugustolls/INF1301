@@ -448,6 +448,26 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_MoveInicio( LIS_tppLista pLista ) ;
 
+/***********************************************************************
+*
+*  $FC Função: LIS  &Tamanho
+*
+*  $ED Descrição da função
+*     Retorna o tamanho da lista.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser verificada
+*     tamanhoDaLista   - ponteiro para o valor do tamanho da lista
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - retorno bem sucedido
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_Tamanho( LIS_tppLista pLista ,
+                              int * tamanhoDaLista );
+
 #undef LISTA_EXT
 
 /********** Fim do módulo de definição: LIS  Lista duplamente encadeada **********/
