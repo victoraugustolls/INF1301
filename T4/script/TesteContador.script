@@ -4,9 +4,9 @@
 // PropÛsito: Ilustrar arquivo de script para controle de cobertura
 //
 
-== Declarar as ·rvores usadas
-=declararparm    inxTab0        int   0
-=declararparm    inxTab1        int   1
+== Inicializar valores
+=declararparm   tab0  int 0
+=declararparm   tab1  int 1
 
 == Declarar valores a serem inseridos em nÛs
 =declararparm    NoExcl         char  '!' 
@@ -23,7 +23,7 @@
 
 == Iniciar contagem
 =inicializarcontadores  ""
-=lercontadores          "..\\scripts\\TABULEIRO"
+=lercontadores          "..\\script\\TABULEIRO"
 =iniciarcontagem
 
 == Teste de Criaçcao de Tabuleiro
