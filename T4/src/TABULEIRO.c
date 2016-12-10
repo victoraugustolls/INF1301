@@ -482,6 +482,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
             casaAtual = TAB_PegarCasa( pTabuleiro , i , j ) ;
             if ( casaAtual == NULL )
             {
+                printf("Casa nao existe, mover peca tabuleiro 1, posicao i: %d, j: %d.\n", i, j);
                 return TAB_CondRetNaoExiste ;
             } /* if */
             // vetTodasCasas[j + 8 * i] = pTabuleiro->tabuleiro[i][j] ;
@@ -492,15 +493,17 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     sinal[0] = cor == 'B' ? 1 : -1 ;
 
 
-    casaAtual = TAB_PegarCasa( pTabuleiro , linAtual , colDestino ) ;
+    casaAtual = TAB_PegarCasa( pTabuleiro , linAtual , colAtual ) ;
     if ( casaAtual == NULL )
     {
+        printf("Casa nao existe, mover peca tabuleiro 2\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
 
     casaDestino = TAB_PegarCasa( pTabuleiro , linDestino , colDestino ) ;
     if ( casaDestino == NULL )
     {
+        printf("Casa nao existe, mover peca tabuleiro 3\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
 
@@ -527,16 +530,19 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
          ( retDirMov == VMV_CondRetErrFormatoArquivoErrado ) ||
          ( retDirMov == VMV_CondRetErrManuseioArquivo ) )
     {
+        printf("Casa nao existe, mover peca tabuleiro 4\n");
         return TAB_CondRetFalhaArq ;
     }
     else if ( ( retDirMov == VMV_CondRetVariavelNaoExistente ) ||
               ( retDirMov == VMV_CondRetErrComandoNaoExistente ) )
     {
+        printf("Casa nao existe, mover peca tabuleiro 5\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
 
     if ( retMov == VMV_MovimentoValidoNao )
     {
+        printf("Casa nao existe, mover peca tabuleiro 6\n");
         return TAB_CondRetMovInvalido ;
     } /* if */
     
@@ -544,12 +550,14 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     casaAtual = TAB_PegarCasa( pTabuleiro , linAtual , colAtual ) ;
     if ( casaAtual == NULL )
     {
+        printf("Casa nao existe, mover peca tabuleiro 7\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     // retCasa = CSA_RetirarPecaCasa ( pTabuleiro->tabuleiro[linAtual][colAtual] ) ;
     retCasa = CSA_RetirarPecaCasa ( casaAtual ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf("Casa nao existe, mover peca tabuleiro 8\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
@@ -558,18 +566,21 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     retCasa = CSA_InserirPecaCasa( 'V' , 'V' , casaAtual ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf("Casa nao existe, mover peca tabuleiro 9\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
 
     casaDestino = TAB_PegarCasa( pTabuleiro , linDestino , colDestino ) ;
     if ( casaDestino == NULL )
     {
+        printf("Casa nao existe, mover peca tabuleiro 10\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     // retCasa = CSA_RetirarPecaCasa ( pTabuleiro->tabuleiro[linDestino][colDestino] ) ;
     retCasa = CSA_RetirarPecaCasa ( casaDestino ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf("Casa nao existe, mover peca tabuleiro 11\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
@@ -578,6 +589,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     retCasa = CSA_InserirPecaCasa( peca , cor , casaDestino ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
+        printf("Casa nao existe, mover peca tabuleiro 12\n");
         return TAB_CondRetNaoExiste ;
     } /* if */
 
@@ -666,6 +678,7 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
     casa = TAB_PegarCasa( pTabuleiro , i , j ) ;
     if ( casa == NULL )
     {
+        printf("Casa nao existe, obter peca tabuleiro.");
         return TAB_CondRetNaoExiste ;
     } /* if */
     
