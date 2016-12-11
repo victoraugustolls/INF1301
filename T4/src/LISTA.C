@@ -89,6 +89,12 @@
          int ( * Igual ) ( void * pValor_1, void * pValor_2 ) ;
                /* Ponteiro para a função de checagem de igualdade de valores */
 
+         #ifdef _DEBUG
+
+         char tipoArmazenado[64];
+
+         #endif
+
    } LIS_tpLista ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
@@ -499,6 +505,7 @@
 
    } /* Fim função: LIS  &Verifica se a lista está vazia */
 
+
 /***************************************************************************
 *
 *  Função: LIS  &Compara duas listas
@@ -694,6 +701,50 @@
       return LIS_CondRetNaoAchou ;
 
    } /* Fim função: LIS  &Procurar elemento contendo valor */
+
+#ifdef _DEBUG
+
+LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
+                           char* stringIdentificadoraDoTipo )
+{
+   if ( pLista->pElemCorr == NULL )
+   {
+      return LIS_CondRetListaVazia ;
+   } /* if */
+
+   strcpy(pLista->tipoArmazenado, stringIdentificadoraDoTipo);
+
+   return LIS_CondRetOK ;
+}
+
+LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
+                           char* stringIdentificadoraDoTipo )
+{
+
+   if ( pLista->pElemCorr == NULL )
+   {
+      return LIS_CondRetListaVazia ;
+   } /* if */
+
+   strcpy(stringIdentificadoraDoTipo, pLista->tipoArmazenado);
+
+   return LIS_CondRetOK ;
+}
+
+LIS_tpCondRet LIS_Tamanho( LIS_tppLista pLista ,
+                           int * tamanhoDaLista )
+{
+   if ( pLista == NULL )
+   {
+      return LIS_CondRetListaNaoExiste ;
+   } /* if */
+
+   *tamanhoDaLista = pLista->numElem;
+
+   return LIS_CondRetOK ;
+}
+
+#endif
 
 /********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/
 
