@@ -125,7 +125,7 @@ typedef enum {
   *  $ED Descrição da função
   *     Deturpa a estrutura do tabuleiro
   *
-  *  $EP Par‚metros
+  *  $EP Parametros
   *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
   *     tipoDeturpacao - tipo da deturpação a ser realizada
   *
@@ -146,7 +146,7 @@ typedef enum {
   *     Especificamente, checa se linhas e colunas possuem 8 elementos e
   *     se o tipo armazenado por cada lista está correto.
   *
-  *  $EP Par‚metros
+  *  $EP Parametros
   *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
   *
   *  $FV Valor retornado
@@ -167,7 +167,7 @@ typedef enum {
  *  $ED Descrição da função
  *     Cria um tabuleiro.
  *
- *  $EP Par‚metros
+ *  $EP Parametros
  *     pTabuleiro - ponteiro para o tabuleiro sendo criado
  *     pathConfig - local do arquivo de configuração de tabuleiro
  *
