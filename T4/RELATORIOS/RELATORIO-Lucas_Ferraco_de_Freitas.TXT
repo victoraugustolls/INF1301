@@ -18,3 +18,5 @@
 08/12/2016; 2 horas ; estudar e projetar; Estudei o enunciado do quarto trabalho e modifiquei os exemplos físicos para nosso tabuleiro auto-verificável.
 
 08/12/2016; 1 hora ; projetar; Reestruturamos como fazer o tabuleiro ser auto-verificável e modifiquei os exemplos físicos para nosso tabuleiro auto-verificável.
+
+11/12/2016; 4h ; projetar; Codifiquei as funções de deturpação do modulo tabuleiro e as funções de pegar ponteiro do proximo elemento e do anterior ao atual na lista.
