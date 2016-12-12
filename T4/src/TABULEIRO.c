@@ -22,7 +22,7 @@
  *
  ***************************************************************************/
 
-#define _DEBUG
+// #define _DEBUG
 
 #include   <stdio.h>
 #include   <string.h>
@@ -35,7 +35,7 @@
 
 #ifdef _DEBUG
     #include "GENERICO.H"
-    // #include "CESPDIN.H"
+    #include "CESPDIN.H"
     #include "CONTA.H"
     // #include   "..\\tabelas\\IdTiposEspaco.def"
 #endif
@@ -94,23 +94,22 @@ static int TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro );
 
 static int TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro )
 {
-    int tamanho;
-    char identificadorTipo[64];
+    int tamanho ;
+    char identificadorTipo[64] ;
 
-    LIS_Tamanho( pTabuleiro->tabuleiro, &tamanho );
-    if(tamanho != 8)
+    LIS_Tamanho( pTabuleiro->tabuleiro , &tamanho ) ;
+
+    if( tamanho != 8 )
     {
         return 0;
-    }
+    } /* if */
 
-    LIS_GetTipo( pTabuleiro->tabuleiro, &stringIdentificadoraDoTipo );
-    if(strcmp(stringIdentificadoraDoTipo, "LISTA_DE_CASAS") != 0)
+    LIS_GetTipo( pTabuleiro->tabuleiro, &stringIdentificadoraDoTipo ) ;
+    
+    if( strcmp( stringIdentificadoraDoTipo , "LISTA_DE_CASAS" ) != 0 )
     {
         return 0;
-    }
-
-
-
+    } /* if */
 }
 
 #endif
