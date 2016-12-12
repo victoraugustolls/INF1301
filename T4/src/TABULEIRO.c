@@ -1202,67 +1202,56 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
 
 #ifdef _DEBUG
 
-typedef enum {
-    
-    TAB_ELIMINA_ELEMENTO_CORRENTE = 1,
-    TAB_NULL_CASA_SUCESSORA = 2,
-    TAB_NULL_CASA_PREDECESSORA = 3,
-    TAB_LIXO_CASA_SUCESSORA = 4,
-    TAB_LIXO_CASA_PREDECESSORA = 5,
-    
-    TAB_NULL_CONTEUDO_CASA = 6,
-    TAB_ALTERA_TIPO_APONTADO_CASA = 7,
-    TAB_DESTACA_CASA_SEM_FREE = 8,
-    
-    TAB_NULL_PONTEIRO CORRENTE = 9
-} TAB_tpDeturpacao ;
-
 /***********************************************************************
  *
  *  Função: TAB  &Deturpa Tabuleiro
  *  ****/
+
 TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro, TAB_tpDeturpacao tipoDeturpacao , char coluna , char linha )
 {
     TAB_tpCondRet ret ;
+
+    int linhaInt = linha - '0' - 1 ;
+    int colunaInt = coluna - 'A' ;
     
     if ( tipoDeturpacao == TAB_ELIMINA_ELEMENTO_CORRENTE )
     {
-        ret = TAB_DestroiCasaAtual( pTabuleiro , coluna , linha ) ;
+        ret = TAB_DestroiCasaAtual( pTabuleiro , colunaInt , linha ) ;
     }
     else if ( tipoDeturpacao == TAB_NULL_CASA_SUCESSORA )
     {
-        ret = TAB_AtribuiNuloPonteiroProximaCasa( pTabuleiro , coluna , linha ) ;
+        ret = TAB_AtribuiNuloPonteiroProximaCasa( pTabuleiro , colunaInt , linhaInt ) ;
     }
     else if ( tipoDeturpacao == TAB_NULL_CASA_PREDECESSORA )
     {
-        ret = TAB_AtribuiNuloPonteiroCasaAnterior( pTabuleiro , coluna , linha ) ;
+        ret = TAB_AtribuiNuloPonteiroCasaAnterior( pTabuleiro , colunaInt , linhaInt ) ;
     }
     else if ( tipoDeturpacao == TAB_LIXO_CASA_SUCESSORA )
     {
-        ret = TAB_AtribuiLixoPonteiroProximaCasa( pTabuleiro , coluna , linha ) ;
+        ret = TAB_AtribuiLixoPonteiroProximaCasa( pTabuleiro , colunaInt , linhaInt ) ;
     }
     else if ( tipoDeturpacao == TAB_LIXO_CASA_PREDECESSORA )
     {
-        ret = TAB_AtribuiLixoPonteiroCasaAnterior( pTabuleiro , coluna , linha ) ;
+        ret = TAB_AtribuiLixoPonteiroCasaAnterior( pTabuleiro , colunaInt , linhaInt ) ;
     }
     else if ( tipoDeturpacao == TAB_NULL_CONTEUDO_CASA )
     {
-        ret = TAB_AtribuiNuloPonteiroValorCasa( pTabuleiro , coluna , linha ) ;
+        ret = TAB_AtribuiNuloPonteiroValorCasa( pTabuleiro , colunaInt , linhaInt ) ;
     }
     else if ( tipoDeturpacao == TAB_ALTERA_TIPO_APONTADO_CASA )
     {
-        ret = TAB_AlteraEstruturaCasa( pTabuleiro , coluna , linha ) ;
+        ret = TAB_AlteraEstruturaCasa( pTabuleiro , colunaInt , linhaInt ) ;
     }
     else if ( tipoDeturpacao == TAB_DESTACA_CASA_SEM_FREE )
     {
-        ret = TAB_DestacaCasa( pTabuleiro , coluna , linha ) ;
+        ret = TAB_DestacaCasa( pTabuleiro , colunaInt , linhaInt ) ;
     }
     else if ( tipoDeturpacao == TAB_NULL_PONTEIRO_CORRENTE )
     {
-        ret = TAB_AtribuiNuloCasaAtual( pTabuleiro , coluna , linha ) ;
+        ret = TAB_AtribuiNuloCasaAtual( pTabuleiro , colunaInt , linhaInt ) ;
     } /* if */
     
-    if ( ret == TAB_CondRetNaoExiste )
+    if ( ret != TAB_CondRetOK )
     {
         return TAB_CondRetFalhaDeturpar ;
     } /* if */
@@ -1275,7 +1264,7 @@ TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro, TAB_tpDeturpacao tipoDet
  *  Função: TAB  &Destroi Casa do Tabuleiro
  *  ****/
 
-TAB_tpCondRet TAB_DestroiCasaAtual( TAB_tppTabuleiro pTabuleiro , char coluna , char linha )
+TAB_tpCondRet TAB_DestroiCasaAtual( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
 {
     
     LIS_tppLista linhas  = NULL ;
@@ -1337,7 +1326,7 @@ TAB_tpCondRet TAB_DestroiCasaAtual( TAB_tppTabuleiro pTabuleiro , char coluna , 
  *  Função: TAB  &Atribui NULL ao Ponteiro para Proxima Casa
  *  ****/
 
-TAB_tpCondRet TAB_AtribuiNuloPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha )
+TAB_tpCondRet TAB_AtribuiNuloPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
 {
     
     void * pProxCasa ;
@@ -1402,7 +1391,7 @@ TAB_tpCondRet TAB_AtribuiNuloPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , 
  *  Função: TAB  &Atribui NULL ao Ponteiro para Casa Anterior
  *  ****/
 
-TAB_tpCondRet TAB_AtribuiNuloPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , char coluna , char linha )
+TAB_tpCondRet TAB_AtribuiNuloPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
 {
     
     void * pCasaAnterior ;
@@ -1467,7 +1456,7 @@ TAB_tpCondRet TAB_AtribuiNuloPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro ,
  *  Função: TAB  &Atribui lixo ao Ponteiro para Proxima Casa
  *  ****/
 
-TAB_tpCondRet TAB_AtribuiLixoPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha )
+TAB_tpCondRet TAB_AtribuiLixoPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
 {
     
     void * pProxCasa ;
@@ -1532,7 +1521,7 @@ TAB_tpCondRet TAB_AtribuiLixoPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , 
  *  Função: TAB  &Atribui Lixo ao Ponteiro para Casa Anterior
  *  ****/
 
-TAB_tpCondRet TAB_AtribuiLixoPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , char coluna , char linha )
+TAB_tpCondRet TAB_AtribuiLixoPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
 {
     
     void * pCasaAnterior ;
@@ -1597,7 +1586,7 @@ TAB_tpCondRet TAB_AtribuiLixoPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro ,
  *  Função: TAB  &Atribui NULL ao Ponteiro para o Valor da Casa
  *  ****/
 
-TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha )
+TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
 {
     
     CSA_tppCasa pCasa ;
@@ -1662,7 +1651,7 @@ TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , ch
  *  Função: TAB  &Altera Estrutura Apontada na Casa
  *  ****/
 
-TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha )
+TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
 {
     
     CSA_tppCasa pCasa ;
@@ -1727,7 +1716,7 @@ TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , char coluna
  *  Função: TAB  &Destaca Casa sem Destruir Tabuleiro
  *  ****/
 
-TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha )
+TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
 {
     
     void pCasaAnterior , pCasaProxima ;
@@ -1827,7 +1816,7 @@ TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char 
  *  Função: TAB  &Atribui NULL a Casa Atual
  *  ****/
 
-TAB_tpCondRet TAB_AtribuiNuloCasaAtual( TAB_tppTabuleiro pTabuleiro , char coluna , char linha )
+TAB_tpCondRet TAB_AtribuiNuloCasaAtual( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
 {
     
     CSA_tppCasa pCasa ;

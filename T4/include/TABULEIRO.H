@@ -458,38 +458,6 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
 
 #ifdef _DEBUG
 
-/***********************************************************************
- *
- *  $TC Tipo de dados: TAB Tipos de deturpacao
- *
- *
- *  $ED Descrição do tipo
- *     Tipos de funções de deturpacao do tabuleiro
- *
- ***********************************************************************/
-
-typedef enum {
-    
-    TAB_ELIMINA_ELEMENTO_CORRENTE = 1,
-    
-    TAB_NULL_CASA_SUCESSORA = 2,
-    
-    TAB_NULL_CASA_PREDECESSORA = 3,
-    
-    TAB_LIXO_CASA_SUCESSORA = 4,
-    
-    TAB_LIXO_CASA_PREDECESSORA = 5,
-    
-    TAB_NULL_CONTEUDO_CASA = 6,
-    
-    TAB_ALTERA_TIPO_APONTADO_CASA = 7,
-    
-    TAB_DESTACA_CASA_SEM_FREE = 8,
-    
-    TAB_NULL_PONTEIRO_CORRENTE = 9
-    
-} TAB_tpDeturpacao ;
-
 /***** Funcoes de deturpacao do modulo *****/
 
 /***********************************************************************
@@ -508,7 +476,7 @@ typedef enum {
  *     TAB_CondRetFalhaDeturpar     - Não foi possível deturpar a estrutura
  *
  ***********************************************************************/
-TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro, TAB_tpDeturpacao tipoDeturpacao )
+TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro, TAB_tpDeturpacao tipoDeturpacao , char coluna , char linha ) ;
 
 /***********************************************************************
  *
@@ -528,7 +496,7 @@ TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro, TAB_tpDeturpacao tipoDet
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_DestroiCasaAtual( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+TAB_tpCondRet TAB_DestroiCasaAtual( TAB_tppTabuleiro pTabuleiro , int coluna , int linha ) ;
 
 /***********************************************************************
  *
@@ -548,7 +516,7 @@ TAB_tpCondRet TAB_DestroiCasaAtual( TAB_tppTabuleiro pTabuleiro , char coluna , 
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_AtribuiNuloPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+TAB_tpCondRet TAB_AtribuiNuloPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha ) ;
 
 /***********************************************************************
  *
@@ -568,7 +536,7 @@ TAB_tpCondRet TAB_AtribuiNuloPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , 
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_AtribuiNuloPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+TAB_tpCondRet TAB_AtribuiNuloPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , int coluna , int linha ) ;
 
 /***********************************************************************
  *
@@ -588,7 +556,7 @@ TAB_tpCondRet TAB_AtribuiNuloPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro ,
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_AtribuiLixoPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+TAB_tpCondRet TAB_AtribuiLixoPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha ) ;
 
 /***********************************************************************
  *
@@ -608,7 +576,7 @@ TAB_tpCondRet TAB_AtribuiLixoPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , 
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_AtribuiLixoPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+TAB_tpCondRet TAB_AtribuiLixoPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , int coluna , int linha ) ;
 
 /***********************************************************************
  *
@@ -628,7 +596,7 @@ TAB_tpCondRet TAB_AtribuiLixoPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro ,
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha ) ;
 
 /***********************************************************************
  *
@@ -648,7 +616,7 @@ TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , ch
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha ) ;
 
 /***********************************************************************
  *
@@ -668,7 +636,7 @@ TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , char coluna
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha ) ;
 
 /***********************************************************************
  *
@@ -688,7 +656,7 @@ TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char 
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_AtribuiNuloCasaAtual( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+TAB_tpCondRet TAB_AtribuiNuloCasaAtual( TAB_tppTabuleiro pTabuleiro , int coluna , int linha ) ;
 
 #endif
 
