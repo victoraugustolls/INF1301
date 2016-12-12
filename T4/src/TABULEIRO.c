@@ -94,22 +94,43 @@ static int TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro );
 
 static int TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro )
 {
-    int tamanho ;
-    char identificadorTipo[64] ;
+    int tamanho;
+    char identificadorTipo[64];
+    int i;
+    LIS_tppLista linha;
 
-    LIS_Tamanho( pTabuleiro->tabuleiro , &tamanho ) ;
-
-    if( tamanho != 8 )
+    LIS_Tamanho( pTabuleiro->tabuleiro, &tamanho );
+    if(tamanho != 8)
     {
         return 0;
-    } /* if */
+    }
 
-    LIS_GetTipo( pTabuleiro->tabuleiro, &stringIdentificadoraDoTipo ) ;
-    
-    if( strcmp( stringIdentificadoraDoTipo , "LISTA_DE_CASAS" ) != 0 )
+    LIS_GetTipo( pTabuleiro->tabuleiro, &stringIdentificadoraDoTipo );
+    if(strcmp(stringIdentificadoraDoTipo, "LISTA_DE_CASAS") != 0)
     {
         return 0;
-    } /* if */
+    }
+
+    LIS_MoveInicio( pTabuleiro->tabuleiro );
+
+    for(i=0; i<8; i++)
+    {
+        LIS_ObterValor( pTabuleiro->tabuleiro, (void**) &linha ) ;    
+
+        LIS_Tamanho( linha, &tamanho );
+        if(tamanho != 8)
+        {
+            return 0;
+        }
+
+        LIS_GetTipo( linha, &stringIdentificadoraDoTipo );
+        if(strcmp(stringIdentificadoraDoTipo, "CASA") != 0)
+        {
+            return 0;
+        }
+    }
+
+    return 1;
 }
 
 #endif
