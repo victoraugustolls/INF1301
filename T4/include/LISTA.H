@@ -539,6 +539,48 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista );
 
+
+   /***********************************************************************
+    *
+    *  $FC Função: LIS  &Obter referência para o ponteiro do elemento corrente para o proximo elemento
+    *
+    *  $ED Descrição da função
+    *     Obtem a referência para o ponteiro para o proximo elemento contido no elemento corrente da lista
+    *
+    *  $EP Parâmetros
+    *     pLista           - ponteiro para a lista de onde se quer o ponteiro
+    *     ponteiroProxElem - ponteiro para o ponteiro referente ao elemento seguinte ao elemento corrente
+    *
+    *  $FV Valor retornado
+    *     LIS_CondRetOK           - obteve ponteiro para o elemento seguinte corretamente
+    *     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+    *
+    ***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
+                                void ** ponteiroProxElem ) ;
+
+   /***********************************************************************
+    *
+    *  $FC Função: LIS  &Obter referência para o ponteiro do elemento corrente para o elemento anterior
+    *
+    *  $ED Descrição da função
+    *     Obtem a referência para o ponteiro para o elemento anterior contido no elemento corrente da lista
+    *
+    *  $EP Parâmetros
+    *     pLista           - ponteiro para a lista de onde se quer o ponteiro
+    *     ponteiroAntElem - ponteiro para o ponteiro referente ao elemento anterior ao elemento corrente
+    *
+    *  $FV Valor retornado
+    *     LIS_CondRetOK           - obteve ponteiro para o elemento anterior corretamente
+    *     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+    *
+    ***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterPonteiroAnterior( LIS_tppLista pLista ,
+                                          void ** ponteiroAntElem ) ;
+
+
 #endif
 
 #undef LISTA_EXT

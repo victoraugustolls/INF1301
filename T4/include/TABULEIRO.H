@@ -456,6 +456,242 @@ TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
 
 TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print ) ;
 
+#ifdef _DEBUG
+
+/***********************************************************************
+ *
+ *  $TC Tipo de dados: TAB Tipos de deturpacao
+ *
+ *
+ *  $ED Descrição do tipo
+ *     Tipos de funções de deturpacao do tabuleiro
+ *
+ ***********************************************************************/
+
+typedef enum {
+    
+    TAB_ELIMINA_ELEMENTO_CORRENTE = 1,
+    
+    TAB_NULL_CASA_SUCESSORA = 2,
+    
+    TAB_NULL_CASA_PREDECESSORA = 3,
+    
+    TAB_LIXO_CASA_SUCESSORA = 4,
+    
+    TAB_LIXO_CASA_PREDECESSORA = 5,
+    
+    TAB_NULL_CONTEUDO_CASA = 6,
+    
+    TAB_ALTERA_TIPO_APONTADO_CASA = 7,
+    
+    TAB_DESTACA_CASA_SEM_FREE = 8,
+    
+    TAB_NULL_PONTEIRO_CORRENTE = 9
+    
+} TAB_tpDeturpacao ;
+
+/***** Funcoes de deturpacao do modulo *****/
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Deturpa Tabuleiro
+ *
+ *  $ED Descrição da função
+ *     Deturpa a estrutura do tabuleiro
+ *
+ *  $EP Par‚metros
+ *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
+ *     pTabuleiro - tipo da deturpação a ser realizada
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK                - Deturpação realizada com sucesso
+ *     TAB_CondRetFalhaDeturpar     - Não foi possível deturpar a estrutura
+ *
+ ***********************************************************************/
+TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro, TAB_tpDeturpacao tipoDeturpacao )
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB DET  &Destroi Casa do Tabuleiro
+ *
+ *  $ED Descrição da função
+ *     Destroi a casa do tabuleiro indicada pelos parametros de linha e coluna.
+ *
+ *  $EP Parâmetros
+ *     pTabuleiro          - ponteiro para o tabuleiro
+ *     coluna              - coordenada da coluna da peça
+ *     linha               - coordenada da linha da peça
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK             - nao ocorreram problemas
+ *     TAB_CondRetNaoExiste      - o tabuleiro não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_DestroiCasaAtual( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB DET  &Atribui NULL ao Ponteiro para Proxima Casa
+ *
+ *  $ED Descrição da função
+ *     Atribui NULL ao ponteiro para a casa seguinte a casa do tabuleiro indicada pelos parametros de linha e coluna.
+ *
+ *  $EP Parâmetros
+ *     pTabuleiro          - ponteiro para o tabuleiro
+ *     coluna              - coordenada da coluna da casa atual
+ *     linha               - coordenada da linha da casa atual
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK             - nao ocorreram problemas
+ *     TAB_CondRetNaoExiste      - o tabuleiro não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_AtribuiNuloPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB DET  &Atribui NULL ao Ponteiro para Casa Anterior
+ *
+ *  $ED Descrição da função
+ *     Atribui NULL ao ponteiro para a casa anterior a casa do tabuleiro indicada pelos parametros de linha e coluna.
+ *
+ *  $EP Parâmetros
+ *     pTabuleiro          - ponteiro para o tabuleiro
+ *     coluna              - coordenada da coluna da casa atual
+ *     linha               - coordenada da linha da casa atual
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK             - nao ocorreram problemas
+ *     TAB_CondRetNaoExiste      - o tabuleiro não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_AtribuiNuloPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB DET  &Atribui lixo ao Ponteiro para Proxima Casa
+ *
+ *  $ED Descrição da função
+ *     Atribui lixo ao ponteiro para a casa seguinte a casa do tabuleiro indicada pelos parametros de linha e coluna.
+ *
+ *  $EP Parâmetros
+ *     pTabuleiro          - ponteiro para o tabuleiro
+ *     coluna              - coordenada da coluna da casa atual
+ *     linha               - coordenada da linha da casa atual
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK             - nao ocorreram problemas
+ *     TAB_CondRetNaoExiste      - o tabuleiro não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_AtribuiLixoPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB DET  &Atribui lixo ao Ponteiro para Casa Anterior
+ *
+ *  $ED Descrição da função
+ *     Atribui lixo ao ponteiro para a casa anterior a casa do tabuleiro indicada pelos parametros de linha e coluna.
+ *
+ *  $EP Parâmetros
+ *     pTabuleiro          - ponteiro para o tabuleiro
+ *     coluna              - coordenada da coluna da casa atual
+ *     linha               - coordenada da linha da casa atual
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK             - nao ocorreram problemas
+ *     TAB_CondRetNaoExiste      - o tabuleiro não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_AtribuiLixoPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Atribui NULL ao Ponteiro para o Valor da Casa
+ *
+ *  $ED Descrição da função
+ *     Atribui NULL ao ponteiro para o conteudo da casa do tabuleiro indicada pelos parametros de linha e coluna.
+ *
+ *  $EP Parâmetros
+ *     pTabuleiro          - ponteiro para o tabuleiro
+ *     coluna              - coordenada da coluna da casa atual
+ *     linha               - coordenada da linha da casa atual
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK             - nao ocorreram problemas
+ *     TAB_CondRetNaoExiste      - o tabuleiro não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Altera Estrutura Apontada na Casa
+ *
+ *  $ED Descrição da função
+ *     Altera a estrutura apontada pela casa do tabuleiro indicada pelos parametros de linha e coluna.
+ *
+ *  $EP Parâmetros
+ *     pTabuleiro          - ponteiro para o tabuleiro
+ *     coluna              - coordenada da coluna da casa atual
+ *     linha               - coordenada da linha da casa atual
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK             - nao ocorreram problemas
+ *     TAB_CondRetNaoExiste      - o tabuleiro não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Destaca Casa sem Destruir Tabuleiro
+ *
+ *  $ED Descrição da função
+ *     Destaca a casa do tabuleiro indicada pelos parametros de linha e coluna sem destrui-lo.
+ *
+ *  $EP Parâmetros
+ *     pTabuleiro          - ponteiro para o tabuleiro
+ *     coluna              - coordenada da coluna da casa atual
+ *     linha               - coordenada da linha da casa atual
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK             - nao ocorreram problemas
+ *     TAB_CondRetNaoExiste      - o tabuleiro não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Atribui NULL a Casa Atual
+ *
+ *  $ED Descrição da função
+ *     Atribui NULL a casa do tabuleiro indicada pelos parametros de linha e coluna.
+ *
+ *  $EP Parâmetros
+ *     pTabuleiro          - ponteiro para o tabuleiro
+ *     coluna              - coordenada da coluna da casa atual
+ *     linha               - coordenada da linha da casa atual
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK             - nao ocorreram problemas
+ *     TAB_CondRetNaoExiste      - o tabuleiro não existe
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_AtribuiNuloCasaAtual( TAB_tppTabuleiro pTabuleiro , char coluna , char linha ) ;
+
+#endif
+
 #undef TABULEIRO_EXT
 
 /********** Fim do mÛdulo de definiÁ„o: TAB  Tabuleiro para jogo de xadrez **********/

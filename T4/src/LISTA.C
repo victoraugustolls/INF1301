@@ -861,6 +861,26 @@
       return LIS_CondRetOK;
    }
 
+LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
+                                       void ** ponteiroProxElem )
+{
+    tpElemLista noCorrente ;
+    
+    noCorrente = *pLista->pElemCorr ;
+    
+    *ponteiroProxElem = noCorrente->pProx ;
+}
+
+LIS_tpCondRet LIS_ObterPonteiroAnterior( LIS_tppLista pLista ,
+                                       void ** ponteiroAntElem )
+{
+    tpElemLista noCorrente ;
+    
+    noCorrente = *pLista->pElemCorr ;
+    
+    *ponteiroAntElem = noCorrente->pAnt ;
+}
+
 #endif
 
 /********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/
