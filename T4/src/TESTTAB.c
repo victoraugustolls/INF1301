@@ -134,6 +134,9 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
 	LIS_tppLista listaLinhas ;
 	LIS_tppLista listaColunas ;
+
+	int numeroDeturpacao;
+	TAB_tpDeturpacao tipoDeturpacao;
 	
 	/* Testar CriarTabuleiro */
 	
@@ -661,6 +664,35 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	} /* fim ativa: Testar ObterListaAmeacadosTabuleiro */
 
 	#ifdef _DEBUG
+		else if ( strcmp( ComandoTeste , DETURPAR_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "iii" , &inxTab, &numeroDeturpacao, &CondRetEsp ) ;
+
+			tipoDeturpacao = (TAB_tpDeturpacao) numeroDeturpacao;
+			
+			if ( ( numLidos != 3 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
+			{
+				return TST_CondRetParm ;
+			} /* if */
+			
+			CondRet = TAB_Deturpa( &vtTabuleiros[ inxTab ], tipoDeturpacao ) ;
+
+			if ( CondRet != CondRetEsp )
+			{
+				if ( CondRetEsp == TAB_CondRetOK )
+				{
+					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria conseguir deturpar, mas NAO deturpou." );
+				}
+				else
+				{
+					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria NAO conseguir deturpar, mas deturpou." );
+				}
+			} /* if */
+			
+			return TST_CondRetOK;
+			
+		}
 		else if ( strcmp( ComandoTeste , VERIFICA_ESTRUTURA_CMD ) == 0 )
 		{
 
@@ -686,8 +718,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 			} /* if */
 			
 			return TST_CondRetOK;
-			
-		} /* fim ativa: Testar CopiaTabuleiro */
+		}
 	#endif
 	
 	return TST_CondRetNaoConhec ;
