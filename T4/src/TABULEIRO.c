@@ -174,7 +174,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     } /* if */
 
     #ifdef _DEBUG
-        LIS_SetTipo( pTabuleiro->tabuleiro, "LISTA_DE_CASAS" );
+        LIS_SetTipo( pLista, "LISTA_DE_CASAS" );
     #endif
     
     condRetCriarConfigDir = VMV_CriarConfigDir( &pNovoTabuleiro->configDir ,
@@ -226,7 +226,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
         } /* if */
 
         #ifdef _DEBUG
-            LIS_SetTipo( pTabuleiro->tabuleiro, "CASA" );
+            LIS_SetTipo( novaLista, "CASA" );
         #endif
 
         //TRATAR RET LISTA CORRETAMENTE
