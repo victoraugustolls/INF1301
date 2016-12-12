@@ -85,13 +85,57 @@ typedef enum {
     #ifdef _DEBUG
       ,
 
-      TAB_CondRetFalhaNaEstrutura = 6
+      TAB_CondRetFalhaNaEstrutura = 6,
       /* Existe uma falha na estrutura do tabuleiro */
+
+      TAB_CondRetFalhaDeturpar = 7,
+      /* Não foi possível Deturpar */
     #endif
 
 } TAB_tpCondRet ;
 
 #ifdef _DEBUG
+
+typedef enum {
+    
+    TAB_ELIMINA_ELEMENTO_CORRENTE = 1,
+
+    TAB_NULL_CASA_SUCESSORA = 2,
+
+    TAB_NULL_CASA_PREDECESSORA = 3,
+
+    TAB_LIXO_CASA_SUCESSORA = 4,
+
+    TAB_LIXO_CASA_PREDECESSORA = 5,
+    
+    TAB_NULL_CONTEUDO_CASA = 6,
+
+    TAB_ALTERA_TIPO_APONTADO_CASA = 7,
+
+    TAB_DESTACA_CASA_SEM_FREE = 8,
+    
+    TAB_NULL_PONTEIRO CORRENTE = 9
+
+} TAB_tpDeturpacao ;
+
+  /***********************************************************************
+  *
+  *  $FC Função: TAB  &Deturpa Tabuleiro
+  *
+  *  $ED Descrição da função
+  *     Deturpa a estrutura do tabuleiro
+  *
+  *  $EP Par‚metros
+  *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
+  *     pTabuleiro - tipo da deturpação a ser realizada
+  *
+  *  $FV Valor retornado
+  *     TAB_CondRetOK                - Deturpação realizada com sucesso
+  *     TAB_CondRetFalhaDeturpar     - Não foi possível deturpar a estrutura
+  *
+  ***********************************************************************/
+
+  TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro, TAB_tpDeturpacao tipoDeturpacao );
     
   /***********************************************************************
   *
