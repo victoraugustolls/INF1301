@@ -85,53 +85,46 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
 
 #ifdef _DEBUG
 
-/*
-    Checa se todas as linhas e colunas possuem 8 elementos do tipo "casa"
-    Retorna 1 se a estrutura está correta
-    Retorna 0 se a estrutura está errada (incorreta)
-*/
-static int TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro );
-
-static int TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro )
-{
-    int tamanho;
-    char identificadorTipo[64];
-    int i;
-    LIS_tppLista linha;
-
-    LIS_Tamanho( pTabuleiro->tabuleiro, &tamanho );
-    if(tamanho != 8)
+    TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro )
     {
-        return 0;
-    }
+        int tamanho;
+        char identificadorTipo[64];
+        int i;
+        LIS_tppLista linha;
 
-    LIS_GetTipo( pTabuleiro->tabuleiro, &stringIdentificadoraDoTipo );
-    if(strcmp(stringIdentificadoraDoTipo, "LISTA_DE_CASAS") != 0)
-    {
-        return 0;
-    }
-
-    LIS_MoveInicio( pTabuleiro->tabuleiro );
-
-    for(i=0; i<8; i++)
-    {
-        LIS_ObterValor( pTabuleiro->tabuleiro, (void**) &linha ) ;    
-
-        LIS_Tamanho( linha, &tamanho );
+        LIS_Tamanho( pTabuleiro->tabuleiro, &tamanho );
         if(tamanho != 8)
         {
-            return 0;
+            return TAB_CondRetFalhaNaEstrutura;
         }
 
-        LIS_GetTipo( linha, &stringIdentificadoraDoTipo );
-        if(strcmp(stringIdentificadoraDoTipo, "CASA") != 0)
+        LIS_GetTipo( pTabuleiro->tabuleiro, &stringIdentificadoraDoTipo );
+        if(strcmp(stringIdentificadoraDoTipo, "LISTA_DE_CASAS") != 0)
         {
-            return 0;
+            return TAB_CondRetFalhaNaEstrutura;
         }
-    }
 
-    return 1;
-}
+        LIS_MoveInicio( pTabuleiro->tabuleiro );
+
+        for(i=0; i<8; i++)
+        {
+            LIS_ObterValor( pTabuleiro->tabuleiro, (void**) &linha ) ;    
+
+            LIS_Tamanho( linha, &tamanho );
+            if(tamanho != 8)
+            {
+                return TAB_CondRetFalhaNaEstrutura;
+            }
+
+            LIS_GetTipo( linha, &stringIdentificadoraDoTipo );
+            if(strcmp(stringIdentificadoraDoTipo, "CASA") != 0)
+            {
+                return TAB_CondRetFalhaNaEstrutura;
+            }
+        }
+
+        return TAB_CondRetOK;
+    }
 
 #endif
 
@@ -184,6 +177,10 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
         free( pNovoTabuleiro ) ;
         return TAB_CondRetFaltouMemoria ;
     } /* if */
+
+    #ifdef _DEBUG
+        LIS_SetTipo( pTabuleiro->tabuleiro, "LISTA_DE_CASAS" );
+    #endif
     
     condRetCriarConfigDir = VMV_CriarConfigDir( &pNovoTabuleiro->configDir ,
                                                 pathConfig ) ;
@@ -232,6 +229,11 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
             return TAB_CondRetFaltouMemoria ;
         } /* if */
+
+        #ifdef _DEBUG
+            LIS_SetTipo( pTabuleiro->tabuleiro, "CASA" );
+        #endif
+
         //TRATAR RET LISTA CORRETAMENTE
         for ( j = 0 ; j < 8 ; j++ )
         {

@@ -82,7 +82,38 @@ typedef enum {
     TAB_CondRetFaltouMemoria = 5
     /* Faltou memória ao tentar criar um elemento do tabuleiro */
 
+    #ifdef _DEBUG
+      ,
+
+      TAB_CondRetFalhaNaEstrutura = 6
+      /* Existe uma falha na estrutura do tabuleiro */
+    #endif
+
 } TAB_tpCondRet ;
+
+#ifdef _DEBUG
+    
+  /***********************************************************************
+  *
+  *  $FC Função: TAB  &Verificar Estrutura do Tabuleiro
+  *
+  *  $ED Descrição da função
+  *     Verifica a estrutura do tabuleiro.
+  *     Especificamente, checa se linhas e colunas possuem 8 elementos e
+  *     se o tipo armazenado por cada lista está correto.
+  *
+  *  $EP Par‚metros
+  *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
+  *
+  *  $FV Valor retornado
+  *     TAB_CondRetOK                   - Nao foram encontradas falhas
+  *     TAB_CondRetFalhaNaEstrutura     - Foram encontradas falhas
+  *
+  ***********************************************************************/
+
+  TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro );
+
+#ifdef _DEBUG
 
 
 /***********************************************************************
