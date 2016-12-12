@@ -680,7 +680,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 				return TST_CondRetParm ;
 			} /* if */
 			
-			CondRet = TAB_Deturpa( &vtTabuleiros[ inxTab ], tipoDeturpacao, colunaObtida, linhaObtida ) ;
+			CondRet = TAB_Deturpa( vtTabuleiros[ inxTab ], tipoDeturpacao, *colunaObtida, *linhaObtida ) ;
 
 			if ( CondRet != CondRetEsp )
 			{

@@ -476,7 +476,7 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
  *     TAB_CondRetFalhaDeturpar     - Não foi possível deturpar a estrutura
  *
  ***********************************************************************/
-TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro, TAB_tpDeturpacao tipoDeturpacao , char coluna , char linha ) ;
+TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro , TAB_tpDeturpacao tipoDeturpacao , char coluna , char linha ) ;
 
 /***********************************************************************
  *
