@@ -5,7 +5,6 @@
 //
 ////////////////////////////////////////////////
     
-	TAB_CriarTabuleiro
 	TAB_CriarTabuleiro -> tabuleiro nulo
 	TAB_CriarTabuleiro -> lista faltou memoria
 	TAB_CriarTabuleiro -> erro abertura arquivo
@@ -16,75 +15,116 @@
 	TAB_CriarTabuleiro -> casa faltou memoria (insercao)
 	TAB_CriarTabuleiro -> lista faltou memoria (insercao casa)
 	TAB_CriarTabuleiro -> lista faltou memoria (insercao lista)
+	TAB_CriarTabuleiro -> sucesso
 
-	TAB_CopiarTabuleiro
 	TAB_CopiarTabuleiro -> tabuleiro criado nulo
 	TAB_CopiarTabuleiro -> configuracao faltou memoria
+	TAB_CopiarTabuleiro -> sucesso
 
-	TAB_DestruirTabuleiro
 	TAB_DestruirTabuleiro -> tabuleiro nulo
 	TAB_DestruirTabuleiro -> lista nao existe
+	TAB_DestruirTabuleiro -> sucesso
 
-	TAB_InserirPecaTabuleiro
 	TAB_InserirPecaTabuleiro -> coordenada invalida
-	TAB_InserirPecaTabuleiro -> casa nula
 	TAB_InserirPecaTabuleiro -> casa nao existe
+	TAB_InserirPecaTabuleiro -> sucesso
 
-	TAB_MoverPecaTabuleiro
 	TAB_MoverPecaTabuleiro -> tabuleiro nulo
 	TAB_MoverPecaTabuleiro -> coordenada invalida
-	TAB_MoverPecaTabuleiro -> casa atual nula (1)
 	TAB_MoverPecaTabuleiro -> peca da casa nao existe
-	TAB_MoverPecaTabuleiro -> casa nao existe
-	TAB_MoverPecaTabuleiro -> casa atual nula (2)
+	TAB_MoverPecaTabuleiro -> casa nao existe\=-2
+	TAB_MoverPecaTabuleiro -> casa atual nula
 	TAB_MoverPecaTabuleiro -> casa destino nula
 	TAB_MoverPecaTabuleiro -> erro arquivo ao checar movimento
 	TAB_MoverPecaTabuleiro -> variavel / comando inexistente
 	TAB_MoverPecaTabuleiro -> movimento invalido
-	TAB_MoverPecaTabuleiro -> casa atual nula (3)
 	TAB_MoverPecaTabuleiro -> peca casa atual inexistente
-	TAB_MoverPecaTabuleiro -> casa atual nao existe (inserir peca)
-	TAB_MoverPecaTabuleiro -> casa destino nula (2)
 	TAB_MoverPecaTabuleiro -> peca casa destino nao existe
-	TAB_MoverPecaTabuleiro -> casa destino nao existe (inserir peca)
+	TAB_MoverPecaTabuleiro -> casa destino inserir peca faltou memoria
+	TAB_MoverPecaTabuleiro -> sucesso
 
-	TAB_RetirarPecaTabuleiro
+	TAB_RetirarPecaTabuleiro -> tabuleiro nulo
 	TAB_RetirarPecaTabuleiro -> coordenada invalida
-	TAB_RetirarPecaTabuleiro -> casa nula
 	TAB_RetirarPecaTabuleiro -> peca casa inexistente
+	TAB_RetirarPecaTabuleiro -> sucesso
 
-	TAB_ObterPecaTabuleiro
+	TAB_ObterPecaTabuleiro -> tabuleiro nulo
 	TAB_ObterPecaTabuleiro -> coordenada invalida
-	TAB_ObterPecaTabuleiro -> casa nula
 	TAB_ObterPecaTabuleiro -> peca casa inexistente
+	TAB_ObterPecaTabuleiro -> sucesso
 
-	TAB_ObterCasaTabuleiro
 	TAB_ObterCasaTabuleiro -> tabuleiro nulo
 	TAB_ObterCasaTabuleiro -> coordenada invalida
 	TAB_ObterCasaTabuleiro -> casa nula
+	TAB_ObterCasaTabuleiro -> sucesso
 
-	TAB_ObterListaAmeacantesTabuleiro
 	TAB_ObterListaAmeacantesTabuleiro -> coordenada invalida
-	TAB_ObterListaAmeacantesTabuleiro -> casa nula
 	TAB_ObterListaAmeacantesTabuleiro -> lista ameacantes casa inexistente
 	TAB_ObterListaAmeacantesTabuleiro -> lista ameacantes vazia
-	TAB_ObterListaAmeacantesTabuleiro -> casa nula (2)
+	TAB_ObterListaAmeacantesTabuleiro -> casa nula
 	TAB_ObterListaAmeacantesTabuleiro -> casa = casa esperada
+	TAB_ObterListaAmeacantesTabuleiro -> sucesso
 
-	TAB_ObterListaAmeacadosTabuleiro
 	TAB_ObterListaAmeacadosTabuleiro -> coordenada invalida
-	TAB_ObterListaAmeacadosTabuleiro -> casa nula
 	TAB_ObterListaAmeacadosTabuleiro -> lista ameacados casa inexistente
 	TAB_ObterListaAmeacadosTabuleiro -> lista ameacados casa vazia
-	TAB_ObterListaAmeacadosTabuleiro -> casa nula (2)
+	TAB_ObterListaAmeacadosTabuleiro -> casa nula
 	TAB_ObterListaAmeacadosTabuleiro -> casa = casa esperada
+	TAB_ObterListaAmeacadosTabuleiro -> sucesso
 
-	TAB_ObterCasasComPeca
 	TAB_ObterCasasComPeca -> cor e peca iguais os esperados
+	TAB_ObterCasasComPeca -> sucesso
 
-	TAB_GetPrintTabuleiro
 	TAB_GetPrintTabuleiro -> print nulo
 	TAB_GetPrintTabuleiro -> casa nula
 	TAB_GetPrintTabuleiro -> print casa faltou memoria
+	TAB_GetPrintTabuleiro -> sucesso
+
+	TAB_VerificaCoordValida -> invalida
+	TAB_VerificaCoordValida -> valida
+
+	TAB_CasaVazia -> vazia
+	TAB_CasaVazia -> nao vazia
+
+	TAB_CasaInimigo -> inimigo
+	TAB_CasaInimigo -> aliado
+
+	TAB_Dim1 -> encontrou linha
+	TAB_Dim1 -> nao encontrou linha
+
+	TAB_Dim0 -> encontrou coluna
+	TAB_Dim0 -> nao encontrou coluna
+
+	ExcluirChar\=-1
+
+	CompararChar\=-1
+
+	IgualChar\=-1
+
+	ExcluirCasa
+
+	CompararCasa
+
+	IgualCasa
+
+	CopiarListaCasa
+
+	ExcluirLista
+
+	CompararLista
+
+	IgualLista
+
+	CopiarListaLista
+
+	AtualizaListaAmeacantesAmeacados -> casa vazia
+	AtualizaListaAmeacantesAmeacados -> movimento valido
+
+	TAB_PegarCasa -> lista de listas ultimo no
+	TAB_PegarCasa -> lista de listas primeiro no
+	TAB_PegarCasa -> lista de listas vazia
+	TAB_PegarCasa -> lista de casas ultimo no
+	TAB_PegarCasa -> lista de casas primeiro no
+	TAB_PegarCasa -> lista de casas vazia
 
 	XPTO nome adicionado para fins de teste\=-2

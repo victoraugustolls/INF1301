@@ -81,15 +81,83 @@ typedef enum {
     
     TAB_CondRetFaltouMemoria = 5
     /* Faltou memória ao tentar criar um elemento do tabuleiro */
-    
+
     #ifdef _DEBUG
-    
-    , TAB_CondRetFalhaDeturpar = 6
-    /* Nao foi possivel deturpar a estrutura */
-    
+      ,
+
+      TAB_CondRetFalhaNaEstrutura = 6 ,
+      /* Existe uma falha na estrutura do tabuleiro */
+
+      TAB_CondRetFalhaDeturpar = 7
+      /* Não foi possível Deturpar */
     #endif
-    
+
 } TAB_tpCondRet ;
+
+#ifdef _DEBUG
+
+typedef enum {
+    
+    TAB_ELIMINA_ELEMENTO_CORRENTE = 1,
+
+    TAB_NULL_CASA_SUCESSORA = 2,
+
+    TAB_NULL_CASA_PREDECESSORA = 3,
+
+    TAB_LIXO_CASA_SUCESSORA = 4,
+
+    TAB_LIXO_CASA_PREDECESSORA = 5,
+    
+    TAB_NULL_CONTEUDO_CASA = 6,
+
+    TAB_ALTERA_TIPO_APONTADO_CASA = 7,
+
+    TAB_DESTACA_CASA_SEM_FREE = 8,
+    
+    TAB_NULL_PONTEIRO_CORRENTE = 9
+
+} TAB_tpDeturpacao ;
+
+  /***********************************************************************
+  *
+  *  $FC Função: TAB  &Deturpa Tabuleiro
+  *
+  *  $ED Descrição da função
+  *     Deturpa a estrutura do tabuleiro
+  *
+  *  $EP Parametros
+  *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
+  *     tipoDeturpacao - tipo da deturpação a ser realizada
+  *
+  *  $FV Valor retornado
+  *     TAB_CondRetOK                - Deturpação realizada com sucesso
+  *     TAB_CondRetFalhaDeturpar     - Não foi possível deturpar a estrutura
+  *
+  ***********************************************************************/
+
+  TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro, TAB_tpDeturpacao tipoDeturpacao );
+    
+  /***********************************************************************
+  *
+  *  $FC Função: TAB  &Verificar Estrutura do Tabuleiro
+  *
+  *  $ED Descrição da função
+  *     Verifica a estrutura do tabuleiro.
+  *     Especificamente, checa se linhas e colunas possuem 8 elementos e
+  *     se o tipo armazenado por cada lista está correto.
+  *
+  *  $EP Parametros
+  *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
+  *
+  *  $FV Valor retornado
+  *     TAB_CondRetOK                   - Nao foram encontradas falhas
+  *     TAB_CondRetFalhaNaEstrutura     - Foram encontradas falhas
+  *
+  ***********************************************************************/
+
+  TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro );
+
+#endif
 
 
 /***********************************************************************
@@ -99,7 +167,7 @@ typedef enum {
  *  $ED Descrição da função
  *     Cria um tabuleiro.
  *
- *  $EP Par‚metros
+ *  $EP Parametros
  *     pTabuleiro - ponteiro para o tabuleiro sendo criado
  *     pathConfig - local do arquivo de configuração de tabuleiro
  *

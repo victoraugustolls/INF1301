@@ -45,6 +45,14 @@ static const char PRINT_TAB_CMD                  [ ] = "=printTab"              
 static const char OBTER_AMEACANTES_CMD           [ ] = "=obterListaAmeacantes"  ;
 static const char OBTER_AMEACADOS_CMD            [ ] = "=obterListaAmeacados"   ;
 
+#ifdef _DEBUG
+
+
+	static const char DETURPAR_CMD            		[ ] = "=deturpar"        			;
+	static const char VERIFICA_ESTRUTURA_CMD        [ ] = "=verificaestrutura"        	;
+
+#endif
+
 
 #define TRUE  1
 #define FALSE 0
@@ -126,6 +134,9 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
 	LIS_tppLista listaLinhas ;
 	LIS_tppLista listaColunas ;
+
+	int numeroDeturpacao;
+	TAB_tpDeturpacao tipoDeturpacao;
 	
 	/* Testar CriarTabuleiro */
 	
@@ -651,6 +662,64 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		return TST_CondRetOK;	
 		
 	} /* fim ativa: Testar ObterListaAmeacadosTabuleiro */
+
+	#ifdef _DEBUG
+		else if ( strcmp( ComandoTeste , DETURPAR_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "iii" , &inxTab, &numeroDeturpacao, &CondRetEsp ) ;
+
+			tipoDeturpacao = (TAB_tpDeturpacao) numeroDeturpacao;
+			
+			if ( ( numLidos != 3 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
+			{
+				return TST_CondRetParm ;
+			} /* if */
+			
+			CondRet = TAB_Deturpa( &vtTabuleiros[ inxTab ], tipoDeturpacao ) ;
+
+			if ( CondRet != CondRetEsp )
+			{
+				if ( CondRetEsp == TAB_CondRetOK )
+				{
+					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria conseguir deturpar, mas NAO deturpou." );
+				}
+				else
+				{
+					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria NAO conseguir deturpar, mas deturpou." );
+				}
+			} /* if */
+			
+			return TST_CondRetOK;
+			
+		}
+		else if ( strcmp( ComandoTeste , VERIFICA_ESTRUTURA_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "ii" , &inxTab, &CondRetEsp ) ;
+			
+			if ( ( numLidos != 1 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
+			{
+				return TST_CondRetParm ;
+			} /* if */
+			
+			CondRet = TAB_VerificaAssertivasEstruturais( vtTabuleiros[ inxTab ] ) ;
+
+			if ( CondRet != CondRetEsp )
+			{
+				if ( CondRetEsp == TAB_CondRetOK )
+				{
+					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria NAO detectar falha na estrutura, mas detectou." );
+				}
+				else
+				{
+					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria detectar falha na estrutura, mas NAO detectou." );
+				}
+			} /* if */
+			
+			return TST_CondRetOK;
+		}
+	#endif
 	
 	return TST_CondRetNaoConhec ;
 	
