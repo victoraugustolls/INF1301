@@ -127,7 +127,7 @@ typedef enum {
   *
   *  $EP Par‚metros
   *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
-  *     pTabuleiro - tipo da deturpação a ser realizada
+  *     tipoDeturpacao - tipo da deturpação a ser realizada
   *
   *  $FV Valor retornado
   *     TAB_CondRetOK                - Deturpação realizada com sucesso
