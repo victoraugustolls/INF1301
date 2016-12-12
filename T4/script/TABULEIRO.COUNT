@@ -80,4 +80,51 @@
 	TAB_GetPrintTabuleiro -> print casa faltou memoria
 	TAB_GetPrintTabuleiro -> sucesso
 
+	TAB_VerificaCoordValida -> invalida
+	TAB_VerificaCoordValida -> valida
+
+	TAB_CasaVazia -> vazia
+	TAB_CasaVazia -> nao vazia
+
+	TAB_CasaInimigo -> inimigo
+	TAB_CasaInimigo -> aliado
+
+	TAB_Dim1 -> encontrou linha
+	TAB_Dim1 -> nao encontrou linha
+
+	TAB_Dim0 -> encontrou coluna
+	TAB_Dim0 -> nao encontrou coluna
+
+	ExcluirChar
+
+	CompararChar
+
+	IgualChar
+
+	ExcluirCasa
+
+	CompararCasa
+
+	IgualCasa
+
+	CopiarListaCasa
+
+	ExcluirLista
+
+	CompararLista
+
+	IgualLista
+
+	CopiarListaLista
+
+	AtualizaListaAmeacantesAmeacados -> casa vazia
+	AtualizaListaAmeacantesAmeacados -> movimento valido
+
+	TAB_PegarCasa -> lista de listas ultimo no
+	TAB_PegarCasa -> lista de listas primeiro no
+	TAB_PegarCasa -> lista de listas vazia
+	TAB_PegarCasa -> lista de casas ultimo no
+	TAB_PegarCasa -> lista de casas primeiro no
+	TAB_PegarCasa -> lista de casas vazia
+
 	XPTO nome adicionado para fins de teste\=-2

@@ -1187,11 +1187,19 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
 
 int TAB_VerificaCoordValida( int linha , int coluna )
 {
-    
     if ( ( linha > 7 ) || ( linha < 0 ) || ( coluna > 7 ) || ( coluna < 0 ) )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_VerificaCoordValida -> invalida" ) ;
+        #endif
+
         return 0 ;
     } /* if */
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_VerificaCoordValida -> valida" ) ;
+    #endif
+
     return 1 ;
     
 }
@@ -1202,19 +1210,27 @@ int TAB_CasaVazia( void* casa, void* aux )
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
     char nomePeca, corPeca ;
 
-    ( void ) aux;
+    ( void ) aux ;
     
     CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
 
     if ( ( nomePeca == 'V' ) && ( corPeca == 'V' ) )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_CasaVazia -> vazia" ) ;
+        #endif
+
         return 1 ;
     } /* if */
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_CasaVazia -> nao vazia" ) ;
+    #endif
+
     return 0 ;
-    
 }
 
-int TAB_CasaInimigo( void * casa, void* casa_atual, void * aux )
+int TAB_CasaInimigo( void * casa, void * casa_atual, void * aux )
 {
     
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
@@ -1228,21 +1244,29 @@ int TAB_CasaInimigo( void * casa, void* casa_atual, void * aux )
     CSA_ObterPecaCasa( &nomePeca , &corPeca , pCasa ) ;
     CSA_ObterPecaCasa( &nomePeca , &corAtual , pCasaAtual ) ;
 
-    corOposta = corAtual == 'B'?'P':'B';
+    corOposta = corAtual == 'B' ? 'P' : 'B' ;
     
     if ( corPeca == corOposta )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_CasaInimigo -> inimigo" ) ;
+        #endif
+
         return 1 ;
     } /* if */
-    return 0 ;
-    
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_CasaInimigo -> aliado" ) ;
+    #endif
+
+    return 0 ;    
 }
 
 // linhas
-int TAB_Dim1( void * casa, void* tab )
+int TAB_Dim1( void * casa, void * tab )
 {
     int i , j ;
-    TAB_tppTabuleiro pTabuleiro = (TAB_tppTabuleiro) tab ;
+    TAB_tppTabuleiro pTabuleiro = ( TAB_tppTabuleiro ) tab ;
     CSA_tppCasa casa2 ;
     CSA_tppCasa pCasa = ( CSA_tppCasa ) casa ;
         
@@ -1251,20 +1275,23 @@ int TAB_Dim1( void * casa, void* tab )
         for ( j = 0 ; j < 8; j++ )
         {
             casa2 = TAB_PegarCasa( pTabuleiro , i , j ) ;
-            if ( casa2 == NULL )
-            {
-                return TAB_CondRetNaoExiste ;
-            } /* if */
 
-            // if ( pCasa == ( pTabuleiro->tabuleiro[i][j] ) )
             if ( pCasa == casa2 )
             {
+                #ifdef _DEBUG
+                    CNT_CONTAR( "TAB_Dim1 -> encontrou linha" ) ;
+                #endif
+
                 return i ;
             } /* if */
         } /* for */
     } /* for */
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_Dim1 -> nao encontrou linha" ) ;
+    #endif
+
     return -1 ;
-    
 }
 
 // colunas
@@ -1280,25 +1307,33 @@ int TAB_Dim0 ( void * casa , void* tab )
         for ( j = 0 ; j < 8; j++ )
         {
             casa2 = TAB_PegarCasa( pTabuleiro , i , j ) ;
-            if ( casa2 == NULL )
-            {
-                return TAB_CondRetNaoExiste ;
-            } /* if */
 
-            // if ( pCasa == ( pTabuleiro->tabuleiro[i][j] ) )
             if ( pCasa == casa2 )
             {
+                #ifdef _DEBUG
+                    CNT_CONTAR( "TAB_Dim0 -> encontrou coluna" ) ;
+                #endif
+
                 return j ;
             } /* if */
         } /* for */
     } /* for */
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_Dim0 -> nao encontrou coluna" ) ;
+    #endif
+
     return -1 ;
-    
 }
 
 void ExcluirChar ( void * pDado )
 {
     (void) pDado;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "ExcluirChar" ) ;
+    #endif
+
     return ;
 }
 
@@ -1306,6 +1341,11 @@ int CompararChar ( void * pDado_1, void * pDado_2 )
 {
     char* x = ( char* ) pDado_1 ;
     char* y = ( char* ) pDado_2 ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "CompararChar" ) ;
+    #endif
+
     return *y - *x ;
 }
 
@@ -1313,13 +1353,24 @@ int IgualChar ( void * pDado_1, void * pDado_2 )
 {
     char* x = ( char* ) pDado_1 ;
     char* y = ( char* ) pDado_2 ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "IgualChar" ) ;
+    #endif
+
     return *x == *y ;
 }
 
 void ExcluirCasa ( void * pDado )
 {
     CSA_tppCasa x = ( CSA_tppCasa ) pDado ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "ExcluirCasa" ) ;
+    #endif
+
     CSA_DestruirCasa( x ) ;
+
     return ;
 }
 
@@ -1328,7 +1379,13 @@ int CompararCasa ( void * pDado_1, void * pDado_2 )
     int igualdade ;
     CSA_tppCasa x = ( CSA_tppCasa ) pDado_1 ;
     CSA_tppCasa y = ( CSA_tppCasa ) pDado_2 ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "CompararCasa" ) ;
+    #endif
+
     CSA_CompararCasa( x , y , &igualdade) ;
+
     return igualdade ;
 }
 
@@ -1337,7 +1394,13 @@ int IgualCasa ( void * pDado_1, void * pDado_2 )
     int igualdade ;
     CSA_tppCasa x = ( CSA_tppCasa ) pDado_1 ;
     CSA_tppCasa y = ( CSA_tppCasa ) pDado_2 ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "IgualCasa" ) ;
+    #endif
+
     CSA_CompararCasa( x , y , &igualdade) ;
+
     return igualdade ;
 }
 
@@ -1345,14 +1408,26 @@ void CopiarListaCasa ( void ** pValor, void * pValorOriginal )
 {
     CSA_tppCasa casaOriginal = ( CSA_tppCasa ) pValorOriginal ;
     CSA_tppCasa * casaNova = ( CSA_tppCasa * ) pValor ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "CopiarListaCasa" ) ;
+    #endif
+
     CSA_CopiarCasa( casaNova , casaOriginal ) ;
+
     return ;
 }
 
 void ExcluirLista ( void * pDado )
 {
     LIS_tppLista x = ( LIS_tppLista ) pDado ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "ExcluirLista" ) ;
+    #endif
+
     LIS_DestruirLista( x ) ;
+
     return ;
 }
 
@@ -1361,7 +1436,13 @@ int CompararLista ( void * pDado_1, void * pDado_2 )
     int igualdade ;
     LIS_tppLista x = ( LIS_tppLista ) pDado_1 ;
     LIS_tppLista y = ( LIS_tppLista ) pDado_2 ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "CompararLista" ) ;
+    #endif
+
     LIS_VerificaIgualdade( x , y , &igualdade) ;
+
     return igualdade ;
 }
 
@@ -1370,7 +1451,13 @@ int IgualLista ( void * pDado_1, void * pDado_2 )
     int igualdade ;
     LIS_tppLista x = ( LIS_tppLista ) pDado_1 ;
     LIS_tppLista y = ( LIS_tppLista ) pDado_2 ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "IgualLista" ) ;
+    #endif
+
     LIS_VerificaIgualdade( x , y , &igualdade) ;
+
     return igualdade ;
 }
 
@@ -1378,7 +1465,13 @@ void CopiarListaLista ( void ** pValor, void * pValorOriginal )
 {
     LIS_tppLista listaOriginal = ( LIS_tppLista ) pValorOriginal ;
     LIS_tppLista * listaNova = ( LIS_tppLista * ) pValor ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "CopiarListaLista" ) ;
+    #endif
+
     LIS_CopiarLista( listaNova , listaOriginal , CopiarListaCasa ) ;
+
     return ;
 }
 
@@ -1389,22 +1482,22 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
     char peca ;
     char cor ;
 
-    CSA_tppCasa vetorCasasAmeacantes[8][8][64];
-    int size_vetorCasasAmeacantes[8][8];
-    CSA_tppCasa vetorCasasAmeacadas[8][8][64];
-    int size_vetorCasasAmeacadas[8][8];
+    CSA_tppCasa vetorCasasAmeacantes[ 8 ][ 8 ][ 64 ] ;
+    int size_vetorCasasAmeacantes[ 8 ][ 8 ] ;
+    CSA_tppCasa vetorCasasAmeacadas[ 8 ][ 8 ][ 64 ] ;
+    int size_vetorCasasAmeacadas[ 8 ][ 8 ] ;
 
     CSA_tpCondRet           retCasa ;
-    CSA_tppCasa             vetTodasCasas[64] ;
+    CSA_tppCasa             vetTodasCasas[ 64 ] ;
     CSA_tppCasa             casa ;
     CSA_tppCasa             casa2 ;
     VMV_tpCondRet           retDirMov ;
     VMV_tpMovimentoValido   retMov ;
 
-    int sinal[] = { 0 , 0 };
+    int sinal[] = { 0 , 0 } ;
     int condEsp[] = { 0 } ;
 
-    int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim0 , TAB_Dim1 } ;
+    int ( * TAB_Dimensao[2] ) ( void * casa , void * tab ) = { TAB_Dim0 , TAB_Dim1 } ;
 
     /* Atualizar Lista de Ameaçacdos e Ameaçantes */
 
@@ -1412,7 +1505,6 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
     {
         for ( j = 0 ; j < 8; j++ )
         {
-            // vetTodasCasas[j + 8 * i] = pTabuleiro->tabuleiro[i][j] ;
             vetTodasCasas[j + 8 * i] = TAB_PegarCasa( pTabuleiro , i , j ) ;
         } /* for */
     } /* for */
@@ -1422,8 +1514,8 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
     {
         for ( j = 0 ; j < 8 ; j++ )
         {
-            size_vetorCasasAmeacantes[i][j] = 0;
-            size_vetorCasasAmeacadas[i][j] = 0;
+            size_vetorCasasAmeacantes[ i ][ j ] = 0 ;
+            size_vetorCasasAmeacadas[ i ][ j ] = 0 ;
         } /* for */
     } /* for */
 
@@ -1432,17 +1524,15 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
         for ( j = 0 ; j < 8 ; j++ )
         {
             casa = TAB_PegarCasa( pTabuleiro , i , j ) ;
-            if ( casa == NULL )
-            {
-                return ;
-            } /* if */
 
-            // retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
             retCasa = CSA_ObterPecaCasa( &peca , &cor , casa ) ;
-            // if( TAB_CasaVazia( ( void* ) pTabuleiro->tabuleiro[i][j] , ( void* ) pTabuleiro ) == 1)
-            if( TAB_CasaVazia( ( void* ) casa , ( void* ) pTabuleiro ) == 1)
+            if( TAB_CasaVazia( ( void * ) casa , ( void * ) pTabuleiro ) == 1 )
             {
-                continue;
+                #ifdef _DEBUG
+                    CNT_CONTAR( "AtualizaListaAmeacantesAmeacados -> casa vazia" ) ;
+                #endif
+
+                continue ;
             } /* if */
 
             for ( k = 0 ; k < 8 ; k++ )
@@ -1450,27 +1540,17 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
                 for ( l = 0 ; l < 8 ; l++ )
                 {
                     casa = TAB_PegarCasa( pTabuleiro , i , j ) ;
-                    if ( casa == NULL )
-                    {
-                        return ;
-                    } /* if */
 
                     casa2 = TAB_PegarCasa( pTabuleiro , k , l ) ;
-                    if ( casa == NULL )
-                    {
-                        return ;
-                    } /* if */
 
-                    // retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[i][j] ) ;
                     retCasa = CSA_ObterPecaCasa( &peca , &cor , casa ) ;
-                    sinal[0] = cor == 'B' ? 1 : -1 ;
+
+                    sinal[ 0 ] = cor == 'B' ? 1 : -1 ;
 
                     retDirMov = VMV_ChecarMovimentoPeca ( pTabuleiro->configDir ,
                                                           &retMov ,
                                                           peca ,
-                                                          // ( void * ) pTabuleiro->tabuleiro[i][j] ,
                                                           ( void * ) casa ,
-                                                          // ( void * ) pTabuleiro->tabuleiro[k][l] ,
                                                           ( void * ) casa2 ,
                                                           vetTodasCasas ,
                                                           64 ,
@@ -1485,9 +1565,11 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
                     // retDirMov = VMV_MovimentoValidoSim ;
                     if ( retMov == VMV_MovimentoValidoSim )
                     {
-                        // vetorCasasAmeacantes[k][l][size_vetorCasasAmeacantes[k][l]] = pTabuleiro->tabuleiro[i][j] ;
+                        #ifdef _DEBUG
+                            CNT_CONTAR( "AtualizaListaAmeacantesAmeacados -> movimento valido" ) ;
+                        #endif
+
                         vetorCasasAmeacantes[k][l][size_vetorCasasAmeacantes[k][l]] = casa ;
-                        // vetorCasasAmeacadas[i][j][size_vetorCasasAmeacadas[i][j]] = pTabuleiro->tabuleiro[k][l] ;
                         vetorCasasAmeacadas[i][j][size_vetorCasasAmeacadas[i][j]] = casa2 ;
                         size_vetorCasasAmeacantes[k][l]++ ;
                         size_vetorCasasAmeacadas[i][j]++ ;
@@ -1503,20 +1585,10 @@ void AtualizaListaAmeacantesAmeacados (TAB_tppTabuleiro pTabuleiro)
         {
 
             casa = TAB_PegarCasa( pTabuleiro , i , j ) ;
-            if ( casa == NULL )
-            {
-                return ;
-            } /* if */
 
-            // CSA_ModificarListaAmeacantesCasa( vetorCasasAmeacantes[i][j] , 
-            //                                 size_vetorCasasAmeacantes[i][j] , 
-            //                                 pTabuleiro->tabuleiro[i][j] ) ;
             CSA_ModificarListaAmeacantesCasa( vetorCasasAmeacantes[i][j] , 
                                             size_vetorCasasAmeacantes[i][j] , 
                                             casa ) ;
-            // CSA_ModificarListaAmeacadosCasa( vetorCasasAmeacadas[i][j] , 
-            //                                 size_vetorCasasAmeacadas[i][j] , 
-            //                                 pTabuleiro->tabuleiro[i][j] ) ;
             CSA_ModificarListaAmeacadosCasa( vetorCasasAmeacadas[i][j] , 
                                             size_vetorCasasAmeacadas[i][j] , 
                                             casa ) ;
@@ -1538,44 +1610,60 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
     retLista = LIS_AvancarElementoCorrente( linhas , linha ) ;
     if ( retLista == LIS_CondRetNoCorrenteUlt )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_PegarCasa -> lista de listas ultimo no" ) ;
+        #endif
+
         return NULL ;
     }
     else if ( retLista == LIS_CondRetNoCorrentePrim )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_PegarCasa -> lista de listas primeiro no" ) ;
+        #endif
+
         return NULL ;
     }
     else if ( retLista == LIS_CondRetListaVazia )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_PegarCasa -> lista de listas vazia" ) ;
+        #endif
+
         return NULL ;
     } /* if */
 
     retLista = LIS_ObterValor( linhas , ( void ** ) &colunas ) ;
-    if ( retLista == LIS_CondRetListaVazia )
-    {
-        return NULL ;
-    } /* if */
 
     retLista = LIS_MoveInicio( colunas ) ;
 
     retLista = LIS_AvancarElementoCorrente( colunas , coluna ) ;
     if ( retLista == LIS_CondRetNoCorrenteUlt )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_PegarCasa -> lista de casas ultimo no" ) ;
+        #endif
+
         return NULL ;
     }
     else if ( retLista == LIS_CondRetNoCorrentePrim )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_PegarCasa -> lista de casas primeiro no" ) ;
+        #endif
+
         return NULL ;
     }
     else if ( retLista == LIS_CondRetListaVazia )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_PegarCasa -> lista de casas vazia" ) ;
+        #endif
+
         return NULL ;
     } /* if */
 
     retLista = LIS_ObterValor( colunas , ( void ** ) &casa ) ;
-    if ( retLista == LIS_CondRetListaVazia )
-    {
-        return NULL ;
-    } /* if */
 
     return casa ;
 }
