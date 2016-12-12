@@ -702,47 +702,164 @@
 
    } /* Fim função: LIS  &Procurar elemento contendo valor */
 
+
 #ifdef _DEBUG
 
-LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
-                           char* stringIdentificadoraDoTipo )
-{
-   if ( pLista->pElemCorr == NULL )
+/* --------------------------------------------------------------
+*   DEBUG
+* -------------------------------------------------------------- */
+
+   LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
+                              char* stringIdentificadoraDoTipo )
    {
-      return LIS_CondRetListaVazia ;
-   } /* if */
+      if ( pLista->pElemCorr == NULL )
+      {
+         return LIS_CondRetListaVazia ;
+      } /* if */
 
-   strcpy(pLista->tipoArmazenado, stringIdentificadoraDoTipo);
+      strcpy(pLista->tipoArmazenado, stringIdentificadoraDoTipo);
 
-   return LIS_CondRetOK ;
-}
+      return LIS_CondRetOK ;
+   }
 
-LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
-                           char* stringIdentificadoraDoTipo )
-{
-
-   if ( pLista->pElemCorr == NULL )
+   LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
+                              char* stringIdentificadoraDoTipo )
    {
-      return LIS_CondRetListaVazia ;
-   } /* if */
 
-   strcpy(stringIdentificadoraDoTipo, pLista->tipoArmazenado);
+      if ( pLista->pElemCorr == NULL )
+      {
+         return LIS_CondRetListaVazia ;
+      } /* if */
 
-   return LIS_CondRetOK ;
-}
+      strcpy(stringIdentificadoraDoTipo, pLista->tipoArmazenado);
 
-LIS_tpCondRet LIS_Tamanho( LIS_tppLista pLista ,
-                           int * tamanhoDaLista )
-{
-   if ( pLista == NULL )
+      return LIS_CondRetOK ;
+   }
+
+   LIS_tpCondRet LIS_Tamanho( LIS_tppLista pLista ,
+                              int * tamanhoDaLista )
    {
-      return LIS_CondRetListaNaoExiste ;
-   } /* if */
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
 
-   *tamanhoDaLista = pLista->numElem;
+      *tamanhoDaLista = pLista->numElem;
 
-   return LIS_CondRetOK ;
-}
+      return LIS_CondRetOK ;
+   }
+
+/*
+         tpElemLista * pOrigemLista ;
+
+         tpElemLista * pFimLista ;
+
+         tpElemLista * pElemCorr ;
+
+         int numElem ;
+
+         char * idLista ;
+
+         void ( * ExcluirValor ) ( void * pValor ) ;
+         
+         int ( * CompararValores ) ( void * pValor_1, void * pValor_2 ) ;
+         
+         int ( * Igual ) ( void * pValor_1, void * pValor_2 ) ;
+
+         #ifdef _DEBUG
+
+         char tipoArmazenado[64];
+
+         #endif
+*/
+
+   LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista )
+   {
+      tpElemLista * pElem;
+      int elementoCorrenteEstaNaLista;
+      int numElemContados;
+
+      if( pLista->pElemCorr == NULL && pLista->numElem != 0 )
+      {
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+      if( pLista->numElem == 0 && pLista->pElemCorr != NULL )
+      {
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+      if( pLista->pOrigemLista == NULL && pLista->numElem != 0 )
+      {
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+      if( pLista->numElem == 0 && pLista->pOrigemLista != NULL )
+      {
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+      if( pLista->pFimLista == NULL && pLista->numElem != 0 )
+      {
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+      if( pLista->numElem == 0 && pLista->pFimLista != NULL )
+      {
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+
+      if( pLista->numElem != 0 )
+      {
+         if( pLista->pOrigemLista->pAnt != NULL )
+         {
+            return LIS_CondRetFalhaNaEstrutura;
+         }
+         if( pLista->pFimLista->pProx != NULL)
+         {
+            return LIS_CondRetFalhaNaEstrutura;
+         }
+      }
+
+      elementoCorrenteEstaNaLista = 0;
+      numElemContados = 0;
+      for(pElem = pLista->pOrigemLista; pElem != NULL; pElem = pElem->pProx)
+      {
+         if(pElem->pProx != NULL)
+         {
+            if(pElem->pProx->pAnt != pElem)
+            {
+               return LIS_CondRetFalhaNaEstrutura;
+            }
+         }
+         if(pElem->pAnt != NULL)
+         {
+            if(pElem->pAnt->pProx != pElem)
+            {
+               return LIS_CondRetFalhaNaEstrutura;
+            }
+         }
+
+         if(pElem->pValor == NULL)
+         {
+            return LIS_CondRetFalhaNaEstrutura;
+         }
+
+         if( pElem == pLista->pElemCorr )
+         {
+            elementoCorrenteEstaNaLista = 1;
+         }
+
+         numElemContados++;
+      }
+
+      if(elementoCorrenteEstaNaLista == 0)
+      {
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+
+      if(numElemContados != pLista->numElem)
+      {
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+
+      return LIS_CondRetOK;
+   }
 
 LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
                                        void ** ponteiroProxElem )

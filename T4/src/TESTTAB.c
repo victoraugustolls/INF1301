@@ -667,16 +667,20 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		else if ( strcmp( ComandoTeste , DETURPAR_CMD ) == 0 )
 		{
 
-			numLidos = LER_LerParametros( "iii" , &inxTab, &numeroDeturpacao, &CondRetEsp ) ;
+			numLidos = LER_LerParametros( "iicci" , &inxTab, 
+													&numeroDeturpacao, 
+													&colunaObtida, 
+													&linhaObtida, 
+													&CondRetEsp ) ;
 
 			tipoDeturpacao = (TAB_tpDeturpacao) numeroDeturpacao;
 			
-			if ( ( numLidos != 3 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
+			if ( ( numLidos != 5 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
 			{
 				return TST_CondRetParm ;
 			} /* if */
 			
-			CondRet = TAB_Deturpa( &vtTabuleiros[ inxTab ], tipoDeturpacao ) ;
+			CondRet = TAB_Deturpa( &vtTabuleiros[ inxTab ], tipoDeturpacao, colunaObtida, linhaObtida ) ;
 
 			if ( CondRet != CondRetEsp )
 			{
