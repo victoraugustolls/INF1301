@@ -136,10 +136,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     int num_casas ;
 
     VMV_tpCondRet condRetCriarConfigDir ;
-
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_CriarTabuleiro" ) ;
-    #endif
     
     pNovoTabuleiro = ( TAB_tpTabuleiro * ) malloc( sizeof( TAB_tpTabuleiro ) ) ;
     if ( pNovoTabuleiro == NULL )
@@ -150,7 +146,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
         return TAB_CondRetFaltouMemoria ;
     } /* if */ //MUDAR
-
 
     retLista = LIS_CriarLista( &pLista , "li" , ExcluirLista , CompararLista , IgualLista ) ;
 
@@ -283,50 +278,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
     pNovoTabuleiro->tabuleiro = pLista ;
 
-    // for ( i = 0 ; i < 8 ; i++ )
-    // {
-    //     for ( j = 0 ; j < 8 ; j++ )
-    //     {
-    //         retCasa = CSA_CriarCasa( &( pNovoTabuleiro->tabuleiro[i][j] ) ) ;
-    //         if ( retCasa == CSA_CondRetFaltouMemoria )
-    //         {
-    //             for ( ; i >= 0 ; i-- )
-    //             {
-    //                 for ( j-- ; j >= 0 ; j-- )
-    //                 {
-    //                     CSA_DestruirCasa( ( *pTabuleiro )->tabuleiro[i][j] ) ;
-    //                 } /* for */
-    //             } /* for */
-    //             free( pecas ) ;
-    //             free( cores ) ;
-    //             free( pNovoTabuleiro ) ;
-    //             VMV_DestruirConfigDir( pNovoTabuleiro->configDir ) ;
-    //             return TAB_CondRetFaltouMemoria ;
-    //         } /* if */
-
-    //         retCasa = CSA_InserirPecaCasa(  pecas[ 8 * i + j ] ,
-    //                                         cores[ 8 * i + j ] ,
-    //                                         pNovoTabuleiro->tabuleiro[i][j] ) ;
-    //         if ( retCasa == CSA_CondRetFaltouMemoria )
-    //         {
-    //             for ( ; i >= 0 ; i-- )
-    //             {
-    //                 for (j--; j >= 0 ; j-- )
-    //                 {
-    //                     CSA_DestruirCasa( ( *pTabuleiro )->tabuleiro[i][j] ) ;
-    //                 } /* for */
-    //             } /* for */
-    //             free( pecas ) ;
-    //             free( cores ) ;
-    //             free( pNovoTabuleiro ) ;
-    //             VMV_DestruirConfigDir( pNovoTabuleiro->configDir ) ;
-    //             return TAB_CondRetFaltouMemoria ;
-    //         } /* if */
-
-    //     } /* for */
-    // } /* for */
-
-
     free( pecas ) ;
     free( cores ) ;
     *pTabuleiro = pNovoTabuleiro ;
@@ -336,6 +287,10 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     #endif
 
     AtualizaListaAmeacantesAmeacados ( * pTabuleiro ) ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_CriarTabuleiro -> sucesso" ) ;
+    #endif
     
     return TAB_CondRetOK ;
     
@@ -349,18 +304,10 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabuleiro tabuleiroOriginal )
 {
 
-    // int i , j ;
     TAB_tppTabuleiro pNovoTabuleiro = NULL ;
-    // CSA_tpCondRet retCasa ;
-    // CSA_tppCasa casa ;
-    // CSA_tppCasa casaCopia ;
 
     VMV_tpCondRet condRetCriarConfigDir ;
 
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_CopiarTabuleiro" ) ;
-    #endif
-    
     pNovoTabuleiro = ( TAB_tpTabuleiro * ) malloc( sizeof( TAB_tpTabuleiro ) ) ;
     if ( pNovoTabuleiro == NULL )
     {
@@ -381,49 +328,16 @@ TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabulei
         free( pNovoTabuleiro ) ;
         return TAB_CondRetFaltouMemoria ;
     } /* if */
-    
-    // if ( pNovoTabuleiro == NULL )
-    // {
-
-    //     #ifdef _DEBUG
-    //         CNT_CONTAR( "TAB_CopiarTabuleiro -> configuracao faltou memoria" ) ;
-    //     #endif
-
-    //     return TAB_CondRetFaltouMemoria ;
-    // } /* if */
 
     LIS_CopiarLista( &pNovoTabuleiro->tabuleiro , tabuleiroOriginal->tabuleiro , CopiarListaLista ) ;
-
-    // for ( i = 0 ; i < 8 ; i++ )
-    // {
-    //     for ( j = 0 ; j < 8 ; j++ )
-    //     {
-
-    //         casa = TAB_PegarCasa( tabuleiroOriginal , i , j ) ;
-    //         if ( casa == NULL )
-    //         {
-    //             return TAB_CondRetFaltouMemoria ;
-    //         } /* if */
-    //         //TRATAR RET LISTA CORRETAMENTE
-    //         casaCopia = TAB_PegarCasa( pNovoTabuleiro , i , j ) ;
-    //         if ( casaCopia == NULL )
-    //         {
-    //             return TAB_CondRetFaltouMemoria ;
-    //         } /* if */
-    //         //TRATAR RET LISTA CORRETAMENTE
-
-    //         // retCasa = CSA_CopiarCasa( &pNovoTabuleiro->tabuleiro[i][j] , tabuleiroOriginal->tabuleiro[ i ][ j ] ) ;
-    //         retCasa = CSA_CopiarCasa( &casaCopia , casa ) ;
-    //         if( retCasa == CSA_CondRetFaltouMemoria)
-    //         {
-    //             return TAB_CondRetFaltouMemoria;
-    //         }
-    //     } /* for */
-    // } /* for */
 
     *pTabuleiro = pNovoTabuleiro ;
 
     AtualizaListaAmeacantesAmeacados ( *pTabuleiro ) ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_CopiarTabuleiro -> sucesso" ) ;
+    #endif
     
     return TAB_CondRetOK ;
     
@@ -436,14 +350,8 @@ TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabulei
 
 TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
 {
-    
-    // int i , j ;
-    // CSA_tpCondRet retCasa ;
-    LIS_tpCondRet retLista ;
 
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_DestruirTabuleiro" ) ;
-    #endif
+    LIS_tpCondRet retLista ;
     
     if ( pTabuleiro == NULL )
     {
@@ -466,6 +374,10 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
     
     VMV_DestruirConfigDir( pTabuleiro->configDir ) ;
     free( pTabuleiro ) ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_DestruirTabuleiro -> sucesso" ) ;
+    #endif
     
     return TAB_CondRetOK ;
     
@@ -487,10 +399,6 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
     CSA_tppCasa casa ;
     CSA_tpCondRet retCasa ;
 
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_InserirPecaTabuleiro" ) ;
-    #endif
-
     i = linha - '0' - 1 ;
     j = coluna - 'A' ;
 
@@ -504,14 +412,6 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
     } /* if */
 
     casa = TAB_PegarCasa( pTabuleiro , i , j ) ;
-    if ( casa == NULL )
-    {
-        #ifdef _DEBUG
-            CNT_CONTAR( "TAB_InserirPecaTabuleiro -> casa nula" ) ;
-        #endif
-
-        return TAB_CondRetCoordNaoExiste ;
-    } /* if */
 
     retCasa = CSA_InserirPecaCasa( nomePeca, corPeca, casa ) ;
 
@@ -524,8 +424,11 @@ TAB_tpCondRet TAB_InserirPecaTabuleiro( char coluna ,
         return TAB_CondRetCoordNaoExiste ;
     } /* if */
 
-             
     AtualizaListaAmeacantesAmeacados ( pTabuleiro ) ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_InserirPecaTabuleiro -> sucesso" ) ;
+    #endif
 
     return TAB_CondRetOK ;
             
@@ -562,11 +465,6 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
     int (*TAB_Dimensao[2]) (void* casa, void* tab) = { TAB_Dim0 , TAB_Dim1 } ;
 
-
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_MoverPecaTabuleiro" ) ;
-    #endif
-
     if ( pTabuleiro == NULL )
     {
         #ifdef _DEBUG
@@ -593,16 +491,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     } /* if */
     
     casaAtual = TAB_PegarCasa( pTabuleiro , linAtual , colAtual ) ;
-    if ( casaAtual == NULL )
-    {
-        #ifdef _DEBUG
-            CNT_CONTAR( "TAB_MoverPecaTabuleiro -> casa atual nula (1)" ) ;
-        #endif
 
-        return TAB_CondRetNaoExiste ;
-    } /* if */
-
-    // retCasa = CSA_ObterPecaCasa( &peca , &cor , pTabuleiro->tabuleiro[linAtual][colAtual] ) ;
     retCasa = CSA_ObterPecaCasa( &peca , &cor , casaAtual ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
@@ -626,19 +515,17 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
                 return TAB_CondRetNaoExiste ;
             } /* if */
-            // vetTodasCasas[j + 8 * i] = pTabuleiro->tabuleiro[i][j] ;
-            vetTodasCasas[j + 8 * i] = casaAtual ;
+            vetTodasCasas[ j + 8 * i ] = casaAtual ;
         } /* for */
     } /* for */
     
     sinal[0] = cor == 'B' ? 1 : -1 ;
 
-
     casaAtual = TAB_PegarCasa( pTabuleiro , linAtual , colAtual ) ;
     if ( casaAtual == NULL )
     {
         #ifdef _DEBUG
-            CNT_CONTAR( "TAB_MoverPecaTabuleiro -> casa atual nula (2)" ) ;
+            CNT_CONTAR( "TAB_MoverPecaTabuleiro -> casa atual nula" ) ;
         #endif
 
         return TAB_CondRetNaoExiste ;
@@ -704,15 +591,7 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
     
     /* Mover peça de casa */
     casaAtual = TAB_PegarCasa( pTabuleiro , linAtual , colAtual ) ;
-    if ( casaAtual == NULL )
-    {
-        #ifdef _DEBUG
-            CNT_CONTAR( "TAB_MoverPecaTabuleiro -> casa atual nula (3)" ) ;
-        #endif
 
-        return TAB_CondRetNaoExiste ;
-    } /* if */
-    // retCasa = CSA_RetirarPecaCasa ( pTabuleiro->tabuleiro[linAtual][colAtual] ) ;
     retCasa = CSA_RetirarPecaCasa ( casaAtual ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
@@ -722,29 +601,11 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
         return TAB_CondRetNaoExiste ;
     } /* if */
-    
-    // retCasa = CSA_InserirPecaCasa( 'V' , 'V' ,
-    //                                pTabuleiro->tabuleiro[linAtual][colAtual] ) ;
-    retCasa = CSA_InserirPecaCasa( 'V' , 'V' , casaAtual ) ;
-    if ( retCasa == CSA_CondRetNaoExiste )
-    {
-        #ifdef _DEBUG
-            CNT_CONTAR( "TAB_MoverPecaTabuleiro -> casa atual nao existe (inserir peca)" ) ;
-        #endif
 
-        return TAB_CondRetNaoExiste ;
-    } /* if */
+    retCasa = CSA_InserirPecaCasa( 'V' , 'V' , casaAtual ) ;
 
     casaDestino = TAB_PegarCasa( pTabuleiro , linDestino , colDestino ) ;
-    if ( casaDestino == NULL )
-    {
-        #ifdef _DEBUG
-            CNT_CONTAR( "TAB_MoverPecaTabuleiro -> casa destino nula (2)" ) ;
-        #endif
 
-        return TAB_CondRetNaoExiste ;
-    } /* if */
-    // retCasa = CSA_RetirarPecaCasa ( pTabuleiro->tabuleiro[linDestino][colDestino] ) ;
     retCasa = CSA_RetirarPecaCasa ( casaDestino ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
@@ -754,20 +615,22 @@ TAB_tpCondRet TAB_MoverPecaTabuleiro( char colInicial ,
 
         return TAB_CondRetNaoExiste ;
     } /* if */
-    
-    // retCasa = CSA_InserirPecaCasa( peca , cor ,
-    //                                pTabuleiro->tabuleiro[linDestino][colDestino] ) ;
+
     retCasa = CSA_InserirPecaCasa( peca , cor , casaDestino ) ;
-    if ( retCasa == CSA_CondRetNaoExiste )
+    if ( retCasa == CSA_CondRetFaltouMemoria )
     {
         #ifdef _DEBUG
-            CNT_CONTAR( "TAB_MoverPecaTabuleiro -> casa destino nao existe (inserir peca)" ) ;
+            CNT_CONTAR( "TAB_MoverPecaTabuleiro -> casa destino inserir peca faltou memoria" ) ;
         #endif
 
         return TAB_CondRetNaoExiste ;
     } /* if */
 
     AtualizaListaAmeacantesAmeacados ( pTabuleiro );
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_MoverPecaTabuleiro -> sucesso" ) ;
+    #endif
 
     return TAB_CondRetOK ;
     
@@ -786,10 +649,6 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
     int i , j ;
     CSA_tppCasa casa ;
     CSA_tpCondRet retCasa ;
-
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_RetirarPecaTabuleiro" ) ;
-    #endif
 
     if ( pTabuleiro == NULL )
     {
@@ -814,14 +673,6 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
     } /* if */
 
     casa = TAB_PegarCasa( pTabuleiro , i , j ) ;
-    if ( casa == NULL )
-    {
-        #ifdef _DEBUG
-            CNT_CONTAR( "TAB_RetirarPecaTabuleiro -> casa nula" ) ;
-        #endif
-
-        return TAB_CondRetNaoExiste ;
-    } /* if */
     
     retCasa = CSA_RetirarPecaCasa( casa ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
@@ -834,6 +685,10 @@ TAB_tpCondRet TAB_RetirarPecaTabuleiro( char coluna ,
     } /* if */
     
     AtualizaListaAmeacantesAmeacados ( pTabuleiro ) ;
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_RetirarPecaTabuleiro -> sucesso" ) ;
+    #endif
 
     return TAB_CondRetOK ;
     
@@ -855,12 +710,12 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
     CSA_tppCasa casa ;
     CSA_tpCondRet retCasa ;
 
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_ObterPecaTabuleiro" ) ;
-    #endif
-
     if ( pTabuleiro == NULL )
     {
+        #ifdef _DEBUG
+            CNT_CONTAR( "TAB_ObterPecaTabuleiro -> tabuleiro nulo" ) ;
+        #endif
+
         return TAB_CondRetNaoExiste ;
     } /* if */
 
@@ -878,16 +733,7 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
     } /* if */
 
     casa = TAB_PegarCasa( pTabuleiro , i , j ) ;
-    if ( casa == NULL )
-    {
-        #ifdef _DEBUG
-            CNT_CONTAR( "TAB_ObterPecaTabuleiro -> casa nula" ) ;
-        #endif
 
-        return TAB_CondRetNaoExiste ;
-    } /* if */
-    
-    // retCasa = CSA_ObterPecaCasa( pNomePeca , pCorPeca , pTabuleiro->tabuleiro[i][j] ) ;
     retCasa = CSA_ObterPecaCasa( pNomePeca , pCorPeca , casa ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
@@ -897,6 +743,10 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
 
         return TAB_CondRetNaoExiste ;
     } /* if */
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_ObterPecaTabuleiro -> sucesso" ) ;
+    #endif
     
     return TAB_CondRetOK ;
     
@@ -914,10 +764,6 @@ TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
 {
     
     int i , j ;
-
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_ObterCasaTabuleiro" ) ;
-    #endif
 
     if ( pTabuleiro == NULL )
     {
@@ -951,6 +797,10 @@ TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
 
         return TAB_CondRetNaoExiste ;
     } /* if */
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_ObterCasaTabuleiro -> sucesso" ) ;
+    #endif
     
     return TAB_CondRetOK ;
     
@@ -978,10 +828,6 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
     char* linhaIns ;
     char* colunaIns ;
 
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_ObterListaAmeacantesTabuleiro" ) ;
-    #endif
-
     /* Converte a linha e a coluna para inteiros */
     linhaInt = linha - '0' - 1 ;
     colunaInt = coluna - 'A' ;
@@ -996,16 +842,7 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
     } /* if */
 
     casa = TAB_PegarCasa( pTabuleiro , linhaInt , colunaInt ) ;
-    if ( casa == NULL )
-    {
-        #ifdef _DEBUG
-            CNT_CONTAR( "TAB_ObterListaAmeacantesTabuleiro -> casa nula" ) ;
-        #endif
-
-        return TAB_CondRetNaoExiste ;
-    } /* if */
     
-    // retCasa = CSA_ObterListaAmeacantesCasa( &pListaAmeacantes , pTabuleiro->tabuleiro[linhaInt][colunaInt] ) ;
     retCasa = CSA_ObterListaAmeacantesCasa( &pListaAmeacantes , casa ) ;
     if ( retCasa == CSA_CondRetNaoExiste )
     {
@@ -1050,13 +887,12 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
                 if ( casa == NULL )
                 {
                     #ifdef _DEBUG
-                        CNT_CONTAR( "TAB_ObterListaAmeacantesTabuleiro -> casa nula (2)" ) ;
+                        CNT_CONTAR( "TAB_ObterListaAmeacantesTabuleiro -> casa nula" ) ;
                     #endif
 
                     return TAB_CondRetNaoExiste ;
                 } /* if */
 
-                // if( ptCasa == pTabuleiro->tabuleiro[i][j] )
                 if( ptCasa == casa )
                 {
                     #ifdef _DEBUG
@@ -1079,6 +915,10 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
         retLista = LIS_AvancarElementoCorrente( pListaAmeacantes , 1 ) ;
     } /* while */
 
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_ObterListaAmeacantesTabuleiro -> sucesso" ) ;
+    #endif
+
     return TAB_CondRetOK ;
 
 } /* Fim função: TAB  &Obter lista de ameaçados de uma peça do tabuleiro */
@@ -1099,10 +939,6 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
     char* linhaIns ;
     char* colunaIns ;
 
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_ObterListaAmeacadosTabuleiro" ) ;
-    #endif
-
     /* Converte a linha e a coluna para inteiros */
     linhaInt = linha - '0' - 1 ;
     colunaInt = coluna - 'A' ;
@@ -1117,16 +953,7 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
     } /* if */
 
     casa = TAB_PegarCasa( pTabuleiro , linhaInt , colunaInt ) ;
-    if ( casa == NULL )
-    {
-        #ifdef _DEBUG
-            CNT_CONTAR( "TAB_ObterListaAmeacadosTabuleiro -> casa nula" ) ;
-        #endif
 
-        return TAB_CondRetNaoExiste ;
-    } /* if */
-
-    // retCasa = CSA_ObterListaAmeacadosCasa( &pListaAmeacados , pTabuleiro->tabuleiro[linhaInt][colunaInt] ) ;
     retCasa = CSA_ObterListaAmeacadosCasa( &pListaAmeacados , casa ) ;
     
     if ( retCasa == CSA_CondRetNaoExiste )
@@ -1170,7 +997,7 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
                 if ( casa == NULL )
                 {
                     #ifdef _DEBUG
-                        CNT_CONTAR( "TAB_ObterListaAmeacadosTabuleiro -> casa nula (2)" ) ;
+                        CNT_CONTAR( "TAB_ObterListaAmeacadosTabuleiro -> casa nula" ) ;
                     #endif
 
                     return TAB_CondRetNaoExiste ;
@@ -1199,6 +1026,10 @@ TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
         retLista = LIS_AvancarElementoCorrente( pListaAmeacados , 1 ) ;
     } /* while */
 
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_ObterListaAmeacadosTabuleiro -> sucesso" ) ;
+    #endif
+
     return TAB_CondRetOK ;
     
 } /* Fim função: TAB  &Obter lista de ameaçados de uma peça do tabuleiro */
@@ -1215,10 +1046,6 @@ TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
     char corRecebida ;
     int i ;
     int j ;
-
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_ObterCasasComPeca" ) ;
-    #endif
 
     retLista = LIS_CriarLista(   pListaCasasLinhas,
                                  "lin" ,
@@ -1259,6 +1086,10 @@ TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
         } /* for */
     } /* for */
 
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_ObterCasasComPeca -> sucesso" ) ;
+    #endif
+
     return TAB_CondRetOK ;
 
 } /* Fim função: TAB  &Obter Casas Com Peça */
@@ -1271,10 +1102,6 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
     CSA_tppCasa casa ;
     CSA_tpCondRet casaCondRet ;
     char letterString[ 2 ] = "X" ;
-
-    #ifdef _DEBUG
-        CNT_CONTAR( "TAB_GetPrintTabuleiro" ) ;
-    #endif
 
     *print = ( char* ) malloc( sizeof( char ) * ( 10*11*3+1 ) ) ;
 
@@ -1308,8 +1135,7 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
 
                 return TAB_CondRetNaoExiste ;
             } /* if */
-
-            // casaCondRet = CSA_GetPrintCasa ( pTabuleiro->tabuleiro[ i ][ j ] , &tempPrint ) ;
+            
             casaCondRet = CSA_GetPrintCasa( casa , &tempPrint ) ;
             if( casaCondRet == CSA_CondRetFaltouMemoria )
             {
@@ -1326,6 +1152,10 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
         }
         strcat( *print , "\n" ) ;
     }
+
+    #ifdef _DEBUG
+        CNT_CONTAR( "TAB_GetPrintTabuleiro -> sucesso" ) ;
+    #endif
     
     return TAB_CondRetOK ;
 }
