@@ -32,7 +32,7 @@
 	TAB_MoverPecaTabuleiro -> tabuleiro nulo
 	TAB_MoverPecaTabuleiro -> coordenada invalida
 	TAB_MoverPecaTabuleiro -> peca da casa nao existe
-	TAB_MoverPecaTabuleiro -> casa nao existe/=-2
+	TAB_MoverPecaTabuleiro -> casa nao existe\=-2
 	TAB_MoverPecaTabuleiro -> casa atual nula
 	TAB_MoverPecaTabuleiro -> casa destino nula
 	TAB_MoverPecaTabuleiro -> erro arquivo ao checar movimento
@@ -95,11 +95,11 @@
 	TAB_Dim0 -> encontrou coluna
 	TAB_Dim0 -> nao encontrou coluna
 
-	ExcluirChar
+	ExcluirChar\=-1
 
-	CompararChar
+	CompararChar\=-1
 
-	IgualChar
+	IgualChar\=-1
 
 	ExcluirCasa
 

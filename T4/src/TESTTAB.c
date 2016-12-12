@@ -703,7 +703,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 				return TST_CondRetParm ;
 			} /* if */
 			
-			CondRet = TAB_VerificaAssertivasEstruturais( &vtTabuleiros[ inxTab ] ) ;
+			CondRet = TAB_VerificaAssertivasEstruturais( vtTabuleiros[ inxTab ] ) ;
 
 			if ( CondRet != CondRetEsp )
 			{

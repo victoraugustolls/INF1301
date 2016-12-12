@@ -11,8 +11,8 @@ tab         =  ..\tabs
 inc         =  ..\tabs
 
 [Modulos]
-TESTLIS
-LISTA
+TESTLIS       /D_DEBUG
+LISTA         /D_DEBUG
 
 [BuildInicio]
 /OUT:TEST_LIS.exe

@@ -88,7 +88,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
     TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro )
     {
         int tamanho;
-        char identificadorTipo[64];
+        char stringIdentificadoraDoTipo[64];
         int i;
         LIS_tppLista linha;
 
@@ -98,7 +98,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
             return TAB_CondRetFalhaNaEstrutura;
         }
 
-        LIS_GetTipo( pTabuleiro->tabuleiro, &stringIdentificadoraDoTipo );
+        LIS_GetTipo( pTabuleiro->tabuleiro, stringIdentificadoraDoTipo );
         if(strcmp(stringIdentificadoraDoTipo, "LISTA_DE_CASAS") != 0)
         {
             return TAB_CondRetFalhaNaEstrutura;
@@ -116,7 +116,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
                 return TAB_CondRetFalhaNaEstrutura;
             }
 
-            LIS_GetTipo( linha, &stringIdentificadoraDoTipo );
+            LIS_GetTipo( linha, stringIdentificadoraDoTipo );
             if(strcmp(stringIdentificadoraDoTipo, "CASA") != 0)
             {
                 return TAB_CondRetFalhaNaEstrutura;
