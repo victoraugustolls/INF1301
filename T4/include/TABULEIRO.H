@@ -85,10 +85,10 @@ typedef enum {
     #ifdef _DEBUG
       ,
 
-      TAB_CondRetFalhaNaEstrutura = 6,
+      TAB_CondRetFalhaNaEstrutura = 6 ,
       /* Existe uma falha na estrutura do tabuleiro */
 
-      TAB_CondRetFalhaDeturpar = 7,
+      TAB_CondRetFalhaDeturpar = 7
       /* Não foi possível Deturpar */
     #endif
 
