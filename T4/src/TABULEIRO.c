@@ -37,7 +37,7 @@
     #include "GENERICO.H"
     #include "CESPDIN.H"
     #include "CONTA.H"
-    // #include   "..\\tabelas\\IdTiposEspaco.def"
+    #include   "..\\tabelas\\IdTiposEspaco.def"
 #endif
 
 #define TABULEIRO_OWN
