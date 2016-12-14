@@ -6,7 +6,7 @@ err         =  ..\err
 obj         =  ..\obj
 c           =  ..\..\src
 h           =  ..\..\include
-def         =  ..\tabs
+def         =  ..\..\tabelas
 tab         =  ..\tabs
 inc         =  ..\tabs
 

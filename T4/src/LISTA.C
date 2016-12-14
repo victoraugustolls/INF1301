@@ -790,38 +790,45 @@
       if( pLista->magic_number != MAGIC_NUMBER )
       {
          *erroOcorrido = LIS_tpErroEstruturaCabecaCorrompida;
+         CNT_CONTAR( "erro-lista-cabeca-corrompida" ) ;
          return LIS_CondRetFalhaNaEstrutura;
       }
 
       if( pLista->pElemCorr == NULL && pLista->numElem != 0 )
       {
          *erroOcorrido = LIS_tpErroEstruturaCorrenteNuloIndevidamente;
+         CNT_CONTAR( "erro-lista-corrente-nulo" ) ;
          return LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->pOrigemLista == NULL && pLista->numElem != 0 )
       {
          *erroOcorrido = LIS_tpErroEstruturaOrigemNuloIndevidamente;
+         CNT_CONTAR( "erro-lista-origem-nulo" ) ;
          return LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->pFimLista == NULL && pLista->numElem != 0 )
       {
          *erroOcorrido = LIS_tpErroEstruturaFimNuloIndevidamente;
+         CNT_CONTAR( "erro-lista-fim-nulo" ) ;
          return LIS_CondRetFalhaNaEstrutura;
       }
 
       if( pLista->numElem == 0 && pLista->pElemCorr != NULL )
       {
          *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
+         CNT_CONTAR( "erro-lista-vazia-elementos-nao-nulos" ) ;
          return LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->numElem == 0 && pLista->pOrigemLista != NULL )
       {
          *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
+         CNT_CONTAR( "erro-lista-vazia-origem-nao-nula" ) ;
          return LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->numElem == 0 && pLista->pFimLista != NULL )
       {
          *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
+         CNT_CONTAR( "erro-lista-vazia-fim-nao-nulo" ) ;
          return LIS_CondRetFalhaNaEstrutura;
       }
 
@@ -830,11 +837,13 @@
          if( pLista->pOrigemLista->pAnt != NULL )
          {
             *erroOcorrido = LIS_tpErroEstruturaInicioDaListaPossuiAnterior;
+            CNT_CONTAR( "erro-lista-inicio-possui-anterior" ) ;
             return LIS_CondRetFalhaNaEstrutura;
          }
          if( pLista->pFimLista->pProx != NULL)
          {
             *erroOcorrido = LIS_tpErroEstruturaFimDaListaPossuiProximo;
+            CNT_CONTAR( "erro-lista-fim-possui-proximo" ) ;
             return LIS_CondRetFalhaNaEstrutura;
          }
       }
@@ -846,6 +855,7 @@
          if( pElem->magic_number != MAGIC_NUMBER )
          {
             *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
+            CNT_CONTAR( "erro-lista-magic-number-errado" ) ;
             return LIS_CondRetFalhaNaEstrutura;
          }
 
@@ -854,6 +864,7 @@
             if(pElem->pProx->pAnt != pElem)
             {
                *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
+               CNT_CONTAR( "erro-lista-anterior-proximo-diferente-corrente" ) ;
                return LIS_CondRetFalhaNaEstrutura;
             }
          }
@@ -862,6 +873,7 @@
             if(pElem != pLista->pFimLista)
             {
                *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
+               CNT_CONTAR( "erro-lista-ultimo-diferente-fim" ) ;
                return LIS_CondRetFalhaNaEstrutura;
             }
          }
@@ -871,6 +883,7 @@
             if(pElem->pAnt->pProx != pElem)
             {
                *erroOcorrido = LIS_tpErroEstruturaEncadeamentoIncorretoNaLista;
+               CNT_CONTAR( "erro-lista-proximo-anterior-diferente-corrente" ) ;
                return LIS_CondRetFalhaNaEstrutura;
             }
          }
@@ -879,6 +892,7 @@
             if(pElem != pLista->pOrigemLista)
             {
                *erroOcorrido = LIS_tpErroEstruturaEncadeamentoIncorretoNaLista;
+               CNT_CONTAR( "erro-lista-primeiro-diferente-inicio" ) ;
                return LIS_CondRetFalhaNaEstrutura;
             }
          }
@@ -886,6 +900,7 @@
          if(pElem->pValor == NULL)
          {
             *erroOcorrido = LIS_tpErroEstruturaValorArmazenadoNulo;
+            CNT_CONTAR( "erro-lista-valor-corrente-nulo" ) ;
             return LIS_CondRetFalhaNaEstrutura;
          }
 
@@ -893,6 +908,7 @@
          if(CED_ObterTipoEspaco( pElem->pValor ) != pLista->tipoArmazenado)
          {
             *erroOcorrido = LIS_tpErroEstruturaTipoDoValorIncoerente;
+            CNT_CONTAR( "erro-lista-tipo-valor-incoerente" ) ;
             return LIS_CondRetFalhaNaEstrutura;
          }
 
@@ -907,12 +923,14 @@
       if(elementoCorrenteEstaNaLista == 0)
       {
          *erroOcorrido = LIS_tpErroEstruturaElementoCorrenteNaoEstaNaLista;
+         CNT_CONTAR( "erro-lista-corrente-fora-lista" ) ;
          return LIS_CondRetFalhaNaEstrutura;
       }
 
       if(numElemContados != pLista->numElem)
       {
          *erroOcorrido = LIS_tpErroEstruturaNumeroDeElementosIncorreto;
+         CNT_CONTAR( "erro-lista-numero-elementos-incorreto" ) ;
          return LIS_CondRetFalhaNaEstrutura;
       }
 
