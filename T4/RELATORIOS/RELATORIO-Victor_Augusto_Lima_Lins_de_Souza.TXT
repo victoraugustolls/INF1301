@@ -1,4 +1,17 @@
 Data       Horas Trabalhadas     Tipo Tarefa                                            Descrição da Tarefa Realizada
+
+08/12/16   30min                 Revisar código                                         Revisar o módulo tabuleiro e anotar todas as mudanças que devem ser feitas para
+                                                                                        torná-lo dinâmico.
+08/12/16   2h                    Codificar módulo                                       Modificar o módulo tabuleiro de estático para dinâmico.
+
+12/12/16   1h                    Codificar módulo                                       Reorganizar os contadores do módulo tabuleiro dado as novas informações e dúvidas
+                                                                                        tiradas em sala de aula.
+13/12/16   30min                 Revisar código                                         Verificar as funções de deturpação criadas no módulo tabuleiro.
+13/12/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir as funções de deturpação do módulo tabuleiro.
+
+
+
+
 10/11/16   30min                 Revisar código                                         Verificar a implementação do módulo peça.
 10/11/16   1h                    Codificar módulo                                       Corrigir a implementação do módulo peça.
 11/11/16   1h                    Diagnosticar e corrigir os problemas encontrados       
