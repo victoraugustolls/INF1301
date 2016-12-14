@@ -45,7 +45,7 @@
 #undef LISTA_OWN
 
 #ifdef _DEBUG
-   #define MAGIC_NUMBER = 0xDEADBEEF
+   #define MAGIC_NUMBER 0xDEADBEEF
 #endif
 
 /***********************************************************************
@@ -183,7 +183,6 @@
       tpElemLista * pElem ;
       LIS_tpCondRet listaCondRet;
       void * pValorNovo;
-      int tipoNovoEspaco;
 
       pNewLista = ( LIS_tpLista * ) malloc( sizeof( LIS_tpLista )) ;
       if ( pNewLista == NULL )
@@ -942,21 +941,25 @@
 LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
                                        void ** ponteiroProxElem )
 {
-    tpElemLista noCorrente ;
+    tpElemLista* noCorrente ;
     
-    noCorrente = *pLista->pElemCorr ;
+    noCorrente = pLista->pElemCorr ;
     
     *ponteiroProxElem = noCorrente->pProx ;
+
+    return LIS_CondRetOK;
 }
 
 LIS_tpCondRet LIS_ObterPonteiroAnterior( LIS_tppLista pLista ,
                                        void ** ponteiroAntElem )
 {
-    tpElemLista noCorrente ;
+    tpElemLista* noCorrente ;
     
-    noCorrente = *pLista->pElemCorr ;
+    noCorrente = pLista->pElemCorr ;
     
     *ponteiroAntElem = noCorrente->pAnt ;
+
+    return LIS_CondRetOK;
 }
 
 #endif
