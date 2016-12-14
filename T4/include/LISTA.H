@@ -92,6 +92,11 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    typedef enum {
 
+         #ifdef _DEBUG
+            LIS_CondRetFalhaNaEstrutura = 8,
+            /* Existe uma falha na estrutura da lista. */
+         #endif
+
          LIS_CondRetOK = 0 ,
                /* Concluiu corretamente */
 
@@ -113,15 +118,29 @@ typedef struct LIS_tagLista * LIS_tppLista ;
          LIS_CondRetNaoAchou = 7
                /* Nao encontrou o elemento da lista */
 
-         #ifdef _DEBUG
-            ,
-
-            LIS_CondRetFalhaNaEstrutura = 8
-            /* Existe uma falha na estrutura da lista. */
-         #endif
-
-
    } LIS_tpCondRet ;
+
+
+#ifdef _DEBUG
+   typedef enum {
+
+         LIS_tpErroEstruturaNenhum = 0,
+         LIS_tpErroEstruturaCabecaCorrompida = 1,
+         LIS_tpErroEstruturaCorrenteNuloIndevidamente = 2,
+         LIS_tpErroEstruturaOrigemNuloIndevidamente = 3,
+         LIS_tpErroEstruturaFimNuloIndevidamente = 4,
+         LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos = 5,
+         LIS_tpErroEstruturaInicioDaListaPossuiAnterior = 6,
+         LIS_tpErroEstruturaFimDaListaPossuiProximo = 7,
+         LIS_tpErroEstruturaElementoDaListaCorrompido = 8,
+         LIS_tpErroEstruturaEncadeamentoIncorretoNaLista = 9,
+         LIS_tpErroEstruturaValorArmazenadoNulo = 10,
+         LIS_tpErroEstruturaTipoDoValorIncoerente = 11,
+         LIS_tpErroEstruturaElementoCorrenteNaoEstaNaLista = 12,
+         LIS_tpErroEstruturaNumeroDeElementosIncorreto = 13
+
+   } LIS_tpErroEstrutura ;
+#endif
 
 
 /***********************************************************************
@@ -578,6 +597,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 *  $EP Parametros
 *     pLista - ponteiro para a lista a ser verificada
+*     erroOcorrido - tipo do erro retornado
 *
 *  $FV Valor retornado
 *     LIS_CondRetOK                   - Nao foram encontradas falhas
@@ -585,7 +605,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
 
-   LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista );
+   LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista, LIS_tpErroEstrutura* erroOcorrido )
 
 /***********************************************************************
 *

@@ -91,6 +91,9 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
         int identificadorDoTipo;
         int i;
         LIS_tppLista linha;
+        LIS_tpErroEstrutura erroOcorrido;
+
+        LIS_VerificaAssertivasEstruturais( pTabuleiro->tabuleiro, &erroOcorrido );
 
         LIS_Tamanho( pTabuleiro->tabuleiro , &tamanho ) ;
         if(tamanho != 8)
@@ -112,7 +115,9 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
 
         for( i = 0 ; i < 8 ; i++ )
         {
-            LIS_ObterValor( pTabuleiro->tabuleiro, (void**) &linha ) ;    
+            LIS_ObterValor( pTabuleiro->tabuleiro, (void**) &linha ) ;   
+
+            LIS_VerificaAssertivasEstruturais( linha, &erroOcorrido );
 
             LIS_Tamanho( linha, &tamanho );
             if( tamanho != 8)
