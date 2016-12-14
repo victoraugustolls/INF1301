@@ -91,7 +91,7 @@
 
          #ifdef _DEBUG
 
-         char tipoArmazenado[64];
+         int tipoArmazenado;
 
          #endif
 
@@ -710,20 +710,20 @@
 * -------------------------------------------------------------- */
 
    LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
-                              char* stringIdentificadoraDoTipo )
+                              int identificadorDoTipo )
    {
       if ( pLista->pElemCorr == NULL )
       {
          return LIS_CondRetListaVazia ;
       } /* if */
 
-      strcpy(pLista->tipoArmazenado, stringIdentificadoraDoTipo);
+      pLista->tipoArmazenado = identificadorDoTipo;
 
       return LIS_CondRetOK ;
    }
 
    LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
-                              char* stringIdentificadoraDoTipo )
+                              int* identificadorDoTipo )
    {
 
       if ( pLista->pElemCorr == NULL )
@@ -731,7 +731,7 @@
          return LIS_CondRetListaVazia ;
       } /* if */
 
-      strcpy(stringIdentificadoraDoTipo, pLista->tipoArmazenado);
+      *identificadorDoTipo = pLista->tipoArmazenado;
 
       return LIS_CondRetOK ;
    }
@@ -748,30 +748,6 @@
 
       return LIS_CondRetOK ;
    }
-
-/*
-         tpElemLista * pOrigemLista ;
-
-         tpElemLista * pFimLista ;
-
-         tpElemLista * pElemCorr ;
-
-         int numElem ;
-
-         char * idLista ;
-
-         void ( * ExcluirValor ) ( void * pValor ) ;
-         
-         int ( * CompararValores ) ( void * pValor_1, void * pValor_2 ) ;
-         
-         int ( * Igual ) ( void * pValor_1, void * pValor_2 ) ;
-
-         #ifdef _DEBUG
-
-         char tipoArmazenado[64];
-
-         #endif
-*/
 
    LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista )
    {

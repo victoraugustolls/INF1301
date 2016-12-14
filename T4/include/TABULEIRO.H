@@ -88,8 +88,11 @@ typedef enum {
       TAB_CondRetFalhaNaEstrutura = 6 ,
       /* Existe uma falha na estrutura do tabuleiro */
 
-      TAB_CondRetFalhaDeturpar = 7
+      TAB_CondRetFalhaDeturpar = 7,
       /* Não foi possível Deturpar */
+
+      TAB_CondRetFalhaDefinirTipoEspaco = 8
+      /* Ocorreu uma falha ao usar o comando CED_DefinirTipoEspaco do módulo CESPDIN */
     #endif
 
 } TAB_tpCondRet ;

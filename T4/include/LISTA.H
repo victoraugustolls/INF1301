@@ -486,12 +486,11 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $FC Função: LIS  &Define o Tipo
 *
 *  $ED Descrição da função
-*     Define uma string que identifica o tipo que a lista armazena.
-*     A string deve possuir até 63 caracteres.
+*     Define o tipo que a lista armazena.
 *
 *  $EP Parâmetros
 *     pLista  - ponteiro para a lista a ser verificada
-*     stringIdentificadoraDoTipo   -  string identificador do tipo.
+*     identificadorDoTipo   -  identificador do tipo
 
 *  $FV Valor retornado
 *     LIS_CondRetOK             - retorno bem sucedido
@@ -500,7 +499,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
-                              char* stringIdentificadoraDoTipo );
+                              int identificadorDoTipo );
 
 #endif
 #ifdef _DEBUG
@@ -510,12 +509,10 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *  $FC Função: LIS  &Obtem o Tipo
 *
 *  $ED Descrição da função
-*     Obtem a string que identifica o tipo que a lista armazena, armazenando em stringIdentificadoraDoTipo.
-*     O espaco apontado stringIdentificadoraDoTipo já deve estar previamente alocado com pelo menos 64 espaços de char.
-*
+*     Obtem o tipo que a lista armazena, armazenando em identificadorDoTipo.
 *  $EP Parâmetros
 *     pLista  - ponteiro para a lista a ser verificada
-*     stringIdentificadoraDoTipo   -  string identificador do tipo.
+*     identificadorDoTipo   -  identificador do tipo
 
 *  $FV Valor retornado
 *     LIS_CondRetOK             - retorno bem sucedido
@@ -524,7 +521,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
-                              char* stringIdentificadoraDoTipo );
+                              int* identificadorDoTipo );
 
 #endif
 #ifdef _DEBUG

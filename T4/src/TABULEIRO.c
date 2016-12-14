@@ -88,7 +88,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
     TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro )
     {
         int tamanho;
-        char stringIdentificadoraDoTipo[64];
+        int identificadorDoTipo;
         int i;
         LIS_tppLista linha;
 
@@ -98,8 +98,8 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
             return TAB_CondRetFalhaNaEstrutura;
         }
 
-        LIS_GetTipo( pTabuleiro->tabuleiro, stringIdentificadoraDoTipo );
-        if(strcmp(stringIdentificadoraDoTipo, "LISTA_DE_CASAS") != 0)
+        LIS_GetTipo( pTabuleiro->tabuleiro, identificadorDoTipo );
+        if(identificadorDoTipo != TAB_TipoEspacoListaDeCasas)
         {
             return TAB_CondRetFalhaNaEstrutura;
         }
@@ -116,8 +116,8 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
                 return TAB_CondRetFalhaNaEstrutura;
             }
 
-            LIS_GetTipo( linha, stringIdentificadoraDoTipo );
-            if(strcmp(stringIdentificadoraDoTipo, "CASA") != 0)
+            LIS_GetTipo( linha, identificadorDoTipo );
+            if(identificadorDoTipo != TAB_TipoEspacoCasa)
             {
                 return TAB_CondRetFalhaNaEstrutura;
             }
@@ -161,6 +161,13 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
         return TAB_CondRetFaltouMemoria ;
     } /* if */ //MUDAR
 
+    #ifdef _DEBUG
+        if(CED_DefinirTipoEspaco( (void*) pNovoTabuleiro, TAB_TipoTabuleiro) == 0)
+        {
+            return TAB_CondRetFalhaDefinirTipoEspaco;
+        }
+    #endif
+
     retLista = LIS_CriarLista( &pLista , "li" , ExcluirLista , CompararLista , IgualLista ) ;
 
     if( retLista == LIS_CondRetFaltouMemoria )
@@ -174,7 +181,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     } /* if */
 
     #ifdef _DEBUG
-        LIS_SetTipo( pLista, "LISTA_DE_CASAS" );
+        LIS_SetTipo( pLista, TAB_TipoEspacoListaDeCasas );
     #endif
     
     condRetCriarConfigDir = VMV_CriarConfigDir( &pNovoTabuleiro->configDir ,
@@ -226,7 +233,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
         } /* if */
 
         #ifdef _DEBUG
-            LIS_SetTipo( novaLista, "CASA" );
+            LIS_SetTipo( novaLista, TAB_TipoEspacoCasa );
         #endif
 
         //TRATAR RET LISTA CORRETAMENTE
@@ -340,6 +347,13 @@ TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabulei
 
         return TAB_CondRetFaltouMemoria ;
     } /* if */
+
+    #ifdef _DEBUG
+        if(CED_DefinirTipoEspaco( (void*) pNovoTabuleiro, TAB_TipoTabuleiro) == 0)
+        {
+            return TAB_CondRetFalhaDefinirTipoEspaco;
+        }
+    #endif
 
     condRetCriarConfigDir = VMV_CopiarConfigDir( &pNovoTabuleiro->configDir , tabuleiroOriginal->configDir) ;
     if ( condRetCriarConfigDir == VMV_CondRetErrFaltouMemoria )

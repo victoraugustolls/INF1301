@@ -17,7 +17,13 @@
 *
 ***************************************************************************/
 
-      TAB_TipoEspacoCabeca ,
+      TAB_TipoEspacoPeca,
+
+      TAB_TipoEspacoCasa,
+
+      TAB_TipoEspacoListaDeCasas,
+
+      TAB_TipoTabuleiro,
 
 /********** Fim do arquivo de definição: TiposEspacosTabuleiro.def  **********/
 
