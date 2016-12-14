@@ -32,6 +32,13 @@
 #include   <malloc.h>
 #include   <assert.h>
 
+#ifdef _DEBUG
+    #include "GENERICO.H"
+    #include "CESPDIN.H"
+    #include "CONTA.H"
+    // #include   "..\\tabelas\\IdTiposEspaco.def"
+#endif
+
 #define LISTA_OWN
 #include "LISTA.h"
 #undef LISTA_OWN
@@ -91,7 +98,7 @@
 
          #ifdef _DEBUG
 
-         char tipoArmazenado[64];
+            char tipoArmazenado[64];
 
          #endif
 
