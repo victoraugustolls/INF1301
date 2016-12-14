@@ -8,6 +8,22 @@
 	erro-tamanho-lista-de-listas
 	erro-tipo-lista-de-listas
 	erro-tamanho-lista-de-casas
-	erro-tipo-lista-de-casas    
+	erro-tipo-lista-de-casas
+
+	erro-lista-cabeca-corrompida
+	erro-lista-corrente-nulo
+	erro-lista-origem-nulo
+	erro-lista-fim-nulo
+	erro-lista-vazia-elementos-nao-nulos
+	erro-lista-vazia-origem-nao-nula
+	erro-lista-vazia-fim-nao-nulo
+	erro-lista-magic-number-errado
+	erro-lista-ultimo-diferente-fim
+	erro-lista-proximo-anterior-diferente-corrente
+	erro-lista-primeiro-diferente-inicio
+	erro-lista-valor-corrente-nulo
+	erro-lista-tipo-valor-incoerente
+	erro-lista-corrente-fora-lista
+	erro-lista-numero-elementos-incorreto
 
 	XPTO nome adicionado para fins de teste\=-2
