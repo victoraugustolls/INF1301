@@ -781,7 +781,7 @@
       return LIS_CondRetOK ;
    }
 
-   LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista )
+   LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista, LIS_tpErroEstrutura* erroOcorrido )
    {
       tpElemLista * pElem;
       int elementoCorrenteEstaNaLista;
@@ -789,32 +789,39 @@
 
       if( pLista->magic_number != MAGIC_NUMBER )
       {
-         // Cabeca da lista corrompida
+         *erroOcorrido = LIS_tpErroEstruturaCabecaCorrompida;
          return LIS_CondRetFalhaNaEstrutura;
       }
 
       if( pLista->pElemCorr == NULL && pLista->numElem != 0 )
       {
-         return LIS_CondRetFalhaNaEstrutura;
-      }
-      if( pLista->numElem == 0 && pLista->pElemCorr != NULL )
-      {
+         *erroOcorrido = LIS_tpErroEstruturaCorrenteNuloIndevidamente;
          return LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->pOrigemLista == NULL && pLista->numElem != 0 )
       {
-         return LIS_CondRetFalhaNaEstrutura;
-      }
-      if( pLista->numElem == 0 && pLista->pOrigemLista != NULL )
-      {
+         *erroOcorrido = LIS_tpErroEstruturaOrigemNuloIndevidamente;
          return LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->pFimLista == NULL && pLista->numElem != 0 )
       {
+         *erroOcorrido = LIS_tpErroEstruturaFimNuloIndevidamente;
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+
+      if( pLista->numElem == 0 && pLista->pElemCorr != NULL )
+      {
+         *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+      if( pLista->numElem == 0 && pLista->pOrigemLista != NULL )
+      {
+         *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
          return LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->numElem == 0 && pLista->pFimLista != NULL )
       {
+         *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
          return LIS_CondRetFalhaNaEstrutura;
       }
 
@@ -822,10 +829,12 @@
       {
          if( pLista->pOrigemLista->pAnt != NULL )
          {
+            *erroOcorrido = LIS_tpErroEstruturaInicioDaListaPossuiAnterior;
             return LIS_CondRetFalhaNaEstrutura;
          }
          if( pLista->pFimLista->pProx != NULL)
          {
+            *erroOcorrido = LIS_tpErroEstruturaFimDaListaPossuiProximo;
             return LIS_CondRetFalhaNaEstrutura;
          }
       }
@@ -836,7 +845,7 @@
       {
          if( pElem->magic_number != MAGIC_NUMBER )
          {
-            // Elemento da lista corrompido
+            *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
             return LIS_CondRetFalhaNaEstrutura;
          }
 
@@ -844,26 +853,46 @@
          {
             if(pElem->pProx->pAnt != pElem)
             {
+               *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
                return LIS_CondRetFalhaNaEstrutura;
             }
          }
+         else
+         {
+            if(pElem != pLista->pFimLista)
+            {
+               *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
+               return LIS_CondRetFalhaNaEstrutura;
+            }
+         }
+
          if(pElem->pAnt != NULL)
          {
             if(pElem->pAnt->pProx != pElem)
             {
+               *erroOcorrido = LIS_tpErroEstruturaEncadeamentoIncorretoNaLista;
+               return LIS_CondRetFalhaNaEstrutura;
+            }
+         }
+         else
+         {
+            if(pElem != pLista->pOrigemLista)
+            {
+               *erroOcorrido = LIS_tpErroEstruturaEncadeamentoIncorretoNaLista;
                return LIS_CondRetFalhaNaEstrutura;
             }
          }
 
          if(pElem->pValor == NULL)
          {
+            *erroOcorrido = LIS_tpErroEstruturaValorArmazenadoNulo;
             return LIS_CondRetFalhaNaEstrutura;
          }
 
 
          if(CED_ObterTipoEspaco( pElem->pValor ) != pLista->tipoArmazenado)
          {
-            // Elemento na lista possui o tipo incorreto
+            *erroOcorrido = LIS_tpErroEstruturaTipoDoValorIncoerente;
             return LIS_CondRetFalhaNaEstrutura;
          }
 
@@ -877,14 +906,17 @@
 
       if(elementoCorrenteEstaNaLista == 0)
       {
+         *erroOcorrido = LIS_tpErroEstruturaElementoCorrenteNaoEstaNaLista;
          return LIS_CondRetFalhaNaEstrutura;
       }
 
       if(numElemContados != pLista->numElem)
       {
+         *erroOcorrido = LIS_tpErroEstruturaNumeroDeElementosIncorreto;
          return LIS_CondRetFalhaNaEstrutura;
       }
 
+      *erroOcorrido = LIS_tpErroEstruturaNenhum;
       return LIS_CondRetOK;
    }
 
