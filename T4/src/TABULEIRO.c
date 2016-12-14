@@ -86,6 +86,20 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
 
 #ifdef _DEBUG
 
+    static TAB_tpCondRet TAB_DestroiCasaAtual( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_AtribuiNuloPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_AtribuiNuloPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_AtribuiLixoPonteiroProximaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_AtribuiLixoPonteiroCasaAnterior( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_AtribuiNuloCasaAtual( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+
+#endif
+
+#ifdef _DEBUG
+
     TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro )
     {
         int tamanho;
@@ -104,7 +118,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
             return TAB_CondRetFalhaNaEstrutura ;
         }
 
-        LIS_GetTipo( pTabuleiro->tabuleiro, identificadorDoTipo );
+        LIS_GetTipo( pTabuleiro->tabuleiro, &identificadorDoTipo );
         if(identificadorDoTipo != TAB_TipoEspacoListaDeCasas)
         {
             CNT_CONTAR("erro-tipo-lista-de-listas") ;
@@ -128,7 +142,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
                 return TAB_CondRetFalhaNaEstrutura ;
             }
 
-            LIS_GetTipo( linha, identificadorDoTipo );
+            LIS_GetTipo( linha, &identificadorDoTipo );
             if(identificadorDoTipo != TAB_TipoEspacoCasa)
             {
                 CNT_CONTAR("erro-tipo-lista-de-casas") ;
@@ -273,7 +287,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
             } /* if */
 
             #ifdef _DEBUG
-                if( CED_DefinirTipoEspaco( ( void * ) * casaNova , TAB_TipoEspacoCasa ) == 0 )
+                if( CED_DefinirTipoEspaco( ( void * ) pCasa , TAB_TipoEspacoCasa ) == 0 )
                 {
                     return TAB_CondRetFalhaDefinirTipoEspaco ;
                 } /* if */
@@ -288,7 +302,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
         } /* if */
 
         #ifdef _DEBUG
-            if( CED_DefinirTipoEspaco (  (void * ) * casaNova , TAB_TipoEspacoListaDeCasas ) == 0 )
+            if( CED_DefinirTipoEspaco (  (void * ) novaLista , TAB_TipoEspacoListaDeCasas ) == 0 )
             {
                 return TAB_CondRetFalhaDefinirTipoEspaco ;
             }
@@ -1215,10 +1229,7 @@ void CopiarListaCasa ( void ** pValor, void * pValorOriginal )
     CSA_CopiarCasa( casaNova , casaOriginal ) ;
 
     #ifdef _DEBUG
-        if(CED_DefinirTipoEspaco( (void*) *casaNova, TAB_TipoEspacoCasa) == 0)
-        {
-            return TAB_CondRetFalhaDefinirTipoEspaco;
-        }
+        CED_DefinirTipoEspaco( (void*) *casaNova, TAB_TipoEspacoCasa);
     #endif
 
     return ;
@@ -1263,10 +1274,7 @@ void CopiarListaLista ( void ** pValor, void * pValorOriginal )
     LIS_CopiarLista( listaNova , listaOriginal , CopiarListaCasa ) ;
 
     #ifdef _DEBUG
-        if(CED_DefinirTipoEspaco( (void*) *listaNova, TAB_TipoEspacoListaDeCasas) == 0)
-        {
-            return TAB_CondRetFalhaDefinirTipoEspaco;
-        }
+        CED_DefinirTipoEspaco( (void*) *listaNova, TAB_TipoEspacoListaDeCasas);
     #endif
 
     return ;
@@ -1542,7 +1550,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste ;
         } /* if */
         
-        retLista = LIS_tpCondRet LIS_ObterPonteiroProximo( colunas , &pProxCasa ) ;
+        retLista =  LIS_ObterPonteiroProximo( colunas , &pProxCasa ) ;
         if ( retLista == LIS_CondRetListaVazia )
         {
             return TAB_CondRetNaoExiste;
