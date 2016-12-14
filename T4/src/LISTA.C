@@ -36,7 +36,8 @@
     #include "GENERICO.H"
     #include "CESPDIN.H"
     #include "CONTA.H"
-    #include   "..\\tabelas\\IdTiposEspaco.def"
+    #include "TIPOS_ESPACO.H"
+    //#include   "..\\tabelas\\IdTiposEspaco.def"
 #endif
 
 #define LISTA_OWN
@@ -44,7 +45,7 @@
 #undef LISTA_OWN
 
 #ifdef _DEBUG
-   #define MAGIC_NUMBER = 0xDEADBEEF;
+   #define MAGIC_NUMBER = 0xDEADBEEF
 #endif
 
 /***********************************************************************
