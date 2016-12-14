@@ -44,7 +44,7 @@
 #undef LISTA_OWN
 
 #ifdef _DEBUG
-   #define MAGIC_NUMBER 0xDEADBEEF
+   #define MAGIC_NUMBER = 0xDEADBEEF;
 #endif
 
 /***********************************************************************
@@ -57,7 +57,7 @@
    typedef struct tagElemLista {
 
          #ifdef _DEBUG
-            char MAGIC_NUMBER[4] = {0xDEADBEEF}
+            int magic_number;
          #endif
 
          void * pValor ;
@@ -79,6 +79,10 @@
 ***********************************************************************/
 
    typedef struct LIS_tagLista {
+
+         #ifdef _DEBUG
+            int magic_number;
+         #endif
 
          tpElemLista * pOrigemLista ;
                /* Ponteiro para a origem da lista */
@@ -154,6 +158,10 @@
       pNewLista->CompararValores = CompararValores ;
       pNewLista->Igual = Igual ;
 
+      #ifdef _DEBUG
+         pNewLista->magic_number = MAGIC_NUMBER;
+      #endif
+
       *pLista = pNewLista ;
 
       return LIS_CondRetOK ;
@@ -190,6 +198,10 @@
       pNewLista->ExcluirValor = listaOriginal->ExcluirValor ;
       pNewLista->CompararValores = listaOriginal->CompararValores ;
       pNewLista->Igual = listaOriginal->Igual ;
+
+      #ifdef _DEBUG
+         pNewLista->magic_number = MAGIC_NUMBER;
+      #endif
 
       if ( listaOriginal->pElemCorr == NULL )
       {
@@ -637,6 +649,10 @@
       pElem->pAnt   = NULL  ;
       pElem->pProx  = NULL  ;
 
+      #ifdef _DEBUG
+         pElem->magic_number = MAGIC_NUMBER;
+      #endif
+
       pLista->numElem ++ ;
 
       return pElem ;
@@ -771,6 +787,12 @@
       int elementoCorrenteEstaNaLista;
       int numElemContados;
 
+      if( pLista->magic_number != MAGIC_NUMBER )
+      {
+         // Cabeca da lista corrompida
+         return LIS_CondRetFalhaNaEstrutura;
+      }
+
       if( pLista->pElemCorr == NULL && pLista->numElem != 0 )
       {
          return LIS_CondRetFalhaNaEstrutura;
@@ -812,6 +834,12 @@
       numElemContados = 0;
       for(pElem = pLista->pOrigemLista; pElem != NULL; pElem = pElem->pProx)
       {
+         if( pElem->magic_number != MAGIC_NUMBER )
+         {
+            // Elemento da lista corrompido
+            return LIS_CondRetFalhaNaEstrutura;
+         }
+
          if(pElem->pProx != NULL)
          {
             if(pElem->pProx->pAnt != pElem)
