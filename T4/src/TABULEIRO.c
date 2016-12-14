@@ -292,6 +292,14 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
                 return TAB_CondRetFaltouMemoria ;
             } /* if */
+
+            #ifdef _DEBUG
+                if(CED_DefinirTipoEspaco( (void*) *casaNova, TAB_TipoEspacoCasa) == 0)
+                {
+                    return TAB_CondRetFalhaDefinirTipoEspaco;
+                }
+            #endif
+
             //TRATAR RET LISTA CORRETAMENTE
         } /* for */
         LIS_InserirElementoApos( pLista , ( void * ) novaLista ) ;
@@ -303,6 +311,13 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
             return TAB_CondRetFaltouMemoria ;
         } /* if */
+
+        #ifdef _DEBUG
+            if(CED_DefinirTipoEspaco( (void*) *casaNova, TAB_TipoEspacoListaDeCasas) == 0)
+            {
+                return TAB_CondRetFalhaDefinirTipoEspaco;
+            }
+        #endif
         //TRATAR RET LISTA CORRETAMENTE
     } /* for */
 
@@ -2125,6 +2140,13 @@ void CopiarListaCasa ( void ** pValor, void * pValorOriginal )
 
     CSA_CopiarCasa( casaNova , casaOriginal ) ;
 
+    #ifdef _DEBUG
+        if(CED_DefinirTipoEspaco( (void*) *casaNova, TAB_TipoEspacoCasa) == 0)
+        {
+            return TAB_CondRetFalhaDefinirTipoEspaco;
+        }
+    #endif
+
     return ;
 }
 
@@ -2181,6 +2203,13 @@ void CopiarListaLista ( void ** pValor, void * pValorOriginal )
     #endif
 
     LIS_CopiarLista( listaNova , listaOriginal , CopiarListaCasa ) ;
+
+    #ifdef _DEBUG
+        if(CED_DefinirTipoEspaco( (void*) *listaNova, TAB_TipoEspacoListaDeCasas) == 0)
+        {
+            return TAB_CondRetFalhaDefinirTipoEspaco;
+        }
+    #endif
 
     return ;
 }

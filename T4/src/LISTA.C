@@ -36,6 +36,10 @@
 #include "LISTA.h"
 #undef LISTA_OWN
 
+#ifdef _DEBUG
+   #define MAGIC_NUMBER 0xDEADBEEF
+#endif
+
 /***********************************************************************
 *
 *  $TC Tipo de dados: LIS Elemento da lista
@@ -44,6 +48,10 @@
 ***********************************************************************/
 
    typedef struct tagElemLista {
+
+         #ifdef _DEBUG
+            char MAGIC_NUMBER[4] = {0xDEADBEEF}
+         #endif
 
          void * pValor ;
                /* Ponteiro para o valor contido no elemento */
@@ -159,6 +167,7 @@
       tpElemLista * pElem ;
       LIS_tpCondRet listaCondRet;
       void * pValorNovo;
+      int tipoNovoEspaco;
 
       pNewLista = ( LIS_tpLista * ) malloc( sizeof( LIS_tpLista )) ;
       if ( pNewLista == NULL )
@@ -186,7 +195,7 @@
             pElem  = pElem->pProx )
       {
          CopiarElemento(&pValorNovo, pElem->pValor);
-         listaCondRet = LIS_InserirElementoApos( pNewLista, pValorNovo);
+         listaCondRet = LIS_InserirElementoApos( pNewLista, pValorNovo );
          if(listaCondRet == LIS_CondRetFaltouMemoria)
          {
             LIS_DestruirLista(pNewLista);
@@ -611,7 +620,7 @@
 
       tpElemLista * pElem ;
 
-      pElem = ( tpElemLista * ) malloc( sizeof( tpElemLista )) ;
+      pElem = ( tpElemLista * ) malloc( sizeof( tpElemLista ) ) ;
       if ( pElem == NULL )
       {
          return NULL ;
@@ -813,6 +822,13 @@
 
          if(pElem->pValor == NULL)
          {
+            return LIS_CondRetFalhaNaEstrutura;
+         }
+
+
+         if(CED_ObterTipoEspaco( pElem->pValor ) != pLista->tipoArmazenado)
+         {
+            // Elemento na lista possui o tipo incorreto
             return LIS_CondRetFalhaNaEstrutura;
          }
 
