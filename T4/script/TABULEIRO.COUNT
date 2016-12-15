@@ -5,10 +5,8 @@
 //
 ////////////////////////////////////////////////
 
-	erro-tamanho-lista-de-listas
-	erro-tipo-lista-de-listas
+	erro-numero-linhas
 	erro-tamanho-lista-de-casas
-	erro-tipo-lista-de-casas
 
 	erro-lista-vazia-inconsistente
 	erro-lista-circular

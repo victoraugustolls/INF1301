@@ -129,17 +129,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
         LIS_Tamanho( pTabuleiro->tabuleiro , &tamanho ) ;
         if(tamanho != 8)
         {
-            CNT_CONTAR("erro-tamanho-lista-de-listas") ;
-
-            (*numEncontrados)++;
-            ret = TAB_CondRetFalhaNaEstrutura ;
-            return ret;
-        }
-
-        LIS_GetTipo( pTabuleiro->tabuleiro, &identificadorDoTipo );
-        if(identificadorDoTipo != TAB_TipoEspacoListaDeCasas)
-        {
-            CNT_CONTAR("erro-tipo-lista-de-listas") ;
+            CNT_CONTAR("erro-numero-linhas") ;
 
             (*numEncontrados)++;
             ret = TAB_CondRetFalhaNaEstrutura ;
@@ -164,17 +154,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
             LIS_Tamanho( linha, &tamanho );
             if( tamanho != 8)
             {
-                CNT_CONTAR("erro-tamanho-lista-de-casas") ;
-
-                (*numEncontrados)++;
-                ret = TAB_CondRetFalhaNaEstrutura ;
-                return ret;
-            }
-
-            LIS_GetTipo( linha, &identificadorDoTipo );
-            if(identificadorDoTipo != TAB_TipoEspacoCasa)
-            {
-                CNT_CONTAR("erro-tipo-lista-de-casas") ;
+                CNT_CONTAR("erro-numero-colunas") ;
 
                 (*numEncontrados)++;
                 ret = TAB_CondRetFalhaNaEstrutura ;
