@@ -1,0 +1,120 @@
+COMANDOS DE TESTE PARA VERIFICAR O VERIFICADOR
+___________________________________________________________
+
+O módulo de testes possui uma lista de tabuleiros com 20 tabuleiros independentes, que
+podem ser utilizados nos testes.
+
+Para inicializar um tabuleiro, pode-se utilizar o comando:
+=criarTabuleiro inx
+
+Aonde inx é o índice i referente ao i-ésimo tabuleiro nessa lista.
+___________________________________________________________
+NOVOS COMANDOS:
+___________________________________________________________
+1) COMANDO DEFINE CORRENTE
+
+	SINTAXE:
+		=defineCorrente  			inx  		linha 					coluna
+
+	DESCRIÇÃO:
+		Define a casa corrente do tabuleiro. 
+		Deturpações com o comando =deturpar utilizarão esse corrente.
+
+	PARÂMETROS E TIPOS:
+		inx (int)
+			O índice do tabuleiro na lista de tabuleiros.
+			0 <= inx < 20
+
+		linha (char)
+			A linha do tabuleiro a ser definida como corrente.
+			'1' <= linha <= '8'
+
+		coluna (char)
+			A coluna do tabuleiro a ser definida como corrente.
+			'A' <= coluna <= 'H'
+
+___________________________________________________________
+2) COMANDO DETURPAR
+
+	SINTAXE:
+		=deturpar 					inx 		numeroDeturpacao  		condRetorno 	
+
+	DESCRIÇÃO:
+		Deturpa o tabuleiro, considerando-se a casa corrente definida através de
+		=defineCorrente. 
+		Deturpar significa quebrar assertivas estruturais que definem as estruturas de dados do tabuleiro. 
+		Existem diversos tipos de deturpações, cada uma com um
+		efeito diferente.
+		Erros na estrutura podem impedir que a deturpação seja feita com sucesso.
+
+	PARÂMETROS E TIPOS:
+		inx (int)
+			O índice do tabuleiro na lista de tabuleiros.
+			0 <= inx < 20
+
+		numeroDeturpacao (int)
+			O número da deturpação a ser realizada.
+			O que cada numeroDeturpacao representa está explicitado a seguir.
+			1 <= numeroDeturpacao <= 11
+
+		condRetorno (int)
+			A condição de retorno esperada do comando deturpar, que diz se foi possível realizar
+			a deturpãção solicitada ou não.
+			
+			Pode assumir dois valores:
+				0 = Foi Possível Deturpar
+				7 = Falha ao Deturpar
+
+	TIPOS DE DETURPAÇÃO:
+		Os seguintes valores são referentes ao valor do parâmetro numeroDeturpacao.
+		Correspondem aos diversos tipos de deturpação que o comando =deturpar pode realizar.
+
+		numeroDeturpacao = 1
+			Elimina uma casa do tabuleiro, deixando uma linha com uma coluna a menos
+		numeroDeturpacao = 2
+			Atribui NULL para a casa a direita da casa corrente do tabuleiro
+		numeroDeturpacao = 3
+			Atribui NULL para a casa a esquerda da casa corrente do tabuleiro
+		numeroDeturpacao = 4
+			Atribui lixo ao ponteiro para a casa a direita da casa corrente do tabuleiro
+		numeroDeturpacao = 5
+			Atribui lixo ao ponteiro para a casa a esquerda da casa corrente do tabuleiro
+		numeroDeturpacao = 6
+			Atribui valor NULO à casa corrente do tabuleiro
+		numeroDeturpacao = 7
+			Altera o tipo armazenado por uma célula do tabuleiro (especificamente, de CASA para PEÇA)
+		numeroDeturpacao = 8
+			Elimina uma casa do tabuleiro, deixando uma linha com uma coluna a menos, sem liberar
+			o espaço de memória correspondente, causando um vazamento de memória.
+		numeroDeturpacao = 9
+			Atribui NULO à referência para a casa corrente.
+		numeroDeturpacao = 10
+			Torna a linha da casa corrente circular
+		numeroDeturpacao = 11
+			Elimina a linha da casa corrente do tabuleiro
+
+___________________________________________________________
+3) COMANDO VERIFICAR	
+
+	SINTAXE:
+		=verificar  				inx  		numErrosEsperados		condRetorno	
+
+	DESCRIÇÃO:
+		Verifica a estrutura do tabuleiro. Confere se o número de erros encontrados
+		é igual ao número de erros esperados.
+
+	PARÂMETROS E TIPOS:
+		inx (int)
+			O índice do tabuleiro na lista de tabuleiros.
+			0 <= inx < 20
+
+		numErrosEsperados (int)
+			Número de erros esperados, caso =verificar encontre um erro.
+			numErrosEsperados >= 0
+
+		condRetorno (int)
+			A condição de retorno esperada da verificação.
+			
+			Pode assumir dois valores:
+				0 = Não foram encontrados nenhum erro.
+				6 = Foram encontrados erros.
