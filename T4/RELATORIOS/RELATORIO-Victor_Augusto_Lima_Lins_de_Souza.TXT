@@ -15,3 +15,4 @@ Data       Horas Trabalhadas     Tipo Tarefa                                    
 14/12/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir falhas que levavam o módulo tabuleiro a nao compilar como debug.
 15/12/16   2h                    Diagnosticar e corrigir os problemas encontrados       Corrigir falhas nas funções de verificação dos módulos lista e tabuleiro.
 15/12/16   1h                    Redigir scripts de teste                               Criar os testes de deturpação para o módulo tabuleiro.
+15/12/16   30min                 Redigir scripts de teste                               Criar os testes de controle de vazamento de memória para o módulo tabuleiro.

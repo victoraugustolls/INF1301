@@ -9,11 +9,15 @@
  *
  *  Projeto: INF 1301 / 1628 Automatização dos testes de módulos C
  *  Gestor:  LES/DI/PUC-Rio
- *  Autores: lff, vas
+ *  Autores: lff, vas, iars
  *
  *  $HA Histórico de evolução:
  *     Versão  Autor    Data     Observações
- *     6       vas   03/dez/2016 transformar o tabuleiro em dinamico
+ *     10      vas   15/dez/2016 correcao da funcao de verificacao
+ *     9       vas   13/dez/2016 correcao da funcao de deturpacao
+ *     8       iars  12/dez/2016 criacao da funcao de verificacao
+ *     7       lff   12/dez/2016 criacao das funcoes de deturpacao
+ *     6       vas   08/dez/2016 transformar o tabuleiro em dinamico
  *     5       vas   12/nov/2016 correção de múltiplos erros devido a nova interface do modulo casa
  *     3       lff   11/out/2016 em desenvolvimento
  *     2       lff   05/out/2016 em desenvolvimento
