@@ -24,16 +24,18 @@
 !!!    0  Linha:    87  //=deturpar				tab0  8			'3' 'C'		OK 
 !!!    0  Linha:    88  //=deturpar				tab0  9			'3' 'C'		OK 
 !!!    0  Linha:    91  // --------------------------------------------- 
-   93  == Terminar controlar contadores
-cc>    1  Linha:    95   Contagem em "erro-lista-circular" é zero.
-cc>    2  Linha:    95   Contagem em "erro-numero-linhas" é zero.
->>>    3  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 2
-!!!    3  Linha:    97  // --------------------------------------------- 
-   99  == Terminar contagem
+   93  == Gravar contadores
+!!!    0  Linha:    96  // --------------------------------------------- 
+   98  == Terminar controlar contadores
+cc>    1  Linha:   100   Contagem em "erro-lista-circular" é zero.
+cc>    2  Linha:   100   Contagem em "erro-numero-linhas" é zero.
+>>>    3  Linha:   100  Número de contadores zero errado. Deveria ser: 0  É: 2
+!!!    3  Linha:   102  // --------------------------------------------- 
+  104  == Terminar contagem
 
-!!! Número de linhas lidas:         101
-!!! Número de casos de teste:         6
-!!! Número comandos corretos:        53
+!!! Número de linhas lidas:         106
+!!! Número de casos de teste:         7
+!!! Número comandos corretos:        54
 !!! Número de falhas encontradas:     3
 
 !!! Foram encontrados problemas

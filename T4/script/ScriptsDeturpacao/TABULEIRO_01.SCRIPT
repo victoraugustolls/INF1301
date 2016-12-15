@@ -90,6 +90,11 @@
 
 // ---------------------------------------------
 
+== Gravar contadores
+=registraracumulador "..\\log\\ACUMULADOR"
+
+// ---------------------------------------------
+
 == Terminar controlar contadores
 =pararcontagem
 =verificarcontagens    0
