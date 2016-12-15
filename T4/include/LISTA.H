@@ -16,6 +16,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     9       iars  12/dez/2016 adicao do prototipo da funcao de verificacao
 *     8       vas   13/nov/2016 adição do protótipo da função de comparar listas
 *     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno

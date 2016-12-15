@@ -1,0 +1,50 @@
+// Script: TABULEIRO_ESPACO.SCRIPT
+// Autores: Ian Albuquerque, Victor Augusto
+// Data: 15/dez/2016
+//
+// ---------------------------------------------
+
+== Inicializar Constantes
+=declararparm   OK                int  0
+=declararparm   NaoExiste         int  1
+=declararparm   CoordNaoExiste    int  2
+=declararparm   MovInvalido       int  3
+=declararparm   FalhaArquivo      int  4
+=declararparm   FaltouMemoria     int  5
+=declararparm   FalhaNaEstrutura     int  6
+
+// ---------------------------------------------
+
+== Inicializar valores
+=declararparm   tab0   int 0
+=declararparm   tab1   int 1
+
+// ---------------------------------------------
+
+== Iniciar contagem
+=inicializarcontadores  ""
+=lercontadores          "..\\script\\TABULEIRO"
+
+// ---------------------------------------------
+
+== Controlar vazamento de memoria
+=obternumeroespacosalocados  0
+=criarTabuleiro    		tab0  OK
+=obternumeroespacosalocados  155
+=recuperar
+=verificartodosespacos  1
+=copiaTab               tab0  tab1  OK
+=obternumeroespacosalocados  310
+=recuperar
+=destruirTabuleiro      tab1  OK
+=obternumeroespacosalocados  155
+=recuperar
+=inserirPeca            tab0  'B'   '1'   'R'   'P'   OK
+=obternumeroespacosalocados  157
+=recuperar
+=moverPeca              tab0  'B'   '1'   'B'   '2'   OK
+=obternumeroespacosalocados  157
+=recuperar
+=destruirTabuleiro      tab0  OK
+=obternumeroespacosalocados  0
+=recuperar

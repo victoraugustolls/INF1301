@@ -13,6 +13,8 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     11      vas   15/dez/2016 ajustes na funcao de verificacao
+*     10      iars  12/dez/2016 criacao da funcao de verificacao
 *     9       iars  15/nov/2016 copia lista
 *     8       vas   13/nov/2016 adição da implementação da função de comparar listas
 *     7       vas   11/nov/2016 adição da função de lista vazia
