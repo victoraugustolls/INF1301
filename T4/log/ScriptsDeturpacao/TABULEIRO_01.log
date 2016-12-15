@@ -16,7 +16,7 @@
 !!!    0  Linha:    29  // --------------------------------------------- 
    31  == Teste de Criacao de Tabuleiro
 !!!    0  Linha:    33  //=deturpar				tab0  1			'3' 'C'		OK 
->>>    1  Linha:    34  Numero de erros esperados diferente do numero de erros encontrado. Deveria ser: 1  É: 81
+>>>    1  Linha:    34  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
 >>>    2  Linha:    35  Não é comando recuperar:  //=deturpar				tab0  2			'3' 'C'		OK
 !!!    2  Linha:    36  //=deturpar				tab0  3			'3' 'C'		OK 
 !!!    2  Linha:    37  //=deturpar				tab0  4			'3' 'C'		OK 
@@ -37,21 +37,24 @@ cc>    9  Linha:    49   Contagem em "erro-lista-numero-elementos-incorreto" é z
 cc>   10  Linha:    49   Contagem em "erro-lista-origem-nulo" é zero.
 cc>   11  Linha:    49   Contagem em "erro-lista-primeiro-diferente-inicio" é zero.
 cc>   12  Linha:    49   Contagem em "erro-lista-proximo-anterior-diferente-corrente" é zero.
-cc>   13  Linha:    49   Contagem em "erro-lista-ultimo-diferente-fim" é zero.
-cc>   14  Linha:    49   Contagem em "erro-lista-valor-corrente-nulo" é zero.
-cc>   15  Linha:    49   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
-cc>   16  Linha:    49   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
-cc>   17  Linha:    49   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
-cc>   18  Linha:    49   Contagem em "erro-tamanho-lista-de-casas" é zero.
-cc>   19  Linha:    49   Contagem em "erro-tamanho-lista-de-listas" é zero.
->>>   20  Linha:    49  Número de contadores zero errado. Deveria ser: 0  É: 16
-!!!   20  Linha:    51  // --------------------------------------------- 
+cc>   13  Linha:    49   Contagem em "erro-lista-tipo-valor-incoerente" é zero.
+cc>   14  Linha:    49   Contagem em "erro-lista-ultimo-diferente-fim" é zero.
+cc>   15  Linha:    49   Contagem em "erro-lista-valor-corrente-nulo" é zero.
+cc>   16  Linha:    49   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
+cc>   17  Linha:    49   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
+cc>   18  Linha:    49   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
+cc>   19  Linha:    49   Contagem em "erro-tamanho-lista-de-casas" é zero.
+cc>   20  Linha:    49   Contagem em "erro-tamanho-lista-de-listas" é zero.
+cc>   21  Linha:    49   Contagem em "erro-tipo-lista-de-casas" é zero.
+cc>   22  Linha:    49   Contagem em "erro-tipo-lista-de-listas" é zero.
+>>>   23  Linha:    49  Número de contadores zero errado. Deveria ser: 0  É: 19
+!!!   23  Linha:    51  // --------------------------------------------- 
    53  == Terminar contagem
 
 !!! Número de linhas lidas:          55
 !!! Número de casos de teste:         6
 !!! Número comandos corretos:        15
-!!! Número de falhas encontradas:    20
+!!! Número de falhas encontradas:    23
 
 !!! Foram encontrados problemas
 
