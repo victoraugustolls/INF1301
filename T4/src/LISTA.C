@@ -848,9 +848,7 @@
             CNT_CONTAR( "erro-lista-valor-corrente-nulo" );
             (*numErrosEncontrados)++;
             ret = LIS_CondRetFalhaNaEstrutura;
-            return ret;
          }
-
 
          if(CED_ObterTipoEspaco( pElem->pValor ) != pLista->tipoArmazenado)
          {
@@ -858,7 +856,6 @@
             CNT_CONTAR( "erro-lista-tipo-valor-incoerente" );
             (*numErrosEncontrados)++;
             ret = LIS_CondRetFalhaNaEstrutura;
-            return ret;
          }
 
          if( pElem == pLista->pElemCorr )
@@ -875,7 +872,6 @@
          CNT_CONTAR( "erro-lista-corrente-fora-lista");
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
-         return ret;
       }
 
       if(numElemContados != pLista->numElem)
@@ -884,10 +880,7 @@
          CNT_CONTAR( "erro-lista-numero-elementos-incorreto");
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
-         return ret;
       }
-
-      printf("erros lista: %d\n", numErrosEncontrados);
 
       *erroOcorrido = LIS_tpErroEstruturaNenhum;
       return ret;
