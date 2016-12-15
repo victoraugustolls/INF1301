@@ -1,6 +1,6 @@
 [Diretorios]
 
-Nome        =  TEST_LIS
+Nome        =  TEST_TAB_DEBUG
 PathDefault =  ..\..\include
 err         =  ..\err
 obj         =  ..\obj
@@ -11,11 +11,15 @@ tab         =  ..\tabs
 inc         =  ..\tabs
 
 [Modulos]
-TESTLIS
-LISTA
+TESTTAB 	/D_DEBUG
+TABULEIRO	/D_DEBUG
+CASA  		/D_DEBUG
+PECA 		/D_DEBUG
+LISTA 		/D_DEBUG
+VALIDA_MOV 	/D_DEBUG
 
 [BuildInicio]
-/OUT:TEST_LIS.exe
+/OUT:TEST_TAB_DEBUG.exe
 /INCREMENTAL:NO
 /MACHINE:IX86
 

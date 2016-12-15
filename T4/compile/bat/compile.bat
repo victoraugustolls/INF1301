@@ -14,6 +14,10 @@ nmake /F..\comp\TEST_TAB.make
 copy ..\obj\TEST_TAB.exe ..\..\bin\TEST_TAB.EXE
 if exist ..\err\TEST_TAB.err notepad ..\err\TEST_TAB.err
 
+nmake /F..\comp\TEST_TAB_DEBUG.make 
+copy ..\obj\TEST_TAB_DEBUG.exe ..\..\bin\TEST_TAB_DEBUG.EXE
+if exist ..\err\TEST_TAB_DEBUG.err notepad ..\err\TEST_TAB_DEBUG.err
+
 nmake /F..\comp\TEST_CSA.make 
 copy ..\obj\TEST_CSA.exe ..\..\bin\TEST_CSA.EXE
 if exist ..\err\TEST_CSA.err notepad ..\err\TEST_CSA.err
