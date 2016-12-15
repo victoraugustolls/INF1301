@@ -146,6 +146,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	#ifdef _DEBUG
 		int numeroDeturpacao;
 		TAB_tpDeturpacao tipoDeturpacao;
+		char linhaPar;
+		char colunaPar;
 	#endif
 	
 	/* Testar CriarTabuleiro */
@@ -679,8 +681,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
 			numLidos = LER_LerParametros( "iicci" , &inxTab, 
 													&numeroDeturpacao, 
-													&linhaObtida,
-													&colunaObtida,
+													&linhaPar,
+													&colunaPar,
 													&CondRetEsp ) ;
 
 			tipoDeturpacao = (TAB_tpDeturpacao) numeroDeturpacao;
@@ -689,8 +691,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 			{
 				return TST_CondRetParm ;
 			} /* if */
-			
-			CondRet = TAB_Deturpa( vtTabuleiros[ inxTab ], tipoDeturpacao, *colunaObtida, *linhaObtida ) ;
+
+			CondRet = TAB_Deturpa( vtTabuleiros[ inxTab ], tipoDeturpacao, colunaPar, linhaPar ) ;
 
 			if ( CondRet != CondRetEsp )
 			{

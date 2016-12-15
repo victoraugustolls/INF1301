@@ -29,7 +29,7 @@
 
 == Teste de Criacao de Tabuleiro
 =criarTabuleiro    		tab0  OK
-//=deturpar				tab0  1			'C'	'3'		OK
+=deturpar				tab0  1			'C'	'3'		OK
 //=deturpar				tab0  2			'C'	'3'		OK
 //=deturpar				tab0  3			'C'	'3'		OK
 //=deturpar				tab0  4			'C'	'3'		OK

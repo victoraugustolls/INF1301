@@ -1030,7 +1030,7 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
         
         if ( tipoDeturpacao == TAB_ELIMINA_ELEMENTO_CORRENTE )
         {
-            ret = TAB_DestroiCasaAtual( pTabuleiro , colunaInt , linha ) ;
+            ret = TAB_DestroiCasaAtual( pTabuleiro , colunaInt , linhaInt ) ;
         }
         else if ( tipoDeturpacao == TAB_NULL_CASA_SUCESSORA )
         {
@@ -1063,12 +1063,12 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
         else if ( tipoDeturpacao == TAB_NULL_PONTEIRO_CORRENTE )
         {
             ret = TAB_AtribuiNuloCasaAtual( pTabuleiro , colunaInt , linhaInt ) ;
-        } /* if */
+        }
         
         if ( ret != TAB_CondRetOK )
         {
             return TAB_CondRetFalhaDeturpar ;
-        } /* if */
+        }
         
         return ret ;
     }
