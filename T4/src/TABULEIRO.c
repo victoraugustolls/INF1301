@@ -123,6 +123,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
 
             (*numEncontrados)++;
             ret = TAB_CondRetFalhaNaEstrutura ;
+            return ret;
         }
 
         LIS_GetTipo( pTabuleiro->tabuleiro, &identificadorDoTipo );
@@ -132,6 +133,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
 
             (*numEncontrados)++;
             ret = TAB_CondRetFalhaNaEstrutura ;
+            return ret;
         }
 
         LIS_MoveInicio( pTabuleiro->tabuleiro ) ;
@@ -150,6 +152,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
 
                 (*numEncontrados)++;
                 ret = TAB_CondRetFalhaNaEstrutura ;
+                return ret;
             }
 
             LIS_GetTipo( linha, &identificadorDoTipo );
@@ -159,6 +162,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
 
                 (*numEncontrados)++;
                 ret = TAB_CondRetFalhaNaEstrutura ;
+                return ret;
             }
 
             LIS_AvancarElementoCorrente( pTabuleiro->tabuleiro , 1 ) ;

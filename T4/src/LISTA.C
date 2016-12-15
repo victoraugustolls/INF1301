@@ -793,6 +793,7 @@
          CNT_CONTAR( "erro-lista-cabeca-corrompida" ) ;
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
 
       if( pLista->pElemCorr == NULL && pLista->numElem != 0 )
@@ -801,6 +802,7 @@
          CNT_CONTAR( "erro-lista-corrente-nulo");
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
       if( pLista->pOrigemLista == NULL && pLista->numElem != 0 )
       {
@@ -808,6 +810,7 @@
          CNT_CONTAR( "erro-lista-origem-nulo");
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
       if( pLista->pFimLista == NULL && pLista->numElem != 0 )
       {
@@ -815,6 +818,7 @@
          CNT_CONTAR( "erro-lista-fim-nulo");
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
 
       if( pLista->numElem == 0 && pLista->pElemCorr != NULL )
@@ -823,6 +827,7 @@
          CNT_CONTAR( "erro-lista-vazia-elementos-nao-nulos");
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
       if( pLista->numElem == 0 && pLista->pOrigemLista != NULL )
       {
@@ -830,6 +835,7 @@
          CNT_CONTAR( "erro-lista-vazia-origem-nao-nula");
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
       if( pLista->numElem == 0 && pLista->pFimLista != NULL )
       {
@@ -837,6 +843,7 @@
          CNT_CONTAR( "erro-lista-vazia-fim-nao-nulo");
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
 
       if( pLista->numElem != 0 )
@@ -847,6 +854,7 @@
             CNT_CONTAR( "erro-lista-inicio-possui-anterior" );
             (*numErrosEncontrados)++;
             ret = LIS_CondRetFalhaNaEstrutura;
+            return ret;
          }
          if( pLista->pFimLista->pProx != NULL)
          {
@@ -854,6 +862,7 @@
             CNT_CONTAR( "erro-lista-fim-possui-proximo" );
             (*numErrosEncontrados)++;
             ret = LIS_CondRetFalhaNaEstrutura;
+            return ret;
          }
       }
 
@@ -867,7 +876,8 @@
             CNT_CONTAR( "erro-lista-magic-number-errado" );
             (*numErrosEncontrados)++;
             ret = LIS_CondRetFalhaNaEstrutura;
-            break;
+            //break;
+            return ret;
          }
 
          if(pElem->pProx != NULL)
@@ -878,7 +888,8 @@
                CNT_CONTAR( "erro-lista-anterior-proximo-diferente-corrente" ) ;
                (*numErrosEncontrados)++;
                ret = LIS_CondRetFalhaNaEstrutura;
-               break;
+               //break;
+               return ret;
             }
          }
          else
@@ -890,7 +901,8 @@
                printf("Ultimo diferente fim\n");
                (*numErrosEncontrados)++;
                ret = LIS_CondRetFalhaNaEstrutura;
-               break;
+               //break;
+               return ret;
             }
          }
 
@@ -902,7 +914,8 @@
                CNT_CONTAR( "erro-lista-proximo-anterior-diferente-corrente" ) ;
                (*numErrosEncontrados)++;
                ret = LIS_CondRetFalhaNaEstrutura;
-               break;
+               //break;
+               return ret;
             }
          }
          else
@@ -913,7 +926,8 @@
                CNT_CONTAR( "erro-lista-primeiro-diferente-inicio" ) ;
                (*numErrosEncontrados)++;
                ret = LIS_CondRetFalhaNaEstrutura;
-               break;
+               //break;
+               return ret;
             }
          }
 
@@ -921,8 +935,9 @@
          {
             *erroOcorrido = LIS_tpErroEstruturaValorArmazenadoNulo;
             CNT_CONTAR( "erro-lista-valor-corrente-nulo" );
-               (*numErrosEncontrados)++;
+            (*numErrosEncontrados)++;
             ret = LIS_CondRetFalhaNaEstrutura;
+            return ret;
          }
 
 
@@ -930,8 +945,9 @@
          {
             *erroOcorrido = LIS_tpErroEstruturaTipoDoValorIncoerente;
             CNT_CONTAR( "erro-lista-tipo-valor-incoerente" );
-               (*numErrosEncontrados)++;
+            (*numErrosEncontrados)++;
             ret = LIS_CondRetFalhaNaEstrutura;
+            return ret;
          }
 
          if( pElem == pLista->pElemCorr )
@@ -946,16 +962,18 @@
       {
          *erroOcorrido = LIS_tpErroEstruturaElementoCorrenteNaoEstaNaLista;
          CNT_CONTAR( "erro-lista-corrente-fora-lista");
-               (*numErrosEncontrados)++;
+         (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
 
       if(numElemContados != pLista->numElem)
       {
          *erroOcorrido = LIS_tpErroEstruturaNumeroDeElementosIncorreto;
          CNT_CONTAR( "erro-lista-numero-elementos-incorreto");
-               (*numErrosEncontrados)++;
+         (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
 
       printf("erros lista: %d\n", numErrosEncontrados);

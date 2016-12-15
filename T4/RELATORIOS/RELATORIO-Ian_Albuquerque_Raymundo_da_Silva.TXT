@@ -39,3 +39,9 @@
 16/11/2016; 4 horas ; codificar módulo; Codificação de funções de print para os diversos módulos
 
 17/11/2016; 4 horas ; diagnosticar e corrigir os problemas encontrados; Debug geral, teste de game play, remoção de Instrumentação utilizada
+
+-------------------
+
+14/21/2016;	2 horas;  diagnosticar e corrigir os problemas encontrados; corrigir bugs das estruturas autoverificaveis implementadas.
+
+15/21/2016;	2 horas;  diagnosticar e corrigir os problemas encontrados; corrigir funções de deturpação.
