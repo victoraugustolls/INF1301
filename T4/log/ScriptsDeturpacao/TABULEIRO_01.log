@@ -26,17 +26,24 @@ cc>    1  Linha:    42    Linha:   156  Contador "erro-numero-colunas" não exist
 !!!    1  Linha:    88  //=deturpar				tab0  9			'3' 'C'		OK 
 !!!    1  Linha:    91  // --------------------------------------------- 
    93  == Terminar controlar contadores
+<<<<<<< HEAD
 cc>    2  Linha:    95   Contagem em "erro-lista-circular" é zero.
 cc>    3  Linha:    95   Contagem em "erro-numero-linhas" é zero.
 cc>    4  Linha:    95   Contagem em "erro-tamanho-lista-de-casas" é zero.
 >>>    5  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 3
 !!!    5  Linha:    97  // --------------------------------------------- 
+=======
+cc>    1  Linha:    95   Contagem em "erro-lista-circular" é zero.
+cc>    2  Linha:    95   Contagem em "erro-numero-linhas" é zero.
+>>>    3  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 2
+!!!    3  Linha:    97  // --------------------------------------------- 
+>>>>>>> 7ac1e7ce79ecb05919523f3834ff861662ed8b68
    99  == Terminar contagem
 
 !!! Número de linhas lidas:         101
 !!! Número de casos de teste:         6
 !!! Número comandos corretos:        53
-!!! Número de falhas encontradas:     5
+!!! Número de falhas encontradas:     3
 
 !!! Foram encontrados problemas
 
