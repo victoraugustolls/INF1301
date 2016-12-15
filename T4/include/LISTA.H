@@ -668,6 +668,25 @@ typedef struct LIS_tagLista * LIS_tppLista ;
    LIS_tpCondRet LIS_ObterPonteiroValor( LIS_tppLista pLista ,
                                           void *** ponteiroValor ) ;
 
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter referência para o ponteiro para ponteiro corrente
+*
+*  $ED Descrição da função
+*     Obtem a referência para o ponteiro para ponteiro corrente
+*
+*  $EP Parâmetros
+*     pLista           - ponteiro para a lista de onde se quer o ponteiro
+*     ponteiroCorrente - ponteiro para o ponteiro do corrente
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK           - obteve ponteiro corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+*
+***********************************************************************/
+  LIS_tpCondRet LIS_ObterPonteiroCorrente( LIS_tppLista pLista ,
+                                          void *** ponteiroCorrente ) ;
+
 #endif
 
 #undef LISTA_EXT

@@ -31,18 +31,17 @@ cc>    3  Linha:    95   Contagem em "erro-lista-magic-number-errado" é zero.
 cc>    4  Linha:    95   Contagem em "erro-lista-numero-elementos-incorreto" é zero.
 cc>    5  Linha:    95   Contagem em "erro-lista-primeiro-diferente-inicio" é zero.
 cc>    6  Linha:    95   Contagem em "erro-lista-proximo-anterior-diferente-corrente" é zero.
-cc>    7  Linha:    95   Contagem em "erro-lista-vazia-inconsistente" é zero.
-cc>    8  Linha:    95   Contagem em "erro-tamanho-lista-de-listas" é zero.
-cc>    9  Linha:    95   Contagem em "erro-tipo-lista-de-casas" é zero.
-cc>   10  Linha:    95   Contagem em "erro-tipo-lista-de-listas" é zero.
->>>   11  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 10
-!!!   11  Linha:    97  // --------------------------------------------- 
+cc>    7  Linha:    95   Contagem em "erro-tamanho-lista-de-listas" é zero.
+cc>    8  Linha:    95   Contagem em "erro-tipo-lista-de-casas" é zero.
+cc>    9  Linha:    95   Contagem em "erro-tipo-lista-de-listas" é zero.
+>>>   10  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 9
+!!!   10  Linha:    97  // --------------------------------------------- 
    99  == Terminar contagem
 
 !!! Número de linhas lidas:         101
 !!! Número de casos de teste:         6
 !!! Número comandos corretos:        53
-!!! Número de falhas encontradas:    11
+!!! Número de falhas encontradas:    10
 
 !!! Foram encontrados problemas
 

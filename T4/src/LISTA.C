@@ -984,6 +984,16 @@ LIS_tpCondRet LIS_ObterPonteiroValor( LIS_tppLista pLista ,
     return LIS_CondRetOK;
 }
 
+
+LIS_tpCondRet LIS_ObterPonteiroCorrente( LIS_tppLista pLista ,
+                                       void *** ponteiroCorrente )
+{
+  
+    *ponteiroCorrente = &pLista->pElemCorr ;
+
+    return LIS_CondRetOK;   
+}
+
 #endif
 
 /********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/

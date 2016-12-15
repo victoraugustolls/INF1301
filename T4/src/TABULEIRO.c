@@ -94,7 +94,7 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
     static TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
     static TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
     static TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
-    static TAB_tpCondRet TAB_AtribuiNuloCasaAtual( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_AtribuiNuloPonteiroCorrente( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
 
 #endif
 
@@ -1091,7 +1091,7 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
         }
         else if ( tipoDeturpacao == TAB_NULL_PONTEIRO_CORRENTE )
         {
-            ret = TAB_AtribuiNuloCasaAtual( pTabuleiro , colunaInt , linhaInt ) ;
+            ret = TAB_AtribuiNuloPonteiroCorrente( pTabuleiro , colunaInt , linhaInt ) ;
         }
         
         if ( ret != TAB_CondRetOK )
@@ -2013,10 +2013,10 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
         
     }
 
-    TAB_tpCondRet TAB_AtribuiNuloCasaAtual( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
+    TAB_tpCondRet TAB_AtribuiNuloPonteiroCorrente( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
     {
         
-        CSA_tppCasa* pCasa ;
+        void** pCorrente ;
         LIS_tppLista linhas  = NULL ;
         LIS_tppLista colunas = NULL ;
         LIS_tpCondRet retLista ;
@@ -2061,13 +2061,13 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste ;
         } /* if */
         
-        retLista = LIS_ObterPonteiroValor( colunas , &pCasa ) ;
+        retLista = LIS_ObterPonteiroCorrente( colunas , &pCorrente ) ;
         if ( retLista == LIS_CondRetListaVazia )
         {
             return TAB_CondRetNaoExiste ;
         } /* if */
         
-        *pCasa = NULL ;
+        *pCorrente = NULL ;
         
         return TAB_CondRetOK ;
         
