@@ -112,9 +112,9 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
         
         *numEncontrados = 0;
 
-        LIS_VerificaAssertivasEstruturais( pTabuleiro->tabuleiro, &erroOcorrido, &numErrosRecebidos );
+        // LIS_VerificaAssertivasEstruturais( pTabuleiro->tabuleiro, &erroOcorrido, &numErrosRecebidos );
 
-        (*numEncontrados) += numErrosRecebidos;
+        // (*numEncontrados) += numErrosRecebidos;
 
         LIS_Tamanho( pTabuleiro->tabuleiro , &tamanho ) ;
         if(tamanho != 8)

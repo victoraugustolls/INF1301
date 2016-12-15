@@ -16,7 +16,7 @@
 !!!    0  Linha:    29  // --------------------------------------------- 
    31  == Teste de Criacao de Tabuleiro
 !!!    0  Linha:    33  //=deturpar				tab0  1			'3' 'C'		OK 
->>>    1  Linha:    34  Numero de erros esperados diferente do numero de erros encontrado. Deveria ser: 1  É: 81
+>>>    1  Linha:    34  Numero de erros esperados diferente do numero de erros encontrado. Deveria ser: 1  É: 73
 >>>    2  Linha:    35  Não é comando recuperar:  //=deturpar				tab0  2			'3' 'C'		OK
 !!!    2  Linha:    36  //=deturpar				tab0  3			'3' 'C'		OK 
 !!!    2  Linha:    37  //=deturpar				tab0  4			'3' 'C'		OK 
