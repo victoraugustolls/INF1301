@@ -1571,7 +1571,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste;
         }
         
-        *(*pProxCasa) = NULL ;
+        *pProxCasa = NULL ;
         
         return TAB_CondRetOK ;
         
@@ -1631,7 +1631,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste;
         }
         
-        *(*pCasaAnterior) = NULL ;
+        *pCasaAnterior = NULL ;
         
         return TAB_CondRetOK ;
         
@@ -1691,7 +1691,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste;
         }
         
-        *(*pProxCasa) = (void*) 0 ;
+        *pProxCasa = (void*) 0 ;
         
         return TAB_CondRetOK ;
         
@@ -1751,73 +1751,13 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste;
         }
         
-        *(*pCasaAnterior) = (void*) 0 ;
+        *pCasaAnterior = (void*) 0 ;
         
         return TAB_CondRetOK ;
         
     }
 
     TAB_tpCondRet TAB_AtribuiNuloPonteiroValorCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
-    {
-        
-        CSA_tppCasa** pCasa ;
-        LIS_tppLista linhas  = NULL ;
-        LIS_tppLista colunas = NULL ;
-        LIS_tpCondRet retLista ;
-        
-        linhas = pTabuleiro->tabuleiro ;
-        
-        retLista = LIS_MoveInicio( linhas ) ;
-        
-        retLista = LIS_AvancarElementoCorrente( linhas , linha ) ;
-        if ( retLista == LIS_CondRetNoCorrenteUlt )
-        {
-            return TAB_CondRetNaoExiste ;
-        }
-        else if ( retLista == LIS_CondRetNoCorrentePrim )
-        {
-            return TAB_CondRetNaoExiste ;
-        }
-        else if ( retLista == LIS_CondRetListaVazia )
-        {
-            return TAB_CondRetNaoExiste ;
-        } /* if */
-        
-        retLista = LIS_ObterValor( linhas , ( void ** ) &colunas ) ;
-        if ( retLista == LIS_CondRetListaVazia )
-        {
-            return TAB_CondRetNaoExiste ;
-        } /* if */
-        
-        retLista = LIS_MoveInicio( colunas ) ;
-        
-        retLista = LIS_AvancarElementoCorrente( colunas , coluna ) ;
-        if ( retLista == LIS_CondRetNoCorrenteUlt )
-        {
-            return TAB_CondRetNaoExiste ;
-        }
-        else if ( retLista == LIS_CondRetNoCorrentePrim )
-        {
-            return TAB_CondRetNaoExiste ;
-        }
-        else if ( retLista == LIS_CondRetListaVazia )
-        {
-            return TAB_CondRetNaoExiste ;
-        } /* if */
-        
-        retLista = LIS_ObterValor( colunas , pCasa ) ;
-        if ( retLista == LIS_CondRetListaVazia )
-        {
-            return TAB_CondRetNaoExiste ;
-        } /* if */
-        
-        *pCasa = NULL ;
-        
-        return TAB_CondRetOK ;
-        
-    }
-
-    TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
     {
         
         CSA_tppCasa* pCasa ;
@@ -1865,13 +1805,73 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste ;
         } /* if */
         
-        retLista = LIS_ObterValor( colunas , pCasa ) ;
+        retLista = LIS_ObterValor( colunas , (void**) &pCasa ) ;
         if ( retLista == LIS_CondRetListaVazia )
         {
             return TAB_CondRetNaoExiste ;
         } /* if */
         
-        CED_DefinirTipoEspaco( *pCasa , TAB_TipoEspacoPeca) ;
+        *pCasa = NULL ;
+        
+        return TAB_CondRetOK ;
+        
+    }
+
+    TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
+    {
+        
+        CSA_tppCasa pCasa ;
+        LIS_tppLista linhas  = NULL ;
+        LIS_tppLista colunas = NULL ;
+        LIS_tpCondRet retLista ;
+        
+        linhas = pTabuleiro->tabuleiro ;
+        
+        retLista = LIS_MoveInicio( linhas ) ;
+        
+        retLista = LIS_AvancarElementoCorrente( linhas , linha ) ;
+        if ( retLista == LIS_CondRetNoCorrenteUlt )
+        {
+            return TAB_CondRetNaoExiste ;
+        }
+        else if ( retLista == LIS_CondRetNoCorrentePrim )
+        {
+            return TAB_CondRetNaoExiste ;
+        }
+        else if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+        
+        retLista = LIS_ObterValor( linhas , ( void ** ) &colunas ) ;
+        if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+        
+        retLista = LIS_MoveInicio( colunas ) ;
+        
+        retLista = LIS_AvancarElementoCorrente( colunas , coluna ) ;
+        if ( retLista == LIS_CondRetNoCorrenteUlt )
+        {
+            return TAB_CondRetNaoExiste ;
+        }
+        else if ( retLista == LIS_CondRetNoCorrentePrim )
+        {
+            return TAB_CondRetNaoExiste ;
+        }
+        else if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+        
+        retLista = LIS_ObterValor( colunas , &pCasa ) ;
+        if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+        
+        CED_DefinirTipoEspaco( pCasa , TAB_TipoEspacoPeca) ;
         
         return TAB_CondRetOK ;
         
@@ -1962,7 +1962,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste;
         }
         
-        *(*pCasaProxima) = ( void * ) &casaAnterior ;
+        *pCasaProxima = ( void * ) &casaAnterior ;
         
         retLista = LIS_ObterPonteiroProximo( colunas , &pCasaAnterior ) ;
         if ( retLista == LIS_CondRetListaVazia )
@@ -1970,7 +1970,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste;
         }
         
-        *(*pCasaAnterior) = ( void * ) &casaProxima ;
+        *pCasaAnterior = ( void * ) &casaProxima ;
         
         return TAB_CondRetOK ;
         
@@ -2024,7 +2024,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste ;
         } /* if */
         
-        retLista = LIS_ObterValor( colunas , pCasa ) ;
+        retLista = LIS_ObterPonteiroValor( colunas , &pCasa ) ;
         if ( retLista == LIS_CondRetListaVazia )
         {
             return TAB_CondRetNaoExiste ;

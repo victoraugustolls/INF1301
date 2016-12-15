@@ -563,7 +563,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
-                                            void ** ponteiroProxElem ) ;
+                                            void *** ponteiroProxElem ) ;
 
 #endif
 #ifdef _DEBUG
@@ -586,7 +586,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_ObterPonteiroAnterior( LIS_tppLista pLista ,
-                                            void ** ponteiroAntElem ) ;
+                                            void *** ponteiroAntElem ) ;
 
 /***********************************************************************
 *
@@ -625,7 +625,7 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
-                                void ** ponteiroProxElem ) ;
+                                void *** ponteiroProxElem ) ;
 
 /***********************************************************************
 *
@@ -645,7 +645,27 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 ***********************************************************************/
 
    LIS_tpCondRet LIS_ObterPonteiroAnterior( LIS_tppLista pLista ,
-                                          void ** ponteiroAntElem ) ;
+                                          void *** ponteiroAntElem ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter referência para o ponteiro para o valor do elemento corrente
+*
+*  $ED Descrição da função
+*     Obtem a referência para o ponteiro para o valor do elemento corrente
+*
+*  $EP Parâmetros
+*     pLista           - ponteiro para a lista de onde se quer o ponteiro
+*     ponteiroValor - ponteiro para o ponteiro do valor
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK           - obteve ponteiro corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterPonteiroValor( LIS_tppLista pLista ,
+                                          void *** ponteiroValor ) ;
 
 #endif
 
