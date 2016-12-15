@@ -1942,6 +1942,8 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste ;
         }
 
+        printf("Obteve casa anterior\n");
+
         retLista = LIS_MoveInicio( colunas ) ;
         
         retLista = LIS_AvancarElementoCorrente( colunas , coluna + 1 ) ;
@@ -1969,6 +1971,8 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
         {
             return TAB_CondRetNaoExiste;
         }
+
+        printf("Obteve casa proxima\n");
         
         *pCasaProxima = ( void * ) &casaAnterior ;
         
@@ -1979,6 +1983,8 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
         }
         
         *pCasaAnterior = ( void * ) &casaProxima ;
+
+        printf("Acabou destaca casa\n");
         
         return TAB_CondRetOK ;
         

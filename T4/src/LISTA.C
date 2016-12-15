@@ -867,6 +867,7 @@
             CNT_CONTAR( "erro-lista-magic-number-errado" );
             (*numErrosEncontrados)++;
             ret = LIS_CondRetFalhaNaEstrutura;
+            break;
          }
 
          if(pElem->pProx != NULL)
@@ -877,6 +878,7 @@
                CNT_CONTAR( "erro-lista-anterior-proximo-diferente-corrente" ) ;
                (*numErrosEncontrados)++;
                ret = LIS_CondRetFalhaNaEstrutura;
+               break;
             }
          }
          else
@@ -887,6 +889,7 @@
                CNT_CONTAR( "erro-lista-ultimo-diferente-fim" ) ;
                (*numErrosEncontrados)++;
                ret = LIS_CondRetFalhaNaEstrutura;
+               break;
             }
          }
 
@@ -898,6 +901,7 @@
                CNT_CONTAR( "erro-lista-proximo-anterior-diferente-corrente" ) ;
                (*numErrosEncontrados)++;
                ret = LIS_CondRetFalhaNaEstrutura;
+               break;
             }
          }
          else
@@ -908,6 +912,7 @@
                CNT_CONTAR( "erro-lista-primeiro-diferente-inicio" ) ;
                (*numErrosEncontrados)++;
                ret = LIS_CondRetFalhaNaEstrutura;
+               break;
             }
          }
 
