@@ -1829,7 +1829,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste ;
         } /* if */
         
-        retLista = LIS_ObterValor( colunas , (void**) &pCasa ) ;
+        retLista = LIS_ObterPonteiroValor( colunas , (void***) &pCasa ) ;
         if ( retLista == LIS_CondRetListaVazia )
         {
             return TAB_CondRetNaoExiste ;
@@ -1889,13 +1889,20 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste ;
         } /* if */
         
-        retLista = LIS_ObterValor( colunas , &pCasa ) ;
+        retLista = LIS_ObterValor( colunas , (void **) &pCasa ) ;
         if ( retLista == LIS_CondRetListaVazia )
         {
             return TAB_CondRetNaoExiste ;
         } /* if */
         
-        CED_DefinirTipoEspaco( pCasa , TAB_TipoEspacoPeca) ;
+        if(CED_DefinirTipoEspaco( pCasa , CED_ID_TIPO_VALOR_NULO) == 0)
+        {
+            return TAB_CondRetNaoExiste;
+        }
+        if(CED_DefinirTipoEspaco( pCasa , TAB_TipoEspacoPeca) == 0)
+        {
+            return TAB_CondRetNaoExiste;
+        }
         
         return TAB_CondRetOK ;
         

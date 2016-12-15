@@ -15,42 +15,39 @@
    32  == Iniciar contagem
 !!!    0  Linha:    37  // --------------------------------------------- 
    39  == Teste de Criacao de Tabuleiro
->>>    1  Linha:    62  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
->>>    2  Linha:    66  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
-!!!    2  Linha:    81  //=deturpar				tab0  2			'3' 'C'		OK 
-!!!    2  Linha:    82  //=deturpar				tab0  3			'3' 'C'		OK 
-!!!    2  Linha:    83  //=deturpar				tab0  4			'3' 'C'		OK 
-!!!    2  Linha:    84  //=deturpar				tab0  5			'3' 'C'		OK 
-!!!    2  Linha:    85  //=deturpar				tab0  6			'3' 'C'		OK 
-!!!    2  Linha:    86  //=deturpar				tab0  7			'3' 'C'		OK 
-!!!    2  Linha:    87  //=deturpar				tab0  8			'3' 'C'		OK 
-!!!    2  Linha:    88  //=deturpar				tab0  9			'3' 'C'		OK 
-!!!    2  Linha:    91  // --------------------------------------------- 
+!!!    0  Linha:    81  //=deturpar				tab0  2			'3' 'C'		OK 
+!!!    0  Linha:    82  //=deturpar				tab0  3			'3' 'C'		OK 
+!!!    0  Linha:    83  //=deturpar				tab0  4			'3' 'C'		OK 
+!!!    0  Linha:    84  //=deturpar				tab0  5			'3' 'C'		OK 
+!!!    0  Linha:    85  //=deturpar				tab0  6			'3' 'C'		OK 
+!!!    0  Linha:    86  //=deturpar				tab0  7			'3' 'C'		OK 
+!!!    0  Linha:    87  //=deturpar				tab0  8			'3' 'C'		OK 
+!!!    0  Linha:    88  //=deturpar				tab0  9			'3' 'C'		OK 
+!!!    0  Linha:    91  // --------------------------------------------- 
    93  == Terminar controlar contadores
-cc>    3  Linha:    95   Contagem em "erro-lista-cabeca-corrompida" é zero.
-cc>    4  Linha:    95   Contagem em "erro-lista-corrente-fora-lista" é zero.
-cc>    5  Linha:    95   Contagem em "erro-lista-corrente-nulo" é zero.
-cc>    6  Linha:    95   Contagem em "erro-lista-fim-nulo" é zero.
-cc>    7  Linha:    95   Contagem em "erro-lista-magic-number-errado" é zero.
-cc>    8  Linha:    95   Contagem em "erro-lista-numero-elementos-incorreto" é zero.
-cc>    9  Linha:    95   Contagem em "erro-lista-origem-nulo" é zero.
-cc>   10  Linha:    95   Contagem em "erro-lista-primeiro-diferente-inicio" é zero.
-cc>   11  Linha:    95   Contagem em "erro-lista-proximo-anterior-diferente-corrente" é zero.
-cc>   12  Linha:    95   Contagem em "erro-lista-tipo-valor-incoerente" é zero.
-cc>   13  Linha:    95   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
-cc>   14  Linha:    95   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
-cc>   15  Linha:    95   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
-cc>   16  Linha:    95   Contagem em "erro-tamanho-lista-de-listas" é zero.
-cc>   17  Linha:    95   Contagem em "erro-tipo-lista-de-casas" é zero.
-cc>   18  Linha:    95   Contagem em "erro-tipo-lista-de-listas" é zero.
->>>   19  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 16
-!!!   19  Linha:    97  // --------------------------------------------- 
+cc>    1  Linha:    95   Contagem em "erro-lista-cabeca-corrompida" é zero.
+cc>    2  Linha:    95   Contagem em "erro-lista-corrente-fora-lista" é zero.
+cc>    3  Linha:    95   Contagem em "erro-lista-corrente-nulo" é zero.
+cc>    4  Linha:    95   Contagem em "erro-lista-fim-nulo" é zero.
+cc>    5  Linha:    95   Contagem em "erro-lista-magic-number-errado" é zero.
+cc>    6  Linha:    95   Contagem em "erro-lista-numero-elementos-incorreto" é zero.
+cc>    7  Linha:    95   Contagem em "erro-lista-origem-nulo" é zero.
+cc>    8  Linha:    95   Contagem em "erro-lista-primeiro-diferente-inicio" é zero.
+cc>    9  Linha:    95   Contagem em "erro-lista-proximo-anterior-diferente-corrente" é zero.
+cc>   10  Linha:    95   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
+cc>   11  Linha:    95   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
+cc>   12  Linha:    95   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
+cc>   13  Linha:    95   Contagem em "erro-tamanho-lista-de-listas" é zero.
+cc>   14  Linha:    95   Contagem em "erro-tipo-lista-de-casas" é zero.
+cc>   15  Linha:    95   Contagem em "erro-tipo-lista-de-listas" é zero.
+>>>   16  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 15
+!!!   16  Linha:    97  // --------------------------------------------- 
    99  == Terminar contagem
 
 !!! Número de linhas lidas:         101
 !!! Número de casos de teste:         6
-!!! Número comandos corretos:        51
-!!! Número de falhas encontradas:    19
+!!! Número comandos corretos:        53
+!!! Número de falhas encontradas:    16
 
 !!! Foram encontrados problemas
 
