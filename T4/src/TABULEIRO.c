@@ -287,7 +287,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
             } /* if */
 
             #ifdef _DEBUG
-                if( CED_DefinirTipoEspaco( ( void * ) pCasa , TAB_TipoEspacoCasa ) == 0 )
+                if( CED_DefinirTipoEspaco( pCasa , TAB_TipoEspacoCasa ) == 0 )
                 {
                     return TAB_CondRetFalhaDefinirTipoEspaco ;
                 } /* if */
@@ -303,7 +303,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
         } /* if */
 
         #ifdef _DEBUG
-            if( CED_DefinirTipoEspaco (  (void * ) novaLista , TAB_TipoEspacoListaDeCasas ) == 0 )
+            if( CED_DefinirTipoEspaco (  novaLista , TAB_TipoEspacoListaDeCasas ) == 0 )
             {
                 return TAB_CondRetFalhaDefinirTipoEspaco ;
             }
