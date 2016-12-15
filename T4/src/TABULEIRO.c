@@ -395,11 +395,12 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
     } /* if */
     
     VMV_DestruirConfigDir( pTabuleiro->configDir ) ;
-    free( pTabuleiro ) ;
 
     #ifdef _DEBUG
         CED_MarcarEspacoNaoAtivo( pTabuleiro ) ;
     #endif
+
+    free( pTabuleiro ) ;
     
     return TAB_CondRetOK ;
     
