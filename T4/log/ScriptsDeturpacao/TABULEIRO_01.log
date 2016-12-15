@@ -15,16 +15,16 @@
    34  == Iniciar contagem
 !!!    0  Linha:    39  // --------------------------------------------- 
    41  == Teste de Criacao de Tabuleiro
-!!!    0  Linha:    90  // --------------------------------------------- 
-   92  == Gravar contadores
-!!!    0  Linha:    95  // --------------------------------------------- 
-   97  == Terminar controlar contadores
-!!!    0  Linha:   101  // --------------------------------------------- 
-  103  == Terminar contagem
+!!!    0  Linha:   102  // --------------------------------------------- 
+  104  == Gravar contadores
+!!!    0  Linha:   107  // --------------------------------------------- 
+  109  == Terminar controlar contadores
+!!!    0  Linha:   113  // --------------------------------------------- 
+  115  == Terminar contagem
 
-!!! Número de linhas lidas:         105
+!!! Número de linhas lidas:         117
 !!! Número de casos de teste:         7
-!!! Número comandos corretos:        62
+!!! Número comandos corretos:        74
 !!! Número de falhas encontradas:     0
 
 !!! Não foram encontrados problemas

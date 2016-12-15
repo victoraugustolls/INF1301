@@ -16,16 +16,16 @@
 // ---------------------------------------------
 
 == Inicializar valores
-=declararparm   tab0  int 0
-=declararparm   tab1  int 1
-=declararparm   tab2  int 2
-=declararparm   tab3  int 3
-=declararparm   tab4  int 4
-=declararparm   tab5  int 5
-=declararparm   tab6  int 6
-=declararparm   tab7  int 7
-=declararparm   tab8  int 8
-=declararparm   tab9  int 9
+=declararparm   tab0   int 0
+=declararparm   tab1   int 1
+=declararparm   tab2   int 2
+=declararparm   tab3   int 3
+=declararparm   tab4   int 4
+=declararparm   tab5   int 5
+=declararparm   tab6   int 6
+=declararparm   tab7   int 7
+=declararparm   tab8   int 8
+=declararparm   tab9   int 9
 =declararparm   tab10  int 10
 =declararparm   tab11  int 11
 
@@ -40,50 +40,62 @@
 
 == Teste de Criacao de Tabuleiro
 =criarTabuleiro    		tab0  OK
+=verificaestrutura		tab0  0 OK
 =deturpar				tab0  1			'3' 'C'		OK
 =verificaestrutura		tab0  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab1  OK
+=verificaestrutura		tab1  0 OK
 =deturpar				tab1  2			'3' 'C'		OK
 =verificaestrutura		tab1  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab2  OK
+=verificaestrutura		tab2  0 OK
 =deturpar				tab2  3			'3' 'C'		OK
 =verificaestrutura		tab2  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab3  OK
+=verificaestrutura		tab3  0 OK
 =deturpar				tab3  4			'3' 'C'		OK
 =verificaestrutura		tab3  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab4  OK
+=verificaestrutura		tab4  0 OK
 =deturpar				tab4  5			'3' 'C'		OK
 =verificaestrutura		tab4  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab5  OK
+=verificaestrutura		tab5  0 OK
 =deturpar				tab5  6			'3' 'C'		OK
 =verificaestrutura		tab5  2 FalhaNaEstrutura
 
 =criarTabuleiro    		tab6  OK
+=verificaestrutura		tab6  0 OK
 =deturpar				tab6  7			'3' 'C'		OK
 =verificaestrutura		tab6  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab7  OK
+=verificaestrutura		tab7  0 OK
 =deturpar				tab7  8			'3' 'C'		OK
 =verificaestrutura		tab7  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab8  OK
+=verificaestrutura		tab8  0 OK
 =deturpar				tab8  9			'3' 'C'		OK
 =verificaestrutura		tab8  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab9  OK
+=verificaestrutura		tab9  0 OK
 =deturpar				tab9  9			'3' 'C'		OK
 =verificaestrutura		tab9  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab10  OK
+=verificaestrutura		tab10  0 OK
 =deturpar				tab10  10			'3' 'C'		OK
 =verificaestrutura		tab10  1 FalhaNaEstrutura
 
 =criarTabuleiro    		tab11  OK
+=verificaestrutura		tab11  0 OK
 =deturpar				tab11  11			'3' 'C'		OK
 =verificaestrutura		tab11  1 FalhaNaEstrutura
 
