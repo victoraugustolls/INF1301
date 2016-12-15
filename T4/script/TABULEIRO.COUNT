@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////
 
 	erro-numero-linhas
-	erro-tamanho-lista-de-casas
+	erro-numero-colunas
 
 	erro-lista-vazia-inconsistente
 	erro-lista-circular
