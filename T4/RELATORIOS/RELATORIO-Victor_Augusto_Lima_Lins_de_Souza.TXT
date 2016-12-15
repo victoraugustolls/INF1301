@@ -1,14 +1,17 @@
 Data       Horas Trabalhadas     Tipo Tarefa                                            Descrição da Tarefa Realizada
 
+08/12/16   30min                 Estudar                                                Entender o enunciado e tudo que precisa ser feito para o trabalho.
 08/12/16   30min                 Revisar código                                         Revisar o módulo tabuleiro e anotar todas as mudanças que devem ser feitas para
                                                                                         torná-lo dinâmico.
-08/12/16   2h                    Codificar módulo                                       Modificar o módulo tabuleiro de estático para dinâmico.
+08/12/16   2h30min               Codificar módulo                                       Modificar o módulo tabuleiro de estático para dinâmico.
 10/12/16   1h30min               Estudar                                                Entender os módulos conta.h e cespdin.h por completo.
 10/12/16   1h30min               Codificar módulo                                       Colocar contadores nas arestas do módulo tabuleiro.
 10/12/16   30min                 Projetar                                               Preparar os arquivos de compilação para modo debug nos módulos necessários.
-11/12/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir problemas na transformação do módulo tabuleiro de estático para dinâmico.
+11/12/16   1h30min               Diagnosticar e corrigir os problemas encontrados       Corrigir problemas na transformação do módulo tabuleiro de estático para dinâmico.
+11/12/16   2h30min               Projetar                                               Discutir entre os membros do grupo as melhores estratégias para o módulo autoverificável.
 12/12/16   1h                    Codificar módulo                                       Reorganizar os contadores do módulo tabuleiro dado as novas informações e dúvidas
                                                                                         tiradas em sala de aula.
+12/12/16   30min                 Estudar                                                Revisar o módulo cespdin para utilizá-lo corretamente.
 13/12/16   30min                 Revisar código                                         Verificar as funções de deturpação criadas no módulo tabuleiro.
 13/12/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir as funções de deturpação do módulo tabuleiro.
 14/12/16   30min                 Diagnosticar e corrigir os problemas encontrados       Verificar e resolver o motivo do cespdin não funcionar como esperado.
