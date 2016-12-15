@@ -117,7 +117,11 @@ typedef enum {
 
       TAB_DESTACA_CASA_SEM_FREE = 8,
       
-      TAB_NULL_PONTEIRO_CORRENTE = 9
+      TAB_NULL_PONTEIRO_CORRENTE = 9,
+
+      TAB_TABULEIRO_CIRCULAR = 10,
+
+      TAB_ELIMINA_LINHA = 11
 
   } TAB_tpDeturpacao ;
 

@@ -912,6 +912,13 @@ LIS_tpCondRet LIS_ObterPonteiroCorrente( LIS_tppLista pLista ,
     return LIS_CondRetOK;   
 }
 
+LIS_tpCondRet LIS_MoveFim( LIS_tppLista pLista )
+{
+   pLista->pElemCorr = pLista->pFimLista;
+   return LIS_CondRetOK;
+}
+
+
 #endif
 
 /********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/

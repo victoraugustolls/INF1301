@@ -686,7 +686,24 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 *
 ***********************************************************************/
   LIS_tpCondRet LIS_ObterPonteiroCorrente( LIS_tppLista pLista ,
-                                          void *** ponteiroCorrente ) ;
+                                          void *** ponteiroCorrente ) ;\
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Move Fim
+*
+*  $ED Descrição da função
+*     Move o corrente para o ultimo elemento da lista
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK  - Nenhum erro ocorreu
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_MoveFim( LIS_tppLista pLista ) ;
 
 #endif
 

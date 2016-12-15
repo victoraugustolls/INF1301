@@ -1076,6 +1076,14 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
         {
             ret = TAB_AtribuiNuloPonteiroCorrente( pTabuleiro , colunaInt , linhaInt ) ;
         }
+        else if ( tipoDeturpacao == TAB_TABULEIRO_CIRCULAR )
+        {
+            ret = TAB_CausaLoopTabuleiro( pTabuleiro , colunaInt , linhaInt ) ;
+        }
+        else if ( tipoDeturpacao == TAB_ELIMINA_LINHA )
+        {
+            ret = TAB_EliminhaLinha( pTabuleiro , linhaInt ) ;
+        }
         
         if ( ret != TAB_CondRetOK )
         {
@@ -2055,6 +2063,93 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
         return TAB_CondRetOK ;
         
     } /* Fim função: TAB  &Atribui NULL a Casa Atual */
+
+    TAB_tpCondRet TAB_CausaLoopTabuleiro( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
+    {
+        
+        void** ponteiroParaPonteiroInicio ;
+        void** ponteiroParaPonteiroFim ;
+        LIS_tppLista linhas  = NULL ;
+        LIS_tppLista colunas = NULL ;
+        LIS_tpCondRet retLista ;
+
+        void* temp;
+        
+        linhas = pTabuleiro->tabuleiro ;
+        
+        retLista = LIS_MoveInicio( linhas ) ;
+        
+        retLista = LIS_AvancarElementoCorrente( linhas , linha ) ;
+        if ( retLista == LIS_CondRetNoCorrenteUlt )
+        {
+            return TAB_CondRetNaoExiste ;
+        }
+        else if ( retLista == LIS_CondRetNoCorrentePrim )
+        {
+            return TAB_CondRetNaoExiste ;
+        }
+        else if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+        
+        retLista = LIS_ObterValor( linhas , ( void ** ) &colunas ) ;
+        if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+        
+        retLista = LIS_MoveInicio( colunas ) ;
+        
+        retLista = LIS_ObterPonteiroCorrente( colunas , &ponteiroParaPonteiroInicio ) ;
+        if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+
+        retLista = LIS_MoveFim( colunas ) ;
+        
+        retLista = LIS_ObterPonteiroCorrente( colunas , &ponteiroParaPonteiroFim ) ;
+        if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+        
+        temp = *ponteiroParaPonteiroFim ;
+        *ponteiroParaPonteiroFim = *ponteiroParaPonteiroInicio ;
+        *ponteiroParaPonteiroInicio = temp ;
+        
+        return TAB_CondRetOK ;
+        
+    } /* Fim função: TAB  &Atribui NULL a Casa Atual */
+
+    TAB_tpCondRet TAB_EliminhaLinha( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
+     {
+        LIS_tppLista linhas  = NULL ;
+        LIS_tpCondRet retLista ;
+        
+        linhas = pTabuleiro->tabuleiro ;
+        
+        retLista = LIS_MoveInicio( linhas ) ;
+        
+        retLista = LIS_AvancarElementoCorrente( linhas , linha ) ;
+        if ( retLista == LIS_CondRetNoCorrenteUlt )
+        {
+            return TAB_CondRetNaoExiste ;
+        }
+        else if ( retLista == LIS_CondRetNoCorrentePrim )
+        {
+            return TAB_CondRetNaoExiste ;
+        }
+        else if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+      
+        LIS_ExcluirElemento(linhas);
+
+        return TAB_CondRetOK;
+     }
 
 #endif
 
