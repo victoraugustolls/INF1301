@@ -10,9 +10,9 @@ nmake /F..\comp\TEST_PCA.make
 copy ..\obj\TEST_PCA.exe ..\..\bin\TEST_PCA.EXE
 if exist ..\err\TEST_PCA.err notepad ..\err\TEST_PCA.err
 
-nmake /F..\comp\TEST_TAB.make 
-copy ..\obj\TEST_TAB.exe ..\..\bin\TEST_TAB.EXE
-if exist ..\err\TEST_TAB.err notepad ..\err\TEST_TAB.err
+nmake /F..\comp\TEST_TAB_DEBUG.make 
+copy ..\obj\TEST_TAB_DEBUG.exe ..\..\bin\TEST_TAB_DEBUG.EXE
+if exist ..\err\TEST_TAB_DEBUG.err notepad ..\err\TEST_TAB_DEBUG.err
 
 nmake /F..\comp\TEST_CSA.make 
 copy ..\obj\TEST_CSA.exe ..\..\bin\TEST_CSA.EXE

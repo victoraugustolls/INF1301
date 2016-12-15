@@ -1,1 +1,1 @@
-..\bin\TEST_TAB    /s..\script\ScriptsDeturpacao\TABULEIRO_01.script    /l..\log\ScriptsDeturpacao\TABULEIRO_01
+..\bin\TEST_TAB_DEBUG    /s..\script\ScriptsDeturpacao\TABULEIRO_01    /l..\log\ScriptsDeturpacao\TABULEIRO_01
