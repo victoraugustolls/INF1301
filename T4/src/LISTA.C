@@ -939,25 +939,39 @@
    }
 
 LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
-                                       void ** ponteiroProxElem )
+                                       void *** ponteiroProxElem )
 {
     tpElemLista* noCorrente ;
     
     noCorrente = pLista->pElemCorr ;
     
-    *ponteiroProxElem = noCorrente->pProx ;
+    *ponteiroProxElem = &noCorrente->pProx ;
 
     return LIS_CondRetOK;
 }
 
 LIS_tpCondRet LIS_ObterPonteiroAnterior( LIS_tppLista pLista ,
-                                       void ** ponteiroAntElem )
+                                       void *** ponteiroAntElem )
 {
     tpElemLista* noCorrente ;
     
     noCorrente = pLista->pElemCorr ;
     
-    *ponteiroAntElem = noCorrente->pAnt ;
+    *ponteiroAntElem = &noCorrente->pAnt ;
+
+    return LIS_CondRetOK;
+}
+
+
+
+LIS_tpCondRet LIS_ObterPonteiroValor( LIS_tppLista pLista ,
+                                       void *** ponteiroValor )
+{
+    tpElemLista* noCorrente ;
+    
+    noCorrente = pLista->pElemCorr ;
+    
+    *ponteiroValor = &noCorrente->pValor ;
 
     return LIS_CondRetOK;
 }
