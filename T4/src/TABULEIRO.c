@@ -109,12 +109,18 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
         LIS_tpErroEstrutura erroOcorrido;
         TAB_tpCondRet ret = TAB_CondRetOK;
         int numErrosRecebidos;
+        LIS_tpCondRet retLista;
         
         *numEncontrados = 0;
 
-        LIS_VerificaAssertivasEstruturais( pTabuleiro->tabuleiro, &erroOcorrido, &numErrosRecebidos );
-
+        retLista = LIS_VerificaAssertivasEstruturais( pTabuleiro->tabuleiro, &erroOcorrido, &numErrosRecebidos );
         (*numEncontrados) += numErrosRecebidos;
+
+        if(retLista != LIS_CondRetOK)
+        {
+            ret = TAB_CondRetFalhaNaEstrutura;
+            return ret; 
+        }
 
         LIS_Tamanho( pTabuleiro->tabuleiro , &tamanho ) ;
         if(tamanho != 8)
@@ -142,8 +148,14 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
         {
             LIS_ObterValor( pTabuleiro->tabuleiro, (void**) &linha ) ;   
 
-            LIS_VerificaAssertivasEstruturais( linha, &erroOcorrido, &numErrosRecebidos );
+            retLista = LIS_VerificaAssertivasEstruturais( linha, &erroOcorrido, &numErrosRecebidos );
             (*numEncontrados) += numErrosRecebidos;
+
+            if(retLista != LIS_CondRetOK)
+            {
+                ret = TAB_CondRetFalhaNaEstrutura;
+                return ret; 
+            }
 
             LIS_Tamanho( linha, &tamanho );
             if( tamanho != 8)
