@@ -8,23 +8,23 @@
 !!!    0  Linha:     3  // Data: 14/dez/2016 
 !!!    0  Linha:     4  // 
 !!!    0  Linha:     5  // --------------------------------------------- 
-    7  == Inicializar Constantes
-!!!    0  Linha:    16  // --------------------------------------------- 
-   18  == Inicializar valores
-!!!    0  Linha:    32  // --------------------------------------------- 
-   34  == Iniciar contagem
-!!!    0  Linha:    39  // --------------------------------------------- 
-   41  == Teste de Criacao de Tabuleiro
-!!!    0  Linha:    90  // --------------------------------------------- 
-   92  == Gravar contadores
-!!!    0  Linha:    95  // --------------------------------------------- 
-   97  == Terminar controlar contadores
-!!!    0  Linha:   101  // --------------------------------------------- 
-  103  == Terminar contagem
+    7  == Inicializar Constantes de Retorno
+!!!    0  Linha:    18  // --------------------------------------------- 
+   20  == Inicializar valores de Tabuleiro
+!!!    0  Linha:    34  // --------------------------------------------- 
+   36  == Iniciar contagem
+!!!    0  Linha:    41  // --------------------------------------------- 
+   43  == Teste de Deturpacoes
+!!!    0  Linha:   116  // --------------------------------------------- 
+  118  == Gravar contadores
+!!!    0  Linha:   121  // --------------------------------------------- 
+  123  == Terminar controlar contadores
+!!!    0  Linha:   127  // --------------------------------------------- 
+  129  == Terminar contagem
 
-!!! Número de linhas lidas:         105
+!!! Número de linhas lidas:         131
 !!! Número de casos de teste:         7
-!!! Número comandos corretos:        62
+!!! Número comandos corretos:        87
 !!! Número de falhas encontradas:     0
 
 !!! Não foram encontrados problemas

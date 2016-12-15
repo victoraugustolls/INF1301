@@ -47,15 +47,15 @@ static const char OBTER_AMEACADOS_CMD            [ ] = "=obterListaAmeacados"   
 
 #ifdef _DEBUG
 
-
-	static const char DETURPAR_CMD            		[ ] = "=deturpar"        			;
-
 	/*
-	*   =deturpar 					inx 		numeroDeturpacao		linha 		coluna 		condRetorno 		
-	*	=verificaestrutura  		inx  		condRetorno
+	*   =deturpar 					inx 		numeroDeturpacao  		condRetorno 		
+	*	=verificar  				inx  		numErrosEsperados		condRetorno		
+	*	=defineCorrente  			inx  		linha 					coluna
 	*/
 
-	static const char VERIFICA_ESTRUTURA_CMD        [ ] = "=verificaestrutura"        	;
+	static const char DETURPAR_CMD            		[ ] = "=deturpar"        			;
+	static const char VERIFICA_ESTRUTURA_CMD        [ ] = "=verificar"        	;
+	static const char DEFINE_CORRENTE_CMD        	[ ] = "=defineCorrente"        	;
 
 #endif
 
@@ -71,6 +71,11 @@ static const char OBTER_AMEACADOS_CMD            [ ] = "=obterListaAmeacados"   
 
 TAB_tppTabuleiro pTabuleiro ;
 TAB_tppTabuleiro vtTabuleiros[ DIM_VT_TABULEIRO ] ;
+
+#ifdef _DEBUG
+	static char linhaCorrente[ DIM_VT_TABULEIRO ];
+	static char colunaCorrente[ DIM_VT_TABULEIRO ];
+#endif
 
 /***** Protótipos das funções encapuladas no módulo *****/
 
@@ -166,7 +171,13 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		} /* if */
 		
 		CondRet = TAB_CriarTabuleiro( &vtTabuleiros[ inxTab ] , "..\\pecas\\teste_tabuleiro\\config.conf" ) ;
-		
+
+
+		#ifdef _DEBUG
+			linhaCorrente[ inxTab ] = '1';
+			colunaCorrente[ inxTab ] = 'A';
+		#endif
+				
 		return TST_CompararInt( CondRetEsp , CondRet ,
 								"Condicao de retorno errada ao criar tabuleiro." ) ;
 		
@@ -681,20 +692,18 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		else if ( strcmp( ComandoTeste , DETURPAR_CMD ) == 0 )
 		{
 
-			numLidos = LER_LerParametros( "iicci" , &inxTab, 
+			numLidos = LER_LerParametros( "iii" , &inxTab, 
 													&numeroDeturpacao, 
-													&linhaPar,
-													&colunaPar,
 													&CondRetEsp ) ;
 
 			tipoDeturpacao = (TAB_tpDeturpacao) numeroDeturpacao;
 			
-			if ( ( numLidos != 5 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
+			if ( ( numLidos != 3 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
 			{
 				return TST_CondRetParm ;
 			} /* if */
 
-			CondRet = TAB_Deturpa( vtTabuleiros[ inxTab ], tipoDeturpacao, colunaPar, linhaPar ) ;
+			CondRet = TAB_Deturpa( vtTabuleiros[ inxTab ], tipoDeturpacao, colunaCorrente[inxTab], linhaCorrente[inxTab] ) ;
 
 			if ( CondRet != CondRetEsp )
 			{
@@ -741,6 +750,21 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 									"Numero de erros esperados diferente do numero de erros encontrado.") ;
 			}
 			
+			return TST_CondRetOK;
+		}
+		else if ( strcmp( ComandoTeste , DEFINE_CORRENTE_CMD ) == 0 )
+		{
+
+			numLidos = LER_LerParametros( "icc" , &inxTab, &linhaPar, &colunaPar ) ;
+			
+			if ( ( numLidos != 3 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
+			{
+				return TST_CondRetParm ;
+			} /* if */
+			
+			linhaCorrente[ inxTab ] = linhaPar;
+			colunaCorrente[ inxTab ] = colunaPar;
+
 			return TST_CondRetOK;
 		}
 	#endif
