@@ -1,1 +1,1 @@
-..\bin\TEST_TAB    /s..\script\TESTE_TABULEIRO_ESPACO    /l..\log\TESTE_TABULEIRO_ESPACO
+..\bin\TEST_TAB_DEBUG    /s..\script\ScriptsDeturpacao\TABULEIRO_ESPACO    /l..\log\ScriptsDeturpacao\TABULEIRO_ESPACO
