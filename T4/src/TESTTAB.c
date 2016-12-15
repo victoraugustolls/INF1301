@@ -49,6 +49,12 @@ static const char OBTER_AMEACADOS_CMD            [ ] = "=obterListaAmeacados"   
 
 
 	static const char DETURPAR_CMD            		[ ] = "=deturpar"        			;
+
+	/*
+	*   =deturpar 					inx 		numeroDeturpacao		linha 		coluna 		condRetorno 		
+	*	=verificaestrutura  		inx  		condRetorno
+	*/
+
 	static const char VERIFICA_ESTRUTURA_CMD        [ ] = "=verificaestrutura"        	;
 
 #endif
@@ -99,6 +105,8 @@ static int ValidarInxTabuleiro( int inxTab , int Modo ) ;
  *     =obterListaAmeacantes     inx    coluna       linha       conteudoColuna     conteudoLinha  condRetorno
  *     =obterListaAmeacados      inx    coluna       linha       conteudoColuna     conteudoLinha  condRetorno
  *
+ *
+ *
  ***********************************************************************/
 
 TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
@@ -135,8 +143,10 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 	LIS_tppLista listaLinhas ;
 	LIS_tppLista listaColunas ;
 
-	int numeroDeturpacao;
-	TAB_tpDeturpacao tipoDeturpacao;
+	#ifdef _DEBUG
+		int numeroDeturpacao;
+		TAB_tpDeturpacao tipoDeturpacao;
+	#endif
 	
 	/* Testar CriarTabuleiro */
 	
@@ -669,8 +679,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 
 			numLidos = LER_LerParametros( "iicci" , &inxTab, 
 													&numeroDeturpacao, 
-													&colunaObtida, 
-													&linhaObtida, 
+													&linhaObtida,
+													&colunaObtida,
 													&CondRetEsp ) ;
 
 			tipoDeturpacao = (TAB_tpDeturpacao) numeroDeturpacao;
