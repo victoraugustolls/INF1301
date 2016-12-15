@@ -15,6 +15,10 @@
    32  == Iniciar contagem
 !!!    0  Linha:    37  // --------------------------------------------- 
    39  == Teste de Criacao de Tabuleiro
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 1dbacc0b13b0de773c3508d0eda068b39229a2c8
 !!!    0  Linha:    81  //=deturpar				tab0  2			'3' 'C'		OK 
 !!!    0  Linha:    82  //=deturpar				tab0  3			'3' 'C'		OK 
 !!!    0  Linha:    83  //=deturpar				tab0  4			'3' 'C'		OK 
@@ -24,16 +28,39 @@
 !!!    0  Linha:    87  //=deturpar				tab0  8			'3' 'C'		OK 
 !!!    0  Linha:    88  //=deturpar				tab0  9			'3' 'C'		OK 
 !!!    0  Linha:    91  // --------------------------------------------- 
+<<<<<<< HEAD
+=======
+   93  == Gravar contadores
+!!!    0  Linha:    96  // --------------------------------------------- 
+   98  == Terminar controlar contadores
+cc>    1  Linha:   100   Contagem em "erro-lista-circular" é zero.
+cc>    2  Linha:   100   Contagem em "erro-numero-linhas" é zero.
+>>>    3  Linha:   100  Número de contadores zero errado. Deveria ser: 0  É: 2
+!!!    3  Linha:   102  // --------------------------------------------- 
+  104  == Terminar contagem
+=======
+cc>    1  Linha:    42    Linha:   156  Contador "erro-numero-colunas" não existe.
+!!!    1  Linha:    81  //=deturpar				tab0  2			'3' 'C'		OK 
+!!!    1  Linha:    82  //=deturpar				tab0  3			'3' 'C'		OK 
+!!!    1  Linha:    83  //=deturpar				tab0  4			'3' 'C'		OK 
+!!!    1  Linha:    84  //=deturpar				tab0  5			'3' 'C'		OK 
+!!!    1  Linha:    85  //=deturpar				tab0  6			'3' 'C'		OK 
+!!!    1  Linha:    86  //=deturpar				tab0  7			'3' 'C'		OK 
+!!!    1  Linha:    87  //=deturpar				tab0  8			'3' 'C'		OK 
+!!!    1  Linha:    88  //=deturpar				tab0  9			'3' 'C'		OK 
+!!!    1  Linha:    91  // --------------------------------------------- 
+>>>>>>> 1dbacc0b13b0de773c3508d0eda068b39229a2c8
    93  == Terminar controlar contadores
 cc>    1  Linha:    95   Contagem em "erro-lista-circular" é zero.
 cc>    2  Linha:    95   Contagem em "erro-numero-linhas" é zero.
 >>>    3  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 2
 !!!    3  Linha:    97  // --------------------------------------------- 
    99  == Terminar contagem
+>>>>>>> 7835282669d466a4b58c6372c535e5f031b92121
 
-!!! Número de linhas lidas:         101
-!!! Número de casos de teste:         6
-!!! Número comandos corretos:        53
+!!! Número de linhas lidas:         106
+!!! Número de casos de teste:         7
+!!! Número comandos corretos:        54
 !!! Número de falhas encontradas:     3
 
 !!! Foram encontrados problemas
