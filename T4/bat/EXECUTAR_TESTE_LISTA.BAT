@@ -1,3 +1,1 @@
-REM executa os testes da lista
-
-..\bin\TEST_LIS    /s..\script\TESTE_LISTA    /l..\log\TESTE_LISTA
+..\bin\TRAB4-3    /s..\script\TESTE_LISTA    /l..\log\TESTE_LISTA

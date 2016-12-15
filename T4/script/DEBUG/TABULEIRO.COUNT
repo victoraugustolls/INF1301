@@ -1,0 +1,19 @@
+////////////////////////////////////////////////
+//
+// Exemplo de arquivo de declaração de contadores
+// Conta módulo Tabuleiro marcado
+//
+////////////////////////////////////////////////
+
+	erro-numero-linhas
+	erro-numero-colunas
+
+	erro-lista-vazia-inconsistente
+	erro-lista-circular
+	erro-lista-encadeamento
+	erro-lista-magic-number-errado
+	erro-lista-valor-corrente-nulo
+	erro-lista-tipo-valor-incoerente
+	erro-lista-numero-elementos-incorreto
+
+	XPTO nome adicionado para fins de teste\=-2

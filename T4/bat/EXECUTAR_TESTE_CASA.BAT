@@ -1,3 +1,1 @@
-REM executa os testes da casa
-
-..\bin\TEST_CSA    /s..\script\TESTE_CASA    /l..\log\TESTE_CASA
+..\bin\TRAB4-2    /s..\script\TESTE_CASA    /l..\log\TESTE_CASA

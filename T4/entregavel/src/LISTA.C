@@ -13,6 +13,11 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     11      vas   15/dez/2016 ajustes na funcao de verificacao
+*     10      iars  12/dez/2016 criacao da funcao de verificacao
+*     9       iars  15/nov/2016 copia lista
+*     8       vas   13/nov/2016 adição da implementação da função de comparar listas
+*     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
 *                               e retirada de funções não utilizadas
 *     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
@@ -29,9 +34,21 @@
 #include   <malloc.h>
 #include   <assert.h>
 
+#ifdef _DEBUG
+    #include "GENERICO.H"
+    #include "CESPDIN.H"
+    #include "CONTA.H"
+    #include "TIPOS_ESPACO.H"
+    //#include   "..\\tabelas\\IdTiposEspaco.def"
+#endif
+
 #define LISTA_OWN
 #include "LISTA.h"
 #undef LISTA_OWN
+
+#ifdef _DEBUG
+   #define MAGIC_NUMBER 0xDEADBEEF
+#endif
 
 /***********************************************************************
 *
@@ -41,6 +58,10 @@
 ***********************************************************************/
 
    typedef struct tagElemLista {
+
+         #ifdef _DEBUG
+            int magic_number;
+         #endif
 
          void * pValor ;
                /* Ponteiro para o valor contido no elemento */
@@ -61,6 +82,10 @@
 ***********************************************************************/
 
    typedef struct LIS_tagLista {
+
+         #ifdef _DEBUG
+            int magic_number;
+         #endif
 
          tpElemLista * pOrigemLista ;
                /* Ponteiro para a origem da lista */
@@ -86,6 +111,12 @@
          int ( * Igual ) ( void * pValor_1, void * pValor_2 ) ;
                /* Ponteiro para a função de checagem de igualdade de valores */
 
+         #ifdef _DEBUG
+
+            int tipoArmazenado;
+
+         #endif
+
    } LIS_tpLista ;
 
 /***** Protótipos das funções encapuladas no módulo *****/
@@ -107,7 +138,7 @@
 *  Função: LIS  &Criar lista
 *  ****/
 
-   LIS_tpCondRet LIS_CriarLista( LIS_tppLista* pLista ,
+   LIS_tpCondRet LIS_CriarLista( LIS_tppLista * pLista ,
              char * idLista ,
              void   ( * ExcluirValor ) ( void * pDado ),
              int   ( * CompararValores ) ( void * pDado_1, void * pDado_2 ),
@@ -130,11 +161,75 @@
       pNewLista->CompararValores = CompararValores ;
       pNewLista->Igual = Igual ;
 
-      *pLista = pNewLista;
+      #ifdef _DEBUG
+         pNewLista->magic_number = MAGIC_NUMBER;
+         CED_MarcarEspacoAtivo( pNewLista ) ;
+         pNewLista->tipoArmazenado = CED_ID_TIPO_VALOR_NULO;
+      #endif
+
+      *pLista = pNewLista ;
 
       return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Criar lista */
+
+
+/***************************************************************************
+*
+*  Função: LIS  &Copiar lista
+*  ****/
+
+
+   LIS_tpCondRet LIS_CopiarLista( LIS_tppLista* pLista , LIS_tppLista listaOriginal, void ( * CopiarElemento ) ( void ** pValor, void* pValorOriginal ) )
+   {
+
+      LIS_tppLista pNewLista = NULL ;
+      tpElemLista * pElem ;
+      LIS_tpCondRet listaCondRet;
+      void * pValorNovo;
+
+      pNewLista = ( LIS_tpLista * ) malloc( sizeof( LIS_tpLista )) ;
+      if ( pNewLista == NULL )
+      {
+         return LIS_CondRetFaltouMemoria ;
+      } /* if */
+
+      LimparCabeca( pNewLista ) ;
+
+      pNewLista->idLista = ( char * ) malloc ( strlen ( listaOriginal->idLista ) + 1 ) ;
+      strcpy( pNewLista->idLista , listaOriginal->idLista ) ;
+
+      pNewLista->ExcluirValor = listaOriginal->ExcluirValor ;
+      pNewLista->CompararValores = listaOriginal->CompararValores ;
+      pNewLista->Igual = listaOriginal->Igual ;
+
+      #ifdef _DEBUG
+         pNewLista->magic_number = MAGIC_NUMBER;
+      #endif
+
+      if ( listaOriginal->pElemCorr == NULL )
+      {
+         *pLista = pNewLista ;
+         return LIS_CondRetOK ;
+      } /* if */
+
+      for ( pElem  = listaOriginal->pOrigemLista ;
+            pElem != NULL ;
+            pElem  = pElem->pProx )
+      {
+         CopiarElemento(&pValorNovo, pElem->pValor);
+         listaCondRet = LIS_InserirElementoApos( pNewLista, pValorNovo );
+         if(listaCondRet == LIS_CondRetFaltouMemoria)
+         {
+            LIS_DestruirLista(pNewLista);
+            return LIS_CondRetFaltouMemoria;
+         }
+      } /* for */
+
+      *pLista = pNewLista ;
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Copiar lista */
 
 /***************************************************************************
 *
@@ -151,11 +246,26 @@
 
       LIS_EsvaziarLista( pLista ) ;
 
+      #ifdef _DEBUG
+         CED_MarcarEspacoNaoAtivo( pLista ) ;
+      #endif
+
       free( pLista ) ;
 
       return LIS_CondRetOK ;
 
    } /* Fim função: LIS  &Destruir lista */
+
+/***************************************************************************
+*
+*  Função: LIS  &Move Inicio
+*  ****/
+
+   LIS_tpCondRet LIS_MoveInicio( LIS_tppLista pLista )
+   {
+      pLista->pElemCorr = pLista->pOrigemLista;
+      return LIS_CondRetOK;
+   }
 
 /***************************************************************************
 *
@@ -166,7 +276,7 @@
                                           void * pValor        )
    {
 
-      tpElemLista * pElem ;;
+      tpElemLista * pElem ;
 
       #ifdef _DEBUG
          assert( pLista != NULL ) ;
@@ -402,7 +512,97 @@
 
       return LIS_CondRetOK ;
 
-   } /* Fim função: LIS  &Altera conteudo do nó corrente
+   } /* Fim função: LIS  &Altera conteudo do nó corrente */
+
+/***************************************************************************
+*
+*  Função: LIS  &Verifica se a lista está vazia
+*  ****/
+
+   LIS_tpCondRet LIS_VerificaVazia( LIS_tppLista pLista ,
+                                    int * vazia )
+   {
+
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      if ( pLista->numElem == 0 )
+      {
+         *vazia = 1 ;
+      }
+      else
+      {
+         *vazia = 0 ;
+      } /* if */
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Verifica se a lista está vazia */
+
+
+/***************************************************************************
+*
+*  Função: LIS  &Compara duas listas
+*  ****/
+
+   LIS_tpCondRet LIS_VerificaIgualdade( LIS_tppLista pLista1 ,
+                                        LIS_tppLista pLista2 ,
+                                        int * igualdade )
+   {
+
+      int i ;
+
+      if ( pLista1 == NULL || pLista2 == NULL )
+      {
+         *igualdade = 0 ;
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      if ( pLista1->numElem != pLista2->numElem )
+      {
+         *igualdade = 0 ;
+         return LIS_CondRetOK ;
+      } /* if */
+
+      for ( i = 0 ; i < pLista1->numElem ; i++ )
+      {
+         if ( !pLista1->CompararValores( pLista1->pElemCorr , pLista2->pElemCorr ) )
+         {
+            *igualdade = 0;
+            return LIS_CondRetOK ;
+         } /* if */
+
+         LIS_AvancarElementoCorrente( pLista1 , 1 ) ;
+         LIS_AvancarElementoCorrente( pLista2 , 1 ) ;
+
+      } /* for */
+
+      *igualdade = 1 ;
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Verifica se a lista está vazia */
+
+/***************************************************************************
+*
+*  Função: LIS  &Esvazia lista
+*  ****/
+
+   LIS_tpCondRet LIS_Esvazia( LIS_tppLista pLista )
+   {
+
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      free( pLista ) ;
+
+      return LIS_CondRetOK ;
+
+   } /* Fim função: LIS  &Esvazia lista */
 
 
 /*****  Código das funções encapsuladas no módulo  *****/
@@ -447,7 +647,7 @@
 
       tpElemLista * pElem ;
 
-      pElem = ( tpElemLista * ) malloc( sizeof( tpElemLista )) ;
+      pElem = ( tpElemLista * ) malloc( sizeof( tpElemLista ) ) ;
       if ( pElem == NULL )
       {
          return NULL ;
@@ -456,6 +656,10 @@
       pElem->pValor = pValor ;
       pElem->pAnt   = NULL  ;
       pElem->pProx  = NULL  ;
+
+      #ifdef _DEBUG
+         pElem->magic_number = MAGIC_NUMBER;
+      #endif
 
       pLista->numElem ++ ;
 
@@ -505,6 +709,219 @@
       pLista->numElem   = 0 ;
 
    } /* Fim função: LIS  -Limpar a cabeça da lista */
+
+/***************************************************************************
+*
+*  Função: LIS  &Procurar elemento contendo valor
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
+                                    void * pValor )
+   {
+
+      tpElemLista * pElem ;
+
+      if ( pLista->pElemCorr == NULL )
+      {
+         return LIS_CondRetListaVazia ;
+      } /* if */
+
+      for ( pElem  = pLista->pElemCorr ;
+            pElem != NULL ;
+            pElem  = pElem->pProx )
+      {
+         if ( pLista->Igual( pElem->pValor, pValor ) )
+         {
+            pLista->pElemCorr = pElem ;
+            return LIS_CondRetOK ;
+         } /* if */
+      } /* for */
+
+      return LIS_CondRetNaoAchou ;
+
+   } /* Fim função: LIS  &Procurar elemento contendo valor */
+
+
+#ifdef _DEBUG
+
+/* --------------------------------------------------------------
+*   DEBUG
+* -------------------------------------------------------------- */
+
+   LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
+                              int identificadorDoTipo )
+   {
+
+      pLista->tipoArmazenado = identificadorDoTipo;
+
+      return LIS_CondRetOK ;
+   }
+
+   LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
+                              int* identificadorDoTipo )
+   {
+
+      *identificadorDoTipo = pLista->tipoArmazenado;
+
+      return LIS_CondRetOK ;
+   }
+
+   LIS_tpCondRet LIS_Tamanho( LIS_tppLista pLista ,
+                              int * tamanhoDaLista )
+   {
+      if ( pLista == NULL )
+      {
+         return LIS_CondRetListaNaoExiste ;
+      } /* if */
+
+      *tamanhoDaLista = pLista->numElem;
+
+      return LIS_CondRetOK ;
+   }
+
+   LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista, LIS_tpErroEstrutura* erroOcorrido, int* numErrosEncontrados )
+   {
+      tpElemLista * pElem;
+      int numElemContados;
+      LIS_tpCondRet ret = LIS_CondRetOK;
+
+      *numErrosEncontrados = 0;
+
+      if(( pLista->pElemCorr == NULL && pLista->numElem != 0 )
+      || ( pLista->pOrigemLista == NULL && pLista->numElem != 0 )
+      || ( pLista->pFimLista == NULL && pLista->numElem != 0 )
+      || ( pLista->numElem == 0 && pLista->pElemCorr != NULL )
+      || ( pLista->numElem == 0 && pLista->pOrigemLista != NULL )
+      || ( pLista->numElem == 0 && pLista->pFimLista != NULL ) )
+      {
+         *erroOcorrido = LIS_tpErroEstruturaListaVaziaInconsistente;
+         CNT_CONTAR( "erro-lista-vazia-inconsistente");
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
+      }
+
+      if( pLista->numElem != 0 && (pLista->pOrigemLista->pAnt != NULL || pLista->pFimLista->pProx != NULL ))
+      {
+         *erroOcorrido = LIS_tpErroEstruturaListaCircular;
+         CNT_CONTAR( "erro-lista-circular" );
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
+      }
+
+      numElemContados = 0;
+      for(pElem = pLista->pOrigemLista; pElem != NULL; pElem = pElem->pProx)
+      {
+         if( (pElem->magic_number != MAGIC_NUMBER)
+         ||  (pElem->pProx != NULL && pElem->pProx->magic_number != MAGIC_NUMBER)
+         ||  (pElem->pAnt != NULL && pElem->pAnt->magic_number != MAGIC_NUMBER) )
+         {
+            *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
+            CNT_CONTAR( "erro-lista-magic-number-errado" );
+            (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
+            return ret;
+         }
+
+         if( ( pElem->pProx != NULL && (pElem->pProx->pAnt != pElem) )
+         ||  ( pElem->pAnt != NULL  && (pElem->pAnt->pProx != pElem) ) )
+         {
+            *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
+            CNT_CONTAR( "erro-lista-encadeamento" ) ;
+            (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
+            return ret;
+         }
+
+         if(pElem->pValor == NULL)
+         {
+            *erroOcorrido = LIS_tpErroEstruturaValorArmazenadoNulo;
+            CNT_CONTAR( "erro-lista-valor-corrente-nulo" );
+            (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
+         }
+
+         if(CED_ObterTipoEspaco( pElem->pValor ) != pLista->tipoArmazenado)
+         {
+            *erroOcorrido = LIS_tpErroEstruturaTipoDoValorIncoerente;
+            CNT_CONTAR( "erro-lista-tipo-valor-incoerente" );
+            (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
+         }
+
+         numElemContados++;
+      }
+
+      if(numElemContados != pLista->numElem)
+      {
+         *erroOcorrido = LIS_tpErroEstruturaNumeroDeElementosIncorreto;
+         CNT_CONTAR( "erro-lista-numero-elementos-incorreto");
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
+      }
+
+      *erroOcorrido = LIS_tpErroEstruturaNenhum;
+      return ret;
+   }
+
+LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
+                                       void *** ponteiroProxElem )
+{
+    tpElemLista* noCorrente ;
+    
+    noCorrente = pLista->pElemCorr ;
+    
+    *ponteiroProxElem = &noCorrente->pProx ;
+
+    return LIS_CondRetOK;
+}
+
+LIS_tpCondRet LIS_ObterPonteiroAnterior( LIS_tppLista pLista ,
+                                       void *** ponteiroAntElem )
+{
+    tpElemLista* noCorrente ;
+    
+    noCorrente = pLista->pElemCorr ;
+    
+    *ponteiroAntElem = &noCorrente->pAnt ;
+
+    return LIS_CondRetOK;
+}
+
+
+
+LIS_tpCondRet LIS_ObterPonteiroValor( LIS_tppLista pLista ,
+                                       void *** ponteiroValor )
+{
+    tpElemLista* noCorrente ;
+    
+    noCorrente = pLista->pElemCorr ;
+    
+    *ponteiroValor = &noCorrente->pValor ;
+
+    return LIS_CondRetOK;
+}
+
+
+LIS_tpCondRet LIS_ObterPonteiroCorrente( LIS_tppLista pLista ,
+                                       void *** ponteiroCorrente )
+{
+  
+    *ponteiroCorrente = &pLista->pElemCorr ;
+
+    return LIS_CondRetOK;   
+}
+
+LIS_tpCondRet LIS_MoveFim( LIS_tppLista pLista )
+{
+   pLista->pElemCorr = pLista->pFimLista;
+   return LIS_CondRetOK;
+}
+
+
+#endif
 
 /********** Fim do módulo de implementação: LIS  Lista duplamente encadeada **********/
 

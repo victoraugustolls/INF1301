@@ -1,0 +1,86 @@
+// Script: TESTE_JOGO.SCRIPT
+// Autores: Lucas FerraçÁo
+// Data: 09/nov/2016
+// Proposito: Testar por completo as funçcoes de acesso do modulo JOGO, com exceçcao
+// do caso em que ocorre falta de memoria.
+//
+// ---------------------------------------------
+
+== Inicializar Constantes
+=declararparm   OK                int  0
+=declararparm   NaoExiste         int  1
+=declararparm	CoordNaoExiste	  int  2
+=declararparm	MovInvalido       int  3
+=declararparm   JaCriado	  	  int  4
+=declararparm   FaltouMemoria     int  5
+=declararparm   JogoIniciado      int  6
+=declararparm   JogoNaoIniciado   int  7
+=declararparm   FalhaArquivo      int  8
+
+=declararparm	JgPreto		      int  0
+=declararparm	JgBranco	      int  1
+
+=declararparm	Nenhum		      int  0
+=declararparm	Xeque		      int  1
+=declararparm	XequeMate	      int  2
+
+// ---------------------------------------------
+
+== Teste de Criaçcao de Juiz
+=criarJuiz	OK
+
+// ---------------------------------------------
+
+== Teste de Destruiçcao de Juiz
+=destruirJuiz	OK
+
+== Teste do Teste de Destruiçcao de Juiz
+=destruirJuiz	OK
+=recuperar
+
+== Teste de Destruiçcao de Juiz Inexistente
+=destruirJuiz	NaoExiste
+
+// ---------------------------------------------
+
+== Teste de Inicializaçcao de Jogo
+=criarJuiz	    OK
+=iniciarJogo	"..\\pecas\\teste_jogo\\config.conf"  OK
+
+// ---------------------------------------------
+
+== Teste de Termino de Jogo
+=terminarJogo	OK
+
+== Teste de Termino de Jogo Inexistente
+=terminarJogo	JogoNaoIniciado
+
+// ---------------------------------------------
+
+== Teste de Realizaçcao de Jogada em Jogo Inexistente
+=realizarJogada	'D'  '2'  'D'  '3'  JgBranco	Nenhum  JogoNaoIniciado
+
+== Teste de Realizaçcao de Jogada
+=iniciarJogo	"..\\pecas\\teste_jogo\\config_xeque.conf"  OK
+=realizarJogada	'H'  '6'  'F'  '6'  JgPreto		Nenhum  OK
+
+== Teste de Realizaçcao de Jogada Nao Valida
+=realizarJogada	'E'  '1'  'D'  '1'  JgPreto	    Nenhum  OK
+=realizarJogada	'D'  '1'  'E'  '1'  JgPreto	    Nenhum  OK
+=realizarJogada	'E'  '1'  'F'  '1'  JgPreto	    Nenhum  OK
+=realizarJogada	'E'  '8'  'F'  '8'  JgBranco	Nenhum  MovInvalido
+=realizarJogada	'B'  '8'  'B'  '7'  JgBranco	Nenhum  MovInvalido
+
+== Teste de Realizaçcao de Xeque
+=realizarJogada	'F'  '6'  'D'  '6'  JgPreto		Nenhum	OK
+=realizarJogada	'D'  '6'  'E'  '6'  JgPreto		Xeque	OK
+=realizarJogada	'E'  '8'  'D'  '8'  JgBranco	Nenhum  OK
+=realizarJogada	'D'  '8'  'E'  '8'  JgBranco	Nenhum  MovInvalido
+=realizarJogada	'E'  '6'  'D'  '6'  JgPreto		Xeque	OK
+
+== Teste de Realizaçcao de Xeque Mate   OK
+=realizarJogada	'D'  '6'  'H'  '6'  JgPreto		Nenhum	OK
+=realizarJogada	'A'  '8'  'A'  '7'  JgPreto		Nenhum	OK
+=realizarJogada	'H'  '6'  'H'  '8'  JgPreto		XequeMate	OK
+=terminarJogo	OK
+=destruirJuiz	OK

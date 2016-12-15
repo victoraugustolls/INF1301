@@ -1,7 +1,7 @@
-————— Trabalho 2 - Programação Modular —————
+————— Trabalho 4 - Programação Modular —————
 
  - Pontifícia Universidade Católica do Rio de Janeiro
- - Data: 16 de Outubro de 2016
+ - Data: 15 de Dezembro de 2016
 
 ————— Autores —————
 
@@ -17,19 +17,25 @@
 
 	 	- EXECUTAR_TESTE_CASA.BAT.TXT
 	 	- EXECUTAR_TESTE_LISTA.BAT.TXT
+	 	- EXECUTAR_TESTE_JOGO.BAT.TXT
 	 	- EXECUTAR_TESTE_PECA.BAT.TXT
 	 	- EXECUTAR_TESTE_TABULEIRO.BAT.TXT
 	 	- EXECUTAR_TESTE_VMV.BAT.TXT
+	 	- EXECUTAR_TESTE_TABULEIRO_DEBUG.BAT.TXT
 	 	- EXECUTAR_TODOS_TESTES.BAT.TXT
 
 	 = bin
 	 	Contém os executáveis do teste de cada módulo.
 
-	 	- TEST_CSA.EXE
-	 	- TEST_LIS.EXE
-	 	- TEST_PCA.EXE
-	 	- TEST_TAB.EXE
-	 	- TEST_VMV.EXE
+	 	- TRAB4-1.EXE
+	 	- TRAB4-2.EXE
+	 	- TRAB4-3.EXE
+	 	- TRAB4-4.EXE
+	 	- TRAB4-5.EXE
+	 	- TRAB4-6.EXE
+	 	- TRAB4-7.EXE
+	 	- TRAB4-8.EXE
+	 	- TRAB4-9.EXE 	// assistente criador de Peças
 
 	 = include
 	 	Contém os módulos de definição do projeto.
@@ -37,11 +43,15 @@
 	 	- CASA.H
 	 	- GENERICO.H
 	 	- LERPARM.H
+	 	- JOGO.H
 	 	- LISTA.H
 	 	- PECA.H
 	 	- TABULEIRO.H
 	 	- TST_ESPC.H
 	 	- VALIDA_MOV.H
+	 	- TIPOS_ESPACO.H
+	 	- CESPDIN.H
+	 	- CONTA.H
 
 	 = lib
 	 	Contém as bibliotecas estáticas do projeto.
@@ -65,7 +75,14 @@
 	 	- TESTE_LISTA.SCRIPT
 	 	- TESTE_PECA.SCRIPT
 	 	- TESTE_TABULEIRO.SCRIPT
+	 	- TESTE_JOGO.SCRIPT
 	 	- TESTE_VMV.SCRIPT
+
+	 	= DEBUG
+	 		Local aonde estão os scripts específico de DEBUG
+	 		- TABULEIRO_DETURPA.SCRIPT
+	 		- TABULEIRO_ESPACO.SCRIPT
+	 		- TABULEIRO.COUNT
 
 	 = source
 	 	Contém os módulos de implementação do projeto.
@@ -73,6 +90,9 @@
 	 	- CASA.C
 	 	- LISTA.C
 	 	- PECA.C
+	 	- JOGO.C
+	 	- PRINCIPAL.C
+	 	- CRIARPECA.C
 	 	- TABULEIRO.C
 	 	- VALIDA_MOV.C
 
@@ -80,6 +100,7 @@
 	 	- TESTLIS.C
 	 	- TESTPCA.C
 	 	- TESTTAB.C
+	 	- TESTJGO.C
 	 	- TESTVMV.C
 
 == Arquivos
@@ -89,6 +110,14 @@
 
 	 - COMO_ADD_NOVA_PECA.TXT
 	 	Arquivo com instruções de como adicionar peças ao jogo.
+
+	 - DESCRICAO_COMANDOS_TESTE_VERIFICADOR.TXT
+	 	Arquivo com instruções de como utilizar os comandos de deturpação e verificação do script
+	 	de testes
+
+	 - RENOMEIA_BAT_EXE_LIB.BAT.TXT
+	 	Script que renomeia todos os arquivos BAT.TXT, .EXE.TXT e .lib.TXT para
+	 	.BAT, .EXE e .lib
 
 	 - RENOMEIA_BAT_EXE_LIB.BAT.TXT
 	 	Script que renomeia todos os arquivos BAT.TXT, .EXE.TXT e .lib.TXT para
@@ -139,4 +168,12 @@
 	Ler arquivo COMO_ADD_NOVA_PECA.TXT
 
 	Este contém as instruções de como adicionar novas peças.
-	
+
+	Também incluimos um assistente para criação de peças simplificadas, sendo
+	este o executável TRAB4-9.EXE
+
+————— Adicionando uma Peça Nova —————————————————————————————— 
+
+	O teste de DEBUG do tabuleiro corresponde ao arquivo EXECUTAR_TESTE_TABULEIRO_DEBUG
+
+	O log da execução dos scripts e o registro das arestas passadas será salvo na pasta log/DEBUG

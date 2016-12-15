@@ -20,26 +20,20 @@
 % - realizar os testes
 % - diagnosticar e corrigir os problemas encontrados
 
-29/09/2016; 2 horas ; especificar os módulos; Especificou a divisão de módulos do projeto, assim como estrutura fisica.
+08/12/2016; 2 horas; estudar; estudar o enunciado do trabalho e os módulos de instrumentação do arcabouço.
 
-30/09/2016; 5 horas ; projetar; Elaborou estrutura de compilação e diretórios do projeto.
+12/12/2016; 4 horas; codificar módulo; codificar funções de verificação do tabuleiro
 
-03/10/2016; 2 horas ; projetar; Projetou sintaxe para definição de peças (novas ou não)
+12/12/2016; 2 horas; diagnosticar e corrigir os problemas encontrados; corrigir problemas na compilação em modo debug
 
-03/10/2016; 1 hora ; especificar as funções; Especificou as funções de acesso do módulo VMV.
+13/12/2016; 4 horas; revisar código do módulo; revisar funções de verificação do tabuleiro e de deturpação
 
-03/10/2016; 1 hora ; projetar; Projetou linguagem lógica de especificação de peças a ser usada pelo módulo VMV.
+14/12/2016;	2 horas; diagnosticar e corrigir os problemas encontrados; corrigir bugs das estruturas autoverificaveis implementadas.
 
-04/10/2016; 8 horas ; codificar módulo; Codificou módulo VMV.
+14/12/2016;	2 horas; diagnosticar e corrigir os problemas encontrados; corrigir funções de deturpação.
 
-05/10/2016; 3 horas ; codificar módulo; Codificou módulo de testes para testar o módulo VMV.
+15/12/2016;	4 horas; codificar módulo; Implementar funções novas de deturpação para verificações já existentes.
 
-05/10/2016; 2 horas; redigir script de teste; Redigiu script de teste e scripts lógicos para testar o módulo VMV.
+15/12/2016;	2 horas; redigir script de teste; Redigir os scripts de testes com deturpações e verificações
 
-13/10/2016; 1 hora ; revisar script de teste; Revisão de documentação do módulo de testes para VMV.
-
-16/10/2016; 3 hora ; diagnosticar e corrigir os problemas encontrados; Debug do módulo que testa tabuleiro.
-
-
-
-
+15/12/2016; 1 hora; revisar especificações; Revisar especificações do trabalho

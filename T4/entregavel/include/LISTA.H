@@ -16,6 +16,9 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     9       iars  12/dez/2016 adicao do prototipo da funcao de verificacao
+*     8       vas   13/nov/2016 adição do protótipo da função de comparar listas
+*     7       vas   11/nov/2016 adição da função de lista vazia
 *     6       vas   03/out/2016 ajuste das funções para todas terem condições de retorno
 *                               e retirada de funções não utilizadas
 *     5       iars  14/set/2016 inserção ordenada, procurar valor, imprimir
@@ -90,6 +93,11 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    typedef enum {
 
+         #ifdef _DEBUG
+            LIS_CondRetFalhaNaEstrutura = 8,
+            /* Existe uma falha na estrutura da lista. */
+         #endif
+
          LIS_CondRetOK = 0 ,
                /* Concluiu corretamente */
 
@@ -108,7 +116,34 @@ typedef struct LIS_tagLista * LIS_tppLista ;
          LIS_CondRetFaltouMemoria = 6 ,
                /* Faltou memória ao tentar criar um elemento de lista */
 
+         LIS_CondRetNaoAchou = 7
+               /* Nao encontrou o elemento da lista */
+
    } LIS_tpCondRet ;
+
+
+#ifdef _DEBUG
+   typedef enum {
+
+         LIS_tpErroEstruturaNenhum = 0,
+         LIS_tpErroEstruturaCabecaCorrompida = 1,
+         LIS_tpErroEstruturaCorrenteNuloIndevidamente = 2,
+         LIS_tpErroEstruturaOrigemNuloIndevidamente = 3,
+         LIS_tpErroEstruturaFimNuloIndevidamente = 4,
+         LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos = 5,
+         LIS_tpErroEstruturaInicioDaListaPossuiAnterior = 6,
+         LIS_tpErroEstruturaFimDaListaPossuiProximo = 7,
+         LIS_tpErroEstruturaElementoDaListaCorrompido = 8,
+         LIS_tpErroEstruturaEncadeamentoIncorretoNaLista = 9,
+         LIS_tpErroEstruturaValorArmazenadoNulo = 10,
+         LIS_tpErroEstruturaTipoDoValorIncoerente = 11,
+         LIS_tpErroEstruturaElementoCorrenteNaoEstaNaLista = 12,
+         LIS_tpErroEstruturaNumeroDeElementosIncorreto = 13,
+         LIS_tpErroEstruturaListaVaziaInconsistente = 14,
+         LIS_tpErroEstruturaListaCircular = 15
+
+   } LIS_tpErroEstrutura ;
+#endif
 
 
 /***********************************************************************
@@ -151,6 +186,27 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
              int   ( * Igual ) ( void * pDado_1, void * pDado_2 ) ) ;
 
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Copiar lista
+*
+*  $ED Descrição da função
+*     Copia uma lista genérica duplamente encadeada.
+*
+*  $EP Parâmetros
+*
+*     pLista          - ponteiro para a lista sendo criada
+*     listaOriginal   - lista original a ser copiada
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK            - lista foi criada corretamente
+*     LIS_CondRetFaltouMemoria - ocorreu um erro na criação da lista
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_CopiarLista( LIS_tppLista* pLista , LIS_tppLista listaOriginal, void ( * CopiarElemento ) ( void ** pValor, void* pValorOriginal ) );
 
 /***********************************************************************
 *
@@ -312,6 +368,345 @@ typedef struct LIS_tagLista * LIS_tppLista ;
 
    LIS_tpCondRet LIS_AlteraValor( LIS_tppLista pLista ,
                                   void * pValor ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Verifica se a lista está vazia
+*
+*  $ED Descrição da função
+*     Verifica se a lista está vazia ou não.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser verificada
+*     vazia   - ponteiro para o valor da condição
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_VerificaVazia( LIS_tppLista pLista ,
+                                  int * vazia ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Compara duas listas
+*
+*  $ED Descrição da função
+*     Verifica se as duas listas são iguais ou não.
+*
+*  $EP Parâmetros
+*     pLista1   - ponteiro para a primeira lista da comparação
+*     pLista2   - ponteiro para a segunda lista da comparação
+*     igualdade - ponteiro para o valor da igualdade
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_VerificaIgualdade( LIS_tppLista pLista1 ,
+                                        LIS_tppLista pLista2 ,
+                                        int * igualdade ) ;
+
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Esvazia lista
+*
+*  $ED Descrição da função
+*     Esvazia uma lista sem destrui-la.
+*
+*  $EP Parâmetros
+*     pLista1   - ponteiro para a lista que será esvaziada
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK             - alteração bem sucedida
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_Esvazia( LIS_tppLista pLista ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Procurar elemento contendo valor
+*
+*  $ED Descrição da função
+*     Procura o elemento que referencia o valor dado.
+*     A função compara o conteúdo apontado de acordo com função
+*       de igualdade passada na criação da lista.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista onde procura
+*     pValor  - ponteiro para o valor procurado
+*               Pode ser NULL
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK  - se encontrou.
+*                      O elemento corrente é o primeiro elemento do
+*                      elemento corrente inclusive para o fim da lista
+*                      e que contém o ponteiro procurado
+*
+*     LIS_CondRetNaoAchou - se o ponteiro não foi encontrado
+*                      O elemento corrente continua o mesmo
+*     LIS_CondRetListaVazia   - se a lista estiver vazia
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ProcurarValor( LIS_tppLista pLista ,
+                                    void * pValor) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Move Inicio
+*
+*  $ED Descrição da função
+*     Move o corrente para o primeiro elemento da lista
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK  - Nenhum erro ocorreu
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_MoveInicio( LIS_tppLista pLista ) ;
+
+#ifdef _DEBUG
+
+   /***********************************************************************
+   *
+   *  $FC Função: LIS  &Tamanho
+   *
+   *  $ED Descrição da função
+   *     Retorna o tamanho da lista.
+   *
+   *  $EP Parâmetros
+   *     pLista  - ponteiro para a lista a ser verificada
+   *     tamanhoDaLista   - ponteiro para o valor do tamanho da lista
+   *
+   *  $FV Valor retornado
+   *     LIS_CondRetOK             - retorno bem sucedido
+   *     LIS_CondRetListaNaoExiste - se a lista não existir
+   *
+   ***********************************************************************/
+
+   LIS_tpCondRet LIS_Tamanho( LIS_tppLista pLista ,
+                              int * tamanhoDaLista );
+
+#endif
+#ifdef _DEBUG
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Define o Tipo
+*
+*  $ED Descrição da função
+*     Define o tipo que a lista armazena.
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser verificada
+*     identificadorDoTipo   -  identificador do tipo
+
+*  $FV Valor retornado
+*     LIS_CondRetOK             - retorno bem sucedido
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
+                              int identificadorDoTipo );
+
+#endif
+#ifdef _DEBUG
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obtem o Tipo
+*
+*  $ED Descrição da função
+*     Obtem o tipo que a lista armazena, armazenando em identificadorDoTipo.
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista a ser verificada
+*     identificadorDoTipo   -  identificador do tipo
+
+*  $FV Valor retornado
+*     LIS_CondRetOK             - retorno bem sucedido
+*     LIS_CondRetListaNaoExiste - se a lista não existir
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
+                              int* identificadorDoTipo );
+
+#endif
+#ifdef _DEBUG
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter referência para o ponteiro do elemento corrente para o proximo elemento
+*
+*  $ED Descrição da função
+*     Obtem a referência para o ponteiro para o proximo elemento contido no elemento corrente da lista
+*
+*  $EP Parâmetros
+*     pLista           - ponteiro para a lista de onde se quer o ponteiro
+*     ponteiroProxElem - ponteiro para o ponteiro referente ao elemento seguinte ao elemento corrente
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK           - obteve ponteiro para o elemento seguinte corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
+                                            void *** ponteiroProxElem ) ;
+
+#endif
+#ifdef _DEBUG
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter referência para o ponteiro do elemento corrente para o elemento anterior
+*
+*  $ED Descrição da função
+*     Obtem a referência para o ponteiro para o elemento anterior contido no elemento corrente da lista
+*
+*  $EP Parâmetros
+*     pLista           - ponteiro para a lista de onde se quer o ponteiro
+*     ponteiroAntElem - ponteiro para o ponteiro referente ao elemento anterior ao elemento corrente
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK           - obteve ponteiro para o elemento anterior corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterPonteiroAnterior( LIS_tppLista pLista ,
+                                            void *** ponteiroAntElem ) ;
+
+/***********************************************************************
+*
+*  $FC Função: TAB  &Verificar Estrutura da Lista
+*
+*  $ED Descrição da função
+*     Verifica a estrutura da lista.
+*
+*  $EP Parametros
+*     pLista - ponteiro para a lista a ser verificada
+*     erroOcorrido - tipo do erro retornado
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK                   - Nao foram encontradas falhas
+*     LIS_CondRetFalhaNaEstrutura     - Foram encontradas falhas
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista, LIS_tpErroEstrutura* erroOcorrido, int* numErrosEncontrados );
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter referência para o ponteiro do elemento corrente para o proximo elemento
+*
+*  $ED Descrição da função
+*     Obtem a referência para o ponteiro para o proximo elemento contido no elemento corrente da lista
+*
+*  $EP Parâmetros
+*     pLista           - ponteiro para a lista de onde se quer o ponteiro
+*     ponteiroProxElem - ponteiro para o ponteiro referente ao elemento seguinte ao elemento corrente
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK           - obteve ponteiro para o elemento seguinte corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,
+                                void *** ponteiroProxElem ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter referência para o ponteiro do elemento corrente para o elemento anterior
+*
+*  $ED Descrição da função
+*     Obtem a referência para o ponteiro para o elemento anterior contido no elemento corrente da lista
+*
+*  $EP Parâmetros
+*     pLista           - ponteiro para a lista de onde se quer o ponteiro
+*     ponteiroAntElem - ponteiro para o ponteiro referente ao elemento anterior ao elemento corrente
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK           - obteve ponteiro para o elemento anterior corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterPonteiroAnterior( LIS_tppLista pLista ,
+                                          void *** ponteiroAntElem ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter referência para o ponteiro para o valor do elemento corrente
+*
+*  $ED Descrição da função
+*     Obtem a referência para o ponteiro para o valor do elemento corrente
+*
+*  $EP Parâmetros
+*     pLista           - ponteiro para a lista de onde se quer o ponteiro
+*     ponteiroValor - ponteiro para o ponteiro do valor
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK           - obteve ponteiro corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_ObterPonteiroValor( LIS_tppLista pLista ,
+                                          void *** ponteiroValor ) ;
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Obter referência para o ponteiro para ponteiro corrente
+*
+*  $ED Descrição da função
+*     Obtem a referência para o ponteiro para ponteiro corrente
+*
+*  $EP Parâmetros
+*     pLista           - ponteiro para a lista de onde se quer o ponteiro
+*     ponteiroCorrente - ponteiro para o ponteiro do corrente
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK           - obteve ponteiro corretamente
+*     LIS_CondRetListaVazia   - nó corrente da lista é vazio
+*
+***********************************************************************/
+  LIS_tpCondRet LIS_ObterPonteiroCorrente( LIS_tppLista pLista ,
+                                          void *** ponteiroCorrente ) ;\
+
+/***********************************************************************
+*
+*  $FC Função: LIS  &Move Fim
+*
+*  $ED Descrição da função
+*     Move o corrente para o ultimo elemento da lista
+*
+*  $EP Parâmetros
+*     pLista  - ponteiro para a lista
+*
+*  $FV Valor retornado
+*     LIS_CondRetOK  - Nenhum erro ocorreu
+*
+***********************************************************************/
+
+   LIS_tpCondRet LIS_MoveFim( LIS_tppLista pLista ) ;
+
+#endif
 
 #undef LISTA_EXT
 

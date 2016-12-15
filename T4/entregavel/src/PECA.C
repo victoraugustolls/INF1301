@@ -13,6 +13,7 @@
 *
 *  $HA Histórico de evolução:
 *     Versão  Autor    Data     Observações
+*     2       vas   10/nov/2016 mudança da estrutura
 *     1       vas   06/out/2016 início desenvolvimento
 *
 ***************************************************************************/
@@ -35,10 +36,10 @@
 
   	typedef struct PCA_tagPeca {
 
-   	    char * nomePeca ;
+   	    char nomePeca ;
          		/* Nome da peça */
 
-       	char * corPeca ;
+       	char corPeca ;
          		/* Cor da peça */
 
   	} PCA_tpPeca ;
@@ -57,8 +58,8 @@
 *  ****/
 
    	PCA_tpCondRet PCA_CriarPeca( PCA_tppPeca * pPeca ,
-           						char * nomePeca ,
-             					char * corPeca )
+           						char nomePeca ,
+             					char corPeca )
    	{
 
      	PCA_tppPeca pNewPeca = NULL ;
@@ -72,11 +73,8 @@
 
      	PCA_LimparPeca( pNewPeca ) ;
 
-     	pNewPeca->nomePeca = ( char * ) malloc ( sizeof ( char ) ) ;
-     	pNewPeca->corPeca = ( char * ) malloc ( sizeof ( char ) ) ;
-
-     	*pNewPeca->nomePeca = *nomePeca ;
-     	*pNewPeca->corPeca = *corPeca ;
+     	pNewPeca->nomePeca = nomePeca ;
+     	pNewPeca->corPeca = corPeca ;
 
      	*pPeca = pNewPeca ;
 
@@ -86,22 +84,33 @@
 
 /***************************************************************************
 *
+*  Função: PCA  &Copiar peça
+*  ****/
+
+    PCA_tpCondRet PCA_CopiarPeca(   PCA_tppPeca * pPeca ,
+                                    PCA_tppPeca pecaOriginal)
+    {
+        return PCA_CriarPeca( pPeca , pecaOriginal->nomePeca, pecaOriginal->corPeca);
+        
+    } /* Fim função: PCA  &Copiar peça */
+
+/***************************************************************************
+*
 *  Função: PCA  &Alterar peça
 *  ****/
 
     PCA_tpCondRet PCA_AlterarPeca( PCA_tppPeca pPeca ,
-                      			char * nomePeca ,
-                      			char * corPeca )
+                      			char nomePeca ,
+                      			char corPeca )
     {
 
       	if ( pPeca == NULL )
       	{
         	return PCA_CondRetPecaNaoExiste ;
-      	}
+      	} /* if */
 
-      	*pPeca->nomePeca = *nomePeca ;
-      	*pPeca->corPeca = *corPeca ;
-
+      	pPeca->nomePeca = nomePeca ;
+      	pPeca->corPeca = corPeca ;
 
       	return PCA_CondRetOK ;
 
@@ -113,18 +122,18 @@
 *  ****/
 
   	PCA_tpCondRet PCA_ObterValor( PCA_tppPeca pPeca ,
-  								char ** nomePeca ,
-                               	char ** corPeca )
+  								char * nomePeca ,
+                               	char * corPeca )
   	{
+
+  		if ( pPeca == NULL )
+  		{
+  			return PCA_CondRetPecaNaoExiste ;
+  		} /* if */
 
      	#ifdef _DEBUG
         	assert( pPeca != NULL ) ;
      	#endif
-
-     	if ( pPeca->nomePeca == NULL || pPeca->corPeca == NULL )
-      	{
-         	return PCA_CondRetPecaVazia ;
-      	} /* if */
 
        	*nomePeca = pPeca->nomePeca ;
        	*corPeca = pPeca->corPeca ;
@@ -145,11 +154,12 @@
 
       	if ( pPeca_1 == NULL || pPeca_2 == NULL )
         {
+          	*igualdade = 0 ;
         	return PCA_CondRetPecaNaoExiste ;
         } /* if */
 
-        if ( *pPeca_1->nomePeca == *pPeca_2->nomePeca 
-        	&& *pPeca_1->corPeca == *pPeca_2->corPeca )
+        if ( pPeca_1->nomePeca == pPeca_2->nomePeca 
+        	&& pPeca_1->corPeca == pPeca_2->corPeca )
         {
         	*igualdade = 1 ;
         }
@@ -157,7 +167,7 @@
         {
         	*igualdade = 0 ;
         }
-
+        
         return PCA_CondRetOK ;
 
    } /* Fim função: PCA  &Compara duas peças */
@@ -175,13 +185,29 @@
         	return PCA_CondRetPecaNaoExiste ;
      	} /* if */
 
-     	PCA_EsvaziarPeca( pPeca ) ;
-
      	free( pPeca ) ;
 
      	return PCA_CondRetOK ;
 
   	} /* Fim função: PCA  &Destruir peça */
+
+/***************************************************************************
+*
+*  Função: PCA  &Get Print Peca
+*  ****/
+
+    PCA_tpCondRet PCA_GetPrintPeca( PCA_tppPeca pPeca, char** print )
+    {
+        *print = (char*) malloc(sizeof(char)*3);
+        if(*print == NULL)
+        {
+            return PCA_CondRetFaltouMemoria;
+        }
+        (*print)[0] = pPeca->nomePeca;
+        (*print)[1] = pPeca->corPeca;
+        (*print)[2] = '\0';
+        return PCA_CondRetOK;
+    }
 
 /***********************************************************************
 *
@@ -191,9 +217,6 @@
 
    	void PCA_EsvaziarPeca( PCA_tppPeca pPeca )
    	{
-
-      	free( pPeca->nomePeca ) ;
-      	free( pPeca->corPeca ) ;
 
       	PCA_LimparPeca( pPeca ) ;
 
@@ -208,8 +231,8 @@
 
    	void PCA_LimparPeca( PCA_tppPeca pPeca )
    	{
-      	pPeca->nomePeca = NULL ;
-      	pPeca->corPeca = NULL ;
+      	pPeca->nomePeca = 'V' ;
+      	pPeca->corPeca = 'V' ;
 
    	} /* Fim função: PCA  -Limpar a peça */
 

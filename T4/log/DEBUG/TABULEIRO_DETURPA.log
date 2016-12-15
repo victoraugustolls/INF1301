@@ -1,10 +1,10 @@
 
 !!! Inicio dos testes
-!!!      Construto sob teste: ..\bin\TEST_TAB_DEBUG
-!!!      Script de teste:     ..\script\ScriptsDeturpacao\TABULEIRO_01.script
+!!!      Construto sob teste: ..\bin\TRAB4-8
+!!!      Script de teste:     ..\script\DEBUG\TABULEIRO_DETURPA.script
 
-!!!    0  Linha:     1  // Script: TESTE_TABULEIRO.SCRIPT 
-!!!    0  Linha:     2  // Autores: Ian Albuquerque, Lucas Ferraço, Victor Augusto 
+!!!    0  Linha:     1  // Script: TABULEIRO_01.SCRIPT 
+!!!    0  Linha:     2  // Autores: Ian Albuquerque, Victor Augusto 
 !!!    0  Linha:     3  // Data: 14/dez/2016 
 !!!    0  Linha:     4  // 
 !!!    0  Linha:     5  // --------------------------------------------- 

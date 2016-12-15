@@ -2,35 +2,38 @@
 #define TABULEIRO_
 /***************************************************************************
  *
- *  $MCD MÛdulo de definiÁ„o: TAB  Tabuleiro para jogo de xadrez
+ *  $MCD MÛdulo de definição: TAB  Tabuleiro para jogo de xadrez
  *
  *  Arquivo gerado:              TABULEIRO.h
  *  Letras identificadoras:      TAB
  *
- *  Nome da base de software:    ArcabouÁo para a automaÁ„o de testes de programas redigidos em C
+ *  Nome da base de software:    Arcabouçoo para a automaçãoo de testes de programas redigidos em C
  *  Arquivo da base de software: D:\AUTOTEST\PROJETOS\LISTA.BSW
  *
- *  Projeto: INF 1301 / 1628 AutomatizaÁ„o dos testes de mÛdulos C
+ *  Projeto: INF 1301 / 1628 AutomatizaÁ„o dos testes de módulos C
  *  Gestor:  LES/DI/PUC-Rio
- *  Autores: lff
+ *  Autores: lff, iars
  *
- *  $HA HistÛrico de evoluÁ„o:
- *     Vers„o  Autor    Data     ObservaÁıes
+ *  $HA Histórico de evolução:
+ *     Versão  Autor    Data     ObservaÁıes
+ *     5       iars  12/dez/2016 criacao da funcao de verificacao
+ *     4       lff   12/dez/2016 criacao da funcao de deturpacao
+ *     3       iars  15/nov/2016 copiar tabuleiro e nova interface ameacantes ameacados
  *     2       lff   05/out/2016 desenvolvimento
- *     1       lff   04/out/2016 inÌcio desenvolvimento
+ *     1       lff   04/out/2016 início desenvolvimento
  *
- *  $ED DescriÁ„o do mÛdulo
+ *  $ED Descrição do módulo
  *     Implementa um tabuleiro de xadrez composto por n casas.
  *     Pode existir apenas um tabuleiro em operação.
  *
  *     Cada tabuleiro é homogêneo quanto ao tipo dos dados que armazena.
- *     Cada elemento do tabuleiro referencia o valor que contÈm.
+ *     Cada elemento do tabuleiro referencia o valor que contem.
  *
- *     Os ponteiros para os dados s„o copiados para elementos do tabuleiro.
- *        N„o È copiado o valor apontado por estes ponteiros.
+ *     Os ponteiros para os dados são copiados para elementos do tabuleiro.
+ *        N„o é copiado o valor apontado por estes ponteiros.
  *
- *     O controle da destruiÁ„o do valor de um elemento a ser excluÌdo
- *        È realizado por uma funÁ„o interna do módulo.
+ *     O controle da destruição do valor de um elemento a ser excluído
+ *        é realizado por uma função interna do módulo.
  *
  *
  ***************************************************************************/
@@ -44,9 +47,9 @@
 #include  "LISTA.H"
 #include  "CASA.H"
 
-/***** DeclaraÁıes exportadas pelo mÛdulo *****/
+/***** Declarações exportadas pelo módulo *****/
 
-/* Tipo referÍncia para um tabuleiro */
+/* Tipo referência para um tabuleiro */
 
 typedef struct TAB_tagTabuleiro * TAB_tppTabuleiro ;
 
@@ -78,13 +81,93 @@ typedef enum {
     TAB_CondRetFalhaArq = 4 ,
     /* Falha ao manipular algum arquivo necessário para o tabuleiro */
     
-    TAB_CondRetFaltouMemoria = 5 ,
+    TAB_CondRetFaltouMemoria = 5
     /* Faltou memória ao tentar criar um elemento do tabuleiro */
-    
-    TAB_CondRetJaCriado = 6 ,
-    /* Já existe tabuleiro em operação */
+
+    #ifdef _DEBUG
+      ,
+
+      TAB_CondRetFalhaNaEstrutura = 6 ,
+      /* Existe uma falha na estrutura do tabuleiro */
+
+      TAB_CondRetFalhaDeturpar = 7,
+      /* Não foi possível Deturpar */
+
+      TAB_CondRetFalhaDefinirTipoEspaco = 8
+      /* Ocorreu uma falha ao usar o comando CED_DefinirTipoEspaco do módulo CESPDIN */
+    #endif
 
 } TAB_tpCondRet ;
+
+#ifdef _DEBUG
+
+  typedef enum {
+      
+      TAB_ELIMINA_ELEMENTO_CORRENTE = 1,
+
+      TAB_NULL_CASA_SUCESSORA = 2,
+
+      TAB_NULL_CASA_PREDECESSORA = 3,
+
+      TAB_LIXO_CASA_SUCESSORA = 4,
+
+      TAB_LIXO_CASA_PREDECESSORA = 5,
+      
+      TAB_NULL_CONTEUDO_CASA = 6,
+
+      TAB_ALTERA_TIPO_APONTADO_CASA = 7,
+
+      TAB_DESTACA_CASA_SEM_FREE = 8,
+      
+      TAB_NULL_PONTEIRO_CORRENTE = 9,
+
+      TAB_TABULEIRO_CIRCULAR = 10,
+
+      TAB_ELIMINA_LINHA = 11
+
+  } TAB_tpDeturpacao ;
+
+  /***********************************************************************
+    *
+    *  $FC Função: TAB  &Deturpa Tabuleiro
+    *
+    *  $ED Descrição da função
+    *     Deturpa a estrutura do tabuleiro
+    *
+    *  $EP Par‚metros
+    *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
+    *     pTabuleiro - tipo da deturpação a ser realizada
+    *
+    *  $FV Valor retornado
+    *     TAB_CondRetOK                - Deturpação realizada com sucesso
+    *     TAB_CondRetFalhaDeturpar     - Não foi possível deturpar a estrutura
+    *
+    ***********************************************************************/
+
+    TAB_tpCondRet TAB_Deturpa( TAB_tppTabuleiro pTabuleiro , TAB_tpDeturpacao tipoDeturpacao , char coluna , char linha ) ;
+
+    /***********************************************************************
+    *
+    *  $FC Função: TAB  &Verificar Estrutura do Tabuleiro
+    *
+    *  $ED Descrição da função
+    *     Verifica a estrutura do tabuleiro.
+    *     Especificamente, checa se linhas e colunas possuem 8 elementos e
+    *     se o tipo armazenado por cada lista está correto.
+    *
+    *  $EP Parametros
+    *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
+    *     numEncontrados - ponteiro para o numero de erro encontrados
+    *
+    *  $FV Valor retornado
+    *     TAB_CondRetOK                   - Nao foram encontradas falhas
+    *     TAB_CondRetFalhaNaEstrutura     - Foram encontradas falhas
+    *
+    ***********************************************************************/
+
+    TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro, int* numEncontrados );
+
+#endif
 
 
 /***********************************************************************
@@ -94,16 +177,41 @@ typedef enum {
  *  $ED Descrição da função
  *     Cria um tabuleiro.
  *
- *  $EP Par‚metros
+ *  $EP Parametros
  *     pTabuleiro - ponteiro para o tabuleiro sendo criado
+ *     pathConfig - local do arquivo de configuração de tabuleiro
  *
  *  $FV Valor retornado
  *     TAB_CondRetOK                - criou sem problemas
  *     TAB_CondRetFaltouMemoria     - faltou memória para alocação do tabuleiro
+ *     TAB_CondRetFalhaArq          - falha ao manipular arquivo necessário
+ *                                      para verificar o movimento
  *
  ***********************************************************************/
 
-TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro ) ;
+TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char* pathConfig ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Copiar tabuleiro
+ *
+ *  $ED Descrição da função
+ *     Cria um tabuleiro igual ao tabuleiro original.
+ *     O tabuleiro o qual deseja-se copiar não pode ser nulo.
+ *
+ *  $EP Parametros
+ *     pTabuleiro - ponteiro para o tabuleiro sendo criado
+ *     tabuleiroOriginal - tabuleiro original a ser copiado
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK                - criou sem problemas
+ *     TAB_CondRetFaltouMemoria     - faltou memória para alocação do tabuleiro
+ *     TAB_CondRetFalhaArq          - falha ao manipular arquivo necessário
+ *                                      para verificar o movimento
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabuleiro tabuleiroOriginal ) ;
 
 
 /***********************************************************************
@@ -256,8 +364,8 @@ TAB_tpCondRet TAB_ObterCasaTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
                                       char linha ,
-                                      char** pNomePeca ,
-                                      char** pCorPeca ,
+                                      char* pNomePeca ,
+                                      char* pCorPeca ,
                                       TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -270,7 +378,8 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
  *  $EP Parâmetros
  *     coluna              - coordenada da coluna da peça ameaçada
  *     linha               - coordenada da linha da peça ameaçada
- *     pListaAmeacantes    - ponteiro para onde a lista de ameaçantes será retornada
+ *     pListaAmeacantesLinhas    - ponteiro para onde a lista de linhas de casas ameaçantes será retornada
+ *     pListaAmeacantesColunas    - ponteiro para onde a lista de colunas de ameaçantes será retornada
  *     pTabuleiro          - ponteiro para o tabuleiro onde a peça está sendo ameaçada
  *
  *  $FV Valor retornado
@@ -282,7 +391,8 @@ TAB_tpCondRet TAB_ObterPecaTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
                                                  char linha ,
-                                                 LIS_tppLista * pListaAmeacantes ,
+                                                 LIS_tppLista * pListaAmeacantesLinhas ,
+                                                 LIS_tppLista * pListaAmeacantesColunas ,
                                                  TAB_tppTabuleiro pTabuleiro ) ;
 
 /***********************************************************************
@@ -295,7 +405,8 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
  *  $EP Parâmetros
  *     coluna              - coordenada da coluna da peça ameaçante
  *     linha               - coordenada da linha da peça ameaçante
- *     pListaAmeacados     - ponteiro para onde a lista de ameaçados será retornada
+ *     pListaAmeacadosLinhas     - ponteiro para onde a lista de linhas de casas ameaçadas será retornada
+ *     pListaAmeacadosColunas     - ponteiro para onde a lista de colunas de casas ameaçadas será retornada
  *     pTabuleiro          - ponteiro para o tabuleiro onde a peça está sendo ameaçando
  *
  *  $FV Valor retornado
@@ -306,8 +417,54 @@ TAB_tpCondRet TAB_ObterListaAmeacantesTabuleiro( char coluna ,
 
 TAB_tpCondRet TAB_ObterListaAmeacadosTabuleiro( char coluna ,
                                                 char linha ,
-                                                LIS_tppLista * pListaAmeacados ,
+                                                LIS_tppLista * pListaAmeacadosLinhas ,
+                                                LIS_tppLista * pListaAmeacadosColunas ,
                                                 TAB_tppTabuleiro pTabuleiro ) ;
+
+/***********************************************************************
+ *
+ *  $FC Função: TAB  &Obter Casas Com Peça
+ *
+ *  $ED Descrição da função
+ *     Obtém a lista de casas que possuem a peça definida pelos parâmetros peca e cor.
+ *
+ *  $EP Parâmetros
+ *     pListaCasasLinhas              - lista com todas as linhas das casas com a peça definida
+ *     pListaCasasColunas              - lista com todas as colunas das casas com a peça definida
+ *     peca                     - nome da peça definida
+ *     cor                      - cor da peça definida
+ *     pTabuleiro               - ponteiro para o tabuleiro onde a peça está sendo ameaçando
+ *
+ *  $FV Valor retornado
+ *     TAB_CondRetOK                - obteve lista sem problemas
+ *
+ ***********************************************************************/
+
+TAB_tpCondRet TAB_ObterCasasComPeca( LIS_tppLista * pListaCasasLinhas ,
+                                     LIS_tppLista * pListaCasasColunas ,
+                                     char peca,
+                                     char cor,
+                                     TAB_tppTabuleiro pTabuleiro ) ;
+
+/***********************************************************************
+*
+*  $FC Função: TAB  &Print Tabuleiro
+*
+*  $ED Descrição da função
+*     Retorna a string (alocada dinamicamente) referente ao print do tabuleiro.
+*     O tabuleiro o qual deseja-se obter o print não pode ser nulo.
+*
+*  $EP Parâmetros
+*     pTabuleiro            - ponteiro para o tabuleiro
+*     print                 - ponteiro para a string
+*
+*  $FV Valor retornado
+*     TAB_CondRetOK             - nao ocorreram problemas
+*     TAB_CondRetFaltouMemoria  - faltou memoria
+*
+***********************************************************************/
+
+TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print ) ;
 
 #undef TABULEIRO_EXT
 

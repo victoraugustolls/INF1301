@@ -1,0 +1,131 @@
+// Script: TABULEIRO_01.SCRIPT
+// Autores: Ian Albuquerque, Victor Augusto
+// Data: 14/dez/2016
+//
+// ---------------------------------------------
+
+== Inicializar Constantes de Retorno
+=declararparm   OK                int  0
+=declararparm   NaoExiste         int  1
+=declararparm   CoordNaoExiste    int  2
+=declararparm   MovInvalido       int  3
+=declararparm   FalhaArquivo      int  4
+=declararparm   FaltouMemoria     int  5
+
+=declararparm   NaoEncontrouFalha  int  0
+=declararparm   EncontrouFalha     int  6
+
+// ---------------------------------------------
+
+== Inicializar valores de Tabuleiro
+=declararparm   tab0  int 0
+=declararparm   tab1  int 1
+=declararparm   tab2  int 2
+=declararparm   tab3  int 3
+=declararparm   tab4  int 4
+=declararparm   tab5  int 5
+=declararparm   tab6  int 6
+=declararparm   tab7  int 7
+=declararparm   tab8  int 8
+=declararparm   tab9  int 9
+=declararparm   tab10  int 10
+=declararparm   tab11  int 11
+
+// ---------------------------------------------
+
+== Iniciar contagem
+=inicializarcontadores  ""
+=lercontadores          "..\\script\\DEBUG\\TABULEIRO"
+=iniciarcontagem
+
+// ---------------------------------------------
+
+== Teste de Deturpacoes
+=criarTabuleiro    		tab0  							OK
+=verificar				tab0  0 						NaoEncontrouFalha
+=defineCorrente			tab0 '3'	'C'
+=deturpar				tab0  1							OK
+=verificar				tab0  1 						EncontrouFalha
+
+=criarTabuleiro    		tab1  							OK
+=verificar				tab1  0 						NaoEncontrouFalha
+=defineCorrente			tab1 '3'	'C'
+=deturpar				tab1  2							OK
+=verificar				tab1  1 						EncontrouFalha
+
+=criarTabuleiro    		tab2  							OK
+=verificar				tab2  0 						NaoEncontrouFalha
+=defineCorrente			tab2 '3'	'C'
+=deturpar				tab2  3							OK
+=verificar				tab2  1 						EncontrouFalha
+
+=criarTabuleiro    		tab3  							OK
+=verificar				tab3  0 						NaoEncontrouFalha
+=defineCorrente			tab3 '3'	'C'
+=deturpar				tab3  4							OK
+=verificar				tab3  1 						EncontrouFalha
+
+=criarTabuleiro    		tab4  							OK
+=verificar				tab4  0 						NaoEncontrouFalha
+=defineCorrente			tab4 '3'	'C'
+=deturpar				tab4  5							OK
+=verificar				tab4  1 						EncontrouFalha
+
+=criarTabuleiro    		tab5  							OK
+=verificar				tab5  0 						NaoEncontrouFalha
+=defineCorrente			tab5 '3'	'C'
+=deturpar				tab5  6							OK
+=verificar				tab5  2 						EncontrouFalha
+
+=criarTabuleiro    		tab6  							OK
+=verificar				tab6  0 						NaoEncontrouFalha
+=defineCorrente			tab6 '3'	'C'
+=deturpar				tab6  7							OK
+=verificar				tab6  1 						EncontrouFalha
+
+=criarTabuleiro    		tab7  							OK
+=verificar				tab7  0 						NaoEncontrouFalha
+=defineCorrente			tab7 '3'	'C'
+=deturpar				tab7  8							OK
+=verificar				tab7  1 						EncontrouFalha
+
+=criarTabuleiro    		tab8  							OK
+=verificar				tab8  0 						NaoEncontrouFalha
+=defineCorrente			tab8 '3'	'C'
+=deturpar				tab8  9							OK
+=verificar				tab8  1 						EncontrouFalha
+
+=criarTabuleiro    		tab9  							OK
+=verificar				tab9  0 						NaoEncontrouFalha
+=defineCorrente			tab9 '3'	'C'
+=deturpar				tab9  9							OK
+=verificar				tab9  1 						EncontrouFalha
+
+=criarTabuleiro    		tab10 		 					OK
+=verificar				tab10  0 						NaoEncontrouFalha
+=defineCorrente			tab10 '3'	'C'
+=deturpar				tab10  10						OK
+=verificar				tab10  1 						EncontrouFalha
+
+=criarTabuleiro    		tab11  							OK
+=verificar				tab11  0 						NaoEncontrouFalha
+=defineCorrente			tab11 '3'	'C'
+=deturpar				tab11  11						OK
+=verificar				tab11  1 						EncontrouFalha
+
+// ---------------------------------------------
+
+== Gravar contadores
+=registraracumulador "..\\log\\DEBUG\\ACUMULADOR"
+
+// ---------------------------------------------
+
+== Terminar controlar contadores
+=pararcontagem
+=verificarcontagens    0
+
+// ---------------------------------------------
+
+== Terminar contagem
+=terminarcontadores
+

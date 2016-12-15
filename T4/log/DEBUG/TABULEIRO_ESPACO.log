@@ -1,0 +1,37 @@
+
+!!! Inicio dos testes
+!!!      Construto sob teste: ..\bin\TRAB4-8
+!!!      Script de teste:     ..\script\DEBUG\TABULEIRO_ESPACO.script
+
+!!!    0  Linha:     1  // Script: TABULEIRO_ESPACO.SCRIPT 
+!!!    0  Linha:     2  // Autores: Ian Albuquerque, Victor Augusto 
+!!!    0  Linha:     3  // Data: 15/dez/2016 
+!!!    0  Linha:     4  // 
+!!!    0  Linha:     5  // --------------------------------------------- 
+    7  == Inicializar Constantes
+!!!    0  Linha:    16  // --------------------------------------------- 
+   18  == Inicializar valores
+!!!    0  Linha:    22  // --------------------------------------------- 
+   24  == Controlar vazamento de memoria
+>>>    1  Linha:    27  Número de espaços alocados errado. Deveria ser: 155  É: 539
+<<<    0  Linha:    28  Falha esperada foi recuperada. 
+>>>    1  Linha:    31  Número de espaços alocados errado. Deveria ser: 310  É: 1080
+<<<    0  Linha:    32  Falha esperada foi recuperada. 
+>>>    1  Linha:    34  Número de espaços alocados errado. Deveria ser: 155  É: 806
+<<<    0  Linha:    35  Falha esperada foi recuperada. 
+>>>    1  Linha:    37  Número de espaços alocados errado. Deveria ser: 157  É: 944
+<<<    0  Linha:    38  Falha esperada foi recuperada. 
+>>>    1  Linha:    40  Número de espaços alocados errado. Deveria ser: 157  É: 1088
+<<<    0  Linha:    41  Falha esperada foi recuperada. 
+>>>    1  Linha:    43  Número de espaços alocados errado. Deveria ser: 0  É: 814
+<<<    0  Linha:    44  Falha esperada foi recuperada. 
+
+!!! Número de linhas lidas:          44
+!!! Número de casos de teste:         3
+!!! Número comandos corretos:        17
+!!! Número de falhas encontradas:     0
+
+!!! Não foram encontrados problemas
+
+
+!!! Numero de espacos ainda alocados: 814

@@ -1,26 +1,21 @@
-Data	   Horas Trabalhadas	 Tipo Tarefa	 		                        		Descrição da Tarefa Realizada
-03/10/16   1			         Projetar	 		                                    Verificar os testes que faltam para cobrir todos os casos no 																																						módulo lista
-04/10/16   15min                 Especificar as funções                                 Decidir as funções para o módulo lista
-04/10/16   1                     Revisar código                                         Verificar a implementação do módulo lista para os requisitos do 																																					trabalho 2
-04/10/16   2                     Codificar módulo                                 		Implementar no módulo lista as funções que faltavam, remover as 																																					desnecessárias e modificar as existentes
-04/10/16   30min                 Revisar código do módulo                               Verificar no TESTLIS.C o que precisaria ser alterado para a nova 																						 															lista
-04/10/16   30min                 Planejar testes                                 		Planejar os novos testes para a lista
-04/10/16   2                     Codificar módulo                                       Mudar os testes do TESTLIS.C para nova lista
-05/10/16   1                     Diagnosticar e corrigir os problemas encontrados       Corrigir diversos erros no TESTLIS.C vinculados ao retorno de 																																						parâmetros por referência
-05/10/16   1                     Redigir Script de teste                                Alterar os testes do módulo de lista
-05/10/16   1                     Projetar				                                Projetar o módulo peça
-05/10/16   30min                 Especificar as funções				                    Especificar as funcões do módulo peça
-05/10/16   2                     Codificar módulo                                 		Implementar o módulo peça
-06/10/16   2                     Codificar módulo                                 		Implementar os testes do módulo peça
-06/10/16   30min                 Redigir Script de teste                                Redigir os scripts de teste para o módulo peça
-06/10/16   30min                 Diagnosticar e corrigir os problemas encontrados       Corrigir módulo peça, para armazenar char no lugar de string
-06/10/16   30min                 Revisar especificações                                 Revisar o enunciado do trabalho para montar a entrega final
-10/10/16   1					 Diagnosticar e corrigir os problemas encontrados		Corrigir o teste do módulo peça
-10/10/16   30min				 Redigir Script de teste 								Correção do script de teste do módulo peça
-11/10/16   2					 Codificar módulo										Implementar os testes do módulo casa
-11/10/16   1					 Redigir Script de teste 								Redigir os scripts de teste do módulo casa
-11/10/16   1					 Diagnosticar e corrigir os problemas encontrados		Corrigir os problemas apontados pelo teste no módulo casa
-11/10/16   2					 Codificar módulo										Adição de novas funções no módulo casa
-12/10/16   1					 Codificar módulo										Adição de novos testes na casa
-12/10/16   1					 Redigir Script de teste 								Redigir os scripts de teste para as novas funções do módulo casa
-16/10/16   1					 Revisas Especificações 								Verificar as documentações dos módulos casa, peça e lista
+Data       Horas Trabalhadas     Tipo Tarefa                                            DescriÃ§Ã£o da Tarefa Realizada
+
+08/12/16   30min                 Estudar                                                Entender o enunciado e tudo que precisa ser feito para o trabalho.
+08/12/16   30min                 Revisar cÃ³digo                                         Revisar o mÃ³dulo tabuleiro e anotar todas as mudanÃ§as que devem ser feitas para
+                                                                                        tornÃ¡-lo dinÃ¢mico.
+08/12/16   2h30min               Codificar mÃ³dulo                                       Modificar o mÃ³dulo tabuleiro de estÃ¡tico para dinÃ¢mico.
+10/12/16   1h30min               Estudar                                                Entender os mÃ³dulos conta.h e cespdin.h por completo.
+10/12/16   1h30min               Codificar mÃ³dulo                                       Colocar contadores nas arestas do mÃ³dulo tabuleiro.
+10/12/16   30min                 Projetar                                               Preparar os arquivos de compilaÃ§Ã£o para modo debug nos mÃ³dulos necessÃ¡rios.
+11/12/16   1h30min               Diagnosticar e corrigir os problemas encontrados       Corrigir problemas na transformaÃ§Ã£o do mÃ³dulo tabuleiro de estÃ¡tico para dinÃ¢mico.
+11/12/16   2h30min               Projetar                                               Discutir entre os membros do grupo as melhores estratÃ©gias para o mÃ³dulo autoverificÃ¡vel.
+12/12/16   1h                    Codificar mÃ³dulo                                       Reorganizar os contadores do mÃ³dulo tabuleiro dado as novas informaÃ§Ãµes e dÃºvidas
+                                                                                        tiradas em sala de aula.
+12/12/16   30min                 Estudar                                                Revisar o mÃ³dulo cespdin para utilizÃ¡-lo corretamente.
+13/12/16   30min                 Revisar cÃ³digo                                         Verificar as funÃ§Ãµes de deturpaÃ§Ã£o criadas no mÃ³dulo tabuleiro.
+13/12/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir as funÃ§Ãµes de deturpaÃ§Ã£o do mÃ³dulo tabuleiro.
+14/12/16   30min                 Diagnosticar e corrigir os problemas encontrados       Verificar e resolver o motivo do cespdin nÃ£o funcionar como esperado.
+14/12/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir falhas que levavam o mÃ³dulo tabuleiro a nao compilar como debug.
+15/12/16   2h                    Diagnosticar e corrigir os problemas encontrados       Corrigir falhas nas funÃ§Ãµes de verificaÃ§Ã£o dos mÃ³dulos lista e tabuleiro.
+15/12/16   1h                    Redigir scripts de teste                               Criar os testes de deturpaÃ§Ã£o para o mÃ³dulo tabuleiro.
+15/12/16   30min                 Redigir scripts de teste                               Criar os testes de controle de vazamento de memÃ³ria para o mÃ³dulo tabuleiro.

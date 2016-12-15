@@ -1,0 +1,55 @@
+L_OR 
+	L_AND
+		P_VAZ D
+		L_AND
+			P_IGUAL
+				F_SUB V_DIM 0 D V_DIM 0 A
+				V_NUM 0
+			P_IGUAL
+				F_SUB V_DIM 1 D V_DIM 1 A
+				V_SIG 0
+L_OR 
+	L_AND
+		L_AND
+			P_VAZ D
+			L_OR
+				L_AND
+					P_IGUAL
+						V_SIG 0
+						V_NUM 1
+					P_IGUAL
+						V_DIM 1 A
+						V_NUM 1
+				L_AND
+					P_IGUAL
+						V_SIG 0
+						V_NUM -1
+					P_IGUAL
+						V_DIM 1 A
+						V_NUM 6
+		L_AND
+			P_IGUAL
+				F_SUB V_DIM 0 D V_DIM 0 A
+				V_NUM 0
+			P_IGUAL
+				F_SUB V_DIM 1 D V_DIM 1 A
+				F_MUL V_SIG 0 V_NUM 2			 
+L_OR 
+	L_AND
+		P_INI D
+		L_AND
+			P_IGUAL
+				F_SUB V_DIM 0 D V_DIM 0 A
+				V_NUM 1
+			P_IGUAL
+				F_SUB V_DIM 1 D V_DIM 1 A
+				V_SIG 0 
+	L_AND
+		P_INI D
+		L_AND
+			P_IGUAL
+				F_SUB V_DIM 0 D V_DIM 0 A
+				V_NUM -1
+			P_IGUAL
+				F_SUB V_DIM 1 D V_DIM 1 A
+				V_SIG 0 

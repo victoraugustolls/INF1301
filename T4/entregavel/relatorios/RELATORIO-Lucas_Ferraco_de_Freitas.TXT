@@ -15,38 +15,8 @@
 % - realizar os testes
 % - diagnosticar e corrigir os problemas encontrados
 
-03/10/2016; 0.5 hora ; estudar; Estudei o enunciado mais uma vez.
+08/12/2016; 2 horas ; estudar e projetar; Estudei o enunciado do quarto trabalho e modifiquei os exemplos físicos para nosso tabuleiro auto-verificável.
 
-03/10/2016; 0.5 hora ; revisar projetos; Revisei em parte o módulo lista para ver se atendia ao enunciado do T2.
+08/12/2016; 1 hora ; projetar; Reestruturamos como fazer o tabuleiro ser auto-verificável e modifiquei os exemplos físicos para nosso tabuleiro auto-verificável.
 
-03/10/2016; 1.5 horas ; projetar; Comecei a projetar o módulo TABULEIRO (terminei o TABULEIRO.H e comecei o TABULEIRO.C).
-
-04/10/2016; 0.5 hora ; revisar especificações; Revisei o módulo LISTA.C junto com o Victor Augusto.
-
-04/10/2016; 1 hora ; projetar e revisar código do módulo; Projetei o módulo CASA (fiz o CASA.H) e revisei o TABULEIRO.H.
-
-05/10/2016; 2.5 horas ; projetar e revisar código do módulo; Terminei o TABULEIRO.C e revisei os códigos de CASA.H e TABULEIRO.H.
-
-05/10/2016; 1 hora ; estudar e projetar; Comecei a projetar o TESTTAB.C estudando o TESTLIS.C.
-
-05/10/2016; 3 horas ; projetar; Continuei a projetar o TESTTAB.C.
-
-05/10/2016; 1 hora ; redigir script de teste; Projetei o script de testes do módulo Tabuleiro (TESTE_TABULEIRO.SCRIPT).
-
-05/10/2016; 1.5 horas ; realizar os testes; Compilei e rodei os testes dos módulos PECA e TABULEIRO.
-
-10/10/2016; 1 hora ; revisar código do módulo; Corrigi alguns erros no TESTTAB.C.
-
-10/10/2016; 2 horas ; codificar e revisar código do módulo; Corrigi erros no TABULEIRO.C e CASA.H e comecei a implementar o CASA.C.
-
-10/10/2016; 1 hora ; codificar e revisar código do módulo; Conformei o módulo TABULEIRO com ‘nomePeca’ ao invés de ‘idPeca’ e continuei a implementar o CASA.C.
-
-11/10/2016; 3 horas ; codificar e revisar código do módulo; Terminei de implementar o CASA.C, alterando o CASA.H ao adicionar funções de modificação das listas de ameaçantes/ameaçados.
-
-12/10/2016; 3 horas ; codificar e revisar código do módulo; Revisei e consertei o módulo TABULEIRO, faltando apenas terminar de implementar a função de mover uma peça.
-
-12/10/2016; 2 horas ; codificar e revisar código do módulo; Implementei a função de mover uma peça no TABULEIRO.C e revisei a documentação de outros módulos.
-
-12/10/2016; 2 horas ; codificar e revisar código do módulo; Revisei e consertei o TESTTAB.C, terminando sua implementação.
-
-12/10/2016; 4 horas ; realizar testes e revisar código do módulo; Testei e consertei o TABULEIRO por completo.
+11/12/2016; 4h ; projetar; Codifiquei as funções de deturpação do modulo tabuleiro e as funções de pegar ponteiro do proximo elemento e do anterior ao atual na lista.
