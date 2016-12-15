@@ -10,12 +10,9 @@
 	erro-tamanho-lista-de-casas
 	erro-tipo-lista-de-casas
 
-	erro-lista-cabeca-corrompida
 	erro-lista-vazia-inconsistente
 	erro-lista-circular
-	erro-lista-magic-number-errado
 	erro-lista-encadeamento
-	erro-lista-valor-corrente-nulo
 	erro-lista-tipo-valor-incoerente
 	erro-lista-corrente-fora-lista
 	erro-lista-numero-elementos-incorreto
