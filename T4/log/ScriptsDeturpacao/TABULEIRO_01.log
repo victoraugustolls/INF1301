@@ -13,24 +13,712 @@
    17  == Inicializar valores
 !!!    0  Linha:    21  // --------------------------------------------- 
    23  == Teste de Criacao de Tabuleiro
->>>    1  Linha:    24  Condicao de retorno errada ao criar tabuleiro. Deveria ser: 0  É: 8
->>>    2  Linha:    25  Não é comando recuperar:  =deturpar				tab0  1			'C'	'3'		OK
->>>    3  Linha:    26  Comando de teste ignorado:  =deturpar				tab0  2			'C'	'3'		OK
->>>    4  Linha:    27  Comando de teste ignorado:  =deturpar				tab0  3			'C'	'3'		OK
->>>    5  Linha:    28  Comando de teste ignorado:  =deturpar				tab0  4			'C'	'3'		OK
->>>    6  Linha:    29  Comando de teste ignorado:  =deturpar				tab0  5			'C'	'3'		OK
->>>    7  Linha:    30  Comando de teste ignorado:  =deturpar				tab0  6			'C'	'3'		OK
->>>    8  Linha:    31  Comando de teste ignorado:  =deturpar				tab0  7			'C'	'3'		OK
->>>    9  Linha:    32  Comando de teste ignorado:  =deturpar				tab0  8			'C'	'3'		OK
->>>   10  Linha:    33  Comando de teste ignorado:  =deturpar				tab0  9			'C'	'3'		OK
->>>   11  Linha:    34  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+!!!    0  Linha:    25  //=deturpar				tab0  1			'C'	'3'		OK 
+!!!    0  Linha:    26  //=deturpar				tab0  2			'C'	'3'		OK 
+!!!    0  Linha:    27  //=deturpar				tab0  3			'C'	'3'		OK 
+!!!    0  Linha:    28  //=deturpar				tab0  4			'C'	'3'		OK 
+!!!    0  Linha:    29  //=deturpar				tab0  5			'C'	'3'		OK 
+!!!    0  Linha:    30  //=deturpar				tab0  6			'C'	'3'		OK 
+!!!    0  Linha:    31  //=deturpar				tab0  7			'C'	'3'		OK 
+!!!    0  Linha:    32  //=deturpar				tab0  8			'C'	'3'		OK 
+!!!    0  Linha:    33  //=deturpar				tab0  9			'C'	'3'		OK 
+ed>    1  Linha:    34  Encadeamento antes está errado. 
+ed>    2  Linha:    34  Encadeamento após está errado. 
+ed>    3  Linha:    34  Controle de extravasão antes está errado. 
+ed>    4  Linha:    34  Controle de extravasão após está errado. 
+ed>    5  Linha:    34  Espaco de dados esta corrompido.  Id: 17  pValor: 02C2BB5A
+
+     Espaco de dados, id:    17  pValor: 02C2BB5A  hexa: 5A BB C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>    6  Linha:    34  Encadeamento antes está errado. 
+ed>    7  Linha:    34  Encadeamento após está errado. 
+ed>    8  Linha:    34  Controle de extravasão antes está errado. 
+ed>    9  Linha:    34  Controle de extravasão após está errado. 
+ed>   10  Linha:    34  Espaco de dados esta corrompido.  Id: 23  pValor: 02C2B6DA
+
+     Espaco de dados, id:    23  pValor: 02C2B6DA  hexa: DA B6 C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   11  Linha:    34  Encadeamento antes está errado. 
+ed>   12  Linha:    34  Encadeamento após está errado. 
+ed>   13  Linha:    34  Controle de extravasão antes está errado. 
+ed>   14  Linha:    34  Controle de extravasão após está errado. 
+ed>   15  Linha:    34  Espaco de dados esta corrompido.  Id: 29  pValor: 02C2B61A
+
+     Espaco de dados, id:    29  pValor: 02C2B61A  hexa: 1A B6 C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   16  Linha:    34  Encadeamento antes está errado. 
+ed>   17  Linha:    34  Encadeamento após está errado. 
+ed>   18  Linha:    34  Controle de extravasão antes está errado. 
+ed>   19  Linha:    34  Controle de extravasão após está errado. 
+ed>   20  Linha:    34  Espaco de dados esta corrompido.  Id: 35  pValor: 02C2B91A
+
+     Espaco de dados, id:    35  pValor: 02C2B91A  hexa: 1A B9 C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   21  Linha:    34  Encadeamento antes está errado. 
+ed>   22  Linha:    34  Encadeamento após está errado. 
+ed>   23  Linha:    34  Controle de extravasão antes está errado. 
+ed>   24  Linha:    34  Controle de extravasão após está errado. 
+ed>   25  Linha:    34  Espaco de dados esta corrompido.  Id: 41  pValor: 02C2E31A
+
+     Espaco de dados, id:    41  pValor: 02C2E31A  hexa: 1A E3 C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   26  Linha:    34  Encadeamento antes está errado. 
+ed>   27  Linha:    34  Encadeamento após está errado. 
+ed>   28  Linha:    34  Controle de extravasão antes está errado. 
+ed>   29  Linha:    34  Controle de extravasão após está errado. 
+ed>   30  Linha:    34  Espaco de dados esta corrompido.  Id: 47  pValor: 02C2E1FA
+
+     Espaco de dados, id:    47  pValor: 02C2E1FA  hexa: FA E1 C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   31  Linha:    34  Encadeamento antes está errado. 
+ed>   32  Linha:    34  Encadeamento após está errado. 
+ed>   33  Linha:    34  Controle de extravasão antes está errado. 
+ed>   34  Linha:    34  Controle de extravasão após está errado. 
+ed>   35  Linha:    34  Espaco de dados esta corrompido.  Id: 56  pValor: 02C2E0DA
+
+     Espaco de dados, id:    56  pValor: 02C2E0DA  hexa: DA E0 C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   36  Linha:    34  Encadeamento antes está errado. 
+ed>   37  Linha:    34  Encadeamento após está errado. 
+ed>   38  Linha:    34  Controle de extravasão antes está errado. 
+ed>   39  Linha:    34  Controle de extravasão após está errado. 
+ed>   40  Linha:    34  Espaco de dados esta corrompido.  Id: 62  pValor: 02C2D5FA
+
+     Espaco de dados, id:    62  pValor: 02C2D5FA  hexa: FA D5 C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   41  Linha:    34  Encadeamento antes está errado. 
+ed>   42  Linha:    34  Encadeamento após está errado. 
+ed>   43  Linha:    34  Controle de extravasão antes está errado. 
+ed>   44  Linha:    34  Controle de extravasão após está errado. 
+ed>   45  Linha:    34  Espaco de dados esta corrompido.  Id: 68  pValor: 02C2DADA
+
+     Espaco de dados, id:    68  pValor: 02C2DADA  hexa: DA DA C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   46  Linha:    34  Encadeamento antes está errado. 
+ed>   47  Linha:    34  Encadeamento após está errado. 
+ed>   48  Linha:    34  Controle de extravasão antes está errado. 
+ed>   49  Linha:    34  Controle de extravasão após está errado. 
+ed>   50  Linha:    34  Espaco de dados esta corrompido.  Id: 74  pValor: 02C2D9BA
+
+     Espaco de dados, id:    74  pValor: 02C2D9BA  hexa: BA D9 C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   51  Linha:    34  Encadeamento antes está errado. 
+ed>   52  Linha:    34  Encadeamento após está errado. 
+ed>   53  Linha:    34  Controle de extravasão antes está errado. 
+ed>   54  Linha:    34  Controle de extravasão após está errado. 
+ed>   55  Linha:    34  Espaco de dados esta corrompido.  Id: 80  pValor: 02C2DCBA
+
+     Espaco de dados, id:    80  pValor: 02C2DCBA  hexa: BA DC C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   56  Linha:    34  Encadeamento antes está errado. 
+ed>   57  Linha:    34  Encadeamento após está errado. 
+ed>   58  Linha:    34  Controle de extravasão antes está errado. 
+ed>   59  Linha:    34  Controle de extravasão após está errado. 
+ed>   60  Linha:    34  Espaco de dados esta corrompido.  Id: 86  pValor: 02C33832
+
+     Espaco de dados, id:    86  pValor: 02C33832  hexa: 32 38 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   61  Linha:    34  Encadeamento antes está errado. 
+ed>   62  Linha:    34  Encadeamento após está errado. 
+ed>   63  Linha:    34  Controle de extravasão antes está errado. 
+ed>   64  Linha:    34  Controle de extravasão após está errado. 
+ed>   65  Linha:    34  Espaco de dados esta corrompido.  Id: 92  pValor: 02C334D2
+
+     Espaco de dados, id:    92  pValor: 02C334D2  hexa: D2 34 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   66  Linha:    34  Encadeamento antes está errado. 
+ed>   67  Linha:    34  Encadeamento após está errado. 
+ed>   68  Linha:    34  Controle de extravasão antes está errado. 
+ed>   69  Linha:    34  Controle de extravasão após está errado. 
+ed>   70  Linha:    34  Espaco de dados esta corrompido.  Id: 98  pValor: 02C32BD2
+
+     Espaco de dados, id:    98  pValor: 02C32BD2  hexa: D2 2B C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   71  Linha:    34  Encadeamento antes está errado. 
+ed>   72  Linha:    34  Encadeamento após está errado. 
+ed>   73  Linha:    34  Controle de extravasão antes está errado. 
+ed>   74  Linha:    34  Controle de extravasão após está errado. 
+ed>   75  Linha:    34  Espaco de dados esta corrompido.  Id: 54  pValor: 02C2CCAA
+
+     Espaco de dados, id:    54  pValor: 02C2CCAA  hexa: AA CC C2 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 40  Ativo  Linha onde alocou: 148  Arquivo: ..\..\src\LISTA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   76  Linha:    34  Encadeamento antes está errado. 
+ed>   77  Linha:    34  Encadeamento após está errado. 
+ed>   78  Linha:    34  Controle de extravasão antes está errado. 
+ed>   79  Linha:    34  Controle de extravasão após está errado. 
+ed>   80  Linha:    34  Espaco de dados esta corrompido.  Id: 107  pValor: 02C32DB2
+
+     Espaco de dados, id:   107  pValor: 02C32DB2  hexa: B2 2D C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   81  Linha:    34  Encadeamento antes está errado. 
+ed>   82  Linha:    34  Encadeamento após está errado. 
+ed>   83  Linha:    34  Controle de extravasão antes está errado. 
+ed>   84  Linha:    34  Controle de extravasão após está errado. 
+ed>   85  Linha:    34  Espaco de dados esta corrompido.  Id: 113  pValor: 02C32C92
+
+     Espaco de dados, id:   113  pValor: 02C32C92  hexa: 92 2C C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   86  Linha:    34  Encadeamento antes está errado. 
+ed>   87  Linha:    34  Encadeamento após está errado. 
+ed>   88  Linha:    34  Controle de extravasão antes está errado. 
+ed>   89  Linha:    34  Controle de extravasão após está errado. 
+ed>   90  Linha:    34  Espaco de dados esta corrompido.  Id: 119  pValor: 02C33112
+
+     Espaco de dados, id:   119  pValor: 02C33112  hexa: 12 31 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   91  Linha:    34  Encadeamento antes está errado. 
+ed>   92  Linha:    34  Encadeamento após está errado. 
+ed>   93  Linha:    34  Controle de extravasão antes está errado. 
+ed>   94  Linha:    34  Controle de extravasão após está errado. 
+ed>   95  Linha:    34  Espaco de dados esta corrompido.  Id: 125  pValor: 02C32B12
+
+     Espaco de dados, id:   125  pValor: 02C32B12  hexa: 12 2B C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>   96  Linha:    34  Encadeamento antes está errado. 
+ed>   97  Linha:    34  Encadeamento após está errado. 
+ed>   98  Linha:    34  Controle de extravasão antes está errado. 
+ed>   99  Linha:    34  Controle de extravasão após está errado. 
+ed>  100  Linha:    34  Espaco de dados esta corrompido.  Id: 131  pValor: 02C352A2
+
+     Espaco de dados, id:   131  pValor: 02C352A2  hexa: A2 52 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  101  Linha:    34  Encadeamento antes está errado. 
+ed>  102  Linha:    34  Encadeamento após está errado. 
+ed>  103  Linha:    34  Controle de extravasão antes está errado. 
+ed>  104  Linha:    34  Controle de extravasão após está errado. 
+ed>  105  Linha:    34  Espaco de dados esta corrompido.  Id: 137  pValor: 02C35182
+
+     Espaco de dados, id:   137  pValor: 02C35182  hexa: 82 51 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  106  Linha:    34  Encadeamento antes está errado. 
+ed>  107  Linha:    34  Encadeamento após está errado. 
+ed>  108  Linha:    34  Controle de extravasão antes está errado. 
+ed>  109  Linha:    34  Controle de extravasão após está errado. 
+ed>  110  Linha:    34  Espaco de dados esta corrompido.  Id: 143  pValor: 02C34E82
+
+     Espaco de dados, id:   143  pValor: 02C34E82  hexa: 82 4E C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  111  Linha:    34  Encadeamento antes está errado. 
+ed>  112  Linha:    34  Encadeamento após está errado. 
+ed>  113  Linha:    34  Controle de extravasão antes está errado. 
+ed>  114  Linha:    34  Controle de extravasão após está errado. 
+ed>  115  Linha:    34  Espaco de dados esta corrompido.  Id: 149  pValor: 02C34B82
+
+     Espaco de dados, id:   149  pValor: 02C34B82  hexa: 82 4B C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  116  Linha:    34  Encadeamento antes está errado. 
+ed>  117  Linha:    34  Encadeamento após está errado. 
+ed>  118  Linha:    34  Controle de extravasão antes está errado. 
+ed>  119  Linha:    34  Controle de extravasão após está errado. 
+ed>  120  Linha:    34  Espaco de dados esta corrompido.  Id: 105  pValor: 02C31F4A
+
+     Espaco de dados, id:   105  pValor: 02C31F4A  hexa: 4A 1F C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 40  Ativo  Linha onde alocou: 148  Arquivo: ..\..\src\LISTA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  121  Linha:    34  Encadeamento antes está errado. 
+ed>  122  Linha:    34  Encadeamento após está errado. 
+ed>  123  Linha:    34  Controle de extravasão antes está errado. 
+ed>  124  Linha:    34  Controle de extravasão após está errado. 
+ed>  125  Linha:    34  Espaco de dados esta corrompido.  Id: 158  pValor: 02C35482
+
+     Espaco de dados, id:   158  pValor: 02C35482  hexa: 82 54 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  126  Linha:    34  Encadeamento antes está errado. 
+ed>  127  Linha:    34  Encadeamento após está errado. 
+ed>  128  Linha:    34  Controle de extravasão antes está errado. 
+ed>  129  Linha:    34  Controle de extravasão após está errado. 
+ed>  130  Linha:    34  Espaco de dados esta corrompido.  Id: 164  pValor: 02C355A2
+
+     Espaco de dados, id:   164  pValor: 02C355A2  hexa: A2 55 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  131  Linha:    34  Encadeamento antes está errado. 
+ed>  132  Linha:    34  Encadeamento após está errado. 
+ed>  133  Linha:    34  Controle de extravasão antes está errado. 
+ed>  134  Linha:    34  Controle de extravasão após está errado. 
+ed>  135  Linha:    34  Espaco de dados esta corrompido.  Id: 170  pValor: 02C35722
+
+     Espaco de dados, id:   170  pValor: 02C35722  hexa: 22 57 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  136  Linha:    34  Encadeamento antes está errado. 
+ed>  137  Linha:    34  Encadeamento após está errado. 
+ed>  138  Linha:    34  Controle de extravasão antes está errado. 
+ed>  139  Linha:    34  Controle de extravasão após está errado. 
+ed>  140  Linha:    34  Espaco de dados esta corrompido.  Id: 176  pValor: 02C37E22
+
+     Espaco de dados, id:   176  pValor: 02C37E22  hexa: 22 7E C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  141  Linha:    34  Encadeamento antes está errado. 
+ed>  142  Linha:    34  Encadeamento após está errado. 
+ed>  143  Linha:    34  Controle de extravasão antes está errado. 
+ed>  144  Linha:    34  Controle de extravasão após está errado. 
+ed>  145  Linha:    34  Espaco de dados esta corrompido.  Id: 182  pValor: 02C37B82
+
+     Espaco de dados, id:   182  pValor: 02C37B82  hexa: 82 7B C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  146  Linha:    34  Encadeamento antes está errado. 
+ed>  147  Linha:    34  Encadeamento após está errado. 
+ed>  148  Linha:    34  Controle de extravasão antes está errado. 
+ed>  149  Linha:    34  Controle de extravasão após está errado. 
+ed>  150  Linha:    34  Espaco de dados esta corrompido.  Id: 188  pValor: 02C38182
+
+     Espaco de dados, id:   188  pValor: 02C38182  hexa: 82 81 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  151  Linha:    34  Encadeamento antes está errado. 
+ed>  152  Linha:    34  Encadeamento após está errado. 
+ed>  153  Linha:    34  Controle de extravasão antes está errado. 
+ed>  154  Linha:    34  Controle de extravasão após está errado. 
+ed>  155  Linha:    34  Espaco de dados esta corrompido.  Id: 194  pValor: 02C37A02
+
+     Espaco de dados, id:   194  pValor: 02C37A02  hexa: 02 7A C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  156  Linha:    34  Encadeamento antes está errado. 
+ed>  157  Linha:    34  Encadeamento após está errado. 
+ed>  158  Linha:    34  Controle de extravasão antes está errado. 
+ed>  159  Linha:    34  Controle de extravasão após está errado. 
+ed>  160  Linha:    34  Espaco de dados esta corrompido.  Id: 200  pValor: 02C38062
+
+     Espaco de dados, id:   200  pValor: 02C38062  hexa: 62 80 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  161  Linha:    34  Encadeamento antes está errado. 
+ed>  162  Linha:    34  Encadeamento após está errado. 
+ed>  163  Linha:    34  Controle de extravasão antes está errado. 
+ed>  164  Linha:    34  Controle de extravasão após está errado. 
+ed>  165  Linha:    34  Espaco de dados esta corrompido.  Id: 156  pValor: 02C30FCA
+
+     Espaco de dados, id:   156  pValor: 02C30FCA  hexa: CA 0F C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 40  Ativo  Linha onde alocou: 148  Arquivo: ..\..\src\LISTA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  166  Linha:    34  Encadeamento antes está errado. 
+ed>  167  Linha:    34  Encadeamento após está errado. 
+ed>  168  Linha:    34  Controle de extravasão antes está errado. 
+ed>  169  Linha:    34  Controle de extravasão após está errado. 
+ed>  170  Linha:    34  Espaco de dados esta corrompido.  Id: 209  pValor: 02C38782
+
+     Espaco de dados, id:   209  pValor: 02C38782  hexa: 82 87 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  171  Linha:    34  Encadeamento antes está errado. 
+ed>  172  Linha:    34  Encadeamento após está errado. 
+ed>  173  Linha:    34  Controle de extravasão antes está errado. 
+ed>  174  Linha:    34  Controle de extravasão após está errado. 
+ed>  175  Linha:    34  Espaco de dados esta corrompido.  Id: 215  pValor: 02C387E2
+
+     Espaco de dados, id:   215  pValor: 02C387E2  hexa: E2 87 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  176  Linha:    34  Encadeamento antes está errado. 
+ed>  177  Linha:    34  Encadeamento após está errado. 
+ed>  178  Linha:    34  Controle de extravasão antes está errado. 
+ed>  179  Linha:    34  Controle de extravasão após está errado. 
+ed>  180  Linha:    34  Espaco de dados esta corrompido.  Id: 221  pValor: 02C3965A
+
+     Espaco de dados, id:   221  pValor: 02C3965A  hexa: 5A 96 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  181  Linha:    34  Encadeamento antes está errado. 
+ed>  182  Linha:    34  Encadeamento após está errado. 
+ed>  183  Linha:    34  Controle de extravasão antes está errado. 
+ed>  184  Linha:    34  Controle de extravasão após está errado. 
+ed>  185  Linha:    34  Espaco de dados esta corrompido.  Id: 227  pValor: 02C399BA
+
+     Espaco de dados, id:   227  pValor: 02C399BA  hexa: BA 99 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  186  Linha:    34  Encadeamento antes está errado. 
+ed>  187  Linha:    34  Encadeamento após está errado. 
+ed>  188  Linha:    34  Controle de extravasão antes está errado. 
+ed>  189  Linha:    34  Controle de extravasão após está errado. 
+ed>  190  Linha:    34  Espaco de dados esta corrompido.  Id: 233  pValor: 02C3929A
+
+     Espaco de dados, id:   233  pValor: 02C3929A  hexa: 9A 92 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  191  Linha:    34  Encadeamento antes está errado. 
+ed>  192  Linha:    34  Encadeamento após está errado. 
+ed>  193  Linha:    34  Controle de extravasão antes está errado. 
+ed>  194  Linha:    34  Controle de extravasão após está errado. 
+ed>  195  Linha:    34  Espaco de dados esta corrompido.  Id: 239  pValor: 02C3941A
+
+     Espaco de dados, id:   239  pValor: 02C3941A  hexa: 1A 94 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  196  Linha:    34  Encadeamento antes está errado. 
+ed>  197  Linha:    34  Encadeamento após está errado. 
+ed>  198  Linha:    34  Controle de extravasão antes está errado. 
+ed>  199  Linha:    34  Controle de extravasão após está errado. 
+ed>  200  Linha:    34  Espaco de dados esta corrompido.  Id: 245  pValor: 02C392FA
+
+     Espaco de dados, id:   245  pValor: 02C392FA  hexa: FA 92 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  201  Linha:    34  Encadeamento antes está errado. 
+ed>  202  Linha:    34  Encadeamento após está errado. 
+ed>  203  Linha:    34  Controle de extravasão antes está errado. 
+ed>  204  Linha:    34  Controle de extravasão após está errado. 
+ed>  205  Linha:    34  Espaco de dados esta corrompido.  Id: 251  pValor: 02C38FFA
+
+     Espaco de dados, id:   251  pValor: 02C38FFA  hexa: FA 8F C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  206  Linha:    34  Encadeamento antes está errado. 
+ed>  207  Linha:    34  Encadeamento após está errado. 
+ed>  208  Linha:    34  Controle de extravasão antes está errado. 
+ed>  209  Linha:    34  Controle de extravasão após está errado. 
+ed>  210  Linha:    34  Espaco de dados esta corrompido.  Id: 207  pValor: 02C36C1A
+
+     Espaco de dados, id:   207  pValor: 02C36C1A  hexa: 1A 6C C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 40  Ativo  Linha onde alocou: 148  Arquivo: ..\..\src\LISTA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  211  Linha:    34  Encadeamento antes está errado. 
+ed>  212  Linha:    34  Encadeamento após está errado. 
+ed>  213  Linha:    34  Controle de extravasão antes está errado. 
+ed>  214  Linha:    34  Controle de extravasão após está errado. 
+ed>  215  Linha:    34  Espaco de dados esta corrompido.  Id: 260  pValor: 02C3911A
+
+     Espaco de dados, id:   260  pValor: 02C3911A  hexa: 1A 91 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  216  Linha:    34  Encadeamento antes está errado. 
+ed>  217  Linha:    34  Encadeamento após está errado. 
+ed>  218  Linha:    34  Controle de extravasão antes está errado. 
+ed>  219  Linha:    34  Controle de extravasão após está errado. 
+ed>  220  Linha:    34  Espaco de dados esta corrompido.  Id: 266  pValor: 02C3D8A2
+
+     Espaco de dados, id:   266  pValor: 02C3D8A2  hexa: A2 D8 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  221  Linha:    34  Encadeamento antes está errado. 
+ed>  222  Linha:    34  Encadeamento após está errado. 
+ed>  223  Linha:    34  Controle de extravasão antes está errado. 
+ed>  224  Linha:    34  Controle de extravasão após está errado. 
+ed>  225  Linha:    34  Espaco de dados esta corrompido.  Id: 272  pValor: 02C3D722
+
+     Espaco de dados, id:   272  pValor: 02C3D722  hexa: 22 D7 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  226  Linha:    34  Encadeamento antes está errado. 
+ed>  227  Linha:    34  Encadeamento após está errado. 
+ed>  228  Linha:    34  Controle de extravasão antes está errado. 
+ed>  229  Linha:    34  Controle de extravasão após está errado. 
+ed>  230  Linha:    34  Espaco de dados esta corrompido.  Id: 278  pValor: 02C3D122
+
+     Espaco de dados, id:   278  pValor: 02C3D122  hexa: 22 D1 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  231  Linha:    34  Encadeamento antes está errado. 
+ed>  232  Linha:    34  Encadeamento após está errado. 
+ed>  233  Linha:    34  Controle de extravasão antes está errado. 
+ed>  234  Linha:    34  Controle de extravasão após está errado. 
+ed>  235  Linha:    34  Espaco de dados esta corrompido.  Id: 284  pValor: 02C3D4E2
+
+     Espaco de dados, id:   284  pValor: 02C3D4E2  hexa: E2 D4 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  236  Linha:    34  Encadeamento antes está errado. 
+ed>  237  Linha:    34  Encadeamento após está errado. 
+ed>  238  Linha:    34  Controle de extravasão antes está errado. 
+ed>  239  Linha:    34  Controle de extravasão após está errado. 
+ed>  240  Linha:    34  Espaco de dados esta corrompido.  Id: 290  pValor: 02C3CC42
+
+     Espaco de dados, id:   290  pValor: 02C3CC42  hexa: 42 CC C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  241  Linha:    34  Encadeamento antes está errado. 
+ed>  242  Linha:    34  Encadeamento após está errado. 
+ed>  243  Linha:    34  Controle de extravasão antes está errado. 
+ed>  244  Linha:    34  Controle de extravasão após está errado. 
+ed>  245  Linha:    34  Espaco de dados esta corrompido.  Id: 296  pValor: 02C3CCA2
+
+     Espaco de dados, id:   296  pValor: 02C3CCA2  hexa: A2 CC C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  246  Linha:    34  Encadeamento antes está errado. 
+ed>  247  Linha:    34  Encadeamento após está errado. 
+ed>  248  Linha:    34  Controle de extravasão antes está errado. 
+ed>  249  Linha:    34  Controle de extravasão após está errado. 
+ed>  250  Linha:    34  Espaco de dados esta corrompido.  Id: 302  pValor: 02C3D002
+
+     Espaco de dados, id:   302  pValor: 02C3D002  hexa: 02 D0 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  251  Linha:    34  Encadeamento antes está errado. 
+ed>  252  Linha:    34  Encadeamento após está errado. 
+ed>  253  Linha:    34  Controle de extravasão antes está errado. 
+ed>  254  Linha:    34  Controle de extravasão após está errado. 
+ed>  255  Linha:    34  Espaco de dados esta corrompido.  Id: 258  pValor: 02C3621A
+
+     Espaco de dados, id:   258  pValor: 02C3621A  hexa: 1A 62 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 40  Ativo  Linha onde alocou: 148  Arquivo: ..\..\src\LISTA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  256  Linha:    34  Encadeamento antes está errado. 
+ed>  257  Linha:    34  Encadeamento após está errado. 
+ed>  258  Linha:    34  Controle de extravasão antes está errado. 
+ed>  259  Linha:    34  Controle de extravasão após está errado. 
+ed>  260  Linha:    34  Espaco de dados esta corrompido.  Id: 311  pValor: 02C3E90A
+
+     Espaco de dados, id:   311  pValor: 02C3E90A  hexa: 0A E9 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  261  Linha:    34  Encadeamento antes está errado. 
+ed>  262  Linha:    34  Encadeamento após está errado. 
+ed>  263  Linha:    34  Controle de extravasão antes está errado. 
+ed>  264  Linha:    34  Controle de extravasão após está errado. 
+ed>  265  Linha:    34  Espaco de dados esta corrompido.  Id: 317  pValor: 02C3E7EA
+
+     Espaco de dados, id:   317  pValor: 02C3E7EA  hexa: EA E7 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  266  Linha:    34  Encadeamento antes está errado. 
+ed>  267  Linha:    34  Encadeamento após está errado. 
+ed>  268  Linha:    34  Controle de extravasão antes está errado. 
+ed>  269  Linha:    34  Controle de extravasão após está errado. 
+ed>  270  Linha:    34  Espaco de dados esta corrompido.  Id: 323  pValor: 02C3DF4A
+
+     Espaco de dados, id:   323  pValor: 02C3DF4A  hexa: 4A DF C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  271  Linha:    34  Encadeamento antes está errado. 
+ed>  272  Linha:    34  Encadeamento após está errado. 
+ed>  273  Linha:    34  Controle de extravasão antes está errado. 
+ed>  274  Linha:    34  Controle de extravasão após está errado. 
+ed>  275  Linha:    34  Espaco de dados esta corrompido.  Id: 329  pValor: 02C3E48A
+
+     Espaco de dados, id:   329  pValor: 02C3E48A  hexa: 8A E4 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  276  Linha:    34  Encadeamento antes está errado. 
+ed>  277  Linha:    34  Encadeamento após está errado. 
+ed>  278  Linha:    34  Controle de extravasão antes está errado. 
+ed>  279  Linha:    34  Controle de extravasão após está errado. 
+ed>  280  Linha:    34  Espaco de dados esta corrompido.  Id: 335  pValor: 02C3DFAA
+
+     Espaco de dados, id:   335  pValor: 02C3DFAA  hexa: AA DF C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  281  Linha:    34  Encadeamento antes está errado. 
+ed>  282  Linha:    34  Encadeamento após está errado. 
+ed>  283  Linha:    34  Controle de extravasão antes está errado. 
+ed>  284  Linha:    34  Controle de extravasão após está errado. 
+ed>  285  Linha:    34  Espaco de dados esta corrompido.  Id: 341  pValor: 02C3DD6A
+
+     Espaco de dados, id:   341  pValor: 02C3DD6A  hexa: 6A DD C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  286  Linha:    34  Encadeamento antes está errado. 
+ed>  287  Linha:    34  Encadeamento após está errado. 
+ed>  288  Linha:    34  Controle de extravasão antes está errado. 
+ed>  289  Linha:    34  Controle de extravasão após está errado. 
+ed>  290  Linha:    34  Espaco de dados esta corrompido.  Id: 347  pValor: 02C3E2AA
+
+     Espaco de dados, id:   347  pValor: 02C3E2AA  hexa: AA E2 C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  291  Linha:    34  Encadeamento antes está errado. 
+ed>  292  Linha:    34  Encadeamento após está errado. 
+ed>  293  Linha:    34  Controle de extravasão antes está errado. 
+ed>  294  Linha:    34  Controle de extravasão após está errado. 
+ed>  295  Linha:    34  Espaco de dados esta corrompido.  Id: 353  pValor: 02C40472
+
+     Espaco de dados, id:   353  pValor: 02C40472  hexa: 72 04 C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  296  Linha:    34  Encadeamento antes está errado. 
+ed>  297  Linha:    34  Encadeamento após está errado. 
+ed>  298  Linha:    34  Controle de extravasão antes está errado. 
+ed>  299  Linha:    34  Controle de extravasão após está errado. 
+ed>  300  Linha:    34  Espaco de dados esta corrompido.  Id: 309  pValor: 02C3AC1A
+
+     Espaco de dados, id:   309  pValor: 02C3AC1A  hexa: 1A AC C3 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 40  Ativo  Linha onde alocou: 148  Arquivo: ..\..\src\LISTA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  301  Linha:    34  Encadeamento antes está errado. 
+ed>  302  Linha:    34  Encadeamento após está errado. 
+ed>  303  Linha:    34  Controle de extravasão antes está errado. 
+ed>  304  Linha:    34  Controle de extravasão após está errado. 
+ed>  305  Linha:    34  Espaco de dados esta corrompido.  Id: 362  pValor: 02C402F2
+
+     Espaco de dados, id:   362  pValor: 02C402F2  hexa: F2 02 C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  306  Linha:    34  Encadeamento antes está errado. 
+ed>  307  Linha:    34  Encadeamento após está errado. 
+ed>  308  Linha:    34  Controle de extravasão antes está errado. 
+ed>  309  Linha:    34  Controle de extravasão após está errado. 
+ed>  310  Linha:    34  Espaco de dados esta corrompido.  Id: 368  pValor: 02C40952
+
+     Espaco de dados, id:   368  pValor: 02C40952  hexa: 52 09 C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  311  Linha:    34  Encadeamento antes está errado. 
+ed>  312  Linha:    34  Encadeamento após está errado. 
+ed>  313  Linha:    34  Controle de extravasão antes está errado. 
+ed>  314  Linha:    34  Controle de extravasão após está errado. 
+ed>  315  Linha:    34  Espaco de dados esta corrompido.  Id: 374  pValor: 02C40412
+
+     Espaco de dados, id:   374  pValor: 02C40412  hexa: 12 04 C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  316  Linha:    34  Encadeamento antes está errado. 
+ed>  317  Linha:    34  Encadeamento após está errado. 
+ed>  318  Linha:    34  Controle de extravasão antes está errado. 
+ed>  319  Linha:    34  Controle de extravasão após está errado. 
+ed>  320  Linha:    34  Espaco de dados esta corrompido.  Id: 380  pValor: 02C40652
+
+     Espaco de dados, id:   380  pValor: 02C40652  hexa: 52 06 C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  321  Linha:    34  Encadeamento antes está errado. 
+ed>  322  Linha:    34  Encadeamento após está errado. 
+ed>  323  Linha:    34  Controle de extravasão antes está errado. 
+ed>  324  Linha:    34  Controle de extravasão após está errado. 
+ed>  325  Linha:    34  Espaco de dados esta corrompido.  Id: 386  pValor: 02C40C52
+
+     Espaco de dados, id:   386  pValor: 02C40C52  hexa: 52 0C C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  326  Linha:    34  Encadeamento antes está errado. 
+ed>  327  Linha:    34  Encadeamento após está errado. 
+ed>  328  Linha:    34  Controle de extravasão antes está errado. 
+ed>  329  Linha:    34  Controle de extravasão após está errado. 
+ed>  330  Linha:    34  Espaco de dados esta corrompido.  Id: 392  pValor: 02C40CB2
+
+     Espaco de dados, id:   392  pValor: 02C40CB2  hexa: B2 0C C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  331  Linha:    34  Encadeamento antes está errado. 
+ed>  332  Linha:    34  Encadeamento após está errado. 
+ed>  333  Linha:    34  Controle de extravasão antes está errado. 
+ed>  334  Linha:    34  Controle de extravasão após está errado. 
+ed>  335  Linha:    34  Espaco de dados esta corrompido.  Id: 398  pValor: 02C44102
+
+     Espaco de dados, id:   398  pValor: 02C44102  hexa: 02 41 C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  336  Linha:    34  Encadeamento antes está errado. 
+ed>  337  Linha:    34  Encadeamento após está errado. 
+ed>  338  Linha:    34  Controle de extravasão antes está errado. 
+ed>  339  Linha:    34  Controle de extravasão após está errado. 
+ed>  340  Linha:    34  Espaco de dados esta corrompido.  Id: 404  pValor: 02C441C2
+
+     Espaco de dados, id:   404  pValor: 02C441C2  hexa: C2 41 C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 12  Ativo  Linha onde alocou: 88  Arquivo: ..\..\src\CASA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
+ed>  341  Linha:    34  Encadeamento antes está errado. 
+ed>  342  Linha:    34  Encadeamento após está errado. 
+ed>  343  Linha:    34  Controle de extravasão antes está errado. 
+ed>  344  Linha:    34  Controle de extravasão após está errado. 
+ed>  345  Linha:    34  Espaco de dados esta corrompido.  Id: 360  pValor: 02C42B7A
+
+     Espaco de dados, id:   360  pValor: 02C42B7A  hexa: 7A 2B C4 02  E' origem lista  E' final lista
+     Tipo ilegal  Tamanho: 40  Ativo  Linha onde alocou: 148  Arquivo: ..\..\src\LISTA.c
+     Controle antes errado: 3F 3F  Controle apos errado: 02 00
+
 
 !!! Número de linhas lidas:          35
 !!! Número de casos de teste:         3
-!!! Número comandos corretos:         8
-!!! Número de falhas encontradas:    11
+!!! Número comandos corretos:        10
+!!! Número de falhas encontradas:   345
 
 !!! Foram encontrados problemas
 
 
-!!! Numero de espacos ainda alocados: 10
+!!! Numero de espacos ainda alocados: 265
