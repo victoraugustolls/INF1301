@@ -810,24 +810,13 @@
          return ret;
       }
 
-      if( pLista->numElem != 0 )
+      if( pLista->numElem != 0 && (pLista->pOrigemLista->pAnt != NULL || pLista->pFimLista->pProx != NULL ))
       {
-         if( pLista->pOrigemLista->pAnt != NULL )
-         {
-            *erroOcorrido = LIS_tpErroEstruturaInicioDaListaPossuiAnterior;
-            CNT_CONTAR( "erro-lista-inicio-possui-anterior" );
-            (*numErrosEncontrados)++;
-            ret = LIS_CondRetFalhaNaEstrutura;
-            return ret;
-         }
-         if( pLista->pFimLista->pProx != NULL)
-         {
-            *erroOcorrido = LIS_tpErroEstruturaFimDaListaPossuiProximo;
-            CNT_CONTAR( "erro-lista-fim-possui-proximo" );
-            (*numErrosEncontrados)++;
-            ret = LIS_CondRetFalhaNaEstrutura;
-            return ret;
-         }
+         *erroOcorrido = LIS_tpErroEstruturaListaCircular;
+         CNT_CONTAR( "erro-lista-circular" );
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
+         return ret;
       }
 
       elementoCorrenteEstaNaLista = 0;
@@ -840,59 +829,17 @@
             CNT_CONTAR( "erro-lista-magic-number-errado" );
             (*numErrosEncontrados)++;
             ret = LIS_CondRetFalhaNaEstrutura;
-            //break;
             return ret;
          }
 
-         if(pElem->pProx != NULL)
+         if( ( pElem->pProx != NULL && (pElem->pProx->pAnt != pElem) )
+         ||  ( pElem->pAnt != NULL  && (pElem->pAnt->pProx != pElem) ) )
          {
-            if(pElem->pProx->pAnt != pElem)
-            {
-               *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
-               CNT_CONTAR( "erro-lista-anterior-proximo-diferente-corrente" ) ;
-               (*numErrosEncontrados)++;
-               ret = LIS_CondRetFalhaNaEstrutura;
-               //break;
-               return ret;
-            }
-         }
-         else
-         {
-            if(pElem != pLista->pFimLista)
-            {
-               *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
-               CNT_CONTAR( "erro-lista-ultimo-diferente-fim" ) ;
-               printf("Ultimo diferente fim\n");
-               (*numErrosEncontrados)++;
-               ret = LIS_CondRetFalhaNaEstrutura;
-               //break;
-               return ret;
-            }
-         }
-
-         if(pElem->pAnt != NULL)
-         {
-            if(pElem->pAnt->pProx != pElem)
-            {
-               *erroOcorrido = LIS_tpErroEstruturaEncadeamentoIncorretoNaLista;
-               CNT_CONTAR( "erro-lista-proximo-anterior-diferente-corrente" ) ;
-               (*numErrosEncontrados)++;
-               ret = LIS_CondRetFalhaNaEstrutura;
-               //break;
-               return ret;
-            }
-         }
-         else
-         {
-            if(pElem != pLista->pOrigemLista)
-            {
-               *erroOcorrido = LIS_tpErroEstruturaEncadeamentoIncorretoNaLista;
-               CNT_CONTAR( "erro-lista-primeiro-diferente-inicio" ) ;
-               (*numErrosEncontrados)++;
-               ret = LIS_CondRetFalhaNaEstrutura;
-               //break;
-               return ret;
-            }
+            *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
+            CNT_CONTAR( "erro-lista-encadeamento" ) ;
+            (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
+            return ret;
          }
 
          if(pElem->pValor == NULL)

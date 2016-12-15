@@ -138,7 +138,8 @@ typedef struct LIS_tagLista * LIS_tppLista ;
          LIS_tpErroEstruturaTipoDoValorIncoerente = 11,
          LIS_tpErroEstruturaElementoCorrenteNaoEstaNaLista = 12,
          LIS_tpErroEstruturaNumeroDeElementosIncorreto = 13,
-         LIS_tpErroEstruturaListaVaziaInconsistente = 14
+         LIS_tpErroEstruturaListaVaziaInconsistente = 14,
+         LIS_tpErroEstruturaListaCircular = 15
 
    } LIS_tpErroEstrutura ;
 #endif
