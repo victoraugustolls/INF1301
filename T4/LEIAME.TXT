@@ -123,6 +123,9 @@
 	 	Script que renomeia todos os arquivos BAT.TXT, .EXE.TXT e .lib.TXT para
 	 	.BAT, .EXE e .lib
 
+	 - MODELO_E_ASSERTIVAS.pdf
+	 	Modelo e assertivas, incluindo membros redundantes em vermelho para autoverificação.
+
 ————— Instruções Importantes —————
 
 	 Devido ao sistema de segurança da maioria dos provedores de e-mail, os arquivos
