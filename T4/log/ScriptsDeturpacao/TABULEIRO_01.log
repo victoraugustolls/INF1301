@@ -15,7 +15,6 @@
    24  == Iniciar contagem
 !!!    0  Linha:    29  // --------------------------------------------- 
    31  == Teste de Criacao de Tabuleiro
-!!!    0  Linha:    33  //=deturpar				tab0  1			'3' 'C'		OK 
 >>>    1  Linha:    34  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
 >>>    2  Linha:    35  Não é comando recuperar:  //=deturpar				tab0  2			'3' 'C'		OK
 !!!    2  Linha:    36  //=deturpar				tab0  3			'3' 'C'		OK 
@@ -53,10 +52,10 @@ cc>   22  Linha:    49   Contagem em "erro-tipo-lista-de-listas" é zero.
 
 !!! Número de linhas lidas:          55
 !!! Número de casos de teste:         6
-!!! Número comandos corretos:        15
+!!! Número comandos corretos:        16
 !!! Número de falhas encontradas:    23
 
 !!! Foram encontrados problemas
 
 
-!!! Numero de espacos ainda alocados: 539
+!!! Numero de espacos ainda alocados: 535
