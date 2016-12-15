@@ -26,6 +26,8 @@
 =declararparm   tab7  int 7
 =declararparm   tab8  int 8
 =declararparm   tab9  int 9
+=declararparm   tab10  int 10
+=declararparm   tab11  int 11
 
 // ---------------------------------------------
 
@@ -77,16 +79,13 @@
 =deturpar				tab9  9			'3' 'C'		OK
 =verificaestrutura		tab9  1 FalhaNaEstrutura
 
+=criarTabuleiro    		tab10  OK
+=deturpar				tab10  10			'3' 'C'		OK
+=verificaestrutura		tab10  1 FalhaNaEstrutura
 
-//=deturpar				tab0  2			'3' 'C'		OK
-//=deturpar				tab0  3			'3' 'C'		OK
-//=deturpar				tab0  4			'3' 'C'		OK
-//=deturpar				tab0  5			'3' 'C'		OK
-//=deturpar				tab0  6			'3' 'C'		OK
-//=deturpar				tab0  7			'3' 'C'		OK
-//=deturpar				tab0  8			'3' 'C'		OK
-//=deturpar				tab0  9			'3' 'C'		OK
-=destruirTabuleiro      tab0  OK
+=criarTabuleiro    		tab11  OK
+=deturpar				tab11  11			'3' 'C'		OK
+=verificaestrutura		tab11  1 FalhaNaEstrutura
 
 // ---------------------------------------------
 

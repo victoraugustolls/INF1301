@@ -66,7 +66,7 @@ static const char OBTER_AMEACADOS_CMD            [ ] = "=obterListaAmeacados"   
 #define VAZIO     0
 #define NAO_VAZIO 1
 
-#define DIM_VT_TABULEIRO 10
+#define DIM_VT_TABULEIRO 20
 #define DIM_VT_CASA 2
 
 TAB_tppTabuleiro pTabuleiro ;

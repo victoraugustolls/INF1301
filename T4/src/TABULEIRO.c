@@ -99,6 +99,8 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
     static TAB_tpCondRet TAB_AlteraEstruturaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
     static TAB_tpCondRet TAB_DestacaCasa( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
     static TAB_tpCondRet TAB_AtribuiNuloPonteiroCorrente( TAB_tppTabuleiro pTabuleiro , int coluna , int linha );
+    static TAB_tpCondRet TAB_CausaLoopTabuleiro( TAB_tppTabuleiro pTabuleiro , int linha );
+    static TAB_tpCondRet TAB_EliminhaLinha( TAB_tppTabuleiro pTabuleiro , int linha );
 
 #endif
 
@@ -1078,7 +1080,7 @@ TAB_tpCondRet TAB_GetPrintTabuleiro( TAB_tppTabuleiro pTabuleiro, char** print )
         }
         else if ( tipoDeturpacao == TAB_TABULEIRO_CIRCULAR )
         {
-            ret = TAB_CausaLoopTabuleiro( pTabuleiro , colunaInt , linhaInt ) ;
+            ret = TAB_CausaLoopTabuleiro( pTabuleiro , linhaInt ) ;
         }
         else if ( tipoDeturpacao == TAB_ELIMINA_LINHA )
         {
@@ -2064,16 +2066,16 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
         
     } /* Fim função: TAB  &Atribui NULL a Casa Atual */
 
-    TAB_tpCondRet TAB_CausaLoopTabuleiro( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
+    TAB_tpCondRet TAB_CausaLoopTabuleiro( TAB_tppTabuleiro pTabuleiro , int linha )
     {
         
-        void** ponteiroParaPonteiroInicio ;
-        void** ponteiroParaPonteiroFim ;
+        void** ponteiroParaPonteiroInicioAnterior ;
+        void** ponteiroParaPonteiroInicioCorrente ;
+        void** ponteiroParaPonteiroFimProximo ;
+        void** ponteiroParaPonteiroFimCorrente ;
         LIS_tppLista linhas  = NULL ;
         LIS_tppLista colunas = NULL ;
         LIS_tpCondRet retLista ;
-
-        void* temp;
         
         linhas = pTabuleiro->tabuleiro ;
         
@@ -2101,7 +2103,12 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
         
         retLista = LIS_MoveInicio( colunas ) ;
         
-        retLista = LIS_ObterPonteiroCorrente( colunas , &ponteiroParaPonteiroInicio ) ;
+        retLista = LIS_ObterPonteiroCorrente( colunas , &ponteiroParaPonteiroInicioCorrente ) ;
+        if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+        retLista = LIS_ObterPonteiroAnterior( colunas , &ponteiroParaPonteiroInicioAnterior ) ;
         if ( retLista == LIS_CondRetListaVazia )
         {
             return TAB_CondRetNaoExiste ;
@@ -2109,21 +2116,25 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
 
         retLista = LIS_MoveFim( colunas ) ;
         
-        retLista = LIS_ObterPonteiroCorrente( colunas , &ponteiroParaPonteiroFim ) ;
+        retLista = LIS_ObterPonteiroCorrente( colunas , &ponteiroParaPonteiroFimCorrente ) ;
         if ( retLista == LIS_CondRetListaVazia )
         {
             return TAB_CondRetNaoExiste ;
         } /* if */
-        
-        temp = *ponteiroParaPonteiroFim ;
-        *ponteiroParaPonteiroFim = *ponteiroParaPonteiroInicio ;
-        *ponteiroParaPonteiroInicio = temp ;
+        retLista = LIS_ObterPonteiroProximo( colunas , &ponteiroParaPonteiroFimProximo ) ;
+        if ( retLista == LIS_CondRetListaVazia )
+        {
+            return TAB_CondRetNaoExiste ;
+        } /* if */
+
+        *ponteiroParaPonteiroFimProximo = *ponteiroParaPonteiroInicioCorrente ;
+        *ponteiroParaPonteiroInicioAnterior = *ponteiroParaPonteiroFimCorrente ;
         
         return TAB_CondRetOK ;
         
     } /* Fim função: TAB  &Atribui NULL a Casa Atual */
 
-    TAB_tpCondRet TAB_EliminhaLinha( TAB_tppTabuleiro pTabuleiro , int coluna , int linha )
+    TAB_tpCondRet TAB_EliminhaLinha( TAB_tppTabuleiro pTabuleiro , int linha )
      {
         LIS_tppLista linhas  = NULL ;
         LIS_tpCondRet retLista ;
