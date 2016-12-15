@@ -293,7 +293,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
                     printf("RETORNO 2 %d",j);
                     return TAB_CondRetFalhaDefinirTipoEspaco ;
                 } /* if */
-                CED_MarcarEspacoAtivo( pCasa ) ;
             #endif
 
             //TRATAR RET LISTA CORRETAMENTE
@@ -310,7 +309,6 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
                 printf("RETORNO 3");
                 return TAB_CondRetFalhaDefinirTipoEspaco ;
             }
-            CED_MarcarEspacoAtivo( novaLista ) ;
         #endif
         //TRATAR RET LISTA CORRETAMENTE
     } /* for */
@@ -1207,10 +1205,6 @@ void ExcluirCasa ( void * pDado )
 
     CSA_DestruirCasa( x ) ;
 
-    #ifdef _DEBUG
-        CED_MarcarEspacoNaoAtivo( x ) ;
-    #endif
-
     return ;
 }
 
@@ -1255,10 +1249,6 @@ void ExcluirLista ( void * pDado )
     LIS_tppLista x = ( LIS_tppLista ) pDado ;
 
     LIS_DestruirLista( x ) ;
-
-    #ifdef _DEBUG
-        CED_MarcarEspacoNaoAtivo( x ) ;
-    #endif
 
     return ;
 }

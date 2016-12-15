@@ -130,6 +130,10 @@ CSA_tpCondRet CSA_CriarCasa( CSA_tppCasa * pCasa )
     newCasa->listaAmeacados = listaAmeacados ;
 
     *pCasa = newCasa ;
+
+    #ifdef _DEBUG
+        CED_MarcarEspacoAtivo( newCasa ) ;
+    #endif
     
     return CSA_CondRetOK ;
     
@@ -232,6 +236,10 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa )
     }/* if */
     
     free( pCasa ) ;
+
+    #ifdef _DEBUG
+         CED_MarcarEspacoNaoAtivo( pCasa ) ;
+    #endif
     
     return CSA_CondRetOK ;
     

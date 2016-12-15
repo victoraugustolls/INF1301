@@ -161,6 +161,7 @@
 
       #ifdef _DEBUG
          pNewLista->magic_number = MAGIC_NUMBER;
+         CED_MarcarEspacoAtivo( pNewLista ) ;
       #endif
 
       *pLista = pNewLista ;
@@ -243,6 +244,10 @@
       LIS_EsvaziarLista( pLista ) ;
 
       free( pLista ) ;
+
+      #ifdef _DEBUG
+         CED_MarcarEspacoNaoAtivo( pLista ) ;
+      #endif
 
       return LIS_CondRetOK ;
 
