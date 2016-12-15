@@ -100,22 +100,29 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
 
 #ifdef _DEBUG
 
-    TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro )
+    TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro, int* numEncontrados  )
     {
         int tamanho;
         int identificadorDoTipo;
         int i;
         LIS_tppLista linha;
         LIS_tpErroEstrutura erroOcorrido;
+        TAB_tpCondRet ret = TAB_CondRetOK;
+        int numErrosRecebidos;
+        
+        *numEncontrados = 0;
 
-        LIS_VerificaAssertivasEstruturais( pTabuleiro->tabuleiro, &erroOcorrido );
+        LIS_VerificaAssertivasEstruturais( pTabuleiro->tabuleiro, &erroOcorrido, &numErrosRecebidos );
+
+        (*numEncontrados) += numErrosRecebidos;
 
         LIS_Tamanho( pTabuleiro->tabuleiro , &tamanho ) ;
         if(tamanho != 8)
         {
             CNT_CONTAR("erro-tamanho-lista-de-listas") ;
 
-            return TAB_CondRetFalhaNaEstrutura ;
+            (*numEncontrados)++;
+            ret = TAB_CondRetFalhaNaEstrutura ;
         }
 
         LIS_GetTipo( pTabuleiro->tabuleiro, &identificadorDoTipo );
@@ -123,7 +130,8 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
         {
             CNT_CONTAR("erro-tipo-lista-de-listas") ;
 
-            return TAB_CondRetFalhaNaEstrutura ;
+            (*numEncontrados)++;
+            ret = TAB_CondRetFalhaNaEstrutura ;
         }
 
         LIS_MoveInicio( pTabuleiro->tabuleiro ) ;
@@ -132,14 +140,16 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
         {
             LIS_ObterValor( pTabuleiro->tabuleiro, (void**) &linha ) ;   
 
-            LIS_VerificaAssertivasEstruturais( linha, &erroOcorrido );
+            LIS_VerificaAssertivasEstruturais( linha, &erroOcorrido, &numErrosRecebidos );
+            (*numEncontrados) += numErrosRecebidos;
 
             LIS_Tamanho( linha, &tamanho );
             if( tamanho != 8)
             {
                 CNT_CONTAR("erro-tamanho-lista-de-casas") ;
 
-                return TAB_CondRetFalhaNaEstrutura ;
+                (*numEncontrados)++;
+                ret = TAB_CondRetFalhaNaEstrutura ;
             }
 
             LIS_GetTipo( linha, &identificadorDoTipo );
@@ -147,11 +157,12 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
             {
                 CNT_CONTAR("erro-tipo-lista-de-casas") ;
 
-                return TAB_CondRetFalhaNaEstrutura ;
+                (*numEncontrados)++;
+                ret = TAB_CondRetFalhaNaEstrutura ;
             }
         }
 
-        return TAB_CondRetOK ;
+        return ret;
     }
 
 #endif

@@ -148,6 +148,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		TAB_tpDeturpacao tipoDeturpacao;
 		char linhaPar;
 		char colunaPar;
+		int numErrosEsperados;
+		int numErrosEncontrados;
 	#endif
 	
 	/* Testar CriarTabuleiro */
@@ -712,26 +714,32 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		else if ( strcmp( ComandoTeste , VERIFICA_ESTRUTURA_CMD ) == 0 )
 		{
 
-			numLidos = LER_LerParametros( "ii" , &inxTab, &CondRetEsp ) ;
+			numLidos = LER_LerParametros( "iii" , &inxTab, &numErrosEsperados, &CondRetEsp ) ;
 			
-			if ( ( numLidos != 1 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
+			if ( ( numLidos != 3 ) || ( ! ValidarInxTabuleiro( inxTab , NAO_VAZIO )))
 			{
 				return TST_CondRetParm ;
 			} /* if */
 			
-			CondRet = TAB_VerificaAssertivasEstruturais( vtTabuleiros[ inxTab ] ) ;
+			CondRet = TAB_VerificaAssertivasEstruturais( vtTabuleiros[ inxTab ], &numErrosEncontrados ) ;
 
 			if ( CondRet != CondRetEsp )
 			{
 				if ( CondRetEsp == TAB_CondRetOK )
 				{
-					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria NAO detectar falha na estrutura, mas detectou." );
+					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria nao encontrar falhas, mas detectou." );
 				}
 				else
 				{
-					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria detectar falha na estrutura, mas NAO detectou." );
+					return TST_NotificarFalha( "Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou." );
 				}
 			} /* if */
+
+			if( numErrosEncontrados != numErrosEsperados )
+			{
+				return TST_CompararInt( numErrosEsperados , numErrosEncontrados ,
+									"Numero de erros esperados diferente do numero de erros encontrado.") ;
+			}
 			
 			return TST_CondRetOK;
 		}

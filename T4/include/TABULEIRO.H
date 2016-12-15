@@ -151,6 +151,7 @@ typedef enum {
     *
     *  $EP Parametros
     *     pTabuleiro - ponteiro para o tabuleiro a ser verificado
+    *     numEncontrados - ponteiro para o numero de erro encontrados
     *
     *  $FV Valor retornado
     *     TAB_CondRetOK                   - Nao foram encontradas falhas
@@ -158,7 +159,7 @@ typedef enum {
     *
     ***********************************************************************/
 
-    TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro );
+    TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro, int* numEncontrados );
 
 #endif
 

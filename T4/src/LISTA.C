@@ -786,55 +786,65 @@
       return LIS_CondRetOK ;
    }
 
-   LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista, LIS_tpErroEstrutura* erroOcorrido )
+   LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista, LIS_tpErroEstrutura* erroOcorrido, int* numErrosEncontrados )
    {
       tpElemLista * pElem;
       int elementoCorrenteEstaNaLista;
       int numElemContados;
+      LIS_tpCondRet ret = LIS_CondRetOK;
+
+      *numErrosEncontrados = 0;
 
       if( pLista->magic_number != MAGIC_NUMBER )
       {
          *erroOcorrido = LIS_tpErroEstruturaCabecaCorrompida;
          CNT_CONTAR( "erro-lista-cabeca-corrompida" ) ;
-         return LIS_CondRetFalhaNaEstrutura;
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
       }
 
       if( pLista->pElemCorr == NULL && pLista->numElem != 0 )
       {
          *erroOcorrido = LIS_tpErroEstruturaCorrenteNuloIndevidamente;
-         CNT_CONTAR( "erro-lista-corrente-nulo" ) ;
-         return LIS_CondRetFalhaNaEstrutura;
+         CNT_CONTAR( "erro-lista-corrente-nulo");
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->pOrigemLista == NULL && pLista->numElem != 0 )
       {
          *erroOcorrido = LIS_tpErroEstruturaOrigemNuloIndevidamente;
-         CNT_CONTAR( "erro-lista-origem-nulo" ) ;
-         return LIS_CondRetFalhaNaEstrutura;
+         CNT_CONTAR( "erro-lista-origem-nulo");
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->pFimLista == NULL && pLista->numElem != 0 )
       {
          *erroOcorrido = LIS_tpErroEstruturaFimNuloIndevidamente;
-         CNT_CONTAR( "erro-lista-fim-nulo" ) ;
-         return LIS_CondRetFalhaNaEstrutura;
+         CNT_CONTAR( "erro-lista-fim-nulo");
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
       }
 
       if( pLista->numElem == 0 && pLista->pElemCorr != NULL )
       {
          *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
-         CNT_CONTAR( "erro-lista-vazia-elementos-nao-nulos" ) ;
-         return LIS_CondRetFalhaNaEstrutura;
+         CNT_CONTAR( "erro-lista-vazia-elementos-nao-nulos");
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->numElem == 0 && pLista->pOrigemLista != NULL )
       {
          *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
-         CNT_CONTAR( "erro-lista-vazia-origem-nao-nula" ) ;
-         return LIS_CondRetFalhaNaEstrutura;
+         CNT_CONTAR( "erro-lista-vazia-origem-nao-nula");
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
       }
       if( pLista->numElem == 0 && pLista->pFimLista != NULL )
       {
          *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
-         CNT_CONTAR( "erro-lista-vazia-fim-nao-nulo" ) ;
-         return LIS_CondRetFalhaNaEstrutura;
+         CNT_CONTAR( "erro-lista-vazia-fim-nao-nulo");
+         (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
       }
 
       if( pLista->numElem != 0 )
@@ -842,14 +852,16 @@
          if( pLista->pOrigemLista->pAnt != NULL )
          {
             *erroOcorrido = LIS_tpErroEstruturaInicioDaListaPossuiAnterior;
-            CNT_CONTAR( "erro-lista-inicio-possui-anterior" ) ;
-            return LIS_CondRetFalhaNaEstrutura;
+            CNT_CONTAR( "erro-lista-inicio-possui-anterior" );
+            (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
          }
          if( pLista->pFimLista->pProx != NULL)
          {
             *erroOcorrido = LIS_tpErroEstruturaFimDaListaPossuiProximo;
-            CNT_CONTAR( "erro-lista-fim-possui-proximo" ) ;
-            return LIS_CondRetFalhaNaEstrutura;
+            CNT_CONTAR( "erro-lista-fim-possui-proximo" );
+            (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
          }
       }
 
@@ -860,8 +872,9 @@
          if( pElem->magic_number != MAGIC_NUMBER )
          {
             *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
-            CNT_CONTAR( "erro-lista-magic-number-errado" ) ;
-            return LIS_CondRetFalhaNaEstrutura;
+            CNT_CONTAR( "erro-lista-magic-number-errado" );
+            (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
          }
 
          if(pElem->pProx != NULL)
@@ -870,7 +883,8 @@
             {
                *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
                CNT_CONTAR( "erro-lista-anterior-proximo-diferente-corrente" ) ;
-               return LIS_CondRetFalhaNaEstrutura;
+               (*numErrosEncontrados)++;
+               ret = LIS_CondRetFalhaNaEstrutura;
             }
          }
          else
@@ -879,7 +893,8 @@
             {
                *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
                CNT_CONTAR( "erro-lista-ultimo-diferente-fim" ) ;
-               return LIS_CondRetFalhaNaEstrutura;
+               (*numErrosEncontrados)++;
+               ret = LIS_CondRetFalhaNaEstrutura;
             }
          }
 
@@ -889,7 +904,8 @@
             {
                *erroOcorrido = LIS_tpErroEstruturaEncadeamentoIncorretoNaLista;
                CNT_CONTAR( "erro-lista-proximo-anterior-diferente-corrente" ) ;
-               return LIS_CondRetFalhaNaEstrutura;
+               (*numErrosEncontrados)++;
+               ret = LIS_CondRetFalhaNaEstrutura;
             }
          }
          else
@@ -898,23 +914,26 @@
             {
                *erroOcorrido = LIS_tpErroEstruturaEncadeamentoIncorretoNaLista;
                CNT_CONTAR( "erro-lista-primeiro-diferente-inicio" ) ;
-               return LIS_CondRetFalhaNaEstrutura;
+               (*numErrosEncontrados)++;
+               ret = LIS_CondRetFalhaNaEstrutura;
             }
          }
 
          if(pElem->pValor == NULL)
          {
             *erroOcorrido = LIS_tpErroEstruturaValorArmazenadoNulo;
-            CNT_CONTAR( "erro-lista-valor-corrente-nulo" ) ;
-            return LIS_CondRetFalhaNaEstrutura;
+            CNT_CONTAR( "erro-lista-valor-corrente-nulo" );
+               (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
          }
 
 
          if(CED_ObterTipoEspaco( pElem->pValor ) != pLista->tipoArmazenado)
          {
             *erroOcorrido = LIS_tpErroEstruturaTipoDoValorIncoerente;
-            CNT_CONTAR( "erro-lista-tipo-valor-incoerente" ) ;
-            return LIS_CondRetFalhaNaEstrutura;
+            CNT_CONTAR( "erro-lista-tipo-valor-incoerente" );
+               (*numErrosEncontrados)++;
+            ret = LIS_CondRetFalhaNaEstrutura;
          }
 
          if( pElem == pLista->pElemCorr )
@@ -928,19 +947,21 @@
       if(elementoCorrenteEstaNaLista == 0)
       {
          *erroOcorrido = LIS_tpErroEstruturaElementoCorrenteNaoEstaNaLista;
-         CNT_CONTAR( "erro-lista-corrente-fora-lista" ) ;
-         return LIS_CondRetFalhaNaEstrutura;
+         CNT_CONTAR( "erro-lista-corrente-fora-lista");
+               (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
       }
 
       if(numElemContados != pLista->numElem)
       {
          *erroOcorrido = LIS_tpErroEstruturaNumeroDeElementosIncorreto;
-         CNT_CONTAR( "erro-lista-numero-elementos-incorreto" ) ;
-         return LIS_CondRetFalhaNaEstrutura;
+         CNT_CONTAR( "erro-lista-numero-elementos-incorreto");
+               (*numErrosEncontrados)++;
+         ret = LIS_CondRetFalhaNaEstrutura;
       }
 
       *erroOcorrido = LIS_tpErroEstruturaNenhum;
-      return LIS_CondRetOK;
+      return ret;
    }
 
 LIS_tpCondRet LIS_ObterPonteiroProximo( LIS_tppLista pLista ,

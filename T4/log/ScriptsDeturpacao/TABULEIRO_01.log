@@ -9,51 +9,49 @@
 !!!    0  Linha:     4  // 
 !!!    0  Linha:     5  // --------------------------------------------- 
     7  == Inicializar Constantes
-!!!    0  Linha:    15  // --------------------------------------------- 
-   17  == Inicializar valores
-!!!    0  Linha:    21  // --------------------------------------------- 
-   23  == Iniciar contagem
-!!!    0  Linha:    28  // --------------------------------------------- 
-   30  == Teste de Criacao de Tabuleiro
->>>    1  Linha:    32  Condicao de Retorno Diferente da Esperada. Deveria conseguir deturpar, mas NAO deturpou. 
->>>    2  Linha:    33  Não é comando recuperar:  //=deturpar				tab0  2			'C'	'3'		OK
-!!!    2  Linha:    34  //=deturpar				tab0  3			'C'	'3'		OK 
-!!!    2  Linha:    35  //=deturpar				tab0  4			'C'	'3'		OK 
-!!!    2  Linha:    36  //=deturpar				tab0  5			'C'	'3'		OK 
-!!!    2  Linha:    37  //=deturpar				tab0  6			'C'	'3'		OK 
-!!!    2  Linha:    38  //=deturpar				tab0  7			'C'	'3'		OK 
-!!!    2  Linha:    39  //=deturpar				tab0  8			'C'	'3'		OK 
-!!!    2  Linha:    40  //=deturpar				tab0  9			'C'	'3'		OK 
->>>    3  Linha:    41  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
-!!!    3  Linha:    43  // --------------------------------------------- 
-   45  == Terminar controlar contadores
-cc>    4  Linha:    47   Contagem em "erro-lista-cabeca-corrompida" é zero.
-cc>    5  Linha:    47   Contagem em "erro-lista-corrente-fora-lista" é zero.
-cc>    6  Linha:    47   Contagem em "erro-lista-corrente-nulo" é zero.
-cc>    7  Linha:    47   Contagem em "erro-lista-fim-nulo" é zero.
-cc>    8  Linha:    47   Contagem em "erro-lista-magic-number-errado" é zero.
-cc>    9  Linha:    47   Contagem em "erro-lista-numero-elementos-incorreto" é zero.
-cc>   10  Linha:    47   Contagem em "erro-lista-origem-nulo" é zero.
-cc>   11  Linha:    47   Contagem em "erro-lista-primeiro-diferente-inicio" é zero.
-cc>   12  Linha:    47   Contagem em "erro-lista-proximo-anterior-diferente-corrente" é zero.
-cc>   13  Linha:    47   Contagem em "erro-lista-tipo-valor-incoerente" é zero.
-cc>   14  Linha:    47   Contagem em "erro-lista-ultimo-diferente-fim" é zero.
-cc>   15  Linha:    47   Contagem em "erro-lista-valor-corrente-nulo" é zero.
-cc>   16  Linha:    47   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
-cc>   17  Linha:    47   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
-cc>   18  Linha:    47   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
-cc>   19  Linha:    47   Contagem em "erro-tamanho-lista-de-casas" é zero.
-cc>   20  Linha:    47   Contagem em "erro-tamanho-lista-de-listas" é zero.
-cc>   21  Linha:    47   Contagem em "erro-tipo-lista-de-casas" é zero.
-cc>   22  Linha:    47   Contagem em "erro-tipo-lista-de-listas" é zero.
->>>   23  Linha:    47  Número de contadores zero errado. Deveria ser: 0  É: 19
-!!!   23  Linha:    49  // --------------------------------------------- 
-   51  == Terminar contagem
+!!!    0  Linha:    16  // --------------------------------------------- 
+   18  == Inicializar valores
+!!!    0  Linha:    22  // --------------------------------------------- 
+   24  == Iniciar contagem
+!!!    0  Linha:    29  // --------------------------------------------- 
+   31  == Teste de Criacao de Tabuleiro
+!!!    0  Linha:    33  //=deturpar				tab0  1			'3' 'C'		OK 
+>>>    1  Linha:    34  Numero de erros esperados diferente do numero de erros encontrado. Deveria ser: 1  É: 81
+>>>    2  Linha:    35  Não é comando recuperar:  //=deturpar				tab0  2			'3' 'C'		OK
+!!!    2  Linha:    36  //=deturpar				tab0  3			'3' 'C'		OK 
+!!!    2  Linha:    37  //=deturpar				tab0  4			'3' 'C'		OK 
+!!!    2  Linha:    38  //=deturpar				tab0  5			'3' 'C'		OK 
+!!!    2  Linha:    39  //=deturpar				tab0  6			'3' 'C'		OK 
+!!!    2  Linha:    40  //=deturpar				tab0  7			'3' 'C'		OK 
+!!!    2  Linha:    41  //=deturpar				tab0  8			'3' 'C'		OK 
+!!!    2  Linha:    42  //=deturpar				tab0  9			'3' 'C'		OK 
+>>>    3  Linha:    43  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+!!!    3  Linha:    45  // --------------------------------------------- 
+   47  == Terminar controlar contadores
+cc>    4  Linha:    49   Contagem em "erro-lista-cabeca-corrompida" é zero.
+cc>    5  Linha:    49   Contagem em "erro-lista-corrente-fora-lista" é zero.
+cc>    6  Linha:    49   Contagem em "erro-lista-corrente-nulo" é zero.
+cc>    7  Linha:    49   Contagem em "erro-lista-fim-nulo" é zero.
+cc>    8  Linha:    49   Contagem em "erro-lista-magic-number-errado" é zero.
+cc>    9  Linha:    49   Contagem em "erro-lista-numero-elementos-incorreto" é zero.
+cc>   10  Linha:    49   Contagem em "erro-lista-origem-nulo" é zero.
+cc>   11  Linha:    49   Contagem em "erro-lista-primeiro-diferente-inicio" é zero.
+cc>   12  Linha:    49   Contagem em "erro-lista-proximo-anterior-diferente-corrente" é zero.
+cc>   13  Linha:    49   Contagem em "erro-lista-ultimo-diferente-fim" é zero.
+cc>   14  Linha:    49   Contagem em "erro-lista-valor-corrente-nulo" é zero.
+cc>   15  Linha:    49   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
+cc>   16  Linha:    49   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
+cc>   17  Linha:    49   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
+cc>   18  Linha:    49   Contagem em "erro-tamanho-lista-de-casas" é zero.
+cc>   19  Linha:    49   Contagem em "erro-tamanho-lista-de-listas" é zero.
+>>>   20  Linha:    49  Número de contadores zero errado. Deveria ser: 0  É: 16
+!!!   20  Linha:    51  // --------------------------------------------- 
+   53  == Terminar contagem
 
-!!! Número de linhas lidas:          53
+!!! Número de linhas lidas:          55
 !!! Número de casos de teste:         6
-!!! Número comandos corretos:        14
-!!! Número de falhas encontradas:    23
+!!! Número comandos corretos:        15
+!!! Número de falhas encontradas:    20
 
 !!! Foram encontrados problemas
 
