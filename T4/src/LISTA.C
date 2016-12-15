@@ -243,11 +243,11 @@
 
       LIS_EsvaziarLista( pLista ) ;
 
-      free( pLista ) ;
-
       #ifdef _DEBUG
          CED_MarcarEspacoNaoAtivo( pLista ) ;
       #endif
+
+      free( pLista ) ;
 
       return LIS_CondRetOK ;
 

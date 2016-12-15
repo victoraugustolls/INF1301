@@ -234,12 +234,12 @@ CSA_tpCondRet CSA_DestruirCasa( CSA_tppCasa pCasa )
     {
         return CSA_CondRetNaoExiste ;
     }/* if */
-    
-    free( pCasa ) ;
 
     #ifdef _DEBUG
          CED_MarcarEspacoNaoAtivo( pCasa ) ;
     #endif
+    
+    free( pCasa ) ;
     
     return CSA_CondRetOK ;
     
