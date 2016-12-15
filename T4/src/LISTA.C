@@ -796,51 +796,15 @@
          return ret;
       }
 
-      if( pLista->pElemCorr == NULL && pLista->numElem != 0 )
+      if(( pLista->pElemCorr == NULL && pLista->numElem != 0 )
+      || ( pLista->pOrigemLista == NULL && pLista->numElem != 0 )
+      || ( pLista->pFimLista == NULL && pLista->numElem != 0 )
+      || ( pLista->numElem == 0 && pLista->pElemCorr != NULL )
+      || ( pLista->numElem == 0 && pLista->pOrigemLista != NULL )
+      || ( pLista->numElem == 0 && pLista->pFimLista != NULL ) )
       {
-         *erroOcorrido = LIS_tpErroEstruturaCorrenteNuloIndevidamente;
-         CNT_CONTAR( "erro-lista-corrente-nulo");
-         (*numErrosEncontrados)++;
-         ret = LIS_CondRetFalhaNaEstrutura;
-         return ret;
-      }
-      if( pLista->pOrigemLista == NULL && pLista->numElem != 0 )
-      {
-         *erroOcorrido = LIS_tpErroEstruturaOrigemNuloIndevidamente;
-         CNT_CONTAR( "erro-lista-origem-nulo");
-         (*numErrosEncontrados)++;
-         ret = LIS_CondRetFalhaNaEstrutura;
-         return ret;
-      }
-      if( pLista->pFimLista == NULL && pLista->numElem != 0 )
-      {
-         *erroOcorrido = LIS_tpErroEstruturaFimNuloIndevidamente;
-         CNT_CONTAR( "erro-lista-fim-nulo");
-         (*numErrosEncontrados)++;
-         ret = LIS_CondRetFalhaNaEstrutura;
-         return ret;
-      }
-
-      if( pLista->numElem == 0 && pLista->pElemCorr != NULL )
-      {
-         *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
-         CNT_CONTAR( "erro-lista-vazia-elementos-nao-nulos");
-         (*numErrosEncontrados)++;
-         ret = LIS_CondRetFalhaNaEstrutura;
-         return ret;
-      }
-      if( pLista->numElem == 0 && pLista->pOrigemLista != NULL )
-      {
-         *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
-         CNT_CONTAR( "erro-lista-vazia-origem-nao-nula");
-         (*numErrosEncontrados)++;
-         ret = LIS_CondRetFalhaNaEstrutura;
-         return ret;
-      }
-      if( pLista->numElem == 0 && pLista->pFimLista != NULL )
-      {
-         *erroOcorrido = LIS_tpErroEstruturaListaVaziaMasElementosNaoNulos;
-         CNT_CONTAR( "erro-lista-vazia-fim-nao-nulo");
+         *erroOcorrido = LIS_tpErroEstruturaListaVaziaInconsistente;
+         CNT_CONTAR( "erro-lista-vazia-inconsistente");
          (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
          return ret;
