@@ -887,6 +887,7 @@
             {
                *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
                CNT_CONTAR( "erro-lista-ultimo-diferente-fim" ) ;
+               printf("Ultimo diferente fim\n");
                (*numErrosEncontrados)++;
                ret = LIS_CondRetFalhaNaEstrutura;
                break;
@@ -956,6 +957,8 @@
                (*numErrosEncontrados)++;
          ret = LIS_CondRetFalhaNaEstrutura;
       }
+
+      printf("erros lista: %d\n", numErrosEncontrados);
 
       *erroOcorrido = LIS_tpErroEstruturaNenhum;
       return ret;

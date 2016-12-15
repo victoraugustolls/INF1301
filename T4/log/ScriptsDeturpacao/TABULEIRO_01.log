@@ -11,99 +11,52 @@
     7  == Inicializar Constantes
 !!!    0  Linha:    16  // --------------------------------------------- 
    18  == Inicializar valores
-<<<<<<< HEAD
 !!!    0  Linha:    30  // --------------------------------------------- 
    32  == Iniciar contagem
 !!!    0  Linha:    37  // --------------------------------------------- 
    39  == Teste de Criacao de Tabuleiro
 >>>    1  Linha:    46  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
-!!!    1  Linha:    50  //=deturpar				tab0  2			'3' 'C'		OK 
-!!!    1  Linha:    51  //=deturpar				tab0  3			'3' 'C'		OK 
-!!!    1  Linha:    52  //=deturpar				tab0  4			'3' 'C'		OK 
-!!!    1  Linha:    53  //=deturpar				tab0  5			'3' 'C'		OK 
-!!!    1  Linha:    54  //=deturpar				tab0  6			'3' 'C'		OK 
-!!!    1  Linha:    55  //=deturpar				tab0  7			'3' 'C'		OK 
-!!!    1  Linha:    56  //=deturpar				tab0  8			'3' 'C'		OK 
-!!!    1  Linha:    57  //=deturpar				tab0  9			'3' 'C'		OK 
-!!!    1  Linha:    60  // --------------------------------------------- 
-   62  == Terminar controlar contadores
-cc>    2  Linha:    64   Contagem em "erro-lista-cabeca-corrompida" é zero.
-cc>    3  Linha:    64   Contagem em "erro-lista-corrente-nulo" é zero.
-cc>    4  Linha:    64   Contagem em "erro-lista-fim-nulo" é zero.
-cc>    5  Linha:    64   Contagem em "erro-lista-magic-number-errado" é zero.
-cc>    6  Linha:    64   Contagem em "erro-lista-origem-nulo" é zero.
-cc>    7  Linha:    64   Contagem em "erro-lista-primeiro-diferente-inicio" é zero.
-cc>    8  Linha:    64   Contagem em "erro-lista-proximo-anterior-diferente-corrente" é zero.
-cc>    9  Linha:    64   Contagem em "erro-lista-tipo-valor-incoerente" é zero.
-cc>   10  Linha:    64   Contagem em "erro-lista-valor-corrente-nulo" é zero.
-cc>   11  Linha:    64   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
-cc>   12  Linha:    64   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
-cc>   13  Linha:    64   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
-cc>   14  Linha:    64   Contagem em "erro-tamanho-lista-de-listas" é zero.
-cc>   15  Linha:    64   Contagem em "erro-tipo-lista-de-casas" é zero.
-cc>   16  Linha:    64   Contagem em "erro-tipo-lista-de-listas" é zero.
->>>   17  Linha:    64  Número de contadores zero errado. Deveria ser: 0  É: 15
-!!!   17  Linha:    66  // --------------------------------------------- 
-   68  == Terminar contagem
-=======
-!!!    0  Linha:    22  // --------------------------------------------- 
-   24  == Iniciar contagem
-!!!    0  Linha:    29  // --------------------------------------------- 
-   31  == Teste de Criacao de Tabuleiro
-<<<<<<< HEAD
->>>    1  Linha:    34  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
-=======
->>>    1  Linha:    34  Numero de erros esperados diferente do numero de erros encontrado. Deveria ser: 0  É: 1
->>>>>>> acf8e43991e6336975484990e11012822f9b5796
->>>    2  Linha:    35  Não é comando recuperar:  //=deturpar				tab0  2			'3' 'C'		OK
-!!!    2  Linha:    36  //=deturpar				tab0  3			'3' 'C'		OK 
-!!!    2  Linha:    37  //=deturpar				tab0  4			'3' 'C'		OK 
-!!!    2  Linha:    38  //=deturpar				tab0  5			'3' 'C'		OK 
-!!!    2  Linha:    39  //=deturpar				tab0  6			'3' 'C'		OK 
-!!!    2  Linha:    40  //=deturpar				tab0  7			'3' 'C'		OK 
-!!!    2  Linha:    41  //=deturpar				tab0  8			'3' 'C'		OK 
-!!!    2  Linha:    42  //=deturpar				tab0  9			'3' 'C'		OK 
->>>    3  Linha:    43  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
-!!!    3  Linha:    45  // --------------------------------------------- 
-   47  == Terminar controlar contadores
-cc>    4  Linha:    49   Contagem em "erro-lista-cabeca-corrompida" é zero.
-cc>    5  Linha:    49   Contagem em "erro-lista-corrente-fora-lista" é zero.
-cc>    6  Linha:    49   Contagem em "erro-lista-corrente-nulo" é zero.
-cc>    7  Linha:    49   Contagem em "erro-lista-fim-nulo" é zero.
-cc>    8  Linha:    49   Contagem em "erro-lista-magic-number-errado" é zero.
-cc>    9  Linha:    49   Contagem em "erro-lista-numero-elementos-incorreto" é zero.
-cc>   10  Linha:    49   Contagem em "erro-lista-origem-nulo" é zero.
-cc>   11  Linha:    49   Contagem em "erro-lista-primeiro-diferente-inicio" é zero.
-cc>   12  Linha:    49   Contagem em "erro-lista-proximo-anterior-diferente-corrente" é zero.
-cc>   13  Linha:    49   Contagem em "erro-lista-tipo-valor-incoerente" é zero.
-cc>   14  Linha:    49   Contagem em "erro-lista-ultimo-diferente-fim" é zero.
-cc>   15  Linha:    49   Contagem em "erro-lista-valor-corrente-nulo" é zero.
-cc>   16  Linha:    49   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
-cc>   17  Linha:    49   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
-cc>   18  Linha:    49   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
-cc>   19  Linha:    49   Contagem em "erro-tamanho-lista-de-listas" é zero.
-cc>   20  Linha:    49   Contagem em "erro-tipo-lista-de-casas" é zero.
-cc>   21  Linha:    49   Contagem em "erro-tipo-lista-de-listas" é zero.
->>>   22  Linha:    49  Número de contadores zero errado. Deveria ser: 0  É: 18
-!!!   22  Linha:    51  // --------------------------------------------- 
-   53  == Terminar contagem
->>>>>>> 6f8e124c57ded4bc35c0379187d3334b923f2592
+>>>    2  Linha:    50  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
+>>>    3  Linha:    54  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
+>>>    4  Linha:    58  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
+>>>    5  Linha:    62  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
+>>>    6  Linha:    66  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
+>>>    7  Linha:    70  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
+>>>    8  Linha:    74  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
+>>>    9  Linha:    78  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
+!!!    9  Linha:    81  //=deturpar				tab0  2			'3' 'C'		OK 
+!!!    9  Linha:    82  //=deturpar				tab0  3			'3' 'C'		OK 
+!!!    9  Linha:    83  //=deturpar				tab0  4			'3' 'C'		OK 
+!!!    9  Linha:    84  //=deturpar				tab0  5			'3' 'C'		OK 
+!!!    9  Linha:    85  //=deturpar				tab0  6			'3' 'C'		OK 
+!!!    9  Linha:    86  //=deturpar				tab0  7			'3' 'C'		OK 
+!!!    9  Linha:    87  //=deturpar				tab0  8			'3' 'C'		OK 
+!!!    9  Linha:    88  //=deturpar				tab0  9			'3' 'C'		OK 
+!!!    9  Linha:    91  // --------------------------------------------- 
+   93  == Terminar controlar contadores
+cc>   10  Linha:    95   Contagem em "erro-lista-cabeca-corrompida" é zero.
+cc>   11  Linha:    95   Contagem em "erro-lista-corrente-nulo" é zero.
+cc>   12  Linha:    95   Contagem em "erro-lista-fim-nulo" é zero.
+cc>   13  Linha:    95   Contagem em "erro-lista-magic-number-errado" é zero.
+cc>   14  Linha:    95   Contagem em "erro-lista-origem-nulo" é zero.
+cc>   15  Linha:    95   Contagem em "erro-lista-primeiro-diferente-inicio" é zero.
+cc>   16  Linha:    95   Contagem em "erro-lista-proximo-anterior-diferente-corrente" é zero.
+cc>   17  Linha:    95   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
+cc>   18  Linha:    95   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
+cc>   19  Linha:    95   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
+cc>   20  Linha:    95   Contagem em "erro-tamanho-lista-de-listas" é zero.
+cc>   21  Linha:    95   Contagem em "erro-tipo-lista-de-casas" é zero.
+cc>   22  Linha:    95   Contagem em "erro-tipo-lista-de-listas" é zero.
+>>>   23  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 13
+!!!   23  Linha:    97  // --------------------------------------------- 
+   99  == Terminar contagem
 
-!!! Número de linhas lidas:          70
+!!! Número de linhas lidas:         101
 !!! Número de casos de teste:         6
-<<<<<<< HEAD
-!!! Número comandos corretos:        28
-!!! Número de falhas encontradas:    17
-=======
-!!! Número comandos corretos:        16
-<<<<<<< HEAD
+!!! Número comandos corretos:        44
 !!! Número de falhas encontradas:    23
-=======
-!!! Número de falhas encontradas:    22
->>>>>>> acf8e43991e6336975484990e11012822f9b5796
->>>>>>> 6f8e124c57ded4bc35c0379187d3334b923f2592
 
 !!! Foram encontrados problemas
 
 
-!!! Numero de espacos ainda alocados: 804
+!!! Numero de espacos ainda alocados: 5116
