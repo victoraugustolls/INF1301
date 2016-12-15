@@ -15,31 +15,32 @@
    32  == Iniciar contagem
 !!!    0  Linha:    37  // --------------------------------------------- 
    39  == Teste de Criacao de Tabuleiro
-!!!    0  Linha:    81  //=deturpar				tab0  2			'3' 'C'		OK 
-!!!    0  Linha:    82  //=deturpar				tab0  3			'3' 'C'		OK 
-!!!    0  Linha:    83  //=deturpar				tab0  4			'3' 'C'		OK 
-!!!    0  Linha:    84  //=deturpar				tab0  5			'3' 'C'		OK 
-!!!    0  Linha:    85  //=deturpar				tab0  6			'3' 'C'		OK 
-!!!    0  Linha:    86  //=deturpar				tab0  7			'3' 'C'		OK 
-!!!    0  Linha:    87  //=deturpar				tab0  8			'3' 'C'		OK 
-!!!    0  Linha:    88  //=deturpar				tab0  9			'3' 'C'		OK 
-!!!    0  Linha:    91  // --------------------------------------------- 
+>>>    1  Linha:    62  Numero de erros esperados diferente do numero de erros encontrado. Deveria ser: 1  É: 2
+!!!    1  Linha:    81  //=deturpar				tab0  2			'3' 'C'		OK 
+!!!    1  Linha:    82  //=deturpar				tab0  3			'3' 'C'		OK 
+!!!    1  Linha:    83  //=deturpar				tab0  4			'3' 'C'		OK 
+!!!    1  Linha:    84  //=deturpar				tab0  5			'3' 'C'		OK 
+!!!    1  Linha:    85  //=deturpar				tab0  6			'3' 'C'		OK 
+!!!    1  Linha:    86  //=deturpar				tab0  7			'3' 'C'		OK 
+!!!    1  Linha:    87  //=deturpar				tab0  8			'3' 'C'		OK 
+!!!    1  Linha:    88  //=deturpar				tab0  9			'3' 'C'		OK 
+!!!    1  Linha:    91  // --------------------------------------------- 
    93  == Terminar controlar contadores
-cc>    1  Linha:    95   Contagem em "erro-lista-cabeca-corrompida" é zero.
-cc>    2  Linha:    95   Contagem em "erro-lista-circular" é zero.
-cc>    3  Linha:    95   Contagem em "erro-lista-corrente-fora-lista" é zero.
-cc>    4  Linha:    95   Contagem em "erro-lista-magic-number-errado" é zero.
-cc>    5  Linha:    95   Contagem em "erro-tamanho-lista-de-listas" é zero.
-cc>    6  Linha:    95   Contagem em "erro-tipo-lista-de-casas" é zero.
-cc>    7  Linha:    95   Contagem em "erro-tipo-lista-de-listas" é zero.
->>>    8  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 7
-!!!    8  Linha:    97  // --------------------------------------------- 
+cc>    2  Linha:    95   Contagem em "erro-lista-cabeca-corrompida" é zero.
+cc>    3  Linha:    95   Contagem em "erro-lista-circular" é zero.
+cc>    4  Linha:    95   Contagem em "erro-lista-corrente-fora-lista" é zero.
+cc>    5  Linha:    95   Contagem em "erro-lista-magic-number-errado" é zero.
+cc>    6  Linha:    95   Contagem em "erro-tamanho-lista-de-listas" é zero.
+cc>    7  Linha:    95   Contagem em "erro-tipo-lista-de-casas" é zero.
+cc>    8  Linha:    95   Contagem em "erro-tipo-lista-de-listas" é zero.
+>>>    9  Linha:    95  Número de contadores zero errado. Deveria ser: 0  É: 7
+!!!    9  Linha:    97  // --------------------------------------------- 
    99  == Terminar contagem
 
 !!! Número de linhas lidas:         101
 !!! Número de casos de teste:         6
-!!! Número comandos corretos:        53
-!!! Número de falhas encontradas:     8
+!!! Número comandos corretos:        52
+!!! Número de falhas encontradas:     9
 
 !!! Foram encontrados problemas
 

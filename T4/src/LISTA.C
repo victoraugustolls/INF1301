@@ -781,20 +781,10 @@
    LIS_tpCondRet LIS_VerificaAssertivasEstruturais( LIS_tppLista pLista, LIS_tpErroEstrutura* erroOcorrido, int* numErrosEncontrados )
    {
       tpElemLista * pElem;
-      int elementoCorrenteEstaNaLista;
       int numElemContados;
       LIS_tpCondRet ret = LIS_CondRetOK;
 
       *numErrosEncontrados = 0;
-
-      if( pLista->magic_number != MAGIC_NUMBER )
-      {
-         *erroOcorrido = LIS_tpErroEstruturaCabecaCorrompida;
-         CNT_CONTAR( "erro-lista-cabeca-corrompida" ) ;
-         (*numErrosEncontrados)++;
-         ret = LIS_CondRetFalhaNaEstrutura;
-         return ret;
-      }
 
       if(( pLista->pElemCorr == NULL && pLista->numElem != 0 )
       || ( pLista->pOrigemLista == NULL && pLista->numElem != 0 )
@@ -819,18 +809,9 @@
          return ret;
       }
 
-      elementoCorrenteEstaNaLista = 0;
       numElemContados = 0;
       for(pElem = pLista->pOrigemLista; pElem != NULL; pElem = pElem->pProx)
       {
-         if( pElem->magic_number != MAGIC_NUMBER )
-         {
-            *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
-            CNT_CONTAR( "erro-lista-magic-number-errado" );
-            (*numErrosEncontrados)++;
-            ret = LIS_CondRetFalhaNaEstrutura;
-            return ret;
-         }
 
          if( ( pElem->pProx != NULL && (pElem->pProx->pAnt != pElem) )
          ||  ( pElem->pAnt != NULL  && (pElem->pAnt->pProx != pElem) ) )
@@ -858,20 +839,7 @@
             ret = LIS_CondRetFalhaNaEstrutura;
          }
 
-         if( pElem == pLista->pElemCorr )
-         {
-            elementoCorrenteEstaNaLista = 1;
-         }
-
          numElemContados++;
-      }
-
-      if(elementoCorrenteEstaNaLista == 0)
-      {
-         *erroOcorrido = LIS_tpErroEstruturaElementoCorrenteNaoEstaNaLista;
-         CNT_CONTAR( "erro-lista-corrente-fora-lista");
-         (*numErrosEncontrados)++;
-         ret = LIS_CondRetFalhaNaEstrutura;
       }
 
       if(numElemContados != pLista->numElem)
