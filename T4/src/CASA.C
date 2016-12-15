@@ -29,6 +29,10 @@
 #include   <assert.h>
 #include   "PECA.H"
 
+ #ifdef _DEBUG
+    #include "CESPDIN.H"
+#endif
+
 #define CASA_OWN
 #include "CASA.H"
 #undef CASA_OWN

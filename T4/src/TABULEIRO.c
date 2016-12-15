@@ -188,6 +188,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
     #ifdef _DEBUG
         if( CED_DefinirTipoEspaco( ( void * ) pNovoTabuleiro , TAB_TipoTabuleiro ) == 0 )
         {
+            printf("RETORNO 1");
             return TAB_CondRetFalhaDefinirTipoEspaco ;
         } /* if */
     #endif
@@ -289,6 +290,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
             #ifdef _DEBUG
                 if( CED_DefinirTipoEspaco( pCasa , TAB_TipoEspacoCasa ) == 0 )
                 {
+                    printf("RETORNO 2 %d",j);
                     return TAB_CondRetFalhaDefinirTipoEspaco ;
                 } /* if */
                 CED_MarcarEspacoAtivo( pCasa ) ;
@@ -305,6 +307,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
         #ifdef _DEBUG
             if( CED_DefinirTipoEspaco (  novaLista , TAB_TipoEspacoListaDeCasas ) == 0 )
             {
+                printf("RETORNO 3");
                 return TAB_CondRetFalhaDefinirTipoEspaco ;
             }
             CED_MarcarEspacoAtivo( novaLista ) ;
@@ -350,6 +353,7 @@ TAB_tpCondRet TAB_CopiarTabuleiro( TAB_tppTabuleiro * pTabuleiro, TAB_tppTabulei
     #ifdef _DEBUG
         if( CED_DefinirTipoEspaco( ( void * ) pNovoTabuleiro , TAB_TipoTabuleiro ) == 0 )
         {
+            printf("RETORNO 4");
             return TAB_CondRetFalhaDefinirTipoEspaco ;
         }
     #endif
