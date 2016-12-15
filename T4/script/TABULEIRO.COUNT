@@ -13,8 +13,8 @@
 	erro-lista-vazia-inconsistente
 	erro-lista-circular
 	erro-lista-encadeamento
+	erro-lista-valor-corrente-nulo
 	erro-lista-tipo-valor-incoerente
-	erro-lista-corrente-fora-lista
 	erro-lista-numero-elementos-incorreto
 
 	XPTO nome adicionado para fins de teste\=-2
