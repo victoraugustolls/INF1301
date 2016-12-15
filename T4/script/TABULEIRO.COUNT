@@ -12,6 +12,7 @@
 
 	erro-lista-cabeca-corrompida
 	erro-lista-vazia-inconsistente
+	erro-lista-circular
 	erro-lista-magic-number-errado
 	erro-lista-ultimo-diferente-fim
 	erro-lista-anterior-proximo-diferente-corrente
