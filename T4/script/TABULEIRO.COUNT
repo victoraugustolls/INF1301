@@ -11,12 +11,7 @@
 	erro-tipo-lista-de-casas
 
 	erro-lista-cabeca-corrompida
-	erro-lista-corrente-nulo
-	erro-lista-origem-nulo
-	erro-lista-fim-nulo
-	erro-lista-vazia-elementos-nao-nulos
-	erro-lista-vazia-origem-nao-nula
-	erro-lista-vazia-fim-nao-nulo
+	erro-lista-vazia-inconsistente
 	erro-lista-magic-number-errado
 	erro-lista-ultimo-diferente-fim
 	erro-lista-anterior-proximo-diferente-corrente
