@@ -291,6 +291,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
                 {
                     return TAB_CondRetFalhaDefinirTipoEspaco ;
                 } /* if */
+                CED_MarcarEspacoAtivo( pCasa ) ;
             #endif
 
             //TRATAR RET LISTA CORRETAMENTE
@@ -306,6 +307,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
             {
                 return TAB_CondRetFalhaDefinirTipoEspaco ;
             }
+            CED_MarcarEspacoAtivo( novaLista ) ;
         #endif
         //TRATAR RET LISTA CORRETAMENTE
     } /* for */
@@ -318,6 +320,7 @@ TAB_tpCondRet TAB_CriarTabuleiro( TAB_tppTabuleiro * pTabuleiro, char * pathConf
 
     #ifdef _DEBUG
          // CED_DefinirTipoEspaco( pTabuleiro , TAB_TipoEspacoCabeca ) ;
+        CED_MarcarEspacoAtivo( pNovoTabuleiro ) ;
     #endif
 
     AtualizaListaAmeacantesAmeacados ( * pTabuleiro ) ;
@@ -391,6 +394,10 @@ TAB_tpCondRet TAB_DestruirTabuleiro( TAB_tppTabuleiro pTabuleiro )
     
     VMV_DestruirConfigDir( pTabuleiro->configDir ) ;
     free( pTabuleiro ) ;
+
+    #ifdef _DEBUG
+        CED_MarcarEspacoNaoAtivo( pTabuleiro ) ;
+    #endif
     
     return TAB_CondRetOK ;
     
@@ -1196,6 +1203,10 @@ void ExcluirCasa ( void * pDado )
 
     CSA_DestruirCasa( x ) ;
 
+    #ifdef _DEBUG
+        CED_MarcarEspacoNaoAtivo( x ) ;
+    #endif
+
     return ;
 }
 
@@ -1240,6 +1251,10 @@ void ExcluirLista ( void * pDado )
     LIS_tppLista x = ( LIS_tppLista ) pDado ;
 
     LIS_DestruirLista( x ) ;
+
+    #ifdef _DEBUG
+        CED_MarcarEspacoNaoAtivo( x ) ;
+    #endif
 
     return ;
 }

@@ -1,0 +1,1 @@
+..\bin\TEST_TAB    /s..\script\TESTE_TABULEIRO_ESPACO    /l..\log\TESTE_TABULEIRO_ESPACO

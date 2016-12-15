@@ -11,11 +11,11 @@ tab         =  ..\tabs
 inc         =  ..\tabs
 
 [Modulos]
-TESTTAB        /D_DEBUG
-TABULEIRO      /D_DEBUG
+TESTTAB
+TABULEIRO
 CASA
 PECA
-LISTA          /D_DEBUG
+LISTA
 VALIDA_MOV
 
 [BuildInicio]
