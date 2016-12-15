@@ -162,6 +162,7 @@
       #ifdef _DEBUG
          pNewLista->magic_number = MAGIC_NUMBER;
          CED_MarcarEspacoAtivo( pNewLista ) ;
+         pNewLista->tipoArmazenado = CED_ID_TIPO_VALOR_NULO;
       #endif
 
       *pLista = pNewLista ;
@@ -749,10 +750,6 @@
    LIS_tpCondRet LIS_SetTipo( LIS_tppLista pLista ,
                               int identificadorDoTipo )
    {
-      if ( pLista->pElemCorr == NULL )
-      {
-         return LIS_CondRetListaVazia ;
-      } /* if */
 
       pLista->tipoArmazenado = identificadorDoTipo;
 
@@ -762,11 +759,6 @@
    LIS_tpCondRet LIS_GetTipo( LIS_tppLista pLista ,
                               int* identificadorDoTipo )
    {
-
-      if ( pLista->pElemCorr == NULL )
-      {
-         return LIS_CondRetListaVazia ;
-      } /* if */
 
       *identificadorDoTipo = pLista->tipoArmazenado;
 
