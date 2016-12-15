@@ -45,6 +45,10 @@
 #include "TABULEIRO.H"
 #undef TABULEIRO_OWN
 
+#ifdef _DEBUG
+    static int LIXO[10];
+#endif
+
 /***********************************************************************
  *
  *  $TC Tipo de dados: TAB Descritor do tabuleiro
@@ -1715,7 +1719,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste;
         }
         
-        *pProxCasa = (void*) 0 ;
+        *pProxCasa = (void*) LIXO ;
         
         return TAB_CondRetOK ;
         
@@ -1775,7 +1779,7 @@ CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int coluna 
             return TAB_CondRetNaoExiste;
         }
         
-        *pCasaAnterior = (void*) 0 ;
+        *pCasaAnterior = (void*) LIXO ;
         
         return TAB_CondRetOK ;
         
