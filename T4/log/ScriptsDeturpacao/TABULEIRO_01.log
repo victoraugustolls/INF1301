@@ -15,7 +15,11 @@
    24  == Iniciar contagem
 !!!    0  Linha:    29  // --------------------------------------------- 
    31  == Teste de Criacao de Tabuleiro
+<<<<<<< HEAD
 >>>    1  Linha:    34  Condicao de Retorno Diferente da Esperada. Deveria encontrar falhas, mas nao detectou. 
+=======
+>>>    1  Linha:    34  Numero de erros esperados diferente do numero de erros encontrado. Deveria ser: 0  É: 1
+>>>>>>> acf8e43991e6336975484990e11012822f9b5796
 >>>    2  Linha:    35  Não é comando recuperar:  //=deturpar				tab0  2			'3' 'C'		OK
 !!!    2  Linha:    36  //=deturpar				tab0  3			'3' 'C'		OK 
 !!!    2  Linha:    37  //=deturpar				tab0  4			'3' 'C'		OK 
@@ -42,18 +46,21 @@ cc>   15  Linha:    49   Contagem em "erro-lista-valor-corrente-nulo" é zero.
 cc>   16  Linha:    49   Contagem em "erro-lista-vazia-elementos-nao-nulos" é zero.
 cc>   17  Linha:    49   Contagem em "erro-lista-vazia-fim-nao-nulo" é zero.
 cc>   18  Linha:    49   Contagem em "erro-lista-vazia-origem-nao-nula" é zero.
-cc>   19  Linha:    49   Contagem em "erro-tamanho-lista-de-casas" é zero.
-cc>   20  Linha:    49   Contagem em "erro-tamanho-lista-de-listas" é zero.
-cc>   21  Linha:    49   Contagem em "erro-tipo-lista-de-casas" é zero.
-cc>   22  Linha:    49   Contagem em "erro-tipo-lista-de-listas" é zero.
->>>   23  Linha:    49  Número de contadores zero errado. Deveria ser: 0  É: 19
-!!!   23  Linha:    51  // --------------------------------------------- 
+cc>   19  Linha:    49   Contagem em "erro-tamanho-lista-de-listas" é zero.
+cc>   20  Linha:    49   Contagem em "erro-tipo-lista-de-casas" é zero.
+cc>   21  Linha:    49   Contagem em "erro-tipo-lista-de-listas" é zero.
+>>>   22  Linha:    49  Número de contadores zero errado. Deveria ser: 0  É: 18
+!!!   22  Linha:    51  // --------------------------------------------- 
    53  == Terminar contagem
 
 !!! Número de linhas lidas:          55
 !!! Número de casos de teste:         6
 !!! Número comandos corretos:        16
+<<<<<<< HEAD
 !!! Número de falhas encontradas:    23
+=======
+!!! Número de falhas encontradas:    22
+>>>>>>> acf8e43991e6336975484990e11012822f9b5796
 
 !!! Foram encontrados problemas
 

@@ -111,7 +111,7 @@
 
          #ifdef _DEBUG
 
-         int tipoArmazenado;
+            int tipoArmazenado;
 
          #endif
 

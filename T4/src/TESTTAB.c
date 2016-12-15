@@ -148,8 +148,8 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 		TAB_tpDeturpacao tipoDeturpacao;
 		char linhaPar;
 		char colunaPar;
-		int numErrosEsperados;
-		int numErrosEncontrados;
+		int numErrosEsperados = 0;
+		int numErrosEncontrados = 0;
 	#endif
 	
 	/* Testar CriarTabuleiro */
@@ -720,7 +720,7 @@ TST_tpCondRet TST_EfetuarComando( char * ComandoTeste )
 			{
 				return TST_CondRetParm ;
 			} /* if */
-			
+
 			CondRet = TAB_VerificaAssertivasEstruturais( vtTabuleiros[ inxTab ], &numErrosEncontrados ) ;
 
 			if ( CondRet != CondRetEsp )

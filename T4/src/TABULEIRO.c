@@ -160,6 +160,8 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
                 (*numEncontrados)++;
                 ret = TAB_CondRetFalhaNaEstrutura ;
             }
+
+            LIS_AvancarElementoCorrente( pTabuleiro->tabuleiro , 1 ) ;
         }
 
         return ret;
