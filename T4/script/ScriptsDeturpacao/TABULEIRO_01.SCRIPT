@@ -59,7 +59,7 @@
 
 =criarTabuleiro    		tab5  OK
 =deturpar				tab5  6			'3' 'C'		OK
-=verificaestrutura		tab5  1 FalhaNaEstrutura
+=verificaestrutura		tab5  2 FalhaNaEstrutura
 
 =criarTabuleiro    		tab6  OK
 =deturpar				tab6  7			'3' 'C'		OK

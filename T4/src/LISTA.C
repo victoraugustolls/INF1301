@@ -812,7 +812,9 @@
       numElemContados = 0;
       for(pElem = pLista->pOrigemLista; pElem != NULL; pElem = pElem->pProx)
       {
-         if( pElem->magic_number != MAGIC_NUMBER )
+         if( (pElem->magic_number != MAGIC_NUMBER)
+         ||  (pElem->pProx != NULL && pElem->pProx->magic_number != MAGIC_NUMBER)
+         ||  (pElem->pAnt != NULL && pElem->pAnt->magic_number != MAGIC_NUMBER) )
          {
             *erroOcorrido = LIS_tpErroEstruturaElementoDaListaCorrompido;
             CNT_CONTAR( "erro-lista-magic-number-errado" );
