@@ -14,10 +14,7 @@
 	erro-lista-vazia-inconsistente
 	erro-lista-circular
 	erro-lista-magic-number-errado
-	erro-lista-ultimo-diferente-fim
-	erro-lista-anterior-proximo-diferente-corrente
-	erro-lista-proximo-anterior-diferente-corrente
-	erro-lista-primeiro-diferente-inicio
+	erro-lista-encadeamento
 	erro-lista-valor-corrente-nulo
 	erro-lista-tipo-valor-incoerente
 	erro-lista-corrente-fora-lista
