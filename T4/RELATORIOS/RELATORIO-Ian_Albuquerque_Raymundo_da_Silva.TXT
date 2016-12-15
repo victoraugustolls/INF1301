@@ -20,28 +20,20 @@
 % - realizar os testes
 % - diagnosticar e corrigir os problemas encontrados
 
-10/11/2016; 2 horas ; revisar especificações; Revisar especificações dos módulos Tabuleiro e Jogo
+08/12/2016; 2 horas; estudar; estudar o enunciado do trabalho e os módulos de instrumentação do arcabouço.
 
-10/11/2016; 6 horas ; codificar módulo; Revisar especificações dos módulos Tabuleiro e Jogo
+12/12/2016; 4 horas; codificar módulo; codificar funções de verificação do tabuleiro
 
-10/11/2016; 2 horas ; revisar especificações; Revisar código dos módulos Tabuleiro e Jogo
+12/12/2016; 2 horas; diagnosticar e corrigir os problemas encontrados; corrigir problemas na compilação em modo debug
 
-12/11/2016; 1 hora ; diagnosticar e corrigir os problemas encontrados; Ajudar a corrigir problemas de alguns dos módulos de testes e dos módulos Peça e Casa
+13/12/2016; 4 horas; revisar código do módulo; revisar funções de verificação do tabuleiro e de deturpação
 
-14/11/2016; 2 horas ; especificar os módulos; Especificacao do modulo para criacao de pecas simplificadas
+14/12/2016;	2 horas; diagnosticar e corrigir os problemas encontrados; corrigir bugs das estruturas autoverificaveis implementadas.
 
-14/11/2016; 4 horas ; codificar módulo; Criacao do programa para criacao de pecas simplificadas
+14/12/2016;	2 horas; diagnosticar e corrigir os problemas encontrados; corrigir funções de deturpação.
 
-15/11/2016; 7 horas ; codificar módulo; (Re)criacao do codigo de realizar jogada e detecção de xeques/xeque-mate
+15/12/2016;	4 horas; codificar módulo; Implementar funções novas de deturpação para verificações já existentes.
 
-16/11/2016; 6 horas ; diagnosticar e corrigir os problemas encontrados; Resolução da implementação do movimento das peças usuais do xadrez
+15/12/2016;	2 horas; redigir script de teste; Redigir os scripts de testes com deturpações e verificações
 
-16/11/2016; 4 horas ; codificar módulo; Codificação de funções de print para os diversos módulos
-
-17/11/2016; 4 horas ; diagnosticar e corrigir os problemas encontrados; Debug geral, teste de game play, remoção de Instrumentação utilizada
-
--------------------
-
-14/21/2016;	2 horas;  diagnosticar e corrigir os problemas encontrados; corrigir bugs das estruturas autoverificaveis implementadas.
-
-15/21/2016;	2 horas;  diagnosticar e corrigir os problemas encontrados; corrigir funções de deturpação.
+15/12/2016; 1 hora; revisar especificações; Revisar especificações do trabalho
