@@ -20,6 +20,13 @@
 
 // ---------------------------------------------
 
+== Iniciar contagem
+=inicializarcontadores  ""
+=lercontadores          "..\\script\\TABULEIRO"
+=iniciarcontagem
+
+// ---------------------------------------------
+
 == Teste de Criaçcao de Tabuleiro
 =criarTabuleiro    		tab0  OK
 =deturpar				tab0  1			'C'	'3'		OK
@@ -32,4 +39,15 @@
 =deturpar				tab0  8			'C'	'3'		OK
 =deturpar				tab0  9			'C'	'3'		OK
 =destruirTabuleiro      tab0  OK
+
+// ---------------------------------------------
+
+== Terminar controlar contadores
+=pararcontagem
+=verificarcontagens    0
+
+// ---------------------------------------------
+
+== Terminar contagem
+=terminarcontadores
 

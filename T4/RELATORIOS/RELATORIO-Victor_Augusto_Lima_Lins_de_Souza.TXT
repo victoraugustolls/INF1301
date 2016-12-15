@@ -8,6 +8,8 @@ Data       Horas Trabalhadas     Tipo Tarefa                                    
                                                                                         tiradas em sala de aula.
 13/12/16   30min                 Revisar código                                         Verificar as funções de deturpação criadas no módulo tabuleiro.
 13/12/16   1h                    Diagnosticar e corrigir os problemas encontrados       Corrigir as funções de deturpação do módulo tabuleiro.
+14/12/16   30min                 Ajuste cespdin
+14/12/16   1h                    Debugar pq debug n ta indo
 
 
 
