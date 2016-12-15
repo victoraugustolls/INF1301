@@ -107,7 +107,6 @@ static CSA_tppCasa TAB_PegarCasa( TAB_tppTabuleiro pTabuleiro , int linha , int 
     TAB_tpCondRet TAB_VerificaAssertivasEstruturais( TAB_tppTabuleiro pTabuleiro, int* numEncontrados  )
     {
         int tamanho;
-        int identificadorDoTipo;
         int i;
         LIS_tppLista linha;
         LIS_tpErroEstrutura erroOcorrido;
