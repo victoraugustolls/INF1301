@@ -13,24 +13,23 @@
    17  == Inicializar valores
 !!!    0  Linha:    21  // --------------------------------------------- 
    23  == Teste de Criacao de Tabuleiro
->>>    1  Linha:    24  Condicao de retorno errada ao criar tabuleiro. Deveria ser: 0  É: 8
->>>    2  Linha:    25  Não é comando recuperar:  =deturpar				tab0  1			'C'	'3'		OK
->>>    3  Linha:    26  Comando de teste ignorado:  =deturpar				tab0  2			'C'	'3'		OK
->>>    4  Linha:    27  Comando de teste ignorado:  =deturpar				tab0  3			'C'	'3'		OK
->>>    5  Linha:    28  Comando de teste ignorado:  =deturpar				tab0  4			'C'	'3'		OK
->>>    6  Linha:    29  Comando de teste ignorado:  =deturpar				tab0  5			'C'	'3'		OK
->>>    7  Linha:    30  Comando de teste ignorado:  =deturpar				tab0  6			'C'	'3'		OK
->>>    8  Linha:    31  Comando de teste ignorado:  =deturpar				tab0  7			'C'	'3'		OK
->>>    9  Linha:    32  Comando de teste ignorado:  =deturpar				tab0  8			'C'	'3'		OK
->>>   10  Linha:    33  Comando de teste ignorado:  =deturpar				tab0  9			'C'	'3'		OK
->>>   11  Linha:    34  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
+>>>    1  Linha:    25  Comando não conhecido:  =deturpar				tab0  1			'C'	'3'		OK
+>>>    2  Linha:    26  Comando de teste ignorado:  =deturpar				tab0  2			'C'	'3'		OK
+>>>    3  Linha:    27  Comando de teste ignorado:  =deturpar				tab0  3			'C'	'3'		OK
+>>>    4  Linha:    28  Comando de teste ignorado:  =deturpar				tab0  4			'C'	'3'		OK
+>>>    5  Linha:    29  Comando de teste ignorado:  =deturpar				tab0  5			'C'	'3'		OK
+>>>    6  Linha:    30  Comando de teste ignorado:  =deturpar				tab0  6			'C'	'3'		OK
+>>>    7  Linha:    31  Comando de teste ignorado:  =deturpar				tab0  7			'C'	'3'		OK
+>>>    8  Linha:    32  Comando de teste ignorado:  =deturpar				tab0  8			'C'	'3'		OK
+>>>    9  Linha:    33  Comando de teste ignorado:  =deturpar				tab0  9			'C'	'3'		OK
+>>>   10  Linha:    34  Comando de teste ignorado:  =destruirTabuleiro      tab0  OK
 
 !!! Número de linhas lidas:          35
 !!! Número de casos de teste:         3
-!!! Número comandos corretos:         8
-!!! Número de falhas encontradas:    11
+!!! Número comandos corretos:         9
+!!! Número de falhas encontradas:    10
 
 !!! Foram encontrados problemas
 
 
-!!! Numero de espacos ainda alocados: 10
+!!! Numero de espacos ainda alocados: 0
